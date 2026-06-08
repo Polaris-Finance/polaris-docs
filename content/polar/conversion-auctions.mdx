@@ -3,6 +3,8 @@ title: POLAR Conversion Auctions
 description: The conversion auction bridges pETH and POLAR — a spike-and-decay auction where burning pETH mints POLAR, raises the floor price, and releases ETH yield.
 ---
 
+import { Steps } from 'nextra/components'
+
 # POLAR Conversion Auctions
 
 The conversion auction is the single primitive connecting pETH and POLAR. Converters **burn pETH to mint new POLAR**. It is the intended path to new POLAR after the initial distribution, engineered so each successful conversion strengthens the core protocol under the curve assumptions.
@@ -64,6 +66,40 @@ Intellectual honesty requires naming the limits:
 
 - **It does not manufacture demand for POLAR.** If nobody values vePOLAR for yield or stewardship, the arbitrage dries up. When POLAR's market price sits below the conversion price, no conversions happen until decay catches up. The mechanism *assumes* vePOLAR has genuine utility — it does not create it.
 - **Parameters carry weight.** Decay too fast ⇒ over-frequent dilution; decay too slow ⇒ stagnant conversion activity. These are set through the stewardship role within bounded ranges — a deliberate reflexivity where stewardship can tune the dilution rate, with final guardrails pending audited deployment.
+
+## How to convert
+
+Conversions are a continuous, permissionless auction tuned for arbitrage bots and MEV searchers, so converting profitably means competing with them. Most users will hold POLAR, use current POLAR Staking where the app exposes it, or wait for [vePOLAR](/stewardship/vepolar) locking instead of converting directly.
+
+**You need** pETH to burn (bought on the [bonding curve](/peth/bonding-curve) or a DEX) and a wallet connected to the Polaris app. On Public Testnet 1 this is Sepolia-only; production conversions are not actionable until [Launch Status](/launch-status) publishes the official app, conversion contract, final parameters, and audit status.
+
+<Steps>
+
+### Open the conversion panel
+
+It shows the live **conversion price** and POLAR's **market price** side by side.
+
+### Watch the decaying price
+
+The conversion price decays continuously and spikes upward each time someone converts. A conversion is profitable when it drifts **below** POLAR's market price; that spread is your margin.
+
+### Read the quote
+
+Enter a pETH amount. The panel previews the **POLAR you will receive**, the **ETH rebate** at the current [rebate](#the-converter-rebate) setting, and the resulting **price spike**. Because the spike scales with the fraction of POLAR supply minted, larger amounts price progressively worse; favor smaller increments.
+
+### Decide
+
+Convert only while the previewed POLAR (plus rebate) beats acquiring POLAR on the open market. If the spread has closed, wait for decay to reopen it.
+
+### Burn pETH ⇒ receive POLAR
+
+Confirm the transaction. Your pETH is **permanently burned**, you receive newly minted POLAR, and any ETH rebate goes to your wallet.
+
+### Stake, future-lock, or hold
+
+Stake POLAR where the current app exposes POLAR Staking, wait for [vePOLAR](/stewardship/vepolar) locking once audited deployment publishes it, or hold it.
+
+</Steps>
 
 ---
 

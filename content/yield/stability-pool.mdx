@@ -3,6 +3,8 @@ title: Polaris Stability Pool
 description: The Stability Pool is a reserve of pAssets that backstops liquidations and is the primary venue for earning yield on Polaris.
 ---
 
+import { Steps } from 'nextra/components'
+
 # Polaris Stability Pool
 
 
@@ -79,14 +81,81 @@ In a severe or flash crash, a trove can fall below 100% collateralization before
 
 Your liquidation gains are also denominated in pETH, which is [volatile against ETH](/peth/floor-price). The wrapper vaults above mitigate that exposure, but at the base layer you accept pETH.
 
+## How to deposit
+
+You need a pAsset to deposit — most commonly **pUSD** ([mint some](/minting/minting-passets) if you hold none) — plus ETH for gas. Re-read the pre-deposit warning above before signing. On Public Testnet 1 this runs on Sepolia test assets, and the exact UI gets screenshots at launch.
+
+<Steps>
+
+### Open the pool
+
+Open the Polaris app and go to the **Stability Pool** for your pAsset (e.g. the pUSD pool).
+
+### Enter a deposit amount
+
+Enter the amount of pUSD to deposit.
+
+### Approve the spend
+
+**Approve** the pUSD spend, if prompted (a one-time token approval).
+
+### Confirm the deposit
+
+Confirm the **deposit** transaction in your wallet.
+
+### Position is active
+
+Your share of the pool is now active. It accrues borrower-interest yield immediately and is eligible for liquidation gains from the next liquidation onward.
+
+</Steps>
+
+## How to claim rewards
+
+Your two reward streams behave differently: the **interest share (pUSD)** accrues continuously, while **liquidation gains (pETH)** accumulate with each liquidation processed. To realize them:
+
+<Steps>
+
+### Open your position
+
+In the Stability Pool view, open your position to see **claimable pUSD** and **claimable pETH**.
+
+### Claim or compound
+
+Select **Claim** to withdraw rewards to your wallet, or compound them back into the pool where supported.
+
+### Confirm reward action
+
+Confirm the transaction in your wallet.
+
+</Steps>
+
+## How to withdraw
+
+<Steps>
+
+### Choose Withdraw
+
+In the Stability Pool view, choose **Withdraw**.
+
+### Enter a withdrawal amount
+
+Enter the amount of pUSD to remove, or select the full balance.
+
+### Confirm withdrawal
+
+Confirm the transaction in your wallet.
+
+</Steps>
+
+Withdrawing settles any unclaimed rewards. Your deposited pUSD balance fluctuates as liquidations convert part of it into pETH — what you withdraw reflects the pool's current state, not a fixed principal.
+
 ## Next steps
 
-- [Deposit to the Stability Pool](/yield/deposit-to-stability-pool) — the step-by-step.
 - [Where the Yield Comes From](/yield/yield-sources) — every source feeding pAsset yield.
 
 <NextSteps
   steps={[
-    { href: '/yield/deposit-to-stability-pool', title: 'Deposit to the Stability Pool', description: 'The step-by-step guide to depositing.' },
+    { href: '/using-app/earn', title: 'Earn app tab', description: 'Where Stability Pool deposits live in the app.' },
     { href: '/yield/yield-sources', title: 'Where the Yield Comes From', description: 'Every source feeding pAsset yield.' },
     { href: '/redemptions-liquidations/liquidations', title: 'Liquidations', description: 'Understand how the pool absorbs liquidations.' }
   ]}

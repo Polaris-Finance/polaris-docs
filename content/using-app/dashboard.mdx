@@ -1,16 +1,16 @@
 ---
-title: Dashboard
-description: "How to read the Polaris app Dashboard: balances, positions, rewards, system status, and next actions."
+title: Dashboard & Analytics
+description: "How to read the Polaris app Dashboard and Analytics: balances, positions, rewards, system status, protocol-wide metrics, and next actions."
 ---
 
-# Dashboard
+# Dashboard & Analytics
 
 <PageStatusBanner lastUpdated="June 2026" />
 
-The **Dashboard** is the app's orientation view. It is where you check balances, open positions, pending rewards, and system health before choosing a transaction tab.
+The **Dashboard** is the app's orientation view. It is where you check balances, open positions, pending rewards, and system health before choosing a transaction tab. The **Analytics** view, covered further down, shows the protocol-wide metrics behind those numbers.
 
 <Callout variant="info" title="Where this appears in the app">
-App anchor: **Dashboard**. Use it for state inspection only; execute actions from the matching task tab after checking a fresh quote.
+App anchors: **Dashboard** for your own state, and **Analytics** for protocol-wide context. Use both for inspection only; execute actions from the matching task tab after checking a fresh quote.
 </Callout>
 
 ![Polaris Dashboard Earn cards: pUSD and pGOLD Stability Pools, POLAR Staking, and vpETH Staking, each showing APR, deposited or staked amount, and pending gains](/screenshots/dashboard.jpg)
@@ -33,8 +33,29 @@ App anchor: **Dashboard**. Use it for state inspection only; execute actions fro
 - A position can change between the Dashboard and the moment your transaction lands.
 - Use the transaction tab's quote and simulation before signing.
 
+## Analytics: protocol-wide metrics
+
+Use **Analytics** to inspect protocol-wide state before deciding on a transaction. Analytics is for context and monitoring; action tabs provide the final quote.
+
+| Metric | Why it matters |
+|---|---|
+| **Floor price** | The contract-defined pETH floor under the bonding-curve assumptions |
+| **Floor ratio** | pETH floor price divided by current pETH market price; frames curve-implied drawdown |
+| **Borrow APR** | Annualized estimate of current pAsset debt cost |
+| **Stability Pool size** | Available first-loss buffer for liquidations |
+| **Recovery Mode status** | Whether a pAsset instance is under system-wide stress restrictions |
+| **PSM/redemption activity** | Peg pressure and fee context for pAsset markets |
+| **POLAR Staking rewards** | Current routed rewards where the staking surface is live |
+
+Before relying on a metric:
+
+- Check the timestamp or refresh state before acting.
+- Distinguish an APR estimate from realized yield.
+- Confirm whether a metric is testnet-only, illustrative, or production-published.
+- Use the action tab's current quote for fees, slippage, and final amounts.
+
 ## Related docs
 
 - [Borrow](/using-app/borrow) for troves and reserve loans.
 - [Earn](/using-app/earn) for Stability Pool and POLAR Staking positions.
-- [Analytics](/using-app/analytics) for protocol-wide metrics.
+- [pETH Floor Price](/peth/floor-price), [Minting pAssets](/minting/minting-passets), and [Where the Yield Comes From](/yield/yield-sources) for the volatile concepts behind the metrics.
