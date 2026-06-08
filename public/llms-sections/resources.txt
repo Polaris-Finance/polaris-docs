@@ -382,48 +382,48 @@ Network: Sepolia, chain ID `11155111`. Source artifacts are listed on [Public Te
 
 Contract | Sepolia address
 
-Reserve token, mock WETH | `0x290a733a8f078d1f1efb2b4faac5f2f7f50673df`
-pETH / bonding curve | `0xbec3a5aff85df00e9344c0cb553b2b6b1db80243`
-Fee Router | `0x518833a8305b6a0f4a782813bc9b3acb6dd20803`
-POLAR / ShareSystem | `0x9652015bf2a1a1eef53affdf8a83f52c916cb8fe`
-Reserve Loans NFT | `0xe198955bc9ffd7dc6bb0266a1ba9e7f49c1eb5ce`
-Reserve Loans Manager | `0xa62d290638d315b57640f88af61d80d38c57f7f8`
-MultiReserveLoanGetter | `0x2cddd6bfb2848b57ac9f251ebdc3cd7b53beb962`
-Testnet stewardship | `0xea04aa2a4550862bf12a15e3f2becf48a5fb4b10`
-Testnet POLAR staking | `0x56a7088cdb41a04eddb9c9b46f27359a6797324b`
-BondingCurveTokenSplitter | `0xc880eb4ba6e7f1c60ce4968dc50b24056e67cc00`
-vpToken | `0xd59019504ea81813632c8f5e8014027b47c82ab1`
+Reserve token, mock WETH | [`0x290a733a8f078d1f1efb2b4faac5f2f7f50673df`](https://sepolia.etherscan.io/address/0x290a733a8f078d1f1efb2b4faac5f2f7f50673df)
+pETH / bonding curve | [`0xbec3a5aff85df00e9344c0cb553b2b6b1db80243`](https://sepolia.etherscan.io/address/0xbec3a5aff85df00e9344c0cb553b2b6b1db80243)
+Fee Router | [`0x518833a8305b6a0f4a782813bc9b3acb6dd20803`](https://sepolia.etherscan.io/address/0x518833a8305b6a0f4a782813bc9b3acb6dd20803)
+POLAR / ShareSystem | [`0x9652015bf2a1a1eef53affdf8a83f52c916cb8fe`](https://sepolia.etherscan.io/address/0x9652015bf2a1a1eef53affdf8a83f52c916cb8fe)
+Reserve Loans NFT | [`0xe198955bc9ffd7dc6bb0266a1ba9e7f49c1eb5ce`](https://sepolia.etherscan.io/address/0xe198955bc9ffd7dc6bb0266a1ba9e7f49c1eb5ce)
+Reserve Loans Manager | [`0xa62d290638d315b57640f88af61d80d38c57f7f8`](https://sepolia.etherscan.io/address/0xa62d290638d315b57640f88af61d80d38c57f7f8)
+MultiReserveLoanGetter | [`0x2cddd6bfb2848b57ac9f251ebdc3cd7b53beb962`](https://sepolia.etherscan.io/address/0x2cddd6bfb2848b57ac9f251ebdc3cd7b53beb962)
+Testnet stewardship | [`0xea04aa2a4550862bf12a15e3f2becf48a5fb4b10`](https://sepolia.etherscan.io/address/0xea04aa2a4550862bf12a15e3f2becf48a5fb4b10)
+Testnet POLAR staking | [`0x56a7088cdb41a04eddb9c9b46f27359a6797324b`](https://sepolia.etherscan.io/address/0x56a7088cdb41a04eddb9c9b46f27359a6797324b)
+BondingCurveTokenSplitter | [`0xc880eb4ba6e7f1c60ce4968dc50b24056e67cc00`](https://sepolia.etherscan.io/address/0xc880eb4ba6e7f1c60ce4968dc50b24056e67cc00)
+vpToken | [`0xd59019504ea81813632c8f5e8014027b47c82ab1`](https://sepolia.etherscan.io/address/0xd59019504ea81813632c8f5e8014027b47c82ab1)
 
 ### pUSD instance
 
 Contract | Sepolia address
 
-pUSD token | `0xf06a3e9420176351d0341507f91d243014510d5b`
-Stability Pool | `0x8da97da1f6ab14d144a4966360e19ca5f2b5aece`
-CDP NFT | `0xace616e3a3b07bfe2424ae48c1b4fb8aed90eea0`
-ETH/USD medianiser | `0xbad4c21ea10259280b1980b6c3f8de806b8ec31a`
-pUSD testnet price feed | `0x26998cd15cbfddcb1e8c81fb7dff75886dc90185`
-CDP Manager | `0x71b5c3b88510206203ec8363c56f908777ad52c8`
-Interest Controller | `0x0e957229c4fe20e5099206b3b615cf2563200545`
-Internal PSM | `0x49cf0fff51fdd7140237e3fc6cd2b4daf6a4ffe5`
-MultiCDPGetter | `0x5b396a8e4adff7480c0dd2858890f55d5b028149`
-Primary Interest Router | `0xb5971ee694ca881963533114c1694f5f0c56ac09`
+pUSD token | [`0xf06a3e9420176351d0341507f91d243014510d5b`](https://sepolia.etherscan.io/address/0xf06a3e9420176351d0341507f91d243014510d5b)
+Stability Pool | [`0x8da97da1f6ab14d144a4966360e19ca5f2b5aece`](https://sepolia.etherscan.io/address/0x8da97da1f6ab14d144a4966360e19ca5f2b5aece)
+CDP NFT | [`0xace616e3a3b07bfe2424ae48c1b4fb8aed90eea0`](https://sepolia.etherscan.io/address/0xace616e3a3b07bfe2424ae48c1b4fb8aed90eea0)
+ETH/USD medianiser | [`0xbad4c21ea10259280b1980b6c3f8de806b8ec31a`](https://sepolia.etherscan.io/address/0xbad4c21ea10259280b1980b6c3f8de806b8ec31a)
+pUSD testnet price feed | [`0x26998cd15cbfddcb1e8c81fb7dff75886dc90185`](https://sepolia.etherscan.io/address/0x26998cd15cbfddcb1e8c81fb7dff75886dc90185)
+CDP Manager | [`0x71b5c3b88510206203ec8363c56f908777ad52c8`](https://sepolia.etherscan.io/address/0x71b5c3b88510206203ec8363c56f908777ad52c8)
+Interest Controller | [`0x0e957229c4fe20e5099206b3b615cf2563200545`](https://sepolia.etherscan.io/address/0x0e957229c4fe20e5099206b3b615cf2563200545)
+Internal PSM | [`0x49cf0fff51fdd7140237e3fc6cd2b4daf6a4ffe5`](https://sepolia.etherscan.io/address/0x49cf0fff51fdd7140237e3fc6cd2b4daf6a4ffe5)
+MultiCDPGetter | [`0x5b396a8e4adff7480c0dd2858890f55d5b028149`](https://sepolia.etherscan.io/address/0x5b396a8e4adff7480c0dd2858890f55d5b028149)
+Primary Interest Router | [`0xb5971ee694ca881963533114c1694f5f0c56ac09`](https://sepolia.etherscan.io/address/0xb5971ee694ca881963533114c1694f5f0c56ac09)
 
 ### pGOLD instance
 
 Contract | Sepolia address
 
-pGOLD token | `0x664396097e787956eaf25214049ab58a7d53d2e1`
-Stability Pool | `0x3308842b03248838c83205100a0a33d716dc37d6`
-CDP NFT | `0xb621912e3c7383bb65b4d720ac946aa618ed129b`
-ETH/USD medianiser | `0xbad4c21ea10259280b1980b6c3f8de806b8ec31a`
-XAU/USD medianiser | `0x8f4256ec2674ed87fdf7e8079ec3933263326fe1`
-pGOLD testnet price feed | `0x8a891736218fb98cabf23b39e4b8f6f2876011f4`
-CDP Manager | `0xf45fb3acf8dbd12673ecb0be1ee376846000c4ed`
-Interest Controller | `0xbd415a7ea90f448b3633b76f5c59c84a219b2448`
-Internal PSM | `0x6bcdf4a0d67ce12bf24ba4899a3be55033f90acc`
-MultiCDPGetter | `0xe79538c2d2c2e6b6d31de4456cbabbf2adab4410`
-Primary Interest Router | `0xaa9833e7d33003004b0d66685e05bace4058d89c`
+pGOLD token | [`0x664396097e787956eaf25214049ab58a7d53d2e1`](https://sepolia.etherscan.io/address/0x664396097e787956eaf25214049ab58a7d53d2e1)
+Stability Pool | [`0x3308842b03248838c83205100a0a33d716dc37d6`](https://sepolia.etherscan.io/address/0x3308842b03248838c83205100a0a33d716dc37d6)
+CDP NFT | [`0xb621912e3c7383bb65b4d720ac946aa618ed129b`](https://sepolia.etherscan.io/address/0xb621912e3c7383bb65b4d720ac946aa618ed129b)
+ETH/USD medianiser | [`0xbad4c21ea10259280b1980b6c3f8de806b8ec31a`](https://sepolia.etherscan.io/address/0xbad4c21ea10259280b1980b6c3f8de806b8ec31a)
+XAU/USD medianiser | [`0x8f4256ec2674ed87fdf7e8079ec3933263326fe1`](https://sepolia.etherscan.io/address/0x8f4256ec2674ed87fdf7e8079ec3933263326fe1)
+pGOLD testnet price feed | [`0x8a891736218fb98cabf23b39e4b8f6f2876011f4`](https://sepolia.etherscan.io/address/0x8a891736218fb98cabf23b39e4b8f6f2876011f4)
+CDP Manager | [`0xf45fb3acf8dbd12673ecb0be1ee376846000c4ed`](https://sepolia.etherscan.io/address/0xf45fb3acf8dbd12673ecb0be1ee376846000c4ed)
+Interest Controller | [`0xbd415a7ea90f448b3633b76f5c59c84a219b2448`](https://sepolia.etherscan.io/address/0xbd415a7ea90f448b3633b76f5c59c84a219b2448)
+Internal PSM | [`0x6bcdf4a0d67ce12bf24ba4899a3be55033f90acc`](https://sepolia.etherscan.io/address/0x6bcdf4a0d67ce12bf24ba4899a3be55033f90acc)
+MultiCDPGetter | [`0xe79538c2d2c2e6b6d31de4456cbabbf2adab4410`](https://sepolia.etherscan.io/address/0xe79538c2d2c2e6b6d31de4456cbabbf2adab4410)
+Primary Interest Router | [`0xaa9833e7d33003004b0d66685e05bace4058d89c`](https://sepolia.etherscan.io/address/0xaa9833e7d33003004b0d66685e05bace4058d89c)
 
 ## Production addresses
 
