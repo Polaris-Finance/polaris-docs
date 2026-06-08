@@ -24,7 +24,7 @@ Borrow / CDP | [CDP](https://tokenbrice.github.io/polaris-docs/resources#c), [Tr
 Earn / SP | [Stability Pool](https://tokenbrice.github.io/polaris-docs/resources#s), [SP](https://tokenbrice.github.io/polaris-docs/resources#s) | [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn)
 Floor Carry | [Floor Carry](https://tokenbrice.github.io/polaris-docs/resources#f) | [Split](https://tokenbrice.github.io/polaris-docs/using-app/split)
 fpETH / vpETH | [fpETH](https://tokenbrice.github.io/polaris-docs/resources#f), [vpETH](https://tokenbrice.github.io/polaris-docs/resources#v) | [Split](https://tokenbrice.github.io/polaris-docs/using-app/split)
-Guide | [Guide](https://tokenbrice.github.io/polaris-docs/resources#g) | [Choose by goal](https://tokenbrice.github.io/polaris-docs/using-app#choose-by-goal)
+Guide | [Guide](https://tokenbrice.github.io/polaris-docs/resources#g) | [Polaris App](https://tokenbrice.github.io/polaris-docs/using-app)
 POLAR Staking | [POLAR Staking](https://tokenbrice.github.io/polaris-docs/resources#p) | [POLAR token](https://tokenbrice.github.io/polaris-docs/polar)
 PSM / Redemption | [PSM](https://tokenbrice.github.io/polaris-docs/resources#p), [Redemption](https://tokenbrice.github.io/polaris-docs/resources#r) | [Advanced](https://tokenbrice.github.io/polaris-docs/using-app/advanced)
 Reserve Loan | [Reserve Loan](https://tokenbrice.github.io/polaris-docs/resources#r) | [Advanced](https://tokenbrice.github.io/polaris-docs/using-app/advanced)
@@ -83,7 +83,7 @@ The floor-price leg created when [pETH](https://tokenbrice.github.io/polaris-doc
 ## G
 
 **Guide**
-The app area that routes users by goal, such as getting pETH, borrowing pAssets, earning yield, splitting pETH, or verifying safety. See [Choose by goal](https://tokenbrice.github.io/polaris-docs/using-app#choose-by-goal).
+The app area that routes users by goal, such as getting pETH, borrowing pAssets, earning yield, splitting pETH, or verifying safety. See [Polaris App](https://tokenbrice.github.io/polaris-docs/using-app).
 
 ## I
 

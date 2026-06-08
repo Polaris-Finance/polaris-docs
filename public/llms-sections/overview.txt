@@ -205,7 +205,7 @@ Now pick the path that matches what you want to do:
 - **Earn yield** — deposit pAssets into a Stability Pool or understand Fee Router yield: [Earning Yield](https://tokenbrice.github.io/polaris-docs/yield).
 - **Hold or use pETH** — understand the bonding curve, floor price, and external collateral use: [pETH & Bonding Curve](https://tokenbrice.github.io/polaris-docs/peth).
 - **Convert and lock POLAR** — burn pETH to mint POLAR, lock as vePOLAR, and participate in bounded stewardship: [POLAR & Staking](https://tokenbrice.github.io/polaris-docs/polar).
-- **Develop** — plan an integration, indexer, vault, analytics surface, or risk tool: [Develop](https://tokenbrice.github.io/polaris-docs/develop).
+- **Integrate** — plan an integration, indexer, vault, analytics surface, or risk tool: [Safety and Verification](https://tokenbrice.github.io/polaris-docs/resources/safety-verification).
 - **Verify before you sign** — confirm the official app, network, contracts, and audits: [Safety and Verification](https://tokenbrice.github.io/polaris-docs/resources/safety-verification).
 
 Relevant app/search vocabulary: app, official app, testnet app, app.testnet.polarisfinance.io, testnet, Testnet 2, Sepolia, chain ID 11155111, WETH faucet, contracts, audits.
