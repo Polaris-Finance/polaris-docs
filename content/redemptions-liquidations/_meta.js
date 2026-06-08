@@ -1,6 +1,5 @@
 export default {
-  index: 'Overview',
-  redemptions: 'Redemptions',
+  index: 'Redemptions',
   liquidations: 'Liquidations',
   'recovery-mode': 'Recovery Mode'
 }

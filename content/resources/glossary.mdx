@@ -150,7 +150,7 @@ The flagship pAsset, designed to track the US dollar and be backed by pETH colla
 A protocol-wide protective state (Emergency Mode in the contracts) triggered when a pAsset's system-wide reserve-to-debt ratio (the [TCR](#t)) falls below a fixed threshold. While active, operations that reduce a trove's collateral or increase its debt are restricted (they must clear a higher minimum ratio and may not lower an existing trove's ICR); liquidation eligibility is unchanged. See [Recovery Mode](/redemptions-liquidations/recovery-mode).
 
 **Redemption**
-Exchanging a pAsset for its underlying collateral at face value (minus a fee) when the pAsset trades *below* peg. Redemptions restore the floor and are one of the onchain signals used to set interest rates. See [Redemptions](/redemptions-liquidations/redemptions).
+Exchanging a pAsset for its underlying collateral at face value (minus a fee) when the pAsset trades *below* peg. Redemptions restore the floor and are one of the onchain signals used to set interest rates. See [Redemptions](/redemptions-liquidations).
 
 **Reserve Loan**
 A WETH loan against [fpETH](#f) floor-value collateral. It is separate from a pAsset trove: reserve loans use the pETH floor leg and reserve accounting, while troves mint pAssets against pETH collateral.

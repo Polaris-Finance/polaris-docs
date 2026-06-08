@@ -25,7 +25,7 @@ Your **Individual Collateralization Ratio (ICR)** is the value of your trove's c
 Collateral value comes from the protocol's collateral pricing path. Debt value is what you owe in that pAsset's reference unit, including accrued interest; it is not the temporary market price at which you might buy the pAsset on a DEX. A trove holding pETH worth \$15,000 against 10,000 pUSD of debt has an ICR of 150%. Higher is safer. Two thresholds matter:
 
 - Below the **minimum ICR**, the trove can be [liquidated](/redemptions-liquidations/liquidations).
-- [Redemptions](/redemptions-liquidations/redemptions) draw collateral from every open trove collectively, pro-rata to its recorded collateral and regardless of ICR — a higher ICR protects against liquidation, not redemption.
+- [Redemptions](/redemptions-liquidations) draw collateral from every open trove collectively, pro-rata to its recorded collateral and regardless of ICR — a higher ICR protects against liquidation, not redemption.
 
 Your ICR moves on its own as ETH's price moves — you need not touch the trove for it to drift. Managing the trove is mostly about keeping the ICR where you want it.
 
@@ -35,7 +35,7 @@ Your ICR moves on its own as ETH's price moves — you need not touch the trove 
 
 
 <Callout variant="danger" title="Warning">
-Minting more or withdrawing collateral lowers your ICR. Drop below the minimum and your trove is <a href="/redemptions-liquidations/liquidations">liquidated</a> automatically: your collateral covers the debt plus a liquidation penalty, with no margin call, and only the surplus is returned for you to claim. <a href="/redemptions-liquidations/redemptions">Redemptions</a> can also reach your position while it is still solvent — there is no minimum ICR to cross — shrinking your collateral and pETH exposure proportionally without your consent. See the <a href="/resources/risk-disclosure">Risk Disclosure</a>.
+Minting more or withdrawing collateral lowers your ICR. Drop below the minimum and your trove is <a href="/redemptions-liquidations/liquidations">liquidated</a> automatically: your collateral covers the debt plus a liquidation penalty, with no margin call, and only the surplus is returned for you to claim. <a href="/redemptions-liquidations">Redemptions</a> can also reach your position while it is still solvent — there is no minimum ICR to cross — shrinking your collateral and pETH exposure proportionally without your consent. See the <a href="/resources/risk-disclosure">Risk Disclosure</a>.
 </Callout>
 
 ## Parameter status
