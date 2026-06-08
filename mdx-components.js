@@ -17,7 +17,6 @@ import { RiskChip } from './components/RiskChip'
 import { Stepper } from './components/Stepper'
 import { StickyMobileCta } from './components/StickyMobileCta'
 import { SystemOverviewFigure } from './components/SystemOverviewFigure'
-import { TimedExplainers } from './components/TimedExplainers'
 import { TroveSimulator } from './components/TroveSimulator'
 
 const themeComponents = getThemeComponents()
@@ -164,7 +163,6 @@ export function useMDXComponents(components) {
     Stepper,
     StickyMobileCta,
     SystemOverviewFigure,
-    TimedExplainers,
     TroveSimulator,
     ...components
   }
