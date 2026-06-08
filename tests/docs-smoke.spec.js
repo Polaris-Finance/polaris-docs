@@ -65,12 +65,26 @@ async function expectReadableArticleContrast(page, label) {
         return (lighter + 0.05) / (darker + 0.05)
       }
 
+      const blend = (foreground, background) => ({
+        r: foreground.r * foreground.a + background.r * (1 - foreground.a),
+        g: foreground.g * foreground.a + background.g * (1 - foreground.a),
+        b: foreground.b * foreground.a + background.b * (1 - foreground.a),
+        a: 1
+      })
+
       const backgroundFor = (node) => {
+        const layers = []
         for (let element = node; element; element = element.parentElement) {
           const color = parseRgb(window.getComputedStyle(element).backgroundColor)
-          if (color && color.a > 0) return color
+          if (color && color.a > 0) layers.push(color)
         }
-        return parseRgb(window.getComputedStyle(document.body).backgroundColor)
+
+        const opaqueBase = { r: 255, g: 255, b: 255, a: 1 }
+        if (layers.length === 0) {
+          return parseRgb(window.getComputedStyle(document.body).backgroundColor) ?? opaqueBase
+        }
+
+        return layers.reverse().reduce((background, layer) => blend(layer, background), opaqueBase)
       }
 
       return nodes
@@ -91,7 +105,8 @@ async function expectReadableArticleContrast(page, label) {
           const background = backgroundFor(node)
           if (!foreground || !background) return null
 
-          const ratio = contrast(foreground, background)
+          const visibleForeground = foreground.a < 1 ? blend(foreground, background) : foreground
+          const ratio = contrast(visibleForeground, background)
           const fontSize = Number.parseFloat(style.fontSize)
           const fontWeight = Number.parseInt(style.fontWeight, 10)
           const threshold = fontSize >= 24 || (fontSize >= 18.66 && fontWeight >= 700) ? 3 : 4.5
