@@ -96,7 +96,7 @@ const footer = (
         The pETH-powered yield layer for all of DeFi
       </span>
       <span style={{ opacity: 0.9 }}>
-        © {new Date().getFullYear()} Polaris Finance · No T-bills. No CEXs. No compromises.
+        © {new Date().getFullYear()} Polaris Finance
       </span>
     </div>
   </Footer>

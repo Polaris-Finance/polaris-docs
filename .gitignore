@@ -29,5 +29,7 @@ yarn-error.log*
 next-env.d.ts
 
 # local tool artifacts
+/.playwright/
+/.playwright-cli
 /.playwright-mcp/
 /.impeccable/

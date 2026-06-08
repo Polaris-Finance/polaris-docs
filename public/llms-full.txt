@@ -544,6 +544,7 @@ A documentation best-practices pass that upgrades existing pages without changin
 - Added audience signposting that routes developers and users to the right starting point.
 - Accessibility pass across the affected pages, including image alternatives and text descriptions for every embedded diagram.
 - Trimmed over-long meta descriptions so search snippets don't truncate.
+- Consolidated repeated cross-page explanations (conversion and floor mechanics, the stewardship "what it cannot do" list, Fee Router routing, the Recovery Mode interaction) so each concept is defined once and referenced elsewhere.
 
 ---
 
@@ -1343,7 +1344,7 @@ pETH carries three main risks:
 
 1. **Technical risk**: the bonding curve is a smart contract; technical risk is unavoidable, mitigated through audits and modeling.
 2. **Execution risk**: using the curve still requires Ethereum liveness, available gas, and transactions that can tolerate slippage and MEV.
-3. **Price risk**: pETH is volatile against ETH. Your exposure depends on your entry price relative to the floor, i.e. the [floor ratio](/peth/floor-price). Entering at a 90% floor ratio (10% curve-implied drawdown before execution costs) differs sharply from a 67% floor ratio (33% curve-implied drawdown before execution costs).
+3. **Price risk**: pETH is volatile against ETH. Your exposure depends on your entry price relative to the floor, i.e. the [floor ratio](/peth/floor-price): a higher ratio means a smaller curve-implied drawdown before execution costs.
 
 The curve design removes liquidity-provider withdrawal risk. That does not make execution riskless: the curve provides a contract-defined buy/sell path and floor while the relevant invariants hold.
 
@@ -1658,7 +1659,7 @@ Polaris yield is not subsidized, bridged in, or governance-voted into being. It 
 
 ## How yield is distributed
 
-Onchain fees do not flow straight to recipients. Conversion proceeds and swap fees go to the **[Fee Router](/stewardship/fee-router)**, which buffers them over time and distributes the buffered pETH yield to troves, credited pro-rata to each trove's recorded debt. Routing to [vePOLAR](/stewardship/vepolar) lockers is a separate, forthcoming path. (The stewarded primary-interest split that funds the Stability Pool, POLAR stakers, and the ecosystem fund is a distinct, pAsset-denominated stream.) Exact values are finalized closer to launch.
+Onchain fees do not flow straight to recipients: conversion proceeds and swap fees go to the **[Fee Router](/stewardship/fee-router)**, which buffers them and distributes pETH yield to troves pro-rata to recorded debt. Routing to [vePOLAR](/stewardship/vepolar) lockers is a separate, forthcoming path. (The stewarded primary-interest split that funds the Stability Pool, POLAR stakers, and the ecosystem fund is a distinct, pAsset-denominated stream.) Exact values are finalized closer to launch.
 
 ## Pre-launch parameter status
 
@@ -1745,7 +1746,7 @@ If the Stability Pool is empty or too small, the uncovered portion follows the r
 
 ## How liquidation interacts with system health
 
-A trove's individual ratio is not all that matters. When the system's reserve backing falls below a threshold relative to total debt, the protocol enters [Recovery Mode](/redemptions-liquidations/recovery-mode), a protective state that restricts risk-increasing borrower operations (blocking actions that lower collateral or raise debt) while backing is thin. Liquidation eligibility is unchanged: a trove is liquidated whenever its ICR falls below the minimum, in every mode. Recovery Mode is the system-level safeguard complementing the trove-level liquidation described here.
+A trove's individual ratio is not all that matters. When system-wide backing runs thin, the protocol enters [Recovery Mode](/redemptions-liquidations/recovery-mode), which tightens risk-increasing borrower operations while it lasts. Liquidation eligibility is unchanged: a trove is liquidated whenever its ICR falls below the minimum, in every mode. Recovery Mode is the system-level safeguard complementing the trove-level liquidation described here.
 
 ---
 
@@ -1900,7 +1901,7 @@ A redemption is sized by the pAsset the redeemer burns, not matched against any 
 
 ### Borrower effects
 
-Being redeemed against is not the same as being liquidated. Your debt is repaid with your own collateral, so your net equity at reference prices is roughly unchanged before fees, rounding, and final fee-routing. What changes is control: your trove shrinks, your pETH exposure shrinks, and your future pETH-linked yield potential falls.
+A redemption repays your debt with your own collateral, so what changes is not your net equity (roughly unchanged at reference prices before fees, rounding, and final fee-routing) but your *control*: your trove shrinks, your pETH exposure shrinks, and your future pETH-linked yield potential falls.
 
 Because redemptions remove equal reference value from both sides of an overcollateralized trove, the remaining ICR often rises after a partial redemption. That does not make redemptions harmless; it makes them an involuntary deleveraging event, not a liquidation penalty.
 
@@ -2153,7 +2154,7 @@ There is no team mint function and no inflation schedule disconnected from proto
 
 This is the point: POLAR's issuance is welded to the **most protocol-synergetic action possible**. Burning pETH simultaneously:
 
-- **Raises the [floor price](/peth/floor-price)** — reducing supply on a power-law curve lifts pETH's enforced minimum, permanently.
+- **Raises the [floor price](/peth/floor-price)** — permanently, by contracting pETH supply.
 - **Releases ETH** from the bonding curve reserve, which becomes pETH yield routed through the [Fee Router](/stewardship/fee-router).
 - **Mints the token** that funds ecosystem growth.
 
@@ -2166,7 +2167,7 @@ Every token emission is dilutive. We will not pretend otherwise — minting new 
 
 The difference is what the dilution *buys*. Each conversion that dilutes POLAR holders also burns pETH, raises the floor, and releases ETH yield. **Every unit of POLAR dilution corresponds to a concrete improvement in protocol fundamentals.** This differs structurally from emission models like CRV, where inflation is disconnected from any protocol benefit.
 
-Conversion is governed by three stewarded parameters: the reserve rebate (bounded to 0–100%), the price-decay half-life, and the supply-inflation spike sensitivity. Issuance is self-limiting in practice: each conversion raises the conversion price via the supply-inflation spike, in proportion to the POLAR it mints, and the decaying-price auction lets the rate recover only over time, so large or rapid minting throttles itself and issuance tracks real arbitrage demand. A hardcoded issuance cap and an explicit disable switch are not yet enforced in the current prototype; final parameter bounds await audited deployment.
+Conversion is governed by three stewarded parameters: the reserve rebate (bounded to 0–100%), the price-decay half-life, and the supply-inflation spike sensitivity. Issuance is self-limiting: [spike-and-decay pricing](/polar/conversion-auctions#spike-and-decay-pricing) makes large or rapid minting throttle itself, so issuance tracks real arbitrage demand. A hardcoded issuance cap and an explicit disable switch are not yet enforced in the current prototype; final parameter bounds await audited deployment.
 
 For the founding team this means progressive dilution as a *structural guarantee, not a promise*: the faster Polaris grows, the more attractive conversions become, and the more the team's initial share dilutes.
 
@@ -2318,7 +2319,7 @@ The Fee Router sits downstream of one of stewardship's key dials: the **converte
 - **Higher rebate** -> conversions are cheaper -> more conversion volume, less yield reaching the router.
 - **Lower rebate** -> conversions cost more -> less volume, more yield reaching the router.
 
-It is a dial between conversion volume and system yield. The total ETH released from the curve, and therefore the floor-price impact, is unaffected by the rebate; it only reshapes how that value splits before entering the router. See [Conversion Auctions](/polar/conversion-auctions#the-converter-rebate) for the full mechanism.
+It is a dial between conversion volume and system yield — it reshapes how that value splits, not the total ETH released or the floor-price impact. See [Conversion Auctions](/polar/conversion-auctions#the-converter-rebate) for the full mechanism.
 
 ## Operator and integrator prerequisites
 
@@ -2627,15 +2628,7 @@ Each action is bounded, auditable, and limited to the surfaces in [Stewardship, 
 
 ## What vePOLAR does not do
 
-vePOLAR does not:
-
-- Direct POLAR emissions.
-- Create gauges or bribe markets.
-- Upgrade core contracts.
-- Change pETH collateral mechanics.
-- Override liquidations, redemptions, or Stability Pool rules.
-- Mint POLAR outside the pETH conversion mechanism.
-- Move a parameter outside its immutable min/max range.
+vePOLAR cannot upgrade core contracts; change pETH, CDP, liquidation, redemption, or Stability Pool mechanics; create gauges or bribe markets; direct POLAR emissions; mint POLAR outside the [conversion auction](/polar/conversion-auctions); or move any parameter outside its immutable min/max range. The full list of what no vote can reach is in [Stewardship, not Governance](/stewardship/stewardship#what-stewardship-does-not-do).
 
 ## Lock status
 

@@ -26,7 +26,7 @@ There is no team mint function and no inflation schedule disconnected from proto
 
 This is the point: POLAR's issuance is welded to the **most protocol-synergetic action possible**. Burning pETH simultaneously:
 
-- **Raises the [floor price](/peth/floor-price)** — reducing supply on a power-law curve lifts pETH's enforced minimum, permanently.
+- **Raises the [floor price](/peth/floor-price)** — permanently, by contracting pETH supply.
 - **Releases ETH** from the bonding curve reserve, which becomes pETH yield routed through the [Fee Router](/stewardship/fee-router).
 - **Mints the token** that funds ecosystem growth.
 
@@ -39,7 +39,7 @@ Every token emission is dilutive. We will not pretend otherwise — minting new 
 
 The difference is what the dilution *buys*. Each conversion that dilutes POLAR holders also burns pETH, raises the floor, and releases ETH yield. **Every unit of POLAR dilution corresponds to a concrete improvement in protocol fundamentals.** This differs structurally from emission models like CRV, where inflation is disconnected from any protocol benefit.
 
-Conversion is governed by three stewarded parameters: the reserve rebate (bounded to 0–100%), the price-decay half-life, and the supply-inflation spike sensitivity. Issuance is self-limiting in practice: each conversion raises the conversion price via the supply-inflation spike, in proportion to the POLAR it mints, and the decaying-price auction lets the rate recover only over time, so large or rapid minting throttles itself and issuance tracks real arbitrage demand. A hardcoded issuance cap and an explicit disable switch are not yet enforced in the current prototype; final parameter bounds await audited deployment.
+Conversion is governed by three stewarded parameters: the reserve rebate (bounded to 0–100%), the price-decay half-life, and the supply-inflation spike sensitivity. Issuance is self-limiting: [spike-and-decay pricing](/polar/conversion-auctions#spike-and-decay-pricing) makes large or rapid minting throttle itself, so issuance tracks real arbitrage demand. A hardcoded issuance cap and an explicit disable switch are not yet enforced in the current prototype; final parameter bounds await audited deployment.
 
 For the founding team this means progressive dilution as a *structural guarantee, not a promise*: the faster Polaris grows, the more attractive conversions become, and the more the team's initial share dilutes.
 

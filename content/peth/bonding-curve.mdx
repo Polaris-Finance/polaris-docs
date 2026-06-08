@@ -82,7 +82,7 @@ pETH carries three main risks:
 
 1. **Technical risk**: the bonding curve is a smart contract; technical risk is unavoidable, mitigated through audits and modeling.
 2. **Execution risk**: using the curve still requires Ethereum liveness, available gas, and transactions that can tolerate slippage and MEV.
-3. **Price risk**: pETH is volatile against ETH. Your exposure depends on your entry price relative to the floor, i.e. the [floor ratio](/peth/floor-price). Entering at a 90% floor ratio (10% curve-implied drawdown before execution costs) differs sharply from a 67% floor ratio (33% curve-implied drawdown before execution costs).
+3. **Price risk**: pETH is volatile against ETH. Your exposure depends on your entry price relative to the floor, i.e. the [floor ratio](/peth/floor-price): a higher ratio means a smaller curve-implied drawdown before execution costs.
 
 The curve design removes liquidity-provider withdrawal risk. That does not make execution riskless: the curve provides a contract-defined buy/sell path and floor while the relevant invariants hold.
 

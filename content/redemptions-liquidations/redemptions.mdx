@@ -66,7 +66,7 @@ A redemption is sized by the pAsset the redeemer burns, not matched against any 
 
 ### Borrower effects
 
-Being redeemed against is not the same as being liquidated. Your debt is repaid with your own collateral, so your net equity at reference prices is roughly unchanged before fees, rounding, and final fee-routing. What changes is control: your trove shrinks, your pETH exposure shrinks, and your future pETH-linked yield potential falls.
+A redemption repays your debt with your own collateral, so what changes is not your net equity (roughly unchanged at reference prices before fees, rounding, and final fee-routing) but your *control*: your trove shrinks, your pETH exposure shrinks, and your future pETH-linked yield potential falls.
 
 Because redemptions remove equal reference value from both sides of an overcollateralized trove, the remaining ICR often rises after a partial redemption. That does not make redemptions harmless; it makes them an involuntary deleveraging event, not a liquidation penalty.
 

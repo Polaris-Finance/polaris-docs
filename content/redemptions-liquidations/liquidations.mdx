@@ -61,7 +61,7 @@ If the Stability Pool is empty or too small, the uncovered portion follows the r
 
 ## How liquidation interacts with system health
 
-A trove's individual ratio is not all that matters. When the system's reserve backing falls below a threshold relative to total debt, the protocol enters [Recovery Mode](/redemptions-liquidations/recovery-mode), a protective state that restricts risk-increasing borrower operations (blocking actions that lower collateral or raise debt) while backing is thin. Liquidation eligibility is unchanged: a trove is liquidated whenever its ICR falls below the minimum, in every mode. Recovery Mode is the system-level safeguard complementing the trove-level liquidation described here.
+A trove's individual ratio is not all that matters. When system-wide backing runs thin, the protocol enters [Recovery Mode](/redemptions-liquidations/recovery-mode), which tightens risk-increasing borrower operations while it lasts. Liquidation eligibility is unchanged: a trove is liquidated whenever its ICR falls below the minimum, in every mode. Recovery Mode is the system-level safeguard complementing the trove-level liquidation described here.
 
 ---
 
