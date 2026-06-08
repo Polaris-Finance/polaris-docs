@@ -39,7 +39,7 @@ Because the floor only rises, every conversion benefits everyone holding or borr
 | CDP borrowers | Collateral's worst-case value improves ⇒ self-recollateralizing loans get safer |
 | Stability Pool depositors | Healthier system-wide collateralization ratio |
 
-This is the second of the two floor-raising mechanisms (the other being [swap-fee burns](/peth/bonding-curve)). Swap fees are frequent and lift the floor regardless of POLAR's price; conversions are more sporadic but have larger floor-raising potential.
+This is the second of two floor-raising mechanisms (the other being [swap-fee burns](/peth/bonding-curve)). Swap fees are frequent and lift the floor regardless of POLAR's price; conversions are more sporadic but have larger floor-raising potential.
 
 ## The converter rebate
 
@@ -48,22 +48,22 @@ Before the released ETH becomes system yield, a slice can return to the converte
 | Rebate | Effect |
 |---|---|
 | **0%** | Maximum yield to the system; conversions cost the most. Sensible when POLAR's market cap exceeds pETH's. |
-| **100%** | Zero system yield; conversions become cheapest (effective cost set by the [floor ratio](/peth/floor-price)). An emergency lever to drive volume when the floor is stalling. |
+| **100%** | Zero system yield; conversions are cheapest (effective cost set by the [floor ratio](/peth/floor-price)). An emergency lever to drive volume when the floor is stalling. |
 | **In between** | The usual operating range, shifting with market conditions. |
 
 The metric stewards watch is the **POLAR / pETH market-cap ratio**: when POLAR's is larger, a low rebate is defensible; when it flips, higher rebates are justified.
 
 > **Note:**
-> The total ETH released from the curve is **unaffected** by the rebate. The floor-price impact is identical no matter how the ETH is split afterward. The rebate reshapes the *distribution* of value, not the underlying collateral dynamics.
+> The total ETH released from the curve is **unaffected** by the rebate. The floor-price impact is identical however the ETH is split afterward. The rebate reshapes the *distribution* of value, not the underlying collateral dynamics.
 
-After the rebate, the remaining ETH is swapped into pETH and forwarded to the **[Fee Router](/stewardship/fee-router)**, which buffers it and distributes that yield to pETH troves, pro-rata to their recorded debt.
+After the rebate, the remaining ETH is swapped into pETH and forwarded to the **[Fee Router](/stewardship/fee-router)**, which buffers it and distributes the yield to pETH troves, pro-rata to their recorded debt.
 
 ## What conversion does *not* do
 
 Intellectual honesty requires naming the limits:
 
 - **It does not manufacture demand for POLAR.** If nobody values vePOLAR for yield or stewardship, the arbitrage dries up. When POLAR's market price sits below the conversion price, no conversions happen until decay catches up. The mechanism *assumes* vePOLAR has genuine utility — it does not create it.
-- **Parameters carry weight.** Decay too fast ⇒ over-frequent dilution; decay too slow ⇒ stagnant conversion activity. These are set through the stewardship role within ranges intended to be bounded — a deliberate reflexivity where stewardship can tune the dilution rate, with final guardrails pending audited deployment.
+- **Parameters carry weight.** Decay too fast ⇒ over-frequent dilution; decay too slow ⇒ stagnant conversion activity. These are set through the stewardship role within bounded ranges — a deliberate reflexivity where stewardship can tune the dilution rate, with final guardrails pending audited deployment.
 
 ---
 

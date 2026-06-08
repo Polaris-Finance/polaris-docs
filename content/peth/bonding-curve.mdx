@@ -23,10 +23,7 @@ Two things make pETH's curve different from Pump.fun's:
 
 ## What's unique about pETH's curve
 
-pETH's curve is **two-way** (ETH ⇒ pETH and pETH ⇒ ETH) and it **enforces a rising price floor** for pETH, measured in ETH, under the curve's audited invariants. The floor is designed to move up through two mechanisms:
-
-- Each swap charges a fee in pETH that accrues to the protocol's fee router; accumulated fees are periodically floor-sold against the curve and burned (part recycled into protocol rewards) ⇒ the floor rises over time.
-- The [conversion auction](/polar/conversion-auctions) mints POLAR by **burning pETH** ⇒ the floor rises with POLAR minting.
+pETH's curve is **two-way** (ETH ⇒ pETH and pETH ⇒ ETH) and **enforces a rising price floor** for pETH, measured in ETH, under the curve's audited invariants. Two mechanisms lift the floor and none normally lowers it: swap fees, charged in pETH and periodically burned, and [conversion auctions](/polar/conversion-auctions) that burn pETH to mint POLAR. See [The Floor Price](/peth/floor-price) for how it only rises.
 
 ![pETH bonding curve: ETH deposits mint pETH along a power-law curve with a rising floor price](/infographics/polaris-bonding-curve.svg)
 
@@ -68,7 +65,7 @@ pETH's rising floor and eventual deep ETH backing could make it a prime asset *o
 
 ## pETH vs stETH
 
-stETH is a prime asset, but it does not have contract-native liquidity from its own reserve. Native withdrawals depend on the validator exit queue and can vary; DEX liquidity is deep, but depends on liquidity providers who can stop supplying in a panic.
+stETH is a prime asset, but it lacks contract-native liquidity from its own reserve. Native withdrawals depend on the validator exit queue and can vary; DEX liquidity is deep, but depends on liquidity providers who can stop supplying in a panic.
 
 | | **pETH** | **stETH** |
 |---|---|---|
@@ -77,7 +74,7 @@ stETH is a prime asset, but it does not have contract-native liquidity from its 
 | Price floor | Contract-enforced under audited invariants | None |
 | Main risk | Price risk vs ETH, bounded by the floor under the curve assumptions | LP/liquidity risk |
 
-> stETH is a prime asset, don't get us wrong. It simply does not provide this kind of reserve-backed onchain sell path.
+> stETH is a prime asset, don't get us wrong. It just doesn't provide this kind of reserve-backed onchain sell path.
 
 ## Risk overview
 
@@ -85,9 +82,9 @@ pETH carries three main risks:
 
 1. **Technical risk**: the bonding curve is a smart contract; technical risk is unavoidable, mitigated through audits and modeling.
 2. **Execution risk**: using the curve still requires Ethereum liveness, available gas, and transactions that can tolerate slippage and MEV.
-3. **Price risk**: pETH is volatile against ETH. Your exposure depends on your entry price relative to the floor, i.e. the [floor ratio](/peth/floor-price). Entering at a 90% floor ratio (10% curve-implied drawdown before execution costs) is very different from a 67% floor ratio (33% curve-implied drawdown before execution costs).
+3. **Price risk**: pETH is volatile against ETH. Your exposure depends on your entry price relative to the floor, i.e. the [floor ratio](/peth/floor-price). Entering at a 90% floor ratio (10% curve-implied drawdown before execution costs) differs sharply from a 67% floor ratio (33% curve-implied drawdown before execution costs).
 
-The curve design removes liquidity-provider withdrawal risk. That is not the same as saying execution is riskless: the curve provides a contract-defined buy/sell path and floor while the relevant invariants hold.
+The curve design removes liquidity-provider withdrawal risk. That does not make execution riskless: the curve provides a contract-defined buy/sell path and floor while the relevant invariants hold.
 
 ---
 

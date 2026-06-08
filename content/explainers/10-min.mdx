@@ -36,7 +36,7 @@ The lineage's lesson: immutability and counterparty-freedom are achievable and p
 
 The bonding curve is what makes Polaris different from every prior CDP stablecoin.
 
-When you deposit ETH into Polaris, the curve issues you **pETH** at the current price. When you redeem pETH, you receive ETH back — at the floor price (at minimum), or the market price (if higher).
+When you deposit ETH into Polaris, the curve issues you **pETH** at the current price. When you redeem pETH, you get ETH back — at the floor price (at minimum), or the market price (if higher).
 
 ### The floor price
 
@@ -54,7 +54,7 @@ The key insight: **the more DeFi activity flows through Polaris, the higher the 
 
 ## pAssets: a factory of synthetic assets
 
-With pETH as the collateral primitive, Polaris runs a factory of CDP (Collateralized Debt Position) instances. Each CDP issues a different synthetic asset against the same collateral:
+With pETH as the collateral primitive, Polaris runs a factory of CDP (Collateralized Debt Position) instances. Each issues a different synthetic asset against the same collateral:
 
 - **pUSD** — pegged to the US dollar
 - **pGOLD** — pegged to gold
@@ -97,7 +97,7 @@ POLAR is the protocol's stewardship token. Apart from a one-time genesis allocat
 ### What burning pETH in a conversion auction does
 
 When pETH is burned:
-1. The ETH backing the burned pETH is freed from the bonding curve's floor reserve — a configurable rebate goes back to the converter and the remainder is recycled into the system (market-buying pETH to refill the reward buffer).
+1. The ETH backing the burned pETH is freed from the bonding curve's floor reserve — a configurable rebate goes to the converter and the remainder is recycled into the system (market-buying pETH to refill the reward buffer).
 2. The pETH floor price rises (supply contraction).
 3. POLAR is minted to the burner.
 
@@ -116,7 +116,7 @@ The distinction matters: Polaris has stewardship, not governance. The core is fi
 
 The four-step picture:
 1. **Swap.** ETH enters the bonding curve and is issued as pETH at the current price.
-2. **Collateralize.** pETH is the only collateral accepted across every CDP instance.
+2. **Collateralize.** pETH is the only collateral every CDP instance accepts.
 3. **Borrow.** A CDP mints a pAsset — pUSD, pGOLD, or any other — against that pETH.
 4. **Stewardship.** Burning pETH for POLAR raises the floor, releases ETH, and aligns token holders with the protocol's long-term health.
 
@@ -149,11 +149,11 @@ These are not design goals or promises. They are invariants enforced by the depl
 
 ## Risk model
 
-Understanding Polaris includes knowing what can and cannot happen:
+Understanding Polaris means knowing what can and cannot happen:
 
 **What can happen:**
-- Your trove can be liquidated if your collateral ratio falls below the minimum. You retain any surplus above the liquidation threshold — liquidations are not a total loss.
-- Recovery Mode is triggered when the protocol's reserve backing relative to total debt (its reserve-to-debt ratio) falls below a threshold. While active, borrowing tightens — actions that increase debt or reduce collateral must meet a higher minimum collateral ratio and may not worsen a position's ratio — but liquidation eligibility itself stays at the normal minimum collateral ratio, and pure collateral top-ups and repayments remain allowed.
+- Your trove can be liquidated if your collateral ratio falls below the minimum. You keep any surplus above the liquidation threshold — liquidations are not a total loss.
+- Recovery Mode triggers when the protocol's reserve backing relative to total debt (its reserve-to-debt ratio) falls below a threshold. While active, borrowing tightens — actions that increase debt or reduce collateral must meet a higher minimum collateral ratio and may not worsen a position's ratio — but liquidation eligibility stays at the normal minimum collateral ratio, and pure collateral top-ups and repayments remain allowed.
 - pETH's market price can fall (it tracks ETH), though the floor is guaranteed. If ETH falls sharply, the floor protects you from the worst of it.
 
 **What cannot happen by design:**
@@ -163,7 +163,7 @@ Understanding Polaris includes knowing what can and cannot happen:
 
 ---
 
-Where to go next depends on what you want to do:
+Where to go next depends on what you want to do.
 
 - Ready to use it? [Getting Started](/getting-started)
 - Want the concept glossary? [Core Concepts](/core-concepts)

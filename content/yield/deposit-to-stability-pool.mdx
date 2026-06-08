@@ -7,10 +7,10 @@ import { Steps } from 'nextra/components'
 
 # Deposit to the Stability Pool
 
-This page walks through depositing a pAsset (pUSD in the examples) into the [Stability Pool](/yield/stability-pool), claiming your rewards, and withdrawing. Read [The Stability Pool](/yield/stability-pool) first if you have not — it explains what you earn and the risk you take on.
+This page walks through depositing a pAsset (pUSD in the examples) into the [Stability Pool](/yield/stability-pool), claiming rewards, and withdrawing. If you have not yet, read [The Stability Pool](/yield/stability-pool) first — it explains what you earn and the risk you take on.
 
 > **Note:**
-> The product interface is not yet public. Screenshots and the exact UI flow are forthcoming; the steps below describe the intended flow and will be updated with images at launch.
+> The product interface is not yet public. Screenshots and the exact UI flow are forthcoming; the steps below describe the intended flow and will get images at launch.
 
 ## Before you start
 
@@ -18,13 +18,13 @@ You need:
 
 - A pAsset to deposit — most commonly **pUSD**. [Mint pUSD](/minting/minting-passets) first if you hold none.
 - ETH for gas.
-- An understanding that liquidation gains arrive in **pETH**, and the [risk](/yield/stability-pool#the-honest-risk) of a severe crash. If you want pure pUSD exposure, use a wrapper vault — see [Where the Yield Comes From](/yield/yield-sources).
+- An understanding that liquidation gains arrive in **pETH**, and the [risk](/yield/stability-pool#the-honest-risk) of a severe crash. For pure pUSD exposure, use a wrapper vault — see [Where the Yield Comes From](/yield/yield-sources).
 
 > **Before you act:**
 > Check the pool's current size, your projected share, accrued reward tokens, withdrawal conditions, and whether you are comfortable receiving pETH during volatile liquidations. If you plan to convert pETH rewards back to pAsset, account for gas, slippage, MEV, and wrapper-vault availability.
 
 > **Warning:**
-> A Stability Pool deposit is at risk of loss. Liquidations convert part of your deposited pAsset into pETH, and in a severe or flash crash the pETH you receive can be worth **less** than the pAsset burned — your principal is not protected. Size your deposit accordingly and read the [Risk Disclosure](/resources/risk-disclosure).
+> A Stability Pool deposit can lose value. Liquidations convert part of your deposited pAsset into pETH, and in a severe or flash crash the pETH you receive can be worth **less** than the pAsset burned — your principal is not protected. Size your deposit accordingly and read the [Risk Disclosure](/resources/risk-disclosure).
 
 ## Deposit
 
@@ -48,7 +48,7 @@ Confirm the **deposit** transaction in your wallet.
 
 ### Position is active
 
-Your share of the pool is now active. It begins accruing borrower-interest yield immediately and is eligible for liquidation gains from the next liquidation onward.
+Your share of the pool is now active. It accrues borrower-interest yield immediately and is eligible for liquidation gains from the next liquidation onward.
 
 </Steps>
 
@@ -57,7 +57,7 @@ Your share of the pool is now active. It begins accruing borrower-interest yield
 Your two reward streams behave differently:
 
 - **Interest share (pUSD)** accrues continuously to your position.
-- **Liquidation gains (pETH)** accumulate to your position each time a liquidation is processed.
+- **Liquidation gains (pETH)** accumulate to your position with each liquidation processed.
 
 To realize them:
 
@@ -95,7 +95,7 @@ Confirm the transaction in your wallet.
 
 </Steps>
 
-Any unclaimed rewards are settled when you withdraw. Your deposited pUSD balance fluctuates as liquidations convert part of it into pETH — what you withdraw reflects the pool's current state, not a fixed principal.
+Withdrawing settles any unclaimed rewards. Your deposited pUSD balance fluctuates as liquidations convert part of it into pETH — what you withdraw reflects the pool's current state, not a fixed principal.
 
 ## Next steps
 

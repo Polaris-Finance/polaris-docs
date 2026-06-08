@@ -33,7 +33,7 @@ The purpose is system-level solvency. When the TCR is low, a single sharp move c
 
 ## How behavior changes
 
-Recovery Mode does **not** change which troves are liquidatable. In every mode, a trove is liquidatable only once its ICR falls below the minimum (the MCR). What tightens is the set of **borrower actions** you are allowed to take while the protective state is active.
+Recovery Mode does **not** change which troves are liquidatable. In every mode, a trove is liquidatable only once its ICR falls below the minimum (the MCR). What tightens is the set of **borrower actions** allowed while the protective state is active.
 
 | Your action | Normal Mode | Recovery Mode |
 |---|---|---|
@@ -41,25 +41,25 @@ Recovery Mode does **not** change which troves are liquidatable. In every mode, 
 | **Withdraw collateral / mint more debt** | Allowed if ICR stays above the minimum | Allowed only if the resulting ICR clears a higher recovery minimum and does not decrease your ICR |
 | **Liquidation eligibility** | ICR below the minimum | ICR below the minimum (unchanged) |
 
-The principle: in Recovery Mode the system restricts actions that would make it thinner, while always allowing actions that strengthen it. Liquidation eligibility stays exactly where it is in Normal Mode; the only change is that risk-increasing operations must clear a higher bar and may not lower your ICR. The net effect pushes every participant toward adding collateral and trimming debt, exactly what raises the system's backing above the threshold and exits Recovery Mode.
+The principle: Recovery Mode restricts actions that would make the system thinner, while always allowing actions that strengthen it. Liquidation eligibility stays exactly where it is in Normal Mode; only risk-increasing operations change, now clearing a higher bar and never lowering your ICR. The net effect pushes every participant toward adding collateral and trimming debt — exactly what raises the system's backing above the threshold and exits Recovery Mode.
 
 > **Note:** The exact threshold that triggers Recovery Mode, and the precise recovery-mode action minimums, are finalized closer to launch. The table above shows the model, not final parameters.
 
 ## Worked example: Recovery Mode
 
-The numbers below are illustrative only. The trigger is the system's reserve-backing-to-debt ratio, so a plain collateral-value over debt division is only a rough proxy for it; treat this as shape, not arithmetic.
+The numbers below are illustrative only. The trigger is the system's reserve-backing-to-debt ratio, so a plain collateral-value over debt division is only a rough proxy; treat this as shape, not arithmetic.
 
-Suppose the protective state is active for pUSD. A trove at 130% ICR is **not** liquidated by Recovery Mode: liquidation eligibility is unchanged, so any trove above the minimum stays safe from liquidation in every mode. What changes is the borrower's freedom to act. While Recovery Mode is active you cannot withdraw collateral or mint more debt unless the result clears the higher recovery minimum and does not lower your ICR; adding collateral and repaying debt are always allowed.
+Suppose the protective state is active for pUSD. A trove at 130% ICR is **not** liquidated by Recovery Mode: liquidation eligibility is unchanged, so any trove above the minimum stays safe in every mode. What changes is the borrower's freedom to act. While Recovery Mode is active you cannot withdraw collateral or mint more debt unless the result clears the higher recovery minimum and does not lower your ICR; adding collateral and repaying debt are always allowed.
 
-The borrower's defense is the same as always: add collateral, repay debt, or both. For example, a trove with $13,000 of collateral and 10,000 pUSD of debt is at 130%; repaying 2,000 pUSD moves it to $13,000 / 8,000 pUSD, or 162.5%, before fees and price movement — and a healthier ICR also widens the room you have to act while the system is stressed.
+The borrower's defense is the same as always: add collateral, repay debt, or both. For example, a trove with $13,000 of collateral and 10,000 pUSD of debt is at 130%; repaying 2,000 pUSD moves it to $13,000 / 8,000 pUSD, or 162.5%, before fees and price movement — and a healthier ICR also widens your room to act while the system is stressed.
 
 ## How to make your trove safe
 
-If the system is in, or near, Recovery Mode, the move is the same one that always protects a trove: raise your **ICR**.
+If the system is in or near Recovery Mode, the move is the same one that always protects a trove: raise your **ICR**.
 
 1. **Add pETH collateral.** More collateral against the same debt lifts your ICR directly.
 2. **Repay debt.** Burning pAsset to reduce what you owe lifts your ICR from the other side.
-3. **Do both early.** Recovery Mode restricts risk-increasing actions and is most painful when you are forced to react under stress, so build the buffer *before* stress arrives, not during it.
+3. **Do both early.** Recovery Mode restricts risk-increasing actions and hurts most when you are forced to react under stress, so build the buffer *before* stress arrives, not during it.
 
 See [Managing Your Trove](/minting/managing-your-trove) for the mechanics, and [Liquidations](/redemptions-liquidations/liquidations) for what happens to a trove that falls below the line.
 
