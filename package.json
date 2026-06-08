@@ -29,6 +29,8 @@
     "sync:pagefind": "node scripts/sync-pagefind.mjs",
     "test:e2e": "playwright test",
     "audit:prod": "npm audit --omit=dev --audit-level=high",
+    "local:push-gate": "node scripts/local-push-gate.mjs",
+    "local:push-gate:strict-node": "node scripts/local-push-gate.mjs --strict-node",
     "start": "npm run serve",
     "serve": "npx serve out"
   },
