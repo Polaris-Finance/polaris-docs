@@ -8,7 +8,7 @@ export const generateStaticParams = generateStaticParamsFor('mdxPath')
 const searchVocabulary = [
   {
     match: /^\/$/,
-    terms: ['app', 'official app', 'testnet', 'Testnet 2', 'Sepolia', 'pETH', 'pAssets']
+    terms: ['app', 'official app', 'testnet', 'Public Testnet 1', 'Sepolia', 'pETH', 'pAssets']
   },
   {
     match: /^\/launch-status$/,
@@ -18,7 +18,7 @@ const searchVocabulary = [
       'testnet app',
       'app.testnet.polarisfinance.io',
       'testnet',
-      'Testnet 2',
+      'Public Testnet 1',
       'Sepolia',
       'chain ID 11155111',
       'WETH faucet',
@@ -149,7 +149,7 @@ export default async function Page(props) {
           sourceCode
         })}
       />
-      <MDXContent {...props} params={params} />
+<MDXContent {...props} params={params} />
     </Wrapper>
   )
 }
