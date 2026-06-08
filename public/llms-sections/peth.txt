@@ -4,53 +4,9 @@
 
 # pETH & Bonding Curve
 
-## Polaris pETH and Bonding Curve
-
-URL: https://tokenbrice.github.io/polaris-docs/peth
-
-# Polaris pETH and Bonding Curve
-
-pETH is ETH deposited into the Polaris bonding curve. It is not a CDP-minted pAsset; it is the collateral token that backs pAssets.
-
-If you are trying to get pETH in the app, start with [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap). If you are trying to understand fpETH, vpETH, or reserve loans, start with [pETH Split](https://tokenbrice.github.io/polaris-docs/peth/split).
-
-## Start here if
-
-You want to... | Start with
-
-Know how WETH becomes pETH | [pETH Bonding Curve](https://tokenbrice.github.io/polaris-docs/peth/bonding-curve)
-Split pETH into floor and premium legs | [pETH Split](https://tokenbrice.github.io/polaris-docs/peth/split)
-Understand downside framing and exit assumptions | [pETH Floor Price](https://tokenbrice.github.io/polaris-docs/peth/floor-price)
-Use pETH as borrowing collateral | [Open a Polaris Trove](https://tokenbrice.github.io/polaris-docs/minting/open-a-trove)
-
-## Read in order
-
-Page | What it answers
-
-[pETH Bonding Curve](https://tokenbrice.github.io/polaris-docs/peth/bonding-curve) | How ETH becomes pETH, how the two-way curve works, and what contract-native liquidity assumes.
-[pETH Split: fpETH and vpETH](https://tokenbrice.github.io/polaris-docs/peth/split) | How the Split tab separates pETH into a floor leg and a volatility leg, and how reserve loans use fpETH.
-[pETH Floor Price](https://tokenbrice.github.io/polaris-docs/peth/floor-price) | What the floor price is, why it is designed to rise, and how the floor ratio frames ETH-denominated downside.
-
-## Launch status
-
-The current public phase is Public Testnet 1 on Sepolia. Production pETH use is not mainnet-actionable until [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) links the official app, production bonding-curve address, verified source, final parameters, and audit status.
-
-## Related pages
-
-- [Split](https://tokenbrice.github.io/polaris-docs/using-app/split) for the app flow.
-- [Minting Polaris pAssets](https://tokenbrice.github.io/polaris-docs/minting/minting-passets) for using pETH inside troves.
-- [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure) for collateral, execution, and smart-contract risk.
-
-Next steps:
-- [Swap app tab](https://tokenbrice.github.io/polaris-docs/using-app/swap): Token, route, quote, approval, fee, and slippage checks.
-- [Split app tab](https://tokenbrice.github.io/polaris-docs/using-app/split): Before-you-sign checks for splitting and merging pETH legs.
-- [Reserve loans](https://tokenbrice.github.io/polaris-docs/using-app/advanced): Manual fpETH-backed WETH loan checks.
-
----
-
 ## pETH Bonding Curve
 
-URL: https://tokenbrice.github.io/polaris-docs/peth/bonding-curve
+URL: https://tokenbrice.github.io/polaris-docs/peth
 
 # pETH Bonding Curve
 
@@ -143,8 +99,6 @@ Next steps:
 [The Bonding Curve: Polaris' Secret Weapon](https://polarisfinance.io/blog/bonding-curve/)
 How a single mechanism enables pETH's rising floor, contract-native liquidity, and protocol-wide value capture.
 
-Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor price.
-
 ---
 
 ## pETH Floor Price
@@ -163,7 +117,7 @@ The floor is not a promise or a target defended by a treasury. It is a direct co
 
 Two mechanisms push the floor up under the intended curve invariants. Normal protocol actions are not designed to push it down:
 
-- **Swap fees feed the burn.** Every swap on the [bonding curve](https://tokenbrice.github.io/polaris-docs/peth/bonding-curve) charges a pETH fee that accrues to the protocol's Fee Router. The Fee Router periodically floor-sells and burns accumulated pETH, reducing supply against an unchanged-or-growing ETH reserve and raising the floor.
+- **Swap fees feed the burn.** Every swap on the [bonding curve](https://tokenbrice.github.io/polaris-docs/peth) charges a pETH fee that accrues to the protocol's Fee Router. The Fee Router periodically floor-sells and burns accumulated pETH, reducing supply against an unchanged-or-growing ETH reserve and raising the floor.
 - **Conversion auctions.** Minting POLAR requires [burning pETH](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions), which again reduces supply and lifts the floor.
 
 The result is a staircase under normal operation: pETH's market price fluctuates above the floor, while the floor itself steps upward over time.
@@ -276,4 +230,4 @@ Floor carry is not a fixed APR. It depends on actual floor growth from protocol 
 
 - [Split](https://tokenbrice.github.io/polaris-docs/using-app/split) for splitting and merging.
 - [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow) for reserve loans.
-- [Dashboard & Analytics](https://tokenbrice.github.io/polaris-docs/using-app/dashboard) for floor price and floor ratio.
+- [Dashboard & Analytics](https://tokenbrice.github.io/polaris-docs/using-app) for floor price and floor ratio.

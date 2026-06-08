@@ -82,15 +82,15 @@ This page is the map. Each term is defined in a sentence or two and links to its
 
 A synthetic debt asset minted from a Polaris CDP (pUSD, pGOLD, pCHF, …). Each is overcollateralized by pETH and counterparty-free. See [The pAsset Catalog](https://tokenbrice.github.io/polaris-docs/minting/passet-catalog).
 
-The flagship pAsset, pegged to the US dollar, backed by pETH collateral. See [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting/minting-passets).
+The flagship pAsset, pegged to the US dollar, backed by pETH collateral. See [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting).
 
-ETH deposited into a two-way [bonding curve](https://tokenbrice.github.io/polaris-docs/peth/bonding-curve). It is not CDP-minted debt; it is the <em>only</em> collateral Polaris accepts, has a floor price that is designed to rise under the curve invariants, and is yield-bearing.
+ETH deposited into a two-way [bonding curve](https://tokenbrice.github.io/polaris-docs/peth). It is not CDP-minted debt; it is the <em>only</em> collateral Polaris accepts, has a floor price that is designed to rise under the curve invariants, and is yield-bearing.
 
 The protocol's stewardship token. After a fixed distribution at launch, new POLAR can be minted <em>only</em> by burning pETH in a [conversion auction](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions). <strong>vePOLAR</strong>, a vote-escrow layer for stewardship rights, is forthcoming.
 
 ## Minting & positions
 
-Collateralized Debt Position: the mechanism behind minting. You post collateral and mint the pAsset directly from the protocol, not by borrowing another user's funds. See [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting/minting-passets).
+Collateralized Debt Position: the mechanism behind minting. You post collateral and mint the pAsset directly from the protocol, not by borrowing another user's funds. See [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting).
 
 Your individual borrowing position in a Polaris CDP. Each trove is isolated, with its own collateral, debt, and collateralization ratio. See [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove).
 
@@ -98,7 +98,7 @@ Polaris is a <em>factory</em> of CDP instances, each issuing a different pAsset 
 
 ## Keeping the peg
 
-Exchanging a pAsset for its underlying collateral at face value (minus a fee) when it trades <em>below</em> peg. Restores the floor. See [Redemptions](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/redemptions).
+Exchanging a pAsset for its underlying collateral at face value (minus a fee) when it trades <em>below</em> peg. Restores the floor. See [Redemptions](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations).
 
 The inverse of redemption. Arbitrageurs add pETH to troves to mint pAssets when the pAsset trades <em>above</em> peg. Restores the ceiling.
 
@@ -106,21 +106,21 @@ Redemption and minting volume serve as onchain proxy signals for the peg, lettin
 
 ## Risk states
 
-If a trove falls below its minimum collateralization ratio, it is liquidated, and the [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield/stability-pool) absorbs the debt. See [Liquidations](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations).
+If a trove falls below its minimum collateralization ratio, it is liquidated, and the [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield) absorbs the debt. See [Liquidations](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations).
 
-A protocol-wide protective state entered when the system-wide reserve-backing-to-debt ratio (the [TCR](https://tokenbrice.github.io/polaris-docs/resources/glossary)) falls below a fixed threshold. See [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode).
+A protocol-wide protective state entered when the system-wide reserve-backing-to-debt ratio (the [TCR](https://tokenbrice.github.io/polaris-docs/resources)) falls below a fixed threshold. See [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode).
 
 The mathematically enforced minimum price of pETH (in ETH), and that floor as a percentage of market price (your maximum drawdown). See [The Floor Price](https://tokenbrice.github.io/polaris-docs/peth/floor-price).
 
 ## Yield & coordination
 
-A reserve of pAssets that processes liquidations and is the primary venue for earning yield. See [The Stability Pool](https://tokenbrice.github.io/polaris-docs/yield/stability-pool).
+A reserve of pAssets that processes liquidations and is the primary venue for earning yield. See [The Stability Pool](https://tokenbrice.github.io/polaris-docs/yield).
 
 The mechanism that mints POLAR by burning pETH; the most protocol-synergetic action possible. See [Conversion Auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions).
 
 Receives pETH from conversions and bonding-curve swap fees, then buffers and distributes it as yield to troves, pro-rata to their debt. See [The Fee Router](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router).
 
-A stewardship role steers <em>quantitative parameters within the bounds the contracts define</em>. It does not govern the immutable core. See [Stewardship, not Governance](https://tokenbrice.github.io/polaris-docs/stewardship/stewardship).
+A stewardship role steers <em>quantitative parameters within the bounds the contracts define</em>. It does not govern the immutable core. See [Stewardship, not Governance](https://tokenbrice.github.io/polaris-docs/stewardship).
 
 ## The shape of the system
 
@@ -138,81 +138,9 @@ The diagram traces four steps and an outcome:
 > Adoption ⇒ activity ⇒ velocity ⇒ fees ⇒ yield ⇒ more demand.
 
 Next steps:
-- [Getting Started](https://tokenbrice.github.io/polaris-docs/getting-started): The shortest path from "I have ETH" to "I am using Polaris."
-- [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting/minting-passets): How the CDP works from first principles.
+- [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status): Official app and network status, plus the shortest path from "I have ETH" to using Polaris.
+- [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting): How the CDP works from first principles.
 - [Why Polaris?](https://tokenbrice.github.io/polaris-docs/why-polaris): The stablecoin trilemma and how Polaris resolves it.
-
----
-
-## Getting Started with Polaris
-
-URL: https://tokenbrice.github.io/polaris-docs/getting-started
-
-# Getting Started with Polaris
-
-The shortest path from "I have ETH" to "I am using Polaris." Each step links to its full treatment.
-
-## Choose your path
-
-Building on Polaris? Jump to the [Develop](https://tokenbrice.github.io/polaris-docs/paths/develop) path. Just using Polaris? Stay here and pick a journey below.
-
-If you already know why you're here, start with the matching journey:
-
-- **Borrow pAssets** — get pETH, open a trove, mint a pAsset, and manage liquidation risk: [Minting & Troves](https://tokenbrice.github.io/polaris-docs/minting).
-- **Earn yield** — deposit pAssets into a Stability Pool or understand Fee Router yield: [Earning Yield](https://tokenbrice.github.io/polaris-docs/yield).
-- **Hold or use pETH** — understand the bonding curve, floor price, and external collateral use: [pETH & Bonding Curve](https://tokenbrice.github.io/polaris-docs/peth).
-- **Convert and lock POLAR** — burn pETH to mint POLAR, lock as vePOLAR, and participate in bounded stewardship: [POLAR & Staking](https://tokenbrice.github.io/polaris-docs/polar).
-- **Develop** — plan an integration, indexer, vault, analytics surface, or risk tool: [Develop](https://tokenbrice.github.io/polaris-docs/paths/develop).
-- **Launch status and safety** — confirm official app, network, contracts, audits, and launch status before interacting: [Polaris Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) and [Safety and Verification](https://tokenbrice.github.io/polaris-docs/paths/safety-verification).
-
-## What you need
-
-- **An Ethereum wallet** — any standard EOA or smart-account wallet.
-- **For Public Testnet 1:** Sepolia ETH for gas, plus test WETH/reserve tokens from the app faucet when the faucet is enabled for your wallet. Testnet assets have no monetary value.
-- **For production later:** ETH on Ethereum mainnet — the only asset you need to begin; Polaris converts it to [pETH](https://tokenbrice.github.io/polaris-docs/peth/bonding-curve) for you.
-
-That's the whole list. No KYC, no whitelist, no offchain account.
-
-## Sepolia ETH, test WETH, and pETH
-
-On Public Testnet 1, three "ETH-like" assets can appear in the flow:
-
-- **Sepolia ETH** pays gas on Sepolia. Get it from a public Sepolia faucet; it is not mainnet ETH.
-- **Test WETH / reserve token** is the mock reserve token in the Sepolia manifest. The app faucet can mint it when enabled for your wallet. It is not mainnet WETH and has no value.
-- **pETH** is the Polaris bonding-curve collateral token. On Public Testnet 1, it is Sepolia-only pETH created from the test reserve token; it is not production pETH.
-
-The first testnet path is: open the [Public Testnet 1 app](https://app.testnet.polarisfinance.io/), switch to Sepolia, mint test WETH/reserve tokens if the faucet is available, swap them through the bonding curve for pETH, borrow or mint a Testnet-active pAsset, then optionally deposit that pAsset into the Stability Pool to test Earn.
-
-## The basic flow
-
-In one line: **deposit ETH ⇒ receive pETH ⇒ open a trove and mint a pAsset ⇒ optionally deposit to the Stability Pool to earn yield.** On Public Testnet 1 this uses Sepolia test assets; in production it uses Ethereum mainnet once launch status says mainnet is live. Step by step:
-
-1. **Deposit or swap into pETH.** On Public Testnet 1, use the app faucet for mock WETH/reserve tokens when available, then use the bonding-curve / swap surface to receive pETH. In production later, this starts from mainnet ETH.
-2. **Receive pETH from the [bonding curve](https://tokenbrice.github.io/polaris-docs/peth/bonding-curve).** Your input asset is swapped for pETH at the curve's current price: mock WETH/reserve tokens on Public Testnet 1, and ETH in production later. pETH is an ETH proxy with a floor price that only rises, and the only collateral Polaris accepts.
-3. **Open a [trove](https://tokenbrice.github.io/polaris-docs/minting/open-a-trove) and mint a pAsset.** Post your pETH as collateral, then choose which pAsset to mint. pUSD and pGOLD are Testnet-active; pCHF and pBigMac are illustrative or future catalog examples. The pAsset lands in your wallet; the debt stays in your trove. See [the catalog](https://tokenbrice.github.io/polaris-docs/minting/passet-catalog) for what you can mint.
-4. **Optionally, earn yield.** Deposit your pAsset into the [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield/stability-pool) to earn a share of borrower interest plus discounted pETH from liquidations. This is optional — you can instead hold, LP, or use your pAsset anywhere in DeFi.
-
-## Where the app lives
-
-[app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io/) is the official public Public Testnet 1 app on Sepolia only. Production/mainnet app status remains **not live** until [Polaris Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) publishes otherwise.
-
-## Launch verification
-
-Before you connect a wallet or sign a transaction, verify:
-
-- For Public Testnet 1, the app URL is exactly [https://app.testnet.polarisfinance.io/](https://app.testnet.polarisfinance.io/).
-- For production/mainnet, wait until [Polaris Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) publishes the production app URL.
-- The app is connected to the intended network: Sepolia (`11155111`) for Public Testnet 1, or Ethereum mainnet (`1`) only after production launch.
-- Testnet contract addresses match [Public Testnet 1](https://tokenbrice.github.io/polaris-docs/resources/testnet) and the linked Sepolia manifests.
-- Production contract addresses, verified source, ABIs, and audit status match [Contracts and Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts) and [Audits and Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security) once production launches.
-- The product page you're following has been updated from conceptual flow to launch parameters.
-
-Next steps:
-- [Core Concepts](https://tokenbrice.github.io/polaris-docs/core-concepts): The one-page map of the entire Polaris system.
-- [Open a Trove](https://tokenbrice.github.io/polaris-docs/minting/open-a-trove): Step-by-step guide to opening your first trove.
-- [The Bonding Curve](https://tokenbrice.github.io/polaris-docs/peth/bonding-curve): Understand how pETH is created and priced.
-
-Relevant app/search vocabulary: app, official app, connect wallet, testnet, Sepolia, Sepolia ETH, WETH faucet, borrow, earn, swap.
 
 ---
 
@@ -222,7 +150,9 @@ URL: https://tokenbrice.github.io/polaris-docs/launch-status
 
 # Polaris Launch Status
 
-This page is the source of truth for whether Polaris docs are conceptual, testnet-actionable, or production-actionable.
+This page is the source of truth for what is actionable today — conceptual, testnet-actionable, or production-actionable — and the shortest path from "I have ETH" to using Polaris.
+
+Use app.testnet.polarisfinance.io only on Sepolia (<code>11155111</code>) with test assets. Testnet assets have no monetary value, and production/mainnet use is not live.
 
 ## Current status
 
@@ -238,24 +168,22 @@ Testnet contracts and parameters | Published for Sepolia on [Public Testnet 1](h
 Final audit reports | Not published in these docs yet
 Bug bounty / disclosure program | Not public yet
 
-Use app.testnet.polarisfinance.io only on Sepolia (<code>11155111</code>) with test assets. Testnet assets have no monetary value, and production/mainnet use is not live.
+## What you need
 
-## What is actionable now
+- **An Ethereum wallet** — any standard EOA or smart-account wallet.
+- **For Public Testnet 1:** Sepolia ETH for gas, plus test WETH/reserve tokens from the app faucet when it's enabled for your wallet. Testnet assets have no monetary value.
+- **For production later:** ETH on Ethereum mainnet — the only asset you need to begin; Polaris converts it to [pETH](https://tokenbrice.github.io/polaris-docs/peth) for you.
 
-Action | Status | Use this rule
+No KYC, no whitelist, no offchain account.
 
-Read the protocol model | Conceptual now | The core concepts and risk pages are safe to read as the intended model.
-Test on Public Testnet 1 | Testnet-actionable now | Use Sepolia test assets and [Public Testnet 1](https://tokenbrice.github.io/polaris-docs/resources/testnet) manifests. Treat addresses, mocks, and parameters as replaceable.
-Open testnet app | Testnet-actionable now | Use the official testnet interface at [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io/).
-Testnet Analytics | Testnet-actionable now | Detailed breakdown live from testnet data at [analytics.testnet.polarisfinance.io](https://analytics.testnet.polarisfinance.io/#/overview-v2).
-Use production capital | Not yet mainnet-actionable | Wait until this page links the production app, production contracts, verified source, final parameters, and audit status.
-Integrate contracts | Plan now, bind later | Build verification gates and schemas now. Do not hardcode unpublished production addresses, ABIs, events, or parameters.
+## The basic flow
 
-## Network truth
+In one line: **deposit ETH ⇒ receive pETH ⇒ open a trove and mint a pAsset ⇒ optionally deposit to the Stability Pool to earn yield.** On Public Testnet 1 this uses Sepolia test assets; in production it uses Ethereum mainnet once this page says mainnet is live.
 
-Public Testnet 1 runs on **Sepolia (`11155111`)** and may use mock assets, mock oracles, redeployable contracts, and testnet-only parameters. It is for testing behavior, not for valuing production risk. The current app URL, active testnet pAssets, manifests, addresses, and Sepolia parameters live on [Public Testnet 1](https://tokenbrice.github.io/polaris-docs/resources/testnet).
-
-Production Polaris is intended for **Ethereum mainnet (`1`)**, but mainnet app and contract addresses are not live or published yet. Any frontend, token, contract address, airdrop, support message, or bounty page claiming production status before it is linked here should be treated as unverified.
+1. **Deposit ETH or test assets.** On Public Testnet 1, mint mock WETH/reserve tokens from the app faucet when available. In production later, you start from mainnet ETH.
+2. **Receive pETH from the [bonding curve](https://tokenbrice.github.io/polaris-docs/peth).** Your input is swapped for pETH at the curve's current price. pETH is an ETH proxy with a floor price that only rises, and the only collateral Polaris accepts.
+3. **Open a [trove](https://tokenbrice.github.io/polaris-docs/minting/open-a-trove) and mint a pAsset.** Post pETH as collateral, then choose your pAsset. pUSD and pGOLD are Testnet-active; pCHF and pBigMac are illustrative catalog examples. The pAsset lands in your wallet; the debt stays in your trove — see [the catalog](https://tokenbrice.github.io/polaris-docs/minting/passet-catalog).
+4. **Optionally, earn yield.** Deposit your pAsset into the [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield) for a share of borrower interest plus discounted pETH from liquidations. Or hold, LP, or use it anywhere in DeFi.
 
 ## Before any transaction
 
@@ -269,13 +197,16 @@ Do not connect a wallet or sign a transaction unless all relevant checks pass:
 - The relevant product page has final values for the parameters your action depends on.
 - Audit and disclosure status are clear on [Audits & Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security).
 
-## Page labels used in these docs
+## Choose your journey
 
-- **Conceptual only** means the page explains the model and risks, but does not give enough live parameters to sign safely.
-- **Testnet-actionable** means you can try the flow on Sepolia with test assets and testnet manifests.
-- **Mainnet-actionable later** means the page needs production app links, verified addresses, final parameters, and audit status before use with real value.
+Now pick the path that matches what you want to do:
 
-For phishing and user-safety checks, continue to [Safety and Verification](https://tokenbrice.github.io/polaris-docs/paths/safety-verification). For the intended deployment shape, see [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts).
+- **Borrow pAssets** — get pETH, open a trove, mint a pAsset, and manage liquidation risk: [Minting & Troves](https://tokenbrice.github.io/polaris-docs/minting).
+- **Earn yield** — deposit pAssets into a Stability Pool or understand Fee Router yield: [Earning Yield](https://tokenbrice.github.io/polaris-docs/yield).
+- **Hold or use pETH** — understand the bonding curve, floor price, and external collateral use: [pETH & Bonding Curve](https://tokenbrice.github.io/polaris-docs/peth).
+- **Convert and lock POLAR** — burn pETH to mint POLAR, lock as vePOLAR, and participate in bounded stewardship: [POLAR & Staking](https://tokenbrice.github.io/polaris-docs/polar).
+- **Develop** — plan an integration, indexer, vault, analytics surface, or risk tool: [Develop](https://tokenbrice.github.io/polaris-docs/develop).
+- **Verify before you sign** — confirm the official app, network, contracts, and audits: [Safety and Verification](https://tokenbrice.github.io/polaris-docs/resources/safety-verification).
 
 Relevant app/search vocabulary: app, official app, testnet app, app.testnet.polarisfinance.io, testnet, Testnet 2, Sepolia, chain ID 11155111, WETH faucet, contracts, audits.
 
@@ -335,8 +266,8 @@ Polaris turns onchain trading volume itself into a stablecoin yield source throu
 
 Next steps:
 - [Core Concepts](https://tokenbrice.github.io/polaris-docs/core-concepts): A one-page map of every key term in the Polaris system.
-- [Getting Started](https://tokenbrice.github.io/polaris-docs/getting-started): The shortest path from "I have ETH" to "I am using Polaris."
-- [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting/minting-passets): How the CDP works from first principles.
+- [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status): Official app and network status, plus the shortest path from "I have ETH" to using Polaris.
+- [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting): How the CDP works from first principles.
 
 ---
 

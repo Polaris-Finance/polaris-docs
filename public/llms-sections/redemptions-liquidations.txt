@@ -4,31 +4,121 @@
 
 # Redemptions & Liquidations
 
-## Polaris Redemptions and Liquidations
+## pAsset Redemptions
 
 URL: https://tokenbrice.github.io/polaris-docs/redemptions-liquidations
 
-# Polaris Redemptions and Liquidations
+# pAsset Redemptions
 
-This section explains the mechanisms that keep pAssets backed and near peg. They are not optional background for borrowers or Stability Pool depositors.
+> **Actionability:** Redemptions are testnet-actionable only on Sepolia using test assets and current manifests. Production redemptions are not mainnet-actionable until [Polaris Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) publishes the official app, production addresses, final fee formula, dust rules, and audit status.
 
-## Read in order
+## What a redemption is
 
-Page | What it answers
+A **redemption** exchanges a pAsset for the **[pETH](https://tokenbrice.github.io/polaris-docs/peth)** collateral backing it at the pAsset's protocol reference value, minus a fee. It pays when the pAsset trades *below* peg by more than the fee, gas, slippage, and execution risk.
 
-[pAsset Redemptions](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/redemptions) | How below-peg pAssets redeem for pETH collateral, and how that affects every open trove for that pAsset.
-[Polaris Liquidations](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations) | When a trove is forced closed and how the Stability Pool or redistribution absorbs it.
-[Polaris Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode) | What changes when system-wide reserve backing runs thin.
+If pUSD slips to \$0.98, a redeemer can buy pUSD cheaply, redeem it for about \$1 of pETH minus the fee, and sell or hold the pETH. The pETH comes from the collateral of troves carrying that pUSD debt, and their debt shrinks by the pUSD redeemed. No counterparty agrees to the trade; the protocol enforces it.
 
-## Launch status
+This puts an arbitrage floor under the pAsset's market price.
 
-Exact fees, penalties, thresholds, dust rules, keeper incentives, and oracle rules are pending final audited deployment. Use Public Testnet 1 only for testing, and check [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) before any production action.
+## Pre-launch parameter status
 
-## Related pages
+Parameter | Status | Reader impact
 
-- [Managing a Polaris Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove) for borrower controls.
-- [Polaris Stability Pool](https://tokenbrice.github.io/polaris-docs/yield/stability-pool) for depositor exposure.
-- [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure) for the full risk catalog.
+Redemption fee formula | Pending final audited implementation | Determines redeemer net proceeds and final collateral movement
+Fee decay / update cadence | Pending final implementation | Affects timing and repeated-redemption profitability
+Partial-redemption dust rules | Pending final values | Determines whether tiny trove remnants are allowed or closed
+Per-transaction caps / cooldowns | Pending final launch decision | Affects large redemptions and MEV surface
+Collateral pricing path | Pending final audited implementation | Determines how much pETH corresponds to the redeemed debt value
+
+## How it restores the peg
+
+A below-peg pAsset is a standing arbitrage. Walk the loop:
+
+1. **Buy** pUSD on the market at \$0.98.
+2. **Redeem** it for \$1 − fee of pETH.
+3. **Sell** the pETH, pocket the spread.
+4. Repeat until the arb closes.
+
+Each pass buys pUSD on the open market, applying **upward price pressure**. Arbitrageurs keep going until pUSD is back at peg and the trade stops paying. Self-interest restores the peg, not intervention.
+
+> **Note:** Redemptions handle the *below*-peg case. The *above*-peg case is handled by the inverse mechanism, **minting**, where arbitrageurs add pETH to troves to mint pAssets when the pAsset trades over peg. See [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting).
+
+The two mechanisms are mirror images:
+
+Mechanism | Direction | Arbitrageur does | Effect on troves
+
+**Redemption** | pAsset < peg | Burns pAsset (repays debt) ⇒ takes pETH | Debt and collateral both shrink
+**Minting** | pAsset > peg | Adds pETH ⇒ mints pAsset | Debt and collateral both grow
+
+Their volumes also serve as the protocol's peg signal: a spike in redemptions reads as a downward depeg, a spike in mintings as an upward one. That is how Polaris sets [autonomous interest rates](https://tokenbrice.github.io/polaris-docs/minting) without a direct pUSD market-price feed.
+
+## Mechanics in detail
+
+### Fee formula
+
+The final redemption-fee formula is pending. The user-facing rule is simple: the redeemer receives the redeemed amount's reference value in pETH **minus** the fee and execution costs. If pUSD trades at \$0.98 but the fee, gas, pETH slippage, and MEV risk exceed the \$0.02 spread, the redemption is unprofitable.
+
+The app should show a pre-confirmation quote once the interface is live. Treat examples here as arithmetic only.
+
+### How redemptions are distributed
+
+Redemptions target no specific trove, and there is no sorted ICR queue. A redemption applies **collectively** across every open trove on that pAsset at once. The protocol adjusts a global mint/redeem accounting product, and each trove's share of the redeemed debt and of the pETH removed is proportional to its recorded collateral. A larger trove absorbs a larger absolute share; ICR moves no trove ahead of or behind any other. Adding pETH collateral or repaying debt changes your trove's size, but moves you out of no queue, because none exists.
+
+The only fill limits are at the system level: you cannot redeem the entire outstanding debt (the call reverts if the requested pAsset is greater than or equal to total system debt), and the system must stay above its minimum total collateral. Final minimum-debt and dust rules are pending.
+
+### Borrower effects
+
+A redemption repays your debt with your own collateral, so what changes is not your net equity (roughly unchanged at reference prices before fees, rounding, and final fee-routing) but your *control*: your trove shrinks, your pETH exposure shrinks, and your future pETH-linked yield potential falls.
+
+Because redemptions remove equal reference value from both sides of an overcollateralized trove, the remaining ICR often rises after a partial redemption. That does not make redemptions harmless; it makes them an involuntary deleveraging event, not a liquidation penalty.
+
+### MEV and transaction ordering
+
+Redemptions are visible onchain transactions. Searchers can compete for the same spread, the pETH exit price can move, and the system's totals can shift before your transaction lands. Use the app's slippage limits, fee quotes, and any private-transaction support.
+
+## Who gets redeemed against
+
+A redemption applies collectively across **all** open troves carrying that pAsset's debt. Each trove's debt and pETH collateral are reduced in proportion to its recorded collateral, through the protocol's global mint/redeem accounting. There is no per-trove [Individual Collateralization Ratio (ICR)](https://tokenbrice.github.io/polaris-docs/resources) ranking, no "riskiest trove first," and no queue: redemption does not single out the lowest-ICR troves.
+
+Being redeemed against is not a liquidation loss: your debt is repaid at face value with your own collateral, so your net equity is broadly unchanged before fees and rounding. But it is not free either: it closes part of your position involuntarily, at a moment you did not choose.
+
+A higher collateralization ratio protects you against **liquidation**, but does **not** exempt you from redemptions. Every open trove on that pAsset absorbs a proportional share of each redemption regardless of ICR. Because the split is by collateral, a larger trove absorbs a larger absolute amount, but no level of ICR moves you out of range.
+
+> **Note:** Polaris adds borrower-protection details to the naive redemption design. Exact mechanics, including fee routing, dust handling, and any caps or cooldowns, are finalized closer to launch.
+
+## Worked example: redemption impact
+
+Assume pUSD trades at \$0.98, the redemption fee quote is 0.5%, and gas/slippage are ignored. A redeemer buys 10,000 pUSD for \$9,800 and redeems it for \$10,000 of pETH minus the 0.5% fee, or about \$9,950 of pETH. The gross spread is about \$150 before gas, slippage, MEV, and price movement.
+
+Now the borrower side. A 4,000 pUSD redemption applies **collectively**: it reduces total system debt by 4,000 pUSD and removes roughly \$4,000 of pETH from the pool, both reductions shared across every open trove in proportion to its recorded collateral. No single trove has its debt cut from 12,000 to 8,000; each trove absorbs only its proportional slice.
+
+For intuition, here is the proportional share for one trove holding a fifth of the system's collateral, so it absorbs a fifth of the redemption (800 pUSD of debt and about \$800 of pETH):
+
+Step | Collateral value | Debt | ICR
+
+Before redemption | \$18,000 | 12,000 pUSD | 150%
+After absorbing its pro-rata share | About \$17,200 | 11,200 pUSD | About 154%
+
+The borrower did not pay off debt voluntarily; the market did it through the redemption path. The trove is slightly safer by ICR, but smaller and less exposed to pETH, as is every other open trove on that pAsset.
+
+## For borrowers
+
+> **Before you act:**
+> A redemption can reduce your trove **while it is still solvent**; there is no minimum ICR to cross. Whenever the pAsset trades below peg, every open trove backing it is redeemed against proportionally to its collateral share, shrinking your position and pETH exposure without your consent. ICR governs liquidation safety, not redemption order, so a higher collateralization ratio does not exempt you. See the [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure).
+
+1. Track your **ICR** in absolute terms and keep a comfortable buffer above the MCR; a redemption can touch your position whenever the pAsset is below peg.
+2. Redemptions apply pro-rata across all troves backing that pAsset, so there is no ICR queue to climb out of; raising your ICR protects against liquidation, not redemption.
+3. Treat a below-peg pAsset as a live signal: that is exactly when redemptions get worked.
+4. Interest accrual raises your debt over time, eroding your ICR even if collateral prices are flat.
+
+See [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove) for the levers, and the [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure) for the full picture.
+
+---
+
+A redemption is the market repricing your pAsset back to par through borrower collateral and arbitrage incentives. It reaches every open trove proportionally, so keep your buffer wide and treat below-peg conditions as the moment your position can shrink.
+
+[CDPs Mint Dollars. Polaris Mints Anything](https://polarisfinance.io/blog/polaris-mints-anything/)
+From Maker to Liquity, CDP models shaped DeFi lending. Polaris takes the blueprint further with pETH, self-adjusting rates, and a factory for stablecoins pegged to anything.
 
 ---
 
@@ -38,21 +128,19 @@ URL: https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidat
 
 # Polaris Liquidations
 
-Borrowers: do not manage a trove from the liquidation line. Check the app's current minimum ICR, Recovery Mode status, accrued interest, collateral-price freshness, and gas conditions before withdrawing collateral or minting more debt. Stability Pool depositors: liquidations convert part of your pAsset deposit into pETH exposure.
-
 ## What a liquidation is
 
 A **liquidation** closes a trove that has fallen below its **minimum collateralization ratio** — the point at which its collateral no longer comfortably covers its debt. The protocol cancels the trove's debt and seizes its pETH collateral.
 
 The purpose is solvency. Every pAsset is a claim on collateral; leaving undercollateralized troves open would leave the pAsset not fully backed. Liquidations are how Polaris is designed to keep backing intact, subject to functioning contracts, live Ethereum execution, available gas, valid pricing data, keeper/executor availability, and audited invariants.
 
-Unlike a [redemption](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/redemptions), a liquidation is not an arbitrage you can opt into at par — it is a forced close triggered by your own ratio crossing a hard line.
+Unlike a [redemption](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations), a liquidation is not an arbitrage you can opt into at par — it is a forced close triggered by your own ratio crossing a hard line.
 
 ## Where the debt and collateral go
 
 Liquidation runs in two tiers.
 
-1. **The Stability Pool absorbs it first.** The [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield/stability-pool) holds a reserve of the pAsset. When a trove is liquidated, the pool burns pAsset equal to the trove's debt and receives its pETH collateral in return. Because liquidated troves are seized while still *overcollateralized* (above 100%, below the minimum), the pool typically receives more value in pETH than the pAsset it burns. That surplus is the depositors' compensation.
+1. **The Stability Pool absorbs it first.** The [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield) holds a reserve of the pAsset. When a trove is liquidated, the pool burns pAsset equal to the trove's debt and receives its pETH collateral in return. Because liquidated troves are seized while still *overcollateralized* (above 100%, below the minimum), the pool typically receives more value in pETH than the pAsset it burns. That surplus is the depositors' compensation.
 
 2. **Redistribution is the fallback.** If the Stability Pool is empty or too small to cover the debt, the trove's debt *and* collateral spread across the remaining troves on that pAsset, in proportion to their size. Other borrowers take on a slice of debt and a matching slice of pETH. The system stays solvent either way.
 
@@ -101,7 +189,7 @@ Liquidations are not punishment — they are the mechanism designed to keep a pA
 
 Next steps:
 - [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove): Keep your ICR healthy and avoid liquidation.
-- [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield/stability-pool): Understand how the pool absorbs liquidations.
+- [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield): Understand how the pool absorbs liquidations.
 - [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode): The system-level safeguard for thin backing.
 
 ---
@@ -180,124 +268,3 @@ See [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/mana
 ---
 
 Recovery Mode is the system protecting itself: when backing runs thin, the rules on risk-increasing actions tighten until health returns. Keep your ICR high and your buffer wide, and you keep the freedom to act through the stress.
-
----
-
-## pAsset Redemptions
-
-URL: https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/redemptions
-
-# pAsset Redemptions
-
-> **Actionability:** Redemptions are testnet-actionable only on Sepolia using test assets and current manifests. Production redemptions are not mainnet-actionable until [Polaris Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) publishes the official app, production addresses, final fee formula, dust rules, and audit status.
-
-> **Before you act:**
-> Redemptions are economic transactions, not guaranteed profit. Check the live fee quote, pETH execution price, gas, expected slippage, possible MEV, and whether the trade stays profitable if conditions change before inclusion. Borrowers should know that a redemption applies collectively and pro-rata across all open troves' collateral, not to a single lowest-ICR trove first, so a below-peg pAsset shrinks every open position carrying that pAsset's debt regardless of its ICR.
-
-## What a redemption is
-
-A **redemption** exchanges a pAsset for the **[pETH](https://tokenbrice.github.io/polaris-docs/peth/bonding-curve)** collateral backing it at the pAsset's protocol reference value, minus a fee. It pays when the pAsset trades *below* peg by more than the fee, gas, slippage, and execution risk.
-
-If pUSD slips to \$0.98, a redeemer can buy pUSD cheaply, redeem it for about \$1 of pETH minus the fee, and sell or hold the pETH. The pETH comes from the collateral of troves carrying that pUSD debt, and their debt shrinks by the pUSD redeemed. No counterparty agrees to the trade; the protocol enforces it.
-
-This puts an arbitrage floor under the pAsset's market price.
-
-## Pre-launch parameter status
-
-Parameter | Status | Reader impact
-
-Redemption fee formula | Pending final audited implementation | Determines redeemer net proceeds and final collateral movement
-Fee decay / update cadence | Pending final implementation | Affects timing and repeated-redemption profitability
-Partial-redemption dust rules | Pending final values | Determines whether tiny trove remnants are allowed or closed
-Per-transaction caps / cooldowns | Pending final launch decision | Affects large redemptions and MEV surface
-Collateral pricing path | Pending final audited implementation | Determines how much pETH corresponds to the redeemed debt value
-
-## How it restores the peg
-
-A below-peg pAsset is a standing arbitrage. Walk the loop:
-
-1. **Buy** pUSD on the market at \$0.98.
-2. **Redeem** it for \$1 − fee of pETH.
-3. **Sell** the pETH, pocket the spread.
-4. Repeat until the arb closes.
-
-Each pass buys pUSD on the open market, applying **upward price pressure**. Arbitrageurs keep going until pUSD is back at peg and the trade stops paying. Self-interest restores the peg, not intervention.
-
-> **Note:** Redemptions handle the *below*-peg case. The *above*-peg case is handled by the inverse mechanism, **minting**, where arbitrageurs add pETH to troves to mint pAssets when the pAsset trades over peg. See [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting/minting-passets).
-
-The two mechanisms are mirror images:
-
-Mechanism | Direction | Arbitrageur does | Effect on troves
-
-**Redemption** | pAsset < peg | Burns pAsset (repays debt) ⇒ takes pETH | Debt and collateral both shrink
-**Minting** | pAsset > peg | Adds pETH ⇒ mints pAsset | Debt and collateral both grow
-
-Their volumes also serve as the protocol's peg signal: a spike in redemptions reads as a downward depeg, a spike in mintings as an upward one. That is how Polaris sets [autonomous interest rates](https://tokenbrice.github.io/polaris-docs/minting/minting-passets) without a direct pUSD market-price feed.
-
-## Mechanics in detail
-
-### Fee formula
-
-The final redemption-fee formula is pending. The user-facing rule is simple: the redeemer receives the redeemed amount's reference value in pETH **minus** the fee and execution costs. If pUSD trades at \$0.98 but the fee, gas, pETH slippage, and MEV risk exceed the \$0.02 spread, the redemption is unprofitable.
-
-The app should show a pre-confirmation quote once the interface is live. Treat examples here as arithmetic only.
-
-### How redemptions are distributed
-
-Redemptions target no specific trove, and there is no sorted ICR queue. A redemption applies **collectively** across every open trove on that pAsset at once. The protocol adjusts a global mint/redeem accounting product, and each trove's share of the redeemed debt and of the pETH removed is proportional to its recorded collateral. A larger trove absorbs a larger absolute share; ICR moves no trove ahead of or behind any other. Adding pETH collateral or repaying debt changes your trove's size, but moves you out of no queue, because none exists.
-
-The only fill limits are at the system level: you cannot redeem the entire outstanding debt (the call reverts if the requested pAsset is greater than or equal to total system debt), and the system must stay above its minimum total collateral. Final minimum-debt and dust rules are pending.
-
-### Borrower effects
-
-A redemption repays your debt with your own collateral, so what changes is not your net equity (roughly unchanged at reference prices before fees, rounding, and final fee-routing) but your *control*: your trove shrinks, your pETH exposure shrinks, and your future pETH-linked yield potential falls.
-
-Because redemptions remove equal reference value from both sides of an overcollateralized trove, the remaining ICR often rises after a partial redemption. That does not make redemptions harmless; it makes them an involuntary deleveraging event, not a liquidation penalty.
-
-### MEV and transaction ordering
-
-Redemptions are visible onchain transactions. Searchers can compete for the same spread, the pETH exit price can move, and the system's totals can shift before your transaction lands. Use the app's slippage limits, fee quotes, and any private-transaction support.
-
-## Who gets redeemed against
-
-A redemption applies collectively across **all** open troves carrying that pAsset's debt. Each trove's debt and pETH collateral are reduced in proportion to its recorded collateral, through the protocol's global mint/redeem accounting. There is no per-trove [Individual Collateralization Ratio (ICR)](https://tokenbrice.github.io/polaris-docs/resources/glossary) ranking, no "riskiest trove first," and no queue: redemption does not single out the lowest-ICR troves.
-
-Being redeemed against is not a liquidation loss: your debt is repaid at face value with your own collateral, so your net equity is broadly unchanged before fees and rounding. But it is not free either: it closes part of your position involuntarily, at a moment you did not choose.
-
-A higher collateralization ratio protects you against **liquidation**, but does **not** exempt you from redemptions. Every open trove on that pAsset absorbs a proportional share of each redemption regardless of ICR. Because the split is by collateral, a larger trove absorbs a larger absolute amount, but no level of ICR moves you out of range.
-
-> **Note:** Polaris adds borrower-protection details to the naive redemption design. Exact mechanics, including fee routing, dust handling, and any caps or cooldowns, are finalized closer to launch.
-
-## Worked example: redemption impact
-
-Assume pUSD trades at \$0.98, the redemption fee quote is 0.5%, and gas/slippage are ignored. A redeemer buys 10,000 pUSD for \$9,800 and redeems it for \$10,000 of pETH minus the 0.5% fee, or about \$9,950 of pETH. The gross spread is about \$150 before gas, slippage, MEV, and price movement.
-
-Now the borrower side. A 4,000 pUSD redemption applies **collectively**: it reduces total system debt by 4,000 pUSD and removes roughly \$4,000 of pETH from the pool, both reductions shared across every open trove in proportion to its recorded collateral. No single trove has its debt cut from 12,000 to 8,000; each trove absorbs only its proportional slice.
-
-For intuition, here is the proportional share for one trove holding a fifth of the system's collateral, so it absorbs a fifth of the redemption (800 pUSD of debt and about \$800 of pETH):
-
-Step | Collateral value | Debt | ICR
-
-Before redemption | \$18,000 | 12,000 pUSD | 150%
-After absorbing its pro-rata share | About \$17,200 | 11,200 pUSD | About 154%
-
-The borrower did not pay off debt voluntarily; the market did it through the redemption path. The trove is slightly safer by ICR, but smaller and less exposed to pETH, as is every other open trove on that pAsset.
-
-## For borrowers
-
-> **Before you act:**
-> A redemption can reduce your trove **while it is still solvent**; there is no minimum ICR to cross. Whenever the pAsset trades below peg, every open trove backing it is redeemed against proportionally to its collateral share, shrinking your position and pETH exposure without your consent. ICR governs liquidation safety, not redemption order, so a higher collateralization ratio does not exempt you. See the [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure).
-
-1. Track your **ICR** in absolute terms and keep a comfortable buffer above the MCR; a redemption can touch your position whenever the pAsset is below peg.
-2. Redemptions apply pro-rata across all troves backing that pAsset, so there is no ICR queue to climb out of; raising your ICR protects against liquidation, not redemption.
-3. Treat a below-peg pAsset as a live signal: that is exactly when redemptions get worked.
-4. Interest accrual raises your debt over time, eroding your ICR even if collateral prices are flat.
-
-See [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove) for the levers, and the [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure) for the full picture.
-
----
-
-A redemption is the market repricing your pAsset back to par through borrower collateral and arbitrage incentives. It reaches every open trove proportionally, so keep your buffer wide and treat below-peg conditions as the moment your position can shrink.
-
-[CDPs Mint Dollars. Polaris Mints Anything](https://polarisfinance.io/blog/polaris-mints-anything/)
-From Maker to Liquity, CDP models shaped DeFi lending. Polaris takes the blueprint further with pETH, self-adjusting rates, and a factory for stablecoins pegged to anything.

@@ -4,32 +4,128 @@
 
 # Stewardship
 
-## Polaris Stewardship
+## Polaris Stewardship, not Governance
 
 URL: https://tokenbrice.github.io/polaris-docs/stewardship
 
-# Polaris Stewardship
+# Polaris Stewardship, not Governance
 
-Stewardship is the bounded human layer around an immutable core. It can tune approved parameters and onboard participants within hardcoded constraints; it cannot rewrite pETH, CDP, liquidation, redemption, or Stability Pool logic.
+Governance doesn't fail because of bad people; it fails because of **bad structure**. Unlimited scope, undefined boundaries, and misaligned incentives eventually turn a DAO into an extraction arena, whoever is at the table.
 
-## Read in order
+Polaris's answer is neither a fully immutable protocol with no adjustable parameters nor an unbounded DAO. It is a third path: an immutable core plus a clearly scoped layer where humans exercise judgment only where judgment is load-bearing. We call it **stewardship** rather than governance because the difference is structural, not cosmetic.
 
-Page | What it answers
+> **Current status:** Stewardship is not live yet. POLAR and vePOLAR contract addresses, lock terms, proposal thresholds, voting periods, execution delays, and final numeric parameter bounds await audited deployment. These docs describe the intended scope and lifecycle without inventing launch parameters.
 
-[Stewardship, not Governance](https://tokenbrice.github.io/polaris-docs/stewardship/stewardship) | What stewards can and cannot change.
-[vePOLAR Locking and Stewardship](https://tokenbrice.github.io/polaris-docs/stewardship/vepolar) | How POLAR locking is intended to grant stewardship rights and routed yield.
-[Polaris Fee Router](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router) | How pETH revenue is buffered and distributed.
-[Polaris Flows](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router) | How ecosystem revenue sharing is intended to replace token-emission incentives.
+## The core is immutable
 
-## Launch status
+The mechanisms that define Polaris **cannot be changed by anyone**: not the team, not vePOLAR, not a vote. They are enforced by immutable contracts:
 
-Stewardship contracts, lock terms, voting parameters, Flow whitelists, event signatures, and final bounds are pending audited deployment. Check [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) before treating any vote or parameter as live.
+- The [bonding curve](https://tokenbrice.github.io/polaris-docs/peth) backing pETH
+- CDP logic and [trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove) accounting
+- [Liquidations](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations)
+- [Redemptions](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations)
+- The [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield)
 
-## Related pages
+The Polaris you understand on day one is the Polaris you hold later. There is no re-learning the base protocol after each vote, because the load-bearing logic is out of reach by design.
 
-- [POLAR Tokenomics](https://tokenbrice.github.io/polaris-docs/polar/tokenomics) for issuance and yield structure.
-- [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts) for artifact status.
-- [Audits & Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security) before relying on the stewardship surface.
+## What stewardship controls
+
+Stewardship operates at the edges: StablecoinOS onboarding, permitted parameter dials, the POLAR stewardship layer, fee and interest splits, Flow participation, and treasury programs. Safety-critical adjustable values ship with hardcoded limits; the remaining numeric bounds are set at audited deployment.
+
+Domain | Power | Constraint | Launch status
+
+**pAsset licensing** | Approve a team or instance to deploy a new pAsset on Polaris infrastructure | Standardized eligibility and launch requirements | Process pending
+**CDP parameters** | Adjust permitted fee and distribution splits for a pAsset instance | Hardcoded min/max bounds | Numeric bounds pending
+**Conversion parameters** | Tune pETH-to-POLAR conversion settings (rebate, half-life, spike sensitivity) | Rebate bounded 0–100%; other bounds pending | Numeric bounds pending
+**StablecoinOS onboarding** | Whitelist eligible participants into Flow revenue sharing | Must build on pETH/pAssets and meet published requirements | Process pending
+**Primary interest split** | Set how primary interest is split between the Stability Pool and POLAR stakers (remainder to the ecosystem fund) | Stability Pool and stakers each floored at 25% (hardcoded) | Floors hardcoded; values pending
+**Flow weights** | Set whitelisted recipient weights and related edge parameters | Hardcoded limits; no gauges, bribes, or emissions | Numeric bounds pending
+**Treasury programs** | Operate programs such as the Polar Council | Initially team-managed until a framework is published | Framework pending
+
+A stewardship vote can bring a new pAsset or Flow participant into the system, or move an approved parameter within its range. It cannot alter the bonding curve, redemption mechanism, liquidation logic, Stability Pool mechanics, or core contract immutability.
+
+## What stewardship does not do
+
+Polaris stewardship does **not**:
+
+- Upgrade or replace immutable core contracts.
+- Add admin keys, pause powers, freeze powers, or blacklists.
+- Create POLAR emissions gauges.
+- Route bribes or vote-buying markets through the protocol.
+- Mint POLAR outside the pETH conversion mechanism.
+- Set safety-critical parameters (such as interest-rate maxima, interest-split floors, and fee or rebate ceilings) outside their hardcoded bounds.
+- Change a user's trove, Stability Pool deposit, pETH balance, or lock by discretion.
+
+## Operator prerequisites
+
+Teams seeking onboarding, a pAsset instance, Flow participation, or another stewarded action should expect to provide:
+
+- Clear contract addresses once deployed and verified.
+- A concise description of the product, risk surface, and user flow.
+- The exact stewarded action requested.
+- The parameter values requested, with the published min/max bounds shown beside them.
+- Evidence that the action cannot touch immutable core logic.
+- Security status: audits, tests, admin roles, upgradeability, and emergency controls for the requesting team's own contracts.
+- Revenue-sharing, Flow, or integration assumptions, if relevant.
+- Monitoring and reporting commitments after approval.
+
+The final submission template is pending. Until it is published, operators should prepare around these fields rather than assume an informal path.
+
+## Proposal and voting lifecycle
+
+The final stewardship UI and contract-level process are pending. The intended lifecycle is:
+
+Stage | Purpose | Status
+
+**Draft** | Describe the request, affected contracts, user impact, risks, and requested parameters | Template pending
+**Bounds check** | Confirm each requested value sits inside immutable min/max limits | Final bounds pending
+**Security review** | Confirm verified source, audit status, admin roles, and integration risks | Process pending
+**Vote** | vePOLAR holders vote according to the published lock and vote-power rules | Thresholds and periods pending
+**Queue / execution** | Approved changes are queued and executed through the published contract path | Timelock/execution details pending
+**Verification** | Docs, indexers, and monitors confirm the new state onchain | Artifact plan pending
+**Monitoring** | Operators and stewards watch the result and propose reversals or adjustments if needed | Reporting framework pending
+
+No proposal is executable until the official process, contracts, and parameter bounds are published.
+
+## The three-tier decision model
+
+Polaris follows a simple ordering: solve a problem at the lowest tier that can solve it, and escalate only what the tier below cannot handle.
+
+1. **Automate what you can.** Interest-rate setting, floor-price growth, liquidation processing, and redemptions run autonomously.
+2. **Incentivize what you can't automate.** Where behavior can't be hardcoded but can be paid for, durable protocol revenue and Flow formulas handle it.
+3. **Steward only what's left.** Only what genuinely requires qualitative judgment goes to vePOLAR.
+
+This ordering reserves vePOLAR attention for the few decisions where human discernment matters.
+
+## Bounded blast radius
+
+Stewards hold real power, so they can make real mistakes, but the immutable core caps the damage. License a weak pAsset that fails? It affects that instance and its marginal share of the system, not the bonding curve or liquidation engine. Set a poor split? It can be moved back inside the same hardcoded bounds. The design absorbs errors instead of letting them rewrite the protocol.
+
+## How this compares to DAO governance
+
+A structural comparison, not an attack. Every team named below shipped real, valuable work; the point is the system's shape, not the people in it.
+
+Dimension | Unbounded DAO governance | Polaris stewardship
+
+**Scope** | Open-ended; can reach the base protocol | Enumerated and bounded
+**Core** | Mutable via vote | Immutable, out of reach of any vote
+**Incentives** | Often routed through emissions, gauges, and bribes | Routed through protocol revenue, configurable revenue splits, and Flows
+**Failure mode** | Base-protocol denaturation, capture, extraction | Bounded mistakes at the edges
+
+- **Maker** repeatedly denatured its base protocol, chasing trends and creating bespoke markets that benefited insiders; unanchored scope is the enabling condition.
+- **Aave** carried sizable undisclosed conflicts of interest; a proposal to enforce basic disclosure was rejected by entities that themselves failed to disclose. The system resisted its own cleanup.
+- **Uniswap** protects its base protocol, yet unscoped governance over the UNI token still produced familiar extraction. Even a protected core invites extraction when surrounding scope is unbounded.
+
+The lesson Polaris draws: bound the scope first, and most of these failure modes lose their oxygen. Less to capture, less to overpay for, nothing to denature.
+
+## Structure over trust
+
+Stewardship is not a promise to behave well; it is a structure in which misbehavior has a small, bounded surface. The core is immutable. Each lever is bounded, auditable, and reversible where the underlying contract permits. The team's outsized early influence is progressively diluted through the [conversion mechanism](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions): the faster Polaris grows, the faster new POLAR enters circulation and the team's share shrinks. That dilution is enforced by code, not pledged in a forum.
+
+---
+
+[Stewardship, not Governance](https://polarisfinance.io/blog/stewardship-not-governance/)
+Governance fails because of structure, not people. Here's how stewardship fixes the structure.
 
 ---
 
@@ -67,7 +163,7 @@ Destination | What they receive | Status
 **POLAR stakers** | A stewarded share of distributed protocol yield | Final split and claim path pending
 **Flow recipients** | Revenue-sharing distributions for whitelisted contracts, where applicable | Flow deployment and parameters pending
 
-The Fee Router itself does not enforce a per-destination split: [stewardship](https://tokenbrice.github.io/polaris-docs/stewardship/stewardship) pushes buffered pETH rewards to a chosen receiver, bounded by the accrued buffer and the immutable buffering cadence. The bounded, stewarded split with hardcoded floors applies to primary interest (the pAsset-denominated revenue stream) via the separate [interest router](https://tokenbrice.github.io/polaris-docs/yield/yield-sources), not the Fee Router's pETH rewards. Either way, the router moves only existing assets and cannot create token emissions.
+The Fee Router itself does not enforce a per-destination split: [stewardship](https://tokenbrice.github.io/polaris-docs/stewardship) pushes buffered pETH rewards to a chosen receiver, bounded by the accrued buffer and the immutable buffering cadence. The bounded, stewarded split with hardcoded floors applies to primary interest (the pAsset-denominated revenue stream) via the separate [interest router](https://tokenbrice.github.io/polaris-docs/yield/yield-sources), not the Fee Router's pETH rewards. Either way, the router moves only existing assets and cannot create token emissions.
 
 ## Why buffer at all
 
@@ -216,131 +312,6 @@ How Polaris replaces emission-style incentives with an autonomous, hard-asset di
 
 ---
 
-## Polaris Stewardship, not Governance
-
-URL: https://tokenbrice.github.io/polaris-docs/stewardship/stewardship
-
-# Polaris Stewardship, not Governance
-
-Governance doesn't fail because of bad people; it fails because of **bad structure**. Unlimited scope, undefined boundaries, and misaligned incentives eventually turn a DAO into an extraction arena, whoever is at the table.
-
-Polaris's answer is neither a fully immutable protocol with no adjustable parameters nor an unbounded DAO. It is a third path: an immutable core plus a clearly scoped layer where humans exercise judgment only where judgment is load-bearing. We call it **stewardship** rather than governance because the difference is structural, not cosmetic.
-
-> **Current status:** Stewardship is not live yet. POLAR and vePOLAR contract addresses, lock terms, proposal thresholds, voting periods, execution delays, and final numeric parameter bounds await audited deployment. These docs describe the intended scope and lifecycle without inventing launch parameters.
-
-## The core is immutable
-
-The mechanisms that define Polaris **cannot be changed by anyone**: not the team, not vePOLAR, not a vote. They are enforced by immutable contracts:
-
-- The [bonding curve](https://tokenbrice.github.io/polaris-docs/peth/bonding-curve) backing pETH
-- CDP logic and [trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove) accounting
-- [Liquidations](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations)
-- [Redemptions](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/redemptions)
-- The [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield/stability-pool)
-
-The Polaris you understand on day one is the Polaris you hold later. There is no re-learning the base protocol after each vote, because the load-bearing logic is out of reach by design.
-
-## What stewardship controls
-
-Stewardship operates at the edges: StablecoinOS onboarding, permitted parameter dials, the POLAR stewardship layer, fee and interest splits, Flow participation, and treasury programs. Safety-critical adjustable values ship with hardcoded limits; the remaining numeric bounds are set at audited deployment.
-
-Domain | Power | Constraint | Launch status
-
-**pAsset licensing** | Approve a team or instance to deploy a new pAsset on Polaris infrastructure | Standardized eligibility and launch requirements | Process pending
-**CDP parameters** | Adjust permitted fee and distribution splits for a pAsset instance | Hardcoded min/max bounds | Numeric bounds pending
-**Conversion parameters** | Tune pETH-to-POLAR conversion settings (rebate, half-life, spike sensitivity) | Rebate bounded 0–100%; other bounds pending | Numeric bounds pending
-**StablecoinOS onboarding** | Whitelist eligible participants into Flow revenue sharing | Must build on pETH/pAssets and meet published requirements | Process pending
-**Primary interest split** | Set how primary interest is split between the Stability Pool and POLAR stakers (remainder to the ecosystem fund) | Stability Pool and stakers each floored at 25% (hardcoded) | Floors hardcoded; values pending
-**Flow weights** | Set whitelisted recipient weights and related edge parameters | Hardcoded limits; no gauges, bribes, or emissions | Numeric bounds pending
-**Treasury programs** | Operate programs such as the Polar Council | Initially team-managed until a framework is published | Framework pending
-
-A stewardship vote can bring a new pAsset or Flow participant into the system, or move an approved parameter within its range. It cannot alter the bonding curve, redemption mechanism, liquidation logic, Stability Pool mechanics, or core contract immutability.
-
-## What stewardship does not do
-
-Polaris stewardship does **not**:
-
-- Upgrade or replace immutable core contracts.
-- Add admin keys, pause powers, freeze powers, or blacklists.
-- Create POLAR emissions gauges.
-- Route bribes or vote-buying markets through the protocol.
-- Mint POLAR outside the pETH conversion mechanism.
-- Set safety-critical parameters (such as interest-rate maxima, interest-split floors, and fee or rebate ceilings) outside their hardcoded bounds.
-- Change a user's trove, Stability Pool deposit, pETH balance, or lock by discretion.
-
-## Operator prerequisites
-
-Teams seeking onboarding, a pAsset instance, Flow participation, or another stewarded action should expect to provide:
-
-- Clear contract addresses once deployed and verified.
-- A concise description of the product, risk surface, and user flow.
-- The exact stewarded action requested.
-- The parameter values requested, with the published min/max bounds shown beside them.
-- Evidence that the action cannot touch immutable core logic.
-- Security status: audits, tests, admin roles, upgradeability, and emergency controls for the requesting team's own contracts.
-- Revenue-sharing, Flow, or integration assumptions, if relevant.
-- Monitoring and reporting commitments after approval.
-
-The final submission template is pending. Until it is published, operators should prepare around these fields rather than assume an informal path.
-
-## Proposal and voting lifecycle
-
-The final stewardship UI and contract-level process are pending. The intended lifecycle is:
-
-Stage | Purpose | Status
-
-**Draft** | Describe the request, affected contracts, user impact, risks, and requested parameters | Template pending
-**Bounds check** | Confirm each requested value sits inside immutable min/max limits | Final bounds pending
-**Security review** | Confirm verified source, audit status, admin roles, and integration risks | Process pending
-**Vote** | vePOLAR holders vote according to the published lock and vote-power rules | Thresholds and periods pending
-**Queue / execution** | Approved changes are queued and executed through the published contract path | Timelock/execution details pending
-**Verification** | Docs, indexers, and monitors confirm the new state onchain | Artifact plan pending
-**Monitoring** | Operators and stewards watch the result and propose reversals or adjustments if needed | Reporting framework pending
-
-No proposal is executable until the official process, contracts, and parameter bounds are published.
-
-## The three-tier decision model
-
-Polaris follows a simple ordering: solve a problem at the lowest tier that can solve it, and escalate only what the tier below cannot handle.
-
-1. **Automate what you can.** Interest-rate setting, floor-price growth, liquidation processing, and redemptions run autonomously.
-2. **Incentivize what you can't automate.** Where behavior can't be hardcoded but can be paid for, durable protocol revenue and Flow formulas handle it.
-3. **Steward only what's left.** Only what genuinely requires qualitative judgment goes to vePOLAR.
-
-This ordering reserves vePOLAR attention for the few decisions where human discernment matters.
-
-## Bounded blast radius
-
-Stewards hold real power, so they can make real mistakes, but the immutable core caps the damage. License a weak pAsset that fails? It affects that instance and its marginal share of the system, not the bonding curve or liquidation engine. Set a poor split? It can be moved back inside the same hardcoded bounds. The design absorbs errors instead of letting them rewrite the protocol.
-
-## How this compares to DAO governance
-
-A structural comparison, not an attack. Every team named below shipped real, valuable work; the point is the system's shape, not the people in it.
-
-Dimension | Unbounded DAO governance | Polaris stewardship
-
-**Scope** | Open-ended; can reach the base protocol | Enumerated and bounded
-**Core** | Mutable via vote | Immutable, out of reach of any vote
-**Incentives** | Often routed through emissions, gauges, and bribes | Routed through protocol revenue, configurable revenue splits, and Flows
-**Failure mode** | Base-protocol denaturation, capture, extraction | Bounded mistakes at the edges
-
-- **Maker** repeatedly denatured its base protocol, chasing trends and creating bespoke markets that benefited insiders; unanchored scope is the enabling condition.
-- **Aave** carried sizable undisclosed conflicts of interest; a proposal to enforce basic disclosure was rejected by entities that themselves failed to disclose. The system resisted its own cleanup.
-- **Uniswap** protects its base protocol, yet unscoped governance over the UNI token still produced familiar extraction. Even a protected core invites extraction when surrounding scope is unbounded.
-
-The lesson Polaris draws: bound the scope first, and most of these failure modes lose their oxygen. Less to capture, less to overpay for, nothing to denature.
-
-## Structure over trust
-
-Stewardship is not a promise to behave well; it is a structure in which misbehavior has a small, bounded surface. The core is immutable. Each lever is bounded, auditable, and reversible where the underlying contract permits. The team's outsized early influence is progressively diluted through the [conversion mechanism](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions): the faster Polaris grows, the faster new POLAR enters circulation and the team's share shrinks. That dilution is enforced by code, not pledged in a forum.
-
----
-
-[Stewardship, not Governance](https://polarisfinance.io/blog/stewardship-not-governance/)
-Governance fails because of structure, not people. Here's how stewardship fixes the structure.
-
----
-
 ## vePOLAR Locking and Stewardship
 
 URL: https://tokenbrice.github.io/polaris-docs/stewardship/vepolar
@@ -367,7 +338,7 @@ vePOLAR holders can participate in decisions to:
 - Tune [conversion](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions) parameters within their hardcoded range.
 - Vote on treasury programs once the framework is published.
 
-Each action is bounded, auditable, and limited to the surfaces in [Stewardship, not Governance](https://tokenbrice.github.io/polaris-docs/stewardship/stewardship). None can denature the protocol.
+Each action is bounded, auditable, and limited to the surfaces in [Stewardship, not Governance](https://tokenbrice.github.io/polaris-docs/stewardship). None can denature the protocol.
 
 ## POLAR Staking is separate
 
@@ -377,7 +348,7 @@ vePOLAR is the future locking layer. Once live, this page will list the official
 
 ## What vePOLAR does not do
 
-vePOLAR cannot upgrade core contracts; change pETH, CDP, liquidation, redemption, or Stability Pool mechanics; create gauges or bribe markets; direct POLAR emissions; mint POLAR outside the [conversion auction](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions); or move any parameter outside its immutable min/max range. The full list of what no vote can reach is in [Stewardship, not Governance](https://tokenbrice.github.io/polaris-docs/stewardship/stewardship#what-stewardship-does-not-do).
+vePOLAR cannot upgrade core contracts; change pETH, CDP, liquidation, redemption, or Stability Pool mechanics; create gauges or bribe markets; direct POLAR emissions; mint POLAR outside the [conversion auction](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions); or move any parameter outside its immutable min/max range. The full list of what no vote can reach is in [Stewardship, not Governance](https://tokenbrice.github.io/polaris-docs/stewardship#what-stewardship-does-not-do).
 
 ## Lock status
 

@@ -40,32 +40,11 @@
       "lastVerified": null
     },
     {
-      "route": "/getting-started",
-      "url": "https://tokenbrice.github.io/polaris-docs/getting-started",
-      "section": "Overview",
-      "title": "Getting Started with Polaris",
-      "description": "What you need to use Polaris and the basic flow: deposit ETH, receive pETH, open a trove and mint a pAsset, and optionally earn yield in the Stability Pool.",
-      "keywords": [
-        "app",
-        "official app",
-        "connect wallet",
-        "testnet",
-        "Sepolia",
-        "Sepolia ETH",
-        "WETH faucet",
-        "borrow",
-        "earn",
-        "swap"
-      ],
-      "updated": null,
-      "lastVerified": null
-    },
-    {
       "route": "/launch-status",
       "url": "https://tokenbrice.github.io/polaris-docs/launch-status",
       "section": "Overview",
       "title": "Polaris Launch Status",
-      "description": "The canonical status page for Polaris launch phase, official networks, app URL, contract addresses, audit status, and what is actionable today.",
+      "description": "Polaris launch-status and on-ramp, covering official network, app URL, what's actionable today, and the basic flow from ETH to a pAsset.",
       "keywords": [
         "app",
         "official app",
@@ -86,8 +65,8 @@
       "route": "/minting",
       "url": "https://tokenbrice.github.io/polaris-docs/minting",
       "section": "Minting & Troves",
-      "title": "Polaris Minting and Troves",
-      "description": "The Polaris minting hub for pAssets, troves, collateralization, pAsset catalog entries, and borrower risk.",
+      "title": "Minting Polaris pAssets",
+      "description": "How the Polaris CDP model mints pAssets directly from the protocol against pETH collateral, with autonomous market-aware interest rates.",
       "keywords": [],
       "updated": null,
       "lastVerified": null
@@ -98,25 +77,6 @@
       "section": "Minting & Troves",
       "title": "Managing a Polaris Trove",
       "description": "Manage a Polaris trove around its Individual Collateralization Ratio (ICR) — add collateral, mint or repay debt, track interest, and close out cleanly.",
-      "keywords": [
-        "Borrow",
-        "borrow",
-        "mint",
-        "open trove",
-        "pUSD",
-        "pGOLD",
-        "ICR",
-        "official app"
-      ],
-      "updated": null,
-      "lastVerified": null
-    },
-    {
-      "route": "/minting/minting-passets",
-      "url": "https://tokenbrice.github.io/polaris-docs/minting/minting-passets",
-      "section": "Minting & Troves",
-      "title": "Minting Polaris pAssets",
-      "description": "How the Polaris CDP model mints pAssets directly from the protocol against pETH collateral, with autonomous market-aware interest rates.",
       "keywords": [
         "Borrow",
         "borrow",
@@ -160,77 +120,12 @@
       "lastVerified": null
     },
     {
-      "route": "/paths",
-      "url": "https://tokenbrice.github.io/polaris-docs/paths",
-      "section": "Choose Your Path",
-      "title": "Polaris User Paths",
-      "description": "Role-based Polaris reading paths for borrowers, yield users, pETH holders, POLAR participants, developers, and safety verification.",
-      "keywords": [
-        "Dashboard",
-        "Swap",
-        "Borrow",
-        "Earn",
-        "Split",
-        "Zap",
-        "Guide",
-        "Advanced",
-        "Analytics"
-      ],
-      "updated": null,
-      "lastVerified": null
-    },
-    {
-      "route": "/paths/develop",
-      "url": "https://tokenbrice.github.io/polaris-docs/paths/develop",
-      "section": "Choose Your Path",
-      "title": "Develop on Polaris",
-      "description": "The developer path for integrating with Polaris before launch artifacts are published.",
-      "keywords": [],
-      "updated": null,
-      "lastVerified": null
-    },
-    {
-      "route": "/paths/safety-verification",
-      "url": "https://tokenbrice.github.io/polaris-docs/paths/safety-verification",
-      "section": "Choose Your Path",
-      "title": "Polaris Safety and Verification",
-      "description": "The safety path for verifying Polaris launch status, official contracts, audit status, intended invariants, and user risk before interacting.",
-      "keywords": [
-        "official app",
-        "app URL",
-        "phishing",
-        "verify contracts",
-        "testnet",
-        "mainnet"
-      ],
-      "updated": null,
-      "lastVerified": null
-    },
-    {
       "route": "/peth",
       "url": "https://tokenbrice.github.io/polaris-docs/peth",
       "section": "pETH & Bonding Curve",
-      "title": "Polaris pETH and Bonding Curve",
-      "description": "The pETH hub for the bonding curve, floor price, ETH-denominated downside, exit assumptions, and pETH collateral use.",
-      "keywords": [],
-      "updated": null,
-      "lastVerified": null
-    },
-    {
-      "route": "/peth/bonding-curve",
-      "url": "https://tokenbrice.github.io/polaris-docs/peth/bonding-curve",
-      "section": "pETH & Bonding Curve",
       "title": "pETH Bonding Curve",
       "description": "How one two-way bonding curve gives pETH contract-native liquidity, a rising floor price, and protocol-wide value capture, with no liquidity providers required.",
-      "keywords": [
-        "Swap",
-        "swap",
-        "Split",
-        "fpETH",
-        "vpETH",
-        "pETH",
-        "floor price"
-      ],
+      "keywords": [],
       "updated": null,
       "lastVerified": null
     },
@@ -303,8 +198,8 @@
       "route": "/redemptions-liquidations",
       "url": "https://tokenbrice.github.io/polaris-docs/redemptions-liquidations",
       "section": "Redemptions & Liquidations",
-      "title": "Polaris Redemptions and Liquidations",
-      "description": "The Polaris risk-mechanics hub for pAsset redemptions, liquidations, Recovery Mode, borrower impact, and Stability Pool exposure.",
+      "title": "pAsset Redemptions",
+      "description": "A redemption swaps a below-peg pAsset for its pETH collateral at face value minus a fee. How the arbitrage restores peg, and what it means for borrowers.",
       "keywords": [],
       "updated": null,
       "lastVerified": null
@@ -330,21 +225,11 @@
       "lastVerified": null
     },
     {
-      "route": "/redemptions-liquidations/redemptions",
-      "url": "https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/redemptions",
-      "section": "Redemptions & Liquidations",
-      "title": "pAsset Redemptions",
-      "description": "A redemption swaps a below-peg pAsset for its pETH collateral at face value minus a fee. How the arbitrage restores peg, and what it means for borrowers.",
-      "keywords": [],
-      "updated": null,
-      "lastVerified": null
-    },
-    {
       "route": "/resources",
       "url": "https://tokenbrice.github.io/polaris-docs/resources",
       "section": "Resources",
-      "title": "Polaris Resources",
-      "description": "Reference pages for Polaris terminology, risk disclosure, FAQ, contracts, audits, security, brand assets, and launch verification.",
+      "title": "Polaris Glossary",
+      "description": "Every Polaris term defined in one or two sentences, alphabetized and linked to its full explanation. The fast way to look anything up.",
       "keywords": [],
       "updated": null,
       "lastVerified": null
@@ -424,38 +309,21 @@
       "lastVerified": null
     },
     {
-      "route": "/resources/glossary",
-      "url": "https://tokenbrice.github.io/polaris-docs/resources/glossary",
-      "section": "Resources",
-      "title": "Polaris Glossary",
-      "description": "Every Polaris term defined in one or two sentences, alphabetized and linked to its full explanation. The fast way to look anything up.",
-      "keywords": [
-        "app",
-        "official app",
-        "testnet",
-        "Sepolia",
-        "WETH",
-        "WETH faucet",
-        "Zap",
-        "Split",
-        "Swap",
-        "Borrow",
-        "Earn",
-        "Guide",
-        "Advanced",
-        "Analytics",
-        "APR",
-        "Reserve Loan"
-      ],
-      "updated": null,
-      "lastVerified": null
-    },
-    {
       "route": "/resources/risk-disclosure",
       "url": "https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure",
       "section": "Resources",
       "title": "Polaris Risk Disclosure",
       "description": "A comprehensive catalog of the risks of using Polaris, each paired with the mechanism that mitigates it, without implying any risk is eliminated.",
+      "keywords": [],
+      "updated": null,
+      "lastVerified": null
+    },
+    {
+      "route": "/resources/safety-verification",
+      "url": "https://tokenbrice.github.io/polaris-docs/resources/safety-verification",
+      "section": "Resources",
+      "title": "Polaris Safety and Verification",
+      "description": "The safety path for verifying Polaris launch status, official contracts, audit status, intended invariants, and user risk before interacting.",
       "keywords": [],
       "updated": null,
       "lastVerified": null
@@ -474,8 +342,8 @@
       "route": "/stewardship",
       "url": "https://tokenbrice.github.io/polaris-docs/stewardship",
       "section": "Stewardship",
-      "title": "Polaris Stewardship",
-      "description": "The Polaris stewardship hub for vePOLAR, Fee Router distribution, Flows, bounded decisions, and operator prerequisites.",
+      "title": "Polaris Stewardship, not Governance",
+      "description": "Polaris keeps its core immutable and lets vePOLAR steward only bounded parameters, onboarding decisions, and edge processes that cannot be automated.",
       "keywords": [],
       "updated": null,
       "lastVerified": null
@@ -486,16 +354,6 @@
       "section": "Stewardship",
       "title": "Fee Router & Flows",
       "description": "Polaris revenue routing: the Fee Router buffers protocol yield to troves and stakers, while Flows share hard-asset revenue with contracts building on Polaris.",
-      "keywords": [],
-      "updated": null,
-      "lastVerified": null
-    },
-    {
-      "route": "/stewardship/stewardship",
-      "url": "https://tokenbrice.github.io/polaris-docs/stewardship/stewardship",
-      "section": "Stewardship",
-      "title": "Polaris Stewardship, not Governance",
-      "description": "Polaris keeps its core immutable and lets vePOLAR steward only bounded parameters, onboarding decisions, and edge processes that cannot be automated.",
       "keywords": [],
       "updated": null,
       "lastVerified": null
@@ -514,8 +372,8 @@
       "route": "/using-app",
       "url": "https://tokenbrice.github.io/polaris-docs/using-app",
       "section": "using-app",
-      "title": "Using the Polaris App",
-      "description": "A route map for the live Polaris app labels: Dashboard, Swap, Borrow, Earn, Split, Zap, Guide, Advanced, and Analytics.",
+      "title": "Dashboard & Analytics",
+      "description": "How to read the Polaris app Dashboard and Analytics: balances, positions, rewards, system status, protocol-wide metrics, and next actions.",
       "keywords": [],
       "updated": null,
       "lastVerified": null
@@ -536,16 +394,6 @@
       "section": "using-app",
       "title": "Borrow",
       "description": "How the Polaris Borrow tab maps to troves, CDPs, pAsset debt, reserve loans, and before-you-sign checks.",
-      "keywords": [],
-      "updated": null,
-      "lastVerified": null
-    },
-    {
-      "route": "/using-app/dashboard",
-      "url": "https://tokenbrice.github.io/polaris-docs/using-app/dashboard",
-      "section": "using-app",
-      "title": "Dashboard & Analytics",
-      "description": "How to read the Polaris app Dashboard and Analytics: balances, positions, rewards, system status, protocol-wide metrics, and next actions.",
       "keywords": [],
       "updated": null,
       "lastVerified": null
@@ -604,27 +452,9 @@
       "route": "/yield",
       "url": "https://tokenbrice.github.io/polaris-docs/yield",
       "section": "Earning Yield",
-      "title": "Polaris Yield",
-      "description": "The Polaris yield hub for Stability Pool deposits, pETH and pAsset yield sources, Fee Router distribution, and launch status.",
-      "keywords": [],
-      "updated": null,
-      "lastVerified": null
-    },
-    {
-      "route": "/yield/stability-pool",
-      "url": "https://tokenbrice.github.io/polaris-docs/yield/stability-pool",
-      "section": "Earning Yield",
       "title": "Polaris Stability Pool",
       "description": "The Stability Pool is a reserve of pAssets that backstops liquidations and is the primary venue for earning yield on Polaris.",
-      "keywords": [
-        "Earn",
-        "earn",
-        "yield",
-        "APR",
-        "Stability Pool",
-        "deposit",
-        "claim rewards"
-      ],
+      "keywords": [],
       "updated": null,
       "lastVerified": null
     },

@@ -4,115 +4,9 @@
 
 # using-app
 
-## Using the Polaris App
-
-URL: https://tokenbrice.github.io/polaris-docs/using-app
-
-# Using the Polaris App
-
-The app runs at [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io/) on **Sepolia testnet** (`11155111`) with test assets only — they have no monetary value. Production/mainnet is not live until [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) says otherwise.
-
-The app is organized around task labels. Use this section when you know the label you see in the app and want the matching docs page.
-
-## App labels
-
-App label | Use it for | Start here
-
-**Dashboard** | Account balances, open positions, claimable rewards, and system status | [Dashboard & Analytics](https://tokenbrice.github.io/polaris-docs/using-app/dashboard)
-**Swap** | WETH/pETH/pAsset swaps and bonding-curve quotes | [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap)
-**Borrow** | pAsset troves and reserve loans | [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow)
-**Earn** | Stability Pool deposits and staking rewards | [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn)
-**Split** | Split pETH into fpETH and vpETH, or merge them back | [Split](https://tokenbrice.github.io/polaris-docs/using-app/split)
-**Zap** | Bundle a purchase and Stability Pool deposit into one guided flow | [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap)
-**Guide** | Guided routing by goal | [Choose by goal](https://tokenbrice.github.io/polaris-docs/using-app#choose-by-goal)
-**Advanced** | Manual approvals, PSM/redemption tools, reserve loans, and staking controls | [Advanced](https://tokenbrice.github.io/polaris-docs/using-app/advanced)
-**Analytics** | Protocol metrics, floor ratio, rates, liquidity, and pool health | [Dashboard & Analytics](https://tokenbrice.github.io/polaris-docs/using-app/dashboard#analytics-protocol-wide-metrics)
-
-## Choose by goal
-
-When you know the outcome you want but not which tab to start in:
-
-Goal | App tab | Start with
-
-Get pETH | Swap | [pETH & Bonding Curve](https://tokenbrice.github.io/polaris-docs/peth)
-Mint pUSD or pGOLD | Borrow | [Minting & Troves](https://tokenbrice.github.io/polaris-docs/minting)
-Deposit into the Stability Pool | Earn or Zap | [Earning Yield](https://tokenbrice.github.io/polaris-docs/yield)
-Split pETH into fpETH and vpETH | Split | [pETH Split](https://tokenbrice.github.io/polaris-docs/peth/split)
-Convert pETH into POLAR | Advanced or conversion panel | [POLAR & Staking](https://tokenbrice.github.io/polaris-docs/polar)
-Verify before interacting | Dashboard, then any action tab | [Safety and Verification](https://tokenbrice.github.io/polaris-docs/paths/safety-verification)
-
-Read the linked page before signing, then return to the app tab for the live quote and simulation — a goal router cannot verify that a quote is fresh or that an address is official.
-
-## Before any transaction
-
-Before signing in any app tab, verify:
-
-- You are on Sepolia for Public Testnet 1, or Ethereum mainnet only after production launch.
-- The app URL and contracts match [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) and [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts).
-- The token, amount, fee, slippage limit, quote freshness, and resulting position are what you intended.
-- Any approval is limited to the contract and token shown in the app.
-- You understand the risk of the specific action: debt, liquidation, first-loss exposure, one-way conversion, or pETH floor/execution assumptions.
-
-For broader wallet and contract checks, use [Safety and Verification](https://tokenbrice.github.io/polaris-docs/paths/safety-verification).
-
----
-
-## Advanced
-
-URL: https://tokenbrice.github.io/polaris-docs/using-app/advanced
-
-# Advanced
-
-Use **Advanced** for tools that expose protocol mechanics more directly than the main task tabs. These surfaces are useful for power users and integrators, but they can bypass the guardrails of a guided flow.
-
-App anchor: **Advanced** tab. Use this surface only when you know the exact contract, function, token, amount, and effect you intend to sign.
-
-## Common Advanced tools
-
-Tool | What it is | Read first
-
-**Approvals** | Token allowances for app contracts | [Safety and Verification](https://tokenbrice.github.io/polaris-docs/paths/safety-verification)
-**PSM** | Peg Stability Module actions for a pAsset instance | [Redemptions](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/redemptions)
-**Reserve Loans** | WETH loans against fpETH floor-value collateral | [pETH Split](https://tokenbrice.github.io/polaris-docs/peth/split)
-**POLAR Staking** | Stake, unstake, and claim routed rewards where exposed | [POLAR Tokenomics](https://tokenbrice.github.io/polaris-docs/polar/tokenomics)
-**Conversion** | Burn pETH to mint POLAR through the auction | [Conversion Auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions#how-to-convert)
-
----
-
-## Borrow
-
-URL: https://tokenbrice.github.io/polaris-docs/using-app/borrow
-
-# Borrow
-
-Use **Borrow** for two distinct position types:
-
-App anchor: **Borrow** tab. Trove actions appear as pAsset borrowing/CDP actions; reserve loans appear as fpETH-backed WETH loan actions.
-
-Image: Polaris Borrow tab: pUSD selected, 10 pETH collateral at 75% LTV, with a projected position showing liquidation price, estimated monthly cost, and LTV
-
-*Pick the pAsset to mint, set collateral and LTV, then review the projected position — liquidation price, monthly cost, and LTV — before approving.*
-
-App wording | Docs wording | What it means
-
-**Borrow pAssets** | **Open or adjust a trove** | Deposit pETH collateral and mint pUSD, pGOLD, or another pAsset as debt.
-**CDP** | **Trove / CDP instance** | The contract mechanism behind a pAsset borrow position.
-**Loan / Reserve Loan** | **Reserve loan** | Borrow WETH against fpETH floor-value collateral; this is not a pAsset trove.
-
-For the full **Borrow / CDP / trove / reserve loan** vocabulary, see [Borrower terminology](https://tokenbrice.github.io/polaris-docs/minting/minting-passets#borrower-terminology).
-
-## Related docs
-
-- [Open a Polaris Trove](https://tokenbrice.github.io/polaris-docs/minting/open-a-trove)
-- [Managing a Polaris Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove)
-- [pETH Split: fpETH and vpETH](https://tokenbrice.github.io/polaris-docs/peth/split)
-- [pETH Bonding Curve](https://tokenbrice.github.io/polaris-docs/peth/bonding-curve)
-
----
-
 ## Dashboard & Analytics
 
-URL: https://tokenbrice.github.io/polaris-docs/using-app/dashboard
+URL: https://tokenbrice.github.io/polaris-docs/using-app
 
 # Dashboard & Analytics
 
@@ -165,7 +59,60 @@ Before relying on a metric:
 
 - [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow) for troves and reserve loans.
 - [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn) for Stability Pool and POLAR Staking positions.
-- [pETH Floor Price](https://tokenbrice.github.io/polaris-docs/peth/floor-price), [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting/minting-passets), and [Where the Yield Comes From](https://tokenbrice.github.io/polaris-docs/yield/yield-sources) for the volatile concepts behind the metrics.
+- [pETH Floor Price](https://tokenbrice.github.io/polaris-docs/peth/floor-price), [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting), and [Where the Yield Comes From](https://tokenbrice.github.io/polaris-docs/yield/yield-sources) for the volatile concepts behind the metrics.
+
+---
+
+## Advanced
+
+URL: https://tokenbrice.github.io/polaris-docs/using-app/advanced
+
+# Advanced
+
+Use **Advanced** for tools that expose protocol mechanics more directly than the main task tabs. These surfaces are useful for power users and integrators, but they can bypass the guardrails of a guided flow.
+
+App anchor: **Advanced** tab. Use this surface only when you know the exact contract, function, token, amount, and effect you intend to sign.
+
+## Common Advanced tools
+
+Tool | What it is | Read first
+
+**Approvals** | Token allowances for app contracts | [Safety and Verification](https://tokenbrice.github.io/polaris-docs/resources/safety-verification)
+**PSM** | Peg Stability Module actions for a pAsset instance | [Redemptions](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations)
+**Reserve Loans** | WETH loans against fpETH floor-value collateral | [pETH Split](https://tokenbrice.github.io/polaris-docs/peth/split)
+**POLAR Staking** | Stake, unstake, and claim routed rewards where exposed | [POLAR Tokenomics](https://tokenbrice.github.io/polaris-docs/polar/tokenomics)
+**Conversion** | Burn pETH to mint POLAR through the auction | [Conversion Auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions#how-to-convert)
+
+---
+
+## Borrow
+
+URL: https://tokenbrice.github.io/polaris-docs/using-app/borrow
+
+# Borrow
+
+Use **Borrow** for two distinct position types:
+
+App anchor: **Borrow** tab. Trove actions appear as pAsset borrowing/CDP actions; reserve loans appear as fpETH-backed WETH loan actions.
+
+Image: Polaris Borrow tab: pUSD selected, 10 pETH collateral at 75% LTV, with a projected position showing liquidation price, estimated monthly cost, and LTV
+
+*Pick the pAsset to mint, set collateral and LTV, then review the projected position — liquidation price, monthly cost, and LTV — before approving.*
+
+App wording | Docs wording | What it means
+
+**Borrow pAssets** | **Open or adjust a trove** | Deposit pETH collateral and mint pUSD, pGOLD, or another pAsset as debt.
+**CDP** | **Trove / CDP instance** | The contract mechanism behind a pAsset borrow position.
+**Loan / Reserve Loan** | **Reserve loan** | Borrow WETH against fpETH floor-value collateral; this is not a pAsset trove.
+
+For the full **Borrow / CDP / trove / reserve loan** vocabulary, see [Borrower terminology](https://tokenbrice.github.io/polaris-docs/minting#borrower-terminology).
+
+## Related docs
+
+- [Open a Polaris Trove](https://tokenbrice.github.io/polaris-docs/minting/open-a-trove)
+- [Managing a Polaris Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove)
+- [pETH Split: fpETH and vpETH](https://tokenbrice.github.io/polaris-docs/peth/split)
+- [pETH Bonding Curve](https://tokenbrice.github.io/polaris-docs/peth)
 
 ---
 
@@ -187,7 +134,7 @@ Image: Polaris Earn tab: pUSD Stability Pool deposit form at 15.2% APR, with a d
 
 Surface | What you deposit | What you receive | Read first
 
-**Stability Pool** | pUSD, pGOLD, or another pAsset | Borrower-interest share and liquidation gains | [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield/stability-pool)
+**Stability Pool** | pUSD, pGOLD, or another pAsset | Borrower-interest share and liquidation gains | [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield)
 **POLAR Staking** | POLAR | Routed staking rewards where the current deployment exposes them | [POLAR Tokenomics](https://tokenbrice.github.io/polaris-docs/polar/tokenomics)
 **vePOLAR locking** | POLAR, once locking is deployed | Stewardship rights and a future yield path | [vePOLAR](https://tokenbrice.github.io/polaris-docs/stewardship/vepolar)
 
@@ -195,7 +142,7 @@ POLAR Staking and vePOLAR are not the same thing. The current staking surface is
 
 ## Related docs
 
-- [How to deposit to the Stability Pool](https://tokenbrice.github.io/polaris-docs/yield/stability-pool#how-to-deposit)
+- [How to deposit to the Stability Pool](https://tokenbrice.github.io/polaris-docs/yield#how-to-deposit)
 - [Where the Yield Comes From](https://tokenbrice.github.io/polaris-docs/yield/yield-sources)
 - [POLAR Tokenomics](https://tokenbrice.github.io/polaris-docs/polar/tokenomics)
 
@@ -238,7 +185,7 @@ URL: https://tokenbrice.github.io/polaris-docs/using-app/swap
 
 # Swap
 
-Use **Swap** when you want to exchange WETH, pETH, fpETH, vpETH, or a pAsset through the route the app quotes. For pETH, the route may involve the [bonding curve](https://tokenbrice.github.io/polaris-docs/peth/bonding-curve); for pAssets, it may route through app-supported markets or protocol modules.
+Use **Swap** when you want to exchange WETH, pETH, fpETH, vpETH, or a pAsset through the route the app quotes. For pETH, the route may involve the [bonding curve](https://tokenbrice.github.io/polaris-docs/peth); for pAssets, it may route through app-supported markets or protocol modules.
 
 App anchor: **Swap** tab. Use it for WETH -> pETH, pETH -> WETH, pAsset routes, and any quoted route that shows price impact or slippage before signing.
 
@@ -250,7 +197,7 @@ Image: Polaris Swap tab: selling 5 ETH for pETH, showing the quoted output, mini
 
 Goal | Typical route | Read first
 
-Get pETH | WETH -> pETH | [pETH Bonding Curve](https://tokenbrice.github.io/polaris-docs/peth/bonding-curve)
+Get pETH | WETH -> pETH | [pETH Bonding Curve](https://tokenbrice.github.io/polaris-docs/peth)
 Exit pETH | pETH -> WETH | [pETH Floor Price](https://tokenbrice.github.io/polaris-docs/peth/floor-price)
 Get a pAsset to deposit | WETH -> pUSD or pGOLD | [Polaris Asset Catalog](https://tokenbrice.github.io/polaris-docs/minting/passet-catalog)
 Rebalance before a debt action | pAsset or pETH swap | [Managing a Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove)
@@ -295,4 +242,4 @@ A zap can fail because one leg changes before inclusion: slippage, depleted liqu
 
 - [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap)
 - [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn)
-- [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield/stability-pool)
+- [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield)
