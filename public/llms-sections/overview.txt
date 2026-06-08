@@ -45,23 +45,28 @@ URL: https://tokenbrice.github.io/polaris-docs/changelog
 This is a changelog for **this documentation**, not the Polaris protocol. It records what changed in these pages — structure, content, and accessibility — so returning readers can see what is new.
 Entries follow [Keep a Changelog](https://keepachangelog.com), use ISO dates (YYYY-MM-DD), and are listed newest first.
 
-## [2026-06-08]
+## [v0.1] - 2026-06-08
 
-A documentation best-practices pass that upgrades existing pages without changing the protocol model.
+Initial Polaris documentation release for Public Testnet 1. This version establishes the app-task guides, protocol concept pages, and canonical reference pages needed to understand and safely test the system.
 
 ### Added
 
+- Initial documentation structure for Introduction, Launch Status, Public Testnet Quickstart, Using the App, protocol mechanics, Resources, and Changelog.
+- Public Testnet Quickstart, Troubleshooting, and Parameters pages.
+- Expanded app-task coverage for Dashboard, Swap, Borrow, Manage Trove, Earn, Split, Zap, and Advanced.
 - Point-of-decision risk notes on the action pages (open a trove, redemptions, Stability Pool deposits, conversions), each linking to the full Risk Disclosure.
 - A POLAR tokenomics page covering distribution, allocations, and vesting.
 - The Polaris system overview diagram on Core Concepts and the lineage diagram on Why Polaris, each with descriptive alt text, a caption, and a numbered text description so the meaning survives without the image.
-- Developer **Gotchas** and **Failure modes** sections, plus a worked integration code example, in the developer pages.
-- An `llms.txt` machine-readable export so integrators and agents can consume the docs programmatically.
+- An `llms.txt` machine-readable export so agents can consume the docs programmatically.
 - This documentation changelog.
 
 ### Changed
 
+- Reorganized navigation around launch status, quickstart, app tasks, protocol concepts, and canonical references.
+- Moved address ownership to Contracts & Addresses, parameter ownership to Parameters, and testnet artifact ownership to Public Testnet 1 Artifacts.
+- Kept `/resources` as the glossary route; no dedicated category landing page was added.
 - Enriched the six role paths from thin link lists into role-specific reading sequences, each with a "Who this is for" line, prerequisites, and a one-line note on why each step matters.
-- Added audience signposting that routes developers and users to the right starting point.
+- Added audience signposting that routes users to the right starting point.
 - Accessibility pass across the affected pages, including image alternatives and text descriptions for every embedded diagram.
 - Trimmed over-long meta descriptions so search snippets don't truncate.
 - Consolidated repeated cross-page explanations (conversion and floor mechanics, the stewardship "what it cannot do" list, Fee Router routing, the Recovery Mode interaction) so each concept is defined once and referenced elsewhere.
@@ -150,65 +155,231 @@ URL: https://tokenbrice.github.io/polaris-docs/launch-status
 
 # Polaris Launch Status
 
-This page is the source of truth for what is actionable today — conceptual, testnet-actionable, or production-actionable — and the shortest path from "I have ETH" to using Polaris.
+This page owns current status: what is live, what is testnet-only, what is not live, and which app URL is official.
 
-Use app.testnet.polarisfinance.io only on Sepolia (<code>11155111</code>) with test assets. Testnet assets have no monetary value, and production/mainnet use is not live.
+Polaris is in <strong>Public Testnet 1</strong>. Use app.testnet.polarisfinance.io only on Sepolia (<code>11155111</code>) with test assets. Production/mainnet use is not live.
 
-## Current status
+## Current phase
 
-Item | Current status
+Item | Status
 
 Public phase | **Public Testnet 1**
 Testnet network | **Sepolia**, chain ID `11155111`
-Production network | **Ethereum mainnet**, chain ID `1`, forthcoming
-Official Public Testnet 1 app | [https://app.testnet.polarisfinance.io/](https://app.testnet.polarisfinance.io/)
+Official testnet app | [https://app.testnet.polarisfinance.io/](https://app.testnet.polarisfinance.io/)
+Testnet-active pAssets | pUSD and pGOLD
+Illustrative or future pAssets | pCHF, pBigMac, and other catalog examples
+Production network | Ethereum mainnet, chain ID `1`, forthcoming
 Production / mainnet app | Not live or published in these docs
 Canonical production contracts | Not published yet
-Testnet contracts and parameters | Published for Sepolia on [Public Testnet 1](https://tokenbrice.github.io/polaris-docs/resources/testnet); not canonical production addresses
 Final audit reports | Not published in these docs yet
 Bug bounty / disclosure program | Not public yet
 
-## What you need
+## What this means
 
-- **An Ethereum wallet** — any standard EOA or smart-account wallet.
-- **For Public Testnet 1:** Sepolia ETH for gas, plus test WETH/reserve tokens from the app faucet when it's enabled for your wallet. Testnet assets have no monetary value.
-- **For production later:** ETH on Ethereum mainnet — the only asset you need to begin; Polaris converts it to [pETH](https://tokenbrice.github.io/polaris-docs/peth) for you.
+- You can try Polaris on Public Testnet 1 with Sepolia test assets only.
+- Testnet assets have no monetary value, no production redemption, and no mainnet claim.
+- Do not use a production app, production address, audit claim, bounty link, or mainnet workflow unless this page says it is live.
+- Current Sepolia artifacts can change after redeploys.
 
-No KYC, no whitelist, no offchain account.
+## Where each exact fact lives
 
-## The basic flow
+Need | Canonical page
 
-In one line: **deposit ETH ⇒ receive pETH ⇒ open a trove and mint a pAsset ⇒ optionally deposit to the Stability Pool to earn yield.** On Public Testnet 1 this uses Sepolia test assets; in production it uses Ethereum mainnet once this page says mainnet is live.
+Fastest safe testnet flow | [Public Testnet Quickstart](https://tokenbrice.github.io/polaris-docs/quickstart)
+Frontend, network, wallet, and signing checks | [Safety & Verification](https://tokenbrice.github.io/polaris-docs/resources/safety-verification)
+Sepolia manifest paths and artifact sources | [Public Testnet 1 Artifacts](https://tokenbrice.github.io/polaris-docs/resources/testnet)
+Contract addresses and verification rules | [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts)
+Numeric protocol parameters | [Parameters](https://tokenbrice.github.io/polaris-docs/resources/parameters)
+Risk taxonomy | [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure)
+Audit and disclosure status | [Audits & Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security)
 
-1. **Deposit ETH or test assets.** On Public Testnet 1, mint mock WETH/reserve tokens from the app faucet when available. In production later, you start from mainnet ETH.
-2. **Receive pETH from the [bonding curve](https://tokenbrice.github.io/polaris-docs/peth).** Your input is swapped for pETH at the curve's current price. pETH is an ETH proxy with a floor price that only rises, and the only collateral Polaris accepts.
-3. **Open a [trove](https://tokenbrice.github.io/polaris-docs/minting/open-a-trove) and mint a pAsset.** Post pETH as collateral, then choose your pAsset. pUSD and pGOLD are Testnet-active; pCHF and pBigMac are illustrative catalog examples. The pAsset lands in your wallet; the debt stays in your trove — see [the catalog](https://tokenbrice.github.io/polaris-docs/minting/passet-catalog).
-4. **Optionally, earn yield.** Deposit your pAsset into the [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield) for a share of borrower interest plus discounted pETH from liquidations. Or hold, LP, or use it anywhere in DeFi.
+## Start here
 
-## Before any transaction
-
-Do not connect a wallet or sign a transaction unless all relevant checks pass:
-
-- For Public Testnet 1, the app URL is exactly [https://app.testnet.polarisfinance.io/](https://app.testnet.polarisfinance.io/).
-- For production/mainnet, wait until this page publishes a production app URL.
-- The wallet network matches the intended environment: Sepolia for Public Testnet 1, Ethereum mainnet only after production launch.
-- The contract address appears in [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts), [Public Testnet 1](https://tokenbrice.github.io/polaris-docs/resources/testnet), or the official deployment manifest you are using.
-- Explorer source and ABI match the documented contract.
-- The relevant product page has final values for the parameters your action depends on.
-- Audit and disclosure status are clear on [Audits & Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security).
-
-## Choose your journey
-
-Now pick the path that matches what you want to do:
-
-- **Borrow pAssets** — get pETH, open a trove, mint a pAsset, and manage liquidation risk: [Minting & Troves](https://tokenbrice.github.io/polaris-docs/minting).
-- **Earn yield** — deposit pAssets into a Stability Pool or understand Fee Router yield: [Earning Yield](https://tokenbrice.github.io/polaris-docs/yield).
-- **Hold or use pETH** — understand the bonding curve, floor price, and external collateral use: [pETH & Bonding Curve](https://tokenbrice.github.io/polaris-docs/peth).
-- **Convert and lock POLAR** — burn pETH to mint POLAR, lock as vePOLAR, and participate in bounded stewardship: [POLAR & Staking](https://tokenbrice.github.io/polaris-docs/polar).
-- **Integrate** — plan an integration, indexer, vault, analytics surface, or risk tool: [Safety and Verification](https://tokenbrice.github.io/polaris-docs/resources/safety-verification).
-- **Verify before you sign** — confirm the official app, network, contracts, and audits: [Safety and Verification](https://tokenbrice.github.io/polaris-docs/resources/safety-verification).
+If you want to use the app now, follow [Public Testnet Quickstart](https://tokenbrice.github.io/polaris-docs/quickstart). If anything in your wallet prompt conflicts with this page, stop and verify before signing.
 
 Relevant app/search vocabulary: app, official app, testnet app, app.testnet.polarisfinance.io, testnet, Testnet 2, Sepolia, chain ID 11155111, WETH faucet, contracts, audits.
+
+---
+
+## Public Testnet Quickstart
+
+URL: https://tokenbrice.github.io/polaris-docs/quickstart
+
+# Public Testnet Quickstart
+
+Use this page for the shortest safe path from a wallet to a first Polaris testnet action. It covers Public Testnet 1 only.
+
+Use app.testnet.polarisfinance.io on Sepolia (<code>11155111</code>). Testnet assets have no monetary value. Production/mainnet use is not live unless Launch Status says it is.
+
+## Before you start
+
+- A wallet you can connect to Sepolia.
+- Sepolia ETH for gas.
+- The official Public Testnet 1 app URL: [https://app.testnet.polarisfinance.io/](https://app.testnet.polarisfinance.io/).
+- Test assets from the app faucet when it is enabled for your wallet.
+
+Do not send mainnet ETH, mainnet WETH, or production assets to testnet contracts.
+
+## Steps
+
+1. Open [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io/).
+2. Connect your wallet on Sepolia, chain ID `11155111`.
+3. Get Sepolia ETH for gas from a Sepolia faucet if needed.
+4. Use the app faucet if it is enabled for your wallet. The testnet reserve token may be named WETH in manifests and shown as ETH in the prototype UI.
+5. Use [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap) to exchange test reserve tokens for pETH.
+6. Use [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow) to mint a testnet-active pAsset, currently pUSD or pGOLD, where the app surface supports it.
+7. Optionally use [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn) or [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap) to deposit a pAsset into the Stability Pool.
+8. Return to [Dashboard & Analytics](https://tokenbrice.github.io/polaris-docs/using-app) and confirm balances, positions, and claimable rewards.
+
+## Success checks
+
+Check | Expected result
+
+Network | Wallet shows Sepolia, chain ID `11155111`
+Frontend | URL is exactly `https://app.testnet.polarisfinance.io/`
+Assets | Balances are testnet assets only
+pETH | pETH balance updates after swap
+Borrow | Trove or pAsset debt position appears after minting
+Earn | Stability Pool deposit appears after deposit or zap
+
+## Next actions
+
+- [Safety & Verification](https://tokenbrice.github.io/polaris-docs/resources/safety-verification) before any signature.
+- [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting) if balances, quotes, approvals, or transactions fail.
+- [Parameters](https://tokenbrice.github.io/polaris-docs/resources/parameters) for current testnet values.
+- [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure) before treating any testnet behavior as production guidance.
+
+---
+
+## Troubleshooting
+
+URL: https://tokenbrice.github.io/polaris-docs/troubleshooting
+
+# Troubleshooting
+
+Use this page when the app, wallet, quote, balance, or transaction does not behave as expected.
+
+Start from the known-good setup: Public Testnet 1 at [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io), Sepolia chain ID `11155111`, test assets only.
+
+## Wrong network
+
+**Symptom:** The app asks you to switch networks, actions are disabled, or wallet prompts mention another chain.
+
+**Likely cause:** Wallet is not connected to Sepolia.
+
+**Fix:** Switch the wallet network to Sepolia, chain ID `11155111`, then refresh the app.
+
+**When not to proceed:** Do not sign if the wallet prompt shows mainnet or an unexpected chain.
+
+**Related reference:** [Public Testnet 1 Artifacts](https://tokenbrice.github.io/polaris-docs/resources/testnet), [Safety & Verification](https://tokenbrice.github.io/polaris-docs/resources/safety-verification)
+
+## Wrong frontend
+
+**Symptom:** The app looks unfamiliar, links differ, or wallet prompts do not match the expected action.
+
+**Likely cause:** You are on the wrong frontend or a phishing copy.
+
+**Fix:** Use [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io) for Public Testnet 1 and verify links from the docs.
+
+**When not to proceed:** Do not connect or sign from an unverified URL.
+
+**Related reference:** [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status), [Safety & Verification](https://tokenbrice.github.io/polaris-docs/resources/safety-verification)
+
+## Faucet or test-token shortage
+
+**Symptom:** You cannot start because WETH, pETH, pAssets, POLAR, or Sepolia ETH are missing.
+
+**Likely cause:** The wallet lacks test assets or gas.
+
+**Fix:** Follow [Public Testnet Quickstart](https://tokenbrice.github.io/polaris-docs/quickstart), then refresh balances.
+
+**When not to proceed:** Do not bridge or send real mainnet funds to testnet contracts.
+
+**Related reference:** [Public Testnet 1 Artifacts](https://tokenbrice.github.io/polaris-docs/resources/testnet)
+
+## Missing balance
+
+**Symptom:** The app shows a balance but the wallet does not, or the wallet shows a token the app does not.
+
+**Likely cause:** Token is hidden in the wallet, the wrong account is connected, or the app state is stale.
+
+**Fix:** Confirm the connected account, refresh the app, and import the token using the canonical address if needed.
+
+**When not to proceed:** Do not import token addresses from chat links or search results.
+
+**Related reference:** [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts)
+
+## Approval succeeded, action still fails
+
+**Symptom:** Wallet shows an approval transaction succeeded, but the app still asks for approval or the main action fails.
+
+**Likely cause:** Approval was for the wrong spender, wrong token, insufficient amount, or a different account.
+
+**Fix:** Check spender, token, wallet account, and allowance. Then retry only from the correct action tab.
+
+**When not to proceed:** Do not grant unlimited approvals to an unexpected spender.
+
+**Related reference:** [Safety & Verification](https://tokenbrice.github.io/polaris-docs/resources/safety-verification), [Advanced](https://tokenbrice.github.io/polaris-docs/using-app/advanced)
+
+## Stale quote or changed output
+
+**Symptom:** Swap or Zap output changes, minimum received differs, or the transaction reverts.
+
+**Likely cause:** Price, liquidity, route, gas, or slippage changed before inclusion.
+
+**Fix:** Refresh the quote, review the route again, and use a slippage setting you understand.
+
+**When not to proceed:** Do not sign if the wallet prompt no longer matches the app quote.
+
+**Related reference:** [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap), [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap)
+
+## Borrow action disabled or reverted
+
+**Symptom:** Borrow, repay, adjust, or close cannot be submitted.
+
+**Likely cause:** Position health, collateral, debt amount, Recovery Mode, allowance, or price movement blocks the action.
+
+**Fix:** Refresh position data, reduce risk, check collateral and debt amounts, and retry from Borrow or Manage Trove.
+
+**When not to proceed:** Do not borrow if you do not understand the displayed liquidation exposure.
+
+**Related reference:** [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow), [Manage Trove](https://tokenbrice.github.io/polaris-docs/using-app/manage-trove), [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode), [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure)
+
+## Earn action unavailable
+
+**Symptom:** Deposit, withdraw, claim, stake, or unstake is disabled.
+
+**Likely cause:** No eligible balance, no claimable amount, current deployment limits, or wallet/network mismatch.
+
+**Fix:** Confirm the selected Earn surface, wallet account, balances, and network.
+
+**When not to proceed:** Do not treat APR estimates as guaranteed returns.
+
+**Related reference:** [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn), [Yield](https://tokenbrice.github.io/polaris-docs/yield)
+
+## Split or merge fails
+
+**Symptom:** Split or Merge reverts, or Merge allows less than expected.
+
+**Likely cause:** You lack pETH for Split or equal fpETH and vpETH balances for Merge.
+
+**Fix:** Check both token balances and merge only up to the smaller leg balance.
+
+**When not to proceed:** Do not hold only one leg unless you understand the changed exposure.
+
+**Related reference:** [Split](https://tokenbrice.github.io/polaris-docs/using-app/split), [pETH Split](https://tokenbrice.github.io/polaris-docs/peth/split)
+
+## Transaction pending, out of gas, or reverted
+
+**Symptom:** Wallet shows pending for a long time, or the transaction fails after submission.
+
+**Likely cause:** Sepolia congestion, low gas, state changed, or transaction simulation missed a revert.
+
+**Fix:** Wait for the pending transaction to settle, then refresh app state before retrying.
+
+**When not to proceed:** Do not repeatedly submit the same action without checking whether the first transaction changed balances, allowances, or positions.
+
+**Related reference:** [Dashboard & Analytics](https://tokenbrice.github.io/polaris-docs/using-app), [Safety & Verification](https://tokenbrice.github.io/polaris-docs/resources/safety-verification)
 
 ---
 

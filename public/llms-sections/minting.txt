@@ -183,16 +183,9 @@ For the full **Borrow / CDP / trove / reserve loan** vocabulary — including wh
 - A wallet with the right asset for the environment: **Sepolia ETH** for Public Testnet 1 or **ETH on Ethereum mainnet** after production launch.
 - A target pAsset in mind — see [the catalog](https://tokenbrice.github.io/polaris-docs/minting/passet-catalog).
 
-## Pre-launch parameter status
+## Parameters
 
-Parameter | Status | What to use before launch
-
-Network | Public Testnet 1: Sepolia (`11155111`); production: Ethereum mainnet (`1`) after launch | [Polaris Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status)
-Minimum ICR per pAsset | Pending final parameters | The value the app and contracts show at launch
-Recovery Mode trigger | Pending final parameters | Monitor the app's system-health indicator
-Borrow interest-rate formula and bounds | Pending final parameters | The current quoted rate before minting
-Redemption fee formula | Pending final parameters | The pre-confirmation quote for any transaction
-pETH curve parameters and swap fee | Pending final audited values | The bonding-curve quote before acquiring collateral
+Current testnet parameters and production-finality status live on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/parameters). Use the app quote and live contract state before signing.
 
 ## Steps
 

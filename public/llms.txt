@@ -7,7 +7,9 @@
 - [Polaris Finance Documentation](https://tokenbrice.github.io/polaris-docs/): Polaris is the pETH-powered yield layer for all of DeFi, minting pAssets backed entirely by onchain collateral and yield. No T-bills. No CEXs. No compromises.
 - [Changelog](https://tokenbrice.github.io/polaris-docs/changelog): A documentation changelog for the Polaris docs, in Keep a Changelog style. This tracks changes to the docs only, not protocol release history.
 - [Polaris Core Concepts](https://tokenbrice.github.io/polaris-docs/core-concepts): A one-page map of the Polaris system, with every key term defined briefly and linked to its full explanation.
-- [Polaris Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status): Polaris launch-status and on-ramp, covering official network, app URL, what's actionable today, and the basic flow from ETH to a pAsset.
+- [Polaris Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status): Current Polaris phase, official app URL, supported network, production status, and what is safe to use today.
+- [Public Testnet Quickstart](https://tokenbrice.github.io/polaris-docs/quickstart): The fastest safe path to try Polaris on Public Testnet 1 with Sepolia test assets.
+- [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting): Fix common Polaris app issues on Public Testnet 1.
 - [Why Polaris Finance](https://tokenbrice.github.io/polaris-docs/why-polaris): The stablecoin trilemma, the degradation pattern, and how Polaris is architected so that trustlessness and scale stop being mutually exclusive.
 
 ## Minting & Troves
@@ -51,18 +53,20 @@
 - [Polaris Glossary](https://tokenbrice.github.io/polaris-docs/resources): Every Polaris term defined in one or two sentences, alphabetized and linked to its full explanation. The fast way to look anything up.
 - [Polaris Audits & Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security): Polaris security model, audit-report status, bug-bounty status, and disclosure guidance. Pre-launch reports and bounty details are not published yet.
 - [Polaris Brand Assets](https://tokenbrice.github.io/polaris-docs/resources/brand-assets): Polaris logos, the Celestial Night Sky palette, and typography, with usage do's and don'ts. Dark mode is the canonical surface.
-- [Polaris Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts): The Polaris contract set: a shared core plus one instance per pAsset. Addresses publish at deployment; verify network, chain ID, and source first.
-- [Polaris Finance FAQ](https://tokenbrice.github.io/polaris-docs/resources/faq): Frequently asked questions about Polaris: what it is, how minting and troves work, how the peg holds, where yield comes from, and how security works.
+- [Polaris Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts): Canonical Polaris contract addresses, deployment shape, and verification rules for production and Public Testnet 1.
+- [Polaris Finance FAQ](https://tokenbrice.github.io/polaris-docs/resources/faq): Short answers to common Polaris questions, with links to canonical pages for status, contracts, parameters, risks, and app actions.
+- [Polaris Parameters](https://tokenbrice.github.io/polaris-docs/resources/parameters): Canonical Public Testnet 1 parameter values, source, network, and production-finality status.
 - [Polaris Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure): A comprehensive catalog of the risks of using Polaris, each paired with the mechanism that mitigates it, without implying any risk is eliminated.
-- [Polaris Safety and Verification](https://tokenbrice.github.io/polaris-docs/resources/safety-verification): The safety path for verifying Polaris launch status, official contracts, audit status, intended invariants, and user risk before interacting.
-- [Polaris Public Testnet 1 Source of Truth](https://tokenbrice.github.io/polaris-docs/resources/testnet): Public Public Testnet 1 source of truth: Sepolia chain ID, app URL, caveats, active pAssets, manifests, addresses, and parameters.
+- [Polaris Safety & Verification](https://tokenbrice.github.io/polaris-docs/resources/safety-verification): A pre-signing checklist for verifying the Polaris frontend, network, contracts, parameters, risks, and audit status.
+- [Polaris Public Testnet 1 Artifacts](https://tokenbrice.github.io/polaris-docs/resources/testnet): Sepolia chain ID, official testnet app, testnet caveats, active pAssets, and manifest locations for Public Testnet 1.
 
 ## using-app
 
-- [Dashboard & Analytics](https://tokenbrice.github.io/polaris-docs/using-app): How to read the Polaris app Dashboard and Analytics: balances, positions, rewards, system status, protocol-wide metrics, and next actions.
-- [Advanced](https://tokenbrice.github.io/polaris-docs/using-app/advanced): How to use Polaris Advanced tools for approvals, PSM actions, reserve loans, POLAR Staking, and manual transaction checks.
-- [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow): How the Polaris Borrow tab maps to troves, CDPs, pAsset debt, reserve loans, and before-you-sign checks.
-- [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn): How the Polaris Earn tab maps to Stability Pool deposits, POLAR Staking, rewards, and first-loss risk.
-- [Split](https://tokenbrice.github.io/polaris-docs/using-app/split): How to use the Polaris Split tab to split pETH into fpETH and vpETH, merge them back, and check transaction risk.
-- [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap): How to use the Polaris Swap tab for WETH, pETH, and pAsset swaps with quote, approval, fee, and slippage checks.
-- [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap): A guide to Polaris Zap flows from WETH to pUSD or pGOLD and into the Stability Pool, with approvals, simulation, and risk checks.
+- [Dashboard & Analytics](https://tokenbrice.github.io/polaris-docs/using-app): How to read the Polaris app Dashboard and Analytics before choosing an action.
+- [Advanced](https://tokenbrice.github.io/polaris-docs/using-app/advanced): How to use Polaris Advanced tools for approvals, PSM actions, reserve loans, staking, conversion, and manual checks.
+- [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow): How to open Polaris borrow positions from the app Borrow tab.
+- [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn): How to deposit, withdraw, claim, and check Polaris Earn positions.
+- [Manage Trove](https://tokenbrice.github.io/polaris-docs/using-app/manage-trove): How to add collateral, mint more, repay debt, close, and monitor a Polaris trove.
+- [Split](https://tokenbrice.github.io/polaris-docs/using-app/split): How to split pETH into fpETH and vpETH, merge them back, and avoid common execution mistakes.
+- [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap): How to use Polaris Swap with quote, approval, slippage, and route checks.
+- [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap): How to use Polaris Zap routes and recover safely when one bundled step fails.

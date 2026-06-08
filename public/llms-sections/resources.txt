@@ -348,73 +348,82 @@ URL: https://tokenbrice.github.io/polaris-docs/resources/contracts
 
 # Polaris Contracts & Addresses
 
-> **Production note:** Canonical production addresses publish at deployment, not before. The contract *list* below reflects the intended production deployment shape; the **Address** column fills in at launch, each address linking to verified source on the official explorer. Current Sepolia addresses and parameters are testnet-only and live on [Public Testnet 1](https://tokenbrice.github.io/polaris-docs/resources/testnet). Treat any production address not linked from these docs as unverified. See [Polaris Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) for the current network state.
+This page owns contract addresses and verification rules. Public Testnet 1 addresses are Sepolia artifacts and may be redeployed. Production addresses are not published yet.
 
-## How the system deploys
+Do not use any claimed production address unless it appears here after Launch Status says production is live.
 
-Polaris is a *factory* of pAsset instances. A single **shared core** — the bonding curve, POLAR, the Fee Router, and the oracles — deploys **once**. Then **one instance set** deploys **per pAsset** (pUSD, pGOLD, …): each gets its own CDP manager, Stability Pool, and internal Peg Stability Module, but all share the same pETH collateral, bonding curve, and POLAR.
+## Deployment shape
 
-So the address table has a **core section** plus **one block per pAsset**. The current docs focus on **pUSD** and **pGOLD**; production deployment status remains governed by [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status), while current Sepolia artifacts are listed on [Public Testnet 1](https://tokenbrice.github.io/polaris-docs/resources/testnet).
+Polaris has one shared core plus one instance set per pAsset.
 
-## Current Public Testnet 1 (Sepolia)
+Layer | What deploys
 
-Public Testnet 1 runs on **Sepolia (chain ID `11155111`)**. Its addresses are testnet artifacts, may be redeployed, and use testnet stand-ins such as mock WETH, mock oracles, and testnet price feeds. Do not use them as production defaults.
+Shared core | pETH/bonding curve, splitter, POLAR/ShareSystem, Fee Router, stewardship, staking, reserve loans, reserve token
+Per-pAsset instance | pAsset token, CDP manager, CDP NFT, Stability Pool, internal PSM, interest controller, price feeds, read helper
 
-The manifest paths below are relative to `/home/ahirice/Documents/git/polaris`.
+## Public Testnet 1 addresses
 
-Source | Use it for | Location
+Network: Sepolia, chain ID `11155111`. Source artifacts are listed on [Public Testnet 1 Artifacts](https://tokenbrice.github.io/polaris-docs/resources/testnet). Parameter values live on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/parameters).
 
-[Public Testnet 1 contracts](https://tokenbrice.github.io/polaris-docs/resources/testnet#public-testnet-1-contracts) | Current Sepolia addresses in a user-facing table | Docs
-[Public Testnet 1 parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#public-testnet-1-parameters) | Current Sepolia MCR, Emergency Mode thresholds, curve constants, and fee defaults | Docs
-Core manifest | Current Sepolia core addresses and curve constants | `deployments/sepolia/deployment-manifest.core.ts`
-pUSD manifest | Current Sepolia pUSD instance addresses and manifest parameters | `deployments/sepolia/deployment-manifest.pusd.ts`
-pGOLD manifest | Current Sepolia pGOLD instance addresses and manifest parameters | `deployments/sepolia/deployment-manifest.pgold.ts`
-Deploy script defaults | Fee-floor, alpha, decay, and other defaults not all written into the manifests | `script/DeployPolaris.s.sol`
+### Shared core
 
-For testnet work, load the manifest for the network and pAsset you are actually using. For production work, wait until this page publishes canonical mainnet addresses.
+Contract | Sepolia address
 
-## Shared core
+Reserve token, mock WETH | `0x290a733a8f078d1f1efb2b4faac5f2f7f50673df`
+pETH / bonding curve | `0xbec3a5aff85df00e9344c0cb553b2b6b1db80243`
+Fee Router | `0x518833a8305b6a0f4a782813bc9b3acb6dd20803`
+POLAR / ShareSystem | `0x9652015bf2a1a1eef53affdf8a83f52c916cb8fe`
+Reserve Loans NFT | `0xe198955bc9ffd7dc6bb0266a1ba9e7f49c1eb5ce`
+Reserve Loans Manager | `0xa62d290638d315b57640f88af61d80d38c57f7f8`
+MultiReserveLoanGetter | `0x2cddd6bfb2848b57ac9f251ebdc3cd7b53beb962`
+Testnet stewardship | `0xea04aa2a4550862bf12a15e3f2becf48a5fb4b10`
+Testnet POLAR staking | `0x56a7088cdb41a04eddb9c9b46f27359a6797324b`
+BondingCurveTokenSplitter | `0xc880eb4ba6e7f1c60ce4968dc50b24056e67cc00`
+vpToken | `0xd59019504ea81813632c8f5e8014027b47c82ab1`
 
-Contract | Source (`src/`) | Address
+### pUSD instance
 
-**pETH** — the [bonding curve](https://tokenbrice.github.io/polaris-docs/peth): swaps ETH ↔ pETH, enforces the rising floor. pETH is the sole collateral and is this ERC-20 itself. | `BondingCurve/ABDKBondingCurve.sol` | _Forthcoming_
-Bonding-curve token splitter — internal pETH accounting (floor / variable components). | `BondingCurve/BondingCurveTokenSplitter.sol`, `BondingCurve/VPToken.sol` | _Forthcoming_
-**POLAR** — the stewardship token. The [conversion auction](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions) (burn pETH → mint POLAR) lives **inside this contract**, not a separate deployment. | `Shares/ShareSystem.sol` | _Forthcoming_
-POLAR staking — stake POLAR to receive routed yield. The [vePOLAR](https://tokenbrice.github.io/polaris-docs/stewardship/vepolar) lock layer is forthcoming; today this is the staking surface. | _Forthcoming_ | _Forthcoming_
-[Fee Router](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router) — buffers pETH fee revenue and routes rewards to troves and staking. | `FeeRouter.sol` | _Forthcoming_
-Stewardship — bounded-parameter control; cannot reach the immutable core. | _Forthcoming_ | _Forthcoming_
-Reserve token (WETH) — the wrapped ETH the bonding curve takes in. | external WETH | _Forthcoming_
-Reserve Loans — borrow ETH against pETH at the floor. | `ReserveLoansManager.sol`, `ReserveLoansNFT.sol` | _Forthcoming_
+Contract | Sepolia address
 
-## Per-pAsset instance
+pUSD token | `0xf06a3e9420176351d0341507f91d243014510d5b`
+Stability Pool | `0x8da97da1f6ab14d144a4966360e19ca5f2b5aece`
+CDP NFT | `0xace616e3a3b07bfe2424ae48c1b4fb8aed90eea0`
+ETH/USD medianiser | `0xbad4c21ea10259280b1980b6c3f8de806b8ec31a`
+pUSD testnet price feed | `0x26998cd15cbfddcb1e8c81fb7dff75886dc90185`
+CDP Manager | `0x71b5c3b88510206203ec8363c56f908777ad52c8`
+Interest Controller | `0x0e957229c4fe20e5099206b3b615cf2563200545`
+Internal PSM | `0x49cf0fff51fdd7140237e3fc6cd2b4daf6a4ffe5`
+MultiCDPGetter | `0x5b396a8e4adff7480c0dd2858890f55d5b028149`
+Primary Interest Router | `0xb5971ee694ca881963533114c1694f5f0c56ac09`
 
-One set deploys per pAsset. Key everything by `(pAsset, owner)` — a pUSD trove and a pGOLD trove are unrelated positions in different instances.
+### pGOLD instance
 
-Contract | Source (`src/`) | Address
+Contract | Sepolia address
 
-**pAsset token** (e.g. pUSD, pGOLD) — the synthetic pegged ERC-20. | `StableToken.sol` | _Forthcoming_
-**CDP / Trove manager** — trove accounting, mint/redeem, liquidations, interest, Emergency Mode. | `CDPManager.sol` | _Forthcoming_
-Trove NFT — tokenizes each trove position. | `CDPNFT.sol` | _Forthcoming_
-[Stability Pool](https://tokenbrice.github.io/polaris-docs/yield) — absorbs liquidations; the primary yield venue. | `StabilityPool.sol` | _Forthcoming_
-Collateral Surplus Pool — holds post-liquidation collateral surplus for borrowers to claim. | `CollSurplusPool.sol` | _Forthcoming_
-**Internal Peg Stability Module** — mint/redeem the pAsset against pETH; the peg and [redemption](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations) entry point. This is not a custodial or external-collateral PSM. | `PegStabilityModule.sol` | _Forthcoming_
-Interest controller — primary (autonomous) and secondary (utilization) interest rates. | `InterestRate/InterestController.sol` | _Forthcoming_
-Primary interest router — splits borrower interest across the Stability Pool, POLAR staking, and ecosystem. | `PrimaryInterestRouter.sol` | _Forthcoming_
-Price feed — the pAsset's reference price path. | `PUSDTestnetPriceFeed.sol` / `PGOLDTestnetPriceFeed.sol` | _Forthcoming_
-Oracle (medianiser) — median of multiple ETH/USD feeds (plus XAU/USD for pGOLD). | `Medianiser.sol` | _Forthcoming_
+pGOLD token | `0x664396097e787956eaf25214049ab58a7d53d2e1`
+Stability Pool | `0x3308842b03248838c83205100a0a33d716dc37d6`
+CDP NFT | `0xb621912e3c7383bb65b4d720ac946aa618ed129b`
+ETH/USD medianiser | `0xbad4c21ea10259280b1980b6c3f8de806b8ec31a`
+XAU/USD medianiser | `0x8f4256ec2674ed87fdf7e8079ec3933263326fe1`
+pGOLD testnet price feed | `0x8a891736218fb98cabf23b39e4b8f6f2876011f4`
+CDP Manager | `0xf45fb3acf8dbd12673ecb0be1ee376846000c4ed`
+Interest Controller | `0xbd415a7ea90f448b3633b76f5c59c84a219b2448`
+Internal PSM | `0x6bcdf4a0d67ce12bf24ba4899a3be55033f90acc`
+MultiCDPGetter | `0xe79538c2d2c2e6b6d31de4456cbabbf2adab4410`
+Primary Interest Router | `0xaa9833e7d33003004b0d66685e05bace4058d89c`
 
-> **Read helpers** (`Helpers/MultiCDPGetter.sol`, `Helpers/MultiReserveLoanGetter.sol`) are view contracts for batched reads; integrations may use them but should treat direct contract reads as the source of truth.
+## Production addresses
 
-> **A note on naming.** "pETH" and "the bonding curve" are the **same contract**. The "conversion auction" is **part of POLAR**, not a separate contract. The per-pAsset internal Peg Stability Module is the pETH mint/redeem path, not the custodial/external-collateral PSM model Polaris rejects. The "vePOLAR" lock layer is **not yet production-deployed**; production yield and staking details are pending. `pCHF`, `pBigMac`, and other catalog entries are illustrative; **pUSD** and **pGOLD** are the current Public Testnet 1 focus.
+Network | Status
+
+Ethereum mainnet, chain ID `1` | Forthcoming. No canonical production addresses are published in these docs yet.
 
 ## Before you interact
 
-1. Confirm the **network and chain ID** match the official deployment manifest.
-2. Confirm every **address** matches [Public Testnet 1](https://tokenbrice.github.io/polaris-docs/resources/testnet) for Sepolia or this page for production once populated.
-3. Confirm the **ABI** matches that verified source.
-4. Never paste an address from a screenshot, DM, or search result without that explorer check — address-spoofing is how these attacks succeed.
-
-While production addresses are pending, see [Audits & Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security) for the security model, [Public Testnet 1](https://tokenbrice.github.io/polaris-docs/resources/testnet) for Sepolia artifacts, or the [Glossary](https://tokenbrice.github.io/polaris-docs/resources) for what each contract does.
+1. Confirm the network and chain ID match [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status).
+2. Confirm the address appears on this page.
+3. Confirm the source or ABI matches the verified explorer entry for that address when verification is published.
+4. Never paste an address from a screenshot, direct message, ad, or search result without checking this page.
 
 Relevant app/search vocabulary: app, official app, testnet, Sepolia, WETH, WETH faucet, Zap, Split, Swap, Borrow, Earn, Guide, Advanced, Analytics, APR, Reserve Loan.
 
@@ -426,92 +435,129 @@ URL: https://tokenbrice.github.io/polaris-docs/resources/faq
 
 # Polaris Finance FAQ
 
-Short answers, grouped by theme. Each links to the page that covers it in full.
-
-The official public Public Testnet 1 app is live at [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io/) on Sepolia only. Production/mainnet app status, canonical production contracts, final audit reports, and the disclosure program are not published yet. Check [Polaris Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status), [Public Testnet 1](https://tokenbrice.github.io/polaris-docs/resources/testnet), and [Safety and Verification](https://tokenbrice.github.io/polaris-docs/resources/safety-verification) before interacting with any frontend or address.
+FAQ answers are intentionally short. Follow the linked canonical page when you need exact status, addresses, parameters, or risk details.
 
 ## General
 
 ### What is Polaris?
 
-A self-scaling stablecoin operating system: trustless, immutable infrastructure for minting synthetic assets (pAssets) backed entirely by onchain collateral and yield. No T-bills, no CEXs. See [Why Polaris?](https://tokenbrice.github.io/polaris-docs/why-polaris)
+Polaris is a pETH-powered stablecoin operating system. ETH becomes pETH through a bonding curve, pETH collateralizes pAssets such as pUSD and pGOLD, and protocol activity routes yield through onchain mechanisms. Start with [Core Concepts](https://tokenbrice.github.io/polaris-docs/core-concepts).
 
-### What is a pAsset?
+### What is live now?
 
-A synthetic debt asset minted from a Polaris CDP, each overcollateralized by pETH and counterparty-free. pUSD and pGOLD are Testnet-active; pCHF, pBigMac, and beyond are illustrative or future catalog examples until launch status says otherwise. pETH itself is separate: it is the bonding-curve collateral token. See [The pAsset Catalog](https://tokenbrice.github.io/polaris-docs/minting/passet-catalog).
+The current phase is owned by [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status). As of June 2026, Polaris is in Public Testnet 1 on Sepolia (`11155111`), and production/mainnet use is not live.
 
-### What is pUSD?
+### Which app should I use?
 
-The flagship pAsset, designed to track the US dollar and be backed by pETH. It sits in the same counterparty-free design family as LUSD and BOLD, adding Polaris's pETH collateral and yield mechanics. See [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting).
+Use only the app listed on [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status). For Public Testnet 1, follow [Public Testnet Quickstart](https://tokenbrice.github.io/polaris-docs/quickstart).
 
-### What is pETH?
+## Using the app
 
-ETH deposited into a two-way [bonding curve](https://tokenbrice.github.io/polaris-docs/peth). It is the only collateral Polaris accepts, is yield-bearing, and has a [floor price](https://tokenbrice.github.io/polaris-docs/peth/floor-price) that only rises.
+### How do I get started on testnet?
 
-### What is POLAR?
+Open the official testnet app, connect Sepolia, use test assets only, swap into pETH, then try Borrow, Earn, Split, Zap, or Advanced as needed. The step-by-step path is [Public Testnet Quickstart](https://tokenbrice.github.io/polaris-docs/quickstart).
 
-The stewardship token and the protocol's outward-facing growth lever. After the initial distribution, new POLAR can be minted only by burning pETH in a [conversion auction](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions). See [The POLAR Token](https://tokenbrice.github.io/polaris-docs/polar).
+### Why does the app show Borrow if docs say mint?
 
-### Which chain does Polaris run on?
+The app says Borrow because the user action creates debt. The mechanism is a CDP/trove: you deposit pETH collateral and mint a pAsset directly from the protocol. See [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow) and [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting).
 
-The current public phase is Public Testnet 1 on Sepolia (chain ID 11155111 ). The official testnet app is [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io/), and current Sepolia artifacts are listed on [Public Testnet 1](https://tokenbrice.github.io/polaris-docs/resources/testnet). Production is intended for Ethereum mainnet (chain ID 1 ) once launched, but the production app and mainnet contracts are not live or published yet.
+### What should I do if a quote or transaction fails?
 
-## Minting and troves
+Use [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting). Most failures come from wrong network, stale quotes, insufficient allowance, insufficient gas, Recovery Mode restrictions, or changed state before inclusion.
 
-### What is a trove?
+## Contracts, parameters, and safety
 
-Your individual borrowing position in a Polaris CDP, isolated with its own collateral, debt, and collateralization ratio. Polaris uses trove, never "vault". See [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting).
+### Where are contract addresses?
 
-### How do I mint a pAsset?
+[Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts) is the address owner. Public Testnet 1 addresses are Sepolia artifacts; production addresses are not published until Launch Status says production is live.
 
-You open a trove: post pETH as collateral and mint the pAsset directly from the protocol, owing that debt back. You are your own mini central bank, not borrowing another user's funds. See [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting).
+### Where are current parameters?
 
-### Why does Polaris accept only pETH as collateral?
+[Parameters](https://tokenbrice.github.io/polaris-docs/resources/parameters) owns numeric values. Task pages link there instead of repeating tables.
 
-External collateral like staked-ETH tokens would be a dependency that caps scaling and reintroduces counterparty risk. pETH is a yield-bearing ETH proxy with a rising floor, which dampens the CDP model's capital-inefficiency weakness. See [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting).
+### Where are testnet manifests?
 
-### How are interest rates set?
+[Public Testnet 1 Artifacts](https://tokenbrice.github.io/polaris-docs/resources/testnet) owns manifest paths and testnet artifact sources.
 
-Autonomously, with no governance vote and no price oracle for the peg. Redemption volume (profitable below peg) and minting volume (profitable above peg) are read as onchain signals of where the peg sits, and rates adjust accordingly. See [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting).
+### What should I verify before signing?
 
-## pETH
+Use [Safety & Verification](https://tokenbrice.github.io/polaris-docs/resources/safety-verification). At minimum, verify frontend URL, network, chain ID, address, token, spender, amount, and action.
 
-### Is pETH the same as ETH?
-
-No. pETH is ETH inside the bonding curve. It is volatile against ETH but has a contract-defined lower bound under the [floor-price](https://tokenbrice.github.io/polaris-docs/peth/floor-price) assumptions, and it earns yield. Think of it as stETH with different trade-offs: contract-native liquidity and an onchain exit path, but volatility against ETH and smart-contract/execution risk.
-
-## Yield
-
-### Where does the yield come from?
-
-From onchain activity, not offchain T-bills: CDP interest, bonding-curve swap fees, conversion gains, and PolarEX swap fees, all of which grow with usage. See [The Stability Pool](https://tokenbrice.github.io/polaris-docs/yield).
-
-## Stewardship
-
-### Is there governance?
-
-No unbounded governance. The core is immutable; stewards steward only quantitative parameters, many within hardcoded ranges. We call it stewardship because stewards cannot alter the core; they cannot govern it. See [Stewardship, not Governance](https://tokenbrice.github.io/polaris-docs/stewardship).
-
-## Security
+## Risk
 
 ### Can I lose funds?
 
-Yes. Polaris carries smart-contract risk, collateral price risk, liquidation risk, and Stability Pool first-loss risk, among others. Trustlessness means no one can step in to make you whole. Read the full [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure) before using the protocol.
+Yes. Polaris involves smart-contract risk, collateral price risk, liquidation risk, Stability Pool first-loss risk, MEV risk, oracle risk, and frontend/phishing risk. Read [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure).
+
+### What is ICR?
+
+ICR is Individual Collateralization Ratio: the health ratio of a single trove. See the [Glossary](https://tokenbrice.github.io/polaris-docs/resources) and [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove).
+
+### What is TCR or Emergency Mode?
+
+TCR is the system-level reserve-to-debt health metric for a pAsset. If it drops below the configured threshold, Recovery Mode tightens risk-increasing borrower actions. See [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode) and [Parameters](https://tokenbrice.github.io/polaris-docs/resources/parameters).
+
+## Security
 
 ### Is Polaris audited?
 
-Final audit reports are not published in these docs yet. Until they appear on [Audits & Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security), treat the protocol as unaudited.
+Audit status is owned by [Audits & Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security). Until final reports are linked there, do not rely on audit claims found elsewhere.
 
-### Where are contract addresses listed?
+### Is there a bug bounty?
 
-Current Sepolia testnet addresses are listed on [Public Testnet 1](https://tokenbrice.github.io/polaris-docs/resources/testnet) and in the linked protocol manifests. Canonical production addresses are not published yet. Once deployed, they will be listed with network, chain ID, and source-verification links on [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts). Any claimed production address found elsewhere before then is unverified.
-
-Next steps:
-- [Glossary](https://tokenbrice.github.io/polaris-docs/resources): Look up any Polaris term.
-- [Core Concepts](https://tokenbrice.github.io/polaris-docs/core-concepts): The one-page map of the entire system.
-- [Polaris Blog](https://polarisfinance.io/blog/): Long-form essays and deep dives.
+Bug-bounty and disclosure status are owned by [Audits & Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security). Do not send exploit details to private forms, DMs, or third-party pages unless the official security page links them.
 
 Relevant app/search vocabulary: app, official app, testnet, Sepolia, WETH, WETH faucet, Zap, Split, Swap, Borrow, Earn, Guide, Advanced, Analytics, APR, Reserve Loan.
+
+---
+
+## Polaris Parameters
+
+URL: https://tokenbrice.github.io/polaris-docs/resources/parameters
+
+# Polaris Parameters
+
+This page owns numeric Polaris parameters. Task and concept pages should link here instead of repeating parameter tables.
+
+Values below are Public Testnet 1 values last reviewed on June 8, 2026. They are replaceable Sepolia values, not production constants. Production parameters are not published unless this page and Launch Status say they are.
+
+## Source and freshness
+
+Field | Value
+
+Network | Sepolia
+Chain ID | `11155111`
+Review date | June 8, 2026
+Artifact source | [Public Testnet 1 Artifacts](https://tokenbrice.github.io/polaris-docs/resources/testnet)
+Address source | [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts)
+Production finality | Not published
+
+## Shared core parameters
+
+Parameter | Public Testnet 1 value | Source
+
+Bonding curve alpha | `193218996973422650` | Core manifest
+Bonding curve beta | `150000000000000000` (15%) | Core manifest
+
+## pAsset instance parameters
+
+Parameter | pUSD | pGOLD | Source
+
+Minimum collateral ratio (MCR) | 115% | 115% | Manifest
+Emergency Mode action MCR | 150% | 150% | Manifest
+Emergency Mode trigger ratio | 110% | 110% | Manifest
+Mint fee floor | 0.05% | 0.05% | Deploy script
+Redemption fee floor | 0.05% | 0.05% | Deploy script
+Mint alpha | `1e18` | `1e18` | Deploy script
+Redemption alpha | `1e18` | `1e18` | Deploy script
+Mint minute decay factor | `998076443575628800` | `998076443575628800` | Deploy script
+Redemption minute decay factor | `998076443575628800` | `998076443575628800` | Deploy script
+
+## How to use this page
+
+- Use the app quote and live contract reads before signing any transaction.
+- Do not copy Sepolia values into a production integration.
+- If a task page and this page disagree, treat this page as the parameter owner and verify against the current manifest.
 
 ---
 
@@ -523,7 +569,7 @@ URL: https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure
 
 Polaris is trustless, immutable infrastructure. That design choice has real costs, and we disclose them before we claim the benefits. Every risk below is paired with the mechanism that mitigates it (*mitigates*, not eliminates). Read this page in full before you mint, deposit, or lock anything.
 
-> **Note:** Nothing here is financial advice. Polaris is in public Public Testnet 1 on Sepolia: the official testnet app is [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io/), and testnet assets have no monetary value. Production/mainnet app status, canonical production contracts, final audit reports, and the disclosure program are not published yet. Trustlessness means the protocol will not, and cannot, step in to make you whole. You are responsible for understanding the position you take.
+> **Note:** Nothing here is financial advice. Polaris is currently in the phase shown on [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status). Testnet assets have no monetary value, and production use is not live unless Launch Status says it is. Trustlessness means the protocol will not, and cannot, step in to make you whole.
 
 ## Smart-contract risk
 
@@ -588,7 +634,7 @@ Redemptions, liquidations, and [conversion auctions](https://tokenbrice.github.i
 
 ## Dependency risk (Ethereum)
 
-Polaris is currently in public Public Testnet 1 on Sepolia, and production is intended for Ethereum mainnet (chain ID `1`) once launched. Production Polaris inherits Ethereum's risks: consensus failures, severe congestion, or a contentious fork.
+Polaris is currently in Public Testnet 1 on Sepolia, and production is intended for Ethereum mainnet (chain ID `1`) once launched. Production Polaris inherits Ethereum's risks: consensus failures, severe congestion, or a contentious fork.
 
 **Mitigation.** This dependency is deliberate and unhedged: the only counterparties Polaris is meant to ask you to trust are immutable code and Ethereum itself. We do not spread across chains to dilute that exposure, because doing so would reintroduce the bridge and external-dependency risks Polaris exists to avoid.
 
@@ -604,97 +650,74 @@ For the reasoning behind these trade-offs, read [Why Polaris?](https://tokenbric
 
 ---
 
-## Polaris Safety and Verification
+## Polaris Safety & Verification
 
 URL: https://tokenbrice.github.io/polaris-docs/resources/safety-verification
 
-# Polaris Safety and Verification
+# Polaris Safety & Verification
 
-**Who this is for:** every Polaris user and integrator; run this path before connecting a wallet, sending ETH, minting a pAsset, depositing into a pool, locking POLAR, or integrating contracts.
-
-**Prerequisites:** none. Complete this path *first*, before any other journey, because impersonation and phishing are most likely around launch and testnet phases.
-
-> **Launch status:** [Polaris Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) is the source of truth. As of June 8, 2026, public Public Testnet 1 is on Sepolia (`11155111`) and the official testnet app is [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io/). Production Ethereum mainnet (`1`) is forthcoming, and no production app, production addresses, ABIs, verified source, final parameters, or audit reports are published yet.
-
-> **Open Testnet App:** Use [https://app.testnet.polarisfinance.io/](https://app.testnet.polarisfinance.io/) only on Sepolia (`11155111`) with no-value test assets. Treat any production frontend, token, contract, airdrop, or support message as unverified until it is linked from [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status).
-
-App anchors: **Dashboard** first for network and system state, then any action tab's pre-confirmation screen for contract, token, amount, fee, approval, and simulation checks.
+Use this checklist before connecting a wallet, approving a token, or signing a transaction.
 
 ## Verification checklist
 
-Work top to bottom; each row names a check and where it will be confirmed at launch.
+Check | Required source
 
-Check | Where it will be confirmed
-
-Current launch phase and network | [Polaris Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status)
-Testnet app URL and production app status | [Polaris Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status)
-Deployed addresses | [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status), official Sepolia manifests, and [Contracts and Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts) once production is live
-Verified source and ABIs | [Contracts and Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts), official manifests, and block explorer links
-Audit reports | [Audits and Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security)
-Final user parameters | The relevant product page and contract reference
-Stewardship bounds | [Stewardship, not Governance](https://tokenbrice.github.io/polaris-docs/stewardship)
+Current phase and official app | [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status)
+Public Testnet 1 quickstart | [Public Testnet Quickstart](https://tokenbrice.github.io/polaris-docs/quickstart)
+Network and chain ID | [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status)
+Contract addresses | [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts)
+Numeric parameters | [Parameters](https://tokenbrice.github.io/polaris-docs/resources/parameters)
+Testnet manifest paths | [Public Testnet 1 Artifacts](https://tokenbrice.github.io/polaris-docs/resources/testnet)
+Risk model | [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure)
+Audit, bounty, and disclosure status | [Audits & Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security)
 
 ## Things Polaris will not ask for
 
-- A seed phrase or private key.
-- KYC for protocol use.
-- A direct transfer to a support wallet.
-- Interaction with an unpublished address.
-- Trust in a frontend that is not linked from official Polaris channels.
+- Your seed phrase, private key, or recovery words.
+- A signature from an unofficial frontend.
+- Mainnet funds for Public Testnet 1.
+- A production address before [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) says production is live.
+- A bug-bounty or disclosure form not linked from [Audits & Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security).
 
-## Risk docs
+## Wallet prompt checks
 
-Read [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure) for smart-contract, collateral, liquidation, peg, Stability Pool, pETH, stewardship, and phishing risks. Read [Audits and Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security) for the security model and audit status.
+Before signing, verify:
 
-## Developer verification
+1. The app URL is the official URL for the current phase.
+2. The wallet network is the intended network.
+3. The token, amount, spender, and receiving contract match the action.
+4. The address appears on [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts).
+5. The transaction matches the action tab you are using.
 
-For apps and indexers, add explicit allowlists for network IDs and contract addresses. Testnet allowlists should point to Sepolia (`11155111`) artifacts from [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) and the linked manifests. Production allowlists should stay empty until production addresses are published. Your integration should fail closed if the deployment manifest, ABI, or verified source does not match the official docs.
+If any item fails, reject the signature and use [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting) before trying again.
 
 ---
 
-## Polaris Public Testnet 1 Source of Truth
+## Polaris Public Testnet 1 Artifacts
 
 URL: https://tokenbrice.github.io/polaris-docs/resources/testnet
 
-# Polaris Public Testnet 1 Source of Truth
+# Polaris Public Testnet 1 Artifacts
 
-This page is the source of truth for the current public Polaris testnet environment. It is not a production launch page.
+This page owns Public Testnet 1 artifact sources: network, manifest paths, and testnet caveats. Addresses live on [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts). Numeric values live on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/parameters).
 
-> **Last verified:** June 8, 2026. Public Testnet 1 is public on Sepolia. Production mainnet is not live.
+## Environment
 
-> **Open Testnet App:** [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io/) is the official Public Testnet 1 app. Use it only on Sepolia (`11155111`) with test assets that have no monetary value.
+Fact | Value
 
-## Public Testnet 1 status
-
-Item | Public Testnet 1 source of truth
-
-Public phase | **Public Testnet 1**
-Network | **Sepolia**
+Public phase | Public Testnet 1
+Network | Sepolia
 Chain ID | `11155111`
-Official testnet app | [https://app.testnet.polarisfinance.io/](https://app.testnet.polarisfinance.io/)
-Production app | Not live or published in these docs
-Production contracts | Not live or published in these docs
-Testnet contracts | Replaceable Sepolia artifacts from the manifests listed below
-Testnet value | No real value, no production redemption, no mainnet claim
-Testnet gas | Sepolia ETH from a Sepolia faucet
-Testnet reserve token | Mock WETH/reserve token minted from the app faucet when that faucet is enabled for your wallet
-Testnet-active pAssets | pUSD and pGOLD
+Official app | [https://app.testnet.polarisfinance.io/](https://app.testnet.polarisfinance.io/)
+Testnet value | No monetary value, no production redemption, no mainnet claim
+Testnet gas | Sepolia ETH
+Reserve token | Mock WETH/reserve token from the app faucet when enabled
+Active pAssets | pUSD and pGOLD
 Illustrative or future pAssets | pCHF, pBigMac, and other catalog examples
-
-## First testnet flow
-
-1. Get a small amount of Sepolia ETH from a public Sepolia faucet for gas.
-2. Open [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io/) and connect a wallet on Sepolia (`11155111`).
-3. Use the app's reserve-token faucet if it is enabled for your wallet. The deployment manifest names the reserve token `WETH`; the prototype app may display it as ETH for readability. It is testnet-only and has no value.
-4. Use the bonding-curve / swap surface to exchange test reserve tokens for pETH.
-5. Borrow or mint a Testnet-active pAsset such as pUSD or pGOLD where the app surface supports it.
-6. Optionally deposit the pAsset into the Stability Pool to test the Earn flow.
-
-If the app faucet is disabled for your wallet, do not send mainnet ETH or mainnet WETH. Wait for the published testnet faucet path or use only the assets explicitly supported by the app.
 
 ## Manifest locations
 
-The current Sepolia artifacts are checked into the Polaris protocol repository at `/home/ahirice/Documents/git/polaris`:
+The current Sepolia artifacts are checked into the Polaris protocol repository at `/home/ahirice/Documents/git/polaris`.
 
 Manifest | What it covers | Protocol repo path
 
@@ -705,80 +728,12 @@ Deploy script defaults | Fee floors, fee alpha values, decay factors, initial ra
 
 Treat these as testnet artifacts. They are useful for testing, indexer scaffolding, and UI verification, but they are not production-canonical.
 
-## Public Testnet 1 contracts
+## Related canonical pages
 
-These are Sepolia addresses from the current manifests. They may be redeployed and should not be hardcoded as production defaults.
+Need | Page
 
-### Shared core
-
-Contract | Sepolia address
-
-Reserve token, mock WETH | `0x290a733a8f078d1f1efb2b4faac5f2f7f50673df`
-pETH / bonding curve | `0xbec3a5aff85df00e9344c0cb553b2b6b1db80243`
-Fee Router | `0x518833a8305b6a0f4a782813bc9b3acb6dd20803`
-POLAR / ShareSystem | `0x9652015bf2a1a1eef53affdf8a83f52c916cb8fe`
-Reserve Loans NFT | `0xe198955bc9ffd7dc6bb0266a1ba9e7f49c1eb5ce`
-Reserve Loans Manager | `0xa62d290638d315b57640f88af61d80d38c57f7f8`
-MultiReserveLoanGetter | `0x2cddd6bfb2848b57ac9f251ebdc3cd7b53beb962`
-Testnet stewardship | `0xea04aa2a4550862bf12a15e3f2becf48a5fb4b10`
-Testnet POLAR staking | `0x56a7088cdb41a04eddb9c9b46f27359a6797324b`
-BondingCurveTokenSplitter | `0xc880eb4ba6e7f1c60ce4968dc50b24056e67cc00`
-vpToken | `0xd59019504ea81813632c8f5e8014027b47c82ab1`
-
-### pUSD instance
-
-Contract | Sepolia address
-
-pUSD token | `0xf06a3e9420176351d0341507f91d243014510d5b`
-Stability Pool | `0x8da97da1f6ab14d144a4966360e19ca5f2b5aece`
-CDP NFT | `0xace616e3a3b07bfe2424ae48c1b4fb8aed90eea0`
-ETH/USD medianiser | `0xbad4c21ea10259280b1980b6c3f8de806b8ec31a`
-pUSD testnet price feed | `0x26998cd15cbfddcb1e8c81fb7dff75886dc90185`
-CDP Manager | `0x71b5c3b88510206203ec8363c56f908777ad52c8`
-Interest Controller | `0x0e957229c4fe20e5099206b3b615cf2563200545`
-Internal PSM | `0x49cf0fff51fdd7140237e3fc6cd2b4daf6a4ffe5`
-MultiCDPGetter | `0x5b396a8e4adff7480c0dd2858890f55d5b028149`
-Primary Interest Router | `0xb5971ee694ca881963533114c1694f5f0c56ac09`
-
-### pGOLD instance
-
-Contract | Sepolia address
-
-pGOLD token | `0x664396097e787956eaf25214049ab58a7d53d2e1`
-Stability Pool | `0x3308842b03248838c83205100a0a33d716dc37d6`
-CDP NFT | `0xb621912e3c7383bb65b4d720ac946aa618ed129b`
-ETH/USD medianiser | `0xbad4c21ea10259280b1980b6c3f8de806b8ec31a`
-XAU/USD medianiser | `0x8f4256ec2674ed87fdf7e8079ec3933263326fe1`
-pGOLD testnet price feed | `0x8a891736218fb98cabf23b39e4b8f6f2876011f4`
-CDP Manager | `0xf45fb3acf8dbd12673ecb0be1ee376846000c4ed`
-Interest Controller | `0xbd415a7ea90f448b3633b76f5c59c84a219b2448`
-Internal PSM | `0x6bcdf4a0d67ce12bf24ba4899a3be55033f90acc`
-MultiCDPGetter | `0xe79538c2d2c2e6b6d31de4456cbabbf2adab4410`
-Primary Interest Router | `0xaa9833e7d33003004b0d66685e05bace4058d89c`
-
-## Public Testnet 1 parameters
-
-Values marked "manifest" are copied from the current Sepolia manifests. Values marked "deploy script" come from the current deployment script defaults; verify live quotes in the app or contract before relying on them for a transaction.
-
-### Shared core parameters
-
-Parameter | Public Testnet 1 value | Source
-
-Bonding curve alpha | `193218996973422650` | Core manifest
-Bonding curve beta | `150000000000000000` (15%) | Core manifest
-
-### pAsset instance parameters
-
-Parameter | pUSD | pGOLD | Source
-
-Minimum collateral ratio (MCR) | 115% | 115% | Manifest
-Emergency Mode action MCR | 150% | 150% | Manifest
-Emergency Mode trigger ratio | 110% | 110% | Manifest
-Mint fee floor | 0.05% | 0.05% | Deploy script
-Redemption fee floor | 0.05% | 0.05% | Deploy script
-Mint alpha | `1e18` | `1e18` | Deploy script
-Redemption alpha | `1e18` | `1e18` | Deploy script
-Mint minute decay factor | `998076443575628800` | `998076443575628800` | Deploy script
-Redemption minute decay factor | `998076443575628800` | `998076443575628800` | Deploy script
-
-Production parameters are not published. Do not copy Sepolia parameters into a mainnet integration unless [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) and [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts) later publish them as production values.
+Current live/not-live status | [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status)
+Fastest testnet user flow | [Public Testnet Quickstart](https://tokenbrice.github.io/polaris-docs/quickstart)
+Sepolia addresses | [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts)
+Sepolia parameters | [Parameters](https://tokenbrice.github.io/polaris-docs/resources/parameters)
+Safety checks before signing | [Safety & Verification](https://tokenbrice.github.io/polaris-docs/resources/safety-verification)
