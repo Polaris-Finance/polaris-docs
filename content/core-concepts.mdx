@@ -5,6 +5,21 @@ description: A one-page map of the Polaris system, with every key term defined b
 
 # Polaris Core Concepts
 
+## The shape of the system
+
+![Polaris system overview: ETH swaps into pETH on the bonding curve, pETH collateralizes CDPs that mint pUSD, and burning pETH for POLAR raises the floor and releases ETH](/polaris-system-v2.svg)
+
+*Key takeaway: one collateral primitive feeds the whole system; pETH creates collateral, CDPs mint pAssets, and POLAR conversion raises the pETH floor.*
+
+The diagram traces four steps and an outcome:
+
+1. **Swap.** ETH enters the **bonding curve** and is issued as **pETH**; the curve captures volatility.
+2. **Collateral.** pETH is deposited as the sole collateral for **CDPs**.
+3. **Borrow.** A CDP mints **pUSD** (or another pAsset) against that pETH, for scalable onchain yield.
+4. **Stewardship.** Burning pETH in a conversion auction mints **POLAR**, raising the pETH floor price and releasing ETH.
+
+> Adoption ⇒ activity ⇒ velocity ⇒ fees ⇒ yield ⇒ more demand.
+
 A single primitive, the bonding curve, produces pETH. pETH collateralizes every pAsset. Activity on any pAsset generates fees; fees burn pETH and raise its floor; a rising floor strengthens every position. POLAR captures the flywheel's long-term value and steers it.
 
 This page is the map. Each term is defined in a sentence or two and links to its full treatment. If you read nothing else, read this.
@@ -86,21 +101,6 @@ Receives pETH from conversions and bonding-curve swap fees, then buffers and dis
 <DefinitionCard term="Stewardship" token="default">
 A stewardship role steers <em>quantitative parameters</em>, with safety-critical bounds hardcoded in the contracts and the remaining bounds set at audited deployment. It does not govern the immutable core. See [Stewardship, not Governance](/stewardship).
 </DefinitionCard>
-
-## The shape of the system
-
-![Polaris system overview: ETH swaps into pETH on the bonding curve, pETH collateralizes CDPs that mint pUSD, and burning pETH for POLAR raises the floor and releases ETH](/polaris-system-v2.svg)
-
-*Key takeaway: one collateral primitive feeds the whole system; pETH creates collateral, CDPs mint pAssets, and POLAR conversion raises the pETH floor.*
-
-The diagram traces four steps and an outcome:
-
-1. **Swap.** ETH enters the **bonding curve** and is issued as **pETH**; the curve captures volatility.
-2. **Collateral.** pETH is deposited as the sole collateral for **CDPs**.
-3. **Borrow.** A CDP mints **pUSD** (or another pAsset) against that pETH, for scalable onchain yield.
-4. **Stewardship.** Burning pETH in a conversion auction mints **POLAR**, raising the pETH floor price and releasing ETH.
-
-> Adoption ⇒ activity ⇒ velocity ⇒ fees ⇒ yield ⇒ more demand.
 
 <NextSteps
   steps={[
