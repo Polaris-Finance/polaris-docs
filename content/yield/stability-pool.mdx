@@ -5,8 +5,14 @@ description: The Stability Pool is a reserve of pAssets that backstops liquidati
 
 # Polaris Stability Pool
 
-> **Before you deposit:**
-> A Stability Pool deposit is not a fixed pAsset savings balance. Liquidations can burn part of your deposited pAsset and replace it with pETH rewards. Before depositing, check the current pool size, claimable rewards, pETH price exposure, withdrawal conditions, and whether wrapper vaults are available.
+
+<Callout variant="warning" title="Before You Deposit">
+A Stability Pool deposit is not a fixed pAsset savings balance. Liquidations can burn part of your deposited pAsset and replace it with pETH rewards. Before depositing, check the current pool size, claimable rewards, pETH price exposure, withdrawal conditions, and whether wrapper vaults are available.
+</Callout>
+
+<Callout variant="info" title="Where this appears in the app">
+App anchor: **Earn** tab -> Stability Pool. Zap may route you into the same final position after bundling WETH -> pAsset -> deposit.
+</Callout>
 
 ## What it is
 
@@ -25,8 +31,9 @@ When a trove is liquidated:
 
 Because liquidations carry a penalty, the pETH paid out is worth *more* than the pUSD burned. A depositor's pUSD is converted into pETH at a discount to market — typically a net gain.
 
-> **Note:**
-> Liquidation gains arrive as **pETH**, not pUSD. If you want pure pUSD exposure, wrapper vaults that convert that pETH back to pUSD will be available at or shortly after launch. See [Where the Yield Comes From](/yield/yield-sources).
+<Callout variant="info">
+Liquidation gains arrive as <strong>pETH</strong>, not pUSD. If you want pure pUSD exposure, wrapper vaults that convert that pETH back to pUSD will be available at or shortly after launch. See <a href="/yield/yield-sources">Where the Yield Comes From</a>.
+</Callout>
 
 ## Why it is the primary yield venue
 
@@ -66,8 +73,9 @@ That is the healthy-liquidation case: part of your pUSD position converted into 
 
 Depositing is not free of risk.
 
-> **Warning:**
-> In a severe or flash crash, a trove can fall below 100% collateralization before liquidation completes. If that happens, the pETH you receive can be worth **less** than the pUSD you contributed. The liquidation penalty makes a net gain the normal case, not a guaranteed one. Size your deposit accordingly, and see the [Risk Disclosure](/resources/risk-disclosure).
+<Callout variant="danger" title="Warning">
+In a severe or flash crash, a trove can fall below 100% collateralization before liquidation completes. If that happens, the pETH you receive can be worth <strong>less</strong> than the pUSD you contributed. The liquidation penalty makes a net gain the normal case, not a guaranteed one. Size your deposit accordingly, and see the <a href="/resources/risk-disclosure">Risk Disclosure</a>.
+</Callout>
 
 Your liquidation gains are also denominated in pETH, which is [volatile against ETH](/peth/floor-price). The wrapper vaults above mitigate that exposure, but at the base layer you accept pETH.
 
@@ -75,6 +83,14 @@ Your liquidation gains are also denominated in pETH, which is [volatile against 
 
 - [Deposit to the Stability Pool](/yield/deposit-to-stability-pool) — the step-by-step.
 - [Where the Yield Comes From](/yield/yield-sources) — every source feeding pAsset yield.
+
+<NextSteps
+  steps={[
+    { href: '/yield/deposit-to-stability-pool', title: 'Deposit to the Stability Pool', description: 'The step-by-step guide to depositing.' },
+    { href: '/yield/yield-sources', title: 'Where the Yield Comes From', description: 'Every source feeding pAsset yield.' },
+    { href: '/redemptions-liquidations/liquidations', title: 'Liquidations', description: 'Understand how the pool absorbs liquidations.' }
+  ]}
+/>
 
 ---
 

@@ -5,8 +5,10 @@ description: A trove below its minimum collateralization ratio is liquidated to 
 
 # Polaris Liquidations
 
-> **Before you act:**
-> Borrowers: do not manage a trove from the liquidation line. Check the app's current minimum ICR, Recovery Mode status, accrued interest, collateral-price freshness, and gas conditions before withdrawing collateral or minting more debt. Stability Pool depositors: liquidations convert part of your pAsset deposit into pETH exposure.
+
+<Callout variant="danger" title="Before You Act">
+Borrowers: do not manage a trove from the liquidation line. Check the app's current minimum ICR, Recovery Mode status, accrued interest, collateral-price freshness, and gas conditions before withdrawing collateral or minting more debt. Stability Pool depositors: liquidations convert part of your pAsset deposit into pETH exposure.
+</Callout>
 
 ## What a liquidation is
 
@@ -53,11 +55,17 @@ If the Stability Pool is empty or too small, the uncovered portion follows the r
 
 ## Risks
 
-> **Warning — for borrowers.** Liquidation is involuntary and can happen fast. A liquidated trove gives up its collateral to cover the debt plus a liquidation penalty and gas compensation; any surplus is returned to you to claim, but the penalty makes liquidation a real loss to avoid. Keep a **buffer** above the minimum ratio so a sharp move in collateral price does not cross the line. The thinner your margin, the less room you have when volatility hits. See [Managing Your Trove](/minting/managing-your-trove).
+<Callout variant="danger" title="Warning — For Borrowers">
+Liquidation is involuntary and can happen fast. A liquidated trove gives up its collateral to cover the debt plus a liquidation penalty and gas compensation; any surplus is returned to you to claim, but the penalty makes liquidation a real loss to avoid. Keep a <strong>buffer</strong> above the minimum ratio so a sharp move in collateral price does not cross the line. The thinner your margin, the less room you have when volatility hits. See <a href="/minting/managing-your-trove">Managing Your Trove</a>.
+</Callout>
 
-> **Warning — for Stability Pool depositors.** You are the system's first-loss backstop. In a flash crash, troves can be liquidated near — or in extreme cases below — 100% collateralization, and you may receive pETH worth less than the pAsset burned. Over a full cycle the surplus from healthy liquidations compensates for that risk, but it is not riskless yield. See [The Stability Pool](/yield/stability-pool) and the [Risk Disclosure](/resources/risk-disclosure).
+<Callout variant="danger" title="Warning — For Stability Pool Depositors">
+You are the system's first-loss backstop. In a flash crash, troves can be liquidated near — or in extreme cases below — 100% collateralization, and you may receive pETH worth less than the pAsset burned. Over a full cycle the surplus from healthy liquidations compensates for that risk, but it is not riskless yield. See <a href="/yield/stability-pool">The Stability Pool</a> and the <a href="/resources/risk-disclosure">Risk Disclosure</a>.
+</Callout>
 
-> **Note:** Exact liquidation thresholds, penalties, and the minimum collateralization ratio per pAsset are finalized closer to launch.
+<Callout variant="info">
+Exact liquidation thresholds, penalties, and the minimum collateralization ratio per pAsset are finalized closer to launch.
+</Callout>
 
 ## How liquidation interacts with system health
 
@@ -66,6 +74,16 @@ A trove's individual ratio is not all that matters. When system-wide backing run
 ---
 
 Liquidations are not punishment — they are the mechanism designed to keep a pAsset backed by the collateral it claims. Keep a buffer, and you are less likely to lose your trove.
+
+<NextSteps
+  steps={[
+    { href: '/minting/managing-your-trove', title: 'Managing Your Trove', description: 'Keep your ICR healthy and avoid liquidation.' },
+    { href: '/yield/stability-pool', title: 'Stability Pool', description: 'Understand how the pool absorbs liquidations.' },
+    { href: '/redemptions-liquidations/recovery-mode', title: 'Recovery Mode', description: 'The system-level safeguard for thin backing.' }
+  ]}
+/>
+
+---
 
 <BlogPostCard
   url="https://polarisfinance.io/blog/polaris-mints-anything"

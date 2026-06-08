@@ -5,11 +5,16 @@ description: Manage a Polaris trove around its Individual Collateralization Rati
 
 # Managing a Polaris Trove
 
+
 A trove is a living position. After you [open it](/minting/open-a-trove), you can adjust it freely: add collateral, mint more, repay debt, or close it. Everything traces back to one number — your **Individual Collateralization Ratio**.
 
-> **Actionability:** Trove management is testnet-actionable only on Sepolia with test assets and current manifests. Production management is not mainnet-actionable until [Polaris Launch Status](/launch-status) publishes the official app, production addresses, final parameters, and audit status. Use live app and contract values over examples on this page.
+<Callout variant="warning" title="Actionability">
+Trove management is testnet-actionable only on Sepolia with test assets and current manifests. Production management is not mainnet-actionable until <a href="/launch-status">Polaris Launch Status</a> publishes the official app, production addresses, final parameters, and audit status. Use live app and contract values over examples on this page.
+</Callout>
 
-> **Terminology:** This page covers pAsset troves/CDPs shown under Borrow. It does not cover reserve loans, which borrow WETH against [fpETH](/peth/split).
+<Callout variant="info">
+<strong>Terminology:</strong> This page covers pAsset troves/CDPs shown under Borrow. It does not cover reserve loans, which borrow WETH against <a href="/peth/split">fpETH</a>.
+</Callout>
 
 ## Individual Collateralization Ratio (ICR)
 
@@ -24,6 +29,10 @@ Collateral value comes from the protocol's collateral pricing path. Debt value i
 
 Your ICR moves on its own as ETH's price moves — you need not touch the trove for it to drift. Managing the trove is mostly about keeping the ICR where you want it.
 
+## Trove Health Simulator
+
+<TroveSimulator minCollateralRatio={1.5} />
+
 ## Before you sign
 
 Before adjusting a trove, check:
@@ -37,8 +46,9 @@ Before adjusting a trove, check:
 - DEX or bonding-curve slippage if you buy pAsset or pETH before signing.
 - Token approvals, gas, simulation result, and quote freshness.
 
-> **Warning:**
-> Minting more or withdrawing collateral lowers your ICR. Drop below the minimum and your trove is [liquidated](/redemptions-liquidations/liquidations) automatically: your collateral covers the debt plus a liquidation penalty, with no margin call, and only the surplus is returned for you to claim. [Redemptions](/redemptions-liquidations/redemptions) can also reach your position while it is still solvent — there is no minimum ICR to cross — shrinking your collateral and pETH exposure proportionally without your consent. See the [Risk Disclosure](/resources/risk-disclosure).
+<Callout variant="danger" title="Warning">
+Minting more or withdrawing collateral lowers your ICR. Drop below the minimum and your trove is <a href="/redemptions-liquidations/liquidations">liquidated</a> automatically: your collateral covers the debt plus a liquidation penalty, with no margin call, and only the surplus is returned for you to claim. <a href="/redemptions-liquidations/redemptions">Redemptions</a> can also reach your position while it is still solvent — there is no minimum ICR to cross — shrinking your collateral and pETH exposure proportionally without your consent. See the <a href="/resources/risk-disclosure">Risk Disclosure</a>.
+</Callout>
 
 ## Parameter status
 
@@ -93,3 +103,11 @@ If you do not hold enough pAsset to repay (for example, you sold it), buy it bac
 | Near the minimum | High — a sharp ETH move liquidates you | A system-wide redemption reduces your collateral pro-rata and, on thin margin, can leave you closer to the liquidation line |
 
 The takeaway: a buffer is not wasted capital, it is the price of staying in control of your position. Keep enough margin that ordinary volatility and quiet interest accrual cannot force an outcome you did not choose.
+
+<NextSteps
+  steps={[
+    { href: '/minting/open-a-trove', title: 'Open a Trove', description: 'Step-by-step guide to opening your first trove.' },
+    { href: '/redemptions-liquidations/liquidations', title: 'Liquidations', description: 'Understand what happens if your ICR falls below the minimum.' },
+    { href: '/yield/stability-pool', title: 'Stability Pool', description: 'Earn yield by depositing pAssets.' }
+  ]}
+/>

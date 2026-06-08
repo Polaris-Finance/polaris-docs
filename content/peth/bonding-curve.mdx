@@ -43,7 +43,13 @@ $$
 
 As supply `Q` increases, the price of pETH (in ETH) increases. **β** sets how tightly pETH tracks ETH: a large β decouples pETH and makes it volatile; a small β couples them closely. Polaris will use **β around 0.3**: close coupling, with room for interesting dynamics.
 
-> *The exact final β is disclosed closer to launch.*
+<Callout variant="info">
+The exact final β is disclosed closer to launch.
+</Callout>
+
+## Interactive explorer
+
+<BondingCurveExplorer />
 
 ## pETH beyond the CDP
 
@@ -74,9 +80,12 @@ stETH is a prime asset, but it lacks contract-native liquidity from its own rese
 | Price floor | Contract-enforced under audited invariants | None |
 | Main risk | Price risk vs ETH, bounded by the floor under the curve assumptions | LP/liquidity risk |
 
-> stETH is a prime asset, don't get us wrong. It just doesn't provide this kind of reserve-backed onchain sell path.
+<Callout variant="info">
+stETH is a prime asset, don't get us wrong. It just doesn't provide this kind of reserve-backed onchain sell path.
+</Callout>
 
 ## Risk overview
+
 
 pETH carries three main risks:
 
@@ -85,6 +94,14 @@ pETH carries three main risks:
 3. **Price risk**: pETH is volatile against ETH. Your exposure depends on your entry price relative to the floor, i.e. the [floor ratio](/peth/floor-price): a higher ratio means a smaller curve-implied drawdown before execution costs.
 
 The curve design removes liquidity-provider withdrawal risk. That does not make execution riskless: the curve provides a contract-defined buy/sell path and floor while the relevant invariants hold.
+
+<NextSteps
+  steps={[
+    { href: '/peth/floor-price', title: 'The Floor Price', description: 'Understand the mathematically enforced minimum price of pETH.' },
+    { href: '/minting/open-a-trove', title: 'Open a Trove', description: 'Use pETH as collateral to mint your first pAsset.' },
+    { href: '/core-concepts', title: 'Core Concepts', description: 'The one-page map of the entire Polaris system.' }
+  ]}
+/>
 
 ---
 
