@@ -35,7 +35,7 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
-      - name: Validate docs
+      - name: Validate docs with single build artifact
         run: npm run ci
 
       - name: Check external links

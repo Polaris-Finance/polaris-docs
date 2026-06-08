@@ -43,18 +43,12 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
-      - name: Validate and build static site
+      - name: Validate and build static site once
         run: npm run ci
 
       - name: Check external links
         run: npm run check:links:external
         continue-on-error: true
-
-      - name: Build GitHub Pages artifact
-        run: npm run build
-
-      - name: Smoke check Pages artifact URLs
-        run: npm run check:artifact
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v5

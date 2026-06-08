@@ -11,6 +11,11 @@ const portValue = portArg?.split('=')[1] ?? args[args.indexOf('--port') + 1]
 const port = Number(portValue ?? process.env.PORT ?? 4173)
 const host = process.env.HOST ?? '127.0.0.1'
 
+if (!existsSync(outDir) || !statSync(outDir).isDirectory()) {
+  console.error('Missing static export in out/. Run `npm run build` before serving the export.')
+  process.exit(1)
+}
+
 const contentTypes = new Map([
   ['.css', 'text/css; charset=utf-8'],
   ['.html', 'text/html; charset=utf-8'],

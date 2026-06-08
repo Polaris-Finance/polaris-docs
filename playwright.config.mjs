@@ -4,6 +4,8 @@ import { BASE_PATH } from './app/site-config.mjs'
 const playwrightPort = process.env.PLAYWRIGHT_PORT ?? '3100'
 const baseURL = process.env.PLAYWRIGHT_BASE_URL ?? `http://127.0.0.1:${playwrightPort}`
 const webServerURL = `${baseURL}${BASE_PATH || '/'}`
+const reuseExport = process.env.PLAYWRIGHT_REUSE_EXPORT === '1'
+const webServerCommand = `${reuseExport ? '' : 'npm run build && '}node scripts/serve-export.mjs --port ${playwrightPort}`
 
 export default defineConfig({
   testDir: './tests',
@@ -21,7 +23,7 @@ export default defineConfig({
   webServer: process.env.PLAYWRIGHT_BASE_URL
     ? undefined
     : {
-        command: `npm run build && node scripts/serve-export.mjs --port ${playwrightPort}`,
+        command: webServerCommand,
         url: webServerURL,
         reuseExistingServer: !process.env.CI,
         timeout: 180_000
