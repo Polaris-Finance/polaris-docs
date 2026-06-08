@@ -13,6 +13,8 @@ import { useEffect } from 'react'
 export function SearchPanelFix() {
   useEffect(() => {
     let panelObserver = null
+    let watchedPanel = null
+    let frame = 0
 
     const align = () => {
       const panel = document.querySelector('.nextra-search-results')
@@ -27,9 +29,19 @@ export function SearchPanelFix() {
       panel.style.width = w
     }
 
+    const scheduleAlign = () => {
+      if (frame) return
+      frame = window.requestAnimationFrame(() => {
+        frame = 0
+        align()
+      })
+    }
+
     const watchPanel = (panel) => {
+      if (panel === watchedPanel) return
+      watchedPanel = panel
       panelObserver?.disconnect()
-      panelObserver = new MutationObserver(align)
+      panelObserver = new MutationObserver(scheduleAlign)
       panelObserver.observe(panel, { attributes: true, attributeFilter: ['style'] })
     }
 
@@ -37,17 +49,18 @@ export function SearchPanelFix() {
     const bodyObserver = new MutationObserver(() => {
       const panel = document.querySelector('.nextra-search-results')
       if (panel) {
-        align()
+        scheduleAlign()
         watchPanel(panel)
       }
     })
     bodyObserver.observe(document.body, { childList: true, subtree: true })
 
-    window.addEventListener('resize', align)
+    window.addEventListener('resize', scheduleAlign)
     return () => {
+      if (frame) window.cancelAnimationFrame(frame)
       bodyObserver.disconnect()
       panelObserver?.disconnect()
-      window.removeEventListener('resize', align)
+      window.removeEventListener('resize', scheduleAlign)
     }
   }, [])
 

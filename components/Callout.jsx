@@ -1,3 +1,5 @@
+import { withBaseInternalLinks } from './internal-links'
+
 const variantTitles = {
   danger: 'Risk',
   info: 'Note',
@@ -23,7 +25,7 @@ export function Callout({ variant = 'info', title, children }) {
         <div className="pl-callout-title">
           {title ?? variantTitles[variant] ?? variantTitles.info}
         </div>
-        <div className="pl-callout-content">{children}</div>
+        <div className="pl-callout-content">{withBaseInternalLinks(children)}</div>
       </div>
     </aside>
   )

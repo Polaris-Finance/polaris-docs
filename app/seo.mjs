@@ -308,7 +308,34 @@ export function buildTechArticleJsonLd({ metadata, path, sourceCode }) {
 export function extractFaqJsonLd(sourceCode, path) {
   if (path !== '/resources/faq') return null
 
-  const lines = stripFrontmatter(sourceCode).split(/\r?\n/)
+  const body = stripFrontmatter(sourceCode)
+  const accordionPairs = [
+    ...body.matchAll(
+      /question:\s*(['"`])([\s\S]*?)\1\s*,\s*answer:\s*([\s\S]*?)(?=\n\s*},|\n\s*}\s*\])/g
+    )
+  ]
+    .map((match) => ({
+      question: stripMarkdown(match[2]),
+      answer: stripMarkdown(match[3])
+    }))
+    .filter(({ question, answer }) => question && answer)
+
+  if (accordionPairs.length) {
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: accordionPairs.map(({ question, answer }) => ({
+        '@type': 'Question',
+        name: question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: answer
+        }
+      }))
+    }
+  }
+
+  const lines = body.split(/\r?\n/)
   const pairs = []
   let current = null
 

@@ -49,6 +49,11 @@ function Tooltip({ title, desc, link }) {
     <div className="pl-tooltip">
       <div className="pl-tooltip-title">{title}</div>
       <div>{desc}</div>
+      {link ? (
+        <a className="pl-tooltip-link" href={pathWithBase(link)}>
+          View details
+        </a>
+      ) : null}
     </div>
   )
 }
@@ -134,7 +139,7 @@ export function LaunchTimeline() {
       <ol className="pl-timeline-list">
         {phases.map((phase) => (
           <li key={phase.name} aria-current={phase.isNow ? 'step' : undefined}>
-            <span>{phase.name}</span>
+            {phase.link ? <a href={pathWithBase(phase.link)}>{phase.name}</a> : <span>{phase.name}</span>}
             <span>{phase.date}</span>
             <p>{phase.desc}</p>
           </li>

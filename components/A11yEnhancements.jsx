@@ -11,6 +11,8 @@ export function A11yEnhancements() {
   const pathname = usePathname()
 
   useEffect(() => {
+    let frame = 0
+
     const labelCopyPageOptions = () => {
       for (const button of document.querySelectorAll(
         'button[aria-haspopup="listbox"]:not([aria-label]):not([title])'
@@ -43,8 +45,16 @@ export function A11yEnhancements() {
       syncMobileNavInertState()
     }
 
+    const scheduleEnhancements = () => {
+      if (frame) return
+      frame = window.requestAnimationFrame(() => {
+        frame = 0
+        applyEnhancements()
+      })
+    }
+
     applyEnhancements()
-    const observer = new MutationObserver(applyEnhancements)
+    const observer = new MutationObserver(scheduleEnhancements)
     observer.observe(document.body, {
       attributes: true,
       attributeFilter: ['class', 'style', 'data-headlessui-state', 'aria-expanded'],
@@ -52,13 +62,14 @@ export function A11yEnhancements() {
       subtree: true
     })
 
-    window.addEventListener('resize', applyEnhancements)
-    window.addEventListener('transitionend', applyEnhancements, true)
+    window.addEventListener('resize', scheduleEnhancements)
+    window.addEventListener('transitionend', scheduleEnhancements, true)
 
     return () => {
+      if (frame) window.cancelAnimationFrame(frame)
       observer.disconnect()
-      window.removeEventListener('resize', applyEnhancements)
-      window.removeEventListener('transitionend', applyEnhancements, true)
+      window.removeEventListener('resize', scheduleEnhancements)
+      window.removeEventListener('transitionend', scheduleEnhancements, true)
     }
   }, [pathname])
 
