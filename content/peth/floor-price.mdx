@@ -20,6 +20,10 @@ Two mechanisms push the floor up under the intended curve invariants. Normal pro
 
 The result is a staircase under normal operation: pETH's market price fluctuates above the floor, while the floor itself steps upward over time.
 
+![The rising pETH floor as a staircase stepping up over time, each step driven by a swap-fee burn or a conversion-auction burn that permanently reduces pETH supply](/infographics/rising-floor-mechanism.svg)
+
+*Each swap-fee burn and conversion auction removes pETH supply, ratcheting the floor up a step — under the curve assumptions.*
+
 ## The floor ratio
 
 The **floor ratio** expresses the floor as a percentage of the current market price:
@@ -35,6 +39,10 @@ It tells you the curve-implied drawdown to the floor before gas, slippage, MEV, 
 | 90% | 10% |
 | 67% | 33% |
 | 55% | 45% |
+
+![The floor ratio: a volatile pETH market-price line above a steadily rising floor line; a worked example with market price 1.09 and floor 0.60 gives a 55% floor ratio and a 45% maximum drawdown to the floor](/infographics/floor-ratio-explainer.svg)
+
+*A higher floor ratio means a smaller curve-implied drawdown to the floor — before gas, slippage, MEV, and technical risk.*
 
 The floor ratio is itself volatile, driven by market sentiment and activity:
 

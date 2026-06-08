@@ -902,6 +902,17 @@ html:not(.dark) article img[src*='/screenshots/'] {
   box-shadow: 0 0 0 1px rgba(44, 74, 110, 0.12);
 }
 
+/* Infographics carry fine detail (labels, curves, multi-node flows) that gets
+   cramped at the 72ch prose measure. Let them break out to the full content
+   column — noticeably wider than body text — capped so they stay sensible on
+   ultrawide screens. Screenshots keep their natural size. */
+article img[src*='/infographics/'] {
+  display: block;
+  width: 100%;
+  max-width: 80rem;
+  height: auto;
+}
+
 article figcaption,
 article .pl-figure-caption,
 .pl-timeline-caption {

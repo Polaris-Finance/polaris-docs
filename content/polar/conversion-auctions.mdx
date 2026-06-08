@@ -9,6 +9,8 @@ import { Steps } from 'nextra/components'
 
 Conversion auctions let converters **burn pETH to mint new POLAR**. This page covers the auction mechanics; POLAR's broader economics live on [POLAR Tokenomics](/polar/tokenomics).
 
+![The conversion mechanism: a converter burns pETH, which mints new POLAR, lifts the pETH floor price, and releases ETH from the bonding-curve reserve; the released ETH splits into a converter rebate and pETH forwarded to the Fee Router](/infographics/conversion-flow.svg)
+
 ## Spike-and-decay pricing
 
 Conversion runs as a **continuous, permissionless auction**. Anyone can convert pETH to POLAR at any moment; whether it is *profitable* depends on the conversion price versus POLAR's market price. The price follows a **spike-and-decay** model:
@@ -18,6 +20,8 @@ Conversion runs as a **continuous, permissionless auction**. Anyone can convert 
 3. After the spike, decay resumes until the next conversion.
 
 The result is a natural rhythm: the price decays until an arbitrageur sees it drift below POLAR's market price, converts to capture the spread, and spikes it back up — closing the opportunity until decay reopens it.
+
+![Spike-and-decay conversion pricing: the conversion price decays continuously until it drops below POLAR's market price, opening an arbitrage window; each conversion spikes the price up by an amount proportional to the fraction of POLAR supply minted, then decay resumes](/infographics/spike-and-decay.svg)
 
 > **Note:**
 > The spike is computed against **POLAR supply, not pETH supply**. This steers conversions toward small, frequent operations: a whale converting a large amount in one go faces rapidly diminishing returns as each increment spikes the price against them. The mechanism self-regulates toward steady, incremental minting.
@@ -32,6 +36,8 @@ Burning pETH through a conversion has two effects beyond minting POLAR:
 
 - **ETH is released from the bonding curve reserve.** The ETH backing the burned pETH is freed as conversion gain.
 - **The [floor price](/peth/floor-price) can rise under the curve assumptions.** Reducing supply while preserving reserve backing lifts the modeled floor. Conversions are one-way: POLAR cannot be converted back to pETH.
+
+![The floor-price ratchet: burning pETH through conversions contracts supply along the power-law curve, lifting the floor from one level to a higher one; because conversions are one-way, the floor steps up and does not come back down](/infographics/floor-price-ratchet.svg)
 
 See [pETH Floor Price](/peth/floor-price) for the full floor and floor-ratio explanation.
 
