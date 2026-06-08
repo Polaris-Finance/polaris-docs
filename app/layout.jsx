@@ -29,7 +29,7 @@ const inter = Inter({
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
-  weight: ['400', '600', '700'],
+  weight: ['600', '700'],
   variable: '--font-serif',
   display: 'swap'
 })
@@ -104,7 +104,7 @@ const logo = (
         letterSpacing: '0.04em'
       }}
     >
-      Polaris <span style={{ opacity: 0.6, fontWeight: 400 }}>Docs</span>
+      Polaris <span style={{ opacity: 0.56, fontWeight: 600 }}>Docs</span>
     </span>
   </a>
 )
