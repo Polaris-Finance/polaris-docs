@@ -27,8 +27,7 @@ export function A11yEnhancements() {
 
       const rect = nav.getBoundingClientRect()
       const style = window.getComputedStyle(nav)
-      const isClosed =
-        style.display === 'none' || style.visibility === 'hidden' || rect.bottom <= 1
+      const isClosed = style.display === 'none' || style.visibility === 'hidden' || rect.bottom <= 1
 
       if (nav.inert !== isClosed) nav.inert = isClosed
       if (nav.hasAttribute('inert') !== isClosed) nav.toggleAttribute('inert', isClosed)
