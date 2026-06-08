@@ -1,11 +1,6 @@
 export function BlogPostCard({ url, title, description, readingTime, image }) {
   return (
-    <a
-      href={url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="pl-blog-card"
-    >
+    <a href={url} target="_blank" rel="noopener noreferrer" className="pl-blog-card">
       {image && (
         <div className="pl-blog-card-image">
           <img src={image} alt={title} loading="lazy" decoding="async" />
@@ -16,9 +11,7 @@ export function BlogPostCard({ url, title, description, readingTime, image }) {
           <div className="pl-blog-card-meta">{readingTime} min read · Polaris blog</div>
         )}
         <div className="pl-blog-card-title">{title}</div>
-        {description && (
-          <div className="pl-blog-card-desc">{description}</div>
-        )}
+        {description && <div className="pl-blog-card-desc">{description}</div>}
       </div>
     </a>
   )

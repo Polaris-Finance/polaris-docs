@@ -17,7 +17,7 @@ export function SearchPanelFix() {
     const align = () => {
       const panel = document.querySelector('.nextra-search-results')
       const inputs = document.querySelectorAll('.nextra-search input')
-      const input = Array.from(inputs).find(el => el.offsetParent !== null) || inputs[0]
+      const input = Array.from(inputs).find((el) => el.offsetParent !== null) || inputs[0]
       if (!panel || !input) return
       const r = input.getBoundingClientRect()
       const l = Math.round(r.left) + 'px'
@@ -27,7 +27,7 @@ export function SearchPanelFix() {
       panel.style.width = w
     }
 
-    const watchPanel = panel => {
+    const watchPanel = (panel) => {
       panelObserver?.disconnect()
       panelObserver = new MutationObserver(align)
       panelObserver.observe(panel, { attributes: true, attributeFilter: ['style'] })
@@ -36,7 +36,10 @@ export function SearchPanelFix() {
     // subtree:true so we catch the panel even though it's body > div > div > panel
     const bodyObserver = new MutationObserver(() => {
       const panel = document.querySelector('.nextra-search-results')
-      if (panel) { align(); watchPanel(panel) }
+      if (panel) {
+        align()
+        watchPanel(panel)
+      }
     })
     bodyObserver.observe(document.body, { childList: true, subtree: true })
 

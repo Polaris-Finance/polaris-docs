@@ -4,6 +4,20 @@ import { getPageMap } from 'nextra/page-map'
 import { Inter, Cormorant_Garamond } from 'next/font/google'
 import { A11yEnhancements } from '../components/A11yEnhancements'
 import { SearchPanelFix } from '../components/SearchPanelFix'
+import { JsonLd } from './JsonLd'
+import { buildGlobalJsonLd, metadataBase } from './seo.mjs'
+import {
+  absoluteUrl,
+  OG_IMAGE_ALT,
+  OG_IMAGE_HEIGHT,
+  OG_IMAGE_PATH,
+  OG_IMAGE_WIDTH,
+  pathWithBase,
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  SITE_TITLE,
+  SITE_TITLE_TEMPLATE
+} from './site-config.mjs'
 import 'nextra-theme-docs/style.css'
 import './globals.css'
 
@@ -15,39 +29,48 @@ const inter = Inter({
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+  weight: ['400', '600', '700'],
   variable: '--font-serif',
   display: 'swap'
 })
 
 export const metadata = {
-  metadataBase: new URL('https://docs.polarisfinance.io'),
+  metadataBase: metadataBase(),
   title: {
-    default: 'Polaris Documentation',
-    template: '%s — Polaris Docs'
+    default: SITE_TITLE,
+    template: SITE_TITLE_TEMPLATE
   },
-  description:
-    'User documentation for Polaris Finance — the pETH-powered yield layer for all of DeFi. Mint pAssets backed entirely by onchain collateral and yield. No T-bills. No CEXs. No compromises.',
+  description: SITE_DESCRIPTION,
   alternates: {
-    canonical: '/'
+    canonical: pathWithBase('/')
   },
-  applicationName: 'Polaris Docs',
-  appleWebApp: { title: 'Polaris Docs' },
+  applicationName: SITE_NAME,
+  appleWebApp: { title: SITE_NAME },
   openGraph: {
     type: 'website',
-    siteName: 'Polaris Docs',
-    title: 'Polaris Documentation',
-    description:
-      'User documentation for Polaris Finance — the pETH-powered yield layer for all of DeFi. Mint pAssets backed entirely by onchain collateral and yield.',
-    url: '/',
-    images: ['/og-image.png']
+    siteName: SITE_NAME,
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    url: pathWithBase('/'),
+    images: [
+      {
+        url: absoluteUrl(OG_IMAGE_PATH),
+        width: OG_IMAGE_WIDTH,
+        height: OG_IMAGE_HEIGHT,
+        alt: OG_IMAGE_ALT
+      }
+    ]
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Polaris Documentation',
-    description:
-      'User documentation for Polaris Finance — the pETH-powered yield layer for all of DeFi. Mint pAssets backed entirely by onchain collateral and yield.',
-    images: ['/og-image.png']
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    images: [
+      {
+        url: absoluteUrl(OG_IMAGE_PATH),
+        alt: OG_IMAGE_ALT
+      }
+    ]
   }
 }
 
@@ -66,8 +89,13 @@ const logo = (
       color: 'inherit'
     }}
   >
-    {/* eslint-disable-next-line @next/next/no-img-element */}
-    <img src={`${process.env.BASE_PATH ?? ''}/emblem.svg`} alt="" width={26} height={26} style={{ display: 'block' }} />
+    <img
+      src={pathWithBase('/emblem.svg')}
+      alt=""
+      width={26}
+      height={26}
+      style={{ display: 'block' }}
+    />
     <span
       style={{
         fontFamily: 'var(--font-serif), Georgia, serif',
@@ -83,7 +111,12 @@ const logo = (
 
 const navbar = (
   <Navbar logo={logo} logoLink={false}>
-    <a href="https://polarisfinance.io" style={{ padding: '0.25rem 0.5rem' }} target="_blank" rel="noreferrer">
+    <a
+      href="https://polarisfinance.io"
+      style={{ padding: '0.25rem 0.5rem' }}
+      target="_blank"
+      rel="noreferrer"
+    >
       Website
     </a>
   </Navbar>
@@ -95,9 +128,7 @@ const footer = (
       <span style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: '1.05rem' }}>
         The pETH-powered yield layer for all of DeFi
       </span>
-      <span style={{ opacity: 0.9 }}>
-        © {new Date().getFullYear()} Polaris Finance
-      </span>
+      <span style={{ opacity: 0.9 }}>© {new Date().getFullYear()} Polaris Finance</span>
     </div>
   </Footer>
 )
@@ -115,6 +146,7 @@ export default async function RootLayout({ children }) {
         backgroundColor={{ dark: '#050a14', light: '#faf7f0' }}
       />
       <body>
+        <JsonLd data={buildGlobalJsonLd()} />
         <Layout
           navbar={navbar}
           footer={footer}

@@ -1,6 +1,10 @@
 import { useMDXComponents as getThemeComponents } from 'nextra-theme-docs'
 import { Image } from 'nextra/components'
 import { BlogPostCard } from './components/BlogPostCard'
+import { LaunchTimeline } from './components/LaunchTimeline'
+import { ReadingTimeBadge } from './components/ReadingTimeBadge'
+import { SystemOverviewFigure } from './components/SystemOverviewFigure'
+import { TimedExplainers } from './components/TimedExplainers'
 
 const themeComponents = getThemeComponents()
 
@@ -13,6 +17,10 @@ export function useMDXComponents(components) {
     // fails axe's aria-valid-attr-value. `Image` keeps Pagefind alt/title indexing.
     img: Image,
     BlogPostCard,
+    LaunchTimeline,
+    ReadingTimeBadge,
+    SystemOverviewFigure,
+    TimedExplainers,
     ...components
   }
 }
