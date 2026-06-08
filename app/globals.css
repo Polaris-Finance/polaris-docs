@@ -1099,6 +1099,10 @@ article :is(p, li) {
   max-width: 72ch;
 }
 
+.pl-callout :is(p, li) {
+  max-width: none;
+}
+
 /* Anchor jumps shouldn't tuck headings under the sticky navbar. */
 article :is(h1, h2, h3, h4) {
   scroll-margin-top: 5rem;
@@ -1436,7 +1440,8 @@ article button[title*='Copy'] {
 }
 
 .pl-callout-content {
-  max-width: 80ch;
+  flex: 1;
+  min-width: 0;
 }
 
 .pl-callout-content p:first-child {
