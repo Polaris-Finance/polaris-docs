@@ -13,7 +13,7 @@ Trove management is testnet-actionable only on Sepolia with test assets and curr
 </Callout>
 
 <Callout variant="info">
-<strong>Terminology:</strong> This page covers pAsset troves/CDPs shown under Borrow. It does not cover reserve loans, which borrow WETH against <a href="/peth/split">fpETH</a>.
+<strong>Scope:</strong> this page covers pAsset troves/CDPs (shown under <strong>Borrow</strong>), not reserve loans. For the full vocabulary, see [Borrower terminology](/minting/minting-passets#borrower-terminology).
 </Callout>
 
 ## Individual Collateralization Ratio (ICR)
@@ -33,18 +33,6 @@ Your ICR moves on its own as ETH's price moves — you need not touch the trove 
 
 <TroveSimulator minCollateralRatio={1.5} />
 
-## Before you sign
-
-Before adjusting a trove, check:
-
-- Official app URL, network, and trove-manager contract.
-- Whether the action adds collateral, withdraws collateral, mints more debt, repays debt, or closes.
-- Current ICR and projected ICR after the transaction.
-- Recovery Mode status, minimum ICR, accrued interest, and borrow APR.
-- Redemption exposure after the adjustment.
-- Whether you have enough pAsset to repay, including accrued interest and rounding.
-- DEX or bonding-curve slippage if you buy pAsset or pETH before signing.
-- Token approvals, gas, simulation result, and quote freshness.
 
 <Callout variant="danger" title="Warning">
 Minting more or withdrawing collateral lowers your ICR. Drop below the minimum and your trove is <a href="/redemptions-liquidations/liquidations">liquidated</a> automatically: your collateral covers the debt plus a liquidation penalty, with no margin call, and only the surplus is returned for you to claim. <a href="/redemptions-liquidations/redemptions">Redemptions</a> can also reach your position while it is still solvent — there is no minimum ICR to cross — shrinking your collateral and pETH exposure proportionally without your consent. See the <a href="/resources/risk-disclosure">Risk Disclosure</a>.

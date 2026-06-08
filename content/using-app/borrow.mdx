@@ -23,16 +23,8 @@ App anchor: **Borrow** tab. Trove actions appear as pAsset borrowing/CDP actions
 | **CDP** | **Trove / CDP instance** | The contract mechanism behind a pAsset borrow position. |
 | **Loan / Reserve Loan** | **Reserve loan** | Borrow WETH against fpETH floor-value collateral; this is not a pAsset trove. |
 
-Docs use **trove** for a pAsset borrowing position because each position has its own collateral, debt, and ICR. The app or contracts may also say **Borrow** or **CDP**. A **reserve loan** is separate: it uses [fpETH](/peth/split) and the bonding-curve reserve, not pAsset debt.
+For the full **Borrow / CDP / trove / reserve loan** vocabulary, see [Borrower terminology](/minting/minting-passets#borrower-terminology).
 
-## Before you sign
-
-- Confirm whether you are opening a pAsset trove or a reserve loan.
-- Confirm the network, app URL, and relevant manager contract.
-- For a trove, check collateral amount, minted pAsset amount, ICR, minimum ICR, Recovery Mode status, borrow APR, and redemption exposure.
-- For a reserve loan, check fpETH collateral, WETH debt, max borrow amount, accrued debt behavior, performance fee, and close/repay requirements.
-- Check all approvals for pETH, fpETH, WETH, or pAssets.
-- Simulate the transaction and refresh the quote if floor price, borrow rate, or oracle state changed.
 
 ## Related docs
 

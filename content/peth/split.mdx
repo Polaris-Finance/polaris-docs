@@ -44,7 +44,7 @@ This is not an offchain guarantee. It depends on the splitter, bonding curve, re
 
 ## Reserve loans
 
-Reserve loans use **fpETH** as collateral. The borrowable WETH amount is based on the fpETH amount and current pETH floor price, not on pETH's market premium.
+Reserve loans use **fpETH** as collateral, and each loan is recorded onchain as an NFT. The borrowable WETH amount is based on the fpETH amount and current pETH floor price, not on pETH's market premium.
 
 That design reduces price-liquidation risk from pETH premium swings, but it does not make the position risk-free:
 
@@ -61,18 +61,9 @@ Reserve loans are separate from pAsset troves. A trove mints pUSD, pGOLD, or ano
 
 Floor carry is not a fixed APR. It depends on actual floor growth from protocol activity, execution costs, market pricing of fpETH, and whether the redemption path is available when you use it.
 
-## Before you sign
-
-- Confirm the action is Split, Merge, fpETH redemption, or reserve-loan collateralization.
-- Check the pETH, fpETH, vpETH, and WETH amounts shown by the app.
-- Check the current floor price, floor ratio, and quote timestamp.
-- For Merge, confirm you hold equal fpETH and vpETH amounts.
-- For fpETH redemption, confirm the WETH output and any fees or gas cost.
-- For reserve loans, confirm debt, max borrow amount, performance fee, and repay/close path.
-- Verify token approvals and spender addresses before signing.
 
 ## Related app tabs
 
 - [Split](/using-app/split) for splitting and merging.
 - [Borrow](/using-app/borrow) for reserve loans.
-- [Analytics](/using-app/analytics) for floor price and floor ratio.
+- [Dashboard & Analytics](/using-app/dashboard) for floor price and floor ratio.

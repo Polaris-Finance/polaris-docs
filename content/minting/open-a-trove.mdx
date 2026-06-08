@@ -18,29 +18,13 @@ App anchor: **Borrow** tab -> pAsset trove flow. If the app says CDP, it is refe
 This flow is testnet-actionable only on Sepolia (<code>11155111</code>) using the current Public Testnet 1 manifests. Production troves are not mainnet-actionable until <a href="/launch-status">Polaris Launch Status</a> publishes the official app, production addresses, final parameters, and audit status. Screenshots and exact UI labels are forthcoming; the steps below describe the flow, not the final button copy.
 </Callout>
 
-<Callout variant="info">
-<strong>Terminology:</strong> In the app, <strong>Borrow</strong> is the tab/action, <strong>CDP</strong> is the contract model, and <strong>trove</strong> is the individual pAsset debt position. A <strong>reserve loan</strong> is different: it borrows WETH against <a href="/peth/split">fpETH</a>, not pAssets against pETH.
-</Callout>
+For the full **Borrow / CDP / trove / reserve loan** vocabulary — including why a reserve loan is not a pAsset trove — see [Borrower terminology](/minting/minting-passets#borrower-terminology).
 
 ## Before you start
 
 - A wallet with the right asset for the environment: **Sepolia ETH** for Public Testnet 1 or **ETH on Ethereum mainnet** after production launch.
 - A target pAsset in mind — see [the catalog](/minting/passet-catalog).
 
-## Before you sign
-
-Opening a trove creates debt. Before signing, check:
-
-- Official app URL, network, and trove-manager contract.
-- Collateral token and amount: pETH only.
-- pAsset and debt amount: pUSD, pGOLD, or another listed pAsset.
-- Resulting ICR, minimum ICR, Recovery Mode status, and liquidation threshold.
-- Current borrow APR, accrued-interest behavior, and projected debt.
-- Redemption exposure: below-peg redemptions reduce every open trove pro-rata.
-- Bonding-curve fee, swap slippage, MEV exposure, and quote freshness if you acquire pETH in the same session.
-- Token approvals, spender address, and transaction simulation result.
-
-Launch parameters are still pending, so use the live app values rather than this guide's examples.
 
 ## Pre-launch parameter status
 

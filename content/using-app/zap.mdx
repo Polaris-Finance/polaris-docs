@@ -29,15 +29,6 @@ The zap is an execution shortcut. It does not change the economics of the underl
 
 Depending on the implementation, the app may ask for one transaction or several. Treat every approval and every signature as a separate action.
 
-## Before you sign
-
-- Confirm the source token is WETH and the destination pAsset is the one you want.
-- Confirm the target Stability Pool address and pAsset instance.
-- Check the pAsset purchase quote, swap route, fees, slippage limit, and quote freshness.
-- Check the projected pool deposit, pool share, APR estimate, and claimable reward token types.
-- Confirm the zap simulation succeeded before signing.
-- Verify every approval: token, spender, allowance, and whether it is reusable.
-- Confirm you accept Stability Pool first-loss risk: liquidations can burn deposited pAssets and replace them with pETH.
 
 ## Failure modes
 
@@ -48,4 +39,3 @@ A zap can fail because one leg changes before inclusion: slippage, depleted liqu
 - [Swap](/using-app/swap)
 - [Earn](/using-app/earn)
 - [Stability Pool](/yield/stability-pool)
-- [Deposit to the Stability Pool](/yield/deposit-to-stability-pool)
