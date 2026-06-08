@@ -117,8 +117,11 @@ function sitemapPolicy(route) {
 
   const volatileRoutes = new Set([
     '/launch-status',
-    '/paths/safety-verification',
+    '/quickstart',
+    '/troubleshooting',
+    '/resources/safety-verification',
     '/resources/contracts',
+    '/resources/parameters',
     '/resources/audits-security',
     '/resources/faq',
     '/resources/testnet'
@@ -129,16 +132,16 @@ function sitemapPolicy(route) {
   }
 
   if (
-    /^\/paths(\/|$)/.test(route) ||
-    /^\/minting\/(open-a-trove|minting-passets|managing-your-trove)$/.test(route) ||
-    /^\/yield\/deposit-to-stability-pool$/.test(route) ||
-    /^\/polar\/participate-in-conversion$/.test(route) ||
-    /^\/redemptions-liquidations\/(redemptions|liquidations|recovery-mode)$/.test(route)
+    /^\/using-app(?:\/|$)/.test(route) ||
+    /^\/minting\/(open-a-trove|managing-your-trove)$/.test(route) ||
+    /^\/yield(?:\/yield-sources)?$/.test(route) ||
+    /^\/polar\/(conversion-auctions|tokenomics)$/.test(route) ||
+    /^\/redemptions-liquidations(?:\/(liquidations|recovery-mode))?$/.test(route)
   ) {
     return { changefreq: 'weekly', priority: '0.8' }
   }
 
-  if (/^\/resources\/(risk-disclosure|brand-assets|glossary)$/.test(route)) {
+  if (/^\/resources\/(risk-disclosure|brand-assets)$/.test(route)) {
     return { changefreq: 'monthly', priority: '0.7' }
   }
 

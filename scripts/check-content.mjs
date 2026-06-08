@@ -55,6 +55,19 @@ const forbiddenPatterns = [
   }
 ]
 
+const exactFreshnessRequired = new Set([
+  'content/launch-status.mdx',
+  'content/quickstart.mdx',
+  'content/resources/contracts.mdx',
+  'content/resources/parameters.mdx',
+  'content/resources/safety-verification.mdx',
+  'content/resources/testnet.mdx',
+  'content/troubleshooting.mdx'
+])
+
+const exactDatePattern =
+  /\b(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2},\s+\d{4}\b|\b\d{4}-\d{2}-\d{2}\b/
+
 function slugifyHeading(value) {
   return value
     .replace(/\[([^\]]+)]\([^)]+\)/g, '$1')
@@ -96,6 +109,20 @@ for (const file of files) {
             `${rel}: description is ${description.length} chars (keep ≤160 so search engines don't truncate it)`
           )
         }
+      }
+    }
+
+    const bannerMatch = /<PageStatusBanner\s+lastUpdated=(["'])(.*?)\1\s*\/>/.exec(text)
+    const containsContractAddress = /\b0x[a-fA-F0-9]{40}\b/.test(text)
+    if (exactFreshnessRequired.has(rel) || containsContractAddress) {
+      if (!bannerMatch) {
+        failures.push(
+          `${rel}: high-risk page must include PageStatusBanner with exact lastUpdated date`
+        )
+      } else if (!exactDatePattern.test(bannerMatch[2])) {
+        failures.push(
+          `${rel}: high-risk PageStatusBanner lastUpdated must use an exact date, found "${bannerMatch[2]}"`
+        )
       }
     }
 

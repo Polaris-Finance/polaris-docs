@@ -28,23 +28,27 @@ Liquidation runs in two tiers.
 
 **Collateral surplus.** When the Stability Pool absorbs a liquidation, the trove surrenders only what covers its debt, a liquidation penalty, and gas compensation for the liquidator. Any collateral beyond that goes to the **Collateral Surplus Pool**, where the former borrower can claim it. (Collateral spread through the redistribution fallback is not returned this way.)
 
-## Pre-launch parameter status
+## Parameter status
 
-| Parameter | Status | Reader impact |
+Current Public Testnet 1 values that exist are published on [Parameters](/resources/parameters). Production values remain pending and can differ.
+
+| Parameter | Current Public Testnet 1 status | Reader impact |
 |---|---|---|
-| Minimum ICR per pAsset | Pending final values | Defines when a trove becomes liquidatable in Normal Mode |
-| Liquidation penalty / discount | Pending final values | Determines borrower loss and Stability Pool upside |
-| Gas compensation / keeper incentive | Implemented; final values pending | Affects whether liquidations execute quickly during stress |
-| Stability Pool offset priority | Intended first path; final implementation pending audit | Determines how much debt the pool absorbs before redistribution |
-| Redistribution formula | Pending final implementation | Determines how uncovered debt and collateral spread across remaining troves |
-| Oracle freshness and fallback rules | Pending final audited implementation | Determines whether liquidations pause, continue, or use fallback pricing on stale data |
-| Minimum debt / dust handling | Pending final values | Affects edge cases when troves are nearly closed |
+| Minimum ICR / MCR per pAsset | pUSD and pGOLD: 115%; production final pending | Defines when a trove becomes liquidatable in Normal Mode |
+| Recovery Mode trigger | pUSD and pGOLD: 110%; production final pending | Signals system stress, but does not change the liquidation line |
+| Recovery Mode action MCR | pUSD and pGOLD: 150%; production final pending | Tightens risk-increasing borrower actions while Recovery Mode is active |
+| Liquidation penalty / discount | Production-final value pending; verify app and contract state on testnet | Determines borrower loss and Stability Pool upside |
+| Gas compensation / keeper incentive | Implemented in the testnet flow; production-final value pending | Affects whether liquidations execute quickly during stress |
+| Stability Pool offset priority | Stability Pool first, then redistribution; audit-final details pending | Determines how much debt the pool absorbs before redistribution |
+| Redistribution formula | Audit-final publication pending | Determines how uncovered debt and collateral spread across remaining troves |
+| Oracle freshness and fallback rules | Audit-final publication pending | Determines whether liquidations pause, continue, or use fallback pricing on stale data |
+| Minimum debt / dust handling | Production-final rules pending | Affects edge cases when troves are nearly closed |
 
 ## Worked example: liquidation
 
-The numbers below are illustrative only. Suppose the app shows a 120% minimum ICR for a pUSD trove. A borrower has 10,000 pUSD of debt and pETH collateral valued at \$11,800, so the ICR is 118% — below the illustrative minimum, and liquidatable.
+The MCR number below is the current Public Testnet 1 pUSD/pGOLD value as of June 8, 2026. Suppose the app shows a 115% minimum ICR for a pUSD trove. A borrower has 10,000 pUSD of debt and pETH collateral valued at \$11,300, so the ICR is 113% — below the current testnet minimum, and liquidatable.
 
-If the Stability Pool is large enough, it burns 10,000 pUSD and receives the trove's pETH. The borrower's debt is cleared; the collateral covers the debt, the liquidation penalty, and gas compensation, with any surplus returned for the borrower to claim. Depositors receive pETH pro rata; in a normal overcollateralized liquidation, that pETH should be worth more than the pUSD burned, but the exact gain depends on the final penalty, execution timing, pETH price, gas, and slippage.
+If the Stability Pool is large enough, it burns 10,000 pUSD and receives the trove's pETH. The borrower's debt is cleared; collateral covers the debt plus the contract-defined liquidation penalty and gas compensation where available, with any surplus returned for the borrower to claim. Depositors receive pETH pro rata; in a normal overcollateralized liquidation, that pETH should be worth more than the pUSD burned, but the exact gain depends on the penalty, execution timing, pETH price, gas, and slippage.
 
 If the Stability Pool is empty or too small, the uncovered portion follows the redistribution path: remaining troves inherit a proportional slice of both the liquidated debt and collateral.
 
@@ -59,7 +63,7 @@ You are the system's first-loss backstop. In a flash crash, troves can be liquid
 </Callout>
 
 <Callout variant="info">
-Exact liquidation thresholds, penalties, and the minimum collateralization ratio per pAsset are finalized closer to launch.
+Current Public Testnet 1 MCR and Recovery Mode action values are published on [Parameters](/resources/parameters). Production liquidation thresholds, penalties, gas compensation, and audit-final behavior remain pending.
 </Callout>
 
 ## How liquidation interacts with system health

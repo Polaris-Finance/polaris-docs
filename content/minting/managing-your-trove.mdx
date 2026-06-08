@@ -31,7 +31,9 @@ Your ICR moves on its own as ETH's price moves — you need not touch the trove 
 
 ## Trove Health Simulator
 
-<TroveSimulator minCollateralRatio={1.5} />
+The simulator below defaults to the current Public Testnet 1 MCR of 115%, not the Emergency Mode action MCR of 150%. Always verify the live value on [Parameters](/resources/parameters) and in the app before signing.
+
+<TroveSimulator minCollateralRatio={1.15} />
 
 
 <Callout variant="danger" title="Warning">
@@ -40,12 +42,15 @@ Minting more or withdrawing collateral lowers your ICR. Drop below the minimum a
 
 ## Parameter status
 
-| Parameter | Status | Why it matters |
+Current Public Testnet 1 values are published on [Parameters](/resources/parameters). Production values remain pending and can differ.
+
+| Parameter | Current Public Testnet 1 status | Why it matters |
 |---|---|---|
-| Minimum ICR | Pending final per-pAsset values | Defines the liquidation line in Normal Mode |
-| Recovery Mode threshold | Pending final value | When system backing is thin, actions that reduce collateral or add debt face a higher minimum ratio; liquidation eligibility stays at the normal minimum |
-| Borrow-rate formula and bounds | Pending final audited values | Determines how quickly debt grows |
-| Minimum debt / dust rules | Pending final values | Can affect partial repayments, partial redemptions, and closing |
+| Minimum ICR / MCR | pUSD and pGOLD: 115% | Defines the liquidation line in Normal Mode |
+| Recovery Mode trigger | pUSD and pGOLD: 110% | When system backing is thin, risk-increasing actions face stricter rules; liquidation eligibility stays at the normal minimum |
+| Recovery Mode action minimum | pUSD and pGOLD: 150% | Defines the higher bar for actions that withdraw collateral or add debt while Recovery Mode is active |
+| Fee and decay constants | Current mint/redemption fee floors, alpha values, and decay factors live on [Parameters](/resources/parameters); production-final audited values remain pending | Determines how costs and rate reactions evolve |
+| Minimum debt / dust rules | Production-final rules pending; follow the app quote and live contract state on testnet | Can affect partial repayments, partial redemptions, and closing |
 
 ## Add collateral
 

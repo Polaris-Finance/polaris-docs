@@ -2,51 +2,55 @@
 
 > User and developer documentation for Polaris Finance — the self-scaling stablecoin operating system. Mint pAssets backed entirely by onchain collateral and yield. No T-bills. No CEXs. No compromises.
 
-## Overview
+## Introduction
 
 - [Polaris Finance Documentation](https://tokenbrice.github.io/polaris-docs/): Polaris is the pETH-powered yield layer for all of DeFi, minting pAssets backed entirely by onchain collateral and yield. No T-bills. No CEXs. No compromises.
-- [Changelog](https://tokenbrice.github.io/polaris-docs/changelog): A documentation changelog for the Polaris docs, in Keep a Changelog style. This tracks changes to the docs only, not protocol release history.
-- [Polaris Core Concepts](https://tokenbrice.github.io/polaris-docs/core-concepts): A one-page map of the Polaris system, with every key term defined briefly and linked to its full explanation.
+
+## Launch Status
+
 - [Polaris Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status): Current Polaris phase, official app URL, supported network, production status, and what is safe to use today.
+
+## Quickstart
+
 - [Public Testnet Quickstart](https://tokenbrice.github.io/polaris-docs/quickstart): The fastest safe path to try Polaris on Public Testnet 1 with Sepolia test assets.
+
+## Using the App
+
+- [Dashboard & Analytics](https://tokenbrice.github.io/polaris-docs/using-app): How to read the Polaris app Dashboard and Analytics before choosing an action.
+- [Advanced](https://tokenbrice.github.io/polaris-docs/using-app/advanced): How to use Polaris Advanced tools for approvals, PSM actions, reserve loans, staking, conversion, and manual checks.
+- [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow): How to open Polaris borrow positions from the app Borrow tab.
+- [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn): How to deposit, withdraw, claim, and check Polaris Earn positions.
+- [Manage Trove](https://tokenbrice.github.io/polaris-docs/using-app/manage-trove): How to add collateral, mint more, repay debt, close, and monitor a Polaris trove.
+- [Split](https://tokenbrice.github.io/polaris-docs/using-app/split): How to split pETH into fpETH and vpETH, merge them back, and avoid common execution mistakes.
+- [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap): How to use Polaris Swap with quote, approval, slippage, and route checks.
+- [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap): How to use Polaris Zap routes and recover safely when one bundled step fails.
+
+## Troubleshooting
+
 - [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting): Fix common Polaris app issues on Public Testnet 1.
-- [Why Polaris Finance](https://tokenbrice.github.io/polaris-docs/why-polaris): The stablecoin trilemma, the degradation pattern, and how Polaris is architected so that trustlessness and scale stop being mutually exclusive.
 
-## Minting & Troves
+## Understand Polaris
 
+- [Polaris Core Concepts](https://tokenbrice.github.io/polaris-docs/core-concepts): A one-page map of the Polaris system, with every key term defined briefly and linked to its full explanation.
 - [Minting Polaris pAssets](https://tokenbrice.github.io/polaris-docs/minting): How the Polaris CDP model mints pAssets directly from the protocol against pETH collateral, with autonomous market-aware interest rates.
 - [Managing a Polaris Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove): Manage a Polaris trove around its Individual Collateralization Ratio (ICR) — add collateral, mint or repay debt, track interest, and close out cleanly.
 - [Open a Polaris Trove](https://tokenbrice.github.io/polaris-docs/minting/open-a-trove): Step-by-step guide to opening a Polaris trove — deposit pETH, mint a pAsset, and pick a safe buffer to stay clear of liquidation and redemption.
 - [Polaris Asset Catalog](https://tokenbrice.github.io/polaris-docs/minting/passet-catalog): The pAsset debt tokens Polaris can mint (pUSD, pGOLD, pCHF, pBigMac), how pETH differs as collateral, and how StablecoinOS can add new assets.
-
-## pETH & Bonding Curve
-
 - [pETH Bonding Curve](https://tokenbrice.github.io/polaris-docs/peth): How one two-way bonding curve gives pETH contract-native liquidity, a rising floor price, and protocol-wide value capture, with no liquidity providers required.
 - [pETH Floor Price](https://tokenbrice.github.io/polaris-docs/peth/floor-price): pETH's floor price is a mathematically enforced minimum under the bonding-curve invariants. What it is, why it rises, and how the floor ratio frames downside.
 - [pETH Split: fpETH and vpETH](https://tokenbrice.github.io/polaris-docs/peth/split): How pETH splits into fpETH and vpETH, what each leg represents, how merging works, and how reserve loans use fpETH.
-
-## Earning Yield
-
-- [Polaris Stability Pool](https://tokenbrice.github.io/polaris-docs/yield): The Stability Pool is a reserve of pAssets that backstops liquidations and is the primary venue for earning yield on Polaris.
-- [Polaris Yield Sources](https://tokenbrice.github.io/polaris-docs/yield/yield-sources): Every source of pAsset yield on Polaris is onchain, internal to the protocol, and scales with activity — yield that is owned, not rented.
-
-## Redemptions & Liquidations
-
-- [pAsset Redemptions](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations): A redemption swaps a below-peg pAsset for its pETH collateral at face value minus a fee. How the arbitrage restores peg, and what it means for borrowers.
-- [Polaris Liquidations](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations): A trove below its minimum collateralization ratio is liquidated to keep the pAsset backed. The Stability Pool absorbs the debt, or it redistributes to troves.
-- [Polaris Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode): Recovery Mode is the protective state Polaris enters when system reserve backing runs thin relative to total debt. How it works, and how to stay safe.
-
-## POLAR & Conversion
-
 - [POLAR Token, Staking, and Conversion](https://tokenbrice.github.io/polaris-docs/polar): Why POLAR exists, how it is minted only by burning pETH, why its dilution is productive, and how staking and conversion fit together.
 - [POLAR Conversion Auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions): The conversion auction bridges pETH and POLAR — a spike-and-decay auction where burning pETH mints POLAR, raises the floor price, and releases ETH yield.
 - [POLAR Tokenomics](https://tokenbrice.github.io/polaris-docs/polar/tokenomics): How POLAR works: issuance by burning pETH, current staking, future vePOLAR, yield routes, and pending distribution terms.
-
-## Stewardship
-
+- [pAsset Redemptions](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations): A redemption swaps a below-peg pAsset for its pETH collateral at face value minus a fee. How the arbitrage restores peg, and what it means for borrowers.
+- [Polaris Liquidations](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations): A trove below its minimum collateralization ratio is liquidated to keep the pAsset backed. The Stability Pool absorbs the debt, or it redistributes to troves.
+- [Polaris Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode): Recovery Mode is the protective state Polaris enters when system reserve backing runs thin relative to total debt. How it works, and how to stay safe.
 - [Polaris Stewardship, not Governance](https://tokenbrice.github.io/polaris-docs/stewardship): Polaris keeps its core immutable and lets vePOLAR steward only bounded parameters, onboarding decisions, and edge processes that cannot be automated.
 - [Fee Router & Flows](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router): Polaris revenue routing: the Fee Router buffers protocol yield to troves and stakers, while Flows share hard-asset revenue with contracts building on Polaris.
 - [vePOLAR Locking and Stewardship](https://tokenbrice.github.io/polaris-docs/stewardship/vepolar): vePOLAR is vote-escrowed POLAR. Lock POLAR to receive stewardship rights and a share of protocol yield without touching the immutable core.
+- [Why Polaris Finance](https://tokenbrice.github.io/polaris-docs/why-polaris): The stablecoin trilemma, the degradation pattern, and how Polaris is architected so that trustlessness and scale stop being mutually exclusive.
+- [Polaris Stability Pool](https://tokenbrice.github.io/polaris-docs/yield): The Stability Pool is a reserve of pAssets that backstops liquidations and is the primary venue for earning yield on Polaris.
+- [Polaris Yield Sources](https://tokenbrice.github.io/polaris-docs/yield/yield-sources): Every source of pAsset yield on Polaris is onchain, internal to the protocol, and scales with activity — yield that is owned, not rented.
 
 ## Resources
 
@@ -60,13 +64,6 @@
 - [Polaris Safety & Verification](https://tokenbrice.github.io/polaris-docs/resources/safety-verification): A pre-signing checklist for verifying the Polaris frontend, network, contracts, parameters, risks, and audit status.
 - [Polaris Public Testnet 1 Artifacts](https://tokenbrice.github.io/polaris-docs/resources/testnet): Sepolia chain ID, official testnet app, testnet caveats, active pAssets, and manifest locations for Public Testnet 1.
 
-## using-app
+## Changelog
 
-- [Dashboard & Analytics](https://tokenbrice.github.io/polaris-docs/using-app): How to read the Polaris app Dashboard and Analytics before choosing an action.
-- [Advanced](https://tokenbrice.github.io/polaris-docs/using-app/advanced): How to use Polaris Advanced tools for approvals, PSM actions, reserve loans, staking, conversion, and manual checks.
-- [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow): How to open Polaris borrow positions from the app Borrow tab.
-- [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn): How to deposit, withdraw, claim, and check Polaris Earn positions.
-- [Manage Trove](https://tokenbrice.github.io/polaris-docs/using-app/manage-trove): How to add collateral, mint more, repay debt, close, and monitor a Polaris trove.
-- [Split](https://tokenbrice.github.io/polaris-docs/using-app/split): How to split pETH into fpETH and vpETH, merge them back, and avoid common execution mistakes.
-- [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap): How to use Polaris Swap with quote, approval, slippage, and route checks.
-- [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap): How to use Polaris Zap routes and recover safely when one bundled step fails.
+- [Changelog](https://tokenbrice.github.io/polaris-docs/changelog): A documentation changelog for the Polaris docs, in Keep a Changelog style. This tracks changes to the docs only, not protocol release history.

@@ -5,7 +5,7 @@ description: Sepolia chain ID, official testnet app, testnet caveats, active pAs
 
 # Polaris Public Testnet 1 Artifacts
 
-<PageStatusBanner lastUpdated="June 2026" />
+<PageStatusBanner lastUpdated="June 8, 2026" />
 
 This page owns Public Testnet 1 artifact sources: network, manifest paths, and testnet caveats. Addresses live on [Contracts & Addresses](/resources/contracts). Numeric values live on [Parameters](/resources/parameters).
 
@@ -14,6 +14,7 @@ This page owns Public Testnet 1 artifact sources: network, manifest paths, and t
 | Fact | Value |
 |---|---|
 | Public phase | Public Testnet 1 |
+| Last verified | June 8, 2026 |
 | Network | Sepolia |
 | Chain ID | `11155111` |
 | Official app | [https://app.testnet.polarisfinance.io/](https://app.testnet.polarisfinance.io/) |
@@ -25,16 +26,16 @@ This page owns Public Testnet 1 artifact sources: network, manifest paths, and t
 
 ## Manifest locations
 
-The current Sepolia artifacts are checked into the Polaris protocol repository at `/home/ahirice/Documents/git/polaris`.
+Protocol artifact source and commit are not public in these docs during Public Testnet 1. The relative paths below identify the internal Sepolia manifests used for the published address and parameter tables; external readers should treat [Contracts & Addresses](/resources/contracts) and [Parameters](/resources/parameters) as the public source until a repository URL and commit are published.
 
-| Manifest | What it covers | Protocol repo path |
+| Manifest | What it covers | Internal protocol path |
 |---|---|---|
 | Core manifest | Reserve token, pETH/bonding curve, POLAR/share system, staking, fee router, reserve loans, stewardship, splitter, vpToken | `deployments/sepolia/deployment-manifest.core.ts` |
 | pUSD manifest | pUSD token, CDP manager, Stability Pool, PSM, price feed, medianiser, interest controller, read helper | `deployments/sepolia/deployment-manifest.pusd.ts` |
 | pGOLD manifest | pGOLD token, CDP manager, Stability Pool, PSM, price feed, ETH/USD and XAU/USD medianisers, interest controller, read helper | `deployments/sepolia/deployment-manifest.pgold.ts` |
 | Deploy script defaults | Fee floors, fee alpha values, decay factors, initial rates, and deployment constants not all written into the manifests | `script/DeployPolaris.s.sol` |
 
-Treat these as testnet artifacts. They are useful for testing, indexer scaffolding, and UI verification, but they are not production-canonical.
+Treat these as testnet artifacts. They are useful for testing, indexer scaffolding, and UI verification, but they are not public provenance or production-canonical.
 
 ## Related canonical pages
 

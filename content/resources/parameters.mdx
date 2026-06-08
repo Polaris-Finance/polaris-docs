@@ -5,9 +5,9 @@ description: Canonical Public Testnet 1 parameter values, source, network, and p
 
 # Polaris Parameters
 
-<PageStatusBanner lastUpdated="June 2026" />
+<PageStatusBanner lastUpdated="June 8, 2026" />
 
-This page owns numeric Polaris parameters. Task and concept pages should link here instead of repeating parameter tables.
+This page owns current numeric Polaris parameters. Task and concept pages should link here instead of repeating parameter tables; when a numeric value is necessary, this page is the source of truth.
 
 <Callout variant="warning" title="Testnet values">
 Values below are Public Testnet 1 values last reviewed on June 8, 2026. They are replaceable Sepolia values, not production constants. Production parameters are not published unless this page and <a href="/launch-status">Launch Status</a> say they are.
@@ -19,10 +19,10 @@ Values below are Public Testnet 1 values last reviewed on June 8, 2026. They are
 |---|---|
 | Network | Sepolia |
 | Chain ID | `11155111` |
-| Review date | June 8, 2026 |
+| Last verified | June 8, 2026 |
 | Artifact source | [Public Testnet 1 Artifacts](/resources/testnet) |
 | Address source | [Contracts & Addresses](/resources/contracts) |
-| Production finality | Not published |
+| Production finality | Pending; do not infer production constants from Sepolia values |
 
 ## Shared core parameters
 
@@ -50,3 +50,4 @@ Values below are Public Testnet 1 values last reviewed on June 8, 2026. They are
 - Use the app quote and live contract reads before signing any transaction.
 - Do not copy Sepolia values into a production integration.
 - If a task page and this page disagree, treat this page as the parameter owner and verify against the current manifest.
+- Treat older beta, MCR, or Recovery Mode examples as stale if they disagree with the values above.

@@ -1,0 +1,55 @@
+# Polaris Documentation
+
+> User and developer documentation for Polaris Finance — the self-scaling stablecoin operating system. Mint pAssets backed entirely by onchain collateral and yield. No T-bills. No CEXs. No compromises.
+
+# Launch Status
+
+## Polaris Launch Status
+
+URL: https://tokenbrice.github.io/polaris-docs/launch-status
+
+# Polaris Launch Status
+
+This page owns current status: what is live, what is testnet-only, what is not live, and which app URL is official.
+
+Polaris is in <strong>Public Testnet 1</strong>. Use app.testnet.polarisfinance.io only on Sepolia (<code>11155111</code>) with test assets. Production/mainnet use is not live.
+
+## Current phase
+
+Item | Status
+
+Public phase | **Public Testnet 1**
+Testnet network | **Sepolia**, chain ID `11155111`
+Official testnet app | [https://app.testnet.polarisfinance.io/](https://app.testnet.polarisfinance.io/)
+Testnet-active pAssets | pUSD and pGOLD
+Illustrative or future pAssets | pCHF, pBigMac, and other catalog examples
+Production network | Ethereum mainnet, chain ID `1`, forthcoming
+Production / mainnet app | Not live or published in these docs
+Canonical production contracts | Not published yet
+Final audit reports | Not published in these docs yet
+Bug bounty / disclosure program | Not public yet
+
+## What this means
+
+- You can try Polaris on Public Testnet 1 with Sepolia test assets only.
+- Testnet assets have no monetary value, no production redemption, and no mainnet claim.
+- Do not use a production app, production address, audit claim, bounty link, or mainnet workflow unless this page says it is live.
+- Current Sepolia artifacts can change after redeploys.
+
+## Where each exact fact lives
+
+Need | Canonical page
+
+Fastest safe testnet flow | [Public Testnet Quickstart](https://tokenbrice.github.io/polaris-docs/quickstart)
+Frontend, network, wallet, and signing checks | [Safety & Verification](https://tokenbrice.github.io/polaris-docs/resources/safety-verification)
+Sepolia manifest paths and artifact sources | [Public Testnet 1 Artifacts](https://tokenbrice.github.io/polaris-docs/resources/testnet)
+Contract addresses and verification rules | [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts)
+Numeric protocol parameters | [Parameters](https://tokenbrice.github.io/polaris-docs/resources/parameters)
+Risk taxonomy | [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure)
+Audit and disclosure status | [Audits & Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security)
+
+## Start here
+
+If you want to use the app now, follow [Public Testnet Quickstart](https://tokenbrice.github.io/polaris-docs/quickstart). If anything in your wallet prompt conflicts with this page, stop and verify before signing.
+
+Relevant app/search vocabulary: app, official app, testnet app, app.testnet.polarisfinance.io, connect wallet, testnet, Public Testnet 1, Sepolia, Sepolia ETH, chain ID 11155111, WETH faucet, borrow, earn, swap, contracts, audits.

@@ -2,7 +2,7 @@
 
 > User and developer documentation for Polaris Finance — the self-scaling stablecoin operating system. Mint pAssets backed entirely by onchain collateral and yield. No T-bills. No CEXs. No compromises.
 
-# using-app
+# Using the App
 
 ## Dashboard & Analytics
 
@@ -15,6 +15,10 @@ URL: https://tokenbrice.github.io/polaris-docs/using-app
 The Dashboard is the app's read-only starting point. Use it to check wallet balances, open positions, claimable rewards, and system health before moving to Swap, Borrow, Earn, Split, Zap, or Advanced.
 
 Analytics shows protocol-wide context such as pool sizes, borrow costs, floor-related metrics, and stress indicators. Treat Analytics as context, not as a transaction quote.
+
+Image: Polaris Dashboard and Analytics showing wallet balances, open positions, rewards, and system-health cards
+
+*The Dashboard is the read-only checkpoint before moving to action tabs.*
 
 ## Before you start
 
@@ -114,6 +118,10 @@ URL: https://tokenbrice.github.io/polaris-docs/using-app/borrow
 
 Borrow is where you create collateralized positions. For pAssets, this means depositing pETH collateral and minting debt through a trove/CDP flow. Where exposed, Borrow may also include reserve-loan actions against fpETH.
 
+Image: Polaris Borrow tab showing a pAsset trove form with collateral amount, debt amount, collateral ratio, and risk details
+
+*Borrow surfaces the position inputs and health checks before a trove action is signed.*
+
 ## Before you start
 
 - Use Public Testnet 1 at [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io) on Sepolia, chain ID `11155111`.
@@ -151,6 +159,8 @@ Borrowing creates liquidation and redemption exposure. Keep protocol explanation
 - Use [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap) to acquire or rebalance assets.
 - Use [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn) if you want to deposit pAssets into the Stability Pool.
 
+Relevant app/search vocabulary: Borrow, Manage Trove, borrow, mint, open trove, repay, close trove, pUSD, pGOLD, ICR, official app.
+
 ---
 
 ## Earn
@@ -162,6 +172,10 @@ URL: https://tokenbrice.github.io/polaris-docs/using-app/earn
 ## What it does
 
 Earn groups protocol-native yield actions exposed in the app. This includes Stability Pool deposits, withdrawals, claimable gains, and POLAR staking controls where available in the current deployment.
+
+Image: Polaris Earn tab showing Stability Pool deposits, staking controls, claimable rewards, and APR context
+
+*Earn groups deposit, withdrawal, claim, and staking actions in one place.*
 
 ## Before you start
 
@@ -200,6 +214,8 @@ Stability Pool deposits are first-loss capital during liquidations. APR estimate
 - Use [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap) to acquire deposit assets.
 - Use [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap) for bundled swap-plus-deposit.
 - Use [Dashboard & Analytics](https://tokenbrice.github.io/polaris-docs/using-app) to monitor deposits and rewards.
+
+Relevant app/search vocabulary: Earn, earn, yield, APR, Stability Pool, deposit, claim rewards.
 
 ---
 
@@ -250,6 +266,8 @@ A healthy ICR protects against liquidation, not against proportional redemptions
 - Use [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap) to acquire pETH or repayment assets.
 - Use [Dashboard & Analytics](https://tokenbrice.github.io/polaris-docs/using-app) to monitor the position before markets move.
 
+Relevant app/search vocabulary: Borrow, Manage Trove, borrow, mint, open trove, repay, close trove, pUSD, pGOLD, ICR, official app.
+
 ---
 
 ## Split
@@ -261,6 +279,10 @@ URL: https://tokenbrice.github.io/polaris-docs/using-app/split
 ## What it does
 
 Split converts pETH into matching fpETH and vpETH balances. Merge reverses the action when you hold equal amounts of both legs. Use this page for the app workflow; use [pETH Split](https://tokenbrice.github.io/polaris-docs/peth/split) for the mechanism.
+
+Image: Polaris Split tab showing pETH split and merge controls for fpETH and vpETH balances
+
+*Split and Merge change pETH exposure, so review both legs before signing.*
 
 ## Before you start
 
@@ -297,6 +319,8 @@ Holding only fpETH or only vpETH changes your exposure. Read [pETH Split](https:
 - Use [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap) if the app quotes a supported leg route.
 - Use [Advanced](https://tokenbrice.github.io/polaris-docs/using-app/advanced) only for manual actions you understand.
 
+Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor price.
+
 ---
 
 ## Swap
@@ -308,6 +332,10 @@ URL: https://tokenbrice.github.io/polaris-docs/using-app/swap
 ## What it does
 
 Swap exchanges app-supported assets through the route quoted by Polaris. Routes may include WETH, pETH, fpETH, vpETH, pAssets, or protocol modules exposed by the current Public Testnet 1 deployment.
+
+Image: Polaris Swap tab showing input and output assets, quoted route, minimum received, and slippage controls
+
+*Swap quotes should be refreshed and reviewed before approval or execution.*
 
 ## Before you start
 
@@ -345,6 +373,8 @@ Swaps can lose value through slippage, price movement, stale quotes, gas, and ex
 - Use [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow) after acquiring pETH or a pAsset.
 - Use [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn) after acquiring a Stability Pool asset.
 - Use [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap) if you want the app to bundle swap plus deposit.
+
+Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor price.
 
 ---
 
@@ -398,3 +428,5 @@ A zap combines swap, approval, and deposit risks. If a zap stops midway, inspect
 - Use [Dashboard & Analytics](https://tokenbrice.github.io/polaris-docs/using-app) to confirm the final state.
 - Use [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap) if you received an intermediate token.
 - Use [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn) to complete a deposit manually.
+
+Relevant app/search vocabulary: Earn, earn, yield, APR, Stability Pool, deposit, claim rewards.

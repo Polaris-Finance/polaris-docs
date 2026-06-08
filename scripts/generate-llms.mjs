@@ -38,12 +38,6 @@ function routeForFile(fullPath) {
   return `/${route}`
 }
 
-function topLevel(fullPath) {
-  const rel = path.relative(contentDir, fullPath).replace(/\\/g, '/')
-  const index = rel.indexOf('/')
-  return index === -1 ? '' : rel.slice(0, index)
-}
-
 function parsePage(fullPath) {
   const text = readFileSync(fullPath, 'utf8')
   let frontmatter = ''
@@ -158,7 +152,7 @@ function stripJsxTags(value) {
     .replace(/<NextSteps\s+([\s\S]*?)\/>/g, (_match, props) => renderNextSteps(props))
     .replace(
       /<LaunchTimeline\s*\/>/g,
-      'Image: Polaris launch timeline. Early Research in 2024. Team Formation in June 2025. Testnet 1, private, March 2026. Testnet 2, public, May 2026, the current phase. Mainnet, forthcoming.'
+      'Image: Polaris launch timeline. Early Research in 2024. Team Formation in June 2025. Public Testnet 1 on Sepolia in March 2026, the current phase. Mainnet, forthcoming.'
     )
     .replace(
       /<SystemOverviewFigure\s*\/>/g,
@@ -254,90 +248,22 @@ function validateCleanLlmsFull(value) {
     .map((pattern) => `llms-full.txt contains ${pattern}`)
 }
 
-const routeVocabulary = [
-  {
-    match: /^\/$/,
-    terms: ['app', 'official app', 'testnet', 'Testnet 2', 'Sepolia', 'pETH', 'pAssets']
-  },
-  {
-    match: /^\/launch-status$/,
-    terms: [
-      'app',
-      'official app',
-      'testnet app',
-      'app.testnet.polarisfinance.io',
-      'testnet',
-      'Testnet 2',
-      'Sepolia',
-      'chain ID 11155111',
-      'WETH faucet',
-      'contracts',
-      'audits'
-    ]
-  },
-  {
-    match: /^\/getting-started$/,
-    terms: [
-      'app',
-      'official app',
-      'connect wallet',
-      'testnet',
-      'Sepolia',
-      'Sepolia ETH',
-      'WETH faucet',
-      'borrow',
-      'earn',
-      'swap'
-    ]
-  },
-  {
-    match: /^\/paths$/,
-    terms: ['Dashboard', 'Swap', 'Borrow', 'Earn', 'Split', 'Zap', 'Guide', 'Advanced', 'Analytics']
-  },
-  {
-    match: /^\/paths\/safety-verification$/,
-    terms: ['official app', 'app URL', 'phishing', 'verify contracts', 'testnet', 'mainnet']
-  },
-  {
-    match:
-      /^\/paths\/borrow-passets$|^\/minting\/(open-a-trove|minting-passets|managing-your-trove)$/,
-    terms: ['Borrow', 'borrow', 'mint', 'open trove', 'pUSD', 'pGOLD', 'ICR', 'official app']
-  },
-  {
-    match: /^\/paths\/earn-yield$|^\/yield\//,
-    terms: ['Earn', 'earn', 'yield', 'APR', 'Stability Pool', 'deposit', 'claim rewards']
-  },
-  {
-    match: /^\/peth\/(bonding-curve|floor-price)$|^\/paths\/hold-use-peth$/,
-    terms: ['Swap', 'swap', 'Split', 'fpETH', 'vpETH', 'pETH', 'floor price']
-  },
-  {
-    match: /^\/resources\/(glossary|contracts|faq)$/,
-    terms: [
-      'app',
-      'official app',
-      'testnet',
-      'Sepolia',
-      'WETH',
-      'WETH faucet',
-      'Zap',
-      'Split',
-      'Swap',
-      'Borrow',
-      'Earn',
-      'Guide',
-      'Advanced',
-      'Analytics',
-      'APR',
-      'Reserve Loan'
-    ]
-  },
-  {
-    match: /^\/polar\/(participate-in-conversion|conversion-auctions|polar-token)$/,
-    terms: ['POLAR', 'convert', 'lock', 'vePOLAR', 'burn pETH', 'conversion auction']
-  }
-]
+const appPagePath = path.join(root, 'app/[[...mdxPath]]/page.jsx')
 
+function loadRouteVocabulary() {
+  const source = readFileSync(appPagePath, 'utf8')
+  const match = /const searchVocabulary = (\[[\s\S]*?\])\n\nfunction searchTermsForPath/.exec(
+    source
+  )
+
+  if (!match) {
+    throw new Error('Could not load searchVocabulary from app/[[...mdxPath]]/page.jsx')
+  }
+
+  return Function('"use strict"; return (' + match[1] + ');')()
+}
+
+const routeVocabulary = loadRouteVocabulary()
 function vocabularyForRoute(route) {
   const terms = new Set()
   for (const entry of routeVocabulary) {
@@ -395,23 +321,37 @@ function extractPageDate(frontmatter, body, names) {
   return null
 }
 
-// Section titles for top-level areas, taken from the navigation order in
-// content/_meta.js so llms.txt mirrors the published information architecture.
+// Section labels mirror the current primary navigation vocabulary in content/_meta.js.
 const sectionTitles = {
-  explainers: 'Explainers',
-  paths: 'Choose Your Path',
-  minting: 'Minting & Troves',
-  peth: 'pETH & Bonding Curve',
-  yield: 'Earning Yield',
-  'redemptions-liquidations': 'Redemptions & Liquidations',
-  polar: 'POLAR & Conversion',
-  stewardship: 'Stewardship',
+  introduction: 'Introduction',
+  'launch-status': 'Launch Status',
+  quickstart: 'Quickstart',
+  'using-app': 'Using the App',
+  troubleshooting: 'Troubleshooting',
+  'understand-polaris': 'Understand Polaris',
   resources: 'Resources',
-  developers: 'Developers'
+  changelog: 'Changelog'
 }
-const sectionOrder = ['', ...Object.keys(sectionTitles)]
-const overviewTitle = 'Overview'
+const sectionOrder = Object.keys(sectionTitles)
 
+function sectionForRoute(route) {
+  if (route === '/') return 'introduction'
+  if (route === '/launch-status') return 'launch-status'
+  if (route === '/quickstart') return 'quickstart'
+  if (route === '/troubleshooting') return 'troubleshooting'
+  if (route === '/changelog') return 'changelog'
+  if (/^\/using-app(?:\/|$)/.test(route)) return 'using-app'
+  if (/^\/resources(?:\/|$)/.test(route)) return 'resources'
+  if (
+    /^\/(?:why-polaris|core-concepts|peth|minting|yield|redemptions-liquidations|polar|stewardship)(?:\/|$)/.test(
+      route
+    )
+  ) {
+    return 'understand-polaris'
+  }
+
+  return route.replace(/^\//, '').split('/')[0] || 'introduction'
+}
 mkdirSync(publicDir, { recursive: true })
 if (!checkOnly) {
   rmSync(sectionDir, { recursive: true, force: true })
@@ -421,7 +361,7 @@ mkdirSync(sectionDir, { recursive: true })
 const pages = walk(contentDir)
   .map((fullPath) => ({
     route: routeForFile(fullPath),
-    section: topLevel(fullPath),
+    section: sectionForRoute(routeForFile(fullPath)),
     ...parsePage(fullPath)
   }))
   .sort((a, b) => a.route.localeCompare(b.route))
@@ -441,7 +381,7 @@ const header = `# Polaris Documentation\n\n> User and developer documentation fo
 
 const indexBody = orderedSections
   .map((section) => {
-    const heading = section === '' ? overviewTitle : (sectionTitles[section] ?? section)
+    const heading = sectionTitles[section] ?? section
     const lines = grouped
       .get(section)
       .map(({ route, title, description }) => {
@@ -467,11 +407,11 @@ const fullBody = orderedSections
 const llmsFull = `${header}\n${fullBody}\n`
 
 function sectionSlug(section) {
-  return section === '' ? 'overview' : section.replace(/[^a-z0-9-]/gi, '-').toLowerCase()
+  return section.replace(/[^a-z0-9-]/gi, '-').toLowerCase()
 }
 
 const sectionArtifacts = orderedSections.map((section) => {
-  const heading = section === '' ? overviewTitle : (sectionTitles[section] ?? section)
+  const heading = sectionTitles[section] ?? section
   const body = grouped
     .get(section)
     .map(({ route, title, body }) => `## ${title}\n\nURL: ${absoluteUrl(route)}\n\n${body}`)
@@ -489,7 +429,7 @@ const llmsIndex = `${JSON.stringify(
     pages: pages.map(({ route, section, title, description, keywords, updated, lastVerified }) => ({
       route,
       url: absoluteUrl(route),
-      section: section === '' ? overviewTitle : (sectionTitles[section] ?? section),
+      section: sectionTitles[section] ?? section,
       title,
       description,
       keywords,

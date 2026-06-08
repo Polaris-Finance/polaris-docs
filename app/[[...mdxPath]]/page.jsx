@@ -116,7 +116,6 @@ function SearchBoost({ path }) {
   return (
     <div
       aria-hidden="true"
-      data-pagefind-ignore="all"
       style={{
         position: 'absolute',
         width: 1,

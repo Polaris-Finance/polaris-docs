@@ -108,6 +108,17 @@ if (llmsIndex) {
   }
 }
 
+const llmsPath = path.join(publicDir, 'llms.txt')
+if (!existsSync(llmsPath)) {
+  failures.push('public/llms.txt is missing')
+} else {
+  const llms = readFileSync(llmsPath, 'utf8')
+  for (const route of routes) {
+    const expectedUrl = absoluteUrl(route)
+    if (!llms.includes(expectedUrl)) failures.push(`public/llms.txt is missing route ${route}`)
+  }
+}
+
 const pagefindEntry = path.join(outDir, '_pagefind', 'pagefind-entry.json')
 if (existsSync(pagefindEntry)) {
   const entry = JSON.parse(readFileSync(pagefindEntry, 'utf8'))

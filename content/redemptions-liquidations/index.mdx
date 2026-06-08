@@ -45,7 +45,7 @@ Their volumes also serve as the protocol's peg signal: a spike in redemptions re
 
 ### Fee formula
 
-The final redemption-fee formula is pending. The user-facing rule is simple: the redeemer receives the redeemed amount's reference value in pETH **minus** the fee and execution costs. If pUSD trades at \$0.98 but the fee, gas, pETH slippage, and MEV risk exceed the \$0.02 spread, the redemption is unprofitable.
+The production-final redemption-fee formula is pending. Current Public Testnet 1 fee floors, alpha values, and decay factors live on [Parameters](/resources/parameters). The user-facing rule is simple: the redeemer receives the redeemed amount's reference value in pETH **minus** the fee and execution costs. If pUSD trades at \$0.98 but the fee, gas, pETH slippage, and MEV risk exceed the \$0.02 spread, the redemption is unprofitable.
 
 The app should show a pre-confirmation quote once the interface is live. Treat examples here as arithmetic only.
 
@@ -53,7 +53,7 @@ The app should show a pre-confirmation quote once the interface is live. Treat e
 
 Redemptions target no specific trove, and there is no sorted ICR queue. A redemption applies **collectively** across every open trove on that pAsset at once. The protocol adjusts a global mint/redeem accounting product, and each trove's share of the redeemed debt and of the pETH removed is proportional to its recorded collateral. A larger trove absorbs a larger absolute share; ICR moves no trove ahead of or behind any other. Adding pETH collateral or repaying debt changes your trove's size, but moves you out of no queue, because none exists.
 
-The only fill limits are at the system level: you cannot redeem the entire outstanding debt (the call reverts if the requested pAsset is greater than or equal to total system debt), and the system must stay above its minimum total collateral. Final minimum-debt and dust rules are pending.
+The only fill limits are at the system level: you cannot redeem the entire outstanding debt (the call reverts if the requested pAsset is greater than or equal to total system debt), and the system must stay above its minimum total collateral. Current published ratios live on [Parameters](/resources/parameters); production-final minimum-debt and dust rules remain pending.
 
 ### Borrower effects
 
@@ -73,7 +73,7 @@ Being redeemed against is not a liquidation loss: your debt is repaid at face va
 
 A higher collateralization ratio protects you against **liquidation**, but does **not** exempt you from redemptions. Every open trove on that pAsset absorbs a proportional share of each redemption regardless of ICR. Because the split is by collateral, a larger trove absorbs a larger absolute amount, but no level of ICR moves you out of range.
 
-> **Note:** Polaris adds borrower-protection details to the naive redemption design. Exact mechanics, including fee routing, dust handling, and any caps or cooldowns, are finalized closer to launch.
+> **Note:** Polaris adds borrower-protection details to the naive redemption design. Current published fee constants live on [Parameters](/resources/parameters); production-final fee routing, dust handling, caps, cooldowns, and related mechanics remain pending.
 
 ## Worked example: redemption impact
 

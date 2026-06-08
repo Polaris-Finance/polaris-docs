@@ -213,6 +213,8 @@ An app flow that bundles multiple steps, such as WETH -> pUSD or pGOLD -> Stabil
 
 Missing a term? The narrative version of every concept lives on its dedicated page, starting from [Core Concepts](https://tokenbrice.github.io/polaris-docs/core-concepts); the long-form essays are on the [Polaris blog](https://polarisfinance.io/blog/).
 
+Relevant app/search vocabulary: app, official app, testnet, Sepolia, WETH, WETH faucet, Zap, Split, Swap, Borrow, Earn, Guide, Advanced, Analytics, APR, Reserve Loan.
+
 ---
 
 ## Polaris Audits & Security
@@ -351,6 +353,17 @@ URL: https://tokenbrice.github.io/polaris-docs/resources/contracts
 This page owns contract addresses and verification rules. Public Testnet 1 addresses are Sepolia artifacts and may be redeployed. Production addresses are not published yet.
 
 Do not use any claimed production address unless it appears here after Launch Status says production is live.
+
+## Source and freshness
+
+Field | Value
+
+Last verified | June 8, 2026
+Network | Sepolia
+Chain ID | `11155111`
+Address source | Public Testnet 1 internal Sepolia manifests listed on [Public Testnet 1 Artifacts](https://tokenbrice.github.io/polaris-docs/resources/testnet)
+Public artifact commit/source URL | Not published in these docs during Public Testnet 1
+Explorer verification pattern | Open `https://sepolia.etherscan.io/address/` and match the address exactly
 
 ## Deployment shape
 
@@ -517,7 +530,7 @@ URL: https://tokenbrice.github.io/polaris-docs/resources/parameters
 
 # Polaris Parameters
 
-This page owns numeric Polaris parameters. Task and concept pages should link here instead of repeating parameter tables.
+This page owns current numeric Polaris parameters. Task and concept pages should link here instead of repeating parameter tables; when a numeric value is necessary, this page is the source of truth.
 
 Values below are Public Testnet 1 values last reviewed on June 8, 2026. They are replaceable Sepolia values, not production constants. Production parameters are not published unless this page and Launch Status say they are.
 
@@ -527,10 +540,10 @@ Field | Value
 
 Network | Sepolia
 Chain ID | `11155111`
-Review date | June 8, 2026
+Last verified | June 8, 2026
 Artifact source | [Public Testnet 1 Artifacts](https://tokenbrice.github.io/polaris-docs/resources/testnet)
 Address source | [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts)
-Production finality | Not published
+Production finality | Pending; do not infer production constants from Sepolia values
 
 ## Shared core parameters
 
@@ -558,6 +571,9 @@ Redemption minute decay factor | `998076443575628800` | `998076443575628800` | D
 - Use the app quote and live contract reads before signing any transaction.
 - Do not copy Sepolia values into a production integration.
 - If a task page and this page disagree, treat this page as the parameter owner and verify against the current manifest.
+- Treat older beta, MCR, or Recovery Mode examples as stale if they disagree with the values above.
+
+Relevant app/search vocabulary: app, official app, testnet, Sepolia, WETH, WETH faucet, Zap, Split, Swap, Borrow, Earn, Guide, Advanced, Analytics, APR, Reserve Loan.
 
 ---
 
@@ -691,6 +707,8 @@ Before signing, verify:
 
 If any item fails, reject the signature and use [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting) before trying again.
 
+Relevant app/search vocabulary: official app, app URL, phishing, verify contracts, testnet, mainnet.
+
 ---
 
 ## Polaris Public Testnet 1 Artifacts
@@ -706,6 +724,7 @@ This page owns Public Testnet 1 artifact sources: network, manifest paths, and t
 Fact | Value
 
 Public phase | Public Testnet 1
+Last verified | June 8, 2026
 Network | Sepolia
 Chain ID | `11155111`
 Official app | [https://app.testnet.polarisfinance.io/](https://app.testnet.polarisfinance.io/)
@@ -717,16 +736,16 @@ Illustrative or future pAssets | pCHF, pBigMac, and other catalog examples
 
 ## Manifest locations
 
-The current Sepolia artifacts are checked into the Polaris protocol repository at `/home/ahirice/Documents/git/polaris`.
+Protocol artifact source and commit are not public in these docs during Public Testnet 1. The relative paths below identify the internal Sepolia manifests used for the published address and parameter tables; external readers should treat [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts) and [Parameters](https://tokenbrice.github.io/polaris-docs/resources/parameters) as the public source until a repository URL and commit are published.
 
-Manifest | What it covers | Protocol repo path
+Manifest | What it covers | Internal protocol path
 
 Core manifest | Reserve token, pETH/bonding curve, POLAR/share system, staking, fee router, reserve loans, stewardship, splitter, vpToken | `deployments/sepolia/deployment-manifest.core.ts`
 pUSD manifest | pUSD token, CDP manager, Stability Pool, PSM, price feed, medianiser, interest controller, read helper | `deployments/sepolia/deployment-manifest.pusd.ts`
 pGOLD manifest | pGOLD token, CDP manager, Stability Pool, PSM, price feed, ETH/USD and XAU/USD medianisers, interest controller, read helper | `deployments/sepolia/deployment-manifest.pgold.ts`
 Deploy script defaults | Fee floors, fee alpha values, decay factors, initial rates, and deployment constants not all written into the manifests | `script/DeployPolaris.s.sol`
 
-Treat these as testnet artifacts. They are useful for testing, indexer scaffolding, and UI verification, but they are not production-canonical.
+Treat these as testnet artifacts. They are useful for testing, indexer scaffolding, and UI verification, but they are not public provenance or production-canonical.
 
 ## Related canonical pages
 
@@ -737,3 +756,5 @@ Fastest testnet user flow | [Public Testnet Quickstart](https://tokenbrice.githu
 Sepolia addresses | [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts)
 Sepolia parameters | [Parameters](https://tokenbrice.github.io/polaris-docs/resources/parameters)
 Safety checks before signing | [Safety & Verification](https://tokenbrice.github.io/polaris-docs/resources/safety-verification)
+
+Relevant app/search vocabulary: app, official app, testnet, Sepolia, WETH, WETH faucet, Zap, Split, Swap, Borrow, Earn, Guide, Advanced, Analytics, APR, Reserve Loan.

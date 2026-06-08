@@ -1,11 +1,14 @@
----
-title: Troubleshooting
-description: Fix common Polaris app issues on Public Testnet 1.
----
+# Polaris Documentation
+
+> User and developer documentation for Polaris Finance — the self-scaling stablecoin operating system. Mint pAssets backed entirely by onchain collateral and yield. No T-bills. No CEXs. No compromises.
 
 # Troubleshooting
 
-<PageStatusBanner lastUpdated="June 8, 2026" />
+## Troubleshooting
+
+URL: https://tokenbrice.github.io/polaris-docs/troubleshooting
+
+# Troubleshooting
 
 Use this page when the app, wallet, quote, balance, or transaction does not behave as expected.
 
@@ -21,7 +24,7 @@ Start from the known-good setup: Public Testnet 1 at [app.testnet.polarisfinance
 
 **When not to proceed:** Do not sign if the wallet prompt shows mainnet or an unexpected chain.
 
-**Related reference:** [Public Testnet 1 Artifacts](/resources/testnet), [Safety & Verification](/resources/safety-verification)
+**Related reference:** [Public Testnet 1 Artifacts](https://tokenbrice.github.io/polaris-docs/resources/testnet), [Safety & Verification](https://tokenbrice.github.io/polaris-docs/resources/safety-verification)
 
 ## Wrong frontend
 
@@ -33,7 +36,7 @@ Start from the known-good setup: Public Testnet 1 at [app.testnet.polarisfinance
 
 **When not to proceed:** Do not connect or sign from an unverified URL.
 
-**Related reference:** [Launch Status](/launch-status), [Safety & Verification](/resources/safety-verification)
+**Related reference:** [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status), [Safety & Verification](https://tokenbrice.github.io/polaris-docs/resources/safety-verification)
 
 ## Faucet or test-token shortage
 
@@ -41,11 +44,11 @@ Start from the known-good setup: Public Testnet 1 at [app.testnet.polarisfinance
 
 **Likely cause:** The wallet lacks test assets or gas.
 
-**Fix:** Follow [Public Testnet Quickstart](/quickstart), then refresh balances.
+**Fix:** Follow [Public Testnet Quickstart](https://tokenbrice.github.io/polaris-docs/quickstart), then refresh balances.
 
 **When not to proceed:** Do not bridge or send real mainnet funds to testnet contracts.
 
-**Related reference:** [Public Testnet 1 Artifacts](/resources/testnet)
+**Related reference:** [Public Testnet 1 Artifacts](https://tokenbrice.github.io/polaris-docs/resources/testnet)
 
 ## Missing balance
 
@@ -57,7 +60,7 @@ Start from the known-good setup: Public Testnet 1 at [app.testnet.polarisfinance
 
 **When not to proceed:** Do not import token addresses from chat links or search results.
 
-**Related reference:** [Contracts & Addresses](/resources/contracts)
+**Related reference:** [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts)
 
 ## Approval succeeded, action still fails
 
@@ -69,7 +72,7 @@ Start from the known-good setup: Public Testnet 1 at [app.testnet.polarisfinance
 
 **When not to proceed:** Do not grant unlimited approvals to an unexpected spender.
 
-**Related reference:** [Safety & Verification](/resources/safety-verification), [Advanced](/using-app/advanced)
+**Related reference:** [Safety & Verification](https://tokenbrice.github.io/polaris-docs/resources/safety-verification), [Advanced](https://tokenbrice.github.io/polaris-docs/using-app/advanced)
 
 ## Stale quote or changed output
 
@@ -81,7 +84,7 @@ Start from the known-good setup: Public Testnet 1 at [app.testnet.polarisfinance
 
 **When not to proceed:** Do not sign if the wallet prompt no longer matches the app quote.
 
-**Related reference:** [Swap](/using-app/swap), [Zap](/using-app/zap)
+**Related reference:** [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap), [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap)
 
 ## Borrow action disabled or reverted
 
@@ -93,7 +96,7 @@ Start from the known-good setup: Public Testnet 1 at [app.testnet.polarisfinance
 
 **When not to proceed:** Do not borrow if you do not understand the displayed liquidation exposure.
 
-**Related reference:** [Borrow](/using-app/borrow), [Manage Trove](/using-app/manage-trove), [Recovery Mode](/redemptions-liquidations/recovery-mode), [Risk Disclosure](/resources/risk-disclosure)
+**Related reference:** [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow), [Manage Trove](https://tokenbrice.github.io/polaris-docs/using-app/manage-trove), [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode), [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure)
 
 ## Earn action unavailable
 
@@ -105,7 +108,7 @@ Start from the known-good setup: Public Testnet 1 at [app.testnet.polarisfinance
 
 **When not to proceed:** Do not treat APR estimates as guaranteed returns.
 
-**Related reference:** [Earn](/using-app/earn), [Yield](/yield)
+**Related reference:** [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn), [Yield](https://tokenbrice.github.io/polaris-docs/yield)
 
 ## Split or merge fails
 
@@ -117,7 +120,7 @@ Start from the known-good setup: Public Testnet 1 at [app.testnet.polarisfinance
 
 **When not to proceed:** Do not hold only one leg unless you understand the changed exposure.
 
-**Related reference:** [Split](/using-app/split), [pETH Split](/peth/split)
+**Related reference:** [Split](https://tokenbrice.github.io/polaris-docs/using-app/split), [pETH Split](https://tokenbrice.github.io/polaris-docs/peth/split)
 
 ## Transaction pending, out of gas, or reverted
 
@@ -129,4 +132,6 @@ Start from the known-good setup: Public Testnet 1 at [app.testnet.polarisfinance
 
 **When not to proceed:** Do not repeatedly submit the same action without checking whether the first transaction changed balances, allowances, or positions.
 
-**Related reference:** [Dashboard & Analytics](/using-app), [Safety & Verification](/resources/safety-verification)
+**Related reference:** [Dashboard & Analytics](https://tokenbrice.github.io/polaris-docs/using-app), [Safety & Verification](https://tokenbrice.github.io/polaris-docs/resources/safety-verification)
+
+Relevant app/search vocabulary: quickstart, troubleshooting, wrong network, Sepolia, faucet, approval, stale quote, failed transaction.
