@@ -371,13 +371,18 @@ test('desktop theme menu can switch to light mode', async ({ page }, testInfo) =
 test('sampled article text meets contrast in dark and light themes', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'desktop', 'desktop-only contrast sample')
 
-  const routes = ['/', '/resources/glossary', '/resources/brand-assets', '/yield/stability-pool']
+  const routes = ['/', '/resources', '/resources/brand-assets', '/yield']
 
   for (const route of routes) {
     await page.goto(pathWithBase(route))
     await expectReadableArticleContrast(page, `${route} dark`)
 
-    await page.locator('button[title="Change theme"]:visible').first().click()
+    await page
+      .locator('button[title="Change theme"]')
+      .filter({ hasText: /Dark|Light/i })
+      .filter({ visible: true })
+      .first()
+      .click()
     await page.getByRole('option', { name: /light/i }).click()
     await expect(page.locator('html')).toHaveClass(/light/)
     await expectReadableArticleContrast(page, `${route} light`)
@@ -460,7 +465,7 @@ test('mobile navigation opens and exposes docs links', async ({ page }, testInfo
   await menuButton.click()
 
   await expect(mobileNav).not.toHaveAttribute('aria-hidden', 'true')
-  await expect(page.getByRole('link', { name: /Getting Started/i }).first()).toBeVisible()
+  await expect(page.getByRole('link', { name: /Introduction/i }).first()).toBeVisible()
   await menuButton.click()
   await expect(mobileNav).toHaveAttribute('aria-hidden', 'true')
   await menuButton.focus()
