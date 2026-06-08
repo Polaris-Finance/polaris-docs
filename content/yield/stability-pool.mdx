@@ -1,0 +1,87 @@
+---
+title: Stability Pool
+description: The Stability Pool is a reserve of pAssets that backstops liquidations and is the primary venue for earning yield on Polaris.
+---
+
+# Stability Pool
+
+> **Before you deposit:**
+> A Stability Pool deposit is not a fixed pAsset savings balance. Liquidations can burn part of your deposited pAsset and replace it with pETH rewards. Check the current pool size, claimable rewards, pETH price exposure, withdrawal conditions, and whether wrapper vaults are available before depositing.
+
+## What it is
+
+The **Stability Pool** is a reserve of pAssets — pUSD, for example — that depositors supply to the protocol. It backstops [liquidations](/redemptions-liquidations/liquidations): it holds pUSD on standby so that, when a [trove](/minting/managing-your-trove) falls below its minimum collateralization ratio, the protocol can close out that debt through the liquidation path.
+
+Each [pAsset](/minting/passet-catalog) has its own Stability Pool. A pUSD pool backstops pUSD troves, a pGOLD pool backstops pGOLD troves, and so on across the [StablecoinOS](/core-concepts). One pool per instance bounds the blast radius: a depositor is only ever exposed to liquidations of the pAsset they deposited, never to losses in another pAsset's pool.
+
+## How it processes liquidations
+
+Most CDP designs require a liquidator to bring fresh capital to close a bad position. Polaris does not. The capital is already pooled.
+
+When a trove is liquidated:
+
+1. The pool **burns** its pUSD against the liquidated debt, up to the amount available in the pool (a minimum buffer is always kept, so the pool is never fully emptied). Any portion of the debt the pool cannot cover is **redistributed** to the remaining troves instead.
+2. The liquidated trove's **pETH collateral is paid out** to depositors, pro rata to their share of the pool.
+
+Because liquidations carry a penalty, the pETH paid out is worth *more* than the pUSD burned. In effect, a depositor's pUSD is converted into pETH at a discount to market — typically a net gain.
+
+> **Note:**
+> Liquidation gains arrive as **pETH**, not pUSD. If you want pure pUSD exposure, wrapper vaults that convert that pETH back to pUSD on your behalf will be available at or shortly after launch. See [Where the Yield Comes From](/yield/yield-sources).
+
+## Why it is the primary yield venue
+
+Depositing in the Stability Pool earns two uncorrelated streams:
+
+| Stream | Paid in | Character |
+|---|---|---|
+| **Share of borrower interest** | pUSD | Regular, continuous, non-spiky |
+| **Liquidation gains** | pETH | Event-driven, spiky, arrives with volatility |
+
+The interest share is the steady base; liquidation gains spike precisely when markets are turbulent. Together they make the Stability Pool the protocol's **primary yield venue** for pAssets — and the foundation other yield products are built on. The share of borrower interest routed to depositors is [stewarded](/stewardship/stewardship) within hardcoded bounds (a floor, to keep the pool funded for liquidations; a ceiling, to keep pUSD liquid across DeFi); exact values are finalized closer to launch.
+
+## Pre-launch parameter status
+
+| Parameter | Status | Reader impact |
+|---|---|---|
+| Borrower-interest share to Stability Pool | Pending final stewarded bounds and launch value | Determines steady pAsset-denominated yield |
+| Liquidation penalty / depositor discount | Pending final values | Determines expected pETH upside on healthy liquidations |
+| Reward claim and compounding behavior | Pending final UI and contract details | Determines whether rewards accrue separately or auto-settle |
+| Wrapper vault availability | Expected at or shortly after launch; final availability pending | Determines whether users can automate pETH-to-pAsset conversion |
+| Withdrawal constraints | Pending final implementation | Determines how quickly and under what conditions deposits can exit |
+| pETH pricing and execution assumptions | Pending final audited paths | Determines realized value when rewards are sold or wrapped |
+
+## Worked example: Stability Pool P&L
+
+Suppose you deposit 10,000 pUSD into a 1,000,000 pUSD Stability Pool. You own 1% of the pool. A liquidation burns 100,000 pUSD from the pool and pays out pETH that is worth $110,000 at execution.
+
+| Item | Pool-level amount | Your 1% share |
+|---|---:|---:|
+| pUSD burned | 100,000 pUSD | 1,000 pUSD |
+| pETH received at execution value | $110,000 | $1,100 |
+| Gross liquidation gain before price movement | $10,000 | $100 |
+
+That is the healthy-liquidation case: part of your pUSD position converted into discounted pETH. If pETH falls 15% before you sell or wrap it, your $1,100 of pETH becomes $935, turning that event into a $65 loss versus the 1,000 pUSD burned. Interest income and later liquidations can offset losses, but do not remove pETH price risk.
+
+## The honest risk
+
+Depositing is not free of risk.
+
+> **Warning:**
+> In a severe or flash crash, a trove can fall below 100% collateralization before liquidation completes. If that happens, the pETH you receive can be worth **less** than the pUSD you contributed. The liquidation penalty makes a net gain the normal case, not a guaranteed one. Size your deposit accordingly, and see the [Risk Disclosure](/resources/risk-disclosure).
+
+Your liquidation gains are also denominated in pETH, which is [volatile against ETH](/peth/floor-price). The wrapper vaults above mitigate that exposure, but at the base layer you are accepting pETH.
+
+## Next steps
+
+- [Deposit to the Stability Pool](/yield/deposit-to-stability-pool) — the step-by-step.
+- [Where the Yield Comes From](/yield/yield-sources) — every source feeding pAsset yield.
+
+---
+
+<BlogPostCard
+  url="https://polarisfinance.io/blog/pusd-no-counterparty"
+  title="pUSD: No Counterparty, No Ceiling"
+  description="How pUSD delivers counterparty-free yield that scales with protocol adoption — and the ecosystem taking shape around it."
+  readingTime={8}
+  image="https://polarisfinance.io/blog/pusd-no-counterparty-cover.png"
+/>

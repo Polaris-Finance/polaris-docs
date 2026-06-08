@@ -1,0 +1,79 @@
+---
+title: POLAR Tokenomics
+description: "How POLAR's economics work: issuance only by burning pETH, vePOLAR vote-escrow, Fee Router yield, and the Polar Council. No gauges, bribes, or emissions."
+---
+
+# POLAR Tokenomics
+
+This page consolidates POLAR's economics. Each piece has its own page; here they sit side by side. For the reasoning behind the token, read [The POLAR Token](/polar/polar-token); for the issuance mechanism, [Conversion Auctions](/polar/conversion-auctions).
+
+> **Current status:** POLAR's total supply, distribution schedule, and vesting terms are pending and will be published at launch. This page describes the *structure* of POLAR's economics, fixed by design, not the final numbers, which are forthcoming. Treat any figure not stated here as not yet finalized.
+
+## Issuance: minted only by burning pETH
+
+After the initial distribution, **new POLAR can be minted only by burning pETH** in a [conversion auction](/polar/conversion-auctions). There is no team mint function and no calendar-based inflation schedule.
+
+- Every POLAR that enters circulation after launch required someone to permanently destroy pETH.
+- Conversion runs as a continuous, permissionless [spike-and-decay auction](/polar/conversion-auctions): the price decays over time and spikes upward on each conversion, proportional to the fraction of POLAR supply minted.
+- Issuance therefore tracks real arbitrage activity, not a fixed emission curve. Most conversions are executed by arbitrage bots and MEV searchers.
+
+This welds POLAR's issuance to the most protocol-synergetic action available: each conversion simultaneously [raises the floor price](/peth/floor-price), releases ETH from the bonding-curve reserve as yield, and mints the POLAR.
+
+## A bounded, productive dilution
+
+Every conversion dilutes existing POLAR holders, but the dilution is bounded and buys a concrete improvement:
+
+- **Bounded.** Conversion issuance is self-limiting: each conversion spikes the price in proportion to the POLAR supply it mints, and the price recovers only as it decays, so large or rapid minting throttles itself and issuance tracks real arbitrage demand. Stewards tune the conversion-price parameters (spike sensitivity, half-life, and the reserve rebate); a hardcoded issuance cap and an explicit disable switch are not yet enforced in the current prototype, and final parameter bounds are pending audited deployment.
+- **Productive.** Each unit of dilution corresponds to burned pETH, a higher floor, and released ETH yield, structurally unlike emission models where inflation is disconnected from any protocol benefit.
+- **Progressive for the team.** The founding team's outsized early share is diluted by the same mechanism: the faster Polaris grows, the more attractive conversions become, and the more that initial share shrinks. Code enforces the dilution; no forum pledge does.
+
+## vePOLAR: vote-escrow
+
+POLAR alone is a token; **[vePOLAR](/stewardship/vepolar)** is that token locked to work. Locking POLAR for a period returns vePOLAR, which grants:
+
+- **A share of protocol yield** — funded by protocol revenue, not minted as emissions.
+- **[Stewardship](/stewardship/stewardship) rights** — tuning quantitative parameters within hardcoded bounds. vePOLAR *stewards*; it does not govern, and it cannot reach the immutable core.
+
+Lock durations, vote-power decay, unlock rules, and the final yield split are pending audited deployment.
+
+## Where the yield comes from
+
+POLAR's value accrual runs on hard-asset protocol revenue, buffered and routed by the **[Fee Router](/stewardship/fee-router)** (pETH) and, separately, by the protocol's interest router (pAsset). It reaches three destinations:
+
+| Destination | What they receive |
+|---|---|
+| **Troves** | pETH yield from the Fee Router, credited pro-rata to recorded debt |
+| **POLAR stakers (vePOLAR)** | A stewarded share of protocol interest, in pAsset terms (forthcoming) |
+| **Flow recipients** | Revenue-sharing for whitelisted contracts via [Flows](/stewardship/flows) (forthcoming) |
+
+Inputs are hard assets from protocol activity (conversions and bonding-curve swap fees), not emitted POLAR. The Fee Router buffers this pETH and pushes it to a stewardship-chosen receiver, today the troves; the bounded split with hardcoded floors that funds stakers and the ecosystem applies to the separate pAsset primary-interest stream. Exact destination splits and their bounds are pending audited deployment.
+
+## What POLAR does *not* have
+
+The structure deliberately omits the usual extraction surfaces:
+
+- **No gauges.** Stewardship cannot create POLAR emissions gauges.
+- **No bribes.** No vote-buying markets are routed through the protocol.
+- **No emissions.** Ecosystem incentives flow through [Flows](/stewardship/flows) as hard-asset revenue sharing, funded by protocol revenue rather than token emissions.
+- **No mint outside conversion.** POLAR cannot be minted by any path other than burning pETH.
+
+## The Polar Council
+
+The **Polar Council** is a treasury-funded program for onboarding and ecosystem contributors (**8.2% of POLAR supply**), comparable in spirit to veAERO's Flight School. It is initially team-managed; its operating framework, eligibility, and reporting requirements are pending publication.
+
+## Numbers that are pending
+
+The economic *structure* above is fixed by design. The following are not yet finalized and must not be assumed:
+
+| Item | Status |
+|---|---|
+| Total / initial POLAR supply | Pending |
+| Distribution schedule | Pending |
+| Vesting terms | Pending |
+| Conversion rate and parameter bounds | Pending (parameter bounds forthcoming) |
+| Destination splits across yield recipients | Pending |
+| Lock durations and vote-power decay | Pending |
+
+---
+
+**[Go deeper →](https://polarisfinance.io/blog)**

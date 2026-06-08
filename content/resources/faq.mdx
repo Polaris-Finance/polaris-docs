@@ -1,0 +1,92 @@
+---
+title: FAQ
+description: "Frequently asked questions about Polaris: what it is, how minting and troves work, how the peg holds, where yield comes from, and how security works."
+---
+
+# FAQ
+
+Short answers, grouped by theme. Each links out to the page that covers it in full.
+
+> **Pre-launch note:** The official app URL, contract addresses, final audit reports, and disclosure program are not published in these docs yet. Check [Safety and Verification](/paths/safety-verification) before interacting with any frontend or address.
+
+## General
+
+**What is Polaris?**
+A self-scaling stablecoin operating system: trustless, immutable infrastructure for minting synthetic assets (pAssets) backed entirely by onchain collateral and yield. No T-bills, no CEXs. See [Why Polaris?](/why-polaris).
+
+**What is a pAsset?**
+A synthetic asset minted by Polaris (pUSD, pETH, pGOLD, pCHF, and beyond), each overcollateralized by pETH and counterparty-free. See [The pAsset Catalog](/minting/passet-catalog).
+
+**What is pUSD?**
+The flagship pAsset, designed to track the US dollar and be backed by pETH. It sits in the same counterparty-free design family as LUSD and BOLD, while adding Polaris's pETH collateral and yield mechanics. See [Minting pAssets](/minting/minting-passets).
+
+**What is pETH?**
+ETH deposited into a two-way [bonding curve](/peth/bonding-curve). It is the only collateral Polaris accepts, is yield-bearing, and has a [floor price](/peth/floor-price) that only rises.
+
+**What is POLAR?**
+The stewardship token and the protocol's outward-facing growth lever. After the initial distribution, new POLAR can be minted *only* by burning pETH in a [conversion auction](/polar/conversion-auctions). See [The POLAR Token](/polar/polar-token).
+
+**Which chain does Polaris run on?**
+Polaris runs on Ethereum mainnet (chain ID 1). The official app URL and contract addresses will be published on [Safety and Verification](/paths/safety-verification) and [Contracts & Addresses](/resources/contracts) at launch.
+
+**Where is the official app?**
+The official app URL is not published in these docs yet. Until it appears on [Safety and Verification](/paths/safety-verification), treat any "Polaris app" frontend as unverified.
+
+## Minting and troves
+
+**What is a trove?**
+Your individual borrowing position in a Polaris CDP, isolated with its own collateral, debt, and collateralization ratio. Polaris uses *trove*, never "vault". See [Minting pAssets](/minting/minting-passets).
+
+**How do I mint a pAsset?**
+You open a trove: post pETH as collateral and mint the pAsset directly from the protocol, owing that debt back. You are your own mini central bank, not borrowing another user's funds. See [Minting pAssets](/minting/minting-passets).
+
+**Why does Polaris accept only pETH as collateral?**
+External collateral like staked-ETH tokens would be a dependency that caps scaling and reintroduces counterparty risk. pETH is an ETH proxy with a rising floor that is also yield-bearing, which dampens the CDP model's capital-inefficiency weakness. See [Minting pAssets](/minting/minting-passets).
+
+**How are interest rates set?**
+Autonomously, with no governance vote and no price oracle for the peg. Redemption volume (profitable below peg) and minting volume (profitable above peg) are read as onchain signals of where the peg sits, and rates adjust accordingly. See [Minting pAssets](/minting/minting-passets).
+
+**Can my trove be liquidated?**
+Yes. If your [ICR](/resources/glossary) falls below the minimum, the trove is [liquidated](/redemptions-liquidations/liquidations) and the [Stability Pool](/yield/stability-pool) absorbs its debt. Keep your ratio above the threshold, especially in volatile markets.
+
+## pETH
+
+**Is pETH the same as ETH?**
+No. pETH is ETH inside the bonding curve. It is volatile against ETH but bounded below by its [floor price](/peth/floor-price), and it earns yield. Think of it as stETH with different trade-offs: guaranteed liquidity and instant withdrawal, but price volatility against ETH.
+
+**What is the floor price, and why does it only go up?**
+The floor is the mathematically enforced minimum price of pETH in ETH terms: the price guaranteed to the last person out. It rises because swap fees are burned and conversion auctions burn pETH, and nothing pushes it back down. See [The Floor Price](/peth/floor-price).
+
+## Yield
+
+**Where does the yield come from?**
+From onchain activity, not offchain T-bills: CDP interest, bonding-curve swap fees, conversion gains, and PolarEX swap fees, all of which grow with usage. See [The Stability Pool](/yield/stability-pool).
+
+**How do I earn yield?**
+The primary venue is depositing pAssets into the [Stability Pool](/yield/stability-pool). Locking POLAR as [vePOLAR](/stewardship/vepolar) is also planned to earn a stewarded share of routed protocol interest; the final yield split and claim path are pending deployment.
+
+## Stewardship
+
+**Is there governance?**
+No unbounded governance. The core is immutable; stewards steward only quantitative parameters, many of them within hardcoded ranges. We call it stewardship because stewards cannot alter the core; they cannot govern it. See [Stewardship, not Governance](/stewardship/stewardship).
+
+**What can stewards actually change?**
+Quantitative parameters such as CDP licensing and parametrization, the interest splits, Flow whitelisting (forthcoming), conversion parameters, and onboarding. Safety-critical values are capped by hardcoded ranges, and stewards cannot touch the core logic. See [Stewardship](/stewardship/stewardship) and [Flows](/stewardship/flows).
+
+## Security
+
+**Can I lose funds?**
+Yes. Polaris carries smart-contract risk, collateral price risk, liquidation risk, and Stability Pool first-loss risk, among others. Trustlessness means no one can step in to make you whole. Read the full [Risk Disclosure](/resources/risk-disclosure) before using the protocol.
+
+**Is Polaris audited?**
+Final audit reports are not published in these docs yet. Until reports appear on [Audits & Security](/resources/audits-security), treat the protocol as unaudited.
+
+**Where are contract addresses listed?**
+Canonical addresses are not published yet. Once deployed, addresses will be listed with network, chain ID, and source-verification links on [Contracts & Addresses](/resources/contracts). Any address found elsewhere before then is unverified.
+
+**Can my pAssets be frozen or blacklisted?**
+The intended design is immutable and admin-key-free, with no freeze function and no blacklist, by anyone, including the team. Verify the final deployed contracts on [Contracts & Addresses](/resources/contracts) once addresses are published.
+
+---
+
+Still stuck? Look up any term in the [Glossary](/resources/glossary), or read the long-form essays on the [Polaris blog](https://polarisfinance.io/blog).

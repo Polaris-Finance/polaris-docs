@@ -1,0 +1,41 @@
+---
+title: Safety and Verification
+description: The safety path for verifying Polaris launch status, official contracts, audit status, immutable guarantees, and user risk before interacting.
+---
+
+# Safety and Verification
+
+**Who this is for:** every Polaris user and integrator; run this path before connecting a wallet, sending ETH, minting a pAsset, depositing into a pool, locking POLAR, or integrating contracts.
+
+**Prerequisites:** none. Complete this path *first*, before any other journey, because impersonation and phishing are most likely pre-launch.
+
+> **Launch status:** Official app URLs, deployed addresses, ABIs, verified source, final parameters, and audit reports are pending publication. Until they are published, treat every claimed frontend, token, contract, airdrop, or support message as unverified.
+
+## Verification checklist
+
+Work top to bottom; each row names a check and where it will be confirmed at launch.
+
+| Check | Where it will be confirmed |
+|---|---|
+| Official app URL | [Getting Started](/getting-started) |
+| Deployed addresses | [Contracts and Addresses](/resources/contracts) |
+| Verified source and ABIs | [Contracts and Addresses](/resources/contracts) and block explorer links |
+| Audit reports | [Audits and Security](/resources/audits-security) |
+| Final user parameters | The relevant product page and contract reference |
+| Stewardship bounds | [Stewardship, not Governance](/stewardship/stewardship) |
+
+## Things Polaris will not ask for
+
+- A seed phrase or private key.
+- KYC for protocol use.
+- A direct transfer to a support wallet.
+- Interaction with an unpublished address.
+- Trust in a frontend that is not linked from official Polaris channels.
+
+## Risk docs
+
+Read [Risk Disclosure](/resources/risk-disclosure) for smart-contract, collateral, liquidation, peg, Stability Pool, pETH, stewardship, and phishing risks. Read [Audits and Security](/resources/audits-security) for the security model and audit status.
+
+## Developer verification
+
+For apps and indexers, add explicit allowlists for network IDs and contract addresses once published. Your integration should fail closed if the deployment manifest, ABI, or verified source does not match the official docs.

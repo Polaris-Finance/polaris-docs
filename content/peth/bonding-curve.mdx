@@ -1,0 +1,100 @@
+---
+title: Bonding Curve
+description: How one two-way bonding curve gives pETH contract-native liquidity, a rising floor price, and protocol-wide value capture, with no liquidity providers required.
+---
+
+# Bonding Curve
+
+The bonding curve is the foundation of Polaris. From this one primitive come pETH, its rising floor, non-liquidatable ETH loans, and value capture on every interaction.
+
+## What is a bonding curve?
+
+A two-way bonding curve lets you swap like a regular AMM pool, with one key difference: **it needs no liquidity providers.** Instead, it enforces a mathematical relationship between a token's price and its supply:
+
+- Demand rises, tokens are minted, price increases.
+- Tokens are burned/sold, price decreases.
+
+Buying adds ETH to the reserve and **mints** pETH. Selling withdraws from the reserve and **burns** pETH. The result is contract-native liquidity with no external liquidity provider, subject to Ethereum liveness, available gas, MEV, slippage, and the bonding-curve contracts working as designed. You have used bonding curves without knowing it: every AMM is one (Uniswap, Curve), and Pump.fun is a well-known example.
+
+Two things make pETH's curve different from Pump.fun's:
+
+1. **Purpose**: Pump.fun raises capital to seed liquidity; Polaris uses the curve to *back* pETH permanently.
+2. **Temporality**: Pump.fun's curve terminates at "graduation"; the pETH curve is designed to keep running.
+
+## What's unique about pETH's curve
+
+pETH's curve is **two-way** (ETH ⇒ pETH and pETH ⇒ ETH) and it **enforces a rising price floor** for pETH, measured in ETH, under the curve's audited invariants. The floor is designed to move up through two mechanisms:
+
+- Each swap charges a fee in pETH that accrues to the protocol's fee router; accumulated fees are periodically floor-sold against the curve and burned (part recycled into protocol rewards) ⇒ the floor rises over time.
+- The [conversion auction](/polar/conversion-auctions) mints POLAR by **burning pETH** ⇒ the floor rises with POLAR minting.
+
+![pETH bonding curve: ETH deposits mint pETH along a power-law curve with a rising floor price](/infographics/polaris-bonding-curve.svg)
+
+A rising floor is more than a safety hatch for holders. It lets the **whole protocol capture value on each interaction**, and defines a reserve-backed exit path while the contracts are live, Ethereum is processing transactions, and users can pay execution costs.
+
+### The maths
+
+The curve follows the formula:
+
+$$
+P = \alpha \cdot Q^{\beta}
+$$
+
+- **α**: a scaling parameter of little importance.
+- **Q**: the supply of pETH.
+- **β**: the power-law exponent that sets the curve's behaviour.
+
+As supply `Q` increases, the price of pETH (in ETH) increases. **β** sets how tightly pETH tracks ETH: a large β decouples pETH and makes it volatile; a small β couples them closely. Polaris will use **β around 0.3**: close coupling, with room for interesting dynamics.
+
+> *The exact final β is disclosed closer to launch.*
+
+## pETH beyond the CDP
+
+pETH is tailor-made collateral for Polaris CDPs, but it has a life of its own.
+
+### ETH loans (pETH loops)
+
+You can supply pETH back into the bonding curve and **borrow the floor-price value in ETH** from the reserve. These loans are:
+
+- **Non-liquidatable by price movement**: there is no collateral-price liquidation trigger.
+- **Withdrawable through repayment**: repay the ETH owed and reclaim your pETH while the contracts and Ethereum are live.
+- **Recorded onchain as an NFT.**
+
+Because the loan is sized to the floor price, it is designed to stay solvent for the protocol under the floor-price invariant: a borrower who never repays has effectively sold pETH to the curve at floor price, a good deal for the curve if pETH trades at a premium to its floor. Looping pETH gives **leveraged ETH-aligned exposure to Polaris's growth without touching anything but ETH.**
+
+### DeFi composability
+
+pETH's rising floor and eventual deep ETH backing could make it a prime asset *outside* Polaris too. A pETH/ETH market on Aave, Morpho, or Euler is a natural fit, much like stETH across DeFi today.
+
+## pETH vs stETH
+
+stETH is a prime asset, but it does not have contract-native liquidity from its own reserve. Native withdrawals depend on the validator exit queue and can vary; DEX liquidity is deep, but depends on liquidity providers who can stop supplying in a panic.
+
+| | **pETH** | **stETH** |
+|---|---|---|
+| Liquidity | Bonding-curve reserve, subject to contract and chain liveness | Deep, but LP-dependent |
+| Withdrawal | Onchain sell path, with gas/slippage/MEV | Validator-exit queue; timing varies |
+| Price floor | Contract-enforced under audited invariants | None |
+| Main risk | Price risk vs ETH, bounded by the floor under the curve assumptions | LP/liquidity risk |
+
+> stETH is a prime asset, don't get us wrong. It simply does not provide this kind of reserve-backed onchain sell path.
+
+## Risk overview
+
+pETH carries three main risks:
+
+1. **Technical risk**: the bonding curve is a smart contract; technical risk is unavoidable, mitigated through audits and modeling.
+2. **Execution risk**: using the curve still requires Ethereum liveness, available gas, and transactions that can tolerate slippage and MEV.
+3. **Price risk**: pETH is volatile against ETH. Your exposure depends on your entry price relative to the floor, i.e. the [floor ratio](/peth/floor-price). Entering at a 90% floor ratio (10% curve-implied drawdown before execution costs) is very different from a 67% floor ratio (33% curve-implied drawdown before execution costs).
+
+The curve design removes liquidity-provider withdrawal risk. That is not the same as saying execution is riskless: the curve provides a contract-defined buy/sell path and floor while the relevant invariants hold.
+
+---
+
+<BlogPostCard
+  url="https://polarisfinance.io/blog/bonding-curve"
+  title="The Bonding Curve: Polaris' Secret Weapon"
+  description="How a single mechanism enables pETH's rising floor, guaranteed liquidity, and protocol-wide value capture."
+  readingTime={10}
+  image="https://polarisfinance.io/blog/bonding-curve-cover.png"
+/>

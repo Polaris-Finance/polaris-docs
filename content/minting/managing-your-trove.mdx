@@ -1,0 +1,83 @@
+---
+title: Managing Your Trove
+description: Manage a Polaris trove around its Individual Collateralization Ratio (ICR) — add collateral, mint or repay debt, track interest, and close out cleanly.
+---
+
+# Managing Your Trove
+
+A trove is a living position. After you [open it](/minting/open-a-trove), you can adjust it freely: add collateral, mint more, repay debt, or close it. Everything traces back to one number — your **Individual Collateralization Ratio**.
+
+## Individual Collateralization Ratio (ICR)
+
+Your **Individual Collateralization Ratio (ICR)** is the value of your trove's collateral divided by the recorded value of its debt:
+
+> ICR = collateral value ÷ debt face value
+
+Collateral value comes from the protocol's collateral pricing path. Debt value is what you owe in that pAsset's reference unit, including accrued interest; it is not the temporary market price at which you might buy the pAsset on a DEX. A trove holding pETH worth $15,000 against 10,000 pUSD of debt has an ICR of 150%. Higher is safer. Two thresholds matter:
+
+- Below the **minimum ICR**, the trove can be [liquidated](/redemptions-liquidations/liquidations).
+- [Redemptions](/redemptions-liquidations/redemptions) draw collateral from every open trove collectively, pro-rata to its recorded collateral and regardless of ICR — a higher ICR protects against liquidation, not redemption.
+
+Your ICR moves on its own as ETH's price moves — you need not touch the trove for it to drift. Managing the trove is mostly about keeping the ICR where you want it.
+
+## Before you adjust a trove
+
+> **Before you act:**
+> Check your current ICR, the projected ICR after the transaction, Recovery Mode status, accrued interest, your redemption exposure, and the gas cost of buying or repaying pAssets. If you need to acquire pAsset or pETH first, account for DEX slippage, bonding-curve slippage, MEV, and transaction ordering.
+
+> **Warning:**
+> Minting more or withdrawing collateral lowers your ICR. Drop below the minimum and your trove is [liquidated](/redemptions-liquidations/liquidations) automatically: your collateral covers the debt plus a liquidation penalty, with no margin call, and only the surplus is returned for you to claim. [Redemptions](/redemptions-liquidations/redemptions) can also reach your position while it is still solvent — there is no minimum ICR to cross — shrinking your collateral and pETH exposure proportionally without your consent. See the [Risk Disclosure](/resources/risk-disclosure).
+
+## Parameter status
+
+| Parameter | Status | Why it matters |
+|---|---|---|
+| Minimum ICR | Pending final per-pAsset values | Defines the liquidation line in Normal Mode |
+| Recovery Mode threshold | Pending final value | When system backing is thin, actions that reduce collateral or add debt face a higher minimum ratio; liquidation eligibility stays at the normal minimum |
+| Borrow-rate formula and bounds | Pending final audited values | Determines how quickly debt grows |
+| Minimum debt / dust rules | Pending final values | Can affect partial repayments, partial redemptions, and closing |
+
+## Add collateral
+
+Deposit more pETH into the trove to **raise your ICR** without changing your debt. This is the simplest way to step back from a liquidation or redemption threshold during a drawdown. (Need pETH? Mint it on the [bonding curve](/peth/bonding-curve).)
+
+## Mint more / repay debt
+
+- **Mint more.** If your ICR has room, mint more pAsset against the same collateral. This *lowers* your ICR, so leave a buffer.
+- **Repay debt.** Burn pAsset back into the trove to reduce your debt and *raise* your ICR. Repaying is the other lever for recovering a thinning position, and the only way to withdraw collateral.
+
+## Monitor interest accrual
+
+Borrowers pay an [autonomous, market-aware interest rate](/minting/minting-passets) that accrues continuously against your trove. Interest adds to your debt over time, so your ICR drifts *down* even if ETH holds flat and you do nothing. Check your accrued debt periodically and repay or top up so accrual does not quietly walk you toward a threshold.
+
+Collateral pETH also *earns* yield while it sits in the trove, partly offsetting the interest cost; see [Minting pAssets](/minting/minting-passets) for how the effective rate is composed.
+
+### Worked example: interest accrual
+
+Suppose your trove owes 10,000 pUSD and the app quotes an 8% annualized borrow rate. As a rough estimate, before rate changes and compounding:
+
+| Period | Interest estimate | New debt |
+|---|---:|---:|
+| 30 days | 10,000 × 8% × 30 / 365 = 65.75 pUSD | 10,065.75 pUSD |
+| 90 days | 10,000 × 8% × 90 / 365 = 197.26 pUSD | 10,197.26 pUSD |
+
+If your collateral value stays flat at $15,000, the 30-day estimate moves your ICR from 150% to about 149%. The contract may accrue continuously and the rate may change, so use the app's recorded debt for exact decisions.
+
+## Close the trove
+
+Closing is the reverse of opening (**repay debt ⇒ withdraw collateral**):
+
+1. **Repay the full debt.** Burn enough pAsset to clear the recorded debt, including accrued interest. You must hold (or re-acquire) the pAsset to do this.
+2. **Withdraw collateral.** With the debt at zero, withdraw your pETH. The trove is closed.
+
+If you do not hold enough of the pAsset to repay (for example, you sold it), buy it back on the market first.
+
+## How ICR maps to your exposure
+
+| ICR | Liquidation exposure | Redemption exposure |
+|---|---|---|
+| Comfortably high | Minimal — survives large ETH drops | Low impact — redemptions reduce every trove pro-rata to its collateral, and a large buffer keeps your ICR healthy afterward |
+| Moderate | Survives normal volatility | Moderate — a system-wide redemption shrinks your collateral proportionally and can erode your buffer |
+| Near the minimum | High — a sharp ETH move liquidates you | A system-wide redemption reduces your collateral pro-rata and, on thin margin, can leave you closer to the liquidation line |
+
+The practical takeaway: a buffer is not wasted capital, it is the price of staying in control of your position. Keep enough margin that ordinary volatility and quiet interest accrual cannot force an outcome you did not choose.

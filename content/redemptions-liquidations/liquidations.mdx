@@ -1,0 +1,76 @@
+---
+title: Liquidations
+description: A trove below its minimum collateralization ratio is liquidated to keep the pAsset backed. The Stability Pool absorbs the debt, or it redistributes to troves.
+---
+
+# Liquidations
+
+> **Before you act:**
+> Borrowers: do not manage a trove from the liquidation line. Check the app's current minimum ICR, Recovery Mode status, accrued interest, collateral-price freshness, and gas conditions before withdrawing collateral or minting more debt. Stability Pool depositors: liquidations convert part of your pAsset deposit into pETH exposure.
+
+## What a liquidation is
+
+A **liquidation** closes a trove that has fallen below its **minimum collateralization ratio** — the point at which its collateral no longer comfortably covers its debt. The protocol cancels the trove's debt and seizes its pETH collateral.
+
+The purpose is solvency. Every pAsset is a claim on collateral; leaving undercollateralized troves open would leave the pAsset not fully backed. Liquidations are how Polaris is designed to keep backing intact, subject to functioning contracts, live Ethereum execution, available gas, valid pricing data, keeper/executor availability, and audited invariants.
+
+Unlike a [redemption](/redemptions-liquidations/redemptions), a liquidation is not an arbitrage you can opt into at par — it is a forced close triggered by your own ratio crossing a hard line.
+
+## Where the debt and collateral go
+
+Liquidation runs in two tiers.
+
+1. **The Stability Pool absorbs it first.** The [Stability Pool](/yield/stability-pool) holds a reserve of the pAsset. When a trove is liquidated, the pool burns pAsset equal to the trove's debt and receives its pETH collateral in return. Because liquidated troves are seized while still *overcollateralized* (above 100%, below the minimum), the pool typically receives more value in pETH than the pAsset it burns. That surplus is the depositors' compensation.
+
+2. **Redistribution is the fallback.** If the Stability Pool is empty or too small to cover the debt, the trove's debt *and* collateral spread across the remaining troves on that pAsset, in proportion to their size. Other borrowers take on a slice of debt and a matching slice of pETH. The system stays solvent either way.
+
+| Path | Trigger | Absorbs debt | Receives collateral |
+|---|---|---|---|
+| **Stability Pool** | Pool has sufficient pAsset | Pool burns its pAsset | Depositors, pro-rata |
+| **Redistribution** | Pool empty / insufficient | Other troves take it on | Other troves, pro-rata |
+
+**Collateral surplus.** When the Stability Pool absorbs a liquidation, the trove surrenders only what covers its debt, a liquidation penalty, and gas compensation for the liquidator. Any collateral beyond that is sent to the **Collateral Surplus Pool**, where the former borrower can claim it. (Collateral spread through the redistribution fallback is not returned this way.)
+
+## Pre-launch parameter status
+
+| Parameter | Status | Reader impact |
+|---|---|---|
+| Minimum ICR per pAsset | Pending final values | Defines when a trove becomes liquidatable in Normal Mode |
+| Liquidation penalty / discount | Pending final values | Determines borrower loss and Stability Pool upside |
+| Gas compensation / keeper incentive | Implemented; final values pending | Affects whether liquidations execute quickly during stress |
+| Stability Pool offset priority | Intended first path; final implementation pending audit | Determines how much debt the pool absorbs before redistribution |
+| Redistribution formula | Pending final implementation | Determines how uncovered debt and collateral spread across remaining troves |
+| Oracle freshness and fallback rules | Pending final audited implementation | Determines whether liquidations pause, continue, or use fallback pricing under stale data |
+| Minimum debt / dust handling | Pending final values | Affects edge cases when troves are nearly closed |
+
+## Worked example: liquidation
+
+The numbers below are illustrative only. Suppose the app shows a 120% minimum ICR for a pUSD trove. A borrower has 10,000 pUSD of debt and pETH collateral currently valued at $11,800, so the ICR is 118%. The trove is now below the illustrative minimum and can be liquidated.
+
+If the Stability Pool is large enough, the pool burns 10,000 pUSD and receives the trove's pETH collateral according to the final liquidation-penalty and gas-compensation rules. The borrower exits with the debt cleared; collateral is seized to cover the debt, a liquidation penalty, and gas compensation, and any surplus above that is returned to the borrower to claim. Stability Pool depositors receive pETH pro rata; in a normal overcollateralized liquidation, that pETH is expected to be worth more than the pUSD burned, but the exact gain depends on the final penalty, execution timing, pETH price, gas, and slippage.
+
+If the Stability Pool is empty or too small, the uncovered portion follows the redistribution path instead: remaining troves inherit a proportional slice of both the liquidated debt and the liquidated collateral.
+
+## Risks
+
+> **Warning — for borrowers.** Liquidation is involuntary and can happen fast. A liquidated trove gives up its collateral to cover the debt plus a liquidation penalty and gas compensation; any surplus above that is returned to you to claim, but the penalty makes liquidation a real loss to avoid. Maintain a **buffer** above the minimum ratio so a sharp move in collateral price does not cross the line. The thinner your margin, the less room you have when volatility hits. See [Managing Your Trove](/minting/managing-your-trove).
+
+> **Warning — for Stability Pool depositors.** You are the system's first-loss backstop. In a flash crash, troves can be liquidated near — or in extreme cases below — 100% collateralization, and you may receive pETH worth less than the pAsset burned. Over a full cycle the surplus from healthy liquidations is the compensation for taking that risk, but it is not riskless yield. See [The Stability Pool](/yield/stability-pool) and the [Risk Disclosure](/resources/risk-disclosure).
+
+> **Note:** Exact liquidation thresholds, penalties, and the minimum collateralization ratio per pAsset are finalized closer to launch.
+
+## How liquidation interacts with system health
+
+A trove's individual ratio is not the only thing that matters. When the system's reserve backing falls below a threshold relative to total debt, the protocol enters [Recovery Mode](/redemptions-liquidations/recovery-mode), a protective state that restricts risk-increasing borrower operations (blocking actions that lower collateral or raise debt) while backing is thin. Liquidation eligibility is unchanged: a trove is liquidated whenever its ICR falls below the minimum, in every mode. Recovery Mode is the system-level safeguard that complements the trove-level liquidation described here.
+
+---
+
+Liquidations are not punishment — they are the mechanism designed to keep a pAsset backed by the collateral it claims. Keep a buffer, and you are less likely to lose control of your trove.
+
+<BlogPostCard
+  url="https://polarisfinance.io/blog/polaris-mints-anything"
+  title="CDPs Mint Dollars. Polaris Mints Anything"
+  description="From Maker to Liquity, CDP models shaped DeFi lending. Polaris takes the blueprint further with pETH, self-adjusting rates, and a factory for stablecoins pegged to anything."
+  readingTime={10}
+  image="https://polarisfinance.io/blog/polaris-mints-anything-cover.png"
+/>

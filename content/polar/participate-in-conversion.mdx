@@ -1,0 +1,85 @@
+---
+title: Participate in a Conversion
+description: "Step-by-step guide to executing a conversion: watch the decaying price, decide when it beats POLAR's market price, then burn pETH for POLAR and any ETH rebate."
+---
+
+import { Steps } from 'nextra/components'
+
+# Participate in a Conversion
+
+This is the how-to. For the mechanism behind it, read [Conversion Auctions](/polar/conversion-auctions); for POLAR's role, read [The POLAR Token](/polar/polar-token).
+
+> **Note:**
+> Conversions are a continuous, permissionless auction tuned for [arbitrage bots and MEV searchers](/polar/conversion-auctions). Converting profitably means competing with them. Most users will hold POLAR or lock it as [vePOLAR](/stewardship/vepolar) instead of converting directly.
+
+> **Note:**
+> The conversion UI is not yet public. The steps below describe the intended flow and must be updated with the final app URL, labels, quote fields, and transaction preview before launch.
+
+## Before you act
+
+> **Before you act:**
+> Conversion is **one-way**: the pETH you burn is gone for good and POLAR cannot be converted back. Your proceeds depend on auction-price and [rebate](/polar/conversion-auctions#the-converter-rebate) dynamics that shift between preview and inclusion, and you compete with bots for the same spread. Convert only on the live previewed quote, never on the examples here. See the [Risk Disclosure](/resources/risk-disclosure).
+
+Do not attempt a conversion until all of these are true:
+
+- The official app URL is published on [Safety and Verification](/paths/safety-verification).
+- The conversion contract is listed on [Contracts & Addresses](/resources/contracts) (Ethereum mainnet, chain ID 1).
+- The conversion price, POLAR market price, rebate, and price-spike preview are visible in the app before signing.
+- You are comfortable with a one-way burn: pETH converted to POLAR cannot be converted back.
+
+## What you need
+
+- **pETH** to burn — acquired by buying on the [bonding curve](/peth/bonding-curve) or on a DEX.
+- A wallet connected to the Polaris app.
+
+## Steps
+
+<Steps>
+
+### Open the conversion panel
+
+It shows the live **conversion price** and POLAR's **market price** side by side.
+
+### Watch the decaying price
+
+The conversion price decays continuously and spikes upward each time someone converts. A conversion is profitable when it drifts **below** POLAR's market price; that spread is your margin.
+
+### Read the quote
+
+Enter a pETH amount. The panel previews the **POLAR you will receive**, the **ETH rebate** at the current [rebate](/polar/conversion-auctions) setting, and the resulting **price spike**. Because the spike scales with the fraction of POLAR supply minted, larger amounts price progressively worse; favor smaller increments.
+
+### Decide
+
+Convert only while the previewed POLAR (plus rebate) beats acquiring POLAR on the open market. If the spread has closed, wait for decay to reopen it.
+
+### Burn pETH ⇒ receive POLAR
+
+Confirm the transaction. Your pETH is **permanently burned**, you receive newly minted POLAR, and any ETH rebate goes to your wallet.
+
+### Lock or hold
+
+Lock the POLAR as [vePOLAR](/stewardship/vepolar) to earn yield and stewardship rights, or hold it.
+
+</Steps>
+
+## What just happened
+
+Your single transaction did four things at once:
+
+- Burned pETH ⇒ permanently raised the pETH [floor price](/peth/floor-price).
+- Released ETH from the bonding curve reserve.
+- Paid you any ETH rebate and routed the rest to the [Fee Router](/stewardship/fee-router) as yield.
+- Minted you new POLAR.
+
+> **Warning:**
+> Conversions are **one-way**. POLAR cannot be converted back to pETH, and burned pETH is gone for good. Confirm the previewed quote before signing.
+
+---
+
+<BlogPostCard
+  url="https://polarisfinance.io/blog/burn-pETH-mint-POLAR"
+  title="Burn pETH, Mint POLAR: The Conversion Mechanism"
+  description="How a single primitive connects Polaris' three engines, and why every conversion strengthens the protocol."
+  readingTime={11}
+  image="https://polarisfinance.io/blog/burn-peth-mint-polar-cover.png"
+/>

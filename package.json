@@ -1,0 +1,42 @@
+{
+  "name": "polaris-docs",
+  "version": "0.1.0",
+  "private": true,
+  "description": "User documentation for Polaris Finance — the pETH-powered yield layer for all of DeFi.",
+  "packageManager": "npm@10.9.4",
+  "engines": {
+    "node": ">=22 <27",
+    "npm": ">=10"
+  },
+  "scripts": {
+    "predev": "node scripts/sync-pagefind.mjs --if-exists",
+    "dev": "next dev",
+    "dev:search": "npm run build && npm run dev",
+    "prebuild": "node scripts/generate-sitemap.mjs && node scripts/generate-llms.mjs",
+    "build": "next build --webpack",
+    "postbuild": "pagefind --site out --output-subdir _pagefind && node scripts/sync-pagefind.mjs",
+    "ci": "npm run lint:content && npm run check:links && npm run build && npm run check:pagefind && npm run audit:prod",
+    "lint:content": "node scripts/check-content.mjs",
+    "check:links": "node scripts/check-links.mjs",
+    "check:links:external": "node scripts/check-links.mjs --external",
+    "check:pagefind": "node scripts/check-pagefind.mjs",
+    "sync:pagefind": "node scripts/sync-pagefind.mjs",
+    "audit:prod": "npm audit --omit=dev --audit-level=high",
+    "start": "next start",
+    "serve": "npx serve out"
+  },
+  "dependencies": {
+    "next": "^16.2.7",
+    "nextra": "^4.6.1",
+    "nextra-theme-docs": "^4.6.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "pagefind": "^1.5.2"
+  },
+  "overrides": {
+    "postcss": "8.5.10",
+    "zod": "4.1.12"
+  }
+}

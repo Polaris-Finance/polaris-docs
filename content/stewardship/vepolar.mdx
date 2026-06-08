@@ -1,0 +1,91 @@
+---
+title: vePOLAR
+description: vePOLAR is vote-escrowed POLAR. Lock POLAR to receive stewardship rights and a share of protocol yield without touching the immutable core.
+---
+
+# vePOLAR
+
+**vePOLAR is vote-escrowed POLAR.** Lock [POLAR](/polar/polar-token) and receive vePOLAR in return: the right to steward bounded parameters and participate in the protocol's edge decisions.
+
+> **Current status:** The vePOLAR locking interface, contract address, lock durations, vote-power decay, unlock rules, proposal thresholds, and final yield split are pending audited deployment. Do not lock POLAR through an unofficial interface.
+
+## What vePOLAR does
+
+```
+lock POLAR -> receive vePOLAR -> steward bounded parameters + receive routed yield
+```
+
+vePOLAR holders are **stewards, not governors**. vePOLAR steers quantitative parameters within hardcoded ranges and votes on permitted onboarding decisions. It cannot reach the immutable core: the bonding curve, CDP logic, liquidations, redemptions, and Stability Pool mechanics are out of reach of any vote.
+
+Concretely, vePOLAR holders can participate in decisions to:
+
+- License new pAssets onto Polaris infrastructure.
+- Onboard eligible participants into StablecoinOS and [Flow](/stewardship/flows) revenue sharing.
+- Set bounded interest splits and CDP parameters.
+- Tune [conversion](/polar/conversion-auctions) parameters within their hardcoded range.
+- Vote on treasury programs once the framework is published.
+
+Each action is bounded, auditable, and limited to the surfaces documented in [Stewardship, not Governance](/stewardship/stewardship). None can denature the protocol.
+
+## What vePOLAR does not do
+
+vePOLAR does not:
+
+- Direct POLAR emissions.
+- Create gauges or bribe markets.
+- Upgrade core contracts.
+- Change pETH collateral mechanics.
+- Override liquidations, redemptions, or Stability Pool rules.
+- Mint POLAR outside the pETH conversion mechanism.
+- Move a parameter outside its immutable min/max range.
+
+## Lock status
+
+The final lock design is pending. At launch, this page will publish:
+
+| Field | Status |
+|---|---|
+| POLAR contract address | Pending |
+| vePOLAR contract address | Pending |
+| Network | Ethereum mainnet |
+| Lock duration choices | 1 week to 4 years |
+| Vote-power formula and decay | Linear decay |
+| Increase/extend | Yes, anytime |
+| Withdraw | At lock expiry |
+| Delegation | Yes |
+| Yield claim path | Pending |
+
+## Yield for lockers
+
+vePOLAR is not influence alone. Lockers are one of the destinations of distributed protocol yield: a stewarded share of protocol interest is routed to POLAR stakers, alongside the pETH the [Fee Router](/stewardship/fee-router) distributes to troves.
+
+The exact split, buffering behavior, and claim mechanics are pending final deployment. This is routed protocol revenue, not POLAR emissions.
+
+## Prerequisites for locking
+
+Before locking POLAR, verify:
+
+- The official app URL.
+- POLAR and vePOLAR addresses against [Contracts and Addresses](/resources/contracts).
+- Verified source and ABI against [Contracts and Addresses](/resources/contracts).
+- Lock duration, voting power, unlock, and withdrawal rules.
+- The final yield split and claim path.
+- The audit status of the locking and stewardship contracts.
+
+Locking is an illiquid commitment by design. Do not lock through a contract or frontend that is not published through official Polaris docs.
+
+## The Polar Council
+
+The **Polar Council** is a treasury-funded program designed to bootstrap aligned, active stewards. It is comparable in spirit to veAERO's Flight School: a structured way to cultivate participants who understand the protocol and contribute to its stewardship, rather than leaving the role to whoever shows up.
+
+> **Current status:** The Council's operating framework is initially team-managed and will be formalized as providers step up and launch approaches. Exact terms, eligibility, and reporting requirements are pending publication.
+
+---
+
+<BlogPostCard
+  url="https://polarisfinance.io/blog/stewardship-not-governance"
+  title="Stewardship, not Governance"
+  description="Governance fails because of structure, not people. Here's how stewardship fixes the structure."
+  readingTime={11}
+  image="https://polarisfinance.io/blog/stewardship-not-governance-cover.png"
+/>

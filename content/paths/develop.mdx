@@ -1,0 +1,37 @@
+---
+title: Develop
+description: The developer path for integrating with Polaris before launch artifacts are published.
+---
+
+# Develop
+
+**Who this is for:** engineers building an app, indexer, risk system, vault, liquidation monitor, analytics surface, or external market around Polaris.
+
+**Prerequisites:** familiarity with onchain reads/writes (viem, ethers, or equivalent) and the Polaris product model. If the concepts are new, read [Core Concepts](/core-concepts) before going deeper.
+
+> **Launch status:** Polaris is in pre-deployment documentation mode. Contract addresses, ABIs, verified source, canonical events, SDKs, subgraphs, and API endpoints are not yet published. Build against the documented model, but do not hardcode pre-launch addresses, method names, or event signatures.
+
+## Reading sequence
+
+Read these in order — model the system before you bind to any artifact.
+
+1. [Core Concepts](/core-concepts) — the system model and its component boundaries.
+2. [Contracts and Addresses](/resources/contracts) — the deployment shape (a shared core plus one instance per pAsset), the contract set, and the address, source, and ABI publication format to verify against.
+3. [Audits and Security](/resources/audits-security) — the security model and audit status; read before treating a deployment as production-grade.
+4. [Safety and Verification](/paths/safety-verification) — the pre-interaction checklist for network, chain ID, addresses, and verified source.
+
+## Build now, bind later
+
+Until deployment artifacts ship, the safest useful work is interface planning:
+
+- Model the product concepts: pETH, pAssets, troves, Stability Pools, Fee Router, POLAR, and vePOLAR.
+- Design data schemas around stable conceptual entities, not unpublished function names.
+- Build verification gates so your app refuses unverified networks or addresses.
+- Keep chain-specific config external and replaceable.
+- Track the official docs for the deployment manifest, ABIs, and event catalog.
+
+## Next
+
+- Need the system model and component boundaries? Start with [Core Concepts](/core-concepts).
+- Need artifact expectations (addresses, source, ABIs)? Go to [Contracts and Addresses](/resources/contracts).
+- Need safety gates before pointing a system at a deployment? Go to [Safety and Verification](/paths/safety-verification).

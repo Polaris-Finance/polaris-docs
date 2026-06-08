@@ -1,0 +1,62 @@
+---
+title: Why Polaris
+description: The stablecoin trilemma, the degradation pattern, and how Polaris is architected so that trustlessness and scale stop being mutually exclusive.
+---
+
+# Why Polaris
+
+## The trilemma
+
+Stablecoins are said to be **scalable, yield-bearing, or trustless — pick two**. Market structure mostly reinforces that framing: the largest stablecoins rely on issuers, custodians, offchain assets, or other counterparties, while cleaner trustless designs stay smaller.
+
+That trade-off is real, but it is not a law of nature. It exists because, for years, high offchain interest rates made it *easy* to back a stablecoin with T-bills and CEX yield and bring that yield onchain. Easy, but not trustless — and not innovative.
+
+## The degradation pattern
+
+The deeper problem is **structural drift toward centralization**. Stablecoins tend to start relatively clean and get dirtier in how they source yield as they grow, because centralized backing is the path of least resistance to scale.
+
+| Stablecoin | Where it falls short |
+|---|---|
+| **USDC** | Centralized issuer with freeze/blacklist powers; holders do not receive the issuer's reserve yield directly; stress events have shown banking dependencies matter. |
+| **USDS / DAI (Sky)** | Began with cleaner crypto-collateral roots, then added centralized stablecoin and real-world-asset exposure as it scaled. Governance-set rates remain. |
+| **USDe** | Uses market-neutral, custody/counterparty-dependent infrastructure; scaling can require more counterparties, venues, and operational trust assumptions. |
+| **LUSD / BOLD** | Genuinely trustless and counterparty-free — but limited yield sources and capital inefficiency keep them in a trustless-focused niche. Great to hold, less attractive to mint. |
+
+The lesson: a stablecoin built for trustlessness must be *architected* so degradation cannot happen, not merely intend to stay clean.
+
+## The counterparty-free lineage
+
+Polaris descends from the line of immutable, counterparty-free CDP stablecoins, built to fix the limitation each prior generation hit.
+
+![Polaris lineage: SAI (2017) ⇒ LUSD (2021) ⇒ BOLD / Liquity V2 (2024) ⇒ pUSD (2026)](/infographics/polaris-lineage.svg)
+
+*The counterparty-free CDP lineage, 2017 to present.*
+
+In text, the lineage reads:
+
+1. **2017 — SAI:** the first CDP stablecoin, single-collateral. It later upgraded to DAI and then drifted toward centralized backing.
+2. **2021 — LUSD:** immutable and decentralized, but capital-inefficient, and spent roughly 20% of its life more than 1% above peg.
+3. **2024 — BOLD (Liquity V2):** a refined CDP mechanism from the original Liquity developers — still trustless, still yield-constrained.
+4. **2026 — pUSD:** the next chapter. A bonding-curve collateral design that solves the overpeg problem and unlocks onchain-scaling yield without adding a counterparty.
+
+## How Polaris resolves it
+
+Polaris is built so the only counterparty you trust is **immutable code and Ethereum**:
+
+- **Onchain-only yield.** Every yield source — borrower interest, bonding curve swap fees, conversion gains, PolarEX swap fees — is internal to the protocol and grows with activity. Nothing is rented from a CEX or T-bill desk.
+- **Immutable core.** The bonding curve, CDP logic, liquidations, redemptions, and the Stability Pool are fixed in code. No admin key can add a PSM or a freeze function under pressure.
+- **Counterparty-free by construction.** pUSD sits in the same counterparty-free lineage as LUSD and BOLD — but adds yield that *scales* with DeFi volume rather than capping growth at what a counterparty can deliver.
+
+> Having a counterparty means capping your growth to whatever yield that counterparty can deliver.
+
+Polaris turns onchain trading volume itself into a stablecoin yield source through its bonding curve, and extends the model to *any* asset through the [StablecoinOS](/core-concepts). DeFi has had uncensorable-but-small and censorable-but-scalable stablecoins. Polaris is built to be the uncensorable, scalable one.
+
+---
+
+<BlogPostCard
+  url="https://polarisfinance.io/blog/why-polaris"
+  title="Why Polaris?"
+  description="Analyzing where USDC, USDS, USDe, and LUSD fall short — and how pUSD delivers scalable, yield-bearing stability without counterparty risk."
+  readingTime={6}
+  image="https://polarisfinance.io/polaris-og.png"
+/>

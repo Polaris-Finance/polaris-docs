@@ -1,0 +1,39 @@
+---
+title: Audits & Security
+description: Polaris security model, audit-report status, bug-bounty status, and disclosure guidance. Pre-launch reports and bounty details are not published yet.
+---
+
+# Audits & Security
+
+> **Pre-launch note:** Audits and verifications are ongoing, this page will be updated with major developments.
+
+
+## The security model
+
+Polaris's intended security model rests on what it *cannot* do, as much as what it can:
+
+- **Immutability.** The core contracts are intended to be non-upgradeable after deployment. This removes upgrade-key and proxy-admin attack surface, raising the stakes on getting the code right, because immutability cuts both ways: it cannot be tampered with, and it cannot be patched.
+- **No admin keys.** The design has no freeze, blacklist, or pause functions, by anyone, including the team. There is no privileged key intended to move user funds.
+- **Bounded stewardship.** Stewards adjust only quantitative parameters — many of them bounded by hardcoded ranges (for example interest-rate maxima, fee-split floors, and the mint/redemption decay factors) — and cannot reach the core logic. See [Stewardship, not Governance](/stewardship/stewardship).
+- **Narrow oracle dependency.** Peg awareness uses internal redemption and minting volume rather than a pAsset price oracle. Collateral pricing still requires an ETH price feed; the provider, feed address, and network details are not published until launch.
+
+For the full accounting of what can still go wrong, read the [Risk Disclosure](/resources/risk-disclosure).
+
+## Bug bounty & responsible disclosure
+
+A bug-bounty program and a responsible-disclosure process are intended to run from launch. When live, this section will document:
+
+- **Intake.** The single official channel for submitting a report, linked from this page. Until it is published, there is no official intake; do not send exploit details to private forms, DMs, or third-party bounty pages unless they are linked from these docs.
+- **Scope.** Which contracts, networks, and surfaces are in scope, and what is explicitly out of scope.
+- **Severity tiers and rewards.** How findings are classified and what each tier pays.
+- **Disclosure process.** The expected steps and timeline from report to fix to public disclosure, and the safe-harbor terms for good-faith research.
+
+> **Note:** Until the program and intake appear here, treat the protocol as having no public bounty. Do not trust a bounty URL, reward table, or disclosure form found anywhere else.
+
+## Reporting a vulnerability
+
+The formal disclosure channel will be published alongside the bug-bounty program. Until then, use only public Polaris channels to ask for the current intake path; do not send exploit details to private forms, direct messages, or third-party bounty pages unless they are linked from these docs.
+
+---
+
+For the full pre-launch checklist, see [Safety and Verification](/paths/safety-verification). For deployed contract addresses (also forthcoming), see [Contracts & Addresses](/resources/contracts).

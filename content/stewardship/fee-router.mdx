@@ -1,0 +1,83 @@
+---
+title: Fee Router
+description: "Polaris's yield plumbing: the Fee Router buffers protocol revenue and routes pETH yield to troves, POLAR stakers, and Flow recipients under bounded rules."
+---
+
+# Fee Router
+
+The Fee Router is the plumbing that turns protocol activity into distributed yield. Onchain fees do not flow straight to recipients; they pass through the router, which buffers them and routes proceeds under immutable and stewarded constraints.
+
+> **Current status:** The Fee Router address, ABI, event catalog, buffering parameters, distribution cadence, claim path, and final split bounds are pending audited deployment. This page describes the intended routing model without inventing live parameters.
+
+## What goes in
+
+The Fee Router receives pETH-denominated value from protocol activity:
+
+- **Conversions.** When pETH is burned to mint POLAR in a [conversion auction](/polar/conversion-auctions), released ETH can be swapped back into pETH after any converter rebate and forwarded to the router.
+- **Bonding-curve swap fees.** Fees charged on ETH/pETH activity can feed pETH yield paths according to the final contract design.
+- **Other protocol revenue.** Additional onchain fees, if routed through the Fee Router at launch, will be listed in the contract reference and yield docs.
+
+Inputs are hard assets from protocol activity, not emitted POLAR.
+
+## What comes out
+
+The router distributes yield according to published rules and bounds:
+
+| Destination | What they receive | Status |
+|---|---|---|
+| **Troves** | Yield credited to pETH collateral or the relevant accounting path | Accounting path pending |
+| **POLAR stakers** | A stewarded share of distributed protocol yield | Final split and claim path pending |
+| **Flow recipients** | Revenue-sharing distributions for whitelisted contracts, where applicable | Flow deployment and parameters pending |
+
+The Fee Router itself does not enforce a per-destination split: [stewardship](/stewardship/stewardship) pushes buffered pETH rewards to a chosen receiver, bounded by the accrued buffer and the immutable buffering cadence. The bounded, stewarded split with hardcoded floors applies to primary interest (the pAsset-denominated revenue stream) via the separate [interest router](/yield/yield-sources), not to the Fee Router's pETH rewards. Either way, the router moves only existing assets and cannot create token emissions.
+
+## Why buffer at all
+
+The Fee Router buffers incoming pETH rather than paying it out the instant it arrives. Conversions and swap fees can be bursty: sporadic in timing, uneven in size. Buffering smooths that inflow into steadier distributed yield, so recipients see accounting that is less dependent on single spikes.
+
+Exact buffer size, cadence, and distribution mechanics are launch parameters and remain pending.
+
+## The converter rebate
+
+The Fee Router sits downstream of one of stewardship's important dials: the **converter rebate**. Before released ETH becomes system yield, a stewarded slice can be returned to the converter.
+
+- **Higher rebate** -> conversions are cheaper -> more conversion volume, less yield reaching the router.
+- **Lower rebate** -> conversions cost more -> less volume, more yield reaching the router.
+
+It is a dial between conversion volume and system yield. The total ETH released from the curve, and therefore the floor-price impact, is unaffected by the rebate; it only reshapes how that value is split before it enters the router. See [Conversion Auctions](/polar/conversion-auctions#the-converter-rebate) for the full mechanism.
+
+## Operator and integrator prerequisites
+
+Before relying on the Fee Router, operators and integrators should verify:
+
+- Fee Router address, source, and ABI.
+- The published list of input sources.
+- The current recipient split and its min/max bounds.
+- Distribution cadence and claim path.
+- Events for deposits, buffering, distributions, claims, and parameter changes.
+- Whether a Flow recipient is whitelisted, what address is observed, what address receives yield, and what weight applies.
+- Any audit notes specific to router accounting.
+
+## Indexing considerations
+
+Indexers should model the router as a stateful distribution system, not as a simple transfer log:
+
+- Track inputs separately by source.
+- Track buffered amounts before distribution.
+- Track each distribution or claim by recipient type.
+- Store the parameter values active during each distribution.
+- Reconcile aggregate indexed totals against contract reads when the ABI is published.
+
+## Where it sits in the system
+
+The Fee Router is one piece of a larger picture. For every onchain yield source on Polaris, see [Where the Yield Comes From](/yield/yield-sources). For Flow-specific routing, continue to [Flows](/stewardship/flows).
+
+---
+
+<BlogPostCard
+  url="https://polarisfinance.io/blog/pusd-no-counterparty"
+  title="pUSD: No Counterparty, No Ceiling"
+  description="How pUSD delivers counterparty-free yield that scales with protocol adoption — and the ecosystem taking shape around it."
+  readingTime={8}
+  image="https://polarisfinance.io/blog/pusd-no-counterparty-cover.png"
+/>

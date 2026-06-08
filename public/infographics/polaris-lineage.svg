@@ -1,0 +1,353 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 720" fill="none" role="img" aria-labelledby="lineage-title lineage-desc">
+  <title id="lineage-title">From Liquity to Polaris stablecoin lineage</title>
+  <desc id="lineage-desc">A night-sky timeline tracing SAI, LUSD, BOLD, and pUSD as successive decentralized stablecoin designs.</desc>
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&amp;family=Inter:wght@400;500;600&amp;display=swap');
+      .title { font-family: 'Cormorant Garamond', Georgia, serif; }
+      .label { font-family: 'Inter', Arial, sans-serif; }
+    </style>
+
+    <!-- ============ GRADIENTS ============ -->
+
+    <radialGradient id="bgGradient" cx="50%" cy="48%" r="68%">
+      <stop offset="0%"   style="stop-color:#0d1f3c"/>
+      <stop offset="60%"  style="stop-color:#0a1628"/>
+      <stop offset="100%" style="stop-color:#050a14"/>
+    </radialGradient>
+
+    <!-- pUSD circle radial (center slightly lit) -->
+    <radialGradient id="pusdCircleBg" cx="50%" cy="30%" r="70%">
+      <stop offset="0%"   style="stop-color:#213a58"/>
+      <stop offset="100%" style="stop-color:#0d1f3c"/>
+    </radialGradient>
+
+    <!-- pUSD fill gradient (cream-gold) -->
+    <linearGradient id="pusdGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   style="stop-color:#F5F0E6"/>
+      <stop offset="100%" style="stop-color:#E8DCC4"/>
+    </linearGradient>
+
+    <!-- Emblem arm gradients -->
+    <linearGradient id="armTop" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%"     style="stop-color:#E8DCC4;stop-opacity:0"/>
+      <stop offset="46.42%" style="stop-color:#E8DCC4"/>
+    </linearGradient>
+    <linearGradient id="armBottom" x1="50%" y1="100%" x2="50%" y2="0%">
+      <stop offset="0%"     style="stop-color:#E8DCC4;stop-opacity:0"/>
+      <stop offset="46.42%" style="stop-color:#E8DCC4"/>
+    </linearGradient>
+    <linearGradient id="armLeft" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%"     style="stop-color:#E8DCC4;stop-opacity:0"/>
+      <stop offset="46.42%" style="stop-color:#E8DCC4"/>
+    </linearGradient>
+    <linearGradient id="armRight" x1="100%" y1="50%" x2="0%" y2="50%">
+      <stop offset="0%"     style="stop-color:#E8DCC4;stop-opacity:0"/>
+      <stop offset="46.42%" style="stop-color:#E8DCC4"/>
+    </linearGradient>
+
+    <radialGradient id="emblemHalo" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   style="stop-color:#E8DCC4;stop-opacity:0.24"/>
+      <stop offset="62%"  style="stop-color:#E8DCC4;stop-opacity:0.08"/>
+      <stop offset="100%" style="stop-color:#E8DCC4;stop-opacity:0"/>
+    </radialGradient>
+
+    <radialGradient id="endpointFocus" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   style="stop-color:#E8DCC4;stop-opacity:0.1"/>
+      <stop offset="54%"  style="stop-color:#244563;stop-opacity:0.08"/>
+      <stop offset="100%" style="stop-color:#244563;stop-opacity:0"/>
+    </radialGradient>
+
+    <!-- ============ FILTERS ============ -->
+
+    <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="tokenGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.4 0"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+
+    <filter id="tinyStar" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1.2" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- ============ REUSABLE LOGO SYMBOLS ============ -->
+
+    <!-- DAI / SAI-era logo (historical DAI: diamond-in-circle, gold tones)
+         Native viewBox 0 0 628.3 628.3; centered at (314.15, 314.15) -->
+    <symbol id="daiLogo" viewBox="0 0 628.3 628.3">
+      <circle cx="314.15" cy="314.15" r="309" fill="#fff" stroke="#ffce45" stroke-width="10.3"/>
+      <path fill="#ffce45" d="M314.152 72.307L550.856 309.01 314.152 545.715 77.448 309.01z"/>
+      <path fill="#febe44" d="M314.15 386.25L77.25 309l236.9-236.7L551.05 309l-236.9 77.25z"/>
+      <path fill="#fff" d="M159.65 293.55H267.8l46.35-51.5 51.5 51.5H473.8L314.15 121.03l-154.5 172.52z"/>
+      <path fill="#d9a547" opacity=".42" d="M314.15 545.7V72.3L550.85 309l-236.7 236.7z"/>
+    </symbol>
+
+    <!-- LUSD logo (Liquity USD — purple/cyan stylized L$ emblem)
+         Native viewBox 0 0 2500 2500 -->
+    <symbol id="lusdLogo" viewBox="0 0 2500 2500">
+      <path fill="#745DDF" d="M2450,1608c-132,455-511,797-977,881v-356c84-32,160-83,222-149c34-37,64-78,87-122c44-84,68-177,68-272c0-1,0-2,0-3c0-314-227-440-440-533l-108-48c-115-52-203-98-203-176c0-109,95-167,184-167c95,0,149,35,206,134l44,77l285-183l-37-69c-65-124-176-220-308-266V30c28,5,55,11,83,18c3,1,6,1,9,2s6,1,9,2c1,0,2,0,3,1c7,2,15,4,23,6c534,155,901,644,901,1200c0,118-17,236-50,349l0,0H2450z"/>
+      <path fill="#2EB6EA" d="M1500,1604c0,143-129,232-249,232c-144,0-226-119-242-229l-14-96l-345,97l16,77c49,243,215,418,441,470v344c-61-7-122-19-181-35c-8-2-17-4-25-7C368,2302,0,1813,0,1257V56C0,29,22,7,49,7h1058v344c-124,36-229,118-295,228c-42,73-64,155-64,239c0,1,0,2,0,3v7c3,280,209,398,404,486l97,42l8,4c154,71,241,117,241,243L1500,1604z"/>
+      <path fill="#FFFFFF" d="M1849,1587c0,1,0,2,0,3c0,95-23,188-68,272c-23,44-53,86-87,122c-62,66-138,117-222,149v357l-100,9c0,0-214,6-265,0l-1-343c-225-53-391-227-441-470l-16-77l345-97l14,96c16,110,98,229,242,229c120,0,249-89,249-232c0-126-87-172-242-243l-8-4l-97-42c-195-88-401-205-404-486v-7c0-1,0-2,0-3c0-84,22-166,64-239c66-111,171-193,295-228V9c225-2,243-1,366,21v327c133,46,243,141,308,266l37,69l-285,183l-44-77c-57-99-111-134-206-134c-90,0-184,58-184,167c0,79,88,125,203,176l108,48c213,93,440,219,440,533L1849,1587z"/>
+    </symbol>
+
+    <!-- BOLD logo (Liquity V2 — green circle with stylized lowercase "b")
+         Native viewBox 0 0 24 24 -->
+    <symbol id="boldLogo" viewBox="0 0 24 24">
+      <circle cx="12" cy="12.0003" r="12" fill="#63D77D"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M9.0258 4.00031H6.35928V19.9994H11.6923V19.3594C12.4929 19.7692 13.4001 20.0003 14.3612 20.0003C17.6011 20.0003 20.2275 17.3739 20.2275 14.134C20.2275 10.8941 17.6011 8.26765 14.3612 8.26765C13.4001 8.26765 12.4929 8.49879 11.6923 8.90852V4.69516V4.00031H9.0258ZM11.6923 8.90852C9.79415 9.87994 8.49487 11.8552 8.49487 14.134C8.49487 16.4127 9.79415 18.388 11.6923 19.3594V8.90852Z" fill="#1C1D4F"/>
+    </symbol>
+  </defs>
+
+  <!-- ============ BACKGROUND ============ -->
+  <rect width="1400" height="720" fill="url(#bgGradient)"/>
+
+  <!-- ============ FAINT STARFIELD ============ -->
+  <g fill="#E8DCC4" filter="url(#tinyStar)">
+    <circle cx="88"   cy="72"  r="0.7" opacity="0.28"/>
+    <circle cx="172"  cy="118" r="0.6" opacity="0.22"/>
+    <circle cx="265"  cy="68"  r="0.55" opacity="0.20"/>
+    <circle cx="348"  cy="152" r="0.7" opacity="0.25"/>
+    <circle cx="432"  cy="88"  r="0.5" opacity="0.18"/>
+    <circle cx="520"  cy="182" r="0.6" opacity="0.22"/>
+    <circle cx="612"  cy="98"  r="0.55" opacity="0.22"/>
+    <circle cx="708"  cy="208" r="0.65" opacity="0.26"/>
+    <circle cx="802"  cy="82"  r="0.55" opacity="0.20"/>
+    <circle cx="892"  cy="172" r="0.7" opacity="0.28"/>
+    <circle cx="988"  cy="108" r="0.6" opacity="0.24"/>
+    <circle cx="1078" cy="198" r="0.55" opacity="0.20"/>
+    <circle cx="1172" cy="82"  r="0.7" opacity="0.28"/>
+    <circle cx="1265" cy="162" r="0.6" opacity="0.24"/>
+    <circle cx="1338" cy="108" r="0.55" opacity="0.22"/>
+    <circle cx="135"  cy="605" r="0.55" opacity="0.18"/>
+    <circle cx="362"  cy="628" r="0.6" opacity="0.22"/>
+    <circle cx="595"  cy="642" r="0.5" opacity="0.18"/>
+    <circle cx="825"  cy="610" r="0.55" opacity="0.2"/>
+    <circle cx="1085" cy="638" r="0.6" opacity="0.22"/>
+    <circle cx="1312" cy="618" r="0.55" opacity="0.18"/>
+  </g>
+
+  <!-- ============ FRAME BORDER (subtle) ============ -->
+  <rect x="30" y="30" width="1340" height="660" fill="none"
+        stroke="#E8DCC4" stroke-width="0.6" opacity="0.12"/>
+
+  <!-- ============ HEADER ============ -->
+
+  <!-- Kicker -->
+  <text class="label" x="60" y="66" font-size="14" font-weight="500"
+        letter-spacing="0.25em" fill="#E8DCC4" fill-opacity="0.55">THE LINEAGE</text>
+
+  <!-- Title -->
+  <text class="title" x="60" y="118" font-size="52" font-style="italic" font-weight="500"
+        fill="#F5F0E6" fill-opacity="0.96" letter-spacing="0.01em">From Liquity to Polaris</text>
+
+  <!-- Thin gold rule under header -->
+  <line x1="60" y1="148" x2="120" y2="148" stroke="#D4A830" stroke-width="1" opacity="0.55"/>
+
+  <!-- ============ TIMELINE DASHED SPINE ============
+       Baseline at y=380, runs from x=250 to x=1170 through nodes.
+       Split into four segments so opacity can brighten toward pUSD.
+  -->
+  <!-- SAI -> LUSD segment (faintest) -->
+  <line x1="250" y1="380" x2="490" y2="380"
+        stroke="#E8DCC4" stroke-width="2" stroke-dasharray="8,6"
+        opacity="0.4" stroke-linecap="round"/>
+  <!-- LUSD -> BOLD segment -->
+  <line x1="590" y1="380" x2="830" y2="380"
+        stroke="#E8DCC4" stroke-width="2" stroke-dasharray="8,6"
+        opacity="0.6" stroke-linecap="round"/>
+  <!-- BOLD -> pUSD segment (brightest) -->
+  <line x1="935" y1="380" x2="1170" y2="380"
+        stroke="#E8DCC4" stroke-width="2.2" stroke-dasharray="8,6"
+        opacity="0.9" stroke-linecap="round"/>
+
+  <!-- ============ SAI -> DAI SIDE-BRANCH (top) ============ -->
+  <g>
+    <!-- curved dashed arc rising from SAI up-and-right -->
+    <path d="M 200,338 C 230,280 310,220 395,205"
+          stroke="#8BA4B8" stroke-width="1.5"
+          stroke-dasharray="4,5" fill="none"
+          opacity="0.42" stroke-linecap="round"/>
+
+    <!-- Ghost DAI circle at endpoint (400, 200), faded slate tone -->
+    <g transform="translate(400, 200)">
+      <circle r="26" fill="#627D92" fill-opacity="0.12" stroke="#8BA4B8" stroke-width="1" opacity="0.6"/>
+      <g transform="translate(-20,-20)" opacity="0.7">
+        <use href="#daiLogo" x="0" y="0" width="40" height="40"/>
+      </g>
+    </g>
+
+    <!-- Label: DAI -->
+    <text class="label" x="445" y="193" font-size="18" font-weight="500"
+          fill="#8BA4B8" fill-opacity="0.85" letter-spacing="0.1em">DAI</text>
+
+    <!-- Subcaption -->
+    <text class="label" x="445" y="218" font-size="16" font-style="italic"
+          fill="#8BA4B8" fill-opacity="0.68">drifted toward RWA backing</text>
+  </g>
+
+  <!-- ============ NODE 1 — SAI (200, 380) ============ -->
+  <g transform="translate(200, 380)">
+    <!-- Faint outer ring -->
+    <circle r="54" fill="none" stroke="#627D92" stroke-width="0.8" opacity="0.2"/>
+    <!-- Main circle (slate backing - SAI is the faded ancestor) -->
+    <circle r="44" fill="#627D92" fill-opacity="0.18"
+            stroke="#627D92" stroke-width="1.5" stroke-opacity="0.5"/>
+    <!-- SAI = early DAI logo, desaturated (slate-ghosted to read as ancestor) -->
+    <g transform="translate(-30,-30)" opacity="0.78">
+      <use href="#daiLogo" x="0" y="0" width="60" height="60"/>
+    </g>
+  </g>
+
+  <!-- Year label -->
+  <text class="title" x="200" y="478" font-size="30" font-style="italic" font-weight="400"
+        fill="#E8DCC4" fill-opacity="0.75" text-anchor="middle">2017</text>
+  <!-- Protocol name -->
+  <text class="label" x="200" y="512" font-size="21" font-weight="500"
+        fill="#E8DCC4" fill-opacity="0.9" text-anchor="middle" letter-spacing="0.12em">SAI</text>
+  <!-- Caption -->
+  <text class="label" x="200" y="548" font-size="18" font-weight="400"
+        fill="#E8DCC4" fill-opacity="0.65" text-anchor="middle">first CDP stablecoin</text>
+  <text class="label" x="200" y="572" font-size="18" font-weight="400"
+        fill="#E8DCC4" fill-opacity="0.65" text-anchor="middle">single-collateral</text>
+  <text class="label" x="200" y="600" font-size="16" font-style="italic" font-weight="400"
+        fill="#E8DCC4" fill-opacity="0.52" text-anchor="middle">upgraded to DAI, then drifted</text>
+
+  <!-- ============ NODE 2 — LUSD (540, 380) ============ -->
+  <g transform="translate(540, 380)">
+    <circle r="60" fill="none" stroke="#E8DCC4" stroke-width="0.8" opacity="0.2"/>
+    <circle r="50" fill="#E8DCC4" fill-opacity="0.08"
+            stroke="#E8DCC4" stroke-width="1.5" stroke-opacity="0.6"/>
+    <!-- Real LUSD mark, sized to fit ~60% of r=50 -->
+    <g transform="translate(-30,-30)" opacity="0.95">
+      <use href="#lusdLogo" x="0" y="0" width="60" height="60"/>
+    </g>
+  </g>
+
+  <text class="title" x="540" y="478" font-size="30" font-style="italic" font-weight="400"
+        fill="#E8DCC4" fill-opacity="0.85" text-anchor="middle">2021</text>
+  <text class="label" x="540" y="512" font-size="21" font-weight="500"
+        fill="#E8DCC4" fill-opacity="0.92" text-anchor="middle" letter-spacing="0.12em">LUSD</text>
+  <text class="label" x="540" y="548" font-size="18" font-weight="400"
+        fill="#E8DCC4" fill-opacity="0.7" text-anchor="middle">immutable, decentralized</text>
+  <text class="label" x="540" y="576" font-size="16" font-style="italic" font-weight="400"
+        fill="#E8DCC4" fill-opacity="0.58" text-anchor="middle">spent ~20% of its life &gt;1% above peg</text>
+
+  <!-- ============ NODE 3 — BOLD (880, 380) ============ -->
+  <g transform="translate(880, 380)">
+    <circle r="66" fill="none" stroke="#E8DCC4" stroke-width="0.8" opacity="0.22"/>
+    <circle r="55" fill="#E8DCC4" fill-opacity="0.1"
+            stroke="#E8DCC4" stroke-width="2" stroke-opacity="0.75"/>
+    <!-- Real BOLD mark, sized to fit ~65% of r=55 -->
+    <g transform="translate(-36,-36)" opacity="0.98">
+      <use href="#boldLogo" x="0" y="0" width="72" height="72"/>
+    </g>
+  </g>
+
+  <text class="title" x="880" y="478" font-size="30" font-style="italic" font-weight="400"
+        fill="#E8DCC4" fill-opacity="0.88" text-anchor="middle">2024</text>
+  <text class="label" x="880" y="512" font-size="21" font-weight="500"
+        fill="#E8DCC4" fill-opacity="0.94" text-anchor="middle" letter-spacing="0.12em">BOLD</text>
+  <text class="label" x="880" y="548" font-size="18" font-weight="400"
+        fill="#E8DCC4" fill-opacity="0.7" text-anchor="middle">Liquity V2</text>
+  <text class="label" x="880" y="576" font-size="18" font-weight="400"
+        fill="#E8DCC4" fill-opacity="0.7" text-anchor="middle">refined CDP mechanism</text>
+
+  <!-- ============ BOLD -> pUSD "TORCH PASSED" ARC ============
+       Curves up from ~(920, 360) peaking at (1050, 290), back to ~(1180, 360).
+  -->
+  <g>
+    <path d="M 935,352 Q 1060,255 1185,352"
+          stroke="#E8DCC4" stroke-width="1.2" fill="none"
+          opacity="0.55" stroke-linecap="round"/>
+    <!-- small dots to mark continuity -->
+    <circle cx="935"  cy="352" r="1.8" fill="#E8DCC4" opacity="0.7"/>
+    <circle cx="1185" cy="352" r="1.8" fill="#E8DCC4" opacity="0.75"/>
+
+    <!-- Primary label (editorial weight) -->
+    <text class="title" x="1060" y="262" font-size="20" font-style="italic" font-weight="500"
+          fill="#E8DCC4" fill-opacity="0.94" text-anchor="middle">three original Liquity devs joined</text>
+    <!-- Subcaption -->
+    <text class="label" x="1060" y="287" font-size="14" font-style="italic" font-weight="400"
+          fill="#E8DCC4" fill-opacity="0.65" text-anchor="middle" letter-spacing="0.1em">THE NEXT CHAPTER</text>
+  </g>
+
+  <!-- ============ NODE 4 — pUSD (1220, 380) ============ -->
+
+  <!-- Soft destination focus behind the Polaris endpoint -->
+  <ellipse cx="1220" cy="380" rx="145" ry="120" fill="url(#endpointFocus)"/>
+
+  <!-- Polaris emblem crowning pUSD, integrated with the endpoint -->
+  <g transform="translate(1220, 270)">
+    <!-- halo -->
+    <circle r="42" fill="url(#emblemHalo)" filter="url(#tokenGlow)"/>
+    <!-- Emblem scaled: native ~88 units center (43.53,43.53) -> translate to origin. -->
+    <g transform="scale(0.58) translate(-43.53, -43.53)" filter="url(#softGlow)">
+      <path d="M0 43.5285L36.2737 39.5989L43.5284 43.5285L36.2737 47.4582L0 43.5285Z" fill="url(#armLeft)"/>
+      <path d="M87.0571 43.5285L50.7834 39.5989L43.5287 43.5285L50.7834 47.4582L87.0571 43.5285Z" fill="url(#armRight)"/>
+      <path d="M43.5288 0L47.4585 36.2737L43.5288 43.5284L39.5992 36.2737L43.5288 0Z" fill="url(#armTop)"/>
+      <path d="M43.5288 87.0564L47.4585 50.7827L43.5288 43.5279L39.5992 50.7827L43.5288 87.0564Z" fill="url(#armBottom)"/>
+      <circle cx="43.53" cy="43.53" r="4.35" fill="#F5F0E6"/>
+    </g>
+  </g>
+  <line x1="1220" y1="302" x2="1220" y2="314"
+        stroke="#E8DCC4" stroke-width="0.8" stroke-linecap="round" opacity="0.26"/>
+
+  <!-- pUSD token circle -->
+  <g transform="translate(1220, 380)">
+    <!-- outer glow rings -->
+    <circle r="84" fill="none" stroke="#E8DCC4" stroke-width="0.8" opacity="0.16"/>
+    <circle r="72" fill="none" stroke="#E8DCC4" stroke-width="1" opacity="0.34"/>
+    <!-- Main token circle -->
+    <circle r="60" fill="url(#pusdCircleBg)"
+            stroke="#E8DCC4" stroke-width="2.2"
+            filter="url(#shadow)"/>
+    <!-- pUSD inner mark: cream $ with tiny star accent above (matches pusd-icon.svg)   -->
+    <!-- Small star above the $ (brand-native detail from pusd-icon) -->
+    <polygon points="0,-36 1.6,-31 6.8,-31 2.5,-27.5 4.3,-22.3 0,-25.3 -4.3,-22.3 -2.5,-27.5 -6.8,-31 -1.6,-31"
+             fill="#E8DCC4" fill-opacity="0.65"/>
+    <!-- Dollar with pusdGradient fill -->
+    <text class="title" x="0" y="16" font-size="44" font-weight="500"
+          fill="url(#pusdGradient)" text-anchor="middle" filter="url(#softGlow)">$</text>
+  </g>
+
+  <text class="title" x="1220" y="478" font-size="30" font-style="italic" font-weight="500"
+        fill="#F5F0E6" fill-opacity="0.97" text-anchor="middle">2026</text>
+  <text class="label" x="1220" y="512" font-size="22" font-weight="600"
+        fill="#F5F0E6" fill-opacity="0.98" text-anchor="middle" letter-spacing="0.12em">pUSD</text>
+  <text class="label" x="1220" y="548" font-size="18" font-weight="400"
+        fill="#E8DCC4" fill-opacity="0.8" text-anchor="middle">bonding-curve collateral design</text>
+  <text class="label" x="1220" y="576" font-size="17" font-weight="500" font-style="italic"
+        fill="#E8DCC4" fill-opacity="0.86" text-anchor="middle">overpeg solved</text>
+
+  <!-- ============ BOTTOM-RIGHT ERA LABEL ============ -->
+  <text class="label" x="1340" y="660" font-size="13" font-weight="400"
+        fill="#E8DCC4" fill-opacity="0.4" text-anchor="end" letter-spacing="0.22em">2017 — PRESENT</text>
+
+  <!-- ============ BOTTOM-LEFT SIGNATURE MARK (tiny) ============ -->
+  <g transform="translate(62, 656)">
+    <path d="M 0,-5.4 L 0.9,-0.95 L 5.4,0 L 0.9,0.95 L 0,5.4 L -0.9,0.95 L -5.4,0 L -0.9,-0.95 Z"
+          fill="#E8DCC4" opacity="0.5"/>
+  </g>
+  <text class="label" x="80" y="660" font-size="13" font-weight="400"
+        fill="#E8DCC4" fill-opacity="0.4" letter-spacing="0.22em">POLARIS</text>
+
+</svg>

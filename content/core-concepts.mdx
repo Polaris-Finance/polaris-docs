@@ -1,0 +1,59 @@
+---
+title: Core Concepts
+description: A one-page map of the Polaris system, with every key term defined briefly and linked to its full explanation.
+---
+
+# Core Concepts
+
+This page is the map. Each term is defined in a sentence or two and links to its full treatment. If you read nothing else, read this.
+
+## The assets
+
+- **pAsset**: a synthetic asset minted by Polaris (pUSD, pETH, pGOLD, pCHF, …). Each is overcollateralized and counterparty-free. See [The pAsset Catalog](/minting/passet-catalog).
+- **pUSD**: the flagship pAsset, pegged to the US dollar, backed by pETH collateral. See [Minting pAssets](/minting/minting-passets).
+- **pETH**: ETH deposited into a two-way [bonding curve](/peth/bonding-curve). It is the *only* collateral Polaris accepts, has a floor price that only rises, and is yield-bearing.
+- **POLAR**: the protocol's stewardship token. After a fixed distribution at launch, new POLAR can be minted *only* by burning pETH in a [conversion auction](/polar/conversion-auctions). **vePOLAR**, a vote-escrow layer for stewardship rights, is forthcoming.
+
+## Minting & positions
+
+- **CDP** (Collateralized Debt Position): the mechanism behind minting. You post collateral and mint the pAsset directly from the protocol, not by borrowing another user's funds. See [Minting pAssets](/minting/minting-passets).
+- **Trove**: your individual borrowing position in a Polaris CDP. Each trove is isolated, with its own collateral, debt, and collateralization ratio. See [Managing Your Trove](/minting/managing-your-trove).
+- **StablecoinOS**: Polaris is a *factory* of CDP instances, each issuing a different pAsset but all sharing the same pETH collateral and bonding curve.
+
+## Keeping the peg
+
+- **Redemption**: exchanging a pAsset for its underlying collateral at face value (minus a fee) when it trades *below* peg. Restores the floor. See [Redemptions](/redemptions-liquidations/redemptions).
+- **Minting (mechanism)**: the inverse of redemption. Arbitrageurs add pETH to troves to mint pAssets when the pAsset trades *above* peg. Restores the ceiling.
+- **Autonomous interest rates**: redemption and minting volume serve as onchain proxy signals for the peg, letting Polaris set rates without an external oracle.
+
+## Risk states
+
+- **Liquidation**: if a trove falls below its minimum collateralization ratio, it is liquidated, and the [Stability Pool](/yield/stability-pool) absorbs the debt. See [Liquidations](/redemptions-liquidations/liquidations).
+- **Recovery Mode**: a protocol-wide protective state entered when the system-wide reserve-backing-to-debt ratio (the [TCR](/resources/glossary)) falls below a fixed threshold. See [Recovery Mode](/redemptions-liquidations/recovery-mode).
+- **Floor price / floor ratio**: the mathematically enforced minimum price of pETH (in ETH), and that floor as a percentage of market price (your maximum drawdown). See [The Floor Price](/peth/floor-price).
+
+## Yield & coordination
+
+- **Stability Pool**: a reserve of pAssets that processes liquidations and is the primary venue for earning yield. See [The Stability Pool](/yield/stability-pool).
+- **Conversion auction**: the mechanism that mints POLAR by burning pETH; the most protocol-synergetic action possible. See [Conversion Auctions](/polar/conversion-auctions).
+- **Fee Router**: receives pETH from conversions and bonding-curve swap fees, then buffers and distributes it as yield to troves, pro-rata to their debt. See [The Fee Router](/stewardship/fee-router).
+- **Stewardship**: a stewardship role steers *quantitative parameters within the bounds the contracts define*. It does not govern the immutable core. See [Stewardship, not Governance](/stewardship/stewardship).
+
+## The shape of the system
+
+A single primitive, the bonding curve, produces pETH. pETH collateralizes every pAsset. Activity on any pAsset generates fees; fees burn pETH and raise its floor; a rising floor strengthens every position. POLAR captures the flywheel's long-term value and steers it.
+
+![Polaris system overview: ETH swaps into pETH on the bonding curve, pETH collateralizes CDPs that mint pUSD, and burning pETH for POLAR raises the floor and releases ETH](/polaris-system-v2.svg)
+
+*The Polaris system at a glance, end to end.*
+
+The diagram traces four steps and an outcome:
+
+1. **Swap.** ETH enters the **bonding curve** and is issued as **pETH**; the curve captures volatility.
+2. **Collateral.** pETH is deposited as the sole collateral for **CDPs**.
+3. **Borrow.** A CDP mints **pUSD** (or another pAsset) against that pETH, for scalable onchain yield.
+4. **Stewardship.** Burning pETH in a conversion auction mints **POLAR**, raising the pETH floor price and releasing ETH.
+
+> Adoption ⇒ activity ⇒ velocity ⇒ fees ⇒ yield ⇒ more demand.
+
+Ready to use it? Start with [Getting Started](/getting-started), or jump to [Minting pAssets](/minting/minting-passets).

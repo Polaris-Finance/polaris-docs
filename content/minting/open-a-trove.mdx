@@ -1,0 +1,87 @@
+---
+title: Open a Trove
+description: Step-by-step guide to opening a Polaris trove — deposit pETH, mint a pAsset, and pick a safe buffer to stay clear of liquidation and redemption.
+---
+
+import { Steps } from 'nextra/components'
+
+# Open a Trove
+
+A **trove** is your individual borrowing position: its own collateral, debt, and collateralization ratio. Opening one is how you mint a pAsset: **connect wallet ⇒ acquire pETH ⇒ deposit pETH as collateral ⇒ choose and mint a pAsset ⇒ confirm ⇒ monitor your ICR**. This page walks each step; for the concepts behind it, see [Minting pAssets](/minting/minting-passets) and [Managing Your Trove](/minting/managing-your-trove).
+
+> **Note:** Screenshots and exact UI labels are *forthcoming* and will be added once the app is live. The steps below describe the flow, not the final button copy.
+
+## Before you start
+
+- A wallet with **ETH on Ethereum mainnet**.
+- A target pAsset in mind — see [the catalog](/minting/passet-catalog).
+
+> **Before you act:**
+> Opening a trove creates debt. Check the app's displayed minimum ICR, Recovery Mode status, current borrow rate, your redemption exposure (how a below-peg pAsset reduces every open trove pro-rata), and the pETH you will receive after bonding-curve fees and slippage. Launch parameters are still pending, so use the live app values rather than this guide's examples.
+
+## Pre-launch parameter status
+
+| Parameter | Status | What to use before launch |
+|---|---|---|
+| Network | Ethereum mainnet (chain ID 1) | — |
+| Minimum ICR per pAsset | Pending final parameters | The value the app and contracts show at launch |
+| Recovery Mode trigger | Pending final parameters | Monitor the app's system-health indicator |
+| Borrow interest-rate formula and bounds | Pending final parameters | The current quoted rate before minting |
+| Redemption fee formula | Pending final parameters | The pre-confirmation quote for any transaction |
+| pETH curve parameters and swap fee | Pending final audited values | The bonding-curve quote before acquiring collateral |
+
+## Steps
+
+<Steps>
+
+### Connect your wallet
+
+Open the Polaris app and connect.
+
+### Acquire pETH
+
+Deposit ETH into the [bonding curve](/peth/bonding-curve) to receive pETH. pETH is the *only* collateral Polaris accepts. If you already hold pETH, skip this step.
+
+### Deposit pETH as collateral
+
+Choose how much pETH to lock in the trove. This collateral stays in the trove until you withdraw it.
+
+### Choose pAsset and amount
+
+Pick the pAsset (pUSD, pGOLD, …) and the amount of debt to take on. The app shows the resulting **Individual Collateralization Ratio (ICR)** — your collateral value divided by your debt value — before you confirm.
+
+### Confirm
+
+Sign the transaction. The minted pAsset arrives in your wallet; the debt is recorded against your trove.
+
+### Monitor your ICR
+
+Your ICR moves with the price of ETH and with any changes you make. Watch it from the trove dashboard and adjust before it nears a threshold. See [Managing Your Trove](/minting/managing-your-trove).
+
+</Steps>
+
+## Choosing a safe collateralization buffer
+
+Your ICR is the single number that determines your risk. Two distinct events depend on it:
+
+- **[Liquidation](/redemptions-liquidations/liquidations).** If your ICR falls below the minimum, your trove is liquidated and you lose collateral to cover the debt (plus a penalty). A low ICR is most dangerous when ETH drops sharply.
+- **[Redemption](/redemptions-liquidations/redemptions).** When the pAsset trades below peg, arbitrageurs redeem it for pETH. A redemption applies collectively across all open troves in proportion to their recorded collateral, not to a single lowest-ICR position, so it reduces every trove's collateral and debt together regardless of ICR. Being redeemed against carries no liquidation penalty, but it shrinks your position and your directional exposure without your consent.
+
+A larger buffer above the minimum keeps you clear of liquidation through volatility. Redemptions are different: they reach every open trove proportionally regardless of ICR, so a buffer does not keep you out of them, but a healthy ICR ensures a redemption does not leave you near the liquidation line. The right buffer depends on how volatile you expect ETH to be and how actively you intend to manage the trove — a position you watch daily can run leaner than one you set and forget.
+
+
+> **Warning:** There is no margin call and no grace period. If ETH moves against you faster than you top up, liquidation is automatic. Size your buffer for the worst day you are willing to sit through, not the average one.
+
+## Worked example: ICR buffer
+
+The numbers below are illustrative only. They show the math; they are not launch parameters.
+
+Assume the app displays a 120% minimum ICR for a pUSD trove, and you open with $18,000 of pETH collateral against 10,000 pUSD of debt:
+
+| Step | Collateral value | Debt | ICR |
+|---|---:|---:|---:|
+| Opening position | $18,000 | 10,000 pUSD | 180% |
+| After a 20% collateral-value drop | $14,400 | 10,000 pUSD | 144% |
+| After the same drop plus 200 pUSD of accrued interest | $14,400 | 10,200 pUSD | 141% |
+
+That buffer survives the modeled move. Had the same user opened at 135%, a 20% collateral-value drop would take the trove to about 108%, below the illustrative 120% minimum. The lesson is not that 180% is the right number; it is that your buffer has to cover price moves, interest accrual, gas delays, and the way redemptions reduce every open trove's collateral and debt collectively, pro-rata to collateral and regardless of ICR.

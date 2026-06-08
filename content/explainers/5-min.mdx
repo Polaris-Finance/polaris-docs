@@ -1,0 +1,110 @@
+---
+title: 5-Minute Presentation
+description: The three engines and the flywheel — a complete picture of Polaris.
+---
+
+<div className="pl-rt-badge">5 min read · Presentation</div>
+
+# 5-Minute Presentation
+
+## The problem
+
+Stablecoins have always faced a structural trilemma: **scalable, yield-bearing, or trustless — pick two.**
+
+The largest stablecoins are scalable and yield-bearing but rely on centralized issuers with freeze and blacklist powers. Trustless designs are counterparty-free but capital-inefficient and yield-constrained. The pattern is consistent: as a stablecoin scales, it drifts toward centralized yield, the path of least resistance.
+
+Polaris is designed so drift cannot happen. Its yield sources are *internal* to the protocol, growing with onchain activity. Its core logic is immutable, with no admin key able to add a counterparty under pressure.
+
+## The counterparty-free lineage
+
+Polaris descends from the line of immutable CDP stablecoins:
+
+![Polaris lineage: SAI (2017) → LUSD (2021) → BOLD / Liquity V2 (2024) → pUSD (2026)](/infographics/polaris-lineage.svg)
+
+Each generation fixed a flaw the previous hit. SAI proved CDPs could work; LUSD proved they could be immutable; BOLD refined the mechanism. Polaris extends the lineage by solving the *yield-scaling* constraint: the bonding curve converts trading volume directly into protocol revenue, so yield grows with adoption rather than being rented from a CEX.
+
+## The three engines
+
+### pETH — collateral with a rising floor
+
+pETH is ETH deposited into a two-way bonding curve. Deposit ETH and you receive pETH at the current price; redeem and you get back ETH at the floor price (at minimum).
+
+The bonding curve's math guarantees two things:
+
+1. **The floor price only rises.** As swap fees accumulate, the floor adjusts upward. No mechanism can lower it.
+2. **pETH is yield-bearing.** Every fee the curve earns narrows the gap between pETH's floor and its market price — real yield from real activity, no counterparty required.
+
+pETH is the *only* collateral Polaris accepts. This is a feature: every pAsset is ultimately backed by ETH, with nothing else in the collateral stack.
+
+### pAssets — synthetic assets from CDPs
+
+pAssets (pUSD, pGOLD, pCHF, …) are synthetic assets minted against pETH collateral via CDPs. You lock pETH in a trove; the protocol mints a pAsset into your wallet.
+
+A pAsset trades near its peg because two forces bound it:
+
+- **Below peg:** Anyone can redeem pAssets for pETH at face value, arbitraging the price back up.
+- **Above peg:** Anyone can open a trove and mint more pAssets cheaply, arbitraging the price back down.
+
+Interest rates adjust autonomously: redemption and minting volume serve as onchain proxy signals, no external oracle needed. Polaris is a *factory* of CDPs: the same logic can issue pUSD, pGOLD, or any synthetic asset.
+
+### POLAR — stewardship, not speculation
+
+POLAR is the protocol's stewardship token. Aside from a fixed initial supply minted once to stewardship at deployment, the only way to create more is to burn pETH in a conversion auction — no investor unlock, no inflationary mint.
+
+Burning pETH in a conversion auction does three things at once:
+1. Frees the ETH backing those pETH from the bonding-curve reserve — partly rebated to the converter, partly recycled into protocol rewards.
+2. Raises the pETH floor (supply reduction).
+3. Mints POLAR to the converter.
+
+POLAR confers stewardship: a designated stewardship role can steer a small set of quantitative parameters (fee, interest, and conversion settings), but cannot touch the immutable core — the bonding curve, CDP logic, liquidations, and redemptions. Stewardship, not governance.
+
+## The system end to end
+
+![Polaris system: ETH enters the bonding curve as pETH, pETH collateralizes CDPs that mint pAssets, burning pETH for POLAR raises the floor and releases ETH](/polaris-system-v2.svg)
+
+Four steps:
+1. **Swap.** ETH enters the bonding curve and is issued as pETH.
+2. **Collateralize.** pETH is deposited as the sole collateral in a CDP.
+3. **Borrow.** The CDP mints a pAsset (pUSD, pGOLD, or any other).
+4. **Stewardship.** Burning pETH for POLAR raises the floor and releases ETH.
+
+## The flywheel
+
+![Polaris flywheel: adoption drives activity, fees enable conversions, conversions raise the floor, a higher floor strengthens collateral, stronger collateral enables more minting](/infographics/polaris-flywheel.svg)
+
+> Adoption → activity → fees → conversions → higher pETH floor → stronger collateral → more minting.
+
+Each component reinforces the others. More pAsset CDPs create demand for pETH; demand generates curve fees; fees raise the floor; a higher floor makes every position safer; safer positions attract more users.
+
+## The three guarantees
+
+| Guarantee | Enforcement |
+|---|---|
+| pETH floor only rises | Bonding curve math — no mechanism can lower it |
+| No counterparty in the collateral stack | pETH is backed by ETH; nothing else enters |
+| Immutable core | Bonding curve, CDPs, liquidations, and redemptions are fixed in code |
+
+---
+
+**Go deeper →** [10-Minute Introduction](/explainers/10-min) for full mechanics · [Getting Started](/getting-started) to use the protocol
+
+<style>{`
+  .pl-rt-badge {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+    background: rgba(74,127,168,0.1);
+    border: 1px solid rgba(74,127,168,0.3);
+    color: #2c5f8a;
+  }
+  :is(.dark) .pl-rt-badge {
+    background: rgba(123,165,201,0.12);
+    border-color: rgba(123,165,201,0.35);
+    color: #7ba5c9;
+  }
+`}</style>

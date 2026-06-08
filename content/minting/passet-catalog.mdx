@@ -1,0 +1,50 @@
+---
+title: pAsset Catalog
+description: The pAssets Polaris can mint (pUSD, pETH, pGOLD, pCHF, pBigMac) and how StablecoinOS lets credible teams add new ones on shared pETH collateral.
+---
+
+# pAsset Catalog
+
+A **pAsset** is a synthetic asset minted by Polaris against pETH collateral. Each is overcollateralized, counterparty-free, and redeemable through onchain protocol mechanics under the usual assumptions: functioning contracts, live Ethereum execution, available gas, and valid pricing data. The catalog is open: through [StablecoinOS](#stablecoinos-an-open-catalog), credible teams can add new pAssets, all sharing the same pETH collateral and bonding curve.
+
+## The catalog
+
+| pAsset | Tracks | Notes |
+|---|---|---|
+| **pUSD** | US dollar | The flagship pAsset. Counterparty-free dollar with yield that scales with protocol activity. See [Minting pAssets](/minting/minting-passets). |
+| **pETH** | ETH | *Special.* Not minted from a trove: it is the collateral itself, produced by the [bonding curve](/peth/bonding-curve) with an ever-rising floor price. It backs every other pAsset. |
+| **pGOLD** | 1 ounce of gold | Decentralized gold exposure, backed by pETH rather than bullion. See the comparison below. |
+| **pCHF** | Swiss franc | A non-USD fiat peg, demonstrating that the model is debt-asset agnostic across currencies. |
+| **pBigMac** | The [Big Mac Index](https://en.wikipedia.org/wiki/Big_Mac_Index) | A novelty pAsset tracking a Big Mac's price, proof that Polaris can mint anything with a price feed and a flexible enough fee flow. |
+
+## pGOLD vs centralized gold (XAUT/PAXG)
+
+pGOLD and the incumbent gold tokens both give gold-price exposure, but they are structurally different products.
+
+| Property | pGOLD | XAUT / PAXG |
+|---|---|---|
+| Collateral | pETH, fully onchain | Physical gold in custody |
+| Redemption | Permissionless, no protocol-level minimum published yet | Issuer-gated; account requirements and redemption minimums depend on the issuer's current terms |
+| KYC | None | Required to redeem |
+| Physical custody | None — nothing to store or insure | Vaulted bullion, with custody risk |
+| Counterparty | Polaris protocol only | Tether / Paxos as issuer |
+
+The trade-off is honest: pGOLD inherits ETH-collateral and smart-contract risk where XAUT/PAXG inherit custodial and issuer risk. What pGOLD removes is the *permissioned* layer: no counterparty can freeze, blacklist, or gate your redemption.
+
+## StablecoinOS: an open catalog
+
+The CDP model is **debt-asset agnostic**: it can mint a synthetic pegged to any asset with robust reference pricing and risk parameters. Most protocols ship one stablecoin and stop. Polaris is built as a *factory* of CDP instances under **StablecoinOS**: one CDP per pAsset, all sharing the same pETH collateral pool and bonding curve.
+
+That shared collateral does double duty. It lets credible teams add a new pAsset (pEUR, pSilver, or something stranger) without bootstrapping a fresh collateral base. And because each instance has its own debt asset, a violent day in one market (a gold spike, say) drives liquidations on that instance while the others barely move. The pETH collateral is mutualized; the risk is not.
+
+The result is a catalog that grows without diluting the safety of what already exists.
+
+---
+
+<BlogPostCard
+  url="https://polarisfinance.io/blog/pGOLD-finishing-what-digixdao-started"
+  title="pGOLD: Finishing What DigixDAO Started"
+  description="How pGOLD breaks the XAUT/PAXG duopoly without touching a single gold bar."
+  readingTime={7}
+  image="https://polarisfinance.io/blog/pgold-finishing-what-digixdao-started-cover.png"
+/>

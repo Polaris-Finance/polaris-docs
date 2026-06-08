@@ -1,0 +1,279 @@
+/* Polaris "Celestial Night Sky" brand overrides layered on top of nextra-theme-docs.
+   Palette + typography mirror polaris-landing (docs/design-system.md). */
+
+:root {
+  --polaris-navy-darkest: #050a14;
+  --polaris-navy-dark: #0a1628;
+  --polaris-navy: #0d1f3c;
+  --polaris-navy-mid: #122a4d;
+  --polaris-navy-light: #1a3a5c;
+
+  --polaris-star: #e8dcc4;
+  --polaris-star-bright: #faf6ee;
+  --polaris-cream: #f5f0e6;
+
+  --polaris-pusd: #e8dcc4;
+  --polaris-peth: #7ba5c9;
+  --polaris-polar: #9b8fcf;
+
+  --font-serif-stack: var(--font-serif), 'Cormorant Garamond', Georgia, serif;
+  --font-sans-stack: var(--font-sans), 'Inter', system-ui, sans-serif;
+}
+
+/* Base typography */
+body {
+  font-family: var(--font-sans-stack);
+}
+
+/* Editorial serif headings, matching the landing site */
+.nextra-content h1,
+.nextra-content h2,
+.nextra-content h3,
+article h1,
+article h2,
+article h3 {
+  font-family: var(--font-serif-stack);
+  letter-spacing: 0.01em;
+}
+
+article h1 {
+  font-weight: 600;
+}
+
+/* Dark mode — the canonical Polaris surface */
+.dark body {
+  background-color: var(--polaris-navy-darkest);
+}
+
+/* Token name accents usable inline via <span className="t-pusd"> etc. */
+.t-pusd { color: var(--polaris-pusd); }
+.t-peth { color: var(--polaris-peth); }
+.t-polar { color: var(--polaris-polar); }
+
+/* Sidebar auto-sizes to its longest label ("Deposit to the Stability Pool").
+   Content-width is kept at 94rem so the article area stays wide. */
+:root {
+  --nextra-content-width: 94rem !important;
+}
+
+@media (min-width: 768px) {
+  .nextra-sidebar {
+    width: max-content !important;
+    min-width: 14rem !important;
+  }
+}
+
+/* Let the widened sidebar's nav labels use the full column width: trim the
+   per-level indent and link padding so long items (e.g. "Deposit to the
+   Stability Pool", "Participate in a Conversion") stay on one line. */
+.nextra-sidebar [class~='x:ms-3'] {
+  margin-inline-start: 0.375rem;
+}
+.nextra-sidebar [class~='x:ps-3'] {
+  padding-inline-start: 0.5rem;
+}
+.nextra-sidebar a[class~='x:flex'] {
+  padding-inline: 0.375rem;
+}
+
+/* Accessibility: WCAG 2.2 AA focus indicator (1.4.11 / 2.4.11).
+   The theme's keyboard-focus ring uses primary-200, a pale gold that only
+   reaches ~1.4:1 against the light cream canvas. Darken the ring color in
+   light mode to the primary accent (~4.6:1) so the focus indicator stays
+   visible. Dark mode already exceeds 3:1 and is left untouched. */
+html:not(.dark) .x\:nextra-focus:focus-visible,
+html:not(.dark) .x\:focus-visible\:nextra-focus:focus-visible {
+  --tw-ring-color: var(--x-color-primary-600);
+}
+
+/* Content scope note: Nextra 4 renders MDX inside <article><main>…</main>,
+   not a `.nextra-content` wrapper, so brand rules target `article`. */
+
+/* Responsive tables. The theme already wraps tables in an overflow-x:auto
+   block, but with no minimum cell width the columns crush on narrow screens
+   until text is clipped (the homepage "three engines" 3-column table lost
+   its third column on mobile). Give cells a readable floor so wide tables
+   scroll instead of clipping; 2-column tables still fit without a scrollbar. */
+article :is(th, td) {
+  min-width: 6.5rem;
+}
+
+/* Prose measure. --nextra-content-width stays at 94rem so wide tables and
+   diagrams have room, but unbounded that lets body prose run to ~88ch on
+   large monitors. Cap the text column; figures and tables stay full width. */
+article :is(p, li) {
+  max-width: 80ch;
+}
+
+/* Anchor jumps shouldn't tuck headings under the sticky navbar. */
+article :is(h1, h2, h3, h4) {
+  scroll-margin-top: 5rem;
+}
+
+/* ── Light identity for interior pages ──────────────────────────────────
+   Interior pages are otherwise stock theme prose. These brand touches add
+   character without competing with the content. */
+
+/* Section rule echoing the timeline meridian: a thin brand gradient. */
+article hr {
+  border: 0 !important;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(177, 147, 79, 0.45) 50%, transparent);
+}
+.dark article hr {
+  background: linear-gradient(90deg, transparent, rgba(216, 201, 164, 0.4) 50%, transparent);
+}
+
+/* Tables: a quiet brand tint on the header row. */
+article thead th {
+  background: rgba(63, 127, 168, 0.06);
+}
+.dark article thead th {
+  background: rgba(123, 165, 201, 0.08);
+}
+
+/* Blockquotes read as a deliberate aside, not default-theme gray: brand the
+   rule and add a faint tint. (The <blockquote> left rule is conventional
+   quotation typography, not a decorative side-stripe card.) The theme sets
+   the rule color with a utility class, so !important is needed to retint. */
+article blockquote {
+  border-inline-start-color: #b1934f !important;
+  background: rgba(177, 147, 79, 0.05);
+  border-radius: 0 6px 6px 0;
+  padding-block: 0.4em;
+  padding-inline-end: 1em;
+}
+.dark article blockquote {
+  border-inline-start-color: #d8c9a4 !important;
+  background: rgba(216, 201, 164, 0.05);
+}
+
+/* Infographics are intentional dark panels; frame them so they read as a
+   deliberate inset in light mode rather than a stray dark band on cream. */
+article img[src$='.svg'] {
+  border-radius: 10px;
+}
+html:not(.dark) article img[src$='.svg'] {
+  box-shadow: 0 0 0 1px rgba(44, 74, 110, 0.12);
+}
+
+/* ── Navbar logo ─────────────────────────────────────────────────────────── */
+
+.pl-logo-link {
+  transition: opacity 0.15s;
+}
+.pl-logo-link:hover {
+  opacity: 0.75;
+}
+
+/* ── Navbar search ───────────────────────────────────────────────────────── */
+
+/* Mobile: un-hide the search wrapper, hide the Website link, let search grow */
+@media (max-width: 767px) {
+  header nav div:has(> .nextra-search) {
+    display: flex !important;
+  }
+  header nav > a[href="https://polarisfinance.io"] {
+    display: none !important;
+  }
+  header nav .nextra-search {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+}
+
+/* Desktop: search fills all available space between logo group and Website link.
+   flex:1 on the wrapper collapses the logo's me-auto margin so the search
+   expands to fill the gap; input then stretches to 100% of that wrapper.
+   Results panel overrides Nextra's hardcoded md:w-[576px] to match. */
+@media (min-width: 768px) {
+  header nav div:has(> .nextra-search) {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+  header nav .nextra-search {
+    width: 100%;
+  }
+  header nav .nextra-search input {
+    width: 100% !important;
+  }
+  /* SearchPanelFix.jsx aligns the portaled results panel via JS */
+}
+
+/* ── BlogPostCard ────────────────────────────────────────────────────────── */
+
+.pl-blog-card {
+  display: block;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(44, 74, 110, 0.2);
+  background: rgba(63, 127, 168, 0.04);
+  text-decoration: none !important;
+  color: inherit !important;
+  margin: 1.5rem 0;
+  transition: border-color 0.18s, box-shadow 0.18s;
+}
+.pl-blog-card:hover {
+  border-color: rgba(44, 74, 110, 0.4);
+  box-shadow: 0 4px 16px rgba(44, 74, 110, 0.08);
+}
+.dark .pl-blog-card {
+  border-color: rgba(123, 165, 201, 0.15);
+  background: rgba(10, 22, 40, 0.6);
+}
+.dark .pl-blog-card:hover {
+  border-color: rgba(123, 165, 201, 0.35);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.pl-blog-card-image {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+.pl-blog-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+  border-radius: 0;
+  box-shadow: none !important;
+}
+.pl-blog-card:hover .pl-blog-card-image img {
+  transform: scale(1.02);
+}
+
+.pl-blog-card-body {
+  padding: 0.9rem 1.2rem 1.1rem;
+}
+.pl-blog-card-meta {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #3f5a78;
+  margin-bottom: 0.4rem;
+}
+.dark .pl-blog-card-meta {
+  color: var(--polaris-peth);
+}
+.pl-blog-card-title {
+  font-family: var(--font-serif-stack);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--polaris-navy);
+  margin-bottom: 0.35rem;
+  line-height: 1.35;
+}
+.dark .pl-blog-card-title {
+  color: var(--polaris-star);
+}
+.pl-blog-card-desc {
+  font-size: 0.82rem;
+  color: #4a5868;
+  line-height: 1.6;
+  max-width: none;
+}
+.dark .pl-blog-card-desc {
+  color: rgba(245, 240, 230, 0.52);
+}

@@ -1,0 +1,455 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 900" fill="none">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&amp;family=Inter:wght@400;500;600&amp;display=swap');
+    </style>
+
+    <!-- Background gradient -->
+    <radialGradient id="bgGradient" cx="50%" cy="50%" r="65%">
+      <stop offset="0%" style="stop-color:#0d1f3c"/>
+      <stop offset="100%" style="stop-color:#050a14"/>
+    </radialGradient>
+
+    <!-- Central emblem glow -->
+    <radialGradient id="emblemGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#E8DCC4;stop-opacity:0.18"/>
+      <stop offset="100%" style="stop-color:#E8DCC4;stop-opacity:0"/>
+    </radialGradient>
+
+    <!-- Polaris emblem arm gradients -->
+    <linearGradient id="polarisLeft" x1="0" y1="0.5" x2="0.5" y2="0.5">
+      <stop offset="0%" style="stop-color:#E8DCC4;stop-opacity:0"/>
+      <stop offset="46%" style="stop-color:#E8DCC4"/>
+    </linearGradient>
+    <linearGradient id="polarisRight" x1="1" y1="0.5" x2="0.5" y2="0.5">
+      <stop offset="0%" style="stop-color:#E8DCC4;stop-opacity:0"/>
+      <stop offset="46%" style="stop-color:#E8DCC4"/>
+    </linearGradient>
+    <linearGradient id="polarisTop" x1="0.5" y1="0" x2="0.5" y2="0.5">
+      <stop offset="0%" style="stop-color:#E8DCC4;stop-opacity:0"/>
+      <stop offset="46%" style="stop-color:#E8DCC4"/>
+    </linearGradient>
+    <linearGradient id="polarisBottom" x1="0.5" y1="1" x2="0.5" y2="0.5">
+      <stop offset="0%" style="stop-color:#E8DCC4;stop-opacity:0"/>
+      <stop offset="46%" style="stop-color:#E8DCC4"/>
+    </linearGradient>
+
+    <!-- POLAR token star gradients (purple) -->
+    <linearGradient id="polarTokenLeft" x1="0" y1="0.5" x2="0.5" y2="0.5">
+      <stop offset="0%" style="stop-color:#9B8FCF;stop-opacity:0"/>
+      <stop offset="46%" style="stop-color:#B8A8DF"/>
+    </linearGradient>
+    <linearGradient id="polarTokenRight" x1="1" y1="0.5" x2="0.5" y2="0.5">
+      <stop offset="0%" style="stop-color:#9B8FCF;stop-opacity:0"/>
+      <stop offset="46%" style="stop-color:#B8A8DF"/>
+    </linearGradient>
+    <linearGradient id="polarTokenTop" x1="0.5" y1="0" x2="0.5" y2="0.5">
+      <stop offset="0%" style="stop-color:#9B8FCF;stop-opacity:0"/>
+      <stop offset="46%" style="stop-color:#B8A8DF"/>
+    </linearGradient>
+    <linearGradient id="polarTokenBottom" x1="0.5" y1="1" x2="0.5" y2="0.5">
+      <stop offset="0%" style="stop-color:#9B8FCF;stop-opacity:0"/>
+      <stop offset="46%" style="stop-color:#B8A8DF"/>
+    </linearGradient>
+
+    <!-- pUSD gradient -->
+    <linearGradient id="pusdGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F5F0E6"/>
+      <stop offset="100%" style="stop-color:#E8DCC4"/>
+    </linearGradient>
+
+    <!-- pGOLD gradients -->
+    <linearGradient id="pgoldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F5D76E"/>
+      <stop offset="100%" style="stop-color:#D4A830"/>
+    </linearGradient>
+
+    <!-- Token icon gradients (for CDPs trinity) -->
+    <linearGradient id="fwTokenBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a3a5c"/>
+      <stop offset="100%" style="stop-color:#0d1f3c"/>
+    </linearGradient>
+    <linearGradient id="fwPusdAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F5F0E6"/>
+      <stop offset="100%" style="stop-color:#E8DCC4"/>
+    </linearGradient>
+    <linearGradient id="fwPgoldAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F5D76E"/>
+      <stop offset="100%" style="stop-color:#D4A830"/>
+    </linearGradient>
+    <linearGradient id="fwPgoldDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#C49A2A"/>
+      <stop offset="100%" style="stop-color:#A67C1A"/>
+    </linearGradient>
+    <linearGradient id="fwPchfAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F2E0E0"/>
+      <stop offset="100%" style="stop-color:#D9B3B3"/>
+    </linearGradient>
+
+    <!-- Flame gradients (for Conversions icon) -->
+    <linearGradient id="flameOuter" x1="0.5" y1="1" x2="0.5" y2="0">
+      <stop offset="0%" style="stop-color:#D4A830;stop-opacity:0.85"/>
+      <stop offset="40%" style="stop-color:#E8A040;stop-opacity:0.6"/>
+      <stop offset="75%" style="stop-color:#D06030;stop-opacity:0.25"/>
+      <stop offset="100%" style="stop-color:#A04028;stop-opacity:0"/>
+    </linearGradient>
+    <linearGradient id="flameMiddle" x1="0.5" y1="1" x2="0.5" y2="0">
+      <stop offset="0%" style="stop-color:#F5E0A0;stop-opacity:0.95"/>
+      <stop offset="30%" style="stop-color:#F0C060;stop-opacity:0.8"/>
+      <stop offset="65%" style="stop-color:#E8A040;stop-opacity:0.4"/>
+      <stop offset="100%" style="stop-color:#D07030;stop-opacity:0"/>
+    </linearGradient>
+    <linearGradient id="flameInner" x1="0.5" y1="1" x2="0.5" y2="0">
+      <stop offset="0%" style="stop-color:#FFF8E8;stop-opacity:0.95"/>
+      <stop offset="30%" style="stop-color:#F5E0A0;stop-opacity:0.85"/>
+      <stop offset="65%" style="stop-color:#F0C060;stop-opacity:0.4"/>
+      <stop offset="100%" style="stop-color:#E8A040;stop-opacity:0"/>
+    </linearGradient>
+
+    <!-- Filters -->
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Arrow markers (chevron style) — color matches DESTINATION node -->
+    <!-- Arrow to Node 2 (pETH Minted): pETH blue #9ECBEB -->
+    <marker id="arrowPETH" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M2,2 L10,6 L2,10" fill="none" stroke="#9ECBEB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <!-- Arrow to Node 3 (CDPs & pAssets): cream #E8DCC4 -->
+    <marker id="arrowCream" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M2,2 L10,6 L2,10" fill="none" stroke="#E8DCC4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <!-- Arrow to Node 4 (Interest & Fees): gold #D4A830 -->
+    <marker id="arrowGold" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M2,2 L10,6 L2,10" fill="none" stroke="#D4A830" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <!-- Arrow to Node 5 (vePOLAR Yield): purple #B8A8DF -->
+    <marker id="arrowPurple" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M2,2 L10,6 L2,10" fill="none" stroke="#B8A8DF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <!-- Arrow to Node 6 (Conversions): warm amber #E8A040 -->
+    <marker id="arrowTeal" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M2,2 L10,6 L2,10" fill="none" stroke="#E8A040" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <!-- Arrow to Node 1 (ETH Deposited): steel blue #7BA5C9 -->
+    <marker id="arrowBlue" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M2,2 L10,6 L2,10" fill="none" stroke="#7BA5C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- ========== BACKGROUND ========== -->
+  <rect width="1400" height="900" fill="url(#bgGradient)"/>
+
+  <!-- ========== STARFIELD ========== -->
+  <g fill="#E8DCC4">
+    <!-- Large 5-point stars -->
+    <polygon points="120,80 121.2,83 124.5,83 121.8,85.5 123,89 120,86.5 117,89 118.2,85.5 115.5,83 118.8,83" opacity="0.26"/>
+    <polygon points="1280,100 1281.2,103 1284.5,103 1281.8,105.5 1283,109 1280,106.5 1277,109 1278.2,105.5 1275.5,103 1278.8,103" opacity="0.22"/>
+    <polygon points="200,800 201.2,803 204.5,803 201.8,805.5 203,809 200,806.5 197,809 198.2,805.5 195.5,803 198.8,803" opacity="0.2"/>
+    <polygon points="1250,820 1251.2,823 1254.5,823 1251.8,825.5 1253,829 1250,826.5 1247,829 1248.2,825.5 1245.5,823 1248.8,823" opacity="0.18"/>
+    <polygon points="80,420 81.2,423 84.5,423 81.8,425.5 83,429 80,426.5 77,429 78.2,425.5 75.5,423 78.8,423" opacity="0.24"/>
+    <polygon points="1330,480 1331.2,483 1334.5,483 1331.8,485.5 1333,489 1330,486.5 1327,489 1328.2,485.5 1325.5,483 1328.8,483" opacity="0.2"/>
+    <polygon points="350,55 351.2,58 354.5,58 351.8,60.5 353,64 350,61.5 347,64 348.2,60.5 345.5,58 348.8,58" opacity="0.28"/>
+    <polygon points="1050,45 1051.2,48 1054.5,48 1051.8,50.5 1053,54 1050,51.5 1047,54 1048.2,50.5 1045.5,48 1048.8,48" opacity="0.22"/>
+
+    <!-- Medium stars -->
+    <polygon points="160,200 161,202 164,202 161.5,204 162.5,207 160,205 157.5,207 158.5,204 156,202 159,202" opacity="0.18"/>
+    <polygon points="1260,260 1261,262 1264,262 1261.5,264 1262.5,267 1260,265 1257.5,267 1258.5,264 1256,262 1259,262" opacity="0.16"/>
+    <polygon points="100,640 101,642 104,642 101.5,644 102.5,647 100,645 97.5,647 98.5,644 96,642 99,642" opacity="0.14"/>
+    <polygon points="1300,680 1301,682 1304,682 1301.5,684 1302.5,687 1300,685 1297.5,687 1298.5,684 1296,682 1299,682" opacity="0.16"/>
+    <polygon points="50,540 51,542 54,542 51.5,544 52.5,547 50,545 47.5,547 48.5,544 46,542 49,542" opacity="0.15"/>
+    <polygon points="1350,370 1351,372 1354,372 1351.5,374 1352.5,377 1350,375 1347.5,377 1348.5,374 1346,372 1349,372" opacity="0.18"/>
+    <polygon points="250,140 251,142 254,142 251.5,144 252.5,147 250,145 247.5,147 248.5,144 246,142 249,142" opacity="0.2"/>
+    <polygon points="1100,150 1101,152 1104,152 1101.5,154 1102.5,157 1100,155 1097.5,157 1098.5,154 1096,152 1099,152" opacity="0.16"/>
+
+    <!-- Small stars -->
+    <polygon points="450,40 450.6,41.5 452.2,41.5 450.9,42.6 451.4,44.2 450,43 448.6,44.2 449.1,42.6 447.8,41.5 449.4,41.5" opacity="0.12"/>
+    <polygon points="850,30 850.6,31.5 852.2,31.5 850.9,32.6 851.4,34.2 850,33 848.6,34.2 849.1,32.6 847.8,31.5 849.4,31.5" opacity="0.14"/>
+    <polygon points="140,740 140.6,741.5 142.2,741.5 140.9,742.6 141.4,744.2 140,743 138.6,744.2 139.1,742.6 137.8,741.5 139.4,741.5" opacity="0.1"/>
+    <polygon points="1270,750 1270.6,751.5 1272.2,751.5 1270.9,752.6 1271.4,754.2 1270,753 1268.6,754.2 1269.1,752.6 1267.8,751.5 1269.4,751.5" opacity="0.12"/>
+    <polygon points="280,360 280.6,361.5 282.2,361.5 280.9,362.6 281.4,364.2 280,363 278.6,364.2 279.1,362.6 277.8,361.5 279.4,361.5" opacity="0.13"/>
+    <polygon points="1120,400 1120.6,401.5 1122.2,401.5 1120.9,402.6 1121.4,404.2 1120,403 1118.6,404.2 1119.1,402.6 1117.8,401.5 1119.4,401.5" opacity="0.11"/>
+
+    <!-- Tiny dot stars -->
+    <circle cx="95" cy="130" r="1.2" opacity="0.16"/>
+    <circle cx="1310" cy="160" r="1" opacity="0.14"/>
+    <circle cx="60" cy="310" r="1.1" opacity="0.12"/>
+    <circle cx="1350" cy="580" r="1.2" opacity="0.13"/>
+    <circle cx="170" cy="560" r="1" opacity="0.1"/>
+    <circle cx="1240" cy="620" r="1.1" opacity="0.11"/>
+    <circle cx="300" cy="840" r="0.9" opacity="0.09"/>
+    <circle cx="1100" cy="850" r="1" opacity="0.08"/>
+    <circle cx="550" cy="860" r="1.1" opacity="0.1"/>
+    <circle cx="800" cy="30" r="1.2" opacity="0.14"/>
+    <circle cx="40" cy="780" r="1" opacity="0.09"/>
+    <circle cx="1360" cy="800" r="0.9" opacity="0.08"/>
+    <circle cx="220" cy="460" r="1.1" opacity="0.11"/>
+    <circle cx="1190" cy="500" r="1" opacity="0.1"/>
+    <circle cx="650" cy="22" r="0.9" opacity="0.13"/>
+    <circle cx="950" cy="860" r="1.1" opacity="0.09"/>
+    <circle cx="30" cy="200" r="1" opacity="0.12"/>
+    <circle cx="1370" cy="210" r="1.2" opacity="0.11"/>
+    <circle cx="180" cy="710" r="0.8" opacity="0.1"/>
+    <circle cx="1220" cy="750" r="1" opacity="0.09"/>
+  </g>
+
+  <!-- ========== TITLE BLOCK ========== -->
+  <text x="700" y="105" font-family="'Cormorant Garamond', Georgia, serif" font-size="56" font-weight="600" fill="#F5F0E6" text-anchor="middle" letter-spacing="0.05em">The Polaris Flywheel</text>
+
+  <!-- ========== CENTRAL POLARIS EMBLEM ========== -->
+  <g transform="translate(700, 470)" filter="url(#softGlow)">
+    <!-- Radial glow behind emblem -->
+    <circle cx="0" cy="0" r="80" fill="url(#emblemGlow)"/>
+    <!-- Four-pointed star scaled to ~100px (50px arms) -->
+    <path d="M-50,0 L-4.2,-4.5 L0,0 L-4.2,4.5 Z" fill="url(#polarisLeft)"/>
+    <path d="M50,0 L4.2,-4.5 L0,0 L4.2,4.5 Z" fill="url(#polarisRight)"/>
+    <path d="M0,-50 L4.5,-4.2 L0,0 L-4.5,-4.2 Z" fill="url(#polarisTop)"/>
+    <path d="M0,50 L4.5,4.2 L0,0 L-4.5,4.2 Z" fill="url(#polarisBottom)"/>
+    <!-- Center dot -->
+    <circle cx="0" cy="0" r="5" fill="#E8DCC4"/>
+  </g>
+
+  <!--
+    HEXAGONAL LAYOUT — 6 nodes around center (700, 470), radius ~230px
+    Node positions (center of each card):
+      Node 1 (top):          (700, 250)
+      Node 2 (top-right):    (900, 360)
+      Node 3 (bottom-right): (900, 580)
+      Node 4 (bottom):       (700, 690)
+      Node 5 (bottom-left):  (500, 580)
+      Node 6 (top-left):     (500, 360)
+  -->
+
+  <!-- ========== NODE 1: ETH Deposited (top, 12 o'clock) ========== -->
+  <g transform="translate(700, 195)">
+    <!-- Card -->
+    <rect x="-140" y="-50" width="280" height="100" rx="20" fill="#0d1f3c" stroke="#7BA5C9" stroke-width="1.5" stroke-opacity="0.15" filter="url(#shadow)"/>
+    <!-- ETH diamond icon -->
+    <g transform="translate(-110, 0)">
+      <polygon points="0,-22 13,0 0,8 -13,0" fill="#7BA5C9" opacity="0.85"/>
+      <polygon points="0,8 13,0 0,22 -13,0" fill="#5A84A8" opacity="0.75"/>
+      <polygon points="0,-22 6.5,-4 0,-6.5 -6.5,-4" fill="#9ECBEB" opacity="0.3"/>
+    </g>
+    <!-- Main text -->
+    <text x="26" y="-6" font-family="'Inter', Arial, sans-serif" font-size="22" font-weight="500" fill="#7BA5C9" text-anchor="middle" opacity="0.9">ETH Deposited</text>
+    <!-- Sub text -->
+    <text x="26" y="20" font-family="'Inter', Arial, sans-serif" font-size="18" font-weight="400" fill="rgba(123,165,201,0.4)" text-anchor="middle">Bonding curve entry</text>
+  </g>
+
+  <!-- ========== NODE 2: pETH Minted (top-right, 2 o'clock) ========== -->
+  <g transform="translate(920, 360)">
+    <!-- Card -->
+    <rect x="-140" y="-50" width="280" height="100" rx="20" fill="#0d1f3c" stroke="#9ECBEB" stroke-width="1.5" stroke-opacity="0.15" filter="url(#shadow)"/>
+    <!-- pETH diamond icon with small star -->
+    <g transform="translate(-110, 0)">
+      <!-- Small Polaris star above diamond -->
+      <path d="M0,-24 L1.2,-18 L0,-17.5 L-1.2,-18 Z" fill="#9ECBEB" opacity="0.6"/>
+      <path d="M-7,-20.5 L-1.2,-19.5 L0,-20.5 L-1.2,-21.5 Z" fill="#9ECBEB" opacity="0.4"/>
+      <path d="M7,-20.5 L1.2,-19.5 L0,-20.5 L1.2,-21.5 Z" fill="#9ECBEB" opacity="0.4"/>
+      <!-- Diamond -->
+      <polygon points="0,-10 10,5 0,13 -10,5" fill="#9ECBEB" opacity="0.8"/>
+      <polygon points="0,13 10,5 0,22 -10,5" fill="#7BA5C9" opacity="0.7"/>
+    </g>
+    <!-- Main text -->
+    <text x="26" y="-6" font-family="'Inter', Arial, sans-serif" font-size="22" font-weight="500" fill="#9ECBEB" text-anchor="middle" opacity="0.9">pETH Minted</text>
+    <!-- Sub text -->
+    <text x="26" y="20" font-family="'Inter', Arial, sans-serif" font-size="18" font-weight="400" fill="rgba(158,203,235,0.4)" text-anchor="middle">Ever-rising floor price</text>
+  </g>
+
+  <!-- ========== NODE 3: CDPs & pAssets (bottom-right, 4 o'clock) ========== -->
+  <g transform="translate(920, 580)">
+    <!-- Card -->
+    <rect x="-140" y="-50" width="280" height="100" rx="20" fill="#0d1f3c" stroke="#E8DCC4" stroke-width="1.5" stroke-opacity="0.12" filter="url(#shadow)"/>
+    <!-- pAssets trinity icon (pUSD top, pGOLD bottom-left, pCHF bottom-right) -->
+    <g transform="translate(-110, 0)">
+      <!-- pGOLD (bottom-left, rendered first so others overlap on top) -->
+      <g transform="translate(-11, 8) scale(0.42) translate(-32, -32)">
+        <circle cx="32" cy="32" r="30" fill="url(#fwTokenBg)" stroke="#D4A830" stroke-width="1.5" stroke-opacity="0.4"/>
+        <polygon points="32,16 32.8,18.5 35.5,18.5 33.3,20.2 34.2,22.8 32,21 29.8,22.8 30.7,20.2 28.5,18.5 31.2,18.5" fill="#D4A830" fill-opacity="0.7"/>
+        <g transform="translate(32, 38)">
+          <polygon points="-11,2 11,2 11,8 -11,8" fill="url(#fwPgoldDark)"/>
+          <polygon points="-11,2 -8,-2 12,-2 11,2" fill="url(#fwPgoldAccent)"/>
+          <polygon points="11,2 12,-2 12,4 11,8" fill="#A67C1A" fill-opacity="0.7"/>
+          <polygon points="-7,-4 7,-4 7,2 -7,2" fill="url(#fwPgoldDark)"/>
+          <polygon points="-7,-4 -4,-8 10,-8 7,-4" fill="url(#fwPgoldAccent)"/>
+          <polygon points="7,-4 10,-8 10,-2 7,2" fill="#A67C1A" fill-opacity="0.7"/>
+        </g>
+      </g>
+      <!-- pCHF (bottom-right) -->
+      <g transform="translate(11, 8) scale(0.42) translate(-32, -32)">
+        <circle cx="32" cy="32" r="30" fill="url(#fwTokenBg)" stroke="#D9B3B3" stroke-width="1.5" stroke-opacity="0.3"/>
+        <polygon points="32,16 32.8,18.5 35.5,18.5 33.3,20.2 34.2,22.8 32,21 29.8,22.8 30.7,20.2 28.5,18.5 31.2,18.5" fill="#D9B3B3" fill-opacity="0.6"/>
+        <text x="32" y="43" font-family="'Cormorant Garamond', Georgia, serif" font-size="28" font-weight="500" fill="url(#fwPchfAccent)" text-anchor="middle">&#x20A3;</text>
+      </g>
+      <!-- pUSD (top center, on top) -->
+      <g transform="translate(0, -11) scale(0.42) translate(-32, -32)">
+        <circle cx="32" cy="32" r="30" fill="url(#fwTokenBg)" stroke="#E8DCC4" stroke-width="1.5" stroke-opacity="0.3"/>
+        <text x="32" y="42" font-family="'Cormorant Garamond', Georgia, serif" font-size="26" font-weight="500" fill="url(#fwPusdAccent)" text-anchor="middle">$</text>
+        <polygon points="32,16 32.8,18.5 35.5,18.5 33.3,20.2 34.2,22.8 32,21 29.8,22.8 30.7,20.2 28.5,18.5 31.2,18.5" fill="#E8DCC4" fill-opacity="0.6"/>
+      </g>
+    </g>
+    <!-- Main text -->
+    <text x="26" y="-6" font-family="'Inter', Arial, sans-serif" font-size="22" font-weight="500" fill="#E8DCC4" text-anchor="middle" opacity="0.9">CDPs &amp; pAssets</text>
+    <!-- Sub text -->
+    <text x="26" y="20" font-family="'Inter', Arial, sans-serif" font-size="18" font-weight="400" fill="rgba(232,220,196,0.4)" text-anchor="middle">pUSD, pGOLD, pCHF</text>
+  </g>
+
+  <!-- ========== NODE 4: Interest & Fees (bottom, 6 o'clock) ========== -->
+  <g transform="translate(700, 745)">
+    <!-- Card -->
+    <rect x="-140" y="-50" width="280" height="100" rx="20" fill="#0d1f3c" stroke="#D4A830" stroke-width="1.5" stroke-opacity="0.15" filter="url(#shadow)"/>
+    <!-- Rising chart icon -->
+    <g transform="translate(-110, 0)">
+      <line x1="-14" y1="17" x2="-14" y2="-17" stroke="#D4A830" stroke-width="1.5" opacity="0.5"/>
+      <line x1="-14" y1="17" x2="17" y2="17" stroke="#D4A830" stroke-width="1.5" opacity="0.5"/>
+      <polyline points="-9,11 -3,3 5,-4 14,-16" stroke="#D4A830" stroke-width="2.5" fill="none" opacity="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+      <polyline points="9,-12 14,-16 15,-9" stroke="#D4A830" stroke-width="1.5" fill="none" opacity="0.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <!-- Main text -->
+    <text x="26" y="-6" font-family="'Inter', Arial, sans-serif" font-size="22" font-weight="500" fill="#D4A830" text-anchor="middle" opacity="0.9">Interest &amp; Fees</text>
+    <!-- Sub text -->
+    <text x="26" y="20" font-family="'Inter', Arial, sans-serif" font-size="18" font-weight="400" fill="rgba(212,168,48,0.4)" text-anchor="middle">Market-aware rates</text>
+  </g>
+
+  <!-- ========== NODE 5: vePOLAR Yield (bottom-left, 8 o'clock) ========== -->
+  <g transform="translate(480, 580)">
+    <!-- Card -->
+    <rect x="-140" y="-50" width="280" height="100" rx="20" fill="#0d1f3c" stroke="#9B8FCF" stroke-width="1.5" stroke-opacity="0.15" filter="url(#shadow)"/>
+    <!-- POLAR four-pointed star icon -->
+    <g transform="translate(-110, 0)">
+      <path d="M-21,0 L-3,-2.2 L0,0 L-3,2.2 Z" fill="url(#polarTokenLeft)"/>
+      <path d="M21,0 L3,-2.2 L0,0 L3,2.2 Z" fill="url(#polarTokenRight)"/>
+      <path d="M0,-21 L2.2,-3 L0,0 L-2.2,-3 Z" fill="url(#polarTokenTop)"/>
+      <path d="M0,21 L2.2,3 L0,0 L-2.2,3 Z" fill="url(#polarTokenBottom)"/>
+      <circle cx="0" cy="0" r="3" fill="#B8A8DF"/>
+    </g>
+    <!-- Main text -->
+    <text x="26" y="-6" font-family="'Inter', Arial, sans-serif" font-size="22" font-weight="500" fill="#B8A8DF" text-anchor="middle" opacity="0.9">vePOLAR Yield</text>
+    <!-- Sub text -->
+    <text x="26" y="20" font-family="'Inter', Arial, sans-serif" font-size="18" font-weight="400" fill="rgba(184,168,223,0.4)" text-anchor="middle">Real yield distribution</text>
+  </g>
+
+  <!-- ========== NODE 6: Conversions (top-left, 10 o'clock) ========== -->
+  <g transform="translate(480, 360)">
+    <!-- Card -->
+    <rect x="-140" y="-50" width="280" height="100" rx="20" fill="#0d1f3c" stroke="#E8A040" stroke-width="1.5" stroke-opacity="0.15" filter="url(#shadow)"/>
+    <!-- Flame/burn icon (multi-layer, inspired by conversion-cover) -->
+    <g transform="translate(-110, 4)">
+      <!-- Outer flame -->
+      <path d="M0,-26 C3.5,-19 9,-9 12,-1 C13,6 10,14 6,19 C3.5,21 1.5,22 0,22 C-1.5,22 -3.5,21 -6,19 C-10,14 -13,6 -12,-1 C-9,-9 -3.5,-19 0,-26 Z" fill="url(#flameOuter)" opacity="0.7"/>
+      <!-- Left lick -->
+      <path d="M-3.5,-21 C-7,-14 -10,-5 -9,2 C-8,7 -6,12 -3.5,15 C-6,9 -8,3.5 -8,0 C-8,-6 -6,-14 -3.5,-21 Z" fill="#E8A040" opacity="0.2"/>
+      <!-- Right lick -->
+      <path d="M5,-19 C8,-12 12,-3.5 10,2 C9,7 7,13 5,16 C7,10 9,3.5 8,0 C7,-6 6,-13 5,-19 Z" fill="#D88030" opacity="0.18"/>
+      <!-- Middle flame -->
+      <path d="M0,-19 C2.5,-14 8,-6 9,0 C9,6 7,13 3.5,16 C2.5,17.5 1.2,18.5 0,18.5 C-1.2,18.5 -2.5,17.5 -3.5,16 C-7,13 -9,6 -9,0 C-8,-6 -2.5,-14 0,-19 Z" fill="url(#flameMiddle)"/>
+      <!-- Inner flame (hot core) -->
+      <path d="M0,-11 C1.8,-7 6,-2.5 6,2.5 C6,7 3.5,12 1.8,14 C1.2,15 0.6,15.5 0,15.5 C-0.6,15.5 -1.2,15 -1.8,14 C-3.5,12 -6,7 -6,2.5 C-6,-2.5 -1.8,-7 0,-11 Z" fill="url(#flameInner)"/>
+      <!-- White-hot core -->
+      <ellipse cx="0" cy="7" rx="2.4" ry="6.5" fill="#FFF8E8" opacity="0.5"/>
+      <ellipse cx="0" cy="9" rx="1.4" ry="4" fill="#FFFDF5" opacity="0.6"/>
+      <!-- Embers -->
+      <circle cx="-3" cy="-26" r="1.2" fill="#F0C060" opacity="0.5"/>
+      <circle cx="2.5" cy="-29" r="0.8" fill="#E8A040" opacity="0.4"/>
+      <circle cx="5" cy="-25" r="1" fill="#F0C060" opacity="0.35"/>
+      <circle cx="-1" cy="-32" r="0.6" fill="#D4A830" opacity="0.25"/>
+    </g>
+    <!-- Main text -->
+    <text x="26" y="-6" font-family="'Inter', Arial, sans-serif" font-size="22" font-weight="500" fill="#E8A040" text-anchor="middle" opacity="0.9">Conversions</text>
+    <!-- Sub text -->
+    <text x="26" y="20" font-family="'Inter', Arial, sans-serif" font-size="18" font-weight="400" fill="rgba(232,160,64,0.4)" text-anchor="middle">pETH burned, floor rises</text>
+  </g>
+
+  <!-- ========== CURVED ARROWS (clockwise, arcing outward from center 700,470) ========== -->
+  <!--
+    Hexagonal node layout — center (700,470):
+      Node 1 (700,195): card spans x=[570,830] y=[149,241]
+      Node 2 (920,360): card spans x=[790,1050] y=[314,406]
+      Node 3 (920,580): card spans x=[790,1050] y=[534,626]
+      Node 4 (700,745): card spans x=[570,830] y=[699,791]
+      Node 5 (480,580): card spans x=[350,610] y=[534,626]
+      Node 6 (480,360): card spans x=[350,610] y=[314,406]
+
+    Arrows exit from the card edge closest to destination and arc outward from center.
+  -->
+
+  <!-- Arrow 1→2: ETH Deposited → pETH Minted (color: pETH #9ECBEB) -->
+  <path d="M 842,200 C 920,188 970,255 925,308"
+        stroke="#9ECBEB" stroke-width="2" fill="none" opacity="0.7"
+        marker-end="url(#arrowPETH)" stroke-linecap="round"/>
+
+  <!-- Arrow 2→3: pETH Minted → CDPs & pAssets (color: cream #E8DCC4) -->
+  <path d="M 1062,395 C 1132,438 1132,510 1062,545"
+        stroke="#E8DCC4" stroke-width="2" fill="none" opacity="0.7"
+        marker-end="url(#arrowCream)" stroke-linecap="round"/>
+
+  <!-- Arrow 3→4: CDPs & pAssets → Interest & Fees (color: gold #D4A830) -->
+  <path d="M 925,632 C 970,690 920,755 842,742"
+        stroke="#D4A830" stroke-width="2" fill="none" opacity="0.7"
+        marker-end="url(#arrowGold)" stroke-linecap="round"/>
+
+  <!-- Arrow 4→5: Interest & Fees → vePOLAR Yield (color: purple #B8A8DF) -->
+  <path d="M 558,742 C 480,755 430,690 478,632"
+        stroke="#B8A8DF" stroke-width="2" fill="none" opacity="0.7"
+        marker-end="url(#arrowPurple)" stroke-linecap="round"/>
+
+  <!-- Arrow 5→6: vePOLAR Yield → Conversions (color: warm amber #E8A040) -->
+  <path d="M 338,545 C 268,510 268,438 338,395"
+        stroke="#E8A040" stroke-width="2" fill="none" opacity="0.7"
+        marker-end="url(#arrowTeal)" stroke-linecap="round"/>
+
+  <!-- Arrow 6→1: Conversions → ETH Deposited (color: steel blue #7BA5C9) -->
+  <path d="M 478,308 C 430,252 480,188 558,200"
+        stroke="#7BA5C9" stroke-width="2" fill="none" opacity="0.7"
+        marker-end="url(#arrowBlue)" stroke-linecap="round"/>
+
+  <!-- ========== PILL LABELS ON ARROWS ========== -->
+
+  <!-- Pill 1→2: "Bonding curve" — along top-right arc -->
+  <g transform="translate(935, 256)">
+    <rect x="-68" y="-14" width="136" height="28" rx="14" fill="#0a1628" stroke="#9ECBEB" stroke-width="1" stroke-opacity="0.15"/>
+    <text x="0" y="5" font-family="'Inter', Arial, sans-serif" font-size="18" font-weight="500" fill="#9ECBEB" text-anchor="middle">Bonding curve</text>
+  </g>
+
+  <!-- Pill 2→3: "Collateral" — along right side arc -->
+  <g transform="translate(1105, 470)">
+    <rect x="-52" y="-14" width="104" height="28" rx="14" fill="#0a1628" stroke="#E8DCC4" stroke-width="1" stroke-opacity="0.15"/>
+    <text x="0" y="5" font-family="'Inter', Arial, sans-serif" font-size="18" font-weight="500" fill="#E8DCC4" text-anchor="middle">Collateral</text>
+  </g>
+
+  <!-- Pill 3→4: "Borrowing demand" — along bottom-right arc -->
+  <g transform="translate(935, 685)">
+    <rect x="-88" y="-14" width="176" height="28" rx="14" fill="#0a1628" stroke="#D4A830" stroke-width="1" stroke-opacity="0.15"/>
+    <text x="0" y="5" font-family="'Inter', Arial, sans-serif" font-size="18" font-weight="500" fill="#D4A830" text-anchor="middle">Borrowing demand</text>
+  </g>
+
+  <!-- Pill 4→5: "Fee Router" — along bottom-left arc -->
+  <g transform="translate(466, 685)">
+    <rect x="-56" y="-14" width="112" height="28" rx="14" fill="#0a1628" stroke="#B8A8DF" stroke-width="1" stroke-opacity="0.15"/>
+    <text x="0" y="5" font-family="'Inter', Arial, sans-serif" font-size="18" font-weight="500" fill="#B8A8DF" text-anchor="middle">Fee Router</text>
+  </g>
+
+  <!-- Pill 5→6: "Growth incentives" — along left side arc -->
+  <g transform="translate(280, 470)">
+    <rect x="-84" y="-14" width="168" height="28" rx="14" fill="#0a1628" stroke="#E8A040" stroke-width="1" stroke-opacity="0.15"/>
+    <text x="0" y="5" font-family="'Inter', Arial, sans-serif" font-size="18" font-weight="500" fill="#E8A040" text-anchor="middle">Growth incentives</text>
+  </g>
+
+  <!-- Pill 6→1: "Floor rises" — along top-left arc -->
+  <g transform="translate(466, 256)">
+    <rect x="-56" y="-14" width="112" height="28" rx="14" fill="#0a1628" stroke="#7BA5C9" stroke-width="1" stroke-opacity="0.15"/>
+    <text x="0" y="5" font-family="'Inter', Arial, sans-serif" font-size="18" font-weight="500" fill="#7BA5C9" text-anchor="middle">Floor rises</text>
+  </g>
+
+  <!-- ========== BOTTOM ANNOTATION ========== -->
+  <text x="700" y="860" font-family="'Inter', Arial, sans-serif" font-size="20" font-weight="400" fill="rgba(232,220,196,0.5)" text-anchor="middle">Growth in any part feeds yield to every other part</text>
+
+</svg>

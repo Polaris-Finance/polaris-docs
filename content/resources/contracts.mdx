@@ -1,0 +1,61 @@
+---
+title: Contracts & Addresses
+description: "The Polaris contract set: a shared core plus one instance per pAsset. Addresses publish at deployment; verify network, chain ID, and source first."
+---
+
+# Contracts & Addresses
+
+> **Pre-launch note:** Canonical addresses are published at deployment, not before. The contract *list* below reflects the deployed system; the **Address** column is filled in at launch, with each address linking to verified source on the official explorer. If any app, post, or message gives you an address that is not linked from these docs, treat it as unverified.
+
+## How the system is deployed
+
+Polaris is a *factory* of pAsset instances. A single **shared core** — the bonding curve, POLAR, the Fee Router, and the oracles — is deployed **once**. Then **one instance set** is deployed **per pAsset** (pUSD, pGOLD, …): each gets its own CDP manager, Stability Pool, and PSM, but they all share the same pETH collateral, bonding curve, and POLAR.
+
+So the address table has a **core section** plus **one block per pAsset**. Two pAsset instances exist today: **pUSD** and **pGOLD**.
+
+## Shared core
+
+| Contract | Source (`src/`) | Address |
+|---|---|---|
+| **pETH** — the [bonding curve](/peth/bonding-curve): swaps ETH ↔ pETH, enforces the rising floor. pETH is the sole collateral and is this ERC-20 itself. | `BondingCurve/ABDKBondingCurve.sol` | _Forthcoming_ |
+| Bonding-curve token splitter — internal pETH accounting (floor / variable components). | `BondingCurve/BondingCurveTokenSplitter.sol`, `BondingCurve/VPToken.sol` | _Forthcoming_ |
+| **POLAR** — the stewardship token. The [conversion auction](/polar/conversion-auctions) (burn pETH → mint POLAR) lives **inside this contract**, not a separate deployment. | `Shares/ShareSystem.sol` | _Forthcoming_ |
+| POLAR staking — stake POLAR to receive routed yield. The [vePOLAR](/stewardship/vepolar) lock layer is forthcoming; today this is the staking surface. | _Forthcoming_ | _Forthcoming_ |
+| [Fee Router](/stewardship/fee-router) — buffers pETH fee revenue and routes rewards to troves and staking. | `FeeRouter.sol` | _Forthcoming_ |
+| Stewardship — bounded-parameter control; cannot reach the immutable core. | _Forthcoming_ | _Forthcoming_ |
+| Reserve token (WETH) — the wrapped ETH the bonding curve takes in. | external WETH | _Forthcoming_ |
+| Reserve Loans — borrow ETH against pETH at the floor. | `ReserveLoansManager.sol`, `ReserveLoansNFT.sol` | _Forthcoming_ |
+
+## Per-pAsset instance
+
+One set of these is deployed for each pAsset. Key everything by `(pAsset, owner)` — a pUSD trove and a pGOLD trove are unrelated positions in different instances.
+
+| Contract | Source (`src/`) | Address |
+|---|---|---|
+| **pAsset token** (e.g. pUSD, pGOLD) — the synthetic pegged ERC-20. | `StableToken.sol` | _Forthcoming_ |
+| **CDP / Trove manager** — trove accounting, mint/redeem, liquidations, interest, Emergency Mode. | `CDPManager.sol` | _Forthcoming_ |
+| Trove NFT — tokenizes each trove position. | `CDPNFT.sol` | _Forthcoming_ |
+| [Stability Pool](/yield/stability-pool) — absorbs liquidations; the primary yield venue. | `StabilityPool.sol` | _Forthcoming_ |
+| Collateral Surplus Pool — holds post-liquidation collateral surplus for borrowers to claim. | `CollSurplusPool.sol` | _Forthcoming_ |
+| **Peg Stability Module (PSM)** — mint/redeem the pAsset against pETH; the peg and [redemption](/redemptions-liquidations/redemptions) entry point. | `PegStabilityModule.sol` | _Forthcoming_ |
+| Interest controller — primary (autonomous) and secondary (utilization) interest rates. | `InterestRate/InterestController.sol` | _Forthcoming_ |
+| Primary interest router — splits borrower interest across the Stability Pool, POLAR staking, and ecosystem. | `PrimaryInterestRouter.sol` | _Forthcoming_ |
+| Price feed — the pAsset's reference price path. | `PUSDTestnetPriceFeed.sol` / `PGOLDTestnetPriceFeed.sol` | _Forthcoming_ |
+| Oracle (medianiser) — median of multiple ETH/USD feeds (plus XAU/USD for pGOLD). | `Medianiser.sol` | _Forthcoming_ |
+
+> **Read helpers** (`Helpers/MultiCDPGetter.sol`, `Helpers/MultiReserveLoanGetter.sol`) are convenience view contracts for batched reads; integrations may use them but should treat direct contract reads as the source of truth.
+
+> **A note on naming.** "pETH" and "the bonding curve" are the **same contract**. The "conversion auction" is **part of POLAR**, not a separate contract. The "vePOLAR" lock layer is **not yet deployed** — POLAR yield currently flows through plain staking. `pCHF`, `pBigMac`, and other catalog entries are illustrative; only **pUSD** and **pGOLD** are deployed.
+
+## Testnet 2 (Sepolia)
+
+Testnet 2 runs on **Sepolia (chain ID `11155111`)**. Its addresses are intentionally **not** listed here as canonical — they are testnet, may be redeployed, and the public contracts use testnet stand-ins (mock WETH, mock oracles, testnet price feeds) that will be replaced by production contracts at launch. Builders who need the current testnet addresses can read them from the protocol repository's deployment manifests.
+
+## Before you interact
+
+1. Confirm the **network and chain ID** match the official deployment manifest.
+2. Confirm every **address** matches this page (once populated) and resolves to **verified source** on the official explorer.
+3. Confirm the **ABI** matches that verified source.
+4. Never paste an address from a screenshot, DM, or search result without that explorer check — address-spoofing is exactly how these attacks succeed.
+
+While addresses are pending, see [Audits & Security](/resources/audits-security) for the security model, or the [Glossary](/resources/glossary) for what each contract does.

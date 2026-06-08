@@ -1,0 +1,19 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      next-and-nextra:
+        patterns:
+          - next
+          - nextra
+          - nextra-theme-docs
+          - react
+          - react-dom
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly

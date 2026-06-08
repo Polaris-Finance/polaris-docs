@@ -1,0 +1,65 @@
+---
+title: 2-Minute Overview
+description: What Polaris is, in one sitting.
+---
+
+import { Callout } from 'nextra/components'
+
+<div className="pl-rt-badge">2 min read · Overview</div>
+
+# 2-Minute Overview
+
+Polaris is a **self-scaling stablecoin operating system** — trustless, immutable infrastructure for minting synthetic assets backed entirely by onchain collateral and yield. No T-bills. No CEXs. No counterparties.
+
+## One primitive, three products
+
+Everything flows from a single primitive: the **bonding curve**.
+
+**pETH** is ETH deposited into a two-way bonding curve. It is the only collateral Polaris accepts. Its floor price — the minimum price at which you can always redeem it for ETH — can only rise. pETH is yield-bearing: swap fees accrue to the protocol and permanently raise that floor over time.
+
+**pAssets** (pUSD, pGOLD, …) are synthetic assets minted against pETH via a CDP (Collateralized Debt Position). You lock pETH; the protocol mints a pAsset into your wallet. No counterparty holds your position. The logic is immutable.
+
+**POLAR** is the stewardship token. Beyond a fixed supply minted once at launch, the only way to create more is to burn pETH in a conversion auction. Through stewardship, POLAR holders steer protocol parameters within the bounds the immutable contracts define — they do not control the immutable core.
+
+## The flywheel
+
+The three products compound:
+
+![Polaris flywheel: adoption drives activity, activity generates fees, fees enable conversions, conversions raise the pETH floor, a higher floor strengthens collateral, stronger collateral enables more minting](/infographics/polaris-flywheel.svg)
+
+> More pAsset activity → fees → conversions → higher pETH floor → stronger collateral → more minting.
+
+Growth reinforces the system rather than diluting it.
+
+## Why it is different
+
+- **Immutable core.** Bonding curve, CDP logic, liquidations, and redemptions are fixed in code. No admin key.
+- **Onchain-only yield.** Every yield source (borrower interest, swap fees, conversion gains) is internal to the protocol and grows with DeFi activity.
+- **Guaranteed floor.** pETH's floor can only rise. Your maximum downside on pETH is mathematically bounded and shrinks over time.
+
+That is the whole system. Three products, one flywheel, one immutable core.
+
+---
+
+**Go deeper →** [5-Minute Presentation](/explainers/5-min) · [Core Concepts](/core-concepts) · [Getting Started](/getting-started)
+
+<style>{`
+  .pl-rt-badge {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+    background: rgba(74,127,168,0.1);
+    border: 1px solid rgba(74,127,168,0.3);
+    color: #2c5f8a;
+  }
+  :is(.dark) .pl-rt-badge {
+    background: rgba(123,165,201,0.12);
+    border-color: rgba(123,165,201,0.35);
+    color: #7ba5c9;
+  }
+`}</style>

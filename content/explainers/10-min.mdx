@@ -1,0 +1,194 @@
+---
+title: 10-Minute Introduction
+description: The complete Polaris system from first principles — the problem, the mechanics, and the flywheel.
+---
+
+<div className="pl-rt-badge">10 min read · Full Introduction</div>
+
+# 10-Minute Introduction
+
+## Where stablecoins break down
+
+DeFi has had two kinds of stablecoin: centralized-but-scalable and trustless-but-small.
+
+The pattern is structural. A project starts with relatively clean collateral (crypto assets, onchain yield); as it grows, it adds real-world assets, centralized stablecoins, or CEX-dependent yield to keep pace with demand. The economics push that way: T-bills and lending desks are large, reliable, and easy to integrate. Onchain alternatives are harder to scale.
+
+The result: the largest stablecoins in DeFi are managed by entities that can freeze balances, blacklist addresses, and change collateral composition at will. They are useful, but not counterparty-free.
+
+Meanwhile, the trustless designs — LUSD, BOLD — have proven immutable CDPs work. But without a scalable onchain yield source, their growth is constrained, their rates volatile, and they have stayed in a trustless-focused niche.
+
+The open question is whether a stablecoin can be *both* trustless and scalable — one whose yield source grows with adoption, not one borrowed from a centralized counterparty. Polaris is built to answer it.
+
+## The lineage
+
+Polaris is not starting from scratch. It descends from a line of immutable, counterparty-free CDP stablecoins:
+
+![Polaris counterparty-free CDP lineage: SAI (2017), LUSD (2021), BOLD / Liquity V2 (2024), pUSD (2026)](/infographics/polaris-lineage.svg)
+
+- **SAI (2017):** The first single-collateral CDP stablecoin. Proved the model works. Later became multi-collateral DAI, then drifted toward centralized backing — Real World Assets, USDC in the PSM, governance-controlled rates.
+- **LUSD (2021):** Immutable, counterparty-free, governance-free. Years with no admin breach. But capital-inefficient: it spent roughly 20% of its life more than 1% above peg, and its yield was limited to redemption fee revenue.
+- **BOLD (2024):** Liquity V2 — refined CDP mechanics, multi-collateral, still trustless. A genuine improvement, still yield-constrained.
+- **pUSD (2026):** The next chapter. A bonding-curve collateral that solves the overpeg problem and produces yield scaling with DeFi volume, without adding a counterparty.
+
+The lineage's lesson: immutability and counterparty-freedom are achievable and proven — SAI, LUSD, and BOLD showed that. The missing piece has always been a scalable onchain yield source.
+
+## The bonding curve: the engine of everything
+
+The bonding curve is what makes Polaris different from every prior CDP stablecoin.
+
+When you deposit ETH into Polaris, the curve issues you **pETH** at the current price. When you redeem pETH, you receive ETH back — at the floor price (at minimum), or the market price (if higher).
+
+### The floor price
+
+The floor price is the minimum exchange rate between pETH and ETH. It is mathematically guaranteed to only rise: each time swap or conversion fees accumulate, a portion adjusts the floor upward. No mechanism lowers it.
+
+The implication: pETH is not a volatile asset. It is an ETH proxy whose downside is permanently bounded. The floor-to-market ratio — your maximum drawdown — shrinks monotonically as fees accumulate.
+
+If pETH's market price is 0.95 ETH and its floor is 0.85 ETH, your worst-case redemption is 0.85 ETH. As fees accumulate, that floor may rise to 0.87, then 0.90. It never falls.
+
+### Onchain-only yield
+
+The curve earns fees on every ETH↔pETH swap. Those fees raise the floor. So pETH's yield comes from trading volume — from real onchain activity — not from a T-bill desk or a CEX lending book.
+
+The key insight: **the more DeFi activity flows through Polaris, the higher the floor rises, and the more valuable pETH becomes.** Yield scales with adoption instead of being capped by whatever a counterparty can deliver.
+
+## pAssets: a factory of synthetic assets
+
+With pETH as the collateral primitive, Polaris runs a factory of CDP (Collateralized Debt Position) instances. Each CDP issues a different synthetic asset against the same collateral:
+
+- **pUSD** — pegged to the US dollar
+- **pGOLD** — pegged to gold
+- **pCHF** — pegged to the Swiss franc
+- (additional pAssets are deployable as new CDP instances)
+
+### How a CDP works
+
+You lock pETH in a **trove** and mint a pAsset against it. Your collateral ratio must stay above the minimum threshold for your trove type. If it falls below, your trove is liquidated — the Stability Pool absorbs the debt and takes your collateral at a discount.
+
+The peg is maintained by two opposing arbitrage forces:
+
+**Below peg:** Anyone can redeem pAssets for pETH at face value (minus a small fee). If the system is under-backed, redemptions are scaled down in proportion to the reserve backing. This burns pAssets, reduces supply, and drives the price back up.
+
+**Above peg:** Anyone can open a trove, mint pAssets cheaply, and sell them above peg for a profit. This increases supply and drives the price back down.
+
+### Autonomous interest rates
+
+Polaris sets borrower interest rates without an external price oracle. It uses redemption and minting volume as proxy signals:
+
+- High redemption volume → the pAsset is trading below peg → rates rise to deter new minting.
+- Low redemption volume → the peg is healthy → rates fall to encourage minting.
+
+This makes rate-setting self-contained and tamper-proof.
+
+### The Stability Pool
+
+The Stability Pool is the safety net for every CDP. Holders deposit pAssets; when a trove is liquidated, the pool absorbs the debt and takes the collateral at a discount. Depositors earn:
+
+1. A share of borrower interest from all CDPs.
+2. Discounted pETH from liquidations.
+3. POLAR emissions are planned for an incentive period (not yet enabled in the contracts).
+
+It is the primary yield venue for pAsset holders and the mechanism that keeps the CDP system solvent.
+
+## POLAR: stewardship through alignment
+
+POLAR is the protocol's stewardship token. Apart from a one-time genesis allocation of 100,000,000 POLAR minted to the stewardship address at deployment, its issuance is deliberately constrained: **beyond that fixed initial supply, POLAR can only be minted by burning pETH in a conversion auction.** There is no other ongoing issuance path — no investor unlock, no inflationary mint function.
+
+### What burning pETH in a conversion auction does
+
+When pETH is burned:
+1. The ETH backing the burned pETH is freed from the bonding curve's floor reserve — a configurable rebate goes back to the converter and the remainder is recycled into the system (market-buying pETH to refill the reward buffer).
+2. The pETH floor price rises (supply contraction).
+3. POLAR is minted to the burner.
+
+All three effects are positive for the system. Burning pETH is the highest-alignment action a user can take.
+
+
+### vePOLAR and stewardship
+
+A designated stewardship role can steer quantitative parameters — fee and interest-rate settings, the conversion parameters — within the bounds the immutable contracts define. It cannot modify the bonding curve logic, CDP mechanics, liquidation rules, or the fixed collateralization thresholds.
+
+The distinction matters: Polaris has stewardship, not governance. The core is fixed; only the dials within it are adjustable.
+
+## The system end to end
+
+![Polaris system: ETH enters the bonding curve as pETH, pETH collateralizes CDPs that mint pAssets, burning pETH for POLAR raises the floor and releases ETH](/polaris-system-v2.svg)
+
+The four-step picture:
+1. **Swap.** ETH enters the bonding curve and is issued as pETH at the current price.
+2. **Collateralize.** pETH is the only collateral accepted across every CDP instance.
+3. **Borrow.** A CDP mints a pAsset — pUSD, pGOLD, or any other — against that pETH.
+4. **Stewardship.** Burning pETH for POLAR raises the floor, releases ETH, and aligns token holders with the protocol's long-term health.
+
+## The flywheel
+
+![Polaris flywheel: more adoption drives activity, activity generates fees, fees fund conversions, conversions raise the pETH floor, a higher floor strengthens collateral, stronger collateral enables more minting, which drives more adoption](/infographics/polaris-flywheel.svg)
+
+> Adoption → activity → fees → conversions → higher pETH floor → stronger collateral → more minting → more adoption.
+
+Each component reinforces the others:
+
+- More pAsset CDPs create demand for pETH.
+- Demand for pETH generates bonding curve swap fees.
+- Fees raise the pETH floor.
+- A higher floor makes every existing CDP position safer (the collateral is worth more in ETH terms).
+- Safer positions lower the protocol's risk profile, attracting more users.
+- More users generate more activity, and the loop continues.
+
+This compounding is structural, not dependent on incentives or emissions.
+
+## The three guarantees
+
+| Guarantee | How it is enforced |
+|---|---|
+| **pETH floor only rises** | Bonding curve math — no mechanism in the contract can lower it |
+| **No counterparty in the collateral stack** | pETH is backed by ETH; pAssets are backed by pETH; nothing else enters |
+| **Immutable core** | Bonding curve, CDP logic, liquidations, and redemptions are fixed in bytecode; there is no admin key and no upgrade function for the core |
+
+These are not design goals or promises. They are invariants enforced by the deployed contracts.
+
+## Risk model
+
+Understanding Polaris includes knowing what can and cannot happen:
+
+**What can happen:**
+- Your trove can be liquidated if your collateral ratio falls below the minimum. You retain any surplus above the liquidation threshold — liquidations are not a total loss.
+- Recovery Mode is triggered when the protocol's reserve backing relative to total debt (its reserve-to-debt ratio) falls below a threshold. While active, borrowing tightens — actions that increase debt or reduce collateral must meet a higher minimum collateral ratio and may not worsen a position's ratio — but liquidation eligibility itself stays at the normal minimum collateral ratio, and pure collateral top-ups and repayments remain allowed.
+- pETH's market price can fall (it tracks ETH), though the floor is guaranteed. If ETH falls sharply, the floor protects you from the worst of it.
+
+**What cannot happen by design:**
+- The pETH floor cannot be lowered.
+- The CDP or bonding curve logic cannot be upgraded.
+- Your pAsset balance cannot be frozen or confiscated.
+
+---
+
+Where to go next depends on what you want to do:
+
+- Ready to use it? [Getting Started](/getting-started)
+- Want the concept glossary? [Core Concepts](/core-concepts)
+- Understand the bonding curve in depth: [The Bonding Curve](/peth/bonding-curve) and [The Floor Price](/peth/floor-price)
+- Mint your first pUSD: [Open a Trove](/minting/open-a-trove)
+- Earn yield: [The Stability Pool](/yield/stability-pool)
+- Build on Polaris: [Develop](/paths/develop)
+
+<style>{`
+  .pl-rt-badge {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+    background: rgba(74,127,168,0.1);
+    border: 1px solid rgba(74,127,168,0.3);
+    color: #2c5f8a;
+  }
+  :is(.dark) .pl-rt-badge {
+    background: rgba(123,165,201,0.12);
+    border-color: rgba(123,165,201,0.35);
+    color: #7ba5c9;
+  }
+`}</style>

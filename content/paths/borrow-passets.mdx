@@ -1,0 +1,37 @@
+---
+title: Borrow pAssets
+description: "The borrower path for using Polaris: get pETH, open a trove, mint a pAsset, manage collateralization, and verify launch status before interacting."
+---
+
+# Borrow pAssets
+
+**Who this is for:** anyone who wants to mint pUSD, pGOLD, or another pAsset against pETH collateral and actively manage that position.
+
+**Prerequisites:** an Ethereum wallet, ETH on Ethereum mainnet, and a working grasp of overcollateralization and liquidation. If those terms are new, read [Core Concepts](/core-concepts) first.
+
+> **Launch status:** The public app URL, deployed addresses, final collateral thresholds, and exact UI labels are not published yet. Do not connect to a frontend or contract that claims to be Polaris unless it is linked from these docs or another official Polaris channel at launch.
+
+## Reading sequence
+
+Read these in order — each step builds context the next one assumes.
+
+1. [Getting Started](/getting-started) — confirms your wallet, network, and launch status so you avoid an unverified deployment.
+2. [The Bonding Curve](/peth/bonding-curve) — pETH is the *only* collateral Polaris accepts; you must hold it before borrowing.
+3. [Minting pAssets](/minting/minting-passets) — explains the CDP model and the peg mechanics that determine your interest rate.
+4. [Open a Trove](/minting/open-a-trove) — the conceptual flow for posting collateral and minting your pAsset.
+5. [Managing Your Trove](/minting/managing-your-trove) — how collateralization, debt, and interest move over time, and how to stay clear of liquidation.
+6. [Liquidations](/redemptions-liquidations/liquidations) and [Recovery Mode](/redemptions-liquidations/recovery-mode) — the failure states that decide how conservatively to size your position.
+
+## What to verify at launch
+
+- The official app URL.
+- Ethereum mainnet (chain ID 1).
+- The pETH, pAsset, trove manager, and Stability Pool addresses.
+- Final minimum collateralization, liquidation, redemption, and fee parameters for the pAsset you mint.
+- Audit reports and verified contract source.
+
+## Next
+
+- Want yield on the pAsset after minting? Continue to [Earn Yield](/paths/earn-yield).
+- Want to understand the collateral first? Continue to [Hold or Use pETH](/paths/hold-use-peth).
+- Want the safety checklist? Continue to [Safety and Verification](/paths/safety-verification).
