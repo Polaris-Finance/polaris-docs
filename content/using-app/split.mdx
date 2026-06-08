@@ -1,0 +1,32 @@
+---
+title: Split
+description: How to use the Polaris Split tab to split pETH into fpETH and vpETH, merge them back, and check transaction risk.
+---
+
+# Split
+
+Use **Split** to divide pETH into two matching legs:
+
+```
+pETH -> fpETH + vpETH
+```
+
+Each unit of pETH split mints one unit of **fpETH** and one unit of **vpETH**. Holding both legs together is economically similar to holding the original pETH, before fees and execution effects. Holding only one leg changes your risk.
+
+## What each leg represents
+
+| Token | Role |
+|---|---|
+| **fpETH** | The floor-price leg. It can be redeemed through the splitter for WETH at the pETH floor-price value under the contract assumptions. It is also the collateral for reserve loans. |
+| **vpETH** | The premium or volatility leg. It represents exposure to pETH's market value above the floor and can become worth very little if the premium compresses. |
+
+## Before you sign
+
+- Confirm you are splitting pETH, not WETH or a pAsset.
+- Check the pETH amount, resulting fpETH and vpETH amounts, and any fee or route shown.
+- Check the current floor price and floor ratio.
+- If merging, confirm you hold equal fpETH and vpETH amounts.
+- If using fpETH for a reserve loan afterward, read the reserve-loan quote before splitting.
+- Verify approvals and refresh the quote before signing.
+
+For the full mechanism and risks, read [pETH Split: fpETH and vpETH](/peth/split).

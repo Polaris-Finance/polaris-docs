@@ -15,14 +15,16 @@ That trade-off is real, but it is not a law of nature. It exists because, for ye
 
 The deeper problem is **structural drift toward centralization**. Stablecoins tend to start relatively clean and get dirtier in how they source yield as they grow, because centralized backing is the path of least resistance to scale.
 
-| Stablecoin | Where it falls short |
-|---|---|
-| **USDC** | Centralized issuer with freeze/blacklist powers; holders do not receive the issuer's reserve yield directly; stress events have shown banking dependencies matter. |
-| **USDS / DAI (Sky)** | Began with cleaner crypto-collateral roots, then added centralized stablecoin and real-world-asset exposure as it scaled. Governance-set rates remain. |
-| **USDe** | Uses market-neutral, custody/counterparty-dependent infrastructure; scaling can require more counterparties, venues, and operational trust assumptions. |
-| **LUSD / BOLD** | Genuinely trustless and counterparty-free — but limited yield sources and capital inefficiency keep them in a trustless-focused niche. Great to hold, less attractive to mint. |
+| Feature | **USDC** | **USDS / DAI** | **USDe** | **LUSD / BOLD** | **pUSD** |
+|---|---|---|---|---|---|
+| Issuer dependency | Centralized issuer with freeze/blacklist | Governance-set rates, RWA exposure | Market-neutral, custody-dependent | Counterparty-free | Counterparty-free |
+| Yield source | Offchain reserves (not passed to holders) | Mixed: crypto + RWA + governance | Counterparty-dependent infrastructure | Limited onchain sources | Onchain protocol activity |
+| Scalability constraint | Banking relationships | Governance decisions | Counterparty capacity | Capital inefficiency | Bonding-curve scaling |
+| Immutable core | No | Partial | No | Yes | Yes |
 
-The lesson: a stablecoin built for trustlessness must be *architected* so degradation cannot happen, not merely intend to stay clean.
+<Callout variant="info">
+The lesson: a stablecoin built for trustlessness must be <em>architected</em> so degradation cannot happen, not merely intend to stay clean.
+</Callout>
 
 ## The counterparty-free lineage
 
@@ -47,9 +49,19 @@ Polaris is built so the only counterparty you trust is **immutable code and Ethe
 - **Immutable core.** The bonding curve, CDP logic, liquidations, redemptions, and the Stability Pool are intended to be fixed in audited deployment code. No admin key can add a custodial PSM, external-collateral module, or freeze function under pressure.
 - **Counterparty-free by construction.** pUSD sits in the same counterparty-free lineage as LUSD and BOLD — but adds yield that *scales* with DeFi volume rather than capping growth at what a counterparty can deliver.
 
-> Having a counterparty means capping your growth to whatever yield that counterparty can deliver.
+<Callout variant="warning">
+Having a counterparty means capping your growth to whatever yield that counterparty can deliver.
+</Callout>
 
 Polaris turns onchain trading volume itself into a stablecoin yield source through its bonding curve, and extends the model to *any* asset through the [StablecoinOS](/core-concepts). DeFi has had uncensorable-but-small and censorable-but-scalable stablecoins. Polaris is built to be the uncensorable, scalable one.
+
+<NextSteps
+  steps={[
+    { href: '/core-concepts', title: 'Core Concepts', description: 'A one-page map of every key term in the Polaris system.' },
+    { href: '/getting-started', title: 'Getting Started', description: 'The shortest path from "I have ETH" to "I am using Polaris."' },
+    { href: '/minting/minting-passets', title: 'Minting pAssets', description: 'How the CDP works from first principles.' }
+  ]}
+/>
 
 ---
 

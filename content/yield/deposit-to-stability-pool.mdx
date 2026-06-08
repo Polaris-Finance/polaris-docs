@@ -20,8 +20,17 @@ You need:
 - ETH for gas.
 - An understanding that liquidation gains arrive in **pETH**, and the [risk](/yield/stability-pool#the-honest-risk) of a severe crash. For pure pUSD exposure, use a wrapper vault — see [Where the Yield Comes From](/yield/yield-sources).
 
-> **Before you act:**
-> Check the pool's current size, your projected share, accrued reward tokens, withdrawal conditions, and whether you are comfortable receiving pETH during volatile liquidations. If you plan to convert pETH rewards back to pAsset, account for gas, slippage, MEV, and wrapper-vault availability.
+## Before you sign
+
+Before depositing, check:
+
+- Official app URL, network, pAsset, and Stability Pool contract.
+- Deposit amount, projected pool share, pool size, and reward tokens.
+- Current APR estimate, liquidation parameters, and withdrawal conditions.
+- First-loss exposure: liquidations can burn deposited pAssets and replace them with pETH.
+- Whether you are comfortable receiving pETH during volatile liquidations.
+- Gas, slippage, MEV, and wrapper-vault availability if you plan to convert pETH rewards back to pAsset.
+- Approval spender, allowance amount, simulation result, and quote freshness.
 
 > **Warning:**
 > A Stability Pool deposit can lose value. Liquidations convert part of your deposited pAsset into pETH, and in a severe or flash crash the pETH you receive can be worth **less** than the pAsset burned — your principal is not protected. Size your deposit accordingly and read the [Risk Disclosure](/resources/risk-disclosure).

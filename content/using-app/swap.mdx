@@ -1,0 +1,30 @@
+---
+title: Swap
+description: How to use the Polaris Swap tab for WETH, pETH, and pAsset swaps with quote, approval, fee, and slippage checks.
+---
+
+# Swap
+
+Use **Swap** when you want to exchange WETH, pETH, fpETH, vpETH, or a pAsset through the route the app quotes. For pETH, the route may involve the [bonding curve](/peth/bonding-curve); for pAssets, it may route through app-supported markets or protocol modules.
+
+## Common swaps
+
+| Goal | Typical route | Read first |
+|---|---|---|
+| Get pETH | WETH -> pETH | [pETH Bonding Curve](/peth/bonding-curve) |
+| Exit pETH | pETH -> WETH | [pETH Floor Price](/peth/floor-price) |
+| Get a pAsset to deposit | WETH -> pUSD or pGOLD | [Polaris Asset Catalog](/minting/passet-catalog) |
+| Rebalance before a debt action | pAsset or pETH swap | [Managing a Trove](/minting/managing-your-trove) |
+
+## Before you sign
+
+- Confirm the network, app URL, and contract route.
+- Confirm the input and output token symbols; WETH and pETH are different assets.
+- Check the quoted output, swap fee, slippage tolerance, and price impact.
+- Check whether the quote uses the bonding curve, a PSM, a DEX route, or another module.
+- If an approval is required, verify the token, spender, and allowance amount.
+- Refresh the quote if market price, floor ratio, or pool liquidity changed.
+
+## Risks
+
+Swapping does not remove pETH price risk, pAsset peg risk, or execution risk. The final amount can differ from the preview because of gas, slippage, MEV, route changes, and transaction ordering.

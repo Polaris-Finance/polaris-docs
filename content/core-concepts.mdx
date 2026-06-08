@@ -9,35 +9,81 @@ This page is the map. Each term is defined in a sentence or two and links to its
 
 ## The assets
 
-- **pAsset**: a synthetic debt asset minted from a Polaris CDP (pUSD, pGOLD, pCHF, …). Each is overcollateralized by pETH and counterparty-free. See [The pAsset Catalog](/minting/passet-catalog).
-- **pUSD**: the flagship pAsset, pegged to the US dollar, backed by pETH collateral. See [Minting pAssets](/minting/minting-passets).
-- **pETH**: ETH deposited into a two-way [bonding curve](/peth/bonding-curve). It is not CDP-minted debt; it is the *only* collateral Polaris accepts, has a floor price that is designed to rise under the curve invariants, and is yield-bearing.
-- **POLAR**: the protocol's stewardship token. After a fixed distribution at launch, new POLAR can be minted *only* by burning pETH in a [conversion auction](/polar/conversion-auctions). **vePOLAR**, a vote-escrow layer for stewardship rights, is forthcoming.
+<DefinitionCard term="pAsset" token="passet">
+A synthetic debt asset minted from a Polaris CDP (pUSD, pGOLD, pCHF, …). Each is overcollateralized by pETH and counterparty-free. See [The pAsset Catalog](/minting/passet-catalog).
+</DefinitionCard>
+
+<DefinitionCard term="pUSD" token="pusd">
+The flagship pAsset, pegged to the US dollar, backed by pETH collateral. See [Minting pAssets](/minting/minting-passets).
+</DefinitionCard>
+
+<DefinitionCard term="pETH" token="peth">
+ETH deposited into a two-way [bonding curve](/peth/bonding-curve). It is not CDP-minted debt; it is the <em>only</em> collateral Polaris accepts, has a floor price that is designed to rise under the curve invariants, and is yield-bearing.
+</DefinitionCard>
+
+<DefinitionCard term="POLAR" token="polar">
+The protocol's stewardship token. After a fixed distribution at launch, new POLAR can be minted <em>only</em> by burning pETH in a [conversion auction](/polar/conversion-auctions). <strong>vePOLAR</strong>, a vote-escrow layer for stewardship rights, is forthcoming.
+</DefinitionCard>
 
 ## Minting & positions
 
-- **CDP** (Collateralized Debt Position): the mechanism behind minting. You post collateral and mint the pAsset directly from the protocol, not by borrowing another user's funds. See [Minting pAssets](/minting/minting-passets).
-- **Trove**: your individual borrowing position in a Polaris CDP. Each trove is isolated, with its own collateral, debt, and collateralization ratio. See [Managing Your Trove](/minting/managing-your-trove).
-- **StablecoinOS**: Polaris is a *factory* of CDP instances, each issuing a different pAsset but all sharing the same pETH collateral and bonding curve.
+<DefinitionCard term="CDP" token="default">
+Collateralized Debt Position: the mechanism behind minting. You post collateral and mint the pAsset directly from the protocol, not by borrowing another user's funds. See [Minting pAssets](/minting/minting-passets).
+</DefinitionCard>
+
+<DefinitionCard term="Trove" token="default">
+Your individual borrowing position in a Polaris CDP. Each trove is isolated, with its own collateral, debt, and collateralization ratio. See [Managing Your Trove](/minting/managing-your-trove).
+</DefinitionCard>
+
+<DefinitionCard term="StablecoinOS" token="default">
+Polaris is a <em>factory</em> of CDP instances, each issuing a different pAsset but all sharing the same pETH collateral and bonding curve.
+</DefinitionCard>
 
 ## Keeping the peg
 
-- **Redemption**: exchanging a pAsset for its underlying collateral at face value (minus a fee) when it trades *below* peg. Restores the floor. See [Redemptions](/redemptions-liquidations/redemptions).
-- **Minting (mechanism)**: the inverse of redemption. Arbitrageurs add pETH to troves to mint pAssets when the pAsset trades *above* peg. Restores the ceiling.
-- **Autonomous interest rates**: redemption and minting volume serve as onchain proxy signals for the peg, letting Polaris set rates without an external oracle.
+<DefinitionCard term="Redemption" token="default">
+Exchanging a pAsset for its underlying collateral at face value (minus a fee) when it trades <em>below</em> peg. Restores the floor. See [Redemptions](/redemptions-liquidations/redemptions).
+</DefinitionCard>
+
+<DefinitionCard term="Minting (mechanism)" token="default">
+The inverse of redemption. Arbitrageurs add pETH to troves to mint pAssets when the pAsset trades <em>above</em> peg. Restores the ceiling.
+</DefinitionCard>
+
+<DefinitionCard term="Autonomous interest rates" token="default">
+Redemption and minting volume serve as onchain proxy signals for the peg, letting Polaris set rates without an external oracle.
+</DefinitionCard>
 
 ## Risk states
 
-- **Liquidation**: if a trove falls below its minimum collateralization ratio, it is liquidated, and the [Stability Pool](/yield/stability-pool) absorbs the debt. See [Liquidations](/redemptions-liquidations/liquidations).
-- **Recovery Mode**: a protocol-wide protective state entered when the system-wide reserve-backing-to-debt ratio (the [TCR](/resources/glossary)) falls below a fixed threshold. See [Recovery Mode](/redemptions-liquidations/recovery-mode).
-- **Floor price / floor ratio**: the mathematically enforced minimum price of pETH (in ETH), and that floor as a percentage of market price (your maximum drawdown). See [The Floor Price](/peth/floor-price).
+<DefinitionCard term="Liquidation" token="default">
+If a trove falls below its minimum collateralization ratio, it is liquidated, and the [Stability Pool](/yield/stability-pool) absorbs the debt. See [Liquidations](/redemptions-liquidations/liquidations).
+</DefinitionCard>
+
+<DefinitionCard term="Recovery Mode" token="default">
+A protocol-wide protective state entered when the system-wide reserve-backing-to-debt ratio (the [TCR](/resources/glossary)) falls below a fixed threshold. See [Recovery Mode](/redemptions-liquidations/recovery-mode).
+</DefinitionCard>
+
+<DefinitionCard term="Floor price / floor ratio" token="peth">
+The mathematically enforced minimum price of pETH (in ETH), and that floor as a percentage of market price (your maximum drawdown). See [The Floor Price](/peth/floor-price).
+</DefinitionCard>
 
 ## Yield & coordination
 
-- **Stability Pool**: a reserve of pAssets that processes liquidations and is the primary venue for earning yield. See [The Stability Pool](/yield/stability-pool).
-- **Conversion auction**: the mechanism that mints POLAR by burning pETH; the most protocol-synergetic action possible. See [Conversion Auctions](/polar/conversion-auctions).
-- **Fee Router**: receives pETH from conversions and bonding-curve swap fees, then buffers and distributes it as yield to troves, pro-rata to their debt. See [The Fee Router](/stewardship/fee-router).
-- **Stewardship**: a stewardship role steers *quantitative parameters within the bounds the contracts define*. It does not govern the immutable core. See [Stewardship, not Governance](/stewardship/stewardship).
+<DefinitionCard term="Stability Pool" token="default">
+A reserve of pAssets that processes liquidations and is the primary venue for earning yield. See [The Stability Pool](/yield/stability-pool).
+</DefinitionCard>
+
+<DefinitionCard term="Conversion auction" token="polar">
+The mechanism that mints POLAR by burning pETH; the most protocol-synergetic action possible. See [Conversion Auctions](/polar/conversion-auctions).
+</DefinitionCard>
+
+<DefinitionCard term="Fee Router" token="default">
+Receives pETH from conversions and bonding-curve swap fees, then buffers and distributes it as yield to troves, pro-rata to their debt. See [The Fee Router](/stewardship/fee-router).
+</DefinitionCard>
+
+<DefinitionCard term="Stewardship" token="default">
+A stewardship role steers <em>quantitative parameters within the bounds the contracts define</em>. It does not govern the immutable core. See [Stewardship, not Governance](/stewardship/stewardship).
+</DefinitionCard>
 
 ## The shape of the system
 
@@ -56,4 +102,10 @@ The diagram traces four steps and an outcome:
 
 > Adoption ⇒ activity ⇒ velocity ⇒ fees ⇒ yield ⇒ more demand.
 
-Ready to use it? Start with [Getting Started](/getting-started), or jump to [Minting pAssets](/minting/minting-passets).
+<NextSteps
+  steps={[
+    { href: '/getting-started', title: 'Getting Started', description: 'The shortest path from "I have ETH" to "I am using Polaris."' },
+    { href: '/minting/minting-passets', title: 'Minting pAssets', description: 'How the CDP works from first principles.' },
+    { href: '/why-polaris', title: 'Why Polaris?', description: 'The stablecoin trilemma and how Polaris resolves it.' }
+  ]}
+/>

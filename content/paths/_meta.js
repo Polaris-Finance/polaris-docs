@@ -4,6 +4,6 @@ export default {
   'borrow-passets': 'Borrow pAssets',
   'earn-yield': 'Earn Yield',
   'hold-use-peth': 'Hold or Use pETH',
-  'convert-lock-polar': 'Convert and Lock POLAR',
+  'convert-lock-polar': 'Convert / Stake POLAR',
   develop: 'Develop'
 }

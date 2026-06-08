@@ -7,6 +7,14 @@ description: Every Polaris term defined in one or two sentences, alphabetized an
 
 Every key Polaris term, alphabetized. Each entry is one or two sentences and links to its full treatment where one exists. For the narrative map of how the pieces fit, read [Core Concepts](/core-concepts).
 
+## A
+
+**Advanced**
+The app area for manual or lower-level tools such as approvals, PSM/redemption actions, reserve loans, conversion, and POLAR Staking controls. Use it only after verifying the contract, function, token, amount, and quote; see [Advanced](/using-app/advanced).
+
+**APR (Annual Percentage Rate)**
+An annualized rate estimate, commonly shown for borrow cost or yield. APR is not a promised return: realized cost or yield can change with rates, activity, liquidations, fees, execution, and market conditions.
+
 ## B
 
 **Bonding curve**
@@ -28,14 +36,25 @@ A stewardship-controlled percentage of ETH returned to the converter in a [conve
 **Fee Router**
 Receives pETH from conversions and bonding-curve swap-fee buybacks, buffers it over a reward period, and distributes pETH rewards to a stewardship-designated receiver — currently troves, pro-rata to debt. Staker yield is distributed separately, in pAsset terms, via the interest router. See [Stewardship](/stewardship/stewardship).
 
+**Floor Carry**
+The possible return from holding [fpETH](#f) while the pETH [floor price](#f) rises. It is not a fixed APR or a guarantee; it depends on actual floor growth, market pricing, execution costs, and the redemption path remaining available.
+
 **Floor price**
-The contract-defined minimum price of [pETH](/peth/bonding-curve), in ETH terms, under the bonding-curve invariants. It is designed to only rise during normal protocol operation and represents the modeled *last person out* price if everyone exited at once; most exiters get a better curve price. See [The Floor Price](/peth/floor-price).
+The contract-defined minimum price of [pETH](/peth/bonding-curve), in ETH terms, under the bonding-curve invariants. It is designed to move upward during normal protocol operation and represents the modeled *last person out* price if everyone exited at once, subject to contract correctness, Ethereum liveness, gas, slippage, and MEV. See [The Floor Price](/peth/floor-price).
 
 **Floor ratio**
 The floor price divided by the market price, as a percentage. It frames the curve-implied drawdown before gas, slippage, MEV, smart-contract risk, and chain-liveness risk. See [The Floor Price](/peth/floor-price).
 
 **Flows**
 The protocol's internal value movements (fees, conversions, yield distribution), routed by the [Fee Router](#f). Inward-facing flows sustain the core; outward-facing flows grow the ecosystem (see *Inward-facing / Outward-facing*).
+
+**fpETH**
+The floor-price leg created when [pETH](/peth/split) is split into fpETH and [vpETH](#v). fpETH can be redeemed for WETH at the pETH floor-price value under the splitter and bonding-curve assumptions, and it is used as reserve-loan collateral.
+
+## G
+
+**Guide**
+The app area that routes users by goal, such as getting pETH, borrowing pAssets, earning yield, splitting pETH, or verifying safety. See [Guide](/using-app/guide).
 
 ## I
 
@@ -84,13 +103,19 @@ The Polaris synthetic gold pAsset, designed to track gold without issuer custody
 Core believers, not just early followers. Access is earned through merit (explanatory threads, deep research, finding Easter eggs) and rewarded with early alphas, testnet access, and dev-stage updates.
 
 **Polar Council**
-A treasury-funded program (8.2% of POLAR supply) for onboarding and ecosystem contributors, similar in spirit to veAERO's Flight School.
+A planned treasury-funded program for onboarding and ecosystem contributors, similar in spirit to veAERO's Flight School. Its final allocation, eligibility, operating framework, and reporting rules are pending publication.
 
 **POLAR**
 The protocol's stewardship token and outward-facing growth lever. After the initial distribution, new POLAR can be minted *only* by burning pETH in a [conversion auction](/polar/conversion-auctions). See [The POLAR Token](/polar/polar-token).
 
+**POLAR Staking**
+The current app staking surface for staking POLAR and claiming routed rewards where the deployment exposes it. It is distinct from forthcoming [vePOLAR](#v) locking, which adds lock durations, vote-power decay, and stewardship rights.
+
 **PolarEX**
 Polaris' integrated DEX. Its swap fees are one of the system's yield sources.
+
+**PSM (Peg Stability Module)**
+The contract/module that handles pAsset minting and redemption mechanics for a pAsset instance. Use PSM or redemption actions only after checking the pAsset, fee, output amount, and contract address.
 
 **pUSD**
 The flagship pAsset, designed to track the US dollar and be backed by pETH collateral. Intended to be counterparty-free and fully onchain. See [Minting pAssets](/minting/minting-passets).
@@ -103,7 +128,19 @@ A protocol-wide protective state (Emergency Mode in the contracts) triggered whe
 **Redemption**
 Exchanging a pAsset for its underlying collateral at face value (minus a fee) when the pAsset trades *below* peg. Redemptions restore the floor and are one of the onchain signals used to set interest rates. See [Redemptions](/redemptions-liquidations/redemptions).
 
+**Reserve Loan**
+A WETH loan against [fpETH](#f) floor-value collateral. It is separate from a pAsset trove: reserve loans use the pETH floor leg and reserve accounting, while troves mint pAssets against pETH collateral.
+
 ## S
+
+**sepETH**
+Sepolia ETH, the testnet-native gas asset used on Testnet 2. It has no mainnet ETH value; when wrapped for app flows it may appear as WETH.
+
+**SP (Stability Pool)**
+Common abbreviation for the [Stability Pool](#s), the pAsset first-loss pool that absorbs liquidations and pays depositors borrower-interest share and liquidation gains.
+
+**Split**
+The app flow and contract operation that turns pETH into equal amounts of [fpETH](#f) and [vpETH](#v), or merges equal fpETH and vpETH amounts back into pETH. See [pETH Split](/peth/split).
 
 **Spike-and-decay**
 The pricing model for [conversion auctions](/polar/conversion-auctions): the conversion price continuously decays until a conversion *spikes* it upward, proportionally to the POLAR supply that conversion inflated.
@@ -128,7 +165,20 @@ An individual borrowing position in a Polaris CDP. Each trove is isolated, with 
 ## V
 
 **vePOLAR**
-The forthcoming vote-escrow layer for POLAR — POLAR locked for [stewardship](/stewardship/stewardship) rights and a share of protocol yield. The locking mechanism is not yet implemented in the contracts; today stewardship runs through a single stewardship address. See [vePOLAR](/stewardship/vepolar).
+The forthcoming vote-escrow layer for POLAR — POLAR locked for [stewardship](/stewardship/stewardship) rights and a share of protocol yield. It is distinct from current POLAR Staking; the vePOLAR locking mechanism, contract address, lock durations, and vote-power rules are pending audited deployment. See [vePOLAR](/stewardship/vepolar).
+
+**vpETH**
+The volatility-premium leg created when [pETH](/peth/split) is split into [fpETH](#f) and vpETH. vpETH represents exposure to pETH's market value above the floor and can lose significant value if the premium compresses.
+
+## W
+
+**WETH**
+Wrapped ETH, the ERC-20 form of ETH used by app contracts and testnet flows. On Sepolia, WETH is a test token backed by testnet ETH, not mainnet ETH.
+
+## Z
+
+**Zap**
+An app flow that bundles multiple steps, such as WETH -> pUSD or pGOLD -> Stability Pool deposit. A zap is an execution shortcut, not a risk reducer; check approvals, simulation, slippage, quote freshness, and first-loss risk. See [Zap](/using-app/zap).
 
 ---
 

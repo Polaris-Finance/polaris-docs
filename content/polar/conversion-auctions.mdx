@@ -5,7 +5,7 @@ description: The conversion auction bridges pETH and POLAR — a spike-and-decay
 
 # POLAR Conversion Auctions
 
-The conversion auction is the single primitive connecting pETH and POLAR. Converters **burn pETH to mint new POLAR**. It is the only path to new POLAR after the initial distribution, engineered so every conversion strengthens the core protocol.
+The conversion auction is the single primitive connecting pETH and POLAR. Converters **burn pETH to mint new POLAR**. It is the intended path to new POLAR after the initial distribution, engineered so each successful conversion strengthens the core protocol under the curve assumptions.
 
 ## Spike-and-decay pricing
 
@@ -29,14 +29,14 @@ In practice, conversions — like pUSD mintings and redemptions — will mostly 
 Burning pETH through a conversion has two structural consequences, on top of minting POLAR:
 
 - **ETH is released from the bonding curve reserve.** The ETH backing the burned pETH is freed. This released ETH is the *conversion gain* — it corresponds to the area under the bonding curve for the burned portion of supply, so the more pETH minted, the more ETH each unit releases.
-- **The [floor price](/peth/floor-price) rises.** Reducing supply on a power-law curve while preserving the reserve lifts pETH's enforced minimum. Conversions are strictly one-way — POLAR cannot be converted back to pETH — so the floor can only rise or hold, never fall from conversion activity.
+- **The [floor price](/peth/floor-price) is designed to rise.** Reducing supply on a power-law curve while preserving the reserve lifts pETH's enforced minimum under the curve assumptions. Conversions are strictly one-way — POLAR cannot be converted back to pETH — so conversion activity is designed to lift or hold the floor, not push it down.
 
-Because the floor only rises, every conversion benefits everyone holding or borrowing against pETH:
+Because conversions are designed to lift the floor under those assumptions, each successful conversion can benefit users holding or borrowing against pETH:
 
 | Participant | Benefit |
 |---|---|
-| pETH holders | Higher floor ⇒ smaller max drawdown |
-| CDP borrowers | Collateral's worst-case value improves ⇒ self-recollateralizing loans get safer |
+| pETH holders | Higher floor ⇒ smaller curve-implied drawdown |
+| CDP borrowers | Collateral's modeled floor value improves ⇒ self-recollateralizing loans get safer |
 | Stability Pool depositors | Healthier system-wide collateralization ratio |
 
 This is the second of two floor-raising mechanisms (the other being [swap-fee burns](/peth/bonding-curve)). Swap fees are frequent and lift the floor regardless of POLAR's price; conversions are more sporadic but have larger floor-raising potential.
@@ -54,7 +54,7 @@ Before the released ETH becomes system yield, a slice can return to the converte
 The metric stewards watch is the **POLAR / pETH market-cap ratio**: when POLAR's is larger, a low rebate is defensible; when it flips, higher rebates are justified.
 
 > **Note:**
-> The total ETH released from the curve is **unaffected** by the rebate. The floor-price impact is identical however the ETH is split afterward. The rebate reshapes the *distribution* of value, not the underlying collateral dynamics.
+> The total ETH released from the curve is **unaffected** by the rebate in the model. The floor-price impact is the same however the ETH is split afterward, assuming the contracts and curve math execute as designed. The rebate reshapes the *distribution* of value, not the underlying collateral dynamics.
 
 After the rebate, the remaining ETH is swapped into pETH and forwarded to the **[Fee Router](/stewardship/fee-router)**, which buffers it and distributes the yield to pETH troves, pro-rata to their recorded debt.
 

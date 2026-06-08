@@ -49,15 +49,21 @@ function parsePage(fullPath) {
   const titleMatch = /^title:\s*(.+?)\s*$/im.exec(frontmatter)
   const descMatch = /^description:\s*(.+?)\s*$/im.exec(frontmatter)
   const stripQuotes = (value) => value.replace(/^["']|["']$/g, '')
+  const route = routeForFile(fullPath)
+  const keywords = vocabularyForRoute(route)
+
   return {
     title: titleMatch ? stripQuotes(titleMatch[1]) : 'Untitled',
     description: descMatch ? stripQuotes(descMatch[1]) : '',
-    body: sanitizeMdxForLlms(body)
+    keywords,
+    lastVerified: extractPageDate(frontmatter, body, ['lastVerified', 'last_verified']),
+    updated: extractPageDate(frontmatter, body, ['updated', 'lastUpdated', 'date']),
+    body: sanitizeMdxForLlms(body, route)
   }
 }
 
 function propValue(props, name) {
-  const match = new RegExp(`${name}=(["'])(.*?)\\1`, 's').exec(props)
+  const match = new RegExp(`${name}\\s*=\\s*(["'])(.*?)\\1`, 's').exec(props)
   return match?.[2]?.trim() ?? ''
 }
 
@@ -72,15 +78,41 @@ function renderBlogPostCard(props) {
   return [heading, description].filter(Boolean).join('\n')
 }
 
+function renderImageAlt(props) {
+  const alt = propValue(props, 'alt') || propValue(props, 'aria-label') || propValue(props, 'title')
+  return alt ? `Image: ${alt}` : ''
+}
+
 function stripJsxTags(value) {
   return value
     .replace(/<BlogPostCard\s+([\s\S]*?)\/>/g, (_match, props) => renderBlogPostCard(props))
+    .replace(
+      /<LaunchTimeline\s*\/>/g,
+      'Image: Polaris launch timeline. Early Research in 2024. Team Formation in June 2025. Testnet 1, private, March 2026. Testnet 2, public, May 2026, the current phase. Mainnet, forthcoming.'
+    )
+    .replace(
+      /<SystemOverviewFigure\s*\/>/g,
+      'Image: Polaris system overview: ETH swaps into pETH on the bonding curve, pETH collateralizes CDPs that mint pUSD, and burning pETH for POLAR raises the floor and releases ETH.'
+    )
+    .replace(
+      /<TimedExplainers\s*\/>/g,
+      [
+        'Timed explainers:',
+        '- [Overview](/explainers/2-min): 2 min read.',
+        '- [Presentation](/explainers/5-min): 5 min read.',
+        '- [Full Introduction](/explainers/10-min): 10 min read.'
+      ].join('\n')
+    )
+    .replace(/<img\s+([^>]*?)\/?>/gi, (_match, props) => renderImageAlt(props))
+    .replace(/<Image\s+([^>]*?)\/?>/g, (_match, props) => renderImageAlt(props))
+    .replace(/!\[([^\]]*)]\([^)]+\)/g, (_match, alt) => (alt ? `Image: ${alt}` : ''))
     .replace(/<style[\s\S]*?<\/style>/gi, '')
     .replace(/^\s*(import|export)\s.+$/gm, '')
     .replace(/<svg[\s\S]*?<\/svg>/gi, '')
     .replace(/<[^>\n]+\/>/g, '')
     .replace(/<\/?(?:Steps|Callout|div|span|a)[^>]*>/g, '')
     .replace(/<\/?[A-Z][^>]*>/g, '')
+    .replace(/<\/?[a-z][^>]*\s(?:class|className|style)=["'][^"']*["'][^>]*>/gi, '')
 }
 
 function normalizeTables(value) {
@@ -98,8 +130,25 @@ function normalizeTables(value) {
     .join('\n')
 }
 
-function sanitizeMdxForLlms(body) {
-  return normalizeTables(stripJsxTags(body))
+function appendVocabulary(body, route) {
+  const keywords = vocabularyForRoute(route)
+  if (!keywords.length) return body
+  return `${body.trim()}\n\nRelevant app/search vocabulary: ${keywords.join(', ')}.`
+}
+
+function absolutizeMarkdownLinks(value, route) {
+  return value
+    .replace(/\]\((#[^)]+)\)/g, (_match, hash) => `](${absoluteUrl(`${route}${hash}`)})`)
+    .replace(/\]\((\/[^)\s]+)\)/g, (_match, href) => `](${absoluteUrl(href)})`)
+}
+
+function sanitizeMdxForLlms(body, route) {
+  return appendVocabulary(
+    absolutizeMarkdownLinks(normalizeTables(stripJsxTags(body)), route),
+    route
+  )
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
     .replace(/\n{3,}/g, '\n\n')
     .replace(/[ \t]+\n/g, '\n')
     .trim()
@@ -122,10 +171,158 @@ function checkOrWrite(relativePath, nextContent) {
 }
 
 function validateCleanLlmsFull(value) {
-  const forbidden = [/<style/i, /className=/, /^\s*import\s/m, /^\s*export\s/m]
+  const forbidden = [
+    /<style/i,
+    /className=/,
+    /\bstyle=/,
+    /^\s*import\s/m,
+    /^\s*export\s/m,
+    /<svg[\s>]/i
+  ]
   return forbidden
     .filter((pattern) => pattern.test(value))
     .map((pattern) => `llms-full.txt contains ${pattern}`)
+}
+
+const routeVocabulary = [
+  {
+    match: /^\/$/,
+    terms: ['app', 'official app', 'testnet', 'Testnet 2', 'Sepolia', 'pETH', 'pAssets']
+  },
+  {
+    match: /^\/launch-status$/,
+    terms: [
+      'app',
+      'official app',
+      'testnet app',
+      'app.testnet.polarisfinance.io',
+      'testnet',
+      'Testnet 2',
+      'Sepolia',
+      'chain ID 11155111',
+      'WETH faucet',
+      'contracts',
+      'audits'
+    ]
+  },
+  {
+    match: /^\/getting-started$/,
+    terms: [
+      'app',
+      'official app',
+      'connect wallet',
+      'testnet',
+      'Sepolia',
+      'Sepolia ETH',
+      'WETH faucet',
+      'borrow',
+      'earn',
+      'swap'
+    ]
+  },
+  {
+    match: /^\/paths$/,
+    terms: ['Dashboard', 'Swap', 'Borrow', 'Earn', 'Split', 'Zap', 'Guide', 'Advanced', 'Analytics']
+  },
+  {
+    match: /^\/paths\/safety-verification$/,
+    terms: ['official app', 'app URL', 'phishing', 'verify contracts', 'testnet', 'mainnet']
+  },
+  {
+    match:
+      /^\/paths\/borrow-passets$|^\/minting\/(open-a-trove|minting-passets|managing-your-trove)$/,
+    terms: ['Borrow', 'borrow', 'mint', 'open trove', 'pUSD', 'pGOLD', 'ICR', 'official app']
+  },
+  {
+    match: /^\/paths\/earn-yield$|^\/yield\//,
+    terms: ['Earn', 'earn', 'yield', 'APR', 'Stability Pool', 'deposit', 'claim rewards']
+  },
+  {
+    match: /^\/peth\/(bonding-curve|floor-price)$|^\/paths\/hold-use-peth$/,
+    terms: ['Swap', 'swap', 'Split', 'fpETH', 'vpETH', 'pETH', 'floor price']
+  },
+  {
+    match: /^\/resources\/(glossary|contracts|faq)$/,
+    terms: [
+      'app',
+      'official app',
+      'testnet',
+      'Sepolia',
+      'WETH',
+      'WETH faucet',
+      'Zap',
+      'Split',
+      'Swap',
+      'Borrow',
+      'Earn',
+      'Guide',
+      'Advanced',
+      'Analytics',
+      'APR',
+      'Reserve Loan'
+    ]
+  },
+  {
+    match: /^\/polar\/(participate-in-conversion|conversion-auctions|polar-token)$/,
+    terms: ['POLAR', 'convert', 'lock', 'vePOLAR', 'burn pETH', 'conversion auction']
+  }
+]
+
+function vocabularyForRoute(route) {
+  const terms = new Set()
+  for (const entry of routeVocabulary) {
+    if (entry.match.test(route)) {
+      for (const term of entry.terms) terms.add(term)
+    }
+  }
+  return [...terms]
+}
+
+const monthNumbers = new Map([
+  ['january', '01'],
+  ['february', '02'],
+  ['march', '03'],
+  ['april', '04'],
+  ['may', '05'],
+  ['june', '06'],
+  ['july', '07'],
+  ['august', '08'],
+  ['september', '09'],
+  ['october', '10'],
+  ['november', '11'],
+  ['december', '12']
+])
+
+function normalizeDate(value) {
+  const iso = /\b(\d{4}-\d{2}-\d{2})\b/.exec(value)
+  if (iso) return iso[1]
+
+  const written = /\b([A-Za-z]+)\s+(\d{1,2}),\s+(\d{4})\b/.exec(value)
+  if (!written) return null
+
+  const month = monthNumbers.get(written[1].toLowerCase())
+  if (!month) return null
+
+  return `${written[3]}-${month}-${written[2].padStart(2, '0')}`
+}
+
+function extractPageDate(frontmatter, body, names) {
+  for (const name of names) {
+    const frontmatterMatch = new RegExp(`^${name}:\\s*["']?([^"']+)["']?\\s*$`, 'im').exec(
+      frontmatter
+    )
+    if (frontmatterMatch) {
+      const date = normalizeDate(frontmatterMatch[1])
+      if (date) return date
+    }
+  }
+
+  if (names.some((name) => /last[_-]?verified/i.test(name))) {
+    const bodyMatch = /\*\*Last verified:\*\*\s*([^.\n]+)/i.exec(body)
+    if (bodyMatch) return normalizeDate(bodyMatch[1])
+  }
+
+  return null
 }
 
 // Section titles for top-level areas, taken from the navigation order in
@@ -195,9 +392,28 @@ const fullBody = orderedSections
 
 const llmsFull = `${header}\n${fullBody}\n`
 
+const llmsIndex = `${JSON.stringify(
+  {
+    site: absoluteUrl('/'),
+    pages: pages.map(({ route, section, title, description, keywords, updated, lastVerified }) => ({
+      route,
+      url: absoluteUrl(route),
+      section: section === '' ? overviewTitle : (sectionTitles[section] ?? section),
+      title,
+      description,
+      keywords,
+      updated,
+      lastVerified
+    }))
+  },
+  null,
+  2
+)}\n`
+
 const failures = [
   checkOrWrite('llms.txt', llms),
   checkOrWrite('llms-full.txt', llmsFull),
+  checkOrWrite('llms-index.json', llmsIndex),
   ...validateCleanLlmsFull(llmsFull)
 ].filter(Boolean)
 
@@ -210,5 +426,5 @@ if (failures.length) {
 console.log(
   checkOnly
     ? `LLM artifacts are fresh and clean (${pages.length} pages).`
-    : `Generated llms.txt and llms-full.txt with ${pages.length} pages.`
+    : `Generated llms.txt, llms-full.txt, and llms-index.json with ${pages.length} pages.`
 )

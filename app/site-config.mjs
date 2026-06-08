@@ -1,4 +1,5 @@
-const DEFAULT_SITE_URL = 'https://docs.polarisfinance.io'
+const DEFAULT_SITE_URL = 'https://tokenbrice.github.io'
+const DEFAULT_BASE_PATH = '/polaris-docs'
 
 function trimTrailingSlash(value) {
   return value.replace(/\/+$/, '')
@@ -19,7 +20,7 @@ export const SITE_URL = normalizeSiteUrl(
   process.env.SITE_URL ?? process.env.NEXT_PUBLIC_SITE_URL ?? DEFAULT_SITE_URL
 )
 export const BASE_PATH = normalizeBasePath(
-  process.env.BASE_PATH ?? process.env.NEXT_PUBLIC_BASE_PATH ?? ''
+  process.env.BASE_PATH ?? process.env.NEXT_PUBLIC_BASE_PATH ?? DEFAULT_BASE_PATH
 )
 export const SITE_BASE_URL = `${SITE_URL}${BASE_PATH}`
 
@@ -41,7 +42,7 @@ export const SEARCH_URL_TEMPLATE =
 
 export function pathWithBase(pathname = '/') {
   const path = pathname.startsWith('/') ? pathname : `/${pathname}`
-  if (path === '/') return BASE_PATH || '/'
+  if (path === '/') return BASE_PATH ? `${BASE_PATH}/` : '/'
   return `${BASE_PATH}${path}`
 }
 

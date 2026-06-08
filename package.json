@@ -13,7 +13,8 @@
     "dev": "next dev",
     "dev:search": "npm run build && npm run dev",
     "generate": "node scripts/generate-sitemap.mjs && node scripts/generate-llms.mjs",
-    "prebuild": "node scripts/generate-sitemap.mjs && node scripts/generate-llms.mjs",
+    "clean:export": "node scripts/clean-export.mjs",
+    "prebuild": "node scripts/clean-export.mjs && node scripts/generate-sitemap.mjs && node scripts/generate-llms.mjs",
     "build": "next build --webpack",
     "postbuild": "pagefind --site out --output-subdir _pagefind && node scripts/sync-pagefind.mjs",
     "ci": "npm run lint && npm run format:check && npm run lint:content && npm run check:links && npm run check:generated && npm run build && npm run check:artifact && npm run check:pagefind && npm run test:e2e && npm run audit:prod",
@@ -25,6 +26,7 @@
     "check:links:external": "node scripts/check-links.mjs --external",
     "check:generated": "node scripts/generate-sitemap.mjs --check && node scripts/generate-llms.mjs --check",
     "check:artifact": "node scripts/check-export-artifact.mjs",
+    "check:live-artifact": "node scripts/check-live-artifact.mjs",
     "check:pagefind": "node scripts/check-pagefind.mjs",
     "sync:pagefind": "node scripts/sync-pagefind.mjs",
     "test:e2e": "playwright test",
@@ -32,7 +34,7 @@
     "local:push-gate": "node scripts/local-push-gate.mjs",
     "local:push-gate:strict-node": "node scripts/local-push-gate.mjs --strict-node",
     "start": "npm run serve",
-    "serve": "npx serve out"
+    "serve": "node scripts/serve-export.mjs"
   },
   "dependencies": {
     "next": "^16.2.7",

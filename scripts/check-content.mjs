@@ -50,8 +50,8 @@ const forbiddenPatterns = [
     message: 'Marketing idiom weakens neutral docs/risk tone'
   },
   {
-    pattern: /http:\/\/(?!localhost(?::\d+)?(?:\b|\/))/i,
-    message: 'Use HTTPS links except for localhost development URLs'
+    pattern: /http:\/\/(?!(?:localhost|127\.0\.0\.1|\[::1\])(?::\d+)?(?:\b|\/))/i,
+    message: 'Use HTTPS links except for localhost or loopback development URLs'
   }
 ]
 

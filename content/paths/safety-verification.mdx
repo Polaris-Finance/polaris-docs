@@ -7,9 +7,11 @@ description: The safety path for verifying Polaris launch status, official contr
 
 **Who this is for:** every Polaris user and integrator; run this path before connecting a wallet, sending ETH, minting a pAsset, depositing into a pool, locking POLAR, or integrating contracts.
 
-**Prerequisites:** none. Complete this path *first*, before any other journey, because impersonation and phishing are most likely pre-launch.
+**Prerequisites:** none. Complete this path *first*, before any other journey, because impersonation and phishing are most likely around launch and testnet phases.
 
-> **Launch status:** [Polaris Launch Status](/launch-status) is the source of truth. As of June 8, 2026, public Testnet 2 is on Sepolia (`11155111`) and production Ethereum mainnet (`1`) is forthcoming. Until the launch page publishes official app URLs, production addresses, ABIs, verified source, final parameters, and audit reports, treat every claimed frontend, token, contract, airdrop, or support message as unverified.
+> **Launch status:** [Polaris Launch Status](/launch-status) is the source of truth. As of June 8, 2026, public Testnet 2 is on Sepolia (`11155111`) and the official testnet app is [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io/). Production Ethereum mainnet (`1`) is forthcoming, and no production app, production addresses, ABIs, verified source, final parameters, or audit reports are published yet.
+
+> **Open Testnet App:** Use [https://app.testnet.polarisfinance.io/](https://app.testnet.polarisfinance.io/) only on Sepolia (`11155111`) with no-value test assets. Treat any production frontend, token, contract, airdrop, or support message as unverified until it is linked from [Launch Status](/launch-status).
 
 ## Verification checklist
 
@@ -18,9 +20,9 @@ Work top to bottom; each row names a check and where it will be confirmed at lau
 | Check | Where it will be confirmed |
 |---|---|
 | Current launch phase and network | [Polaris Launch Status](/launch-status) |
-| Official app URL | [Polaris Launch Status](/launch-status) and [Getting Started](/getting-started) |
-| Deployed addresses | [Contracts and Addresses](/resources/contracts) |
-| Verified source and ABIs | [Contracts and Addresses](/resources/contracts) and block explorer links |
+| Testnet app URL and production app status | [Polaris Launch Status](/launch-status) and [Getting Started](/getting-started) |
+| Deployed addresses | [Launch Status](/launch-status), official Sepolia manifests, and [Contracts and Addresses](/resources/contracts) once production is live |
+| Verified source and ABIs | [Contracts and Addresses](/resources/contracts), official manifests, and block explorer links |
 | Audit reports | [Audits and Security](/resources/audits-security) |
 | Final user parameters | The relevant product page and contract reference |
 | Stewardship bounds | [Stewardship, not Governance](/stewardship/stewardship) |
@@ -39,4 +41,4 @@ Read [Risk Disclosure](/resources/risk-disclosure) for smart-contract, collatera
 
 ## Developer verification
 
-For apps and indexers, add explicit allowlists for network IDs and contract addresses once published. Your integration should fail closed if the deployment manifest, ABI, or verified source does not match the official docs.
+For apps and indexers, add explicit allowlists for network IDs and contract addresses. Testnet allowlists should point to Sepolia (`11155111`) artifacts from [Launch Status](/launch-status) and the linked manifests. Production allowlists should stay empty until production addresses are published. Your integration should fail closed if the deployment manifest, ABI, or verified source does not match the official docs.

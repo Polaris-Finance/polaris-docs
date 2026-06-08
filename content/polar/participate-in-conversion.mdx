@@ -10,21 +10,22 @@ import { Steps } from 'nextra/components'
 This is the how-to. For the mechanism behind it, read [Conversion Auctions](/polar/conversion-auctions); for POLAR's role, read [The POLAR Token](/polar/polar-token).
 
 > **Note:**
-> Conversions are a continuous, permissionless auction tuned for [arbitrage bots and MEV searchers](/polar/conversion-auctions). Converting profitably means competing with them. Most users will hold POLAR or lock it as [vePOLAR](/stewardship/vepolar) instead of converting directly.
+> Conversions are a continuous, permissionless auction tuned for [arbitrage bots and MEV searchers](/polar/conversion-auctions). Converting profitably means competing with them. Most users will hold POLAR, use current POLAR Staking where the app exposes it, or wait for [vePOLAR](/stewardship/vepolar) locking instead of converting directly.
 
 > **Actionability:**
 > Conversions are testnet-actionable only on Sepolia where the current deployment manifests expose the flow. Production conversions are not mainnet-actionable until [Polaris Launch Status](/launch-status) publishes the official app, production conversion contract, final parameters, quote fields, transaction preview, and audit status.
 
-## Before you act
+## Before you sign
 
-> **Before you act:**
-> Conversion is **one-way**: the pETH you burn is gone for good and POLAR cannot be converted back. Your proceeds depend on auction-price and [rebate](/polar/conversion-auctions#the-converter-rebate) dynamics that shift between preview and inclusion, and you compete with bots for the same spread. Convert only on the live previewed quote, never on the examples here. See the [Risk Disclosure](/resources/risk-disclosure).
+Conversion is **one-way**: the pETH you burn is gone for good and POLAR cannot be converted back. Your proceeds depend on auction-price and [rebate](/polar/conversion-auctions#the-converter-rebate) dynamics that shift between preview and inclusion, and you compete with bots for the same spread. Convert only on the live previewed quote, never on the examples here. See the [Risk Disclosure](/resources/risk-disclosure).
 
 Do not attempt a conversion until all of these are true:
 
 - The official app URL is published on [Polaris Launch Status](/launch-status).
 - The conversion contract is listed on [Contracts & Addresses](/resources/contracts) for the intended network: Sepolia (`11155111`) for Testnet 2, or Ethereum mainnet (`1`) after production launch.
+- The pETH amount, POLAR output, ETH rebate, fee, slippage, and quote timestamp are visible.
 - The conversion price, POLAR market price, rebate, and price-spike preview are visible in the app before signing.
+- Any pETH approval points to the expected conversion contract and amount.
 - You are comfortable with a one-way burn: pETH converted to POLAR cannot be converted back.
 
 ## What you need
@@ -56,9 +57,9 @@ Convert only while the previewed POLAR (plus rebate) beats acquiring POLAR on th
 
 Confirm the transaction. Your pETH is **permanently burned**, you receive newly minted POLAR, and any ETH rebate goes to your wallet.
 
-### Lock or hold
+### Stake, future-lock, or hold
 
-Lock the POLAR as [vePOLAR](/stewardship/vepolar) to earn yield and stewardship rights, or hold it.
+Stake POLAR where the current app exposes POLAR Staking, wait for [vePOLAR](/stewardship/vepolar) locking once audited deployment publishes it, or hold it.
 
 </Steps>
 
@@ -66,7 +67,7 @@ Lock the POLAR as [vePOLAR](/stewardship/vepolar) to earn yield and stewardship 
 
 Your single transaction did four things at once:
 
-- Burned pETH ⇒ permanently raised the pETH [floor price](/peth/floor-price).
+- Burned pETH ⇒ raised the pETH [floor price](/peth/floor-price) under the curve assumptions.
 - Released ETH from the bonding curve reserve.
 - Paid you any ETH rebate and routed the rest to the [Fee Router](/stewardship/fee-router) as yield.
 - Minted you new POLAR.

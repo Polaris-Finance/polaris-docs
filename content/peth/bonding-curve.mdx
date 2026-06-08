@@ -5,7 +5,7 @@ description: How one two-way bonding curve gives pETH contract-native liquidity,
 
 # pETH Bonding Curve
 
-The bonding curve is the foundation of Polaris. From this one primitive come pETH, its rising floor, non-liquidatable ETH loans, and value capture on every interaction.
+The bonding curve is the foundation of Polaris. From this one primitive come pETH, its rising floor, [Split](/peth/split), reserve loans, and value capture on every interaction.
 
 ## What is a bonding curve?
 
@@ -23,7 +23,7 @@ Two things make pETH's curve different from Pump.fun's:
 
 ## What's unique about pETH's curve
 
-pETH's curve is **two-way** (ETH ⇒ pETH and pETH ⇒ ETH) and **enforces a rising price floor** for pETH, measured in ETH, under the curve's audited invariants. Two mechanisms lift the floor and none normally lowers it: swap fees, charged in pETH and periodically burned, and [conversion auctions](/polar/conversion-auctions) that burn pETH to mint POLAR. See [The Floor Price](/peth/floor-price) for how it only rises.
+pETH's curve is **two-way** (ETH ⇒ pETH and pETH ⇒ ETH) and enforces a price floor for pETH, measured in ETH, under the curve's audited invariants. Two mechanisms are designed to lift the floor, while normal protocol actions are not designed to lower it: swap fees, charged in pETH and periodically burned, and [conversion auctions](/polar/conversion-auctions) that burn pETH to mint POLAR. See [The Floor Price](/peth/floor-price) for the assumptions behind that floor.
 
 ![pETH bonding curve: ETH deposits mint pETH along a power-law curve with a rising floor price](/infographics/polaris-bonding-curve.svg)
 
@@ -49,15 +49,15 @@ As supply `Q` increases, the price of pETH (in ETH) increases. **β** sets how t
 
 pETH is tailor-made collateral for Polaris CDPs, but it has a life of its own.
 
-### ETH loans (pETH loops)
+### Reserve loans and Split
 
-You can supply pETH back into the bonding curve and **borrow the floor-price value in ETH** from the reserve. These loans are:
+You can [split pETH](/peth/split) into **fpETH** and **vpETH**. fpETH is the floor-price leg, and it can be used in **reserve loans** to borrow WETH from the reserve against floor-value collateral. These loans are:
 
-- **Non-liquidatable by price movement**: there is no collateral-price liquidation trigger.
-- **Withdrawable through repayment**: repay the ETH owed and reclaim your pETH while the contracts and Ethereum are live.
+- **Not liquidated by pETH premium swings**: borrow sizing is based on the floor-price leg, not the market premium.
+- **Withdrawable through repayment**: repay the WETH owed and reclaim your fpETH while the contracts and Ethereum are live.
 - **Recorded onchain as an NFT.**
 
-Because the loan is sized to the floor price, it is designed to stay solvent for the protocol under the floor-price invariant: a borrower who never repays has effectively sold pETH to the curve at floor price, a good deal for the curve if pETH trades at a premium to its floor. Looping pETH gives **leveraged ETH-aligned exposure to Polaris's growth without touching anything but ETH.**
+Because the loan is sized to the floor price, it is designed to stay solvent for the protocol under the floor-price invariant: a borrower who never repays has effectively sold the fpETH floor claim to the reserve. The position can still accrue debt and depends on repayment, approvals, gas, contract correctness, and live Ethereum execution.
 
 ### DeFi composability
 
@@ -67,7 +67,7 @@ pETH's rising floor and eventual deep ETH backing could make it a prime asset *o
 
 stETH is a prime asset, but it lacks contract-native liquidity from its own reserve. Native withdrawals depend on the validator exit queue and can vary; DEX liquidity is deep, but depends on liquidity providers who can stop supplying in a panic.
 
-| | **pETH** | **stETH** |
+| Feature | **pETH** | **stETH** |
 |---|---|---|
 | Liquidity | Bonding-curve reserve, subject to contract and chain liveness | Deep, but LP-dependent |
 | Withdrawal | Onchain sell path, with gas/slippage/MEV | Validator-exit queue; timing varies |

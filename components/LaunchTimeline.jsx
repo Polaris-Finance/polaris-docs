@@ -1,3 +1,63 @@
+import { pathWithBase } from '../app/site-config.mjs'
+
+const phases = [
+  {
+    name: 'Early Research',
+    date: '2024',
+    labelPos: 'above',
+    style: 'spark',
+    desc: 'Initial exploration of bonding curve mechanics and counterparty-free stablecoin design.',
+    link: null
+  },
+  {
+    name: 'Team Formation',
+    date: 'June 2025',
+    labelPos: 'below',
+    style: 'spark',
+    desc: 'Core team assembled around the Polaris protocol vision.',
+    link: null
+  },
+  {
+    name: 'Testnet 1',
+    date: 'Private · March 2026',
+    labelPos: 'above',
+    style: 'spark',
+    desc: 'Closed testnet for internal validation and security review.',
+    link: '/resources/testnet'
+  },
+  {
+    name: 'Testnet 2',
+    date: 'Public · May 2026',
+    labelPos: 'below',
+    style: 'polaris',
+    isNow: true,
+    desc: 'Public testnet on Sepolia. Open for community testing and feedback.',
+    link: '/resources/testnet'
+  },
+  {
+    name: 'Mainnet',
+    date: 'Forthcoming',
+    labelPos: 'above',
+    style: 'distant',
+    desc: 'Production deployment on Ethereum mainnet.',
+    link: '/launch-status'
+  }
+]
+
+function Tooltip({ title, desc, link }) {
+  return (
+    <div className="pl-tooltip">
+      <div className="pl-tooltip-title">{title}</div>
+      <div>{desc}</div>
+      {link && (
+        <a href={pathWithBase(link)} className="pl-tooltip-link">
+          Learn more →
+        </a>
+      )}
+    </div>
+  )
+}
+
 export function LaunchTimeline() {
   return (
     <div
@@ -34,66 +94,44 @@ export function LaunchTimeline() {
           <path className="pl-route-ahead" vectorEffect="non-scaling-stroke" d="M700 84 L886 84" />
         </svg>
 
-        <div className="pl-node pl-n1">
-          <span className="pl-star pl-s1">
-            <span className="pl-spark" />
-          </span>
-          <span className="pl-label pl-above">
-            <span className="pl-name">Early Research</span>
-            <span className="pl-date">2024</span>
-          </span>
-        </div>
+        {phases.map((phase, i) => {
+          const nodeClass = `pl-node pl-n${i + 1}`
+          const starClass = `pl-star pl-s${i + 1}`
+          const labelClass = `pl-label pl-${phase.labelPos}${phase.isNow ? ' pl-now' : ''}${phase.style === 'distant' ? ' pl-faint' : ''}`
 
-        <div className="pl-node pl-n2">
-          <span className="pl-star pl-s2">
-            <span className="pl-spark" />
-          </span>
-          <span className="pl-label pl-below">
-            <span className="pl-name">Team Formation</span>
-            <span className="pl-date">June 2025</span>
-          </span>
-        </div>
-
-        <div className="pl-node pl-n3">
-          <span className="pl-star pl-s3">
-            <span className="pl-spark" />
-          </span>
-          <span className="pl-label pl-above">
-            <span className="pl-name">Testnet 1</span>
-            <span className="pl-date">Private · March 2026</span>
-          </span>
-        </div>
-
-        <div className="pl-node pl-n4">
-          <span className="pl-star pl-s4">
-            <span className="pl-polaris">
-              <span className="pl-halo" />
-              <span className="pl-flare-h" />
-              <span className="pl-flare-v" />
-              <span className="pl-polaris-star" />
-              <span className="pl-polaris-core" />
-            </span>
-          </span>
-          <span className="pl-label pl-below pl-now">
-            <span className="pl-name">
-              Testnet 2<span className="pl-badge">NOW</span>
-            </span>
-            <span className="pl-date">Public · May 2026</span>
-          </span>
-        </div>
-
-        <div className="pl-node pl-n5">
-          <span className="pl-star pl-s5">
-            <span className="pl-distant">
-              <span className="pl-distant-ring" />
-              <span className="pl-distant-star" />
-            </span>
-          </span>
-          <span className="pl-label pl-above pl-faint">
-            <span className="pl-name">Mainnet</span>
-            <span className="pl-date">Forthcoming</span>
-          </span>
-        </div>
+          return (
+            <div key={i} className={nodeClass}>
+              <span className={starClass}>
+                {phase.style === 'spark' && <span className="pl-spark" />}
+                {phase.style === 'polaris' && (
+                  <span className="pl-polaris">
+                    <span className="pl-halo" />
+                    <span className="pl-flare-h" />
+                    <span className="pl-flare-v" />
+                    <span className="pl-polaris-star" />
+                    <span className="pl-polaris-core" />
+                  </span>
+                )}
+                {phase.style === 'distant' && (
+                  <span className="pl-distant">
+                    <span className="pl-distant-ring" />
+                    <span className="pl-distant-star" />
+                  </span>
+                )}
+              </span>
+              <span className={labelClass}>
+                <span className="pl-tooltip-wrap">
+                  <span className="pl-name">
+                    {phase.name}
+                    {phase.isNow && <span className="pl-badge">NOW</span>}
+                  </span>
+                  <Tooltip title={phase.name} desc={phase.desc} link={phase.link} />
+                </span>
+                <span className="pl-date">{phase.date}</span>
+              </span>
+            </div>
+          )
+        })}
       </div>
     </div>
   )

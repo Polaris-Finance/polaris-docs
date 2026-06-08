@@ -8,7 +8,7 @@ Content lives as MDX in [`content/`](./content); the sidebar is driven by `_meta
 
 ```bash
 npm install
-npm run dev        # http://localhost:3000  (Turbopack)
+npm run dev        # http://localhost:3000/polaris-docs/  (Turbopack)
 ```
 
 Use Node 22 (`.nvmrc` / `.node-version`). CI uses the same major version.
@@ -21,7 +21,7 @@ index is missing, run `npm run dev:search` once, or run `npm run build` and rest
 
 ```bash
 npm run build      # static export to ./out  +  Pagefind search index
-npm run serve      # preview the exported ./out locally
+npm run serve      # preview ./out at http://127.0.0.1:4173/polaris-docs/
 ```
 
 ## Validate
@@ -30,6 +30,8 @@ npm run serve      # preview the exported ./out locally
 npm run lint:content          # frontmatter, MDX gotchas, unresolved TODOs
 npm run check:links           # local routes, anchors, and public assets
 npm run check:links:external  # also checks outbound links over the network
+npm run check:artifact         # smoke-check the generated ./out artifact
+npm run check:live-artifact    # smoke-check a deployed Pages URL
 npm run ci                    # content check + links + build + Pagefind smoke + prod audit
 npm run local:push-gate       # local mirror of the reproducible deploy build job
 ```
@@ -83,4 +85,4 @@ Pushing to `main` triggers `.github/workflows/deploy.yml` (validation → projec
 1. In the repo's **Settings → Pages**, set **Source** to **GitHub Actions**.
 2. Keep `BASE_PATH=/polaris-docs` and `SITE_URL=https://tokenbrice.github.io` in the deploy workflow while the production URL is `https://tokenbrice.github.io/polaris-docs/`.
 
-The site is deployed as a GitHub Pages project site, so the deploy workflow builds with `BASE_PATH=/polaris-docs`. If the docs later move to a working root custom domain, remove that deploy-time base path and update `SITE_URL`.
+The site is deployed as a GitHub Pages project site. The source defaults and deploy workflow both build with `SITE_URL=https://tokenbrice.github.io` and `BASE_PATH=/polaris-docs`; there is no `public/CNAME` while `docs.polarisfinance.io` is not validated. If the docs later move to a working root custom domain, set `BASE_PATH=` and `SITE_URL` to that origin, then restore a matching `public/CNAME`.

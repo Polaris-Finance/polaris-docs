@@ -1,4 +1,5 @@
 import nextra from 'nextra'
+import { BASE_PATH } from './app/site-config.mjs'
 
 const withNextra = nextra({
   // Nextra 4 reads MDX from the `content/` directory and builds the page map
@@ -10,13 +11,12 @@ const withNextra = nextra({
   }
 })
 
-// Static export to GitHub Pages. When deploying to a custom domain (docs.polarisfinance.io)
-// BASE_PATH is unset and the site lives at the root. When deploying to a GitHub Pages
-// subdirectory (e.g. tokenbrice.github.io/polaris-docs), set BASE_PATH=/polaris-docs in CI
-// so Next.js prefixes all asset URLs correctly.
+// Static export to GitHub Pages. The default mode is the project site at
+// tokenbrice.github.io/polaris-docs. Set BASE_PATH="" only when a validated root
+// custom domain is ready.
 export default withNextra({
   output: 'export',
-  basePath: process.env.BASE_PATH ?? '',
+  basePath: BASE_PATH,
   images: {
     unoptimized: true
   },

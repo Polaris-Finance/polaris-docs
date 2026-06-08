@@ -7,7 +7,7 @@ description: "Frequently asked questions about Polaris: what it is, how minting 
 
 Short answers, grouped by theme. Each links to the page that covers it in full.
 
-> **Pre-launch note:** The official app URL, contract addresses, final audit reports, and disclosure program are not published in these docs yet. Check [Polaris Launch Status](/launch-status) and [Safety and Verification](/paths/safety-verification) before interacting with any frontend or address.
+> **Launch note:** The official public Testnet 2 app is live at [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io/) on Sepolia only. Production/mainnet app status, canonical production contracts, final audit reports, and the disclosure program are not published yet. Check [Polaris Launch Status](/launch-status), [Testnet 2](/resources/testnet), and [Safety and Verification](/paths/safety-verification) before interacting with any frontend or address.
 
 ## General
 
@@ -15,7 +15,7 @@ Short answers, grouped by theme. Each links to the page that covers it in full.
 A self-scaling stablecoin operating system: trustless, immutable infrastructure for minting synthetic assets (pAssets) backed entirely by onchain collateral and yield. No T-bills, no CEXs. See [Why Polaris?](/why-polaris).
 
 **What is a pAsset?**
-A synthetic debt asset minted from a Polaris CDP (pUSD, pGOLD, pCHF, and beyond), each overcollateralized by pETH and counterparty-free. pETH itself is separate: it is the bonding-curve collateral token. See [The pAsset Catalog](/minting/passet-catalog).
+A synthetic debt asset minted from a Polaris CDP, each overcollateralized by pETH and counterparty-free. pUSD and pGOLD are Testnet-active; pCHF, pBigMac, and beyond are illustrative or future catalog examples until launch status says otherwise. pETH itself is separate: it is the bonding-curve collateral token. See [The pAsset Catalog](/minting/passet-catalog).
 
 **What is pUSD?**
 The flagship pAsset, designed to track the US dollar and be backed by pETH. It sits in the same counterparty-free design family as LUSD and BOLD, adding Polaris's pETH collateral and yield mechanics. See [Minting pAssets](/minting/minting-passets).
@@ -27,10 +27,10 @@ ETH deposited into a two-way [bonding curve](/peth/bonding-curve). It is the onl
 The stewardship token and the protocol's outward-facing growth lever. After the initial distribution, new POLAR can be minted *only* by burning pETH in a [conversion auction](/polar/conversion-auctions). See [The POLAR Token](/polar/polar-token).
 
 **Which chain does Polaris run on?**
-The current public phase is Testnet 2 on Sepolia (chain ID `11155111`). Production is intended for Ethereum mainnet (chain ID `1`) once launched. The official app URL and contract addresses will be published on [Polaris Launch Status](/launch-status), [Safety and Verification](/paths/safety-verification), and [Contracts & Addresses](/resources/contracts).
+The current public phase is Testnet 2 on Sepolia (chain ID `11155111`). The official testnet app is [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io/), and current Sepolia artifacts are listed on [Testnet 2](/resources/testnet). Production is intended for Ethereum mainnet (chain ID `1`) once launched, but the production app and mainnet contracts are not live or published yet.
 
 **Where is the official app?**
-Not published in these docs yet. Until it appears on [Polaris Launch Status](/launch-status), treat any "Polaris app" frontend as unverified.
+For public Testnet 2, use [https://app.testnet.polarisfinance.io/](https://app.testnet.polarisfinance.io/) on Sepolia only. There is no published production/mainnet app yet; treat any production "Polaris app" frontend as unverified until [Polaris Launch Status](/launch-status) publishes it.
 
 ## Minting and troves
 
@@ -82,7 +82,7 @@ Yes. Polaris carries smart-contract risk, collateral price risk, liquidation ris
 Final audit reports are not published in these docs yet. Until they appear on [Audits & Security](/resources/audits-security), treat the protocol as unaudited.
 
 **Where are contract addresses listed?**
-Canonical addresses are not published yet. Once deployed, they will be listed with network, chain ID, and source-verification links on [Contracts & Addresses](/resources/contracts). Any address found elsewhere before then is unverified.
+Current Sepolia testnet addresses are listed on [Testnet 2](/resources/testnet) and in the linked protocol manifests. Canonical production addresses are not published yet. Once deployed, they will be listed with network, chain ID, and source-verification links on [Contracts & Addresses](/resources/contracts). Any claimed production address found elsewhere before then is unverified.
 
 **Can my pAssets be frozen or blacklisted?**
 The intended design is immutable and admin-key-free, with no freeze function and no blacklist, by anyone, including the team. Verify the final production contracts on [Contracts & Addresses](/resources/contracts) once addresses are published.

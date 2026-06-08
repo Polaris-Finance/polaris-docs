@@ -71,6 +71,111 @@ function stripFrontmatter(sourceCode) {
   return sourceCode.slice(end + '\n---'.length).replace(/^\r?\n/, '')
 }
 
+const monthNumbers = new Map([
+  ['january', '01'],
+  ['february', '02'],
+  ['march', '03'],
+  ['april', '04'],
+  ['may', '05'],
+  ['june', '06'],
+  ['july', '07'],
+  ['august', '08'],
+  ['september', '09'],
+  ['october', '10'],
+  ['november', '11'],
+  ['december', '12']
+])
+
+function normalizeDate(value) {
+  if (!value) return null
+  const iso = /\b(\d{4}-\d{2}-\d{2})\b/.exec(String(value))
+  if (iso) return iso[1]
+
+  const written = /\b([A-Za-z]+)\s+(\d{1,2}),\s+(\d{4})\b/.exec(String(value))
+  if (!written) return null
+
+  const month = monthNumbers.get(written[1].toLowerCase())
+  if (!month) return null
+
+  return `${written[3]}-${month}-${written[2].padStart(2, '0')}`
+}
+
+function metadataDate(metadata, names) {
+  for (const name of names) {
+    const date = normalizeDate(metadata?.[name])
+    if (date) return date
+  }
+  return null
+}
+
+function frontmatterDate(sourceCode, names) {
+  if (!sourceCode?.startsWith('---\n')) return null
+  const end = sourceCode.indexOf('\n---', 4)
+  if (end === -1) return null
+  const frontmatter = sourceCode.slice(4, end)
+
+  for (const name of names) {
+    const match = new RegExp(`^${name}:\\s*["']?([^"']+)["']?\\s*$`, 'im').exec(frontmatter)
+    if (!match) continue
+    const date = normalizeDate(match[1])
+    if (date) return date
+  }
+
+  return null
+}
+
+function lastVerifiedDate(sourceCode) {
+  const match = /\*\*Last verified:\*\*\s*([^.\n]+)/i.exec(stripFrontmatter(sourceCode))
+  return match ? normalizeDate(match[1]) : null
+}
+
+function timestampDate(metadata) {
+  const timestamp = Number(metadata?.timestamp)
+  if (!Number.isFinite(timestamp)) return null
+  return new Date(timestamp).toISOString().slice(0, 10)
+}
+
+function pageFreshness(metadata, sourceCode) {
+  const published =
+    metadataDate(metadata, ['date', 'published', 'datePublished']) ??
+    frontmatterDate(sourceCode, ['date', 'published', 'datePublished'])
+
+  const modified =
+    metadataDate(metadata, ['updated', 'lastUpdated', 'lastVerified', 'dateModified']) ??
+    frontmatterDate(sourceCode, ['updated', 'lastUpdated', 'lastVerified', 'dateModified']) ??
+    lastVerifiedDate(sourceCode) ??
+    timestampDate(metadata)
+
+  return {
+    datePublished: published,
+    dateModified: modified
+  }
+}
+
+function crawlableSearchTemplate(value) {
+  if (!value || !value.includes('{search_term_string}')) return null
+
+  try {
+    const url = new URL(value.replace('{search_term_string}', 'polaris'), absoluteUrl('/'))
+    if (!/^https?:$/.test(url.protocol)) return null
+    if (url.pathname.includes('_pagefind')) return null
+    if (!url.search && !value.includes('{search_term_string}')) return null
+    return value
+  } catch {
+    return null
+  }
+}
+
+function jsonLdImage() {
+  return {
+    '@type': 'ImageObject',
+    url: absoluteUrl(OG_IMAGE_PATH),
+    width: OG_IMAGE_WIDTH,
+    height: OG_IMAGE_HEIGHT,
+    caption: OG_IMAGE_ALT
+  }
+}
+
 export function buildPageMetadata(metadata, path) {
   const title = titleFromMetadata(metadata)
   const description = descriptionFromMetadata(metadata)
@@ -108,19 +213,21 @@ export function buildPageMetadata(metadata, path) {
 }
 
 export function buildGlobalJsonLd() {
+  const searchTemplate = crawlableSearchTemplate(SEARCH_URL_TEMPLATE)
   const website = {
     '@context': 'https://schema.org',
     '@id': websiteId,
     '@type': 'WebSite',
     name: SITE_NAME,
     url: absoluteUrl('/'),
+    inLanguage: 'en',
     publisher: { '@id': organizationId }
   }
 
-  if (SEARCH_URL_TEMPLATE) {
+  if (searchTemplate) {
     website.potentialAction = {
       '@type': 'SearchAction',
-      target: SEARCH_URL_TEMPLATE,
+      target: searchTemplate,
       'query-input': 'required name=search_term_string'
     }
   }
@@ -131,8 +238,12 @@ export function buildGlobalJsonLd() {
       '@id': organizationId,
       '@type': 'Organization',
       name: ORGANIZATION_NAME,
+      description: SITE_DESCRIPTION,
       url: 'https://polarisfinance.io',
-      logo: absoluteUrl('/emblem.svg')
+      logo: {
+        '@type': 'ImageObject',
+        url: absoluteUrl('/emblem.svg')
+      }
     },
     website
   ]
@@ -162,25 +273,36 @@ export function buildBreadcrumbJsonLd(path, title) {
 
   return {
     '@context': 'https://schema.org',
+    '@id': `${absoluteUrl(path)}#breadcrumb`,
     '@type': 'BreadcrumbList',
     itemListElement
   }
 }
 
-export function buildTechArticleJsonLd({ metadata, path }) {
+export function buildTechArticleJsonLd({ metadata, path, sourceCode }) {
   const title = titleFromMetadata(metadata)
   const description = descriptionFromMetadata(metadata)
-
-  return {
+  const pageUrl = absoluteUrl(path)
+  const freshness = pageFreshness(metadata, sourceCode)
+  const article = {
     '@context': 'https://schema.org',
+    '@id': `${pageUrl}#techarticle`,
     '@type': 'TechArticle',
     headline: title,
     description,
-    url: absoluteUrl(path),
-    mainEntityOfPage: absoluteUrl(path),
+    url: pageUrl,
+    mainEntityOfPage: { '@id': pageUrl },
     inLanguage: 'en',
-    publisher: { '@id': organizationId }
+    author: { '@id': organizationId },
+    publisher: { '@id': organizationId },
+    image: jsonLdImage(),
+    isPartOf: { '@id': websiteId }
   }
+
+  if (freshness.datePublished) article.datePublished = freshness.datePublished
+  if (freshness.dateModified) article.dateModified = freshness.dateModified
+
+  return article
 }
 
 export function extractFaqJsonLd(sourceCode, path) {
@@ -244,7 +366,7 @@ export function buildPageJsonLd({ metadata, path, sourceCode }) {
 
   return [
     buildBreadcrumbJsonLd(path, title),
-    buildTechArticleJsonLd({ metadata, path }),
+    buildTechArticleJsonLd({ metadata, path, sourceCode }),
     extractFaqJsonLd(sourceCode, path)
   ].filter(Boolean)
 }

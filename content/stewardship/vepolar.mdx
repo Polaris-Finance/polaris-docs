@@ -7,7 +7,7 @@ description: vePOLAR is vote-escrowed POLAR. Lock POLAR to receive stewardship r
 
 **vePOLAR is vote-escrowed POLAR.** Lock [POLAR](/polar/polar-token) and receive vePOLAR: the right to steward bounded parameters and participate in the protocol's edge decisions.
 
-> **Current status:** The vePOLAR locking interface, contract address, lock durations, vote-power decay, unlock rules, proposal thresholds, and final yield split are pending audited deployment. Do not lock POLAR through an unofficial interface.
+> **Current status:** vePOLAR is not the same as current **POLAR Staking**. The app may expose stake/unstake/claim actions for POLAR rewards on testnet, while the vePOLAR locking interface, contract address, lock durations, vote-power decay, unlock rules, proposal thresholds, and final yield split are pending audited deployment. Do not lock POLAR through an unofficial interface.
 
 ## What vePOLAR does
 
@@ -27,29 +27,35 @@ vePOLAR holders can participate in decisions to:
 
 Each action is bounded, auditable, and limited to the surfaces in [Stewardship, not Governance](/stewardship/stewardship). None can denature the protocol.
 
+## POLAR Staking is separate
+
+POLAR Staking is a staking/rewards surface: stake POLAR, unstake where allowed, and claim routed rewards. It does not by itself create vote-escrowed vePOLAR, lock-duration voting power, or stewardship rights.
+
+vePOLAR is the future locking layer. Once live, this page will list the official lock contract, durations, vote-power formula, unlock rules, delegation, proposal thresholds, and yield claim path.
+
 ## What vePOLAR does not do
 
 vePOLAR cannot upgrade core contracts; change pETH, CDP, liquidation, redemption, or Stability Pool mechanics; create gauges or bribe markets; direct POLAR emissions; mint POLAR outside the [conversion auction](/polar/conversion-auctions); or move any parameter outside its immutable min/max range. The full list of what no vote can reach is in [Stewardship, not Governance](/stewardship/stewardship#what-stewardship-does-not-do).
 
 ## Lock status
 
-The final lock design is pending. At launch, this page will list:
+The final lock design is pending. When vePOLAR is deployed, this page will list:
 
 | Field | Status |
 |---|---|
 | POLAR contract address | Pending |
 | vePOLAR contract address | Pending |
 | Network | Testnet 2: Sepolia; production: Ethereum mainnet after launch |
-| Lock duration choices | 1 week to 4 years |
-| Vote-power formula and decay | Linear decay |
-| Increase/extend | Yes, anytime |
-| Withdraw | At lock expiry |
-| Delegation | Yes |
+| Lock duration choices | Pending |
+| Vote-power formula and decay | Pending |
+| Increase/extend | Pending |
+| Withdraw | Pending |
+| Delegation | Pending |
 | Yield claim path | Pending |
 
 ## Yield for lockers
 
-vePOLAR is not influence alone. Lockers are one destination of distributed protocol yield: a stewarded share of protocol interest is routed to POLAR stakers, alongside the pETH the [Fee Router](/stewardship/fee-router) distributes to troves.
+vePOLAR is intended to be more than influence alone. Lockers are expected to be one destination of distributed protocol yield, while current POLAR Staking is the app surface that can receive routed staking rewards where the deployment exposes it. The pETH the [Fee Router](/stewardship/fee-router) distributes to troves is a separate stream.
 
 The exact split, buffering, and claim mechanics are pending final deployment. This is routed protocol revenue, not POLAR emissions.
 

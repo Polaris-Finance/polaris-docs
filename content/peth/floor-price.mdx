@@ -11,9 +11,9 @@ The **floor price** is pETH's mathematically enforced minimum price, in ETH, und
 
 The floor is not a promise or a target defended by a treasury. It is a direct consequence of the bonding curve's reserves and supply, enforced by immutable code and dependent on the audited invariants holding.
 
-## Why it only rises
+## Why it is designed to rise
 
-Two mechanisms push the floor up; no normal protocol action pushes it down:
+Two mechanisms push the floor up under the intended curve invariants. Normal protocol actions are not designed to push it down:
 
 - **Swap fees feed the burn.** Every swap on the [bonding curve](/peth/bonding-curve) charges a pETH fee that accrues to the protocol's Fee Router. The Fee Router periodically floor-sells and burns accumulated pETH, reducing supply against an unchanged-or-growing ETH reserve and raising the floor.
 - **Conversion auctions.** Minting POLAR requires [burning pETH](/polar/conversion-auctions), which again reduces supply and lifts the floor.
@@ -51,7 +51,7 @@ The floor ratio is itself volatile, driven by market sentiment and activity:
 | Slippage and MEV are tolerated or bounded | The quoted curve price and realized execution can differ |
 | The relevant invariants stay unchanged and unbroken | The floor depends on reserves, supply accounting, and burn/mint rules |
 
-> Your risk in pETH is decided at entry: the spread between your entry price and the floor (the floor ratio), plus execution and technical risk. Under the intended curve invariant, the floor moves up, not down.
+> Your risk in pETH is decided at entry: the spread between your entry price and the floor (the floor ratio), plus execution and technical risk. Under the intended curve invariant, normal protocol activity moves the floor up, not down.
 
 ---
 

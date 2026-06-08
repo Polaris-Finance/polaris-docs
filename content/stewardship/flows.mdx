@@ -15,9 +15,21 @@ Ecosystem incentivization is where most tokenomics go to die. The usual pattern:
 
 A whitelisted contract receives a Flow equal to its share of the underlying asset, relative to all other whitelisted contracts.
 
-$$
-\text{Flow share} = \frac{\text{contract's weighted asset held}}{\text{total weighted asset held across all whitelisted contracts}}
-$$
+<div
+  className="pl-flow-formula"
+  role="img"
+  aria-label="Flow share equals a contract's weighted asset held divided by the total weighted asset held across all whitelisted contracts."
+>
+  <span className="pl-flow-term">Flow share</span>
+  <span className="pl-flow-equals" aria-hidden="true">
+    =
+  </span>
+  <span className="pl-flow-fraction" aria-hidden="true">
+    <span className="pl-flow-num">contract's weighted asset held</span>
+    <span className="pl-flow-bar" />
+    <span className="pl-flow-den">total weighted asset held across all whitelisted contracts</span>
+  </span>
+</div>
 
 Hold 20% of the whitelisted pETH supply -> receive 20% of the pETH Flow, before any launch-specific adjustments. Holdings vote with their wallets; the formula does the rest.
 

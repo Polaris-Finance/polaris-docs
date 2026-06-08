@@ -12,6 +12,11 @@ permissions:
 jobs:
   validate:
     runs-on: ubuntu-latest
+    env:
+      BASE_PATH: /polaris-docs
+      NEXT_PUBLIC_BASE_PATH: /polaris-docs
+      SITE_URL: https://tokenbrice.github.io
+      NEXT_PUBLIC_SITE_URL: https://tokenbrice.github.io
     steps:
       - name: Checkout
         uses: actions/checkout@v6

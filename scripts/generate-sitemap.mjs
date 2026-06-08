@@ -44,8 +44,53 @@ function frontmatterUpdated(fullPath) {
   const end = text.indexOf('\n---', 4)
   if (end === -1) return null
   const frontmatter = text.slice(4, end)
-  const match = /^(?:updated|lastUpdated|date):\s*["']?(\d{4}-\d{2}-\d{2})/im.exec(frontmatter)
-  return match?.[1] ?? null
+  return (
+    extractFrontmatterDate(frontmatter, ['updated', 'lastUpdated', 'lastVerified', 'date']) ??
+    extractLastVerifiedDate(text.slice(end + '\n---'.length))
+  )
+}
+
+const monthNumbers = new Map([
+  ['january', '01'],
+  ['february', '02'],
+  ['march', '03'],
+  ['april', '04'],
+  ['may', '05'],
+  ['june', '06'],
+  ['july', '07'],
+  ['august', '08'],
+  ['september', '09'],
+  ['october', '10'],
+  ['november', '11'],
+  ['december', '12']
+])
+
+function normalizeDate(value) {
+  const iso = /\b(\d{4}-\d{2}-\d{2})\b/.exec(value)
+  if (iso) return iso[1]
+
+  const written = /\b([A-Za-z]+)\s+(\d{1,2}),\s+(\d{4})\b/.exec(value)
+  if (!written) return null
+
+  const month = monthNumbers.get(written[1].toLowerCase())
+  if (!month) return null
+
+  return `${written[3]}-${month}-${written[2].padStart(2, '0')}`
+}
+
+function extractFrontmatterDate(frontmatter, names) {
+  for (const name of names) {
+    const match = new RegExp(`^${name}:\\s*["']?([^"']+)["']?\\s*$`, 'im').exec(frontmatter)
+    if (!match) continue
+    const date = normalizeDate(match[1])
+    if (date) return date
+  }
+  return null
+}
+
+function extractLastVerifiedDate(body) {
+  const match = /\*\*Last verified:\*\*\s*([^.\n]+)/i.exec(body)
+  return match ? normalizeDate(match[1]) : null
 }
 
 function gitLastModified(fullPath) {
@@ -67,6 +112,38 @@ function lastModified(fullPath) {
   return frontmatterUpdated(fullPath) ?? gitLastModified(fullPath)
 }
 
+function sitemapPolicy(route) {
+  if (route === '/') return { changefreq: 'weekly', priority: '1.0' }
+
+  const volatileRoutes = new Set([
+    '/launch-status',
+    '/resources/contracts',
+    '/resources/audits-security',
+    '/resources/faq',
+    '/resources/testnet'
+  ])
+
+  if (volatileRoutes.has(route)) {
+    return { changefreq: 'daily', priority: '0.9' }
+  }
+
+  if (
+    /^\/paths(\/|$)/.test(route) ||
+    /^\/minting\/(open-a-trove|minting-passets|managing-your-trove)$/.test(route) ||
+    /^\/yield\/deposit-to-stability-pool$/.test(route) ||
+    /^\/polar\/participate-in-conversion$/.test(route) ||
+    /^\/redemptions-liquidations\/(redemptions|liquidations|recovery-mode)$/.test(route)
+  ) {
+    return { changefreq: 'weekly', priority: '0.8' }
+  }
+
+  if (/^\/resources\/(risk-disclosure|brand-assets|glossary)$/.test(route)) {
+    return { changefreq: 'monthly', priority: '0.7' }
+  }
+
+  return { changefreq: 'monthly', priority: '0.6' }
+}
+
 function checkOrWrite(relativePath, nextContent) {
   const target = path.join(publicDir, relativePath)
 
@@ -86,17 +163,20 @@ function checkOrWrite(relativePath, nextContent) {
 mkdirSync(publicDir, { recursive: true })
 
 const urls = walk(contentDir)
-  .map(({ fullPath }) => ({
-    loc: absoluteUrl(routeForFile(fullPath)),
-    lastmod: lastModified(fullPath),
-    priority: routeForFile(fullPath) === '/' ? '1.0' : '0.7'
-  }))
+  .map(({ fullPath }) => {
+    const route = routeForFile(fullPath)
+    return {
+      loc: absoluteUrl(route),
+      lastmod: lastModified(fullPath),
+      ...sitemapPolicy(route)
+    }
+  })
   .sort((a, b) => a.loc.localeCompare(b.loc))
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls
   .map(
-    ({ loc, lastmod, priority }) =>
-      `  <url>\n    <loc>${xmlEscape(loc)}</loc>${lastmod ? `\n    <lastmod>${lastmod}</lastmod>` : ''}\n    <changefreq>weekly</changefreq>\n    <priority>${priority}</priority>\n  </url>`
+    ({ loc, lastmod, changefreq, priority }) =>
+      `  <url>\n    <loc>${xmlEscape(loc)}</loc>${lastmod ? `\n    <lastmod>${lastmod}</lastmod>` : ''}\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`
   )
   .join('\n')}\n</urlset>\n`
 

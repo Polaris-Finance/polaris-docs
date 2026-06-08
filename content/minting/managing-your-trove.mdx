@@ -9,6 +9,8 @@ A trove is a living position. After you [open it](/minting/open-a-trove), you ca
 
 > **Actionability:** Trove management is testnet-actionable only on Sepolia with test assets and current manifests. Production management is not mainnet-actionable until [Polaris Launch Status](/launch-status) publishes the official app, production addresses, final parameters, and audit status. Use live app and contract values over examples on this page.
 
+> **Terminology:** This page covers pAsset troves/CDPs shown under Borrow. It does not cover reserve loans, which borrow WETH against [fpETH](/peth/split).
+
 ## Individual Collateralization Ratio (ICR)
 
 Your **Individual Collateralization Ratio (ICR)** is the value of your trove's collateral divided by the recorded value of its debt:
@@ -22,10 +24,18 @@ Collateral value comes from the protocol's collateral pricing path. Debt value i
 
 Your ICR moves on its own as ETH's price moves — you need not touch the trove for it to drift. Managing the trove is mostly about keeping the ICR where you want it.
 
-## Before you adjust a trove
+## Before you sign
 
-> **Before you act:**
-> Check your current ICR, the projected ICR after the transaction, Recovery Mode status, accrued interest, your redemption exposure, and the gas cost of buying or repaying pAssets. If you need to acquire pAsset or pETH first, account for DEX slippage, bonding-curve slippage, MEV, and transaction ordering.
+Before adjusting a trove, check:
+
+- Official app URL, network, and trove-manager contract.
+- Whether the action adds collateral, withdraws collateral, mints more debt, repays debt, or closes.
+- Current ICR and projected ICR after the transaction.
+- Recovery Mode status, minimum ICR, accrued interest, and borrow APR.
+- Redemption exposure after the adjustment.
+- Whether you have enough pAsset to repay, including accrued interest and rounding.
+- DEX or bonding-curve slippage if you buy pAsset or pETH before signing.
+- Token approvals, gas, simulation result, and quote freshness.
 
 > **Warning:**
 > Minting more or withdrawing collateral lowers your ICR. Drop below the minimum and your trove is [liquidated](/redemptions-liquidations/liquidations) automatically: your collateral covers the debt plus a liquidation penalty, with no margin call, and only the surplus is returned for you to claim. [Redemptions](/redemptions-liquidations/redemptions) can also reach your position while it is still solvent — there is no minimum ICR to cross — shrinking your collateral and pETH exposure proportionally without your consent. See the [Risk Disclosure](/resources/risk-disclosure).

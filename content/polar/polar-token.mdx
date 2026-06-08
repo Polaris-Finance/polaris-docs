@@ -5,7 +5,7 @@ description: Why POLAR exists, how it is minted only by burning pETH, and why it
 
 # POLAR Token
 
-POLAR is Polaris's stewardship token and the protocol's **growth lever**. It earns that role through one deliberate constraint: after the initial distribution, **new POLAR can only be minted by burning pETH** in a [conversion auction](/polar/conversion-auctions).
+POLAR is Polaris's stewardship token and the protocol's **growth lever**. It earns that role through one deliberate constraint: after the initial distribution, new POLAR is intended to be minted only by burning pETH in a [conversion auction](/polar/conversion-auctions).
 
 ## Why a third token
 
@@ -13,7 +13,7 @@ Polaris runs on three engines: pETH, the pAssets, and POLAR. The first two handl
 
 So why add a third token? Because functioning and scaling differ. The design splits along an **inward- vs. outward-facing** logic:
 
-| | Handled by | Examples |
+| Function | Handled by | Examples |
 |---|---|---|
 | **Inward-facing** — sustain the core | pETH + pAssets | interest rates, floor growth, Stability Pool incentivization, liquidations |
 | **Outward-facing** — grow the ecosystem | POLAR | external DEX liquidity, Flow onboarding, [StablecoinOS](/core-concepts) coordination |
@@ -22,11 +22,11 @@ POLAR is deliberately separated from the core so the core's sustainability never
 
 ## Minted only by burning pETH
 
-There is no team mint function and no inflation schedule disconnected from protocol activity. Every POLAR entering circulation after the initial distribution required someone to permanently destroy pETH through the [conversion auction](/polar/conversion-auctions).
+There is no team mint function and no inflation schedule disconnected from protocol activity. Every POLAR entering circulation after the initial distribution is intended to require a pETH burn through the [conversion auction](/polar/conversion-auctions).
 
 This is the point: POLAR's issuance is welded to the **most protocol-synergetic action possible**. Burning pETH simultaneously:
 
-- **Raises the [floor price](/peth/floor-price)** — permanently, by contracting pETH supply.
+- **Raises the [floor price](/peth/floor-price)** under the curve assumptions, by contracting pETH supply.
 - **Releases ETH** from the bonding curve reserve, which becomes pETH yield routed through the [Fee Router](/stewardship/fee-router).
 - **Mints the token** that funds ecosystem growth.
 
@@ -39,18 +39,18 @@ Every token emission is dilutive. We will not pretend otherwise — minting new 
 
 The difference is what the dilution *buys*. Each conversion that dilutes POLAR holders also burns pETH, raises the floor, and releases ETH yield. **Every unit of POLAR dilution corresponds to a concrete improvement in protocol fundamentals.** This differs structurally from emission models like CRV, where inflation is disconnected from any protocol benefit.
 
-Conversion is governed by three stewarded parameters: the reserve rebate (bounded to 0–100%), the price-decay half-life, and the supply-inflation spike sensitivity. Issuance is self-limiting: [spike-and-decay pricing](/polar/conversion-auctions#spike-and-decay-pricing) makes large or rapid minting throttle itself, so issuance tracks real arbitrage demand. A hardcoded issuance cap and an explicit disable switch are not yet enforced in the current prototype; final parameter bounds await audited deployment.
+Conversion uses three stewarded parameters: the reserve rebate (bounded to 0–100%), the price-decay half-life, and the supply-inflation spike sensitivity. Issuance is self-limiting: [spike-and-decay pricing](/polar/conversion-auctions#spike-and-decay-pricing) makes large or rapid minting throttle itself, so issuance tracks real arbitrage demand. A hardcoded issuance cap and an explicit disable switch are not yet enforced in the current prototype; final parameter bounds await audited deployment.
 
-For the founding team this means progressive dilution as a *structural guarantee, not a promise*: the faster Polaris grows, the more attractive conversions become, and the more the team's initial share dilutes.
+For the founding team this means progressive dilution by structure, not by a forum promise: the faster Polaris grows, the more attractive conversions become, and the more the team's initial share dilutes.
 
-## Locking POLAR: vePOLAR
+## POLAR Staking and future vePOLAR
 
-POLAR on its own is a token. **[vePOLAR](/stewardship/vepolar)** is that token put to work. Locking POLAR as vePOLAR grants two things:
+POLAR on its own is a token. **POLAR Staking** and **[vePOLAR](/stewardship/vepolar)** are different ways the token can be put to work:
 
-- **Yield** — a stewarded share of the interest paid by borrowing pAssets.
-- **[Stewardship](/stewardship/stewardship)** power — directing quantitative parameters of the StablecoinOS, several constrained by hardcoded bounds. Stewardship steers growth; it does not alter the immutable core.
+- **POLAR Staking** is the current app staking surface where a deployment exposes stake, unstake, and claim actions for routed rewards.
+- **vePOLAR locking** is forthcoming. When deployed, locking POLAR as vePOLAR is intended to grant yield from a stewarded share of borrowing interest and [stewardship](/stewardship/stewardship) power over bounded parameters.
 
-The loop is self-reinforcing: more conversions ⇒ higher floor + more ETH yield + more potential vePOLAR supply ⇒ more reason to lock ⇒ more stewardship participation.
+The intended loop is self-reinforcing: more conversions ⇒ higher floor + more ETH yield + more potential POLAR supply ⇒ more reason to stake or, once live, lock as vePOLAR ⇒ more stewardship participation.
 
 ---
 

@@ -1,10 +1,13 @@
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
 import path from 'node:path'
+import { BASE_PATH, SITE_URL } from '../app/site-config.mjs'
 
 const root = process.cwd()
 const checkExternal =
   process.argv.includes('--external') || process.env.CHECK_EXTERNAL_LINKS === '1'
-const sourceRoots = ['content', 'app', 'README.md'].map((entry) => path.join(root, entry))
+const sourceRoots = ['content', 'app', 'components', 'README.md'].map((entry) =>
+  path.join(root, entry)
+)
 const publicDir = path.join(root, 'public')
 const contentDir = path.join(root, 'content')
 
@@ -27,6 +30,11 @@ for (const target of sourceRoots) {
   walk(target, (file) => {
     if (/\.(mdx|md|jsx?|mjs)$/.test(file)) sourceFiles.push(file)
   })
+}
+
+for (const generatedFile of ['llms.txt', 'llms-full.txt', 'llms-index.json']) {
+  const file = path.join(publicDir, generatedFile)
+  if (existsSync(file)) sourceFiles.push(file)
 }
 
 walk(contentDir, (file) => {
@@ -71,17 +79,42 @@ for (const file of mdxFiles) {
   anchorsByRoute.set(route, anchors)
 }
 
-const linkPattern = /!?\[[^\]]*]\(([^)\s]+)(?:\s+"[^"]*")?\)|(?:href|src)=["']([^"']+)["']/g
+const markdownOrHtmlLinkPattern =
+  /!?\[[^\]]*]\(([^)\s]+)(?:\s+"[^"]*")?\)|\b(?:href|src)=["']([^"']+)["']/g
+const jsxPropLinkPattern = /\b(?:url|image|appUrl|appHref|ctaUrl|ctaHref)=["']([^"']+)["']/g
+const rawUrlPattern = /\bhttps?:\/\/[^\s"'<>),\]]+/g
 const links = []
+
+function pushLink(file, href, seen) {
+  const normalized = href.replace(/[.;]+$/, '')
+  if (
+    !normalized ||
+    normalized.startsWith('{') ||
+    normalized.startsWith('mailto:') ||
+    normalized.startsWith('tel:') ||
+    seen.has(normalized)
+  ) {
+    return
+  }
+
+  seen.add(normalized)
+  links.push({ file, href: normalized })
+}
 
 for (const file of sourceFiles) {
   const text = readFileSync(file, 'utf8')
+  const seen = new Set()
   let match
-  while ((match = linkPattern.exec(text))) {
-    const href = match[1] || match[2]
-    if (!href || href.startsWith('{') || href.startsWith('mailto:') || href.startsWith('tel:'))
-      continue
-    links.push({ file, href })
+  while ((match = markdownOrHtmlLinkPattern.exec(text))) {
+    pushLink(file, match[1] || match[2], seen)
+  }
+  while ((match = jsxPropLinkPattern.exec(text))) {
+    pushLink(file, match[1], seen)
+  }
+  if (file.startsWith(publicDir)) {
+    while ((match = rawUrlPattern.exec(text))) {
+      pushLink(file, match[0], seen)
+    }
   }
 }
 
@@ -94,9 +127,108 @@ function splitHash(href) {
   return [href.slice(0, index), decodeURIComponent(href.slice(index + 1))]
 }
 
+function splitSearchAndHash(href) {
+  const [withoutHash, hash] = splitHash(href)
+  const queryIndex = withoutHash.indexOf('?')
+  if (queryIndex === -1) return [withoutHash, hash]
+  return [withoutHash.slice(0, queryIndex), hash]
+}
+
 function normalizeRoute(route) {
   if (!route || route === '/') return '/'
   return route.replace(/\/$/, '')
+}
+
+function stripBasePath(targetPath) {
+  if (!BASE_PATH) return targetPath
+  if (targetPath === BASE_PATH) return '/'
+  if (targetPath.startsWith(`${BASE_PATH}/`)) return targetPath.slice(BASE_PATH.length) || '/'
+  return targetPath
+}
+
+function localHrefForOwnAbsolute(href) {
+  try {
+    const url = new URL(href)
+    const site = new URL(SITE_URL)
+    if (url.origin !== site.origin) return null
+    return `${stripBasePath(url.pathname)}${url.search}${url.hash}`
+  } catch {
+    return null
+  }
+}
+
+const assetMimeExpectations = new Map([
+  ['.css', ['text/css']],
+  ['.ico', ['image/x-icon', 'image/vnd.microsoft.icon']],
+  ['.js', ['application/javascript', 'text/javascript']],
+  ['.json', ['application/json']],
+  ['.png', ['image/png']],
+  ['.svg', ['image/svg+xml']],
+  ['.txt', ['text/plain']],
+  ['.xml', ['application/xml', 'text/xml']]
+])
+
+function extensionForUrl(href) {
+  try {
+    const url = /^https?:\/\//.test(href) ? new URL(href) : null
+    return path.extname(url ? url.pathname : splitSearchAndHash(href)[0]).toLowerCase()
+  } catch {
+    return path.extname(splitSearchAndHash(href)[0]).toLowerCase()
+  }
+}
+
+function expectedMimeTypes(href) {
+  return assetMimeExpectations.get(extensionForUrl(href)) ?? null
+}
+
+function hasAssetExtension(href) {
+  return expectedMimeTypes(href) !== null
+}
+
+function contentTypeMatches(contentType, expected) {
+  if (!contentType) return false
+  const normalized = contentType.split(';')[0].trim().toLowerCase()
+  return expected.includes(normalized)
+}
+
+function validateLocalAssetMime(assetPath, href, file) {
+  const expected = expectedMimeTypes(href)
+  if (!expected) return
+
+  const rel = path.relative(root, file)
+  const buffer = readFileSync(assetPath)
+  const text = buffer.toString('utf8', 0, Math.min(buffer.length, 300)).trimStart()
+  const ext = extensionForUrl(href)
+  let valid = true
+
+  if (ext === '.png') {
+    valid = buffer
+      .subarray(0, 8)
+      .equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]))
+  } else if (ext === '.svg') {
+    valid = /^<\?xml\b/i.test(text) || /^<svg\b/i.test(text)
+  } else if (ext === '.ico') {
+    valid =
+      buffer.length >= 4 &&
+      buffer[0] === 0x00 &&
+      buffer[1] === 0x00 &&
+      buffer[2] === 0x01 &&
+      buffer[3] === 0x00
+  } else if (ext === '.json') {
+    try {
+      JSON.parse(buffer.toString('utf8'))
+    } catch {
+      valid = false
+    }
+  } else if (ext === '.xml') {
+    valid = /^<\?xml\b/i.test(text)
+  } else if (ext === '.txt' || ext === '.css' || ext === '.js') {
+    valid = !buffer.includes(0x00)
+  }
+
+  if (!valid) {
+    failures.push(`${rel}: public asset ${href} does not match expected MIME ${expected.join('/')}`)
+  }
 }
 
 function checkAnchor(route, hash, file, href) {
@@ -107,7 +239,10 @@ function checkAnchor(route, hash, file, href) {
   }
 }
 
-for (const { file, href } of links) {
+for (const { file, href: originalHref } of links) {
+  const ownHref = /^https?:\/\//.test(originalHref) ? localHrefForOwnAbsolute(originalHref) : null
+  const href = ownHref ?? originalHref
+
   if (/^https?:\/\//.test(href)) {
     externalLinks.set(href, file)
     continue
@@ -120,11 +255,15 @@ for (const { file, href } of links) {
   }
 
   if (href.startsWith('/')) {
-    const [targetPath, hash] = splitHash(href)
+    const [rawTargetPath, hash] = splitSearchAndHash(href)
+    const targetPath = stripBasePath(rawTargetPath)
     const normalized = normalizeRoute(targetPath)
     if (/\.[a-z0-9]+$/i.test(targetPath)) {
-      if (!existsSync(path.join(publicDir, targetPath))) {
+      const assetPath = path.join(publicDir, targetPath)
+      if (!existsSync(assetPath)) {
         failures.push(`${path.relative(root, file)}: missing public asset ${href}`)
+      } else {
+        validateLocalAssetMime(assetPath, href, file)
       }
       continue
     }
@@ -166,6 +305,14 @@ async function checkExternalLink(url, file) {
       failures.push(
         `${path.relative(root, file)}: external link returned ${response.status} ${url}`
       )
+    } else if (hasAssetExtension(url)) {
+      const expected = expectedMimeTypes(url)
+      const contentType = response.headers.get('content-type')
+      if (!contentTypeMatches(contentType, expected)) {
+        failures.push(
+          `${path.relative(root, file)}: external asset MIME mismatch ${url} (got ${contentType ?? 'none'}, expected ${expected.join(' or ')})`
+        )
+      }
     }
   } catch (error) {
     failures.push(`${path.relative(root, file)}: external link failed ${url} (${error.message})`)

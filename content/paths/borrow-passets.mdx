@@ -11,6 +11,8 @@ description: "The borrower path for using Polaris: get pETH, open a trove, mint 
 
 > **Launch status:** Borrowing is testnet-actionable on Sepolia only when using the official Testnet 2 manifests. Production borrowing is not mainnet-actionable until [Polaris Launch Status](/launch-status) publishes the app URL, production addresses, final collateral thresholds, and audit status. Do not connect to a frontend or contract that claims to be Polaris unless it is linked from these docs or another official Polaris channel.
 
+> **Terminology:** In the app, **Borrow** is the task label. Docs call a pAsset debt position a **trove**; contracts may call the mechanism a **CDP**. **Reserve loans** are separate WETH loans against [fpETH](/peth/split), not pAsset troves.
+
 ## Reading sequence
 
 Read these in order — each step builds context the next one assumes.

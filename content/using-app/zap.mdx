@@ -1,0 +1,45 @@
+---
+title: Zap
+description: A guide to Polaris Zap flows from WETH to pUSD or pGOLD and into the Stability Pool, with approvals, simulation, and risk checks.
+---
+
+# Zap
+
+Use **Zap** when the app bundles several steps into one guided flow. The main yield zap is:
+
+```
+WETH -> pUSD or pGOLD -> Stability Pool deposit
+```
+
+The zap is an execution shortcut. It does not change the economics of the underlying swap or deposit.
+
+## What the zap does
+
+1. Takes a WETH amount as input.
+2. Quotes the pAsset purchase, such as pUSD or pGOLD.
+3. Quotes the Stability Pool deposit for that pAsset.
+4. Simulates the bundled operation.
+5. Prompts for approvals and transaction signatures.
+
+Depending on the implementation, the app may ask for one transaction or several. Treat every approval and every signature as a separate action.
+
+## Before you sign
+
+- Confirm the source token is WETH and the destination pAsset is the one you want.
+- Confirm the target Stability Pool address and pAsset instance.
+- Check the pAsset purchase quote, swap route, fees, slippage limit, and quote freshness.
+- Check the projected pool deposit, pool share, APR estimate, and claimable reward token types.
+- Confirm the zap simulation succeeded before signing.
+- Verify every approval: token, spender, allowance, and whether it is reusable.
+- Confirm you accept Stability Pool first-loss risk: liquidations can burn deposited pAssets and replace them with pETH.
+
+## Failure modes
+
+A zap can fail because one leg changes before inclusion: slippage, depleted liquidity, stale oracle data, Recovery Mode restrictions, approval mismatch, or gas limits. If it fails after an approval but before the final deposit, inspect your wallet balances before trying again.
+
+## Related docs
+
+- [Swap](/using-app/swap)
+- [Earn](/using-app/earn)
+- [Stability Pool](/yield/stability-pool)
+- [Deposit to the Stability Pool](/yield/deposit-to-stability-pool)

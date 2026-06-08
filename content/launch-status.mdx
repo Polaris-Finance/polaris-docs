@@ -16,35 +16,40 @@ This page is the source of truth for whether Polaris docs are conceptual, testne
 | Public phase | **Testnet 2** |
 | Testnet network | **Sepolia**, chain ID `11155111` |
 | Production network | **Ethereum mainnet**, chain ID `1`, forthcoming |
-| Official app URL | Forthcoming in these docs before production use |
+| Official Testnet 2 app | [https://app.testnet.polarisfinance.io/](https://app.testnet.polarisfinance.io/) |
+| Production / mainnet app | Not live or published in these docs |
 | Canonical production contracts | Not published yet |
-| Testnet contracts | Available only from the protocol repository deployment manifests; not canonical production addresses |
+| Testnet contracts and parameters | Published for Sepolia on [Testnet 2](/resources/testnet); not canonical production addresses |
 | Final audit reports | Not published in these docs yet |
 | Bug bounty / disclosure program | Not public yet |
+
+> **Open Testnet App:** Use [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io/) only on Sepolia (`11155111`) with test assets. Testnet assets have no monetary value, and production/mainnet use is not live.
 
 ## What is actionable now
 
 | Action | Status | Use this rule |
 |---|---|---|
 | Read the protocol model | Conceptual now | The explainers, core concepts, and risk pages are safe to read as the intended model. |
-| Test on Testnet 2 | Testnet-actionable now | Use Sepolia test assets and the protocol repository manifests. Treat addresses, mocks, and parameters as replaceable. |
+| Test on Testnet 2 | Testnet-actionable now | Use Sepolia test assets and [Testnet 2](/resources/testnet) manifests. Treat addresses, mocks, and parameters as replaceable. |
 | Open testnet app | Testnet-actionable now | Use the official testnet interface at [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io/). |
-| Use production capital | Not yet mainnet-actionable | Wait until this page links the official app, production contracts, verified source, final parameters, and audit status. |
+| Testnet Analytics | Testnet-actionable now | Detailed breakdown live from testnet data at [analytics.testnet.polarisfinance.io](https://analytics.testnet.polarisfinance.io/#/overview-v2). |
+| Use production capital | Not yet mainnet-actionable | Wait until this page links the production app, production contracts, verified source, final parameters, and audit status. |
 | Integrate contracts | Plan now, bind later | Build verification gates and schemas now. Do not hardcode unpublished production addresses, ABIs, events, or parameters. |
 
 ## Network truth
 
-Testnet 2 runs on **Sepolia (`11155111`)** and may use mock assets, mock oracles, redeployable contracts, and testnet-only parameters. It is for testing behavior, not for valuing production risk.
+Testnet 2 runs on **Sepolia (`11155111`)** and may use mock assets, mock oracles, redeployable contracts, and testnet-only parameters. It is for testing behavior, not for valuing production risk. The current app URL, active testnet pAssets, manifests, addresses, and Sepolia parameters live on [Testnet 2](/resources/testnet).
 
-Production Polaris is intended for **Ethereum mainnet (`1`)**, but mainnet app and contract addresses are not published yet. Any frontend, token, contract address, airdrop, support message, or bounty page claiming production status before it is linked here should be treated as unverified.
+Production Polaris is intended for **Ethereum mainnet (`1`)**, but mainnet app and contract addresses are not live or published yet. Any frontend, token, contract address, airdrop, support message, or bounty page claiming production status before it is linked here should be treated as unverified.
 
 ## Before any transaction
 
 Do not connect a wallet or sign a transaction unless all relevant checks pass:
 
-- The app URL is linked from this page or another official Polaris page.
+- For Testnet 2, the app URL is exactly [https://app.testnet.polarisfinance.io/](https://app.testnet.polarisfinance.io/).
+- For production/mainnet, wait until this page publishes a production app URL.
 - The wallet network matches the intended environment: Sepolia for Testnet 2, Ethereum mainnet only after production launch.
-- The contract address appears in [Contracts & Addresses](/resources/contracts) or, for testnet-only work, in the official deployment manifest you are using.
+- The contract address appears in [Contracts & Addresses](/resources/contracts), [Testnet 2](/resources/testnet), or the official deployment manifest you are using.
 - Explorer source and ABI match the documented contract.
 - The relevant product page has final values for the parameters your action depends on.
 - Audit and disclosure status are clear on [Audits & Security](/resources/audits-security).

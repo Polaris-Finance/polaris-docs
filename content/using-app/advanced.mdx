@@ -1,0 +1,29 @@
+---
+title: Advanced
+description: How to use Polaris Advanced tools for approvals, PSM actions, reserve loans, POLAR Staking, and manual transaction checks.
+---
+
+# Advanced
+
+Use **Advanced** for tools that expose protocol mechanics more directly than the main task tabs. These surfaces are useful for power users and integrators, but they can bypass the guardrails of a guided flow.
+
+## Common Advanced tools
+
+| Tool | What it is | Read first |
+|---|---|---|
+| **Approvals** | Token allowances for app contracts | [Safety and Verification](/paths/safety-verification) |
+| **PSM** | Peg Stability Module actions for a pAsset instance | [Redemptions](/redemptions-liquidations/redemptions) |
+| **Reserve Loans** | WETH loans against fpETH floor-value collateral | [pETH Split](/peth/split) |
+| **POLAR Staking** | Stake, unstake, and claim routed rewards where exposed | [POLAR Tokenomics](/polar/tokenomics) |
+| **Conversion** | Burn pETH to mint POLAR through the auction | [Participate in a Conversion](/polar/participate-in-conversion) |
+
+## Before you sign
+
+- Verify the exact contract address and ABI source for the advanced tool.
+- Confirm the action is intended for Sepolia testnet or for production after launch.
+- Check the function name, token, amount, fee, slippage, and resulting balance changes.
+- For reserve loans, confirm fpETH collateral, WETH debt, max borrow amount, fee, and close path.
+- For PSM or redemption actions, confirm the pAsset, fee, redemption amount, and collateral output.
+- Avoid unlimited approvals unless you intentionally need them and trust the spender.
+
+If a guided flow exists for your task, use it first and reserve Advanced for explicit manual operations.

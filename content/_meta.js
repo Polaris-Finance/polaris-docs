@@ -2,6 +2,7 @@ export default {
   index: 'Introduction',
   'launch-status': 'Launch Status',
   'getting-started': 'Getting Started',
+  'using-app': 'Using the App',
   'why-polaris': 'Why Polaris',
   'core-concepts': 'Core Concepts',
   paths: 'Choose Your Path',
@@ -14,7 +15,7 @@ export default {
   peth: 'pETH & Bonding Curve',
   yield: 'Earning Yield',
   'redemptions-liquidations': 'Redemptions & Liquidations',
-  polar: 'POLAR & Conversion',
+  polar: 'POLAR & Staking',
   stewardship: 'Stewardship',
   '-- reference': {
     type: 'separator',

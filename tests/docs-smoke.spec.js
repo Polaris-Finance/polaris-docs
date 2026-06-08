@@ -1,10 +1,80 @@
+import fs from 'node:fs'
+import path from 'node:path'
 import { expect, test } from '@playwright/test'
+import { pathWithBase } from '../app/site-config.mjs'
+
+const contentDir = path.join(process.cwd(), 'content')
+
+function collectMdxFiles(dir) {
+  return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
+    const fullPath = path.join(dir, entry.name)
+    if (entry.isDirectory()) return collectMdxFiles(fullPath)
+    return entry.isFile() && entry.name.endsWith('.mdx') ? [fullPath] : []
+  })
+}
+
+function fileToRoute(filePath) {
+  const relative = path.relative(contentDir, filePath).replace(/\\/g, '/')
+  const withoutExtension = relative.replace(/\.mdx$/, '')
+  const route =
+    withoutExtension === 'index'
+      ? ''
+      : withoutExtension.endsWith('/index')
+        ? withoutExtension.slice(0, -'/index'.length)
+        : withoutExtension
+
+  return route ? `/${route}` : '/'
+}
+
+const generatedRoutes = collectMdxFiles(contentDir).map(fileToRoute).sort()
+const routeTestName = (route) => (route === '/' ? 'home' : route.slice(1))
 
 async function expectNoDocumentOverflow(page) {
   const overflow = await page.evaluate(
     () => document.documentElement.scrollWidth - document.documentElement.clientWidth
   )
   expect(overflow).toBeLessThanOrEqual(2)
+}
+
+async function expectRequiredMetadata(page, route) {
+  await expect(page).toHaveTitle(/Polaris/i)
+  await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', /.+/)
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', /^https?:\/\/.+/)
+
+  const canonical = await page.locator('link[rel="canonical"]').getAttribute('href')
+  const canonicalPath = new URL(canonical).pathname.replace(/\/$/, '') || '/'
+  const expectedPath = pathWithBase(route).replace(/\/$/, '') || '/'
+  expect(canonicalPath).toBe(expectedPath)
+}
+
+async function expectTablesAreCaptionedAndFocusable(page) {
+  const issues = await page.locator('article table').evaluateAll((tables) =>
+    tables.flatMap((table, index) => {
+      const tableIssues = []
+      const caption = table.querySelector('caption')?.textContent?.trim() ?? ''
+      const headers = Array.from(table.querySelectorAll('thead th')).map((header) =>
+        header.textContent.trim()
+      )
+
+      if (!caption) tableIssues.push(`table ${index + 1} has no caption`)
+      if (Number.parseInt(table.getAttribute('tabindex') ?? '-1', 10) < 0) {
+        tableIssues.push(`table ${index + 1} is not keyboard-focusable`)
+      }
+      if (headers.some((header) => !header)) {
+        tableIssues.push(`table ${index + 1} has an empty column header`)
+      }
+
+      return tableIssues
+    })
+  )
+
+  expect(issues).toEqual([])
+
+  const firstTable = page.locator('article table').first()
+  if ((await firstTable.count()) > 0) {
+    await firstTable.focus()
+    await expect(firstTable).toBeFocused()
+  }
 }
 
 async function expectNoUnnamedVisibleControls(page) {
@@ -47,6 +117,40 @@ async function expectNoUnnamedVisibleControls(page) {
   expect(offenders).toEqual([])
 }
 
+async function expectTouchTargets(page, selector, label) {
+  const offenders = await page.locator(selector).evaluateAll((nodes) =>
+    nodes
+      .filter((node) => {
+        const style = window.getComputedStyle(node)
+        const rect = node.getBoundingClientRect()
+        return (
+          style.visibility !== 'hidden' &&
+          style.display !== 'none' &&
+          rect.width > 0 &&
+          rect.height > 0 &&
+          !node.disabled &&
+          node.getAttribute('aria-disabled') !== 'true' &&
+          !node.closest('[aria-hidden="true"], [inert]')
+        )
+      })
+      .map((node) => {
+        const rect = node.getBoundingClientRect()
+        return {
+          name:
+            node.getAttribute('aria-label') ||
+            node.getAttribute('title') ||
+            node.textContent.trim() ||
+            node.tagName.toLowerCase(),
+          width: Math.round(rect.width),
+          height: Math.round(rect.height)
+        }
+      })
+      .filter(({ width, height }) => width < 44 || height < 44)
+  )
+
+  expect(offenders, `${label} below 44px touch target`).toEqual([])
+}
+
 async function expectTabOrderAvoidsHiddenControls(page, steps = 12) {
   for (let i = 0; i < steps; i += 1) {
     await page.keyboard.press('Tab')
@@ -86,8 +190,35 @@ async function expectTabOrderAvoidsHiddenControls(page, steps = 12) {
   }
 }
 
+test.describe('generated route smoke', () => {
+  for (const route of generatedRoutes) {
+    test(`${routeTestName(route)} loads without regressions`, async ({ page }) => {
+      const notFoundResponses = []
+      page.on('response', (response) => {
+        if (response.status() === 404) notFoundResponses.push(response.url())
+      })
+
+      await page.goto(pathWithBase(route), { waitUntil: 'networkidle' })
+
+      const sameOriginNotFound = notFoundResponses.filter((url) => {
+        try {
+          return new URL(url).origin === new URL(page.url()).origin
+        } catch {
+          return true
+        }
+      })
+
+      await expect(page.getByRole('heading', { level: 1 }).first()).toBeVisible()
+      expect(sameOriginNotFound).toEqual([])
+      await expectRequiredMetadata(page, route)
+      await expectNoDocumentOverflow(page)
+      await expectTablesAreCaptionedAndFocusable(page)
+    })
+  }
+})
+
 test('homepage renders with metadata and basic accessibility', async ({ page }) => {
-  await page.goto('/')
+  await page.goto(pathWithBase('/'))
 
   await expect(page).toHaveTitle(/Polaris/i)
   await expect(page.getByRole('heading', { level: 1 })).toContainText(/Polaris/i)
@@ -96,10 +227,10 @@ test('homepage renders with metadata and basic accessibility', async ({ page }) 
   await expectNoUnnamedVisibleControls(page)
 })
 
-test('search opens, returns trove results, and keeps the result panel aligned', async ({
+test('search opens, returns useful results, and keeps the result panel aligned', async ({
   page
 }) => {
-  await page.goto('/')
+  await page.goto(pathWithBase('/'))
 
   const input = page.locator('input[type="search"][placeholder*="Search"]:visible').first()
   await input.click()
@@ -108,6 +239,7 @@ test('search opens, returns trove results, and keeps the result panel aligned', 
   const results = page.locator('.nextra-search-results')
   await expect(results).toBeVisible()
   await expect(results).toContainText(/trove/i)
+  await expect(results).toContainText(/open|managing/i)
 
   const inputBox = await input.boundingBox()
   const resultsBox = await results.boundingBox()
@@ -116,12 +248,15 @@ test('search opens, returns trove results, and keeps the result panel aligned', 
 
   expect(Math.abs(resultsBox.x - inputBox.x)).toBeLessThanOrEqual(2)
   expect(Math.abs(resultsBox.width - inputBox.width)).toBeLessThanOrEqual(2)
+
+  await input.fill('risk')
+  await expect(results).toContainText(/Risk Disclosure/i)
 })
 
 test('desktop theme menu can switch to light mode', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'desktop', 'desktop-only theme check')
 
-  await page.goto('/')
+  await page.goto(pathWithBase('/'))
 
   await page.locator('button[title="Change theme"]:visible').first().click()
   await page.getByRole('option', { name: /light/i }).click()
@@ -129,10 +264,40 @@ test('desktop theme menu can switch to light mode', async ({ page }, testInfo) =
   await expect(page.locator('html')).toHaveClass(/light/)
 })
 
+test('docs controls meet 44px touch targets where scoped', async ({ page }, testInfo) => {
+  await page.goto(pathWithBase('/'))
+
+  await expectTouchTargets(
+    page,
+    [
+      'header nav a',
+      'header nav button',
+      'header nav .nextra-search input',
+      '.nextra-sidebar a',
+      '.nextra-sidebar button',
+      '.nextra-sidebar-footer button',
+      'article [class*="x:float-end"] button'
+    ].join(', '),
+    'visible header/sidebar/article controls'
+  )
+
+  if (testInfo.project.name === 'mobile') {
+    await page
+      .getByRole('button', { name: /menu|navigation/i })
+      .first()
+      .click()
+    await expectTouchTargets(
+      page,
+      '.nextra-mobile-nav a, .nextra-mobile-nav button, .nextra-mobile-nav .nextra-search input',
+      'mobile navigation controls'
+    )
+  }
+})
+
 test('mobile navigation opens and exposes docs links', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'mobile', 'mobile-only navigation check')
 
-  await page.goto('/')
+  await page.goto(pathWithBase('/'))
   await expectNoDocumentOverflow(page)
   const mobileNav = page.locator('.nextra-mobile-nav')
   await expect(mobileNav).toHaveAttribute('aria-hidden', 'true')
