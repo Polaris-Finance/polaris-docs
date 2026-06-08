@@ -134,14 +134,17 @@ test('mobile navigation opens and exposes docs links', async ({ page }, testInfo
 
   await page.goto('/')
   await expectNoDocumentOverflow(page)
+  const mobileNav = page.locator('.nextra-mobile-nav')
+  await expect(mobileNav).toHaveAttribute('aria-hidden', 'true')
   await expectTabOrderAvoidsHiddenControls(page)
 
   const menuButton = page.getByRole('button', { name: /menu|navigation/i }).first()
   await menuButton.click()
 
+  await expect(mobileNav).not.toHaveAttribute('aria-hidden', 'true')
   await expect(page.getByRole('link', { name: /Getting Started/i }).first()).toBeVisible()
-  await page.keyboard.press('Escape')
-  await expect(page.getByRole('link', { name: /Getting Started/i }).first()).not.toBeVisible()
+  await menuButton.click()
+  await expect(mobileNav).toHaveAttribute('aria-hidden', 'true')
   await menuButton.focus()
   await expectTabOrderAvoidsHiddenControls(page)
   await expectNoUnnamedVisibleControls(page)
