@@ -2,7 +2,6 @@ import { Footer, Layout, Navbar } from 'nextra-theme-docs'
 import { Head } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
 import { Inter, Cormorant_Garamond } from 'next/font/google'
-import Image from 'next/image'
 import { A11yEnhancements } from '../components/A11yEnhancements'
 import { SearchPanelFix } from '../components/SearchPanelFix'
 import 'nextra-theme-docs/style.css'
@@ -67,7 +66,8 @@ const logo = (
       color: 'inherit'
     }}
   >
-    <Image src="/emblem.svg" alt="" width={26} height={26} style={{ display: 'block' }} unoptimized />
+    {/* eslint-disable-next-line @next/next/no-img-element */}
+    <img src={`${process.env.BASE_PATH ?? ''}/emblem.svg`} alt="" width={26} height={26} style={{ display: 'block' }} />
     <span
       style={{
         fontFamily: 'var(--font-serif), Georgia, serif',
