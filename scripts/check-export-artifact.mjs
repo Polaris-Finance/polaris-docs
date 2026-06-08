@@ -34,12 +34,24 @@ if (!existsSync(outDir)) {
 const htmlFiles = walk(outDir).filter((file) => file.endsWith('.html'))
 if (!htmlFiles.length) failures.push('out/ contains no HTML files')
 
-if (BASE_PATH === '') {
-  for (const file of htmlFiles) {
-    const html = readFileSync(file, 'utf8')
+for (const file of htmlFiles) {
+  const html = readFileSync(file, 'utf8')
+  const relativeFile = path.relative(root, file)
+
+  if (BASE_PATH === '') {
     if (html.includes('/polaris-docs/')) {
-      failures.push(`${path.relative(root, file)} contains stale /polaris-docs/ references`)
+      failures.push(`${relativeFile} contains stale /polaris-docs/ references`)
     }
+    continue
+  }
+
+  const rootScopedAttributes = [...html.matchAll(/\s(?:href|src|action)=["'](\/[^"']*)["']/g)].map(
+    (match) => match[1]
+  )
+
+  for (const value of rootScopedAttributes) {
+    if (value === BASE_PATH || value.startsWith(`${BASE_PATH}/`)) continue
+    failures.push(`${relativeFile} contains root-scoped asset or route reference: ${value}`)
   }
 }
 
