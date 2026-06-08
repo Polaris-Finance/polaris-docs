@@ -116,6 +116,8 @@ function SearchBoost({ path }) {
   return (
     <div
       aria-hidden="true"
+      data-pagefind-ignore
+      data-pagefind-meta={`search_terms:${terms.join(' ')}`}
       style={{
         position: 'absolute',
         width: 1,
@@ -128,9 +130,7 @@ function SearchBoost({ path }) {
         whiteSpace: 'nowrap',
         border: 0
       }}
-    >
-      Search vocabulary: {terms.join(', ')}.
-    </div>
+    />
   )
 }
 
