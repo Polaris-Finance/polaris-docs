@@ -5,7 +5,7 @@ description: "How POLAR works: issuance by burning pETH, current staking, future
 
 # POLAR Tokenomics
 
-This page consolidates POLAR's economics. Each piece has its own page; here they sit side by side. For the reasoning behind the token, read [The POLAR Token](/polar/polar-token); for the issuance mechanism, [Conversion Auctions](/polar/conversion-auctions).
+This page consolidates POLAR's economics. Each piece has its own page; here they sit side by side. For the reasoning behind the token, read [The POLAR Token](/polar); for the issuance mechanism, [Conversion Auctions](/polar/conversion-auctions).
 
 > **Current status:** POLAR's total supply, distribution schedule, and vesting terms are pending and will be published at launch. This page describes the *structure* of POLAR's economics, fixed by design, not the final numbers, which are forthcoming. Treat any figure not stated here as not yet finalized.
 
@@ -44,7 +44,7 @@ POLAR's value accrual runs on hard-asset protocol revenue, buffered and routed b
 | **Troves** | pETH yield from the Fee Router, credited pro-rata to recorded debt |
 | **POLAR stakers** | A stewarded share of protocol interest, in pAsset terms where the staking surface is live |
 | **vePOLAR lockers** | Forthcoming stewardship and yield path after audited locking deployment |
-| **Flow recipients** | Revenue-sharing for whitelisted contracts via [Flows](/stewardship/flows) (forthcoming) |
+| **Flow recipients** | Revenue-sharing for whitelisted contracts via [Flows](/stewardship/fee-router) (forthcoming) |
 
 Inputs are hard assets from protocol activity (conversions and bonding-curve swap fees), not emitted POLAR. The Fee Router buffers this pETH and pushes it to a stewardship-chosen receiver, today the troves; the bounded split with hardcoded floors that funds stakers and the ecosystem applies to the separate pAsset primary-interest stream. Exact destination splits, production staking terms, and vePOLAR locking terms are pending audited deployment.
 
@@ -54,7 +54,7 @@ The structure deliberately omits the usual extraction surfaces:
 
 - **No gauges.** Stewardship cannot create POLAR emissions gauges.
 - **No bribes.** No vote-buying markets are routed through the protocol.
-- **No emissions.** Ecosystem incentives flow through [Flows](/stewardship/flows) as hard-asset revenue sharing, funded by protocol revenue, not token emissions.
+- **No emissions.** Ecosystem incentives flow through [Flows](/stewardship/fee-router) as hard-asset revenue sharing, funded by protocol revenue, not token emissions.
 - **No planned mint outside conversion.** Final deployment is intended to mint POLAR only through pETH conversion.
 
 ## The Polar Council

@@ -19,8 +19,8 @@ These labels match the current testnet app and route users to the glossary entry
 | Earn / SP | [Stability Pool](#s), [SP](#s) | [Earn](/using-app/earn) |
 | Floor Carry | [Floor Carry](#f) | [Split](/using-app/split) |
 | fpETH / vpETH | [fpETH](#f), [vpETH](#v) | [Split](/using-app/split) |
-| Guide | [Guide](#g) | [Guide](/using-app/guide) |
-| POLAR Staking | [POLAR Staking](#p) | [POLAR token](/polar/polar-token) |
+| Guide | [Guide](#g) | [Choose by goal](/using-app#choose-by-goal) |
+| POLAR Staking | [POLAR Staking](#p) | [POLAR token](/polar) |
 | PSM / Redemption | [PSM](#p), [Redemption](#r) | [Advanced](/using-app/advanced) |
 | Reserve Loan | [Reserve Loan](#r) | [Advanced](/using-app/advanced) |
 | Split | [Split](#s) | [Split](/using-app/split) |
@@ -50,7 +50,7 @@ The two-way curve that backs [pETH](/peth/bonding-curve). It enforces a mathemat
 The mechanism behind minting: post collateral, mint a pAsset directly from the protocol rather than borrowing another user's funds. Each position is an isolated [trove](#t). See [Minting pAssets](/minting/minting-passets).
 
 **Conversion auction**
-The mechanism connecting pETH and POLAR: it burns [pETH](/peth/bonding-curve) to mint new [POLAR](/polar/polar-token). The most protocol-synergetic action possible: every conversion raises the floor and releases ETH yield. See [Conversion Auctions](/polar/conversion-auctions).
+The mechanism connecting pETH and POLAR: it burns [pETH](/peth/bonding-curve) to mint new [POLAR](/polar). The most protocol-synergetic action possible: every conversion raises the floor and releases ETH yield. See [Conversion Auctions](/polar/conversion-auctions).
 
 **Converter rebate**
 A stewardship-controlled percentage of ETH returned to the converter in a [conversion auction](/polar/conversion-auctions). The dial between conversion volume and system yield.
@@ -78,7 +78,7 @@ The floor-price leg created when [pETH](/peth/split) is split into fpETH and [vp
 ## G
 
 **Guide**
-The app area that routes users by goal, such as getting pETH, borrowing pAssets, earning yield, splitting pETH, or verifying safety. See [Guide](/using-app/guide).
+The app area that routes users by goal, such as getting pETH, borrowing pAssets, earning yield, splitting pETH, or verifying safety. See [Choose by goal](/using-app#choose-by-goal).
 
 ## I
 
@@ -86,7 +86,7 @@ The app area that routes users by goal, such as getting pETH, borrowing pAssets,
 The collateralization ratio of a single [trove](#t): the value of its pETH collateral divided by its pAsset debt. If a trove's ICR falls below the minimum, it can be [liquidated](/redemptions-liquidations/liquidations).
 
 **Inward-facing / Outward-facing**
-The design split deciding which token handles what. *Inward-facing* flows (interest rates, floor growth, Stability Pool incentivization, liquidations) are handled by pETH and the pAssets. *Outward-facing* growth (external liquidity, Flow onboarding and weights, ecosystem incentives) is handled by [POLAR](/polar/polar-token).
+The design split deciding which token handles what. *Inward-facing* flows (interest rates, floor growth, Stability Pool incentivization, liquidations) are handled by pETH and the pAssets. *Outward-facing* growth (external liquidity, Flow onboarding and weights, ecosystem incentives) is handled by [POLAR](/polar).
 
 ## L
 
@@ -130,7 +130,7 @@ Core believers, not just early followers. Access is earned through merit (explan
 A planned treasury-funded program for onboarding and ecosystem contributors, similar in spirit to veAERO's Flight School. Its final allocation, eligibility, operating framework, and reporting rules are pending publication.
 
 **POLAR**
-The protocol's stewardship token and outward-facing growth lever. After the initial distribution, new POLAR can be minted *only* by burning pETH in a [conversion auction](/polar/conversion-auctions). See [The POLAR Token](/polar/polar-token).
+The protocol's stewardship token and outward-facing growth lever. After the initial distribution, new POLAR can be minted *only* by burning pETH in a [conversion auction](/polar/conversion-auctions). See [The POLAR Token](/polar).
 
 **POLAR Staking**
 The current app staking surface for staking POLAR and claiming routed rewards where the deployment exposes it. It is distinct from forthcoming [vePOLAR](#v) locking, which adds lock durations, vote-power decay, and stewardship rights.

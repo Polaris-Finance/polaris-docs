@@ -59,13 +59,7 @@ pETH is tailor-made collateral for Polaris CDPs, but it has a life of its own.
 
 ### Reserve loans and Split
 
-You can [split pETH](/peth/split) into **fpETH** and **vpETH**. fpETH is the floor-price leg, and it can be used in **reserve loans** to borrow WETH from the reserve against floor-value collateral. These loans are:
-
-- **Not liquidated by pETH premium swings**: borrow sizing is based on the floor-price leg, not the market premium.
-- **Withdrawable through repayment**: repay the WETH owed and reclaim your fpETH while the contracts and Ethereum are live.
-- **Recorded onchain as an NFT.**
-
-Because the loan is sized to the floor price, it is designed to stay solvent for the protocol under the floor-price invariant: a borrower who never repays has effectively sold the fpETH floor claim to the reserve. The position can still accrue debt and depends on repayment, approvals, gas, contract correctness, and live Ethereum execution.
+You can [split pETH](/peth/split) into **fpETH** (the floor leg) and **vpETH** (the premium leg). fpETH can collateralize **reserve loans** — WETH borrowed against floor-value, sized to the floor price so premium swings don't liquidate the position. See [pETH Split](/peth/split) for the full mechanism, risks, and merge path.
 
 ### DeFi composability
 
