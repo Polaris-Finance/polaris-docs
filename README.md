@@ -46,7 +46,7 @@ This repo includes a tracked pre-push hook in `.githooks/pre-push`. Enable it in
 git config core.hooksPath .githooks
 ```
 
-The hook runs `npm run local:push-gate` before branch pushes. It mirrors the locally reproducible part of `.github/workflows/deploy.yml`: clean install, Playwright browser install, `npm run ci`, external-link checking as a non-blocking warning, and the Pages artifact smoke check. The final GitHub Pages upload/deploy actions require GitHub's Pages environment and are not run locally.
+The hook runs `npm run local:push-gate` before branch pushes. It mirrors the locally reproducible part of `.github/workflows/deploy.yml`: clean install, Playwright browser install, `npm run ci` (including build, artifact, Pagefind, navigation, e2e, and production-audit checks), and external-link checking as a non-blocking warning. The final GitHub Pages upload/deploy actions require GitHub's Pages environment and are not run locally.
 
 Useful overrides:
 

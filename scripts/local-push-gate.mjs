@@ -74,8 +74,7 @@ function assertDeployWorkflowStillMatchesGate() {
     'npm ci',
     'npx playwright install',
     'npm run ci',
-    'npm run check:links:external',
-    'npm run check:artifact'
+    'npm run check:links:external'
   ]
   const missingFragments = expectedFragments.filter((fragment) => !workflow.includes(fragment))
 
@@ -148,10 +147,6 @@ const steps = [
     label: 'Check external links',
     command: 'npm run check:links:external',
     optional: !strictExternal
-  },
-  {
-    label: 'Smoke check Pages artifact URLs',
-    command: 'npm run check:artifact'
   }
 ]
 
