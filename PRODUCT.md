@@ -9,9 +9,8 @@ product
 Technically-literate people who are **new to Polaris** — DeFi-fluent readers evaluating or learning to use the protocol, not the team that built it. They arrive in one of two modes:
 
 - **Primary: prospective participants** — people deciding whether to mint pAssets, deposit ETH into the bonding curve, earn yield in the Stability Pool, or hold/convert POLAR. Their context is "I understand DeFi mechanics in general; show me how *this* system works and what it costs me." They read to decide and to act.
-- **Secondary: integrators / developers** — engineers reading `developers/` (architecture, contract reference, integration) to build against the protocol. They need exact addresses, ABIs, parameters, and failure modes, not narrative.
 
-Most readers arrive **pre-mainnet** (public Testnet 2 is live; mainnet is forthcoming), so they are forming a first impression of an evolving system whose final parameters are not all fixed.
+Most readers arrive **pre-mainnet** (Public Testnet 1 is live on Sepolia; mainnet is forthcoming), so they are forming a first impression of an evolving system whose final parameters are not all fixed.
 
 ## Product Purpose
 

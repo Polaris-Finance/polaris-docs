@@ -2,7 +2,7 @@
 
 Audit date: 2026-06-08
 
-Scope: the `polaris-docs` repository, all 50 MDX content pages, generated docs artifacts, local exported site behavior, Pagefind search, link integrity, mobile/accessibility behavior, SEO/indexability, LLM/bot crawlability, and product-context checks against the public testnet app at `https://app.testnet.polarisfinance.io/` plus the local Polaris app/protocol repository at `/home/ahirice/Documents/git/polaris`.
+Scope: historical audit of the `polaris-docs` repository before the full application-surface execution pass; page counts below are stale and retained as audit context only. Original scope covered all 50 MDX content pages, generated docs artifacts, local exported site behavior, Pagefind search, link integrity, mobile/accessibility behavior, SEO/indexability, LLM/bot crawlability, and product-context checks against the public testnet app at `https://app.testnet.polarisfinance.io/` plus the local Polaris app/protocol repository at `/home/ahirice/Documents/git/polaris`.
 
 ## Council
 
@@ -59,12 +59,12 @@ These are the release, trust, crawlability, and task-completion fixes the counci
 | 4 | 6/6 | QA automation | Add a post-build and post-deploy smoke check for HTML asset paths, canonical URLs, robots, sitemap, `llms.txt`, status codes, and MIME types. | Create `scripts/check-live-artifact.mjs` or extend `check-export-artifact.mjs` to fetch deployed pages and verify `_next` JS/CSS, SVG/PNG assets, robots, sitemap, and canonical host. |
 | 5 | 6/6 | Launch status copy | Fix the app-URL contradiction across Launch Status, Getting Started, FAQ, Risk Disclosure, and Safety. | Replace "official app URL not published" with "public testnet app is live on Sepolia; production app and mainnet contracts are not live/published." |
 | 6 | 6/6 | Navigation, onboarding | Add a prominent "Open Testnet App" link/callout with Sepolia-only warning. | Add a top-nav link and repeat the CTA on `/launch-status` and `/getting-started`; keep production/mainnet caveats adjacent to the CTA. |
-| 7 | 6/6 | Safety, IA | Promote Safety and Verification from a path into a top-level gate. | Move or duplicate `content/paths/safety-verification.mdx` into a top-level route and place it before action guides in `content/_meta.js`. |
-| 8 | 6/6 | Testnet onboarding | Create a Testnet 2 source-of-truth page/table. | Add `/resources/testnet` or expand `/launch-status` with app URL, Sepolia chain ID `11155111`, current phase, production status, faucet/WETH guidance, testnet limitations, and manifest links. |
-| 9 | 5/6 | Contracts, verification | Make Testnet 2 contracts discoverable without implying production canonicity. | Add a clearly labeled Sepolia section to `content/resources/contracts.mdx` or link exact local/public deployment manifests; mark addresses as replaceable testnet artifacts. |
+| 7 | 6/6 | Safety, IA | Promote Safety and Verification from a path into a top-level gate. | Move or duplicate `content/resources/safety-verification.mdx` into a top-level route and place it before action guides in `content/_meta.js`. |
+| 8 | 6/6 | Testnet onboarding | Maintain Launch Status as the status owner and Public Testnet 1 Artifacts as the artifact owner. | Add `/resources/testnet` or expand `/launch-status` with app URL, Sepolia chain ID `11155111`, current phase, production status, faucet/WETH guidance, testnet limitations, and manifest links. |
+| 9 | 5/6 | Contracts, verification | Keep Public Testnet 1 contracts discoverable without implying production canonicity. | Add a clearly labeled Sepolia section to `content/resources/contracts.mdx` or link exact local/public deployment manifests; mark addresses as replaceable testnet artifacts. |
 | 10 | 5/6 | Parameters, product accuracy | Publish current testnet parameters where users need them. | Add pUSD/pGOLD testnet values such as MCR, Emergency/Recovery thresholds, redemption fee floor, and curve constants where verified from manifests; separate testnet values from pending production values. |
 | 11 | 6/6 | App IA coverage | Add a "Using the App" docs section matching live app labels. | Add pages or a route map for Dashboard, Swap, Borrow, Earn, Split, Zap, Guide, Advanced, and Analytics so users can search by UI labels. |
-| 12 | 6/6 | Glossary, search | Add glossary/search coverage for live app vocabulary. | Define fpETH, vpETH, Split, Zap, Floor Carry, Reserve Loan, WETH, sepETH, SP, PSM, Advanced, Guide, APR, and POLAR Staking in `content/resources/glossary.mdx`. |
+| 12 | 6/6 | Glossary, search | Add glossary/search coverage for live app vocabulary. | Define fpETH, vpETH, Split, Zap, Floor Carry, Reserve Loan, WETH, sepETH, SP, PSM, Advanced, Guide, APR, and POLAR Staking in `content/resources/index.mdx`. |
 | 13 | 6/6 | pETH docs | Document Split, fpETH, and vpETH. | Add `/peth/split` or a Using App page explaining pETH -> fpETH + vpETH, merge behavior, floor leg, volatility leg, risk, and current app route. |
 | 14 | 5/6 | Yield/app flows | Document Zap flows. | Add a Zap guide covering WETH -> pUSD/pGOLD purchase -> Stability Pool deposit, approvals, simulation, slippage, and first-loss risk. |
 | 15 | 5/6 | Borrow/app flows | Reconcile "trove", "CDP", "Borrow", "loan", pETH, and fpETH terminology. | Add a mapping box to borrower pages: docs call the position a trove; app/contracts may say CDP/Borrow; reserve loans may be against fpETH if that is the live mechanic. |
@@ -74,7 +74,7 @@ These are the release, trust, crawlability, and task-completion fixes the counci
 | 19 | 5/6 | App/docs consistency | Align risk and governance/stewardship language with live app copy. | Replace or qualify app/doc references to "risk-free round trip" and "governance split"; use "stewardship" and residual-risk framing consistently. |
 | 20 | 5/6 | POLAR docs | Clarify current POLAR Staking vs forthcoming vePOLAR locking. | Update `content/polar/*`, `content/stewardship/vepolar.mdx`, and conversion paths with current testnet staking status, pending vePOLAR status, and production caveats. |
 | 21 | 4/6 | Tokenomics consistency | Resolve POLAR supply/distribution contradictions. | Reconcile the 100,000,000 genesis allocation claim, "supply/distribution pending", and any "Polar Council 8.2%" statements as fixed, draft, illustrative, or pending. |
-| 22 | 5/6 | pAsset catalog | Mark pUSD/pGOLD as Testnet-active and pCHF/pBigMac as illustrative/future if accurate. | Update `content/minting/passet-catalog.mdx` and related pages so serious user flows center on the assets actually exposed in Testnet 2. |
+| 22 | 5/6 | pAsset catalog | Mark pUSD/pGOLD as Testnet-active and pCHF/pBigMac as illustrative/future if accurate. | Update `content/minting/passet-catalog.mdx` and related pages so serious user flows center on the assets actually exposed in Public Testnet 1. |
 | 23 | 5/6 | Transaction pages | Add "before you sign" checklists to action guides. | For minting, trove management, Stability Pool, Zap, Swap, Split, redemptions, and conversion: show network, app URL, contract/address, amount, fee, slippage, quote freshness, and approval checks. |
 | 24 | 5/6 | Accessibility | Fix table accessibility: captions/labels, non-empty headers, and keyboard-focusable overflow wrappers. | Add an MDX table wrapper or CSS/JS enhancement; replace blank first-column headers in redemptions, stewardship, pETH bonding curve, and POLAR token tables with visible or sr-only labels. |
 | 25 | 5/6 | Mobile | Increase mobile touch targets to at least 44px for docs controls. | Override Nextra hamburger, search, header links, sidebar links, copy/options buttons, and previous/next controls in `app/globals.css`. |
@@ -108,7 +108,7 @@ These should follow the must-list or be batched with nearby implementation work.
 | 13 | 3/6 | Motion | Extend reduced-motion coverage to hover transforms/transitions. | Review `.pl-depth-card`, blog cards, and hover transforms in `app/globals.css`. |
 | 14 | 3/6 | Landmarks | Add labels for breadcrumb, prev/next, page toolbar, and footer regions. | Reduce axe `region` warnings from Nextra wrappers where possible. |
 | 15 | 3/6 | Contrast QA | Run axe/contrast checks in both dark and light themes. | Add Playwright theme loops for sampled pages and later all routes. |
-| 16 | 3/6 | Developer docs | Mark example code in `content/paths/develop.mdx` as pseudo-code or make it copy-safe. | Add a note above undefined helpers and split the long block into smaller mobile-friendly examples. |
+| 16 | 3/6 | Historical scope | Developer example-page feedback was part of the old audit scope and is intentionally out of scope for the current execution. | No action in this pass. |
 | 17 | 4/6 | External links | Normalize Polaris blog URLs and enforce component-prop link checks. | Add trailing slashes if they avoid redirects; scan BlogPostCard `url` and `image` props in CI. |
 | 18 | 4/6 | Duplicate anchors | Add duplicate heading-slug linting. | Verified duplicates exist in `content/yield/deposit-to-stability-pool.mdx` for `enter-an-amount` and `confirm`; teach checks Nextra suffix behavior. |
 | 19 | 4/6 | Navigation integrity | Automate `_meta.js`, orphan page, sitemap, LLM, and exported HTML coverage checks. | Compare `content/**/*.mdx`, `_meta.js`, sitemap URLs, Pagefind page count, and generated `llms.txt`. |
@@ -134,7 +134,7 @@ These should follow the must-list or be batched with nearby implementation work.
 
 1. Fix host/base-path/DNS/deploy consistency and add artifact/live smoke checks.
 2. Fix testnet app URL/status copy and add the Open Testnet App path.
-3. Add Testnet 2 source-of-truth content: official sources, addresses/manifests, parameters, WETH/faucet, production caveats.
+3. Add Public Testnet 1 source-of-truth content: official sources, addresses/manifests, parameters, WETH/faucet, production caveats.
 4. Add Using the App coverage for live routes and app terms, starting with Split/fpETH/vpETH and Zap.
 5. Harden safety/risk language and add before-you-sign checklists.
 6. Fix mobile/a11y defects: tables, touch targets, `/stewardship/flows`, image dimensions, all-route tests.

@@ -15,7 +15,7 @@ Scope: content quality, information architecture, design and usability, accessib
 
 The docs are already structurally healthy: MDX frontmatter is present, local links and anchors pass, search works, sitemap/robots/LLM artifacts are generated, Pagefind smoke tests exist, and the prose is unusually complete for a pre-launch protocol. The most valuable improvements are not basic cleanup. They are about removing user-risk ambiguity, making the current launch state impossible to misread, improving topic-cluster discoverability, and hardening the custom Nextra layer.
 
-The highest-risk issue is the mismatch between "current public Testnet 2" messaging and action pages that tell users to verify Ethereum mainnet, chain ID 1, and mainnet contracts. The highest technical issue is that the deploy workflow builds with `BASE_PATH=/polaris-docs` even though the repo is configured for the custom root domain `docs.polarisfinance.io`.
+The highest-risk issue is the mismatch between "current public Public Testnet 1" messaging and action pages that tell users to verify Ethereum mainnet, chain ID 1, and mainnet contracts. The highest technical issue is that the deploy workflow builds with `BASE_PATH=/polaris-docs` even though the repo is configured for the custom root domain `docs.polarisfinance.io`.
 
 ## Ranked Roadmap
 
@@ -25,7 +25,7 @@ ROI is a pragmatic priority call, not a formula.
 
 | Rank | Idea | Dimensions | Impact | Effort | ROI | Main Evidence |
 |---:|---|---|---:|---|---|---|
-| 1 | Create a single Launch Status and Network Truth page, then make every action page point to it | Content, IA, safety, SEO | 5 | M | Very high | `content/index.mdx` says Testnet 2 is current; `content/getting-started.mdx` and paths require Ethereum mainnet; `content/resources/contracts.mdx` says Sepolia Testnet 2 exists but addresses are not canonical |
+| 1 | Create a single Launch Status and Network Truth page, then make every action page point to it | Content, IA, safety, SEO | 5 | M | Very high | `content/index.mdx` says Public Testnet 1 is current; `content/getting-started.mdx` and paths require Ethereum mainnet; `content/resources/contracts.mdx` says Sepolia Public Testnet 1 exists but addresses are not canonical |
 | 2 | Fix the GitHub Pages base-path/custom-domain deployment mismatch | Code health, SEO, performance | 5 | S | Very high | `.github/workflows/deploy.yml` sets `BASE_PATH=/polaris-docs`; `public/CNAME`, `README.md`, sitemap, robots, and `next.config.mjs` target root custom domain |
 | 3 | Run a protocol terminology and status consistency sweep | Content clarity, risk, legal/compliance posture | 5 | M | Very high | Contradictions around `pAsset` vs pETH, POLAR emissions vs "no emissions", PSM naming, "deployed contracts" vs pending artifacts, and absolute guarantees |
 | 4 | Promote safety from a path into a top-level gate | Design, IA, usefulness | 4 | S | Very high | Safety is mandatory in the prose but buried under `Choose Your Path`, after several journeys |
@@ -50,7 +50,7 @@ ROI is a pragmatic priority call, not a formula.
 
 Create a top-level `/launch-status` or `/safety-verification` page that answers, in one screen:
 
-- Current phase: public Testnet 2 on Sepolia, mainnet forthcoming.
+- Current phase: public Public Testnet 1 on Sepolia, mainnet forthcoming.
 - Current network(s): Sepolia chain ID `11155111` for testnet, Ethereum mainnet chain ID `1` for future production.
 - Official app URL status.
 - Canonical contract address status.
@@ -64,13 +64,13 @@ Then change every task page to include a small status callout that says either:
 - "Mainnet-actionable later: do not connect or sign until this page links the official app and addresses."
 - "Conceptual only."
 
-This addresses the biggest safety and trust issue: users should never need to reconcile `Testnet 2 NOW` with `Ethereum mainnet chain ID 1` instructions on their own.
+This addresses the biggest safety and trust issue: users should never need to reconcile `Public Testnet 1 NOW` with `Ethereum mainnet chain ID 1` instructions on their own.
 
 Suggested files:
 
 - `content/index.mdx`
 - `content/getting-started.mdx`
-- `content/paths/safety-verification.mdx`
+- `content/resources/safety-verification.mdx`
 - `content/resources/contracts.mdx`
 - all task pages under `content/minting`, `content/yield`, and `content/polar`
 
@@ -120,7 +120,7 @@ The current IA puts "Safety and Verification" under `Choose Your Path`, but the 
 
 Options:
 
-- Rename `content/paths/safety-verification.mdx` to a top-level `content/safety-verification.mdx`.
+- Rename `content/resources/safety-verification.mdx` to a top-level `content/safety-verification.mdx`.
 - Or add a top-level `content/launch-status.mdx` and keep the path page as a journey-specific version.
 - Put this before `Getting Started` in `content/_meta.js`.
 - Add a short homepage banner/card linking to it.
@@ -188,7 +188,7 @@ Highest-priority pages:
 - `content/minting/managing-your-trove.mdx`
 - `content/yield/deposit-to-stability-pool.mdx`
 - `content/redemptions-liquidations/redemptions.mdx`
-- `content/polar/participate-in-conversion.mdx`
+- `legacy conversion how-to page`
 
 For `redemptions.mdx`, consolidate repeated "all troves, pro-rata, no ICR queue" warnings into one prominent borrower-impact section plus one worked example.
 
@@ -376,7 +376,7 @@ Needs work:
 - Some status and guarantee language is too absolute for pre-launch docs.
 - Definitions of pAsset/pETH blur in several summaries.
 - POLAR emissions/no-emissions language conflicts.
-- Developer docs are thinner than the changelog implies.
+- Historical developer-doc notes are out of scope for the current app-surface execution.
 - Some concepts appear without enough context: PolarEX, Reserve Loans, effective borrower net cost.
 - Several pages repeat critical warnings rather than structuring them once at the decision point.
 

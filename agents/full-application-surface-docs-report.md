@@ -27,7 +27,6 @@ The efficient future state is:
 - App task pages tell users what to do, what to check, what can fail, and where to go next.
 - Concept pages explain one concept once and link forward to tasks.
 - Reference pages own facts that change, such as launch state, parameters, contracts, artifacts, and security status.
-- Developer pages cover integration surfaces directly instead of making integrators infer behavior from user docs.
 - Every repeated warning becomes either a one-line local reminder or a link to the canonical source.
 
 ## Current shape
@@ -45,7 +44,6 @@ Weak coverage:
 
 - Full app-tab workflows: Dashboard, Swap, Borrow, Earn, Split, Zap, Advanced.
 - Troubleshooting for failed or confusing app actions.
-- Developer and integrator docs: architecture, ABI/event reference, read helpers, indexing, manifests, integration recipes.
 - Canonical parameter reference.
 - Clear separation between environment status, testnet artifacts, contract addresses, and production readiness.
 
@@ -59,10 +57,10 @@ Main repetition:
 
 Main stale signals:
 
-- Internal product notes mention Public Testnet 2 while current authored docs say Public Testnet 1.
+- Older internal product notes referenced an outdated testnet phase before this execution pass.
 - Existing agent reports mention old page counts.
 - Search boosts in `app/[[...mdxPath]]/page.jsx` reference stale route patterns.
-- `/resources` is labeled as a section, but the landing page is actually the glossary.
+- `/resources` was kept as the glossary route by design; no dedicated Resources landing page is part of this execution.
 
 ## Documentation contract
 
@@ -194,7 +192,7 @@ Purpose: keep deeper mechanics available without bloating app task pages.
 
 ### Reference
 
-- `Glossary`: terms only.
+- `/resources`: glossary terms; no dedicated Resources landing page.
 - `Parameters`: canonical matrix by network, pAsset, source, status, and last reviewed date.
 - `Contracts & Addresses`: canonical addresses, verification links, and deployment model.
 - `Public Testnet 1 Artifacts`: manifest paths, chain ID, test assets, deploy metadata.
@@ -205,17 +203,6 @@ Purpose: keep deeper mechanics available without bloating app task pages.
 - `Changelog`: docs changes, or split into docs changelog and product release notes.
 
 Purpose: provide exact facts without burying them inside narrative pages.
-
-### Developers
-
-- `Architecture`: contracts, state model, dependencies, and invariants.
-- `Contract Reference`: core contracts, per-pAsset contracts, key methods, and permissions.
-- `Events and Indexing`: event catalog, suggested entities, reorg handling, and derived metrics.
-- `Read Helpers`: getter usage, examples, expected return shapes.
-- `Integration Recipes`: quote, borrow, repay, deposit, claim, split, convert, and verify flows.
-- `Deployment and Manifests`: source of truth, manifest freshness, chain IDs, and fail-closed rules.
-
-Purpose: stop making integrators reverse-engineer app behavior from user prose.
 
 ## Full application surface coverage matrix
 
@@ -233,7 +220,6 @@ Purpose: stop making integrators reverse-engineer app behavior from user prose.
 | Safety | `Start Here / Safety & Verification` | Correct frontend, addresses, signatures, phishing checks | Full risk disclosure |
 | Parameters | `Reference / Parameters` | Numeric values, pending values, source, finality | Repeated pending-status blocks |
 | Contracts | `Reference / Contracts & Addresses` | Addresses, verification, deployment shape | Testnet quickstart prose |
-| Developer integration | `Developers/*` | Architecture, ABIs/events, read helpers, recipes, manifests | User-facing onboarding |
 
 ## Word-wise efficiency rules
 
@@ -265,7 +251,7 @@ Use these rules as editorial constraints.
 - Move repeated pending-parameter notes into a new `Parameters` page.
 - Move scattered yield-routing explanations into one canonical `Yield` or `Fee Router and Flows` explanation, then link to it.
 - Combine broad POLAR overview and tokenomics where possible, unless tokenomics becomes a true parameter/reference page.
-- Turn `content/resources/index.mdx` into a real Resources landing page or move glossary to `content/resources/glossary.mdx`.
+- Keep `content/resources/index.mdx` as the glossary route; do not add dedicated category landing pages.
 - Either expand each `content/using-app/*` page into a proper task guide or consolidate thin tab summaries into one `App Surface` page. For full application coverage, expansion is the better choice.
 
 ## Suggested page budget
@@ -279,9 +265,8 @@ Suggested target:
 - 8 Understand the System pages.
 - 7 Protocol Mechanics pages.
 - 9 Reference pages.
-- 6 Developer pages.
 
-That is about 43 pages, but with clearer ownership. The current 38 pages are missing important app and developer coverage, so a small page-count increase is acceptable if repeated prose is removed.
+That is about 43 pages, but with clearer ownership. The current 38-page baseline was missing important app-task and canonical-reference coverage, so a small page-count increase is acceptable if repeated prose is removed.
 
 Suggested word budget:
 
@@ -289,11 +274,11 @@ Suggested word budget:
 - Concept pages: 600 to 900 words each.
 - Reference pages: table-first and as short as practical.
 - Troubleshooting: compact symptom/fix entries.
-- Total target: roughly 28,000 to 34,000 authored words after adding missing app/developer coverage and deleting repeated caveats.
+- Total target: roughly 28,000 to 34,000 authored words after adding missing app-task and canonical-reference coverage and deleting repeated caveats.
 
 ## Migration order
 
-1. Create canonical `Parameters`, `Troubleshooting`, and `Developers` section stubs.
+1. Create canonical `Parameters` and `Troubleshooting` pages.
 2. Make `Launch Status` the only environment-status owner.
 3. Make `Public Testnet 1` the only testnet artifact owner.
 4. Make `Contracts & Addresses` the only address owner.
@@ -312,15 +297,13 @@ The documentation has reached the target state when:
 - Every mutable fact has one canonical owner page.
 - No page says it is the source of truth for a topic owned by another page.
 - No task page repeats full launch, parameter, contract, or risk explanations.
-- Developers can find architecture, manifests, contract surfaces, event/indexing guidance, and integration recipes without reading user guides.
 - Search results use current route names and terminology.
 - FAQ, glossary, and changelog are clearly scoped.
 - A new user can safely complete the testnet quickstart without reading protocol mechanics.
 - A borrower can understand liquidation and redemption exposure without reading unrelated POLAR or stewardship material.
-- An integrator can fail closed when manifests, addresses, or production deployment status are missing.
 
 ## Bottom line
 
 The best version of these docs is an operating manual for the app, backed by a concise protocol model and strict reference ownership.
 
-The current docs should not be cut indiscriminately. They should be reorganized so the words already spent on protocol knowledge stop being repeated, and the missing words go only where they cover real app or integration surface.
+The current docs should not be cut indiscriminately. They should be reorganized so the words already spent on protocol knowledge stop being repeated, and the missing words go only where they cover real app actions or canonical reference facts.
