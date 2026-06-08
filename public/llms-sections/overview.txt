@@ -32,58 +32,7 @@ Engine | What it is | Why it matters
 **2. pAssets** | Synthetic pegged (USD, Gold, etc.) assets minted against collateral, via a Collateralized Debt Position (CDP) | Counterparty-free stables that scale with onchain activity
 **3. POLAR** | The stewardship token, minted only by burning pETH in a **conversion auction** | Aligns long-term incentives and steers the protocol within hardcoded bounds
 
-## Timed explainers
-
-Timed explainers:
-- [Overview](https://tokenbrice.github.io/polaris-docs/explainers/2-min): 2 min read.
-- [Presentation](https://tokenbrice.github.io/polaris-docs/explainers/5-min): 5 min read.
-- [Full Introduction](https://tokenbrice.github.io/polaris-docs/explainers/10-min): 10 min read.
-
-## Popular task shortcuts
-
-If you want to... | Go to
-
-Use the public testnet app safely | [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) and [Safety and Verification](https://tokenbrice.github.io/polaris-docs/paths/safety-verification)
-Get pETH or swap test WETH | [Swap](https://tokenbrice.github.io/polaris-docs/swap)
-Borrow pUSD or pGOLD | [Borrow](https://tokenbrice.github.io/polaris-docs/borrow)
-Deposit into the Stability Pool | [Earn](https://tokenbrice.github.io/polaris-docs/earn) or [Zap](https://tokenbrice.github.io/polaris-docs/zap)
-Split pETH into fpETH and vpETH | [Split](https://tokenbrice.github.io/polaris-docs/split)
-Use lower-level tools | [Advanced](https://tokenbrice.github.io/polaris-docs/advanced)
-Build on Polaris | [Develop](https://tokenbrice.github.io/polaris-docs/paths/develop)
-
 Relevant app/search vocabulary: app, official app, testnet, Testnet 2, Sepolia, pETH, pAssets.
-
----
-
-## Polaris Advanced
-
-URL: https://tokenbrice.github.io/polaris-docs/advanced
-
-# Polaris Advanced
-
-In the app, **Advanced** exposes lower-level operations such as approvals, PSM or redemption actions, reserve loans, POLAR Staking, and manual transaction checks. Use the full route map before signing: [Using the App: Advanced](https://tokenbrice.github.io/polaris-docs/using-app/advanced).
-
-Next steps:
-- [Advanced app tab](https://tokenbrice.github.io/polaris-docs/using-app/advanced): Manual controls and before-you-sign checks.
-- [Safety and Verification](https://tokenbrice.github.io/polaris-docs/paths/safety-verification): Verify the app, chain, contracts, approvals, and transaction intent.
-- [Contracts and Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts): Check whether an address is testnet, production, or not published.
-
----
-
-## Borrow with Polaris
-
-URL: https://tokenbrice.github.io/polaris-docs/borrow
-
-# Borrow with Polaris
-
-In the app, **Borrow** is where users manage pAsset troves and reserve loans. In the docs, the detailed Borrow guide lives under [Using the App: Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow).
-
-Use this shortcut if you searched for the app label or landed on `/borrow`.
-
-Next steps:
-- [Borrow app tab](https://tokenbrice.github.io/polaris-docs/using-app/borrow): Map app labels to troves, CDPs, pAsset debt, and reserve loans.
-- [Open a Trove](https://tokenbrice.github.io/polaris-docs/minting/open-a-trove): The step-by-step pAsset borrow flow.
-- [Manage a Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove): Add collateral, repay debt, and monitor ICR.
 
 ---
 
@@ -195,21 +144,6 @@ Next steps:
 
 ---
 
-## Earn with Polaris
-
-URL: https://tokenbrice.github.io/polaris-docs/earn
-
-# Earn with Polaris
-
-In the app, **Earn** is where users find Stability Pool deposits, reward claims, and current POLAR Staking where exposed. The full route map is [Using the App: Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn).
-
-Next steps:
-- [Earn app tab](https://tokenbrice.github.io/polaris-docs/using-app/earn): How Earn maps to Stability Pool and POLAR Staking surfaces.
-- [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield/stability-pool): How depositor yield and first-loss risk work.
-- [Deposit guide](https://tokenbrice.github.io/polaris-docs/yield/deposit-to-stability-pool): Before-you-sign checks for deposits, claims, and withdrawals.
-
----
-
 ## Getting Started with Polaris
 
 URL: https://tokenbrice.github.io/polaris-docs/getting-started
@@ -224,10 +158,10 @@ Building on Polaris? Jump to the [Develop](https://tokenbrice.github.io/polaris-
 
 If you already know why you're here, start with the matching journey:
 
-- **Borrow pAssets** — get pETH, open a trove, mint a pAsset, and manage liquidation risk: [Borrow pAssets](https://tokenbrice.github.io/polaris-docs/paths/borrow-passets).
-- **Earn yield** — deposit pAssets into a Stability Pool or understand Fee Router yield: [Earn Yield](https://tokenbrice.github.io/polaris-docs/paths/earn-yield).
-- **Hold or use pETH** — understand the bonding curve, floor price, and external collateral use: [Hold or Use pETH](https://tokenbrice.github.io/polaris-docs/paths/hold-use-peth).
-- **Convert and lock POLAR** — burn pETH to mint POLAR, lock as vePOLAR, and participate in bounded stewardship: [Convert and Lock POLAR](https://tokenbrice.github.io/polaris-docs/paths/convert-lock-polar).
+- **Borrow pAssets** — get pETH, open a trove, mint a pAsset, and manage liquidation risk: [Minting & Troves](https://tokenbrice.github.io/polaris-docs/minting).
+- **Earn yield** — deposit pAssets into a Stability Pool or understand Fee Router yield: [Earning Yield](https://tokenbrice.github.io/polaris-docs/yield).
+- **Hold or use pETH** — understand the bonding curve, floor price, and external collateral use: [pETH & Bonding Curve](https://tokenbrice.github.io/polaris-docs/peth).
+- **Convert and lock POLAR** — burn pETH to mint POLAR, lock as vePOLAR, and participate in bounded stewardship: [POLAR & Staking](https://tokenbrice.github.io/polaris-docs/polar).
 - **Develop** — plan an integration, indexer, vault, analytics surface, or risk tool: [Develop](https://tokenbrice.github.io/polaris-docs/paths/develop).
 - **Launch status and safety** — confirm official app, network, contracts, audits, and launch status before interacting: [Polaris Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) and [Safety and Verification](https://tokenbrice.github.io/polaris-docs/paths/safety-verification).
 
@@ -282,21 +216,6 @@ Relevant app/search vocabulary: app, official app, connect wallet, testnet, Sepo
 
 ---
 
-## Polaris Guide
-
-URL: https://tokenbrice.github.io/polaris-docs/guide
-
-# Polaris Guide
-
-In the app, **Guide** routes by user goal. The matching docs route map is [Using the App: Guide](https://tokenbrice.github.io/polaris-docs/using-app/guide).
-
-Next steps:
-- [Guide app tab](https://tokenbrice.github.io/polaris-docs/using-app/guide): Choose the route that matches your goal.
-- [Getting Started](https://tokenbrice.github.io/polaris-docs/getting-started): The shortest path through Public Testnet 1.
-- [Choose Your Path](https://tokenbrice.github.io/polaris-docs/paths): Borrow, earn, hold pETH, convert POLAR, or develop.
-
----
-
 ## Polaris Launch Status
 
 URL: https://tokenbrice.github.io/polaris-docs/launch-status
@@ -325,7 +244,7 @@ Use app.testnet.polarisfinance.io only on Sepolia (<code>11155111</code>) with t
 
 Action | Status | Use this rule
 
-Read the protocol model | Conceptual now | The explainers, core concepts, and risk pages are safe to read as the intended model.
+Read the protocol model | Conceptual now | The core concepts and risk pages are safe to read as the intended model.
 Test on Public Testnet 1 | Testnet-actionable now | Use Sepolia test assets and [Public Testnet 1](https://tokenbrice.github.io/polaris-docs/resources/testnet) manifests. Treat addresses, mocks, and parameters as replaceable.
 Open testnet app | Testnet-actionable now | Use the official testnet interface at [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io/).
 Testnet Analytics | Testnet-actionable now | Detailed breakdown live from testnet data at [analytics.testnet.polarisfinance.io](https://analytics.testnet.polarisfinance.io/#/overview-v2).
@@ -359,36 +278,6 @@ Do not connect a wallet or sign a transaction unless all relevant checks pass:
 For phishing and user-safety checks, continue to [Safety and Verification](https://tokenbrice.github.io/polaris-docs/paths/safety-verification). For the intended deployment shape, see [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts).
 
 Relevant app/search vocabulary: app, official app, testnet app, app.testnet.polarisfinance.io, testnet, Testnet 2, Sepolia, chain ID 11155111, WETH faucet, contracts, audits.
-
----
-
-## Split pETH in Polaris
-
-URL: https://tokenbrice.github.io/polaris-docs/split
-
-# Split pETH in Polaris
-
-In the app, **Split** turns pETH into fpETH and vpETH, or merges equal legs back into pETH. The full route map is [Using the App: Split](https://tokenbrice.github.io/polaris-docs/using-app/split).
-
-Next steps:
-- [Split app tab](https://tokenbrice.github.io/polaris-docs/using-app/split): Before-you-sign checks for splitting and merging pETH legs.
-- [pETH Split](https://tokenbrice.github.io/polaris-docs/peth/split): Mechanism, fpETH, vpETH, reserve loans, and floor carry.
-- [Reserve loans](https://tokenbrice.github.io/polaris-docs/using-app/advanced): Manual fpETH-backed reserve-loan checks.
-
----
-
-## Swap in Polaris
-
-URL: https://tokenbrice.github.io/polaris-docs/swap
-
-# Swap in Polaris
-
-In the app, **Swap** is where WETH, pETH, fpETH, vpETH, and pAsset routes are quoted. The full route map is [Using the App: Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap).
-
-Next steps:
-- [Swap app tab](https://tokenbrice.github.io/polaris-docs/using-app/swap): Token, route, quote, approval, fee, and slippage checks.
-- [pETH Bonding Curve](https://tokenbrice.github.io/polaris-docs/peth/bonding-curve): How WETH or ETH becomes pETH.
-- [Floor Price](https://tokenbrice.github.io/polaris-docs/peth/floor-price): How the curve-level lower-bound quote is framed.
 
 ---
 
@@ -453,18 +342,3 @@ Next steps:
 
 [Why Polaris?](https://polarisfinance.io/blog/why-polaris/)
 Analyzing where USDC, USDS, USDe, and LUSD fall short — and how pUSD delivers scalable, yield-bearing stability without counterparty risk.
-
----
-
-## Zap in Polaris
-
-URL: https://tokenbrice.github.io/polaris-docs/zap
-
-# Zap in Polaris
-
-In the app, **Zap** bundles several steps into one guided transaction path. The full route map is [Using the App: Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap).
-
-Next steps:
-- [Zap app tab](https://tokenbrice.github.io/polaris-docs/using-app/zap): WETH -> pUSD or pGOLD -> Stability Pool deposit checks.
-- [Swap first](https://tokenbrice.github.io/polaris-docs/using-app/swap): Understand the route a zap is bundling.
-- [Earn outcome](https://tokenbrice.github.io/polaris-docs/using-app/earn): Understand the Stability Pool position created by the zap.

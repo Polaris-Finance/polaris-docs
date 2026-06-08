@@ -14,29 +14,18 @@ Use this section when you need precise references rather than narrative guides.
 
 For current actionability, read [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) first. For a term lookup, use the [Glossary](https://tokenbrice.github.io/polaris-docs/resources/glossary). For addresses, use [Public Testnet 1](https://tokenbrice.github.io/polaris-docs/resources/testnet) and [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts).
 
-## Start here if
-
-You need... | Start with
-
-Current network, app, and production status | [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status)
-Sepolia app, manifest, and parameter facts | [Public Testnet 1](https://tokenbrice.github.io/polaris-docs/resources/testnet)
-A definition or app term | [Glossary](https://tokenbrice.github.io/polaris-docs/resources/glossary)
-Contract verification rules | [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts)
-Audit, security, or disclosure status | [Audits & Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security)
-Brand colors and logo usage | [Brand Assets](https://tokenbrice.github.io/polaris-docs/resources/brand-assets)
+## Reference pages
 
 Page | What it answers
 
-[Polaris Glossary](https://tokenbrice.github.io/polaris-docs/resources/glossary) | Definitions for pETH, pAssets, troves, Stability Pool, POLAR, Flows, and other terms.
-[Polaris Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure) | The risk catalog for smart contracts, collateral, liquidations, Stability Pool deposits, MEV, phishing, and Ethereum dependency.
-[Polaris Finance FAQ](https://tokenbrice.github.io/polaris-docs/resources/faq) | Short answers with links to the full pages.
-[Polaris Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts) | Deployment shape, address status, and verification rules.
-[Polaris Audits & Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security) | Audit-report status, security model, and disclosure/bounty status.
-[Polaris Brand Assets](https://tokenbrice.github.io/polaris-docs/resources/brand-assets) | Logos, palette, typography, and usage guidance.
-
-## Launch status
-
-[Polaris Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) is the canonical source for current network, app, contract, audit, and bounty status. Resources pages should be read through that lens until production mainnet details are published.
+[Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) | Current network, app, production, and bounty status — read this first.
+[Public Testnet 1](https://tokenbrice.github.io/polaris-docs/resources/testnet) | The Sepolia app URL, manifests, addresses, and parameters.
+[Glossary](https://tokenbrice.github.io/polaris-docs/resources/glossary) | Definitions for pETH, pAssets, troves, Stability Pool, POLAR, Flows, and other terms.
+[Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure) | The risk catalog: smart contracts, collateral, liquidations, Stability Pool first-loss, MEV, phishing, and Ethereum dependency.
+[FAQ](https://tokenbrice.github.io/polaris-docs/resources/faq) | Short answers with links to the full pages.
+[Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts) | Deployment shape, address status, and verification rules.
+[Audits & Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security) | Audit-report status, security model, and disclosure/bounty status.
+[Brand Assets](https://tokenbrice.github.io/polaris-docs/resources/brand-assets) | Logos, palette, typography, and usage guidance.
 
 Next steps:
 - [FAQ](https://tokenbrice.github.io/polaris-docs/resources/faq): Short answers grouped by theme.
@@ -280,7 +269,7 @@ ETH deposited into a two-way [bonding curve](https://tokenbrice.github.io/polari
 
 ### What is POLAR?
 
-The stewardship token and the protocol's outward-facing growth lever. After the initial distribution, new POLAR can be minted only by burning pETH in a [conversion auction](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions). See [The POLAR Token](https://tokenbrice.github.io/polaris-docs/polar/polar-token).
+The stewardship token and the protocol's outward-facing growth lever. After the initial distribution, new POLAR can be minted only by burning pETH in a [conversion auction](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions). See [The POLAR Token](https://tokenbrice.github.io/polaris-docs/polar).
 
 ### Which chain does Polaris run on?
 
@@ -365,8 +354,8 @@ Borrow / CDP | [CDP](https://tokenbrice.github.io/polaris-docs/resources/glossar
 Earn / SP | [Stability Pool](https://tokenbrice.github.io/polaris-docs/resources/glossary#s), [SP](https://tokenbrice.github.io/polaris-docs/resources/glossary#s) | [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn)
 Floor Carry | [Floor Carry](https://tokenbrice.github.io/polaris-docs/resources/glossary#f) | [Split](https://tokenbrice.github.io/polaris-docs/using-app/split)
 fpETH / vpETH | [fpETH](https://tokenbrice.github.io/polaris-docs/resources/glossary#f), [vpETH](https://tokenbrice.github.io/polaris-docs/resources/glossary#v) | [Split](https://tokenbrice.github.io/polaris-docs/using-app/split)
-Guide | [Guide](https://tokenbrice.github.io/polaris-docs/resources/glossary#g) | [Guide](https://tokenbrice.github.io/polaris-docs/using-app/guide)
-POLAR Staking | [POLAR Staking](https://tokenbrice.github.io/polaris-docs/resources/glossary#p) | [POLAR token](https://tokenbrice.github.io/polaris-docs/polar/polar-token)
+Guide | [Guide](https://tokenbrice.github.io/polaris-docs/resources/glossary#g) | [Choose by goal](https://tokenbrice.github.io/polaris-docs/using-app#choose-by-goal)
+POLAR Staking | [POLAR Staking](https://tokenbrice.github.io/polaris-docs/resources/glossary#p) | [POLAR token](https://tokenbrice.github.io/polaris-docs/polar)
 PSM / Redemption | [PSM](https://tokenbrice.github.io/polaris-docs/resources/glossary#p), [Redemption](https://tokenbrice.github.io/polaris-docs/resources/glossary#r) | [Advanced](https://tokenbrice.github.io/polaris-docs/using-app/advanced)
 Reserve Loan | [Reserve Loan](https://tokenbrice.github.io/polaris-docs/resources/glossary#r) | [Advanced](https://tokenbrice.github.io/polaris-docs/using-app/advanced)
 Split | [Split](https://tokenbrice.github.io/polaris-docs/resources/glossary#s) | [Split](https://tokenbrice.github.io/polaris-docs/using-app/split)
@@ -396,7 +385,7 @@ The two-way curve that backs [pETH](https://tokenbrice.github.io/polaris-docs/pe
 The mechanism behind minting: post collateral, mint a pAsset directly from the protocol rather than borrowing another user's funds. Each position is an isolated [trove](https://tokenbrice.github.io/polaris-docs/resources/glossary#t). See [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting/minting-passets).
 
 **Conversion auction**
-The mechanism connecting pETH and POLAR: it burns [pETH](https://tokenbrice.github.io/polaris-docs/peth/bonding-curve) to mint new [POLAR](https://tokenbrice.github.io/polaris-docs/polar/polar-token). The most protocol-synergetic action possible: every conversion raises the floor and releases ETH yield. See [Conversion Auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions).
+The mechanism connecting pETH and POLAR: it burns [pETH](https://tokenbrice.github.io/polaris-docs/peth/bonding-curve) to mint new [POLAR](https://tokenbrice.github.io/polaris-docs/polar). The most protocol-synergetic action possible: every conversion raises the floor and releases ETH yield. See [Conversion Auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions).
 
 **Converter rebate**
 A stewardship-controlled percentage of ETH returned to the converter in a [conversion auction](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions). The dial between conversion volume and system yield.
@@ -424,7 +413,7 @@ The floor-price leg created when [pETH](https://tokenbrice.github.io/polaris-doc
 ## G
 
 **Guide**
-The app area that routes users by goal, such as getting pETH, borrowing pAssets, earning yield, splitting pETH, or verifying safety. See [Guide](https://tokenbrice.github.io/polaris-docs/using-app/guide).
+The app area that routes users by goal, such as getting pETH, borrowing pAssets, earning yield, splitting pETH, or verifying safety. See [Choose by goal](https://tokenbrice.github.io/polaris-docs/using-app#choose-by-goal).
 
 ## I
 
@@ -432,7 +421,7 @@ The app area that routes users by goal, such as getting pETH, borrowing pAssets,
 The collateralization ratio of a single [trove](https://tokenbrice.github.io/polaris-docs/resources/glossary#t): the value of its pETH collateral divided by its pAsset debt. If a trove's ICR falls below the minimum, it can be [liquidated](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations).
 
 **Inward-facing / Outward-facing**
-The design split deciding which token handles what. *Inward-facing* flows (interest rates, floor growth, Stability Pool incentivization, liquidations) are handled by pETH and the pAssets. *Outward-facing* growth (external liquidity, Flow onboarding and weights, ecosystem incentives) is handled by [POLAR](https://tokenbrice.github.io/polaris-docs/polar/polar-token).
+The design split deciding which token handles what. *Inward-facing* flows (interest rates, floor growth, Stability Pool incentivization, liquidations) are handled by pETH and the pAssets. *Outward-facing* growth (external liquidity, Flow onboarding and weights, ecosystem incentives) is handled by [POLAR](https://tokenbrice.github.io/polaris-docs/polar).
 
 ## L
 
@@ -476,7 +465,7 @@ Core believers, not just early followers. Access is earned through merit (explan
 A planned treasury-funded program for onboarding and ecosystem contributors, similar in spirit to veAERO's Flight School. Its final allocation, eligibility, operating framework, and reporting rules are pending publication.
 
 **POLAR**
-The protocol's stewardship token and outward-facing growth lever. After the initial distribution, new POLAR can be minted *only* by burning pETH in a [conversion auction](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions). See [The POLAR Token](https://tokenbrice.github.io/polaris-docs/polar/polar-token).
+The protocol's stewardship token and outward-facing growth lever. After the initial distribution, new POLAR can be minted *only* by burning pETH in a [conversion auction](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions). See [The POLAR Token](https://tokenbrice.github.io/polaris-docs/polar).
 
 **POLAR Staking**
 The current app staking surface for staking POLAR and claiming routed rewards where the deployment exposes it. It is distinct from forthcoming [vePOLAR](https://tokenbrice.github.io/polaris-docs/resources/glossary#v) locking, which adds lock durations, vote-power decay, and stewardship rights.
@@ -777,14 +766,3 @@ Mint minute decay factor | `998076443575628800` | `998076443575628800` | Deploy 
 Redemption minute decay factor | `998076443575628800` | `998076443575628800` | Deploy script
 
 Production parameters are not published. Do not copy Sepolia parameters into a mainnet integration unless [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) and [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts) later publish them as production values.
-
-## Before you sign
-
-Check all of these before any Public Testnet 1 transaction:
-
-- The URL is exactly [https://app.testnet.polarisfinance.io/](https://app.testnet.polarisfinance.io/).
-- Your wallet network is Sepolia and the chain ID is `11155111`.
-- The asset is a test asset and has no monetary value.
-- The contract address appears on this page or in the linked Sepolia manifest.
-- The app quote shows the amount, fee, and asset you expect.
-- You are not sending mainnet ETH, mainnet WETH, or any other real-value asset.

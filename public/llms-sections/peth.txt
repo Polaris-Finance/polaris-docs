@@ -37,14 +37,13 @@ The current public phase is Public Testnet 1 on Sepolia. Production pETH use is 
 
 ## Related pages
 
-- [Hold or Use pETH](https://tokenbrice.github.io/polaris-docs/paths/hold-use-peth) for the user path.
 - [Split](https://tokenbrice.github.io/polaris-docs/using-app/split) for the app flow.
 - [Minting Polaris pAssets](https://tokenbrice.github.io/polaris-docs/minting/minting-passets) for using pETH inside troves.
 - [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure) for collateral, execution, and smart-contract risk.
 
 Next steps:
-- [Swap shortcut](https://tokenbrice.github.io/polaris-docs/swap): Use the app-label route if you searched for Swap.
-- [Split shortcut](https://tokenbrice.github.io/polaris-docs/split): Use the app-label route if you searched for Split.
+- [Swap app tab](https://tokenbrice.github.io/polaris-docs/using-app/swap): Token, route, quote, approval, fee, and slippage checks.
+- [Split app tab](https://tokenbrice.github.io/polaris-docs/using-app/split): Before-you-sign checks for splitting and merging pETH legs.
 - [Reserve loans](https://tokenbrice.github.io/polaris-docs/using-app/advanced): Manual fpETH-backed WETH loan checks.
 
 ---
@@ -105,13 +104,7 @@ pETH is tailor-made collateral for Polaris CDPs, but it has a life of its own.
 
 ### Reserve loans and Split
 
-You can [split pETH](https://tokenbrice.github.io/polaris-docs/peth/split) into **fpETH** and **vpETH**. fpETH is the floor-price leg, and it can be used in **reserve loans** to borrow WETH from the reserve against floor-value collateral. These loans are:
-
-- **Not liquidated by pETH premium swings**: borrow sizing is based on the floor-price leg, not the market premium.
-- **Withdrawable through repayment**: repay the WETH owed and reclaim your fpETH while the contracts and Ethereum are live.
-- **Recorded onchain as an NFT.**
-
-Because the loan is sized to the floor price, it is designed to stay solvent for the protocol under the floor-price invariant: a borrower who never repays has effectively sold the fpETH floor claim to the reserve. The position can still accrue debt and depends on repayment, approvals, gas, contract correctness, and live Ethereum execution.
+You can [split pETH](https://tokenbrice.github.io/polaris-docs/peth/split) into **fpETH** (the floor leg) and **vpETH** (the premium leg). fpETH can collateralize **reserve loans** — WETH borrowed against floor-value, sized to the floor price so premium swings don't liquidate the position. See [pETH Split](https://tokenbrice.github.io/polaris-docs/peth/split) for the full mechanism, risks, and merge path.
 
 ### DeFi composability
 
@@ -262,7 +255,7 @@ This is not an offchain guarantee. It depends on the splitter, bonding curve, re
 
 ## Reserve loans
 
-Reserve loans use **fpETH** as collateral. The borrowable WETH amount is based on the fpETH amount and current pETH floor price, not on pETH's market premium.
+Reserve loans use **fpETH** as collateral, and each loan is recorded onchain as an NFT. The borrowable WETH amount is based on the fpETH amount and current pETH floor price, not on pETH's market premium.
 
 That design reduces price-liquidation risk from pETH premium swings, but it does not make the position risk-free:
 
@@ -279,18 +272,8 @@ Reserve loans are separate from pAsset troves. A trove mints pUSD, pGOLD, or ano
 
 Floor carry is not a fixed APR. It depends on actual floor growth from protocol activity, execution costs, market pricing of fpETH, and whether the redemption path is available when you use it.
 
-## Before you sign
-
-- Confirm the action is Split, Merge, fpETH redemption, or reserve-loan collateralization.
-- Check the pETH, fpETH, vpETH, and WETH amounts shown by the app.
-- Check the current floor price, floor ratio, and quote timestamp.
-- For Merge, confirm you hold equal fpETH and vpETH amounts.
-- For fpETH redemption, confirm the WETH output and any fees or gas cost.
-- For reserve loans, confirm debt, max borrow amount, performance fee, and repay/close path.
-- Verify token approvals and spender addresses before signing.
-
 ## Related app tabs
 
 - [Split](https://tokenbrice.github.io/polaris-docs/using-app/split) for splitting and merging.
 - [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow) for reserve loans.
-- [Analytics](https://tokenbrice.github.io/polaris-docs/using-app/analytics) for floor price and floor ratio.
+- [Dashboard & Analytics](https://tokenbrice.github.io/polaris-docs/using-app/dashboard) for floor price and floor ratio.

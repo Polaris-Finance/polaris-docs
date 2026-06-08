@@ -7,18 +7,6 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://tokenbrice.github.io/polaris-docs/advanced</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://tokenbrice.github.io/polaris-docs/borrow</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://tokenbrice.github.io/polaris-docs/changelog</loc>
     <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
@@ -31,43 +19,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://tokenbrice.github.io/polaris-docs/earn</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://tokenbrice.github.io/polaris-docs/explainers</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://tokenbrice.github.io/polaris-docs/explainers/10-min</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://tokenbrice.github.io/polaris-docs/explainers/2-min</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://tokenbrice.github.io/polaris-docs/explainers/5-min</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://tokenbrice.github.io/polaris-docs/getting-started</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://tokenbrice.github.io/polaris-docs/guide</loc>
     <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -115,31 +67,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tokenbrice.github.io/polaris-docs/paths/borrow-passets</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://tokenbrice.github.io/polaris-docs/paths/convert-lock-polar</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://tokenbrice.github.io/polaris-docs/paths/develop</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://tokenbrice.github.io/polaris-docs/paths/earn-yield</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://tokenbrice.github.io/polaris-docs/paths/hold-use-peth</loc>
     <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -182,18 +110,6 @@
   </url>
   <url>
     <loc>https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://tokenbrice.github.io/polaris-docs/polar/participate-in-conversion</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://tokenbrice.github.io/polaris-docs/polar/polar-token</loc>
     <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -277,12 +193,6 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://tokenbrice.github.io/polaris-docs/split</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://tokenbrice.github.io/polaris-docs/stewardship</loc>
     <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
@@ -290,12 +200,6 @@
   </url>
   <url>
     <loc>https://tokenbrice.github.io/polaris-docs/stewardship/fee-router</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://tokenbrice.github.io/polaris-docs/stewardship/flows</loc>
     <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -313,12 +217,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://tokenbrice.github.io/polaris-docs/swap</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://tokenbrice.github.io/polaris-docs/using-app</loc>
     <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
@@ -326,12 +224,6 @@
   </url>
   <url>
     <loc>https://tokenbrice.github.io/polaris-docs/using-app/advanced</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://tokenbrice.github.io/polaris-docs/using-app/analytics</loc>
     <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -350,12 +242,6 @@
   </url>
   <url>
     <loc>https://tokenbrice.github.io/polaris-docs/using-app/earn</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://tokenbrice.github.io/polaris-docs/using-app/guide</loc>
     <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -391,12 +277,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://tokenbrice.github.io/polaris-docs/yield/deposit-to-stability-pool</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://tokenbrice.github.io/polaris-docs/yield/stability-pool</loc>
     <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
@@ -404,12 +284,6 @@
   </url>
   <url>
     <loc>https://tokenbrice.github.io/polaris-docs/yield/yield-sources</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://tokenbrice.github.io/polaris-docs/zap</loc>
     <lastmod>2026-06-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

@@ -19,7 +19,7 @@ Page | What it answers
 [Stewardship, not Governance](https://tokenbrice.github.io/polaris-docs/stewardship/stewardship) | What stewards can and cannot change.
 [vePOLAR Locking and Stewardship](https://tokenbrice.github.io/polaris-docs/stewardship/vepolar) | How POLAR locking is intended to grant stewardship rights and routed yield.
 [Polaris Fee Router](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router) | How pETH revenue is buffered and distributed.
-[Polaris Flows](https://tokenbrice.github.io/polaris-docs/stewardship/flows) | How ecosystem revenue sharing is intended to replace token-emission incentives.
+[Polaris Flows](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router) | How ecosystem revenue sharing is intended to replace token-emission incentives.
 
 ## Launch status
 
@@ -33,11 +33,15 @@ Stewardship contracts, lock terms, voting parameters, Flow whitelists, event sig
 
 ---
 
-## Polaris Fee Router
+## Fee Router & Flows
 
 URL: https://tokenbrice.github.io/polaris-docs/stewardship/fee-router
 
-# Polaris Fee Router
+# Fee Router & Flows
+
+Polaris distributes protocol revenue through two complementary systems. The **Fee Router** is the internal plumbing that buffers onchain yield and routes it to troves, POLAR stakers, and Flow recipients. **Flows**, covered in the second half of this page, are how that revenue is shared outward with contracts building on Polaris — by formula, in hard assets, with no emissions.
+
+## Fee Router
 
 The Fee Router is the plumbing that turns protocol activity into distributed yield. Onchain fees do not flow straight to recipients; they pass through the router, which buffers them and routes proceeds under immutable and stewarded constraints.
 
@@ -73,12 +77,7 @@ Exact buffer size, cadence, and distribution mechanics are launch parameters and
 
 ## The converter rebate
 
-The Fee Router sits downstream of one of stewardship's key dials: the **converter rebate**. Before released ETH becomes system yield, a stewarded slice can be returned to the converter.
-
-- **Higher rebate** -> conversions are cheaper -> more conversion volume, less yield reaching the router.
-- **Lower rebate** -> conversions cost more -> less volume, more yield reaching the router.
-
-It is a dial between conversion volume and system yield — it reshapes how that value splits, not the total ETH released or the floor-price impact. See [Conversion Auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions#the-converter-rebate) for the full mechanism.
+The Fee Router sits downstream of the **converter rebate**: before released ETH becomes system yield, a stewarded slice can return to the converter, so the rebate sets how much conversion value actually reaches the router. It reshapes the split, not the total ETH released or the floor-price impact. See [Conversion Auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions#the-converter-rebate) for the dial and its bounds.
 
 ## Operator and integrator prerequisites
 
@@ -102,28 +101,19 @@ Indexers should model the router as a stateful distribution system, not a simple
 - Store the parameter values active during each distribution.
 - Reconcile aggregate indexed totals against contract reads when the ABI is published.
 
-## Where it sits in the system
+## Where the Fee Router sits in the system
 
-The Fee Router is one piece of a larger picture. For every onchain yield source on Polaris, see [Where the Yield Comes From](https://tokenbrice.github.io/polaris-docs/yield/yield-sources). For Flow-specific routing, see [Flows](https://tokenbrice.github.io/polaris-docs/stewardship/flows).
-
----
-
-[pUSD: No Counterparty, No Ceiling](https://polarisfinance.io/blog/pusd-no-counterparty/)
-How pUSD delivers counterparty-free yield that scales with protocol adoption — and the ecosystem taking shape around it.
+The Fee Router is one piece of a larger picture. For every onchain yield source on Polaris, see [Where the Yield Comes From](https://tokenbrice.github.io/polaris-docs/yield/yield-sources).
 
 ---
 
-## Polaris Flows
-
-URL: https://tokenbrice.github.io/polaris-docs/stewardship/flows
-
-# Polaris Flows
+## Flows: ecosystem revenue sharing
 
 Ecosystem incentivization is where most tokenomics go to die. The usual pattern: a DAO emits its native token, farmers capture it, dump it on long-term holders, and TVL evaporates when emissions stop. Backroom deals decide who gets subsidized.
 
 **Flows are Polaris's replacement.** They distribute protocol revenue to contracts building on Polaris, denominated in hard assets such as pETH and pAssets, funded by perpetual revenue, and allocated by an auditable formula. No gauges, no bribes, no backroom deals, no emissions.
 
-> **Current status:** Flow contracts, whitelists, observed-address rules, recipient rules, weights, fixed-minimum kickstarts, event signatures, and final parameter bounds are pending audited deployment. This page describes the intended model and operator requirements.
+> **Current status:** Flow contracts, whitelists, observed-address rules, recipient rules, weights, fixed-minimum kickstarts, event signatures, and final parameter bounds are pending audited deployment. This section describes the intended model and operator requirements.
 
 ## The base rule
 
@@ -163,7 +153,7 @@ vePOLAR's role is confined to the edges:
 
 > **Parameter status:** Whitelist fields, weight bounds, kickstart mechanics, Stability Pool floors, and removal rules are pending final publication. They are stewarded only within immutable bounds.
 
-## Operator prerequisites
+## Flow operator prerequisites
 
 Teams seeking Flow participation should prepare:
 
@@ -217,6 +207,9 @@ Image: The Polaris flywheel
 By default, Flows should just work. Stewards step in only where human judgment is load-bearing: onboard a participant, set bounded terms, or remove one that no longer qualifies.
 
 ---
+
+[pUSD: No Counterparty, No Ceiling](https://polarisfinance.io/blog/pusd-no-counterparty/)
+How pUSD delivers counterparty-free yield that scales with protocol adoption — and the ecosystem taking shape around it.
 
 [Sustaining the Ecosystem: pETH & pUSD Flows](https://polarisfinance.io/blog/polaris-flows/)
 How Polaris replaces emission-style incentives with an autonomous, hard-asset distribution system to sustain the pETH and pAssets ecosystems.
@@ -354,7 +347,7 @@ URL: https://tokenbrice.github.io/polaris-docs/stewardship/vepolar
 
 # vePOLAR Locking and Stewardship
 
-**vePOLAR is vote-escrowed POLAR.** Lock [POLAR](https://tokenbrice.github.io/polaris-docs/polar/polar-token) and receive vePOLAR: the right to steward bounded parameters and participate in the protocol's edge decisions.
+**vePOLAR is vote-escrowed POLAR.** Lock [POLAR](https://tokenbrice.github.io/polaris-docs/polar) and receive vePOLAR: the right to steward bounded parameters and participate in the protocol's edge decisions.
 
 > **Current status:** vePOLAR is not the same as current **POLAR Staking**. The app may expose stake/unstake/claim actions for POLAR rewards on testnet, while the vePOLAR locking interface, contract address, lock durations, vote-power decay, unlock rules, proposal thresholds, and final yield split are pending audited deployment. Do not lock POLAR through an unofficial interface.
 
@@ -369,7 +362,7 @@ vePOLAR holders are **stewards, not governors**. vePOLAR steers quantitative par
 vePOLAR holders can participate in decisions to:
 
 - License new pAssets onto Polaris infrastructure.
-- Onboard eligible participants into StablecoinOS and [Flow](https://tokenbrice.github.io/polaris-docs/stewardship/flows) revenue sharing.
+- Onboard eligible participants into StablecoinOS and [Flow](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router) revenue sharing.
 - Set bounded interest splits and CDP parameters.
 - Tune [conversion](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions) parameters within their hardcoded range.
 - Vote on treasury programs once the framework is published.
@@ -423,9 +416,7 @@ Locking is an illiquid commitment by design. Do not lock through any contract or
 
 ## The Polar Council
 
-The **Polar Council** is a treasury-funded program to bootstrap aligned, active stewards. Comparable in spirit to veAERO's Flight School, it is a structured way to cultivate participants who understand the protocol and contribute to its stewardship, rather than leaving the role to whoever shows up.
-
-> **Current status:** The Council's operating framework is initially team-managed and will be formalized as providers step up and launch approaches. Exact terms, eligibility, and reporting requirements are pending.
+The **Polar Council** is a treasury-funded program to cultivate aligned, active stewards. See [The Polar Council](https://tokenbrice.github.io/polaris-docs/polar/tokenomics#the-polar-council) for its scope and pending terms.
 
 ---
 

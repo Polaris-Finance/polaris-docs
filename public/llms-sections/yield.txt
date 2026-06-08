@@ -20,133 +20,27 @@ You want to... | Start with
 
 See every source of yield | [Polaris Yield Sources](https://tokenbrice.github.io/polaris-docs/yield/yield-sources)
 Understand first-loss risk | [Polaris Stability Pool](https://tokenbrice.github.io/polaris-docs/yield/stability-pool)
-Deposit, claim, or withdraw | [Deposit to the Polaris Stability Pool](https://tokenbrice.github.io/polaris-docs/yield/deposit-to-stability-pool)
-Use the app label directly | [Earn](https://tokenbrice.github.io/polaris-docs/earn) or [Zap](https://tokenbrice.github.io/polaris-docs/zap)
+Deposit, claim, or withdraw | [The Polaris Stability Pool](https://tokenbrice.github.io/polaris-docs/yield/stability-pool#how-to-deposit)
+Use the app label directly | [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn) or [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap)
 
 ## Read in order
 
 Page | What it answers
 
 [Polaris Yield Sources](https://tokenbrice.github.io/polaris-docs/yield/yield-sources) | Where each pAsset and pETH yield stream originates.
-[Polaris Stability Pool](https://tokenbrice.github.io/polaris-docs/yield/stability-pool) | How Stability Pool deposits earn borrower interest and liquidation gains, and where first-loss risk sits.
-[Deposit to the Polaris Stability Pool](https://tokenbrice.github.io/polaris-docs/yield/deposit-to-stability-pool) | The task flow for depositing, claiming, and withdrawing once the app is live.
+[Polaris Stability Pool](https://tokenbrice.github.io/polaris-docs/yield/stability-pool) | How deposits earn borrower interest and liquidation gains, how to deposit/claim/withdraw, and where first-loss risk sits.
 [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap) | The app flow for WETH -> pUSD or pGOLD -> Stability Pool deposit, including approval and simulation checks.
 
 ## Related pages
 
-- [Earn Yield](https://tokenbrice.github.io/polaris-docs/paths/earn-yield) for the user path.
 - [Polaris Fee Router](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router) for pETH reward buffering.
-- [Polaris Flows](https://tokenbrice.github.io/polaris-docs/stewardship/flows) for ecosystem revenue sharing.
+- [Polaris Flows](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router) for ecosystem revenue sharing.
 - [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure) before depositing.
 
 Next steps:
 - [Earn app tab](https://tokenbrice.github.io/polaris-docs/using-app/earn): Direct Stability Pool and staking surfaces.
 - [Zap app tab](https://tokenbrice.github.io/polaris-docs/using-app/zap): Bundled WETH -> pAsset -> pool flow.
 - [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure): Read before treating yield as principal-safe.
-
----
-
-## Deposit to the Polaris Stability Pool
-
-URL: https://tokenbrice.github.io/polaris-docs/yield/deposit-to-stability-pool
-
-# Deposit to the Polaris Stability Pool
-
-This page walks through depositing a pAsset (pUSD in the examples) into the [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield/stability-pool), claiming rewards, and withdrawing. If you have not yet, read [The Stability Pool](https://tokenbrice.github.io/polaris-docs/yield/stability-pool) first — it explains what you earn and the risk you take on.
-
-App anchor: **Earn** tab for direct deposits, or **Zap** tab when the app bundles the purchase and deposit.
-
-> **Actionability:**
-> Stability Pool deposits are testnet-actionable only on Sepolia using the current Public Testnet 1 manifests. Production deposits are not mainnet-actionable until [Polaris Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) publishes the official app, production pool addresses, final reward/withdrawal parameters, and audit status. Screenshots and the exact UI flow are forthcoming; the steps below describe the intended flow and will get images at launch.
-
-## Before you start
-
-You need:
-
-- A pAsset to deposit — most commonly **pUSD**. [Mint pUSD](https://tokenbrice.github.io/polaris-docs/minting/minting-passets) first if you hold none.
-- ETH for gas.
-- An understanding that liquidation gains arrive in **pETH**, and the [risk](https://tokenbrice.github.io/polaris-docs/yield/stability-pool#the-honest-risk) of a severe crash. For pure pUSD exposure, use a wrapper vault — see [Where the Yield Comes From](https://tokenbrice.github.io/polaris-docs/yield/yield-sources).
-
-## Before you sign
-
-Before depositing, check:
-
-- Official app URL, network, pAsset, and Stability Pool contract.
-- Deposit amount, projected pool share, pool size, and reward tokens.
-- Current APR estimate, liquidation parameters, and withdrawal conditions.
-- First-loss exposure: liquidations can burn deposited pAssets and replace them with pETH.
-- Whether you are comfortable receiving pETH during volatile liquidations.
-- Gas, slippage, MEV, and wrapper-vault availability if you plan to convert pETH rewards back to pAsset.
-- Approval spender, allowance amount, simulation result, and quote freshness.
-
-> **Warning:**
-> A Stability Pool deposit can lose value. Liquidations convert part of your deposited pAsset into pETH, and in a severe or flash crash the pETH you receive can be worth **less** than the pAsset burned — your principal is not protected. Size your deposit accordingly and read the [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure).
-
-## Deposit
-
-### Open the pool
-
-Open the Polaris app and go to the **Stability Pool** for your pAsset (e.g. the pUSD pool).
-
-### Enter a deposit amount
-
-Enter the amount of pUSD to deposit.
-
-### Approve the spend
-
-**Approve** the pUSD spend, if prompted (a one-time token approval).
-
-### Confirm the deposit
-
-Confirm the **deposit** transaction in your wallet.
-
-### Position is active
-
-Your share of the pool is now active. It accrues borrower-interest yield immediately and is eligible for liquidation gains from the next liquidation onward.
-
-## Claim rewards
-
-Your two reward streams behave differently:
-
-- **Interest share (pUSD)** accrues continuously to your position.
-- **Liquidation gains (pETH)** accumulate to your position with each liquidation processed.
-
-To realize them:
-
-### Open your position
-
-In the Stability Pool view, open your position to see **claimable pUSD** and **claimable pETH**.
-
-### Claim or compound
-
-Select **Claim** to withdraw rewards to your wallet, or compound them back into the pool where supported.
-
-### Confirm reward action
-
-Confirm the transaction in your wallet.
-
-## Withdraw
-
-### Choose Withdraw
-
-In the Stability Pool view, choose **Withdraw**.
-
-### Enter a withdrawal amount
-
-Enter the amount of pUSD to remove, or select the full balance.
-
-### Confirm withdrawal
-
-Confirm the transaction in your wallet.
-
-Withdrawing settles any unclaimed rewards. Your deposited pUSD balance fluctuates as liquidations convert part of it into pETH — what you withdraw reflects the pool's current state, not a fixed principal.
-
-## Next steps
-
-- [The Stability Pool](https://tokenbrice.github.io/polaris-docs/yield/stability-pool) — the concept, in full.
-- [Where the Yield Comes From](https://tokenbrice.github.io/polaris-docs/yield/yield-sources) — every source feeding your yield.
-
-Relevant app/search vocabulary: Earn, earn, yield, APR, Stability Pool, deposit, claim rewards.
 
 ---
 
@@ -221,13 +115,68 @@ In a severe or flash crash, a trove can fall below 100% collateralization before
 
 Your liquidation gains are also denominated in pETH, which is [volatile against ETH](https://tokenbrice.github.io/polaris-docs/peth/floor-price). The wrapper vaults above mitigate that exposure, but at the base layer you accept pETH.
 
+## How to deposit
+
+You need a pAsset to deposit — most commonly **pUSD** ([mint some](https://tokenbrice.github.io/polaris-docs/minting/minting-passets) if you hold none) — plus ETH for gas. Re-read the pre-deposit warning above before signing. On Public Testnet 1 this runs on Sepolia test assets, and the exact UI gets screenshots at launch.
+
+### Open the pool
+
+Open the Polaris app and go to the **Stability Pool** for your pAsset (e.g. the pUSD pool).
+
+### Enter a deposit amount
+
+Enter the amount of pUSD to deposit.
+
+### Approve the spend
+
+**Approve** the pUSD spend, if prompted (a one-time token approval).
+
+### Confirm the deposit
+
+Confirm the **deposit** transaction in your wallet.
+
+### Position is active
+
+Your share of the pool is now active. It accrues borrower-interest yield immediately and is eligible for liquidation gains from the next liquidation onward.
+
+## How to claim rewards
+
+Your two reward streams behave differently: the **interest share (pUSD)** accrues continuously, while **liquidation gains (pETH)** accumulate with each liquidation processed. To realize them:
+
+### Open your position
+
+In the Stability Pool view, open your position to see **claimable pUSD** and **claimable pETH**.
+
+### Claim or compound
+
+Select **Claim** to withdraw rewards to your wallet, or compound them back into the pool where supported.
+
+### Confirm reward action
+
+Confirm the transaction in your wallet.
+
+## How to withdraw
+
+### Choose Withdraw
+
+In the Stability Pool view, choose **Withdraw**.
+
+### Enter a withdrawal amount
+
+Enter the amount of pUSD to remove, or select the full balance.
+
+### Confirm withdrawal
+
+Confirm the transaction in your wallet.
+
+Withdrawing settles any unclaimed rewards. Your deposited pUSD balance fluctuates as liquidations convert part of it into pETH — what you withdraw reflects the pool's current state, not a fixed principal.
+
 ## Next steps
 
-- [Deposit to the Stability Pool](https://tokenbrice.github.io/polaris-docs/yield/deposit-to-stability-pool) — the step-by-step.
 - [Where the Yield Comes From](https://tokenbrice.github.io/polaris-docs/yield/yield-sources) — every source feeding pAsset yield.
 
 Next steps:
-- [Deposit to the Stability Pool](https://tokenbrice.github.io/polaris-docs/yield/deposit-to-stability-pool): The step-by-step guide to depositing.
+- [Earn app tab](https://tokenbrice.github.io/polaris-docs/using-app/earn): Where Stability Pool deposits live in the app.
 - [Where the Yield Comes From](https://tokenbrice.github.io/polaris-docs/yield/yield-sources): Every source feeding pAsset yield.
 - [Liquidations](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations): Understand how the pool absorbs liquidations.
 

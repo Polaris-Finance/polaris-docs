@@ -4,48 +4,79 @@
 
 # POLAR & Conversion
 
-## Polaris POLAR, Staking, and Conversion
+## POLAR Token, Staking, and Conversion
 
 URL: https://tokenbrice.github.io/polaris-docs/polar
 
-# Polaris POLAR, Staking, and Conversion
+# POLAR Token, Staking, and Conversion
 
-POLAR is the stewardship token. After the initial distribution, new POLAR is intended to enter only when pETH is burned through conversion, not through emissions.
+POLAR is Polaris's stewardship token and the protocol's **growth lever**. It earns that role through one deliberate constraint: after the initial distribution, new POLAR is intended to be minted only by burning pETH in a [conversion auction](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions).
 
-> **Status distinction:** The app may expose **POLAR Staking** as a current stake/unstake/claim surface on testnet. **vePOLAR locking** is separate and forthcoming: lock durations, vote-power decay, voting rules, and production addresses are pending audited deployment.
+App anchors: **Earn** for current POLAR Staking where exposed, and **Advanced** or a conversion panel for pETH -> POLAR conversion actions.
 
-## Start here if
+> **Status distinction:** The app may expose **POLAR Staking** as a current stake/unstake/claim surface on testnet. **vePOLAR locking** is separate and forthcoming: lock durations, vote-power decay, voting rules, and production addresses are pending audited deployment. Do not use a conversion, staking, or locking interface unless [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) and [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts) point to it.
 
-You want to... | Start with
+## Why a third token
 
-Understand what POLAR is for | [POLAR Token](https://tokenbrice.github.io/polaris-docs/polar/polar-token)
-Compare current staking with future vePOLAR | [POLAR Tokenomics](https://tokenbrice.github.io/polaris-docs/polar/tokenomics)
-Understand pETH -> POLAR conversion | [POLAR Conversion Auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions)
-Prepare to sign a conversion | [Participate in a POLAR Conversion](https://tokenbrice.github.io/polaris-docs/polar/participate-in-conversion)
+Polaris runs on three engines: pETH, the pAssets, and POLAR. The first two handle everything the protocol *needs* to function: pETH backs the CDPs, the Stability Pool generates yield, interest rates self-adjust, and liquidations process autonomously. **Polaris works without POLAR.**
 
-## Read in order
+So why add a third token? Because functioning and scaling differ. The design splits along an **inward- vs. outward-facing** logic:
+
+Function | Handled by | Examples
+
+**Inward-facing** — sustain the core | pETH + pAssets | interest rates, floor growth, Stability Pool incentivization, liquidations
+**Outward-facing** — grow the ecosystem | POLAR | external DEX liquidity, Flow onboarding, [StablecoinOS](https://tokenbrice.github.io/polaris-docs/core-concepts) coordination
+
+POLAR is deliberately separated from the core so the core's sustainability never depends on it. If POLAR incentives dried up tomorrow, pUSD would still mint, the bonding curve would still function, and the Stability Pool would still pay yield. The base protocol does not need POLAR to survive, but it scales far better with it.
+
+## Minted only by burning pETH
+
+There is no team mint function and no inflation schedule disconnected from protocol activity. Every POLAR entering circulation after the initial distribution is intended to require a pETH burn through the [conversion auction](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions).
+
+This is the point: POLAR's issuance is welded to the **most protocol-synergetic action possible**. Burning pETH simultaneously:
+
+- **Raises the [floor price](https://tokenbrice.github.io/polaris-docs/peth/floor-price)** under the curve assumptions, by contracting pETH supply.
+- **Releases ETH** from the bonding curve reserve, which becomes pETH yield routed through the [Fee Router](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router).
+- **Mints the token** that funds ecosystem growth.
+
+> **Note:**
+> Most conversions are executed by arbitrage bots and MEV searchers, not by hand. POLAR issuance therefore tracks real arbitrage activity, not a calendar.
+
+## Productive dilution
+
+Every token emission is dilutive. We will not pretend otherwise — minting new POLAR shrinks existing holders' share of supply. That is a real cost.
+
+The difference is what the dilution *buys*. Each conversion that dilutes POLAR holders also burns pETH, raises the floor, and releases ETH yield. **Every unit of POLAR dilution corresponds to a concrete improvement in protocol fundamentals.** This differs structurally from emission models like CRV, where inflation is disconnected from any protocol benefit.
+
+Conversion uses three stewarded parameters: the reserve rebate (bounded to 0–100%), the price-decay half-life, and the supply-inflation spike sensitivity. Issuance is self-limiting: [spike-and-decay pricing](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions#spike-and-decay-pricing) makes large or rapid minting throttle itself, so issuance tracks real arbitrage demand. A hardcoded issuance cap and an explicit disable switch are not yet enforced in the current prototype; final parameter bounds await audited deployment.
+
+For the founding team this means progressive dilution by structure, not by a forum promise: the faster Polaris grows, the more attractive conversions become, and the more the team's initial share dilutes.
+
+## POLAR Staking and future vePOLAR
+
+POLAR can be put to work two ways: current **POLAR Staking** (the app's stake/unstake/claim surface for routed rewards) and forthcoming **[vePOLAR](https://tokenbrice.github.io/polaris-docs/stewardship/vepolar)** locking (stewardship power plus a yield path). See [POLAR Staking vs vePOLAR](https://tokenbrice.github.io/polaris-docs/polar/tokenomics#polar-staking-vs-vepolar) for the full distinction.
+
+The intended loop is self-reinforcing: more conversions ⇒ higher floor + more ETH yield + more potential POLAR supply ⇒ more reason to stake or, once live, lock as vePOLAR ⇒ more stewardship participation.
+
+## Go deeper
 
 Page | What it answers
 
-[POLAR Token](https://tokenbrice.github.io/polaris-docs/polar/polar-token) | What POLAR is for and why conversion links it to pETH.
 [POLAR Tokenomics](https://tokenbrice.github.io/polaris-docs/polar/tokenomics) | Issuance structure, current staking, future vePOLAR, and what is still pending.
-[POLAR Conversion Auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions) | How spike-and-decay pricing, pETH burns, rebates, and floor growth work.
-[Participate in a POLAR Conversion](https://tokenbrice.github.io/polaris-docs/polar/participate-in-conversion) | The task flow and risks for burning pETH to mint POLAR once the interface is live.
+[POLAR Conversion Auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions) | How spike-and-decay pricing, pETH burns, rebates, and floor growth work, plus how to convert.
+[vePOLAR Locking and Stewardship](https://tokenbrice.github.io/polaris-docs/stewardship/vepolar) | The forthcoming vote-escrow layer and its stewardship role.
 
-## Launch status
-
-POLAR, conversion, staking, and vePOLAR addresses are pending production publication. Do not use a conversion, staking, or locking interface unless [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) and [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts) point to it.
-
-## Related pages
-
-- [vePOLAR Locking and Stewardship](https://tokenbrice.github.io/polaris-docs/stewardship/vepolar)
-- [Stewardship, not Governance](https://tokenbrice.github.io/polaris-docs/stewardship/stewardship)
-- [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure)
+POLAR exists because burning pETH to mint it is the most protocol-synergetic action possible. The token is not a claim on a treasury or a vote in an unbounded DAO — it is a claim on a flywheel whose every turn strengthens the collateral beneath it.
 
 Next steps:
 - [POLAR Staking](https://tokenbrice.github.io/polaris-docs/using-app/earn): Current stake, unstake, and claim surface where exposed.
-- [Conversion controls](https://tokenbrice.github.io/polaris-docs/using-app/advanced): Manual conversion and approval checks.
+- [Conversion Auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions): How spike-and-decay pricing, rebates, and floor growth work.
 - [Stewardship](https://tokenbrice.github.io/polaris-docs/stewardship): Bounded parameter control and future vePOLAR.
+
+---
+
+[Burn pETH, Mint POLAR: The Conversion Mechanism](https://polarisfinance.io/blog/burn-pETH-mint-POLAR/)
+How a single primitive connects Polaris' three engines, and why every conversion strengthens the protocol.
 
 ---
 
@@ -115,50 +146,11 @@ Intellectual honesty requires naming the limits:
 - **It does not manufacture demand for POLAR.** If nobody values vePOLAR for yield or stewardship, the arbitrage dries up. When POLAR's market price sits below the conversion price, no conversions happen until decay catches up. The mechanism *assumes* vePOLAR has genuine utility — it does not create it.
 - **Parameters carry weight.** Decay too fast ⇒ over-frequent dilution; decay too slow ⇒ stagnant conversion activity. These are set through the stewardship role within bounded ranges — a deliberate reflexivity where stewardship can tune the dilution rate, with final guardrails pending audited deployment.
 
----
+## How to convert
 
-The conversion auction answers "why does POLAR exist?" with a mechanism rather than a promise: POLAR exists because burning pETH to mint it is the most protocol-synergetic action possible. The [bonding curve](https://tokenbrice.github.io/polaris-docs/peth/bonding-curve) makes pETH work; the CDP makes pAssets work; the conversion auction makes them work together.
+Conversions are a continuous, permissionless auction tuned for arbitrage bots and MEV searchers, so converting profitably means competing with them. Most users will hold POLAR, use current POLAR Staking where the app exposes it, or wait for [vePOLAR](https://tokenbrice.github.io/polaris-docs/stewardship/vepolar) locking instead of converting directly.
 
-[Burn pETH, Mint POLAR: The Conversion Mechanism](https://polarisfinance.io/blog/burn-pETH-mint-POLAR/)
-How a single primitive connects Polaris' three engines, and why every conversion strengthens the protocol.
-
-Relevant app/search vocabulary: POLAR, convert, lock, vePOLAR, burn pETH, conversion auction.
-
----
-
-## Participate in a POLAR Conversion
-
-URL: https://tokenbrice.github.io/polaris-docs/polar/participate-in-conversion
-
-# Participate in a POLAR Conversion
-
-This is the how-to. For the mechanism behind it, read [Conversion Auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions); for POLAR's role, read [The POLAR Token](https://tokenbrice.github.io/polaris-docs/polar/polar-token).
-
-> **Note:**
-> Conversions are a continuous, permissionless auction tuned for [arbitrage bots and MEV searchers](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions). Converting profitably means competing with them. Most users will hold POLAR, use current POLAR Staking where the app exposes it, or wait for [vePOLAR](https://tokenbrice.github.io/polaris-docs/stewardship/vepolar) locking instead of converting directly.
-
-> **Actionability:**
-> Conversions are testnet-actionable only on Sepolia where the current deployment manifests expose the flow. Production conversions are not mainnet-actionable until [Polaris Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) publishes the official app, production conversion contract, final parameters, quote fields, transaction preview, and audit status.
-
-## Before you sign
-
-Conversion is **one-way**: the pETH you burn is gone for good and POLAR cannot be converted back. Your proceeds depend on auction-price and [rebate](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions#the-converter-rebate) dynamics that shift between preview and inclusion, and you compete with bots for the same spread. Convert only on the live previewed quote, never on the examples here. See the [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure).
-
-Do not attempt a conversion until all of these are true:
-
-- The official app URL is published on [Polaris Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status).
-- The conversion contract is listed on [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts) for the intended network: Sepolia (`11155111`) for Public Testnet 1, or Ethereum mainnet (`1`) after production launch.
-- The pETH amount, POLAR output, ETH rebate, fee, slippage, and quote timestamp are visible.
-- The conversion price, POLAR market price, rebate, and price-spike preview are visible in the app before signing.
-- Any pETH approval points to the expected conversion contract and amount.
-- You are comfortable with a one-way burn: pETH converted to POLAR cannot be converted back.
-
-## What you need
-
-- **pETH** to burn — acquired by buying on the [bonding curve](https://tokenbrice.github.io/polaris-docs/peth/bonding-curve) or on a DEX.
-- A wallet connected to the Polaris app.
-
-## Steps
+**You need** pETH to burn (bought on the [bonding curve](https://tokenbrice.github.io/polaris-docs/peth/bonding-curve) or a DEX) and a wallet connected to the Polaris app. On Public Testnet 1 this is Sepolia-only; production conversions are not actionable until [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) publishes the official app, conversion contract, final parameters, and audit status.
 
 ### Open the conversion panel
 
@@ -170,7 +162,7 @@ The conversion price decays continuously and spikes upward each time someone con
 
 ### Read the quote
 
-Enter a pETH amount. The panel previews the **POLAR you will receive**, the **ETH rebate** at the current [rebate](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions) setting, and the resulting **price spike**. Because the spike scales with the fraction of POLAR supply minted, larger amounts price progressively worse; favor smaller increments.
+Enter a pETH amount. The panel previews the **POLAR you will receive**, the **ETH rebate** at the current [rebate](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions#the-converter-rebate) setting, and the resulting **price spike**. Because the spike scales with the fraction of POLAR supply minted, larger amounts price progressively worse; favor smaller increments.
 
 ### Decide
 
@@ -184,85 +176,9 @@ Confirm the transaction. Your pETH is **permanently burned**, you receive newly 
 
 Stake POLAR where the current app exposes POLAR Staking, wait for [vePOLAR](https://tokenbrice.github.io/polaris-docs/stewardship/vepolar) locking once audited deployment publishes it, or hold it.
 
-## What just happened
-
-Your single transaction did four things at once:
-
-- Burned pETH ⇒ raised the pETH [floor price](https://tokenbrice.github.io/polaris-docs/peth/floor-price) under the curve assumptions.
-- Released ETH from the bonding curve reserve.
-- Paid you any ETH rebate and routed the rest to the [Fee Router](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router) as yield.
-- Minted you new POLAR.
-
-> **Warning:**
-> Conversions are **one-way**. POLAR cannot be converted back to pETH, and burned pETH is gone for good. Confirm the previewed quote before signing.
-
 ---
 
-[Burn pETH, Mint POLAR: The Conversion Mechanism](https://polarisfinance.io/blog/burn-pETH-mint-POLAR/)
-How a single primitive connects Polaris' three engines, and why every conversion strengthens the protocol.
-
-Relevant app/search vocabulary: POLAR, convert, lock, vePOLAR, burn pETH, conversion auction.
-
----
-
-## POLAR Token
-
-URL: https://tokenbrice.github.io/polaris-docs/polar/polar-token
-
-# POLAR Token
-
-POLAR is Polaris's stewardship token and the protocol's **growth lever**. It earns that role through one deliberate constraint: after the initial distribution, new POLAR is intended to be minted only by burning pETH in a [conversion auction](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions).
-
-App anchors: **Earn** for current POLAR Staking where exposed, and **Advanced** or a conversion panel for pETH -> POLAR conversion actions.
-
-## Why a third token
-
-Polaris runs on three engines: pETH, the pAssets, and POLAR. The first two handle everything the protocol *needs* to function: pETH backs the CDPs, the Stability Pool generates yield, interest rates self-adjust, and liquidations process autonomously. **Polaris works without POLAR.**
-
-So why add a third token? Because functioning and scaling differ. The design splits along an **inward- vs. outward-facing** logic:
-
-Function | Handled by | Examples
-
-**Inward-facing** — sustain the core | pETH + pAssets | interest rates, floor growth, Stability Pool incentivization, liquidations
-**Outward-facing** — grow the ecosystem | POLAR | external DEX liquidity, Flow onboarding, [StablecoinOS](https://tokenbrice.github.io/polaris-docs/core-concepts) coordination
-
-POLAR is deliberately separated from the core so the core's sustainability never depends on it. If POLAR incentives dried up tomorrow, pUSD would still mint, the bonding curve would still function, and the Stability Pool would still pay yield. The base protocol does not need POLAR to survive, but it scales far better with it.
-
-## Minted only by burning pETH
-
-There is no team mint function and no inflation schedule disconnected from protocol activity. Every POLAR entering circulation after the initial distribution is intended to require a pETH burn through the [conversion auction](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions).
-
-This is the point: POLAR's issuance is welded to the **most protocol-synergetic action possible**. Burning pETH simultaneously:
-
-- **Raises the [floor price](https://tokenbrice.github.io/polaris-docs/peth/floor-price)** under the curve assumptions, by contracting pETH supply.
-- **Releases ETH** from the bonding curve reserve, which becomes pETH yield routed through the [Fee Router](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router).
-- **Mints the token** that funds ecosystem growth.
-
-> **Note:**
-> Most conversions are executed by arbitrage bots and MEV searchers, not by hand. POLAR issuance therefore tracks real arbitrage activity, not a calendar.
-
-## Productive dilution
-
-Every token emission is dilutive. We will not pretend otherwise — minting new POLAR shrinks existing holders' share of supply. That is a real cost.
-
-The difference is what the dilution *buys*. Each conversion that dilutes POLAR holders also burns pETH, raises the floor, and releases ETH yield. **Every unit of POLAR dilution corresponds to a concrete improvement in protocol fundamentals.** This differs structurally from emission models like CRV, where inflation is disconnected from any protocol benefit.
-
-Conversion uses three stewarded parameters: the reserve rebate (bounded to 0–100%), the price-decay half-life, and the supply-inflation spike sensitivity. Issuance is self-limiting: [spike-and-decay pricing](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions#spike-and-decay-pricing) makes large or rapid minting throttle itself, so issuance tracks real arbitrage demand. A hardcoded issuance cap and an explicit disable switch are not yet enforced in the current prototype; final parameter bounds await audited deployment.
-
-For the founding team this means progressive dilution by structure, not by a forum promise: the faster Polaris grows, the more attractive conversions become, and the more the team's initial share dilutes.
-
-## POLAR Staking and future vePOLAR
-
-POLAR on its own is a token. **POLAR Staking** and **[vePOLAR](https://tokenbrice.github.io/polaris-docs/stewardship/vepolar)** are different ways the token can be put to work:
-
-- **POLAR Staking** is the current app staking surface where a deployment exposes stake, unstake, and claim actions for routed rewards.
-- **vePOLAR locking** is forthcoming. When deployed, locking POLAR as vePOLAR is intended to grant yield from a stewarded share of borrowing interest and [stewardship](https://tokenbrice.github.io/polaris-docs/stewardship/stewardship) power over bounded parameters.
-
-The intended loop is self-reinforcing: more conversions ⇒ higher floor + more ETH yield + more potential POLAR supply ⇒ more reason to stake or, once live, lock as vePOLAR ⇒ more stewardship participation.
-
----
-
-POLAR exists because burning pETH to mint it is the most protocol-synergetic action possible. The token is not a claim on a treasury or a vote in an unbounded DAO — it is a claim on a flywheel whose every turn strengthens the collateral beneath it.
+The conversion auction answers "why does POLAR exist?" with a mechanism rather than a promise: POLAR exists because burning pETH to mint it is the most protocol-synergetic action possible. The [bonding curve](https://tokenbrice.github.io/polaris-docs/peth/bonding-curve) makes pETH work; the CDP makes pAssets work; the conversion auction makes them work together.
 
 [Burn pETH, Mint POLAR: The Conversion Mechanism](https://polarisfinance.io/blog/burn-pETH-mint-POLAR/)
 How a single primitive connects Polaris' three engines, and why every conversion strengthens the protocol.
@@ -277,7 +193,7 @@ URL: https://tokenbrice.github.io/polaris-docs/polar/tokenomics
 
 # POLAR Tokenomics
 
-This page consolidates POLAR's economics. Each piece has its own page; here they sit side by side. For the reasoning behind the token, read [The POLAR Token](https://tokenbrice.github.io/polaris-docs/polar/polar-token); for the issuance mechanism, [Conversion Auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions).
+This page consolidates POLAR's economics. Each piece has its own page; here they sit side by side. For the reasoning behind the token, read [The POLAR Token](https://tokenbrice.github.io/polaris-docs/polar); for the issuance mechanism, [Conversion Auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions).
 
 > **Current status:** POLAR's total supply, distribution schedule, and vesting terms are pending and will be published at launch. This page describes the *structure* of POLAR's economics, fixed by design, not the final numbers, which are forthcoming. Treat any figure not stated here as not yet finalized.
 
@@ -316,7 +232,7 @@ Destination | What they receive
 **Troves** | pETH yield from the Fee Router, credited pro-rata to recorded debt
 **POLAR stakers** | A stewarded share of protocol interest, in pAsset terms where the staking surface is live
 **vePOLAR lockers** | Forthcoming stewardship and yield path after audited locking deployment
-**Flow recipients** | Revenue-sharing for whitelisted contracts via [Flows](https://tokenbrice.github.io/polaris-docs/stewardship/flows) (forthcoming)
+**Flow recipients** | Revenue-sharing for whitelisted contracts via [Flows](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router) (forthcoming)
 
 Inputs are hard assets from protocol activity (conversions and bonding-curve swap fees), not emitted POLAR. The Fee Router buffers this pETH and pushes it to a stewardship-chosen receiver, today the troves; the bounded split with hardcoded floors that funds stakers and the ecosystem applies to the separate pAsset primary-interest stream. Exact destination splits, production staking terms, and vePOLAR locking terms are pending audited deployment.
 
@@ -326,7 +242,7 @@ The structure deliberately omits the usual extraction surfaces:
 
 - **No gauges.** Stewardship cannot create POLAR emissions gauges.
 - **No bribes.** No vote-buying markets are routed through the protocol.
-- **No emissions.** Ecosystem incentives flow through [Flows](https://tokenbrice.github.io/polaris-docs/stewardship/flows) as hard-asset revenue sharing, funded by protocol revenue, not token emissions.
+- **No emissions.** Ecosystem incentives flow through [Flows](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router) as hard-asset revenue sharing, funded by protocol revenue, not token emissions.
 - **No planned mint outside conversion.** Final deployment is intended to mint POLAR only through pETH conversion.
 
 ## The Polar Council

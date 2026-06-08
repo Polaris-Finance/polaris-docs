@@ -57,7 +57,7 @@ A trove is a living position. After you [open it](https://tokenbrice.github.io/p
 
 Trove management is testnet-actionable only on Sepolia with test assets and current manifests. Production management is not mainnet-actionable until Polaris Launch Status publishes the official app, production addresses, final parameters, and audit status. Use live app and contract values over examples on this page.
 
-<strong>Terminology:</strong> This page covers pAsset troves/CDPs shown under Borrow. It does not cover reserve loans, which borrow WETH against fpETH.
+<strong>Scope:</strong> this page covers pAsset troves/CDPs (shown under <strong>Borrow</strong>), not reserve loans. For the full vocabulary, see [Borrower terminology](https://tokenbrice.github.io/polaris-docs/minting/minting-passets#borrower-terminology).
 
 ## Individual Collateralization Ratio (ICR)
 
@@ -73,19 +73,6 @@ Collateral value comes from the protocol's collateral pricing path. Debt value i
 Your ICR moves on its own as ETH's price moves — you need not touch the trove for it to drift. Managing the trove is mostly about keeping the ICR where you want it.
 
 ## Trove Health Simulator
-
-## Before you sign
-
-Before adjusting a trove, check:
-
-- Official app URL, network, and trove-manager contract.
-- Whether the action adds collateral, withdraws collateral, mints more debt, repays debt, or closes.
-- Current ICR and projected ICR after the transaction.
-- Recovery Mode status, minimum ICR, accrued interest, and borrow APR.
-- Redemption exposure after the adjustment.
-- Whether you have enough pAsset to repay, including accrued interest and rounding.
-- DEX or bonding-curve slippage if you buy pAsset or pETH before signing.
-- Token approvals, gas, simulation result, and quote freshness.
 
 Minting more or withdrawing collateral lowers your ICR. Drop below the minimum and your trove is liquidated automatically: your collateral covers the debt plus a liquidation penalty, with no margin call, and only the surplus is returned for you to claim. Redemptions can also reach your position while it is still solvent — there is no minimum ICR to cross — shrinking your collateral and pETH exposure proportionally without your consent. See the Risk Disclosure.
 
@@ -234,27 +221,12 @@ App anchor: **Borrow** tab -> pAsset trove flow. If the app says CDP, it is refe
 
 This flow is testnet-actionable only on Sepolia (<code>11155111</code>) using the current Public Testnet 1 manifests. Production troves are not mainnet-actionable until Polaris Launch Status publishes the official app, production addresses, final parameters, and audit status. Screenshots and exact UI labels are forthcoming; the steps below describe the flow, not the final button copy.
 
-<strong>Terminology:</strong> In the app, <strong>Borrow</strong> is the tab/action, <strong>CDP</strong> is the contract model, and <strong>trove</strong> is the individual pAsset debt position. A <strong>reserve loan</strong> is different: it borrows WETH against fpETH, not pAssets against pETH.
+For the full **Borrow / CDP / trove / reserve loan** vocabulary — including why a reserve loan is not a pAsset trove — see [Borrower terminology](https://tokenbrice.github.io/polaris-docs/minting/minting-passets#borrower-terminology).
 
 ## Before you start
 
 - A wallet with the right asset for the environment: **Sepolia ETH** for Public Testnet 1 or **ETH on Ethereum mainnet** after production launch.
 - A target pAsset in mind — see [the catalog](https://tokenbrice.github.io/polaris-docs/minting/passet-catalog).
-
-## Before you sign
-
-Opening a trove creates debt. Before signing, check:
-
-- Official app URL, network, and trove-manager contract.
-- Collateral token and amount: pETH only.
-- pAsset and debt amount: pUSD, pGOLD, or another listed pAsset.
-- Resulting ICR, minimum ICR, Recovery Mode status, and liquidation threshold.
-- Current borrow APR, accrued-interest behavior, and projected debt.
-- Redemption exposure: below-peg redemptions reduce every open trove pro-rata.
-- Bonding-curve fee, swap slippage, MEV exposure, and quote freshness if you acquire pETH in the same session.
-- Token approvals, spender address, and transaction simulation result.
-
-Launch parameters are still pending, so use the live app values rather than this guide's examples.
 
 ## Pre-launch parameter status
 

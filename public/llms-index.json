@@ -20,26 +20,6 @@
       "lastVerified": null
     },
     {
-      "route": "/advanced",
-      "url": "https://tokenbrice.github.io/polaris-docs/advanced",
-      "section": "Overview",
-      "title": "Polaris Advanced",
-      "description": "Shortcut page for the Polaris Advanced app label, covering manual approvals, PSM actions, reserve loans, and staking controls.",
-      "keywords": [],
-      "updated": null,
-      "lastVerified": null
-    },
-    {
-      "route": "/borrow",
-      "url": "https://tokenbrice.github.io/polaris-docs/borrow",
-      "section": "Overview",
-      "title": "Borrow with Polaris",
-      "description": "Shortcut page for the Polaris Borrow app label, covering pAsset troves, reserve loans, and borrower safety checks.",
-      "keywords": [],
-      "updated": null,
-      "lastVerified": null
-    },
-    {
       "route": "/changelog",
       "url": "https://tokenbrice.github.io/polaris-docs/changelog",
       "section": "Overview",
@@ -55,56 +35,6 @@
       "section": "Overview",
       "title": "Polaris Core Concepts",
       "description": "A one-page map of the Polaris system, with every key term defined briefly and linked to its full explanation.",
-      "keywords": [],
-      "updated": null,
-      "lastVerified": null
-    },
-    {
-      "route": "/earn",
-      "url": "https://tokenbrice.github.io/polaris-docs/earn",
-      "section": "Overview",
-      "title": "Earn with Polaris",
-      "description": "Shortcut page for the Polaris Earn app label, covering Stability Pool deposits, POLAR Staking, and yield-risk checks.",
-      "keywords": [],
-      "updated": null,
-      "lastVerified": null
-    },
-    {
-      "route": "/explainers",
-      "url": "https://tokenbrice.github.io/polaris-docs/explainers",
-      "section": "Explainers",
-      "title": "Polaris Timed Explainers",
-      "description": "Short, medium, and complete Polaris explainers that introduce pETH, pAssets, POLAR, and the protocol flywheel.",
-      "keywords": [],
-      "updated": null,
-      "lastVerified": null
-    },
-    {
-      "route": "/explainers/10-min",
-      "url": "https://tokenbrice.github.io/polaris-docs/explainers/10-min",
-      "section": "Explainers",
-      "title": "Polaris 10-Minute Introduction",
-      "description": "The complete Polaris system from first principles — the problem, the mechanics, and the flywheel.",
-      "keywords": [],
-      "updated": null,
-      "lastVerified": null
-    },
-    {
-      "route": "/explainers/2-min",
-      "url": "https://tokenbrice.github.io/polaris-docs/explainers/2-min",
-      "section": "Explainers",
-      "title": "Polaris 2-Minute Overview",
-      "description": "What Polaris is, in one sitting.",
-      "keywords": [],
-      "updated": null,
-      "lastVerified": null
-    },
-    {
-      "route": "/explainers/5-min",
-      "url": "https://tokenbrice.github.io/polaris-docs/explainers/5-min",
-      "section": "Explainers",
-      "title": "Polaris 5-Minute Presentation",
-      "description": "The three engines and the flywheel — a complete picture of Polaris.",
       "keywords": [],
       "updated": null,
       "lastVerified": null
@@ -127,16 +57,6 @@
         "earn",
         "swap"
       ],
-      "updated": null,
-      "lastVerified": null
-    },
-    {
-      "route": "/guide",
-      "url": "https://tokenbrice.github.io/polaris-docs/guide",
-      "section": "Overview",
-      "title": "Polaris Guide",
-      "description": "Shortcut page for the Polaris Guide app label, routing users from goals to the matching docs pages.",
-      "keywords": [],
       "updated": null,
       "lastVerified": null
     },
@@ -260,77 +180,12 @@
       "lastVerified": null
     },
     {
-      "route": "/paths/borrow-passets",
-      "url": "https://tokenbrice.github.io/polaris-docs/paths/borrow-passets",
-      "section": "Choose Your Path",
-      "title": "Borrow Polaris pAssets",
-      "description": "The borrower path for using Polaris: get pETH, open a trove, mint a pAsset, manage collateralization, and verify launch status before interacting.",
-      "keywords": [
-        "Borrow",
-        "borrow",
-        "mint",
-        "open trove",
-        "pUSD",
-        "pGOLD",
-        "ICR",
-        "official app"
-      ],
-      "updated": null,
-      "lastVerified": null
-    },
-    {
-      "route": "/paths/convert-lock-polar",
-      "url": "https://tokenbrice.github.io/polaris-docs/paths/convert-lock-polar",
-      "section": "Choose Your Path",
-      "title": "Convert, Stake, and Future-Lock POLAR",
-      "description": "The POLAR path for conversion, current POLAR Staking, forthcoming vePOLAR locking, bounded stewardship, and launch status.",
-      "keywords": [],
-      "updated": null,
-      "lastVerified": null
-    },
-    {
       "route": "/paths/develop",
       "url": "https://tokenbrice.github.io/polaris-docs/paths/develop",
       "section": "Choose Your Path",
       "title": "Develop on Polaris",
       "description": "The developer path for integrating with Polaris before launch artifacts are published.",
       "keywords": [],
-      "updated": null,
-      "lastVerified": null
-    },
-    {
-      "route": "/paths/earn-yield",
-      "url": "https://tokenbrice.github.io/polaris-docs/paths/earn-yield",
-      "section": "Choose Your Path",
-      "title": "Earn Yield on Polaris",
-      "description": "The yield path for Polaris users: Stability Pool deposits, pETH yield sources, Fee Router distribution, and launch-time verification.",
-      "keywords": [
-        "Earn",
-        "earn",
-        "yield",
-        "APR",
-        "Stability Pool",
-        "deposit",
-        "claim rewards"
-      ],
-      "updated": null,
-      "lastVerified": null
-    },
-    {
-      "route": "/paths/hold-use-peth",
-      "url": "https://tokenbrice.github.io/polaris-docs/paths/hold-use-peth",
-      "section": "Choose Your Path",
-      "title": "Hold or Use Polaris pETH",
-      "description": "The pETH path for users who want exposure to the bonding curve, a rising floor, external collateral use, or Polaris trove collateral.",
-      "keywords": [
-        "Swap",
-        "swap",
-        "Split",
-        "fpETH",
-        "vpETH",
-        "pETH",
-        "floor price"
-      ],
       "updated": null,
       "lastVerified": null
     },
@@ -411,8 +266,8 @@
       "route": "/polar",
       "url": "https://tokenbrice.github.io/polaris-docs/polar",
       "section": "POLAR & Conversion",
-      "title": "Polaris POLAR, Staking, and Conversion",
-      "description": "The POLAR hub for tokenomics, current staking, pETH-to-POLAR conversion auctions, and forthcoming vePOLAR locking.",
+      "title": "POLAR Token, Staking, and Conversion",
+      "description": "Why POLAR exists, how it is minted only by burning pETH, why its dilution is productive, and how staking and conversion fit together.",
       "keywords": [],
       "updated": null,
       "lastVerified": null
@@ -423,40 +278,6 @@
       "section": "POLAR & Conversion",
       "title": "POLAR Conversion Auctions",
       "description": "The conversion auction bridges pETH and POLAR — a spike-and-decay auction where burning pETH mints POLAR, raises the floor price, and releases ETH yield.",
-      "keywords": [
-        "POLAR",
-        "convert",
-        "lock",
-        "vePOLAR",
-        "burn pETH",
-        "conversion auction"
-      ],
-      "updated": null,
-      "lastVerified": null
-    },
-    {
-      "route": "/polar/participate-in-conversion",
-      "url": "https://tokenbrice.github.io/polaris-docs/polar/participate-in-conversion",
-      "section": "POLAR & Conversion",
-      "title": "Participate in a POLAR Conversion",
-      "description": "Step-by-step guide to executing a conversion: watch the decaying price, decide when it beats POLAR's market price, then burn pETH for POLAR and any ETH rebate.",
-      "keywords": [
-        "POLAR",
-        "convert",
-        "lock",
-        "vePOLAR",
-        "burn pETH",
-        "conversion auction"
-      ],
-      "updated": null,
-      "lastVerified": null
-    },
-    {
-      "route": "/polar/polar-token",
-      "url": "https://tokenbrice.github.io/polaris-docs/polar/polar-token",
-      "section": "POLAR & Conversion",
-      "title": "POLAR Token",
-      "description": "Why POLAR exists, how it is minted only by burning pETH, and why its dilution is productive — every unit improves the protocol's fundamentals.",
       "keywords": [
         "POLAR",
         "convert",
@@ -650,16 +471,6 @@
       "lastVerified": "2026-06-08"
     },
     {
-      "route": "/split",
-      "url": "https://tokenbrice.github.io/polaris-docs/split",
-      "section": "Overview",
-      "title": "Split pETH in Polaris",
-      "description": "Shortcut page for the Polaris Split app label, covering fpETH, vpETH, merge behavior, and reserve-loan checks.",
-      "keywords": [],
-      "updated": null,
-      "lastVerified": null
-    },
-    {
       "route": "/stewardship",
       "url": "https://tokenbrice.github.io/polaris-docs/stewardship",
       "section": "Stewardship",
@@ -673,18 +484,8 @@
       "route": "/stewardship/fee-router",
       "url": "https://tokenbrice.github.io/polaris-docs/stewardship/fee-router",
       "section": "Stewardship",
-      "title": "Polaris Fee Router",
-      "description": "Polaris's yield plumbing: the Fee Router buffers protocol revenue and routes pETH yield to troves, POLAR stakers, and Flow recipients under bounded rules.",
-      "keywords": [],
-      "updated": null,
-      "lastVerified": null
-    },
-    {
-      "route": "/stewardship/flows",
-      "url": "https://tokenbrice.github.io/polaris-docs/stewardship/flows",
-      "section": "Stewardship",
-      "title": "Polaris Flows",
-      "description": "Flows distribute protocol revenue to contracts building on Polaris: hard-asset revenue sharing by formula, with no gauges, no bribes, and no emissions.",
+      "title": "Fee Router & Flows",
+      "description": "Polaris revenue routing: the Fee Router buffers protocol yield to troves and stakers, while Flows share hard-asset revenue with contracts building on Polaris.",
       "keywords": [],
       "updated": null,
       "lastVerified": null
@@ -710,16 +511,6 @@
       "lastVerified": null
     },
     {
-      "route": "/swap",
-      "url": "https://tokenbrice.github.io/polaris-docs/swap",
-      "section": "Overview",
-      "title": "Swap in Polaris",
-      "description": "Shortcut page for the Polaris Swap app label, covering WETH, pETH, pAssets, quotes, and slippage checks.",
-      "keywords": [],
-      "updated": null,
-      "lastVerified": null
-    },
-    {
       "route": "/using-app",
       "url": "https://tokenbrice.github.io/polaris-docs/using-app",
       "section": "using-app",
@@ -740,16 +531,6 @@
       "lastVerified": null
     },
     {
-      "route": "/using-app/analytics",
-      "url": "https://tokenbrice.github.io/polaris-docs/using-app/analytics",
-      "section": "using-app",
-      "title": "Analytics",
-      "description": "How to read Polaris Analytics metrics such as floor ratio, borrow APR, pool size, rates, and system health.",
-      "keywords": [],
-      "updated": null,
-      "lastVerified": null
-    },
-    {
       "route": "/using-app/borrow",
       "url": "https://tokenbrice.github.io/polaris-docs/using-app/borrow",
       "section": "using-app",
@@ -763,8 +544,8 @@
       "route": "/using-app/dashboard",
       "url": "https://tokenbrice.github.io/polaris-docs/using-app/dashboard",
       "section": "using-app",
-      "title": "Dashboard",
-      "description": "How to read the Polaris app Dashboard: balances, positions, rewards, system status, and next actions.",
+      "title": "Dashboard & Analytics",
+      "description": "How to read the Polaris app Dashboard and Analytics: balances, positions, rewards, system status, protocol-wide metrics, and next actions.",
       "keywords": [],
       "updated": null,
       "lastVerified": null
@@ -775,16 +556,6 @@
       "section": "using-app",
       "title": "Earn",
       "description": "How the Polaris Earn tab maps to Stability Pool deposits, POLAR Staking, rewards, and first-loss risk.",
-      "keywords": [],
-      "updated": null,
-      "lastVerified": null
-    },
-    {
-      "route": "/using-app/guide",
-      "url": "https://tokenbrice.github.io/polaris-docs/using-app/guide",
-      "section": "using-app",
-      "title": "Guide",
-      "description": "How to use the Polaris Guide tab to choose a task path and find the matching docs for borrowing, earning, splitting, and safety.",
       "keywords": [],
       "updated": null,
       "lastVerified": null
@@ -840,24 +611,6 @@
       "lastVerified": null
     },
     {
-      "route": "/yield/deposit-to-stability-pool",
-      "url": "https://tokenbrice.github.io/polaris-docs/yield/deposit-to-stability-pool",
-      "section": "Earning Yield",
-      "title": "Deposit to the Polaris Stability Pool",
-      "description": "Step-by-step instructions to deposit a pAsset into the Stability Pool, claim rewards, and withdraw.",
-      "keywords": [
-        "Earn",
-        "earn",
-        "yield",
-        "APR",
-        "Stability Pool",
-        "deposit",
-        "claim rewards"
-      ],
-      "updated": null,
-      "lastVerified": null
-    },
-    {
       "route": "/yield/stability-pool",
       "url": "https://tokenbrice.github.io/polaris-docs/yield/stability-pool",
       "section": "Earning Yield",
@@ -890,16 +643,6 @@
         "deposit",
         "claim rewards"
       ],
-      "updated": null,
-      "lastVerified": null
-    },
-    {
-      "route": "/zap",
-      "url": "https://tokenbrice.github.io/polaris-docs/zap",
-      "section": "Overview",
-      "title": "Zap in Polaris",
-      "description": "Shortcut page for the Polaris Zap app label, covering bundled WETH to pAsset to Stability Pool flows.",
-      "keywords": [],
       "updated": null,
       "lastVerified": null
     }
