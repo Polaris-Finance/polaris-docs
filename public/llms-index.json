@@ -81,7 +81,7 @@
       "url": "https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove",
       "section": "Understand Polaris",
       "title": "Managing a Polaris Trove",
-      "description": "Manage a Polaris trove around its Individual Collateralization Ratio (ICR) — add collateral, mint or repay debt, track interest, and close out cleanly.",
+      "description": "Manage a Polaris trove around its loan-to-value (LTV) — add collateral, mint or repay debt, track interest, and close out cleanly.",
       "keywords": [
         "Borrow",
         "Manage Trove",
@@ -92,7 +92,8 @@
         "close trove",
         "pUSD",
         "pGOLD",
-        "ICR",
+        "LTV",
+        "loan-to-value",
         "official app"
       ],
       "updated": null,
@@ -114,7 +115,8 @@
         "close trove",
         "pUSD",
         "pGOLD",
-        "ICR",
+        "LTV",
+        "loan-to-value",
         "official app"
       ],
       "updated": null,
@@ -269,7 +271,7 @@
       "url": "https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations",
       "section": "Understand Polaris",
       "title": "Polaris Liquidations",
-      "description": "A trove below its minimum collateralization ratio is liquidated to keep the pAsset backed. The Stability Pool absorbs the debt, or it redistributes to troves.",
+      "description": "A trove above its maximum LTV is liquidated to keep the pAsset backed. The Stability Pool absorbs the debt, or it redistributes to troves.",
       "keywords": [],
       "updated": null,
       "lastVerified": null
@@ -551,7 +553,8 @@
         "close trove",
         "pUSD",
         "pGOLD",
-        "ICR",
+        "LTV",
+        "loan-to-value",
         "official app"
       ],
       "updated": null,
@@ -591,7 +594,8 @@
         "close trove",
         "pUSD",
         "pGOLD",
-        "ICR",
+        "LTV",
+        "loan-to-value",
         "official app"
       ],
       "updated": null,

@@ -25,6 +25,7 @@ Earn / SP | [Stability Pool](https://tokenbrice.github.io/polaris-docs/resources
 Floor Carry | [Floor Carry](https://tokenbrice.github.io/polaris-docs/resources#f) | [Split](https://tokenbrice.github.io/polaris-docs/using-app/split)
 fpETH / vpETH | [fpETH](https://tokenbrice.github.io/polaris-docs/resources#f), [vpETH](https://tokenbrice.github.io/polaris-docs/resources#v) | [Split](https://tokenbrice.github.io/polaris-docs/using-app/split)
 Guide | [Guide](https://tokenbrice.github.io/polaris-docs/resources#g) | [Polaris App](https://tokenbrice.github.io/polaris-docs/using-app)
+LTV | [LTV](https://tokenbrice.github.io/polaris-docs/resources#l) | [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove)
 POLAR Staking | [POLAR Staking](https://tokenbrice.github.io/polaris-docs/resources#p) | [POLAR token](https://tokenbrice.github.io/polaris-docs/polar)
 PSM / Redemption | [PSM](https://tokenbrice.github.io/polaris-docs/resources#p), [Redemption](https://tokenbrice.github.io/polaris-docs/resources#r) | [Advanced](https://tokenbrice.github.io/polaris-docs/using-app/advanced)
 Reserve Loan | [Reserve Loan](https://tokenbrice.github.io/polaris-docs/resources#r) | [Advanced](https://tokenbrice.github.io/polaris-docs/using-app/advanced)
@@ -88,15 +89,18 @@ The app area that routes users by goal, such as getting pETH, borrowing pAssets,
 ## I
 
 **ICR (Individual Collateralization Ratio)**
-The collateralization ratio of a single [trove](https://tokenbrice.github.io/polaris-docs/resources#t): the value of its pETH collateral divided by its pAsset debt. If a trove's ICR falls below the minimum, it can be [liquidated](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations).
+The protocol-side inverse of [LTV](https://tokenbrice.github.io/polaris-docs/resources#l): pETH collateral value divided by pAsset debt. The app shows LTV; if ICR falls below the minimum, the equivalent LTV has crossed the maximum and the trove can be [liquidated](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations).
 
 **Inward-facing / Outward-facing**
 The design split between core mechanics handled by pETH/pAssets and ecosystem growth handled by [POLAR](https://tokenbrice.github.io/polaris-docs/polar).
 
 ## L
 
+**LTV (loan-to-value)**
+The app-facing health metric for a [trove](https://tokenbrice.github.io/polaris-docs/resources#t): pAsset debt divided by pETH collateral value. Lower LTV is safer; if LTV exceeds the maximum, the trove can be [liquidated](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations).
+
 **Liquidation**
-The process that closes an undercollateralized [trove](https://tokenbrice.github.io/polaris-docs/resources#t): when its [ICR](https://tokenbrice.github.io/polaris-docs/resources#i) drops below the minimum, the [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield) absorbs its debt and receives its collateral — or, if the pool is too small, the debt and collateral redistribute to other troves. See [Liquidations](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations).
+The process that closes an undercollateralized [trove](https://tokenbrice.github.io/polaris-docs/resources#t): when its [LTV](https://tokenbrice.github.io/polaris-docs/resources#l) exceeds the maximum, the [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield) absorbs its debt and receives its collateral — or, if the pool is too small, the debt and collateral redistribute to other troves. See [Liquidations](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations).
 
 ## M
 
@@ -186,7 +190,7 @@ The bounded role stewards play: tuning *quantitative parameters within the bound
 The system-wide reserve-to-debt health metric for a pAsset. Dropping below the configured threshold triggers [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode).
 
 **Trove**
-An individual borrowing position in a Polaris CDP. Each trove is isolated, with its own collateral, debt, and [ICR](https://tokenbrice.github.io/polaris-docs/resources#i). Polaris uses *trove*, never "vault" or "position". See [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting).
+An individual borrowing position in a Polaris CDP. Each trove is isolated, with its own collateral, debt, and [LTV](https://tokenbrice.github.io/polaris-docs/resources#l). Polaris uses *trove*, never "vault" or "position". See [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting).
 
 ## V
 
@@ -499,9 +503,9 @@ Use [Safety & Verification](https://tokenbrice.github.io/polaris-docs/resources/
 
 Yes. Polaris involves smart-contract risk, collateral price risk, liquidation risk, Stability Pool first-loss risk, MEV risk, oracle risk, and frontend/phishing risk. Read [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure).
 
-### What is ICR?
+### What is LTV?
 
-ICR is Individual Collateralization Ratio: the health ratio of a single trove. See the [Glossary](https://tokenbrice.github.io/polaris-docs/resources) and [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove).
+LTV is loan-to-value: your trove's debt divided by its collateral value. Lower LTV is safer. Protocol parameters may also show the inverse ratio, ICR or MCR; for example, 150% ICR equals 66.7% LTV. See the [Glossary](https://tokenbrice.github.io/polaris-docs/resources) and [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove).
 
 ### What is TCR or Emergency Mode?
 
@@ -563,6 +567,8 @@ Redemption alpha | `1e18` | `1e18` | Deploy script
 Mint minute decay factor | `998076443575628800` | `998076443575628800` | Deploy script
 Redemption minute decay factor | `998076443575628800` | `998076443575628800` | Deploy script
 
+The app may display the inverse borrower metric, **max LTV**. Public Testnet 1's 115% MCR is about 87.0% max LTV; the 150% Emergency Mode action MCR is about 66.7% max LTV.
+
 ## How to use this page
 
 - Use the app quote and live contract reads before signing any transaction.
@@ -617,9 +623,9 @@ Because both pay arbitrageurs the moment the peg slips, they activate without an
 
 ## Liquidation risk (borrowers)
 
-If your [trove](https://tokenbrice.github.io/polaris-docs/minting)'s [Individual Collateralization Ratio (ICR)](https://tokenbrice.github.io/polaris-docs/resources) falls below the minimum, the trove is [liquidated](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations): you lose your collateral to cover the debt.
+If your [trove](https://tokenbrice.github.io/polaris-docs/minting)'s loan-to-value (LTV) rises above the maximum, the trove is [liquidated](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations): you lose your collateral to cover the debt. Protocol parameters may publish the inverse threshold as a minimum collateral ratio (MCR).
 
-**Mitigation.** Liquidation logic is transparent and auditable onchain, with no discretionary calls. You control your ICR: post more collateral, or repay debt, to stay clear of the threshold. pETH's rising floor and yield-bearing nature dampen, but do not remove, the volatility that causes liquidations. Monitor your trove actively, especially in volatile markets.
+**Mitigation.** Liquidation logic is transparent and auditable onchain, with no discretionary calls. You control your LTV: post more collateral, or repay debt, to stay clear of the threshold. pETH's rising floor and yield-bearing nature dampen, but do not remove, the volatility that causes liquidations. Monitor your trove actively, especially in volatile markets.
 
 ## Stability Pool first-loss risk (depositors)
 
@@ -631,7 +637,7 @@ Depositing pAssets into the [Stability Pool](https://tokenbrice.github.io/polari
 
 When the system-wide reserve backing relative to total debt (the [reserve-to-debt ratio, shown as the TCR](https://tokenbrice.github.io/polaris-docs/resources)) drops below a threshold, the protocol enters [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode), a defensive state with tighter requirements.
 
-**Mitigation.** Recovery Mode is a feature, not a failure: it raises the bar for the whole system to rebuild collateralization quickly. Borrowers bear the cost: in Recovery Mode you cannot withdraw collateral or take on more debt unless you clear a higher minimum ratio and do not lower your ICR (pure collateral top-ups and repayments stay allowed). Liquidation eligibility itself does not change; it stays at the normal minimum in every mode. Keep your ICR comfortably above the minimum so a stress event does not box in your ability to act.
+**Mitigation.** Recovery Mode is a feature, not a failure: it raises the bar for the whole system to rebuild collateralization quickly. Borrowers bear the cost: in Recovery Mode you cannot withdraw collateral or take on more debt unless you stay below the stricter recovery max LTV and do not increase your LTV (pure collateral top-ups and repayments stay allowed). Liquidation eligibility itself does not change; it stays at the normal max LTV in every mode. Keep your LTV comfortably below the maximum so a stress event does not box in your ability to act.
 
 ## Stewardship and economic risk
 

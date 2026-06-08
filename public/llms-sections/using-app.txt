@@ -118,7 +118,7 @@ URL: https://tokenbrice.github.io/polaris-docs/using-app/borrow
 
 Borrow is where you create collateralized positions. For pAssets, this means depositing pETH collateral and minting debt through a trove/CDP flow. Where exposed, Borrow may also include reserve-loan actions against fpETH.
 
-Image: Polaris Borrow tab showing a pAsset trove form with collateral amount, debt amount, collateral ratio, and risk details
+Image: Polaris Borrow tab showing a pAsset trove form with collateral amount, debt amount, LTV, and risk details
 
 *Borrow surfaces the position inputs and health checks before a trove action is signed.*
 
@@ -133,7 +133,7 @@ Image: Polaris Borrow tab showing a pAsset trove form with collateral amount, de
 
 1. Choose the borrow asset or position type.
 2. Enter collateral and debt amounts.
-3. Review collateral ratio, liquidation exposure, debt, fees, and projected position health.
+3. Review LTV, liquidation exposure, debt, fees, and projected position health.
 4. Approve collateral if required.
 5. Sign the borrow transaction.
 6. Return to Dashboard and confirm debt, collateral, and health updated.
@@ -142,7 +142,7 @@ A borrow action worked when the position appears with the expected collateral, d
 
 ## Common failures
 
-- Collateral ratio is below the allowed threshold.
+- LTV exceeds the allowed threshold.
 - Debt amount is too small or too large for the current position.
 - Recovery Mode or system restrictions block the action.
 - Price movement changes projected health before inclusion.
@@ -159,7 +159,7 @@ Borrowing creates liquidation and redemption exposure. Keep protocol explanation
 - Use [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap) to acquire or rebalance assets.
 - Use [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn) if you want to deposit pAssets into the Stability Pool.
 
-Relevant app/search vocabulary: Borrow, Manage Trove, borrow, mint, open trove, repay, close trove, pUSD, pGOLD, ICR, official app.
+Relevant app/search vocabulary: Borrow, Manage Trove, borrow, mint, open trove, repay, close trove, pUSD, pGOLD, LTV, loan-to-value, official app.
 
 ---
 
@@ -233,17 +233,17 @@ Manage Trove is the ongoing maintenance flow for an existing pAsset debt positio
 
 - Start from [Dashboard & Analytics](https://tokenbrice.github.io/polaris-docs/using-app) and verify the current app/network first.
 - Connect the wallet that owns the trove.
-- Check the current ICR, debt, collateral, borrow rate, and Recovery Mode state.
+- Check the current LTV, debt, collateral, borrow rate, and Recovery Mode state.
 - Use [Parameters](https://tokenbrice.github.io/polaris-docs/resources/parameters) for current thresholds and [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove) for mechanics.
 
 ## Steps/checks
 
 1. Open the existing trove from Dashboard or Borrow.
 2. Choose the action: add collateral, mint more, repay, withdraw collateral, or close.
-3. Review the resulting ICR and whether the action increases or reduces risk.
+3. Review the resulting LTV and whether the action increases or reduces risk.
 4. Confirm allowances if the action spends pETH or pAssets.
 5. Sign the transaction.
-6. Return to Dashboard and confirm collateral, debt, and ICR updated.
+6. Return to Dashboard and confirm collateral, debt, and LTV updated.
 
 The action worked when the trove state matches the intended collateral and debt change.
 
@@ -251,14 +251,14 @@ The action worked when the trove state matches the intended collateral and debt 
 
 - The connected wallet does not own the trove.
 - Repay amount exceeds your pAsset balance.
-- Withdraw or mint would take ICR below the required threshold.
+- Withdraw or mint would push LTV above the required threshold.
 - Recovery Mode blocks risk-increasing actions.
 - Interest accrued between quote and inclusion.
 - A redemption changed the trove before your transaction landed.
 
 ## Risks/links
 
-A healthy ICR protects against liquidation, not against proportional redemptions. Use [Redemptions](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations), [Liquidations](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations), [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode), and [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure) for the risk model.
+A low LTV protects against liquidation, not against proportional redemptions. Use [Redemptions](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations), [Liquidations](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations), [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode), and [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure) for the risk model.
 
 ## Next actions
 
@@ -266,7 +266,7 @@ A healthy ICR protects against liquidation, not against proportional redemptions
 - Use [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap) to acquire pETH or repayment assets.
 - Use [Dashboard & Analytics](https://tokenbrice.github.io/polaris-docs/using-app) to monitor the position before markets move.
 
-Relevant app/search vocabulary: Borrow, Manage Trove, borrow, mint, open trove, repay, close trove, pUSD, pGOLD, ICR, official app.
+Relevant app/search vocabulary: Borrow, Manage Trove, borrow, mint, open trove, repay, close trove, pUSD, pGOLD, LTV, loan-to-value, official app.
 
 ---
 
