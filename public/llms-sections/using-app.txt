@@ -118,6 +118,10 @@ Use **Borrow** for two distinct position types:
 
 App anchor: **Borrow** tab. Trove actions appear as pAsset borrowing/CDP actions; reserve loans appear as fpETH-backed WETH loan actions.
 
+Image: Polaris Borrow tab: pUSD selected, 10 pETH collateral at 75% LTV, with a projected position showing liquidation price, estimated monthly cost, and LTV
+
+*Pick the pAsset to mint, set collateral and LTV, then review the projected position — liquidation price, monthly cost, and LTV — before approving.*
+
 App wording | Docs wording | What it means
 
 **Borrow pAssets** | **Open or adjust a trove** | Deposit pETH collateral and mint pUSD, pGOLD, or another pAsset as debt.
@@ -154,6 +158,10 @@ The **Dashboard** is the app's orientation view. It is where you check balances,
 
 App anchor: **Dashboard**. Use it for state inspection only; execute actions from the matching task tab after checking a fresh quote.
 
+Image: Polaris Dashboard Earn cards: pUSD and pGOLD Stability Pools, POLAR Staking, and vpETH Staking, each showing APR, deposited or staked amount, and pending gains
+
+*Each Earn card shows its APR, your deposited or staked amount, and the gains accrued so far across each reward token.*
+
 ## What to check
 
 Area | What it tells you
@@ -187,6 +195,10 @@ URL: https://tokenbrice.github.io/polaris-docs/using-app/earn
 Use **Earn** for protocol-native yield surfaces: Stability Pool deposits, reward claims, and the current **POLAR Staking** surface where available.
 
 App anchor: **Earn** tab. Stability Pool deposits and POLAR Staking controls live here when the current deployment exposes them.
+
+Image: Polaris Earn tab: pUSD Stability Pool deposit form at 15.2% APR, with a deposit amount entered and a checkbox to also claim pending pUSD and pETH gains
+
+*Each surface has its own tab; the Stability Pool deposit form shows APR, your balance, and an option to claim pending gains alongside the deposit.*
 
 ## Earn surfaces
 
@@ -256,6 +268,10 @@ Use **Split** to divide pETH into two matching legs:
 
 App anchor: **Split** tab. Use it to split pETH into fpETH + vpETH or merge equal fpETH/vpETH balances back into pETH.
 
+Image: Polaris Split tab: 10 pETH splitting into 10 fpETH and 10 vpETH, with a toggle between Split and Merge modes
+
+*Splitting 10 pETH yields 10 fpETH and 10 vpETH; the Merge toggle reverses it when you hold equal balances of both legs.*
+
 ```
 pETH -> fpETH + vpETH
 ```
@@ -291,6 +307,10 @@ URL: https://tokenbrice.github.io/polaris-docs/using-app/swap
 Use **Swap** when you want to exchange WETH, pETH, fpETH, vpETH, or a pAsset through the route the app quotes. For pETH, the route may involve the [bonding curve](https://tokenbrice.github.io/polaris-docs/peth/bonding-curve); for pAssets, it may route through app-supported markets or protocol modules.
 
 App anchor: **Swap** tab. Use it for WETH -> pETH, pETH -> WETH, pAsset routes, and any quoted route that shows price impact or slippage before signing.
+
+Image: Polaris Swap tab: selling 5 ETH for pETH, showing the quoted output, minimum received, exchange rate, and a route of WETH through the bonding curve to pETH
+
+*The quote shows output, minimum received, and rate; the route panel makes the path explicit — here WETH through the bonding curve to pETH.*
 
 ## Common swaps
 

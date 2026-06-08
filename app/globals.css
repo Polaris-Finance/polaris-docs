@@ -1148,10 +1148,12 @@ article blockquote {
 
 /* Infographics are intentional dark panels; frame them so they read as a
    deliberate inset in light mode rather than a stray dark band on cream. */
-article img[src$='.svg'] {
+article img[src$='.svg'],
+article img[src*='/screenshots/'] {
   border-radius: 10px;
 }
-html:not(.dark) article img[src$='.svg'] {
+html:not(.dark) article img[src$='.svg'],
+html:not(.dark) article img[src*='/screenshots/'] {
   box-shadow: 0 0 0 1px rgba(44, 74, 110, 0.12);
 }
 
@@ -1524,6 +1526,15 @@ article button[title*='Copy'] {
 }
 .dark .pl-callout[data-variant='danger'] .pl-callout-icon {
   color: #dc7878;
+}
+.dark .pl-callout :is(p, li) {
+  color: #faf6ee;
+}
+.dark .pl-callout :is(strong, em) {
+  color: #fffaf0;
+}
+.dark .pl-callout a {
+  color: #c6e0ff;
 }
 
 /* ── Breadcrumbs ─────────────────────────────────────────────────────────── */
