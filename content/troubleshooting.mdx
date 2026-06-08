@@ -1,0 +1,132 @@
+---
+title: Troubleshooting
+description: Fix common Polaris app issues on Public Testnet 1.
+---
+
+# Troubleshooting
+
+<PageStatusBanner lastUpdated="June 2026" />
+
+Use this page when the app, wallet, quote, balance, or transaction does not behave as expected.
+
+Start from the known-good setup: Public Testnet 1 at [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io), Sepolia chain ID `11155111`, test assets only.
+
+## Wrong network
+
+**Symptom:** The app asks you to switch networks, actions are disabled, or wallet prompts mention another chain.
+
+**Likely cause:** Wallet is not connected to Sepolia.
+
+**Fix:** Switch the wallet network to Sepolia, chain ID `11155111`, then refresh the app.
+
+**When not to proceed:** Do not sign if the wallet prompt shows mainnet or an unexpected chain.
+
+**Related reference:** [Public Testnet 1 Artifacts](/resources/testnet), [Safety & Verification](/resources/safety-verification)
+
+## Wrong frontend
+
+**Symptom:** The app looks unfamiliar, links differ, or wallet prompts do not match the expected action.
+
+**Likely cause:** You are on the wrong frontend or a phishing copy.
+
+**Fix:** Use [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io) for Public Testnet 1 and verify links from the docs.
+
+**When not to proceed:** Do not connect or sign from an unverified URL.
+
+**Related reference:** [Launch Status](/launch-status), [Safety & Verification](/resources/safety-verification)
+
+## Faucet or test-token shortage
+
+**Symptom:** You cannot start because WETH, pETH, pAssets, POLAR, or Sepolia ETH are missing.
+
+**Likely cause:** The wallet lacks test assets or gas.
+
+**Fix:** Follow [Public Testnet Quickstart](/quickstart), then refresh balances.
+
+**When not to proceed:** Do not bridge or send real mainnet funds to testnet contracts.
+
+**Related reference:** [Public Testnet 1 Artifacts](/resources/testnet)
+
+## Missing balance
+
+**Symptom:** The app shows a balance but the wallet does not, or the wallet shows a token the app does not.
+
+**Likely cause:** Token is hidden in the wallet, the wrong account is connected, or the app state is stale.
+
+**Fix:** Confirm the connected account, refresh the app, and import the token using the canonical address if needed.
+
+**When not to proceed:** Do not import token addresses from chat links or search results.
+
+**Related reference:** [Contracts & Addresses](/resources/contracts)
+
+## Approval succeeded, action still fails
+
+**Symptom:** Wallet shows an approval transaction succeeded, but the app still asks for approval or the main action fails.
+
+**Likely cause:** Approval was for the wrong spender, wrong token, insufficient amount, or a different account.
+
+**Fix:** Check spender, token, wallet account, and allowance. Then retry only from the correct action tab.
+
+**When not to proceed:** Do not grant unlimited approvals to an unexpected spender.
+
+**Related reference:** [Safety & Verification](/resources/safety-verification), [Advanced](/using-app/advanced)
+
+## Stale quote or changed output
+
+**Symptom:** Swap or Zap output changes, minimum received differs, or the transaction reverts.
+
+**Likely cause:** Price, liquidity, route, gas, or slippage changed before inclusion.
+
+**Fix:** Refresh the quote, review the route again, and use a slippage setting you understand.
+
+**When not to proceed:** Do not sign if the wallet prompt no longer matches the app quote.
+
+**Related reference:** [Swap](/using-app/swap), [Zap](/using-app/zap)
+
+## Borrow action disabled or reverted
+
+**Symptom:** Borrow, repay, adjust, or close cannot be submitted.
+
+**Likely cause:** Position health, collateral, debt amount, Recovery Mode, allowance, or price movement blocks the action.
+
+**Fix:** Refresh position data, reduce risk, check collateral and debt amounts, and retry from Borrow or Manage Trove.
+
+**When not to proceed:** Do not borrow if you do not understand the displayed liquidation exposure.
+
+**Related reference:** [Borrow](/using-app/borrow), [Manage Trove](/using-app/manage-trove), [Recovery Mode](/redemptions-liquidations/recovery-mode), [Risk Disclosure](/resources/risk-disclosure)
+
+## Earn action unavailable
+
+**Symptom:** Deposit, withdraw, claim, stake, or unstake is disabled.
+
+**Likely cause:** No eligible balance, no claimable amount, current deployment limits, or wallet/network mismatch.
+
+**Fix:** Confirm the selected Earn surface, wallet account, balances, and network.
+
+**When not to proceed:** Do not treat APR estimates as guaranteed returns.
+
+**Related reference:** [Earn](/using-app/earn), [Yield](/yield)
+
+## Split or merge fails
+
+**Symptom:** Split or Merge reverts, or Merge allows less than expected.
+
+**Likely cause:** You lack pETH for Split or equal fpETH and vpETH balances for Merge.
+
+**Fix:** Check both token balances and merge only up to the smaller leg balance.
+
+**When not to proceed:** Do not hold only one leg unless you understand the changed exposure.
+
+**Related reference:** [Split](/using-app/split), [pETH Split](/peth/split)
+
+## Transaction pending, out of gas, or reverted
+
+**Symptom:** Wallet shows pending for a long time, or the transaction fails after submission.
+
+**Likely cause:** Sepolia congestion, low gas, state changed, or transaction simulation missed a revert.
+
+**Fix:** Wait for the pending transaction to settle, then refresh app state before retrying.
+
+**When not to proceed:** Do not repeatedly submit the same action without checking whether the first transaction changed balances, allowances, or positions.
+
+**Related reference:** [Dashboard & Analytics](/using-app), [Safety & Verification](/resources/safety-verification)

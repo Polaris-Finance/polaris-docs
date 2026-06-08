@@ -1,32 +1,49 @@
 ---
 title: Swap
-description: How to use the Polaris Swap tab for WETH, pETH, and pAsset swaps with quote, approval, fee, and slippage checks.
+description: How to use Polaris Swap with quote, approval, slippage, and route checks.
 ---
 
 # Swap
 
 <PageStatusBanner lastUpdated="June 2026" />
 
-Use **Swap** when you want to exchange WETH, pETH, fpETH, vpETH, or a pAsset through the route the app quotes. For pETH, the route may involve the [bonding curve](/peth); for pAssets, it may route through app-supported markets or protocol modules.
+## What it does
 
-<Callout variant="info" title="Where this appears in the app">
-App anchor: **Swap** tab. Use it for WETH -> pETH, pETH -> WETH, pAsset routes, and any quoted route that shows price impact or slippage before signing.
-</Callout>
+Swap exchanges app-supported assets through the route quoted by Polaris. Routes may include WETH, pETH, fpETH, vpETH, pAssets, or protocol modules exposed by the current Public Testnet 1 deployment.
 
-![Polaris Swap tab: selling 5 ETH for pETH, showing the quoted output, minimum received, exchange rate, and a route of WETH through the bonding curve to pETH](/screenshots/swap.jpg)
+## Before you start
 
-*The quote shows output, minimum received, and rate; the route panel makes the path explicit — here WETH through the bonding curve to pETH.*
+- Use [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io) on Sepolia, chain ID `11155111`.
+- Hold the input token and enough Sepolia ETH for gas.
+- Read the route, output, minimum received, price impact, and approval target before signing.
 
-## Common swaps
+## Steps/checks
 
-| Goal | Typical route | Read first |
-|---|---|---|
-| Get pETH | WETH -> pETH | [pETH Bonding Curve](/peth) |
-| Exit pETH | pETH -> WETH | [pETH Floor Price](/peth/floor-price) |
-| Get a pAsset to deposit | WETH -> pUSD or pGOLD | [Polaris Asset Catalog](/minting/passet-catalog) |
-| Rebalance before a debt action | pAsset or pETH swap | [Managing a Trove](/minting/managing-your-trove) |
+1. Choose the input and output assets.
+2. Enter the amount.
+3. Review the route and quote.
+4. Check minimum received, price impact, fees, and slippage.
+5. Approve the token only if the spender matches the app flow.
+6. Sign the swap transaction.
+7. Confirm the output balance appears in the wallet and Dashboard.
 
+The swap worked when the transaction lands and the output token balance updates.
 
-## Risks
+## Common failures
 
-Swapping does not remove pETH price risk, pAsset peg risk, or execution risk. The final amount can differ from the preview because of gas, slippage, MEV, route changes, and transaction ordering.
+- Quote expired before the transaction landed.
+- Slippage limit was too tight.
+- Input balance or allowance was too low.
+- Gas was too low or Sepolia was congested.
+- Wallet is connected to the wrong account or network.
+- The route changed after refresh.
+
+## Risks/links
+
+Swaps can lose value through slippage, price movement, stale quotes, gas, and execution ordering. pETH and pAsset mechanics are explained in [pETH](/peth), [pETH Floor Price](/peth/floor-price), and [pAsset Catalog](/minting/passet-catalog). Use [Risk Disclosure](/resources/risk-disclosure) for risk details.
+
+## Next actions
+
+- Use [Borrow](/using-app/borrow) after acquiring pETH or a pAsset.
+- Use [Earn](/using-app/earn) after acquiring a Stability Pool asset.
+- Use [Zap](/using-app/zap) if you want the app to bundle swap plus deposit.

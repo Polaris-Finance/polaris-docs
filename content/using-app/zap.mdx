@@ -1,41 +1,53 @@
 ---
 title: Zap
-description: A guide to Polaris Zap flows from WETH to pUSD or pGOLD and into the Stability Pool, with approvals, simulation, and risk checks.
+description: How to use Polaris Zap routes and recover safely when one bundled step fails.
 ---
 
 # Zap
 
 <PageStatusBanner lastUpdated="June 2026" />
 
-Use **Zap** when the app bundles several steps into one guided flow. The main yield zap is:
+## What it does
 
-<Callout variant="info" title="Where this appears in the app">
-App anchor: **Zap** tab. Treat each bundled step as its own economic action even if the app presents one guided flow.
-</Callout>
+Zap bundles multiple app actions into a guided route. A common route is swapping WETH into a pAsset and depositing that pAsset into the Stability Pool. The zap is an execution shortcut; it does not change the economics of the underlying steps.
 
-```
-WETH -> pUSD or pGOLD -> Stability Pool deposit
-```
+![Polaris Zap tab showing the pUSD Stable Yield route from WETH through pUSD into the Stability Pool](/screenshots/zap.png)
 
-The zap is an execution shortcut. It does not change the economics of the underlying swap or deposit.
+*The pUSD Stable Yield zap routes WETH into pUSD, then deposits the pUSD into the Stability Pool in one guided flow.*
 
-## What the zap does
+## Before you start
 
-1. Takes a WETH amount as input.
-2. Quotes the pAsset purchase, such as pUSD or pGOLD.
-3. Quotes the Stability Pool deposit for that pAsset.
-4. Simulates the bundled operation.
-5. Prompts for approvals and transaction signatures.
+- Use [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io) on Sepolia, chain ID `11155111`.
+- Hold the input asset and gas.
+- Read the full route before signing.
+- Be prepared to finish manually through Swap or Earn if a bundled step fails.
 
-Depending on the implementation, the app may ask for one transaction or several. Treat every approval and every signature as a separate action.
+## Steps/checks
 
+1. Choose the zap goal.
+2. Enter the input amount.
+3. Review every route leg, output estimate, slippage, deposit target, and approval.
+4. Simulate or refresh the quote if the app offers it.
+5. Sign approvals only for expected spenders.
+6. Sign the zap transaction or transaction sequence.
+7. Confirm final balances and Earn deposits on Dashboard.
 
-## Failure modes
+The zap worked when the final target state appears, not merely when the first approval succeeds.
 
-A zap can fail because one leg changes before inclusion: slippage, depleted liquidity, stale oracle data, Recovery Mode restrictions, approval mismatch, or gas limits. If it fails after an approval but before the final deposit, inspect your wallet balances before trying again.
+## Common failures
 
-## Related docs
+- One leg became stale before inclusion.
+- Slippage or liquidity changed.
+- Approval succeeded but the bundled action failed.
+- Gas estimate was too low for the full route.
+- The wallet now holds an intermediate asset instead of the final deposit.
 
-- [Swap](/using-app/swap)
-- [Earn](/using-app/earn)
-- [Stability Pool](/yield)
+## Risks/links
+
+A zap combines swap, approval, and deposit risks. If a zap stops midway, inspect balances before retrying. Use [Swap](/using-app/swap), [Earn](/using-app/earn), [Stability Pool](/yield), and [Troubleshooting](/troubleshooting) for manual fallback.
+
+## Next actions
+
+- Use [Dashboard & Analytics](/using-app) to confirm the final state.
+- Use [Swap](/using-app/swap) if you received an intermediate token.
+- Use [Earn](/using-app/earn) to complete a deposit manually.

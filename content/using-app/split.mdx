@@ -1,33 +1,47 @@
 ---
 title: Split
-description: How to use the Polaris Split tab to split pETH into fpETH and vpETH, merge them back, and check transaction risk.
+description: How to split pETH into fpETH and vpETH, merge them back, and avoid common execution mistakes.
 ---
 
 # Split
 
 <PageStatusBanner lastUpdated="June 2026" />
 
-Use **Split** to divide pETH into two matching legs:
+## What it does
 
-<Callout variant="info" title="Where this appears in the app">
-App anchor: **Split** tab. Use it to split pETH into fpETH + vpETH or merge equal fpETH/vpETH balances back into pETH.
-</Callout>
+Split converts pETH into matching fpETH and vpETH balances. Merge reverses the action when you hold equal amounts of both legs. Use this page for the app workflow; use [pETH Split](/peth/split) for the mechanism.
 
-![Polaris Split tab: 10 pETH splitting into 10 fpETH and 10 vpETH, with a toggle between Split and Merge modes](/screenshots/split.jpg)
+## Before you start
 
-*Splitting 10 pETH yields 10 fpETH and 10 vpETH; the Merge toggle reverses it when you hold equal balances of both legs.*
+- Use Public Testnet 1 at [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io) on Sepolia, chain ID `11155111`.
+- Hold pETH for splitting, or equal fpETH and vpETH amounts for merging.
+- Confirm which leg you intend to hold after the action.
 
-```
-pETH -> fpETH + vpETH
-```
+## Steps/checks
 
-Each unit of pETH split mints one unit of **fpETH** and one unit of **vpETH**. Holding both legs together is economically similar to holding the original pETH, before fees and execution effects. Holding only one leg changes your risk.
+1. Choose Split or Merge.
+2. Enter the amount.
+3. Review the expected fpETH, vpETH, or pETH output.
+4. Approve pETH, fpETH, or vpETH if required.
+5. Sign the transaction.
+6. Confirm wallet balances update.
 
-## What each leg represents
+A split worked when pETH decreases and fpETH plus vpETH increase by the expected matching amount. A merge worked when equal fpETH and vpETH decrease and pETH increases.
 
-| Token | Role |
-|---|---|
-| **fpETH** | The floor-price leg. It can be redeemed through the splitter for WETH at the pETH floor-price value under the contract assumptions. It is also the collateral for reserve loans. |
-| **vpETH** | The premium or volatility leg. It represents exposure to pETH's market value above the floor and can become worth very little if the premium compresses. |
+## Common failures
 
-For the full mechanism and risks, read [pETH Split: fpETH and vpETH](/peth/split).
+- Merge amount exceeds the smaller of your fpETH or vpETH balances.
+- Token balance exists but is hidden in the wallet UI.
+- Approval was granted for one leg but not the other.
+- Transaction fails because gas or allowance is too low.
+- You expected holding one leg to behave like holding unsplit pETH.
+
+## Risks/links
+
+Holding only fpETH or only vpETH changes your exposure. Read [pETH Split](/peth/split), [pETH Floor Price](/peth/floor-price), and [Risk Disclosure](/resources/risk-disclosure) before relying on either leg.
+
+## Next actions
+
+- Use [Borrow](/using-app/borrow) if reserve-loan actions are exposed for fpETH.
+- Use [Swap](/using-app/swap) if the app quotes a supported leg route.
+- Use [Advanced](/using-app/advanced) only for manual actions you understand.

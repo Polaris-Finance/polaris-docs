@@ -1,13 +1,15 @@
 export default {
   index: 'Introduction',
   'launch-status': 'Launch Status',
+  quickstart: 'Public Testnet Quickstart',
   'using-app': 'Using the App',
+  troubleshooting: 'Troubleshooting',
+  '-- understand': {
+    type: 'separator',
+    title: 'Understand Polaris'
+  },
   'why-polaris': 'Why Polaris',
   'core-concepts': 'Core Concepts',
-  '-- using': {
-    type: 'separator',
-    title: 'Using Polaris'
-  },
   minting: 'Minting & Troves',
   peth: 'pETH & Bonding Curve',
   yield: 'Earning Yield',

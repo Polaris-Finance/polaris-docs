@@ -1,35 +1,50 @@
 ---
 title: Earn
-description: How the Polaris Earn tab maps to Stability Pool deposits, POLAR Staking, rewards, and first-loss risk.
+description: How to deposit, withdraw, claim, and check Polaris Earn positions.
 ---
 
 # Earn
 
 <PageStatusBanner lastUpdated="June 2026" />
 
-Use **Earn** for protocol-native yield surfaces: Stability Pool deposits, reward claims, and the current **POLAR Staking** surface where available.
+## What it does
 
-<Callout variant="info" title="Where this appears in the app">
-App anchor: **Earn** tab. Stability Pool deposits and POLAR Staking controls live here when the current deployment exposes them.
-</Callout>
+Earn groups protocol-native yield actions exposed in the app. This includes Stability Pool deposits, withdrawals, claimable gains, and POLAR staking controls where available in the current deployment.
 
-![Polaris Earn tab: pUSD Stability Pool deposit form at 15.2% APR, with a deposit amount entered and a checkbox to also claim pending pUSD and pETH gains](/screenshots/earn.jpg)
+## Before you start
 
-*Each surface has its own tab; the Stability Pool deposit form shows APR, your balance, and an option to claim pending gains alongside the deposit.*
+- Use [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io) on Sepolia, chain ID `11155111`.
+- Hold the deposit token and Sepolia ETH for gas.
+- Check whether you are depositing into a Stability Pool, staking POLAR, or claiming rewards.
+- Read [Stability Pool](/yield) before depositing.
 
-## Earn surfaces
+## Steps/checks
 
-| Surface | What you deposit | What you receive | Read first |
-|---|---|---|---|
-| **Stability Pool** | pUSD, pGOLD, or another pAsset | Borrower-interest share and liquidation gains | [Stability Pool](/yield) |
-| **POLAR Staking** | POLAR | Routed staking rewards where the current deployment exposes them | [POLAR Tokenomics](/polar/tokenomics) |
-| **vePOLAR locking** | POLAR, once locking is deployed | Stewardship rights and a future yield path | [vePOLAR](/stewardship/vepolar) |
+1. Select the Earn surface.
+2. Check deposit balance, current deposit, APR estimate, and pending gains.
+3. Choose deposit, withdraw, claim, or stake/unstake.
+4. Review whether the action also claims pending rewards.
+5. Approve the token if required.
+6. Sign the transaction.
+7. Confirm Dashboard balances, deposits, and claimable gains updated.
 
-POLAR Staking and vePOLAR are not the same thing. The current staking surface is a stake/unstake/claim flow. vePOLAR locking is a forthcoming vote-escrow mechanism with lock durations, vote-power decay, and stewardship rights.
+The action worked when the Earn card and wallet balances reflect the transaction.
 
+## Common failures
 
-## Related docs
+- Deposit token balance is too low.
+- Approval was signed but the action transaction was not.
+- Pending rewards are dust-sized or not claimable yet.
+- Withdrawal or claim is disabled by current app state.
+- APR changed after refresh.
+- Wallet is connected to the wrong account.
 
-- [How to deposit to the Stability Pool](/yield#how-to-deposit)
-- [Where the Yield Comes From](/yield/yield-sources)
-- [POLAR Tokenomics](/polar/tokenomics)
+## Risks/links
+
+Stability Pool deposits are first-loss capital during liquidations. APR estimates are not guaranteed returns. Use [Yield Sources](/yield/yield-sources), [POLAR Tokenomics](/polar/tokenomics), and [Risk Disclosure](/resources/risk-disclosure) for the underlying risk model.
+
+## Next actions
+
+- Use [Swap](/using-app/swap) to acquire deposit assets.
+- Use [Zap](/using-app/zap) for bundled swap-plus-deposit.
+- Use [Dashboard & Analytics](/using-app) to monitor deposits and rewards.

@@ -36,20 +36,31 @@ const searchVocabulary = [
     terms: ['official app', 'app URL', 'phishing', 'verify contracts', 'testnet', 'mainnet']
   },
   {
-    match:
-      /^\/paths\/borrow-passets$|^\/minting\/(open-a-trove|minting-passets|managing-your-trove)$/,
-    terms: ['Borrow', 'borrow', 'mint', 'open trove', 'pUSD', 'pGOLD', 'ICR', 'official app']
+    match: /^\/using-app\/(borrow|manage-trove)$|^\/minting\/(open-a-trove|managing-your-trove)$/,
+    terms: [
+      'Borrow',
+      'Manage Trove',
+      'borrow',
+      'mint',
+      'open trove',
+      'repay',
+      'close trove',
+      'pUSD',
+      'pGOLD',
+      'ICR',
+      'official app'
+    ]
   },
   {
-    match: /^\/paths\/earn-yield$|^\/yield\//,
+    match: /^\/using-app\/(earn|zap)$|^\/yield(\/.*)?$/,
     terms: ['Earn', 'earn', 'yield', 'APR', 'Stability Pool', 'deposit', 'claim rewards']
   },
   {
-    match: /^\/peth\/(bonding-curve|floor-price)$|^\/paths\/hold-use-peth$/,
+    match: /^\/using-app\/(swap|split)$|^\/peth(\/.*)?$/,
     terms: ['Swap', 'swap', 'Split', 'fpETH', 'vpETH', 'pETH', 'floor price']
   },
   {
-    match: /^\/resources\/(glossary|contracts|faq)$/,
+    match: /^\/resources$|^\/resources\/(contracts|parameters|testnet|faq)$/,
     terms: [
       'app',
       'official app',
@@ -70,8 +81,21 @@ const searchVocabulary = [
     ]
   },
   {
-    match: /^\/polar\/(participate-in-conversion|conversion-auctions|polar-token)$/,
+    match: /^\/polar(\/(conversion-auctions|tokenomics))?$/,
     terms: ['POLAR', 'convert', 'lock', 'vePOLAR', 'burn pETH', 'conversion auction']
+  },
+  {
+    match: /^\/quickstart$|^\/troubleshooting$/,
+    terms: [
+      'quickstart',
+      'troubleshooting',
+      'wrong network',
+      'Sepolia',
+      'faucet',
+      'approval',
+      'stale quote',
+      'failed transaction'
+    ]
   }
 ]
 

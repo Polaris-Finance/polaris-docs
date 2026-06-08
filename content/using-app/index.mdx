@@ -1,61 +1,52 @@
 ---
 title: Dashboard & Analytics
-description: "How to read the Polaris app Dashboard and Analytics: balances, positions, rewards, system status, protocol-wide metrics, and next actions."
+description: How to read the Polaris app Dashboard and Analytics before choosing an action.
 ---
 
 # Dashboard & Analytics
 
 <PageStatusBanner lastUpdated="June 2026" />
 
-The **Dashboard** is the app's orientation view. It is where you check balances, open positions, pending rewards, and system health before choosing a transaction tab. The **Analytics** view, covered further down, shows the protocol-wide metrics behind those numbers.
+## What it does
 
-<Callout variant="info" title="Where this appears in the app">
-App anchors: **Dashboard** for your own state, and **Analytics** for protocol-wide context. Use both for inspection only; execute actions from the matching task tab after checking a fresh quote.
-</Callout>
+The Dashboard is the app's read-only starting point. Use it to check wallet balances, open positions, claimable rewards, and system health before moving to Swap, Borrow, Earn, Split, Zap, or Advanced.
 
-![Polaris Dashboard Earn cards: pUSD and pGOLD Stability Pools, POLAR Staking, and vpETH Staking, each showing APR, deposited or staked amount, and pending gains](/screenshots/dashboard.jpg)
+Analytics shows protocol-wide context such as pool sizes, borrow costs, floor-related metrics, and stress indicators. Treat Analytics as context, not as a transaction quote.
 
-*Each Earn card shows its APR, your deposited or staked amount, and the gains accrued so far across each reward token.*
+## Before you start
 
-## What to check
+- Use Public Testnet 1 at [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io).
+- Connect to Sepolia, chain ID `11155111`.
+- Confirm the frontend, network, and wallet prompts against [Safety & Verification](/resources/safety-verification).
+- Use test assets only. See [Public Testnet 1 Artifacts](/resources/testnet).
 
-| Area | What it tells you |
-|---|---|
-| **Balances** | WETH, pETH, fpETH, vpETH, pAssets, POLAR, and claimable rewards held by the connected wallet |
-| **Borrow positions** | Open troves, reserve loans, debt, collateral, and health metrics |
-| **Earn positions** | Stability Pool deposits, POLAR Staking balances, and claimable gains |
-| **System status** | Recovery Mode, floor ratio, borrow rates, pool size, and other launch/runtime signals |
-| **Next actions** | Which tabs can adjust or close the position you are viewing |
+## Steps/checks
 
-## Read before acting
+1. Connect the wallet you want to inspect.
+2. Check balances for WETH, pETH, fpETH, vpETH, pAssets, POLAR, and pending rewards.
+3. Review borrow positions for debt, collateral, and health.
+4. Review Earn positions for Stability Pool deposits, staking balances, and claimable gains.
+5. Check system status before borrowing, repaying, withdrawing, or zapping.
+6. Open Analytics for protocol-wide context, then return to the relevant action tab for a fresh quote.
 
-- A dashboard number is a state read, not a transaction quote.
-- A position can change between the Dashboard and the moment your transaction lands.
-- Use the transaction tab's quote and simulation before signing.
+A check worked when the connected wallet, Sepolia network, balances, positions, and timestamps match what you expect.
 
-## Analytics: protocol-wide metrics
+## Common failures
 
-Use **Analytics** to inspect protocol-wide state before deciding on a transaction. Analytics is for context and monitoring; action tabs provide the final quote.
+- Wallet is on the wrong chain.
+- Balances do not appear because the token is not imported in the wallet.
+- Dashboard data is stale; refresh before acting.
+- APR or health values differ from a previous view because app state changed.
+- A position is not shown because it belongs to another wallet.
 
-| Metric | Why it matters |
-|---|---|
-| **Floor price** | The contract-defined pETH floor under the bonding-curve assumptions |
-| **Floor ratio** | pETH floor price divided by current pETH market price; frames curve-implied drawdown |
-| **Borrow APR** | Annualized estimate of current pAsset debt cost |
-| **Stability Pool size** | Available first-loss buffer for liquidations |
-| **Recovery Mode status** | Whether a pAsset instance is under system-wide stress restrictions |
-| **PSM/redemption activity** | Peg pressure and fee context for pAsset markets |
-| **POLAR Staking rewards** | Current routed rewards where the staking surface is live |
+## Risks/links
 
-Before relying on a metric:
+Dashboard values are state reads, not final transaction terms. Use the action tab quote before signing. For canonical status, risks, and addresses, use [Launch Status](/launch-status), [Risk Disclosure](/resources/risk-disclosure), and [Contracts & Addresses](/resources/contracts).
 
-- Check the timestamp or refresh state before acting.
-- Distinguish an APR estimate from realized yield.
-- Confirm whether a metric is testnet-only, illustrative, or production-published.
-- Use the action tab's current quote for fees, slippage, and final amounts.
+## Next actions
 
-## Related docs
-
-- [Borrow](/using-app/borrow) for troves and reserve loans.
-- [Earn](/using-app/earn) for Stability Pool and POLAR Staking positions.
-- [pETH Floor Price](/peth/floor-price), [Minting pAssets](/minting), and [Where the Yield Comes From](/yield/yield-sources) for the volatile concepts behind the metrics.
+- Use [Swap](/using-app/swap) to get or exit pETH and pAssets.
+- Use [Borrow](/using-app/borrow) to open debt positions.
+- Use [Manage Trove](/using-app/manage-trove) to adjust, repay, or close existing troves.
+- Use [Earn](/using-app/earn) to deposit, withdraw, or claim.
+- Use [Troubleshooting](/troubleshooting) if wallet state, quotes, or balances look wrong.

@@ -1,24 +1,48 @@
 ---
 title: Advanced
-description: How to use Polaris Advanced tools for approvals, PSM actions, reserve loans, POLAR Staking, and manual transaction checks.
+description: How to use Polaris Advanced tools for approvals, PSM actions, reserve loans, staking, conversion, and manual checks.
 ---
 
 # Advanced
 
 <PageStatusBanner lastUpdated="June 2026" />
 
-Use **Advanced** for tools that expose protocol mechanics more directly than the main task tabs. These surfaces are useful for power users and integrators, but they can bypass the guardrails of a guided flow.
+## What it does
 
-<Callout variant="warning" title="Where this appears in the app">
-App anchor: **Advanced** tab. Use this surface only when you know the exact contract, function, token, amount, and effect you intend to sign.
-</Callout>
+Advanced exposes tools that are closer to protocol operations than the guided app tabs. Use it for manual approvals, PSM actions, reserve-loan controls, conversion, staking controls, and contract checks only when those surfaces are available and you understand the action.
 
-## Common Advanced tools
+## Before you start
 
-| Tool | What it is | Read first |
-|---|---|---|
-| **Approvals** | Token allowances for app contracts | [Safety and Verification](/resources/safety-verification) |
-| **PSM** | Peg Stability Module actions for a pAsset instance | [Redemptions](/redemptions-liquidations) |
-| **Reserve Loans** | WETH loans against fpETH floor-value collateral | [pETH Split](/peth/split) |
-| **POLAR Staking** | Stake, unstake, and claim routed rewards where exposed | [POLAR Tokenomics](/polar/tokenomics) |
-| **Conversion** | Burn pETH to mint POLAR through the auction | [Conversion Auctions](/polar/conversion-auctions#how-to-convert) |
+- Use Public Testnet 1 at [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io) on Sepolia, chain ID `11155111`.
+- Prefer guided tabs when they support your action.
+- Verify frontend, network, contract address, token, spender, amount, and function before signing.
+- Keep [Contracts & Addresses](/resources/contracts) and [Safety & Verification](/resources/safety-verification) open.
+
+## Steps/checks
+
+1. Identify the exact action and contract.
+2. Confirm the token, amount, spender, and receiving address.
+3. Check whether a guided tab can do the same thing more safely.
+4. Review wallet simulation and calldata warnings.
+5. Sign only if the prompt matches your intent.
+6. Confirm the resulting balance, allowance, position, or claim state.
+
+The action worked when the intended state changed and no unexpected allowance or position remains.
+
+## Common failures
+
+- Wrong spender or stale approval.
+- Wrong pAsset, token leg, or position owner.
+- Action is unavailable in the current deployment.
+- Manual transaction bypasses app prechecks.
+- Wallet warning indicates an unexpected contract or permission.
+
+## Risks/links
+
+Advanced actions can bypass guardrails. Use [Safety & Verification](/resources/safety-verification), [Contracts & Addresses](/resources/contracts), [Risk Disclosure](/resources/risk-disclosure), [Conversion Auctions](/polar/conversion-auctions), and [POLAR Tokenomics](/polar/tokenomics) as the canonical references.
+
+## Next actions
+
+- Return to [Dashboard & Analytics](/using-app) to confirm state.
+- Use the guided [Borrow](/using-app/borrow), [Earn](/using-app/earn), [Split](/using-app/split), or [Swap](/using-app/swap) page when possible.
+- Use [Troubleshooting](/troubleshooting) before retrying a failed manual transaction.

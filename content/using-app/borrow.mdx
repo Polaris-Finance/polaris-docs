@@ -1,34 +1,49 @@
 ---
 title: Borrow
-description: How the Polaris Borrow tab maps to troves, CDPs, pAsset debt, reserve loans, and before-you-sign checks.
+description: How to open Polaris borrow positions from the app Borrow tab.
 ---
 
 # Borrow
 
 <PageStatusBanner lastUpdated="June 2026" />
 
-Use **Borrow** for two distinct position types:
+## What it does
 
-<Callout variant="info" title="Where this appears in the app">
-App anchor: **Borrow** tab. Trove actions appear as pAsset borrowing/CDP actions; reserve loans appear as fpETH-backed WETH loan actions.
-</Callout>
+Borrow is where you create collateralized positions. For pAssets, this means depositing pETH collateral and minting debt through a trove/CDP flow. Where exposed, Borrow may also include reserve-loan actions against fpETH.
 
-![Polaris Borrow tab: pUSD selected, 10 pETH collateral at 75% LTV, with a projected position showing liquidation price, estimated monthly cost, and LTV](/screenshots/borrow.jpg)
+## Before you start
 
-*Pick the pAsset to mint, set collateral and LTV, then review the projected position — liquidation price, monthly cost, and LTV — before approving.*
+- Use Public Testnet 1 at [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io) on Sepolia, chain ID `11155111`.
+- Hold the required collateral and gas.
+- Understand that borrow positions can be affected by price movement, redemptions, liquidations, and Recovery Mode.
+- Review [Open a Trove](/minting/open-a-trove) for the full pAsset minting flow.
 
-| App wording | Docs wording | What it means |
-|---|---|---|
-| **Borrow pAssets** | **Open or adjust a trove** | Deposit pETH collateral and mint pUSD, pGOLD, or another pAsset as debt. |
-| **CDP** | **Trove / CDP instance** | The contract mechanism behind a pAsset borrow position. |
-| **Loan / Reserve Loan** | **Reserve loan** | Borrow WETH against fpETH floor-value collateral; this is not a pAsset trove. |
+## Steps/checks
 
-For the full **Borrow / CDP / trove / reserve loan** vocabulary, see [Borrower terminology](/minting#borrower-terminology).
+1. Choose the borrow asset or position type.
+2. Enter collateral and debt amounts.
+3. Review collateral ratio, liquidation exposure, debt, fees, and projected position health.
+4. Approve collateral if required.
+5. Sign the borrow transaction.
+6. Return to Dashboard and confirm debt, collateral, and health updated.
 
+A borrow action worked when the position appears with the expected collateral, debt, and health metrics.
 
-## Related docs
+## Common failures
 
-- [Open a Polaris Trove](/minting/open-a-trove)
-- [Managing a Polaris Trove](/minting/managing-your-trove)
-- [pETH Split: fpETH and vpETH](/peth/split)
-- [pETH Bonding Curve](/peth)
+- Collateral ratio is below the allowed threshold.
+- Debt amount is too small or too large for the current position.
+- Recovery Mode or system restrictions block the action.
+- Price movement changes projected health before inclusion.
+- Approval targets the wrong token or spender.
+- You are connected with a wallet that does not own the position.
+
+## Risks/links
+
+Borrowing creates liquidation and redemption exposure. Keep protocol explanations in [Minting pAssets](/minting), [Redemptions](/redemptions-liquidations), [Liquidations](/redemptions-liquidations/liquidations), and [Recovery Mode](/redemptions-liquidations/recovery-mode). Use [Parameters](/resources/parameters) for current values and [Risk Disclosure](/resources/risk-disclosure) for risks.
+
+## Next actions
+
+- Use [Manage Trove](/using-app/manage-trove) to adjust, repay, or close the position.
+- Use [Swap](/using-app/swap) to acquire or rebalance assets.
+- Use [Earn](/using-app/earn) if you want to deposit pAssets into the Stability Pool.
