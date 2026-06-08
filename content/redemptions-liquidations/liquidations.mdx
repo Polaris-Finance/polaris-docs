@@ -1,9 +1,9 @@
 ---
-title: Liquidations
+title: Polaris Liquidations
 description: A trove below its minimum collateralization ratio is liquidated to keep the pAsset backed. The Stability Pool absorbs the debt, or it redistributes to troves.
 ---
 
-# Liquidations
+# Polaris Liquidations
 
 > **Before you act:**
 > Borrowers: do not manage a trove from the liquidation line. Check the app's current minimum ICR, Recovery Mode status, accrued interest, collateral-price freshness, and gas conditions before withdrawing collateral or minting more debt. Stability Pool depositors: liquidations convert part of your pAsset deposit into pETH exposure.
@@ -45,7 +45,7 @@ Liquidation runs in two tiers.
 
 ## Worked example: liquidation
 
-The numbers below are illustrative only. Suppose the app shows a 120% minimum ICR for a pUSD trove. A borrower has 10,000 pUSD of debt and pETH collateral valued at $11,800, so the ICR is 118% — below the illustrative minimum, and liquidatable.
+The numbers below are illustrative only. Suppose the app shows a 120% minimum ICR for a pUSD trove. A borrower has 10,000 pUSD of debt and pETH collateral valued at \$11,800, so the ICR is 118% — below the illustrative minimum, and liquidatable.
 
 If the Stability Pool is large enough, it burns 10,000 pUSD and receives the trove's pETH. The borrower's debt is cleared; the collateral covers the debt, the liquidation penalty, and gas compensation, with any surplus returned for the borrower to claim. Depositors receive pETH pro rata; in a normal overcollateralized liquidation, that pETH should be worth more than the pUSD burned, but the exact gain depends on the final penalty, execution timing, pETH price, gas, and slippage.
 

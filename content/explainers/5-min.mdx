@@ -1,11 +1,11 @@
 ---
-title: 5-Minute Presentation
+title: Polaris 5-Minute Presentation
 description: The three engines and the flywheel — a complete picture of Polaris.
 ---
 
-<div className="pl-rt-badge">5 min read · Presentation</div>
+<ReadingTimeBadge>5 min read · Presentation</ReadingTimeBadge>
 
-# 5-Minute Presentation
+# Polaris 5-Minute Presentation
 
 ## The problem
 
@@ -27,11 +27,11 @@ Each generation fixed a flaw the previous hit. SAI proved CDPs could work; LUSD 
 
 ### pETH — collateral with a rising floor
 
-pETH is ETH deposited into a two-way bonding curve. Deposit ETH and you receive pETH at the current price; redeem and you get back ETH at the floor price (at minimum).
+pETH is ETH deposited into a two-way bonding curve. Deposit ETH and you receive pETH at the current price; redeem and you get back ETH through the curve, with the floor as the lower-bound quote under the curve assumptions.
 
-The bonding curve's math guarantees two things:
+The bonding curve's math is designed to enforce two things:
 
-1. **The floor price only rises.** As swap fees accumulate, the floor adjusts upward. No mechanism can lower it.
+1. **The floor price rises under normal protocol operation.** As swap fees accumulate, the floor adjusts upward. No normal protocol action lowers it.
 2. **pETH is yield-bearing.** Every fee the curve earns narrows the gap between pETH's floor and its market price — real yield from real activity, no counterparty required.
 
 pETH is the *only* collateral Polaris accepts. This is a feature: every pAsset is ultimately backed by ETH, with nothing else in the collateral stack.
@@ -76,35 +76,14 @@ Four steps:
 
 Each component reinforces the others. More pAsset CDPs create demand for pETH; demand generates curve fees; fees raise the floor; a higher floor makes every position safer; safer positions attract more users.
 
-## The three guarantees
+## Three intended invariants
 
-| Guarantee | Enforcement |
+| Invariant | Enforcement |
 |---|---|
-| pETH floor only rises | Bonding curve math — no mechanism can lower it |
+| pETH floor is designed to rise | Bonding curve math — no normal protocol action lowers it |
 | No counterparty in the collateral stack | pETH is backed by ETH; nothing else enters |
-| Immutable core | Bonding curve, CDPs, liquidations, and redemptions are fixed in code |
+| Immutable core | Bonding curve, CDPs, liquidations, and redemptions are intended to be fixed in audited deployment code |
 
 ---
 
 **Go deeper →** [10-Minute Introduction](/explainers/10-min) for full mechanics · [Getting Started](/getting-started) to use the protocol
-
-<style>{`
-  .pl-rt-badge {
-    display: inline-block;
-    font-size: 0.65rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 3px 10px;
-    border-radius: 20px;
-    margin-bottom: 1rem;
-    background: rgba(74,127,168,0.1);
-    border: 1px solid rgba(74,127,168,0.3);
-    color: #2c5f8a;
-  }
-  :is(.dark) .pl-rt-badge {
-    background: rgba(123,165,201,0.12);
-    border-color: rgba(123,165,201,0.35);
-    color: #7ba5c9;
-  }
-`}</style>

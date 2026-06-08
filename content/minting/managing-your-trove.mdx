@@ -1,11 +1,13 @@
 ---
-title: Managing Your Trove
+title: Managing a Polaris Trove
 description: Manage a Polaris trove around its Individual Collateralization Ratio (ICR) — add collateral, mint or repay debt, track interest, and close out cleanly.
 ---
 
-# Managing Your Trove
+# Managing a Polaris Trove
 
 A trove is a living position. After you [open it](/minting/open-a-trove), you can adjust it freely: add collateral, mint more, repay debt, or close it. Everything traces back to one number — your **Individual Collateralization Ratio**.
+
+> **Actionability:** Trove management is testnet-actionable only on Sepolia with test assets and current manifests. Production management is not mainnet-actionable until [Polaris Launch Status](/launch-status) publishes the official app, production addresses, final parameters, and audit status. Use live app and contract values over examples on this page.
 
 ## Individual Collateralization Ratio (ICR)
 
@@ -13,7 +15,7 @@ Your **Individual Collateralization Ratio (ICR)** is the value of your trove's c
 
 > ICR = collateral value ÷ debt face value
 
-Collateral value comes from the protocol's collateral pricing path. Debt value is what you owe in that pAsset's reference unit, including accrued interest; it is not the temporary market price at which you might buy the pAsset on a DEX. A trove holding pETH worth $15,000 against 10,000 pUSD of debt has an ICR of 150%. Higher is safer. Two thresholds matter:
+Collateral value comes from the protocol's collateral pricing path. Debt value is what you owe in that pAsset's reference unit, including accrued interest; it is not the temporary market price at which you might buy the pAsset on a DEX. A trove holding pETH worth \$15,000 against 10,000 pUSD of debt has an ICR of 150%. Higher is safer. Two thresholds matter:
 
 - Below the **minimum ICR**, the trove can be [liquidated](/redemptions-liquidations/liquidations).
 - [Redemptions](/redemptions-liquidations/redemptions) draw collateral from every open trove collectively, pro-rata to its recorded collateral and regardless of ICR — a higher ICR protects against liquidation, not redemption.
@@ -61,7 +63,7 @@ Suppose your trove owes 10,000 pUSD and the app quotes an 8% annualized borrow r
 | 30 days | 10,000 × 8% × 30 / 365 = 65.75 pUSD | 10,065.75 pUSD |
 | 90 days | 10,000 × 8% × 90 / 365 = 197.26 pUSD | 10,197.26 pUSD |
 
-If your collateral value stays flat at $15,000, the 30-day estimate moves your ICR from 150% to about 149%. The contract may accrue continuously and the rate may change, so use the app's recorded debt for precise decisions.
+If your collateral value stays flat at \$15,000, the 30-day estimate moves your ICR from 150% to about 149%. The contract may accrue continuously and the rate may change, so use the app's recorded debt for precise decisions.
 
 ## Close the trove
 

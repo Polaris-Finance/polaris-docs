@@ -1,17 +1,17 @@
 ---
-title: Core Concepts
+title: Polaris Core Concepts
 description: A one-page map of the Polaris system, with every key term defined briefly and linked to its full explanation.
 ---
 
-# Core Concepts
+# Polaris Core Concepts
 
 This page is the map. Each term is defined in a sentence or two and links to its full treatment. If you read nothing else, read this.
 
 ## The assets
 
-- **pAsset**: a synthetic asset minted by Polaris (pUSD, pETH, pGOLD, pCHF, …). Each is overcollateralized and counterparty-free. See [The pAsset Catalog](/minting/passet-catalog).
+- **pAsset**: a synthetic debt asset minted from a Polaris CDP (pUSD, pGOLD, pCHF, …). Each is overcollateralized by pETH and counterparty-free. See [The pAsset Catalog](/minting/passet-catalog).
 - **pUSD**: the flagship pAsset, pegged to the US dollar, backed by pETH collateral. See [Minting pAssets](/minting/minting-passets).
-- **pETH**: ETH deposited into a two-way [bonding curve](/peth/bonding-curve). It is the *only* collateral Polaris accepts, has a floor price that only rises, and is yield-bearing.
+- **pETH**: ETH deposited into a two-way [bonding curve](/peth/bonding-curve). It is not CDP-minted debt; it is the *only* collateral Polaris accepts, has a floor price that is designed to rise under the curve invariants, and is yield-bearing.
 - **POLAR**: the protocol's stewardship token. After a fixed distribution at launch, new POLAR can be minted *only* by burning pETH in a [conversion auction](/polar/conversion-auctions). **vePOLAR**, a vote-escrow layer for stewardship rights, is forthcoming.
 
 ## Minting & positions

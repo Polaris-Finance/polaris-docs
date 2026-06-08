@@ -1,0 +1,58 @@
+---
+title: Polaris Launch Status
+description: The canonical status page for Polaris launch phase, official networks, app URL, contract addresses, audit status, and what is actionable today.
+---
+
+# Polaris Launch Status
+
+This page is the source of truth for whether Polaris docs are conceptual, testnet-actionable, or production-actionable.
+
+> **Last verified:** June 8, 2026. Polaris is in **public Testnet 2**. Production mainnet is forthcoming.
+
+## Current status
+
+| Item | Current status |
+|---|---|
+| Public phase | **Testnet 2** |
+| Testnet network | **Sepolia**, chain ID `11155111` |
+| Production network | **Ethereum mainnet**, chain ID `1`, forthcoming |
+| Official app URL | Forthcoming in these docs before production use |
+| Canonical production contracts | Not published yet |
+| Testnet contracts | Available only from the protocol repository deployment manifests; not canonical production addresses |
+| Final audit reports | Not published in these docs yet |
+| Bug bounty / disclosure program | Not public yet |
+
+## What is actionable now
+
+| Action | Status | Use this rule |
+|---|---|---|
+| Read the protocol model | Conceptual now | The explainers, core concepts, and risk pages are safe to read as the intended model. |
+| Test on Testnet 2 | Testnet-actionable now | Use Sepolia test assets and the protocol repository manifests. Treat addresses, mocks, and parameters as replaceable. |
+| Open testnet app | Testnet-actionable now | Use the official testnet interface at [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io/). |
+| Use production capital | Not yet mainnet-actionable | Wait until this page links the official app, production contracts, verified source, final parameters, and audit status. |
+| Integrate contracts | Plan now, bind later | Build verification gates and schemas now. Do not hardcode unpublished production addresses, ABIs, events, or parameters. |
+
+## Network truth
+
+Testnet 2 runs on **Sepolia (`11155111`)** and may use mock assets, mock oracles, redeployable contracts, and testnet-only parameters. It is for testing behavior, not for valuing production risk.
+
+Production Polaris is intended for **Ethereum mainnet (`1`)**, but mainnet app and contract addresses are not published yet. Any frontend, token, contract address, airdrop, support message, or bounty page claiming production status before it is linked here should be treated as unverified.
+
+## Before any transaction
+
+Do not connect a wallet or sign a transaction unless all relevant checks pass:
+
+- The app URL is linked from this page or another official Polaris page.
+- The wallet network matches the intended environment: Sepolia for Testnet 2, Ethereum mainnet only after production launch.
+- The contract address appears in [Contracts & Addresses](/resources/contracts) or, for testnet-only work, in the official deployment manifest you are using.
+- Explorer source and ABI match the documented contract.
+- The relevant product page has final values for the parameters your action depends on.
+- Audit and disclosure status are clear on [Audits & Security](/resources/audits-security).
+
+## Page labels used in these docs
+
+- **Conceptual only** means the page explains the model and risks, but does not give enough live parameters to sign safely.
+- **Testnet-actionable** means you can try the flow on Sepolia with test assets and testnet manifests.
+- **Mainnet-actionable later** means the page needs production app links, verified addresses, final parameters, and audit status before use with real value.
+
+For phishing and user-safety checks, continue to [Safety and Verification](/paths/safety-verification). For the intended deployment shape, see [Contracts & Addresses](/resources/contracts).

@@ -1,9 +1,9 @@
 ---
-title: Stability Pool
+title: Polaris Stability Pool
 description: The Stability Pool is a reserve of pAssets that backstops liquidations and is the primary venue for earning yield on Polaris.
 ---
 
-# Stability Pool
+# Polaris Stability Pool
 
 > **Before you deposit:**
 > A Stability Pool deposit is not a fixed pAsset savings balance. Liquidations can burn part of your deposited pAsset and replace it with pETH rewards. Before depositing, check the current pool size, claimable rewards, pETH price exposure, withdrawal conditions, and whether wrapper vaults are available.
@@ -52,15 +52,15 @@ The interest share is the steady base; liquidation gains spike precisely when ma
 
 ## Worked example: Stability Pool P&L
 
-Suppose you deposit 10,000 pUSD into a 1,000,000 pUSD Stability Pool, giving you 1% of the pool. A liquidation burns 100,000 pUSD from the pool and pays out pETH worth $110,000 at execution.
+Suppose you deposit 10,000 pUSD into a 1,000,000 pUSD Stability Pool, giving you 1% of the pool. A liquidation burns 100,000 pUSD from the pool and pays out pETH worth \$110,000 at execution.
 
 | Item | Pool-level amount | Your 1% share |
 |---|---:|---:|
 | pUSD burned | 100,000 pUSD | 1,000 pUSD |
-| pETH received at execution value | $110,000 | $1,100 |
-| Gross liquidation gain before price movement | $10,000 | $100 |
+| pETH received at execution value | \$110,000 | \$1,100 |
+| Gross liquidation gain before price movement | \$10,000 | \$100 |
 
-That is the healthy-liquidation case: part of your pUSD position converted into discounted pETH. If pETH falls 15% before you sell or wrap it, your $1,100 of pETH becomes $935 — a $65 loss versus the 1,000 pUSD burned. Interest income and later liquidations can offset losses, but do not remove pETH price risk.
+That is the healthy-liquidation case: part of your pUSD position converted into discounted pETH. If pETH falls 15% before you sell or wrap it, your \$1,100 of pETH becomes \$935 — a \$65 loss versus the 1,000 pUSD burned. Interest income and later liquidations can offset losses, but do not remove pETH price risk.
 
 ## The honest risk
 

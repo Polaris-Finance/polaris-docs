@@ -1,15 +1,15 @@
 ---
-title: pAsset Catalog
-description: The pAssets Polaris can mint (pUSD, pETH, pGOLD, pCHF, pBigMac) and how StablecoinOS lets credible teams add new ones on shared pETH collateral.
+title: Polaris Asset Catalog
+description: The pAsset debt tokens Polaris can mint (pUSD, pGOLD, pCHF, pBigMac), how pETH differs as collateral, and how StablecoinOS can add new assets.
 ---
 
-# pAsset Catalog
+# Polaris Asset Catalog
 
-A **pAsset** is a synthetic asset minted by Polaris against pETH collateral. Each is overcollateralized, counterparty-free, and redeemable through onchain protocol mechanics under the usual assumptions: functioning contracts, live Ethereum execution, available gas, and valid pricing data. The catalog is open: through [StablecoinOS](#stablecoinos-an-open-catalog), credible teams can add new pAssets, all sharing the same pETH collateral and bonding curve.
+A **pAsset** is a synthetic debt asset minted from a Polaris CDP against pETH collateral. Each pAsset is overcollateralized, counterparty-free, and redeemable through onchain protocol mechanics under the usual assumptions: functioning contracts, live Ethereum execution, available gas, and valid pricing data. **pETH is different:** it is not minted from a trove; it is the bonding-curve collateral token that backs pAssets. The catalog is open: through [StablecoinOS](#stablecoinos-an-open-catalog), credible teams can add new pAssets, all sharing the same pETH collateral and bonding curve.
 
-## The catalog
+## Polaris assets
 
-| pAsset | Tracks | Notes |
+| Asset | Tracks | Notes |
 |---|---|---|
 | **pUSD** | US dollar | The flagship pAsset. Counterparty-free dollar with yield that scales with protocol activity. See [Minting pAssets](/minting/minting-passets). |
 | **pETH** | ETH | *Special.* Not minted from a trove: it is the collateral itself, produced by the [bonding curve](/peth/bonding-curve) with an ever-rising floor price. It backs every other pAsset. |

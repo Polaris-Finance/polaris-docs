@@ -1,9 +1,9 @@
 ---
-title: Minting pAssets
+title: Minting Polaris pAssets
 description: How the Polaris CDP model mints pAssets directly from the protocol against pETH collateral, with autonomous market-aware interest rates.
 ---
 
-# Minting pAssets
+# Minting Polaris pAssets
 
 ## The CDP model
 
@@ -40,8 +40,8 @@ Setting CDP interest rates is where most designs struggle: Maker still uses gove
 
 Polaris sets rates **autonomously, without a direct market-price feed for the pAsset**, by reading signals already inside the system:
 
-- **Redemptions are profitable when pUSD < $1** ⇒ a spike in redemption volume signals a downward depeg ⇒ raise the rate.
-- **Minting is profitable when pUSD > $1** ⇒ a spike in minting volume signals an upward depeg ⇒ lower the rate.
+- **Redemptions are profitable when pUSD < \$1** ⇒ a spike in redemption volume signals a downward depeg ⇒ raise the rate.
+- **Minting is profitable when pUSD > \$1** ⇒ a spike in minting volume signals an upward depeg ⇒ lower the rate.
 
 This gives the protocol an internal peg-pressure signal, not a substitute for every oracle in the system. Collateral valuation, non-dollar pAsset reference units, stale-price checks, and liquidation math still depend on the final audited pricing paths for those assets. See [Redemptions](/redemptions-liquidations/redemptions) for the mechanism behind the peg-pressure signal.
 

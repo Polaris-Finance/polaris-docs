@@ -1,19 +1,19 @@
 ---
-title: Participate in a Conversion
+title: Participate in a POLAR Conversion
 description: "Step-by-step guide to executing a conversion: watch the decaying price, decide when it beats POLAR's market price, then burn pETH for POLAR and any ETH rebate."
 ---
 
 import { Steps } from 'nextra/components'
 
-# Participate in a Conversion
+# Participate in a POLAR Conversion
 
 This is the how-to. For the mechanism behind it, read [Conversion Auctions](/polar/conversion-auctions); for POLAR's role, read [The POLAR Token](/polar/polar-token).
 
 > **Note:**
 > Conversions are a continuous, permissionless auction tuned for [arbitrage bots and MEV searchers](/polar/conversion-auctions). Converting profitably means competing with them. Most users will hold POLAR or lock it as [vePOLAR](/stewardship/vepolar) instead of converting directly.
 
-> **Note:**
-> The conversion UI is not yet public. The steps below describe the intended flow and must be updated with the final app URL, labels, quote fields, and transaction preview before launch.
+> **Actionability:**
+> Conversions are testnet-actionable only on Sepolia where the current deployment manifests expose the flow. Production conversions are not mainnet-actionable until [Polaris Launch Status](/launch-status) publishes the official app, production conversion contract, final parameters, quote fields, transaction preview, and audit status.
 
 ## Before you act
 
@@ -22,8 +22,8 @@ This is the how-to. For the mechanism behind it, read [Conversion Auctions](/pol
 
 Do not attempt a conversion until all of these are true:
 
-- The official app URL is published on [Safety and Verification](/paths/safety-verification).
-- The conversion contract is listed on [Contracts & Addresses](/resources/contracts) (Ethereum mainnet, chain ID 1).
+- The official app URL is published on [Polaris Launch Status](/launch-status).
+- The conversion contract is listed on [Contracts & Addresses](/resources/contracts) for the intended network: Sepolia (`11155111`) for Testnet 2, or Ethereum mainnet (`1`) after production launch.
 - The conversion price, POLAR market price, rebate, and price-spike preview are visible in the app before signing.
 - You are comfortable with a one-way burn: pETH converted to POLAR cannot be converted back.
 

@@ -1,16 +1,16 @@
 ---
-title: Glossary
+title: Polaris Glossary
 description: Every Polaris term defined in one or two sentences, alphabetized and linked to its full explanation. The fast way to look anything up.
 ---
 
-# Glossary
+# Polaris Glossary
 
 Every key Polaris term, alphabetized. Each entry is one or two sentences and links to its full treatment where one exists. For the narrative map of how the pieces fit, read [Core Concepts](/core-concepts).
 
 ## B
 
 **Bonding curve**
-The two-way curve that backs [pETH](/peth/bonding-curve). It enforces a mathematical relationship between pETH supply and price (minting raises it, burning lowers it), providing instant, guaranteed liquidity with no liquidity providers and an ever-rising [floor price](/peth/floor-price). See [The Bonding Curve](/peth/bonding-curve).
+The two-way curve that backs [pETH](/peth/bonding-curve). It enforces a mathematical relationship between pETH supply and price (minting raises it, burning lowers it), providing a contract-native buy/sell path with no liquidity providers and a [floor price](/peth/floor-price) designed to rise under the curve invariants. See [The Bonding Curve](/peth/bonding-curve).
 
 ## C
 
@@ -29,10 +29,10 @@ A stewardship-controlled percentage of ETH returned to the converter in a [conve
 Receives pETH from conversions and bonding-curve swap-fee buybacks, buffers it over a reward period, and distributes pETH rewards to a stewardship-designated receiver — currently troves, pro-rata to debt. Staker yield is distributed separately, in pAsset terms, via the interest router. See [Stewardship](/stewardship/stewardship).
 
 **Floor price**
-The mathematically enforced minimum price of [pETH](/peth/bonding-curve), in ETH terms. It only ever rises — the price guaranteed to the *last person out* if everyone exited at once; most exiters get a better price. See [The Floor Price](/peth/floor-price).
+The contract-defined minimum price of [pETH](/peth/bonding-curve), in ETH terms, under the bonding-curve invariants. It is designed to only rise during normal protocol operation and represents the modeled *last person out* price if everyone exited at once; most exiters get a better curve price. See [The Floor Price](/peth/floor-price).
 
 **Floor ratio**
-The floor price divided by the market price, as a percentage. It tells you your maximum drawdown: a 90% floor ratio means at most 10% downside in ETH terms. See [The Floor Price](/peth/floor-price).
+The floor price divided by the market price, as a percentage. It frames the curve-implied drawdown before gas, slippage, MEV, smart-contract risk, and chain-liveness risk. See [The Floor Price](/peth/floor-price).
 
 **Flows**
 The protocol's internal value movements (fees, conversions, yield distribution), routed by the [Fee Router](#f). Inward-facing flows sustain the core; outward-facing flows grow the ecosystem (see *Inward-facing / Outward-facing*).
@@ -53,7 +53,7 @@ The process that closes an undercollateralized [trove](#t): when its [ICR](#i) d
 ## M
 
 **Minting (mechanism)**
-The inverse of [redemption](#r): when a pAsset trades *above* peg (e.g. pUSD > $1), arbitrageurs add pETH to troves to mint the pAsset and sell it, pushing the price down. This restores the ceiling and is one of the onchain signals used to set interest rates. See [Minting pAssets](/minting/minting-passets).
+The inverse of [redemption](#r): when a pAsset trades *above* peg (e.g. pUSD > \$1), arbitrageurs add pETH to troves to mint the pAsset and sell it, pushing the price down. This restores the ceiling and is one of the onchain signals used to set interest rates. See [Minting pAssets](/minting/minting-passets).
 
 **Minting (verb)**
 Creating a pAsset by opening a [trove](#t) and drawing pAsset debt against pETH collateral. Polaris *mints* pAssets, not "issues" or "creates" them.
@@ -61,12 +61,12 @@ Creating a pAsset by opening a [trove](#t) and drawing pAsset debt against pETH 
 ## O
 
 **Oracle**
-An onchain feed Polaris is expected to use to price ETH collateral. Peg awareness needs no oracle: redemption and minting volume serve as an internal price signal for each pAsset. The final provider and feed address are forthcoming; the network is Ethereum mainnet. See [Minting pAssets](/minting/minting-passets) and [Contracts & Addresses](/resources/contracts).
+An onchain feed Polaris is expected to use to price ETH collateral. Peg awareness needs no oracle: redemption and minting volume serve as an internal price signal for each pAsset. The final provider and feed address are forthcoming; Testnet 2 uses Sepolia and production is intended for Ethereum mainnet. See [Minting pAssets](/minting/minting-passets), [Launch Status](/launch-status), and [Contracts & Addresses](/resources/contracts).
 
 ## P
 
 **pAsset**
-A Polaris synthetic asset — pUSD, pETH, pGOLD, pCHF, and beyond. Each is overcollateralized by pETH and counterparty-free. See [The pAsset Catalog](/minting/passet-catalog).
+A Polaris synthetic debt asset minted from a CDP — pUSD, pGOLD, pCHF, and beyond. Each is overcollateralized by pETH and counterparty-free. pETH itself is the collateral token, not CDP-minted pAsset debt. See [The pAsset Catalog](/minting/passet-catalog).
 
 **pBigMac**
 A novelty pAsset demonstrating the "mint anything" thesis: if a price feed exists, Polaris can mint a pAsset that tracks it.
@@ -75,7 +75,7 @@ A novelty pAsset demonstrating the "mint anything" thesis: if a price feed exist
 The Polaris synthetic Swiss franc — a pAsset pegged to CHF.
 
 **pETH**
-ETH deposited into the two-way [bonding curve](/peth/bonding-curve). The *only* collateral Polaris accepts: yield-bearing, with an ever-rising [floor price](/peth/floor-price). Volatile against ETH, but bounded below by the floor. See [The Bonding Curve](/peth/bonding-curve).
+ETH deposited into the two-way [bonding curve](/peth/bonding-curve). The *only* collateral Polaris accepts: yield-bearing, with a [floor price](/peth/floor-price) designed to rise under the curve invariants. Volatile against ETH, with a contract-defined floor under stated assumptions. See [The Bonding Curve](/peth/bonding-curve).
 
 **pGOLD**
 The Polaris synthetic gold pAsset, designed to track gold without issuer custody or KYC at the base protocol layer. See [The pAsset Catalog](/minting/passet-catalog).

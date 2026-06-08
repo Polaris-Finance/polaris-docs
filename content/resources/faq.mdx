@@ -1,13 +1,13 @@
 ---
-title: FAQ
+title: Polaris Finance FAQ
 description: "Frequently asked questions about Polaris: what it is, how minting and troves work, how the peg holds, where yield comes from, and how security works."
 ---
 
-# FAQ
+# Polaris Finance FAQ
 
 Short answers, grouped by theme. Each links to the page that covers it in full.
 
-> **Pre-launch note:** The official app URL, contract addresses, final audit reports, and disclosure program are not published in these docs yet. Check [Safety and Verification](/paths/safety-verification) before interacting with any frontend or address.
+> **Pre-launch note:** The official app URL, contract addresses, final audit reports, and disclosure program are not published in these docs yet. Check [Polaris Launch Status](/launch-status) and [Safety and Verification](/paths/safety-verification) before interacting with any frontend or address.
 
 ## General
 
@@ -15,7 +15,7 @@ Short answers, grouped by theme. Each links to the page that covers it in full.
 A self-scaling stablecoin operating system: trustless, immutable infrastructure for minting synthetic assets (pAssets) backed entirely by onchain collateral and yield. No T-bills, no CEXs. See [Why Polaris?](/why-polaris).
 
 **What is a pAsset?**
-A synthetic asset minted by Polaris (pUSD, pETH, pGOLD, pCHF, and beyond), each overcollateralized by pETH and counterparty-free. See [The pAsset Catalog](/minting/passet-catalog).
+A synthetic debt asset minted from a Polaris CDP (pUSD, pGOLD, pCHF, and beyond), each overcollateralized by pETH and counterparty-free. pETH itself is separate: it is the bonding-curve collateral token. See [The pAsset Catalog](/minting/passet-catalog).
 
 **What is pUSD?**
 The flagship pAsset, designed to track the US dollar and be backed by pETH. It sits in the same counterparty-free design family as LUSD and BOLD, adding Polaris's pETH collateral and yield mechanics. See [Minting pAssets](/minting/minting-passets).
@@ -27,10 +27,10 @@ ETH deposited into a two-way [bonding curve](/peth/bonding-curve). It is the onl
 The stewardship token and the protocol's outward-facing growth lever. After the initial distribution, new POLAR can be minted *only* by burning pETH in a [conversion auction](/polar/conversion-auctions). See [The POLAR Token](/polar/polar-token).
 
 **Which chain does Polaris run on?**
-Ethereum mainnet (chain ID 1). The official app URL and contract addresses will be published on [Safety and Verification](/paths/safety-verification) and [Contracts & Addresses](/resources/contracts) at launch.
+The current public phase is Testnet 2 on Sepolia (chain ID `11155111`). Production is intended for Ethereum mainnet (chain ID `1`) once launched. The official app URL and contract addresses will be published on [Polaris Launch Status](/launch-status), [Safety and Verification](/paths/safety-verification), and [Contracts & Addresses](/resources/contracts).
 
 **Where is the official app?**
-Not published in these docs yet. Until it appears on [Safety and Verification](/paths/safety-verification), treat any "Polaris app" frontend as unverified.
+Not published in these docs yet. Until it appears on [Polaris Launch Status](/launch-status), treat any "Polaris app" frontend as unverified.
 
 ## Minting and troves
 
@@ -52,10 +52,10 @@ Yes. If your [ICR](/resources/glossary) falls below the minimum, the trove is [l
 ## pETH
 
 **Is pETH the same as ETH?**
-No. pETH is ETH inside the bonding curve. It is volatile against ETH but bounded below by its [floor price](/peth/floor-price), and it earns yield. Think of it as stETH with different trade-offs: guaranteed liquidity and instant withdrawal, but volatility against ETH.
+No. pETH is ETH inside the bonding curve. It is volatile against ETH but has a contract-defined lower bound under the [floor-price](/peth/floor-price) assumptions, and it earns yield. Think of it as stETH with different trade-offs: contract-native liquidity and an onchain exit path, but volatility against ETH and smart-contract/execution risk.
 
 **What is the floor price, and why does it only go up?**
-The floor is the mathematically enforced minimum price of pETH in ETH terms: the price guaranteed to the last person out. It rises because swap fees are burned and conversion auctions burn pETH, and nothing pushes it back down. See [The Floor Price](/peth/floor-price).
+The floor is the contract-defined minimum price of pETH in ETH terms under the bonding-curve invariants: the modeled price for the last person out if everyone exited at once. It rises because swap fees are burned and conversion auctions burn pETH, and no normal protocol action pushes it back down. See [The Floor Price](/peth/floor-price).
 
 ## Yield
 
@@ -85,7 +85,7 @@ Final audit reports are not published in these docs yet. Until they appear on [A
 Canonical addresses are not published yet. Once deployed, they will be listed with network, chain ID, and source-verification links on [Contracts & Addresses](/resources/contracts). Any address found elsewhere before then is unverified.
 
 **Can my pAssets be frozen or blacklisted?**
-The intended design is immutable and admin-key-free, with no freeze function and no blacklist, by anyone, including the team. Verify the final deployed contracts on [Contracts & Addresses](/resources/contracts) once addresses are published.
+The intended design is immutable and admin-key-free, with no freeze function and no blacklist, by anyone, including the team. Verify the final production contracts on [Contracts & Addresses](/resources/contracts) once addresses are published.
 
 ---
 

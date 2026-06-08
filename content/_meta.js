@@ -1,8 +1,9 @@
 export default {
   index: 'Introduction',
+  'launch-status': 'Launch Status',
+  'getting-started': 'Getting Started',
   'why-polaris': 'Why Polaris',
   'core-concepts': 'Core Concepts',
-  'getting-started': 'Getting Started',
   paths: 'Choose Your Path',
   explainers: 'Timed Explainers',
   '-- using': {

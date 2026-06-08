@@ -1,11 +1,13 @@
 ---
-title: Getting Started
+title: Getting Started with Polaris
 description: "What you need to use Polaris and the basic flow: deposit ETH, receive pETH, open a trove and mint a pAsset, and optionally earn yield in the Stability Pool."
 ---
 
-# Getting Started
+# Getting Started with Polaris
 
 The shortest path from "I have ETH" to "I am using Polaris." Each step links to its full treatment.
+
+> **Current status:** Polaris is in public Testnet 2 on Sepolia (`11155111`). Production Ethereum mainnet (`1`) is forthcoming. Check [Polaris Launch Status](/launch-status) before connecting a wallet or treating any page as mainnet-actionable.
 
 ## Choose your path
 
@@ -18,18 +20,19 @@ If you already know why you're here, start with the matching journey:
 - **Hold or use pETH** — understand the bonding curve, floor price, and external collateral use: [Hold or Use pETH](/paths/hold-use-peth).
 - **Convert and lock POLAR** — burn pETH to mint POLAR, lock as vePOLAR, and participate in bounded stewardship: [Convert and Lock POLAR](/paths/convert-lock-polar).
 - **Develop** — plan an integration, indexer, vault, analytics surface, or risk tool: [Develop](/paths/develop).
-- **Safety and verification** — confirm official app, contracts, audits, and launch status before interacting: [Safety and Verification](/paths/safety-verification).
+- **Launch status and safety** — confirm official app, network, contracts, audits, and launch status before interacting: [Polaris Launch Status](/launch-status) and [Safety and Verification](/paths/safety-verification).
 
 ## What you need
 
 - **An Ethereum wallet** — any standard EOA or smart-account wallet.
-- **ETH on Ethereum mainnet** — the only asset you need to begin; Polaris converts it to [pETH](/peth/bonding-curve) for you.
+- **For Testnet 2:** Sepolia ETH and any test assets required by the current deployment manifest.
+- **For production later:** ETH on Ethereum mainnet — the only asset you need to begin; Polaris converts it to [pETH](/peth/bonding-curve) for you.
 
 That's the whole list. No KYC, no whitelist, no offchain account.
 
 ## The basic flow
 
-In one line: **deposit ETH ⇒ receive pETH ⇒ open a trove and mint a pAsset ⇒ optionally deposit to the Stability Pool to earn yield.** Step by step:
+In one line: **deposit ETH ⇒ receive pETH ⇒ open a trove and mint a pAsset ⇒ optionally deposit to the Stability Pool to earn yield.** On Testnet 2 this uses Sepolia test assets; in production it uses Ethereum mainnet once launch status says mainnet is live. Step by step:
 
 1. **Deposit ETH.** Connect your wallet and deposit ETH into the protocol.
 2. **Receive pETH from the [bonding curve](/peth/bonding-curve).** Your ETH is swapped for pETH at the curve's current price. pETH is an ETH proxy with a floor price that only rises, and the only collateral Polaris accepts.
@@ -38,14 +41,14 @@ In one line: **deposit ETH ⇒ receive pETH ⇒ open a trove and mint a pAsset �
 
 ## Where the app lives
 
-> **Note:** The Polaris app URL is *forthcoming* and will be published here at launch. Until then, treat any "Polaris" frontend as unverified.
+> **Note:** The Polaris app URL is *forthcoming* and will be published on [Polaris Launch Status](/launch-status) before production use. Until then, treat any "Polaris" frontend as unverified.
 
 ## Launch verification
 
 Before you connect a wallet or sign a transaction, verify:
 
 - The app URL is linked from this documentation or another official Polaris channel.
-- The app is connected to Ethereum mainnet (chain ID 1).
+- The app is connected to the intended network: Sepolia (`11155111`) for Testnet 2, or Ethereum mainnet (`1`) only after production launch.
 - Contract addresses match [Contracts and Addresses](/resources/contracts).
 - Verified source, ABIs, and audit status match [Contracts and Addresses](/resources/contracts) and [Audits and Security](/resources/audits-security).
 - The product page you're following has been updated from conceptual flow to launch parameters.

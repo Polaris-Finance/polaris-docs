@@ -1,22 +1,22 @@
 ---
-title: Hold or Use pETH
+title: Hold or Use Polaris pETH
 description: The pETH path for users who want exposure to the bonding curve, a rising floor, external collateral use, or Polaris trove collateral.
 ---
 
-# Hold or Use pETH
+# Hold or Use Polaris pETH
 
 **Who this is for:** anyone who wants to hold pETH for its rising floor, use it as collateral, or understand the asset before borrowing against it.
 
-**Prerequisites:** ETH on Ethereum and a wallet. No trove or pAsset is required to hold pETH; borrowing is optional and comes later.
+**Prerequisites:** a wallet and the right ETH for the environment: Sepolia ETH for Testnet 2, or ETH on Ethereum mainnet after production launch. No trove or pAsset is required to hold pETH; borrowing is optional and comes later.
 
-> **Launch status:** The pETH contract address, bonding-curve deployment, external integrations, and final curve parameters are pending publication at launch. Do not trust unofficial addresses.
+> **Launch status:** pETH is testnet-actionable only through the current Sepolia deployment manifests. Production pETH use is not mainnet-actionable until [Polaris Launch Status](/launch-status) publishes the official app, production bonding-curve address, verified source, final curve parameters, and audit status. Do not trust unofficial addresses.
 
 ## Reading sequence
 
 Read these in order to understand pETH and its downside bound before relying on it.
 
 1. [The Bonding Curve](/peth/bonding-curve) — how ETH deposits become pETH, and where your exit liquidity comes from.
-2. [The Floor Price](/peth/floor-price) — the mathematically enforced downside bound in ETH terms; this is your worst case.
+2. [The Floor Price](/peth/floor-price) — the contract-defined downside bound in ETH terms under the curve assumptions.
 3. [Minting pAssets](/minting/minting-passets) — only if you may use pETH inside a trove; explains what changes when pETH becomes collateral.
 4. [Where the Yield Comes From](/yield/yield-sources) — how bonding-curve and conversion activity raises the floor for pETH holders.
 5. [Risk Disclosure](/resources/risk-disclosure) — read before using pETH as collateral anywhere, inside or outside Polaris.
@@ -28,12 +28,12 @@ Read these in order to understand pETH and its downside bound before relying on 
 | Hold pETH directly | [Bonding Curve](/peth/bonding-curve), [Floor Price](/peth/floor-price) |
 | Borrow against pETH | [Borrow pAssets](/paths/borrow-passets) |
 | Integrate pETH externally | [Develop](/paths/develop), [Core Concepts](/core-concepts) |
-| Verify the asset | [Safety and Verification](/paths/safety-verification) |
+| Verify the asset | [Polaris Launch Status](/launch-status), [Safety and Verification](/paths/safety-verification) |
 
 ## What to verify at launch
 
 - The official pETH contract address and verified source.
-- The bonding-curve address on Ethereum mainnet.
+- The bonding-curve address on the intended network: Sepolia for Testnet 2, Ethereum mainnet after production launch.
 - Final curve, fee, and floor-ratio parameters once published.
 - The exit path from pETH back to ETH.
 - Any external venue's risk controls before using pETH outside Polaris.

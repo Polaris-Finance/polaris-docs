@@ -1,19 +1,19 @@
 ---
-title: Open a Trove
+title: Open a Polaris Trove
 description: Step-by-step guide to opening a Polaris trove — deposit pETH, mint a pAsset, and pick a safe buffer to stay clear of liquidation and redemption.
 ---
 
 import { Steps } from 'nextra/components'
 
-# Open a Trove
+# Open a Polaris Trove
 
 A **trove** is your individual borrowing position: its own collateral, debt, and collateralization ratio. Opening one is how you mint a pAsset: **connect wallet ⇒ acquire pETH ⇒ deposit pETH as collateral ⇒ choose and mint a pAsset ⇒ confirm ⇒ monitor your ICR**. This page walks each step; for the concepts behind it, see [Minting pAssets](/minting/minting-passets) and [Managing Your Trove](/minting/managing-your-trove).
 
-> **Note:** Screenshots and exact UI labels are *forthcoming* and will be added once the app is live. The steps below describe the flow, not the final button copy.
+> **Actionability:** This flow is testnet-actionable only on Sepolia (`11155111`) using the current Testnet 2 manifests. Production troves are not mainnet-actionable until [Polaris Launch Status](/launch-status) publishes the official app, production addresses, final parameters, and audit status. Screenshots and exact UI labels are forthcoming; the steps below describe the flow, not the final button copy.
 
 ## Before you start
 
-- A wallet with **ETH on Ethereum mainnet**.
+- A wallet with the right asset for the environment: **Sepolia ETH** for Testnet 2 or **ETH on Ethereum mainnet** after production launch.
 - A target pAsset in mind — see [the catalog](/minting/passet-catalog).
 
 > **Before you act:**
@@ -23,7 +23,7 @@ A **trove** is your individual borrowing position: its own collateral, debt, and
 
 | Parameter | Status | What to use before launch |
 |---|---|---|
-| Network | Ethereum mainnet (chain ID 1) | — |
+| Network | Testnet 2: Sepolia (`11155111`); production: Ethereum mainnet (`1`) after launch | [Polaris Launch Status](/launch-status) |
 | Minimum ICR per pAsset | Pending final parameters | The value the app and contracts show at launch |
 | Recovery Mode trigger | Pending final parameters | Monitor the app's system-health indicator |
 | Borrow interest-rate formula and bounds | Pending final parameters | The current quoted rate before minting |
@@ -76,12 +76,12 @@ A larger buffer above the minimum keeps you clear of liquidation through volatil
 
 The numbers below are illustrative only. They show the math; they are not launch parameters.
 
-Assume the app displays a 120% minimum ICR for a pUSD trove, and you open with $18,000 of pETH collateral against 10,000 pUSD of debt:
+Assume the app displays a 120% minimum ICR for a pUSD trove, and you open with \$18,000 of pETH collateral against 10,000 pUSD of debt:
 
 | Step | Collateral value | Debt | ICR |
 |---|---:|---:|---:|
-| Opening position | $18,000 | 10,000 pUSD | 180% |
-| After a 20% collateral-value drop | $14,400 | 10,000 pUSD | 144% |
-| After the same drop plus 200 pUSD of accrued interest | $14,400 | 10,200 pUSD | 141% |
+| Opening position | \$18,000 | 10,000 pUSD | 180% |
+| After a 20% collateral-value drop | \$14,400 | 10,000 pUSD | 144% |
+| After the same drop plus 200 pUSD of accrued interest | \$14,400 | 10,200 pUSD | 141% |
 
 That buffer survives the modeled move. Had the same user opened at 135%, a 20% collateral-value drop would take the trove to about 108%, below the illustrative 120% minimum. The lesson is not that 180% is the right number; it is that your buffer has to cover price moves, interest accrual, gas delays, and the way redemptions reduce every open trove's collateral and debt collectively, pro-rata to collateral and regardless of ICR.

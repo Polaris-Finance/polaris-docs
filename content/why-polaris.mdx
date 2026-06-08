@@ -1,9 +1,9 @@
 ---
-title: Why Polaris
+title: Why Polaris Finance
 description: The stablecoin trilemma, the degradation pattern, and how Polaris is architected so that trustlessness and scale stop being mutually exclusive.
 ---
 
-# Why Polaris
+# Why Polaris Finance
 
 ## The trilemma
 
@@ -44,7 +44,7 @@ In text, the lineage reads:
 Polaris is built so the only counterparty you trust is **immutable code and Ethereum**:
 
 - **Onchain-only yield.** Every yield source — borrower interest, bonding curve swap fees, conversion gains, PolarEX swap fees — is internal to the protocol and grows with activity. Nothing is rented from a CEX or T-bill desk.
-- **Immutable core.** The bonding curve, CDP logic, liquidations, redemptions, and the Stability Pool are fixed in code. No admin key can add a PSM or a freeze function under pressure.
+- **Immutable core.** The bonding curve, CDP logic, liquidations, redemptions, and the Stability Pool are intended to be fixed in audited deployment code. No admin key can add a custodial PSM, external-collateral module, or freeze function under pressure.
 - **Counterparty-free by construction.** pUSD sits in the same counterparty-free lineage as LUSD and BOLD — but adds yield that *scales* with DeFi volume rather than capping growth at what a counterparty can deliver.
 
 > Having a counterparty means capping your growth to whatever yield that counterparty can deliver.

@@ -1,17 +1,17 @@
 ---
-title: Contracts & Addresses
+title: Polaris Contracts & Addresses
 description: "The Polaris contract set: a shared core plus one instance per pAsset. Addresses publish at deployment; verify network, chain ID, and source first."
 ---
 
-# Contracts & Addresses
+# Polaris Contracts & Addresses
 
-> **Pre-launch note:** Canonical addresses publish at deployment, not before. The contract *list* below reflects the deployed system; the **Address** column fills in at launch, each address linking to verified source on the official explorer. Treat any address not linked from these docs as unverified.
+> **Pre-launch note:** Canonical production addresses publish at deployment, not before. The contract *list* below reflects the intended deployment shape; the **Address** column fills in at launch, each address linking to verified source on the official explorer. Treat any production address not linked from these docs as unverified. See [Polaris Launch Status](/launch-status) for the current network state.
 
-## How the system is deployed
+## How the system deploys
 
-Polaris is a *factory* of pAsset instances. A single **shared core** — the bonding curve, POLAR, the Fee Router, and the oracles — deploys **once**. Then **one instance set** deploys **per pAsset** (pUSD, pGOLD, …): each gets its own CDP manager, Stability Pool, and PSM, but all share the same pETH collateral, bonding curve, and POLAR.
+Polaris is a *factory* of pAsset instances. A single **shared core** — the bonding curve, POLAR, the Fee Router, and the oracles — deploys **once**. Then **one instance set** deploys **per pAsset** (pUSD, pGOLD, …): each gets its own CDP manager, Stability Pool, and internal Peg Stability Module, but all share the same pETH collateral, bonding curve, and POLAR.
 
-So the address table has a **core section** plus **one block per pAsset**. Two pAsset instances exist today: **pUSD** and **pGOLD**.
+So the address table has a **core section** plus **one block per pAsset**. The current docs focus on **pUSD** and **pGOLD**; production deployment status remains governed by [Launch Status](/launch-status).
 
 ## Shared core
 
@@ -37,7 +37,7 @@ One set deploys per pAsset. Key everything by `(pAsset, owner)` — a pUSD trove
 | Trove NFT — tokenizes each trove position. | `CDPNFT.sol` | _Forthcoming_ |
 | [Stability Pool](/yield/stability-pool) — absorbs liquidations; the primary yield venue. | `StabilityPool.sol` | _Forthcoming_ |
 | Collateral Surplus Pool — holds post-liquidation collateral surplus for borrowers to claim. | `CollSurplusPool.sol` | _Forthcoming_ |
-| **Peg Stability Module (PSM)** — mint/redeem the pAsset against pETH; the peg and [redemption](/redemptions-liquidations/redemptions) entry point. | `PegStabilityModule.sol` | _Forthcoming_ |
+| **Internal Peg Stability Module** — mint/redeem the pAsset against pETH; the peg and [redemption](/redemptions-liquidations/redemptions) entry point. This is not a custodial or external-collateral PSM. | `PegStabilityModule.sol` | _Forthcoming_ |
 | Interest controller — primary (autonomous) and secondary (utilization) interest rates. | `InterestRate/InterestController.sol` | _Forthcoming_ |
 | Primary interest router — splits borrower interest across the Stability Pool, POLAR staking, and ecosystem. | `PrimaryInterestRouter.sol` | _Forthcoming_ |
 | Price feed — the pAsset's reference price path. | `PUSDTestnetPriceFeed.sol` / `PGOLDTestnetPriceFeed.sol` | _Forthcoming_ |
@@ -45,7 +45,7 @@ One set deploys per pAsset. Key everything by `(pAsset, owner)` — a pUSD trove
 
 > **Read helpers** (`Helpers/MultiCDPGetter.sol`, `Helpers/MultiReserveLoanGetter.sol`) are view contracts for batched reads; integrations may use them but should treat direct contract reads as the source of truth.
 
-> **A note on naming.** "pETH" and "the bonding curve" are the **same contract**. The "conversion auction" is **part of POLAR**, not a separate contract. The "vePOLAR" lock layer is **not yet deployed** — POLAR yield currently flows through plain staking. `pCHF`, `pBigMac`, and other catalog entries are illustrative; only **pUSD** and **pGOLD** are deployed.
+> **A note on naming.** "pETH" and "the bonding curve" are the **same contract**. The "conversion auction" is **part of POLAR**, not a separate contract. The per-pAsset internal Peg Stability Module is the pETH mint/redeem path, not the custodial/external-collateral PSM model Polaris rejects. The "vePOLAR" lock layer is **not yet production-deployed**; production yield and staking details are pending. `pCHF`, `pBigMac`, and other catalog entries are illustrative; **pUSD** and **pGOLD** are the current Testnet 2 focus.
 
 ## Testnet 2 (Sepolia)
 

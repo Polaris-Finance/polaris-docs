@@ -1,4 +1,5 @@
 export default {
+  index: 'Overview',
   glossary: 'Glossary',
   'risk-disclosure': 'Risk Disclosure',
   faq: 'FAQ',

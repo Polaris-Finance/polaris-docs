@@ -1,11 +1,11 @@
 ---
-title: 10-Minute Introduction
+title: Polaris 10-Minute Introduction
 description: The complete Polaris system from first principles — the problem, the mechanics, and the flywheel.
 ---
 
-<div className="pl-rt-badge">10 min read · Full Introduction</div>
+<ReadingTimeBadge>10 min read · Full Introduction</ReadingTimeBadge>
 
-# 10-Minute Introduction
+# Polaris 10-Minute Introduction
 
 ## Where stablecoins break down
 
@@ -40,9 +40,9 @@ When you deposit ETH into Polaris, the curve issues you **pETH** at the current 
 
 ### The floor price
 
-The floor price is the minimum exchange rate between pETH and ETH. It is mathematically guaranteed to only rise: each time swap or conversion fees accumulate, a portion adjusts the floor upward. No mechanism lowers it.
+The floor price is the minimum exchange rate between pETH and ETH under the bonding-curve invariants. It is designed to rise as swap or conversion fees accumulate and a portion adjusts the floor upward. No normal protocol action lowers it.
 
-The implication: pETH is not a volatile asset. It is an ETH proxy whose downside is permanently bounded. The floor-to-market ratio — your maximum drawdown — shrinks monotonically as fees accumulate.
+The implication: pETH is an ETH proxy with a contract-defined lower bound in ETH terms, not a fixed-price ETH substitute. Its market price can move against ETH, but the floor-to-market ratio frames the curve-implied drawdown before gas, slippage, MEV, smart-contract risk, and chain-liveness risk.
 
 If pETH's market price is 0.95 ETH and its floor is 0.85 ETH, your worst-case redemption is 0.85 ETH. As fees accumulate, that floor may rise to 0.87, then 0.90. It never falls.
 
@@ -86,7 +86,7 @@ The Stability Pool is the safety net for every CDP. Holders deposit pAssets; whe
 
 1. A share of borrower interest from all CDPs.
 2. Discounted pETH from liquidations.
-3. POLAR emissions are planned for an incentive period (not yet enabled in the contracts).
+3. Any additional protocol incentives, if enabled, are expected to come from routed hard-asset revenue rather than POLAR emissions.
 
 It is the primary yield venue for pAsset holders and the mechanism that keeps the CDP system solvent.
 
@@ -135,17 +135,17 @@ Each component reinforces the others:
 - Safer positions lower the protocol's risk profile, attracting more users.
 - More users generate more activity, and the loop continues.
 
-This compounding is structural, not dependent on incentives or emissions.
+This compounding is structural, not dependent on token emissions.
 
-## The three guarantees
+## Three intended invariants
 
-| Guarantee | How it is enforced |
+| Invariant | How it is enforced |
 |---|---|
-| **pETH floor only rises** | Bonding curve math — no mechanism in the contract can lower it |
+| **pETH floor is designed to rise** | Bonding curve math — no normal protocol action in the intended implementation lowers it |
 | **No counterparty in the collateral stack** | pETH is backed by ETH; pAssets are backed by pETH; nothing else enters |
 | **Immutable core** | Bonding curve, CDP logic, liquidations, and redemptions are fixed in bytecode; there is no admin key and no upgrade function for the core |
 
-These are not design goals or promises. They are invariants enforced by the deployed contracts.
+These are not marketing promises. They are intended invariants that must be verified against the audited production contracts once addresses and reports are published.
 
 ## Risk model
 
@@ -154,10 +154,10 @@ Understanding Polaris means knowing what can and cannot happen:
 **What can happen:**
 - Your trove can be liquidated if your collateral ratio falls below the minimum. You keep any surplus above the liquidation threshold — liquidations are not a total loss.
 - Recovery Mode triggers when the protocol's reserve backing relative to total debt (its reserve-to-debt ratio) falls below a threshold. While active, borrowing tightens — actions that increase debt or reduce collateral must meet a higher minimum collateral ratio and may not worsen a position's ratio — but liquidation eligibility stays at the normal minimum collateral ratio, and pure collateral top-ups and repayments remain allowed.
-- pETH's market price can fall (it tracks ETH), though the floor is guaranteed. If ETH falls sharply, the floor protects you from the worst of it.
+- pETH's market price can fall against ETH and with ETH. The floor defines a curve-level lower-bound quote under stated assumptions; it does not protect against ETH falling against other units.
 
-**What cannot happen by design:**
-- The pETH floor cannot be lowered.
+**What cannot happen by design, once the intended production contracts are verified:**
+- No normal protocol action can lower the pETH floor under the intended curve invariant.
 - The CDP or bonding curve logic cannot be upgraded.
 - Your pAsset balance cannot be frozen or confiscated.
 
@@ -171,24 +171,3 @@ Where to go next depends on what you want to do.
 - Mint your first pUSD: [Open a Trove](/minting/open-a-trove)
 - Earn yield: [The Stability Pool](/yield/stability-pool)
 - Build on Polaris: [Develop](/paths/develop)
-
-<style>{`
-  .pl-rt-badge {
-    display: inline-block;
-    font-size: 0.65rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 3px 10px;
-    border-radius: 20px;
-    margin-bottom: 1rem;
-    background: rgba(74,127,168,0.1);
-    border: 1px solid rgba(74,127,168,0.3);
-    color: #2c5f8a;
-  }
-  :is(.dark) .pl-rt-badge {
-    background: rgba(123,165,201,0.12);
-    border-color: rgba(123,165,201,0.35);
-    color: #7ba5c9;
-  }
-`}</style>

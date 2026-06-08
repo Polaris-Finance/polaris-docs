@@ -19,6 +19,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://docs.polarisfinance.io/explainers</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://docs.polarisfinance.io/explainers/10-min</loc>
     <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
@@ -43,6 +48,16 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://docs.polarisfinance.io/launch-status</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://docs.polarisfinance.io/minting</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://docs.polarisfinance.io/minting/managing-your-trove</loc>
     <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
@@ -63,6 +78,11 @@
   <url>
     <loc>https://docs.polarisfinance.io/minting/passet-catalog</loc>
     <lastmod>2026-06-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://docs.polarisfinance.io/paths</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -103,6 +123,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://docs.polarisfinance.io/peth</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://docs.polarisfinance.io/peth/bonding-curve</loc>
     <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
@@ -111,6 +136,11 @@
   <url>
     <loc>https://docs.polarisfinance.io/peth/floor-price</loc>
     <lastmod>2026-06-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://docs.polarisfinance.io/polar</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -139,6 +169,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://docs.polarisfinance.io/redemptions-liquidations</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://docs.polarisfinance.io/redemptions-liquidations/liquidations</loc>
     <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
@@ -153,6 +188,11 @@
   <url>
     <loc>https://docs.polarisfinance.io/redemptions-liquidations/redemptions</loc>
     <lastmod>2026-06-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://docs.polarisfinance.io/resources</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -193,6 +233,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://docs.polarisfinance.io/stewardship</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://docs.polarisfinance.io/stewardship/fee-router</loc>
     <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
@@ -219,6 +264,11 @@
   <url>
     <loc>https://docs.polarisfinance.io/why-polaris</loc>
     <lastmod>2026-06-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://docs.polarisfinance.io/yield</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
