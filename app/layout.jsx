@@ -92,11 +92,13 @@ const logo = (
     <img
       src={pathWithBase('/emblem.svg')}
       alt=""
+      className="pl-logo-mark"
       width={26}
       height={26}
       style={{ display: 'block' }}
     />
     <span
+      className="pl-logo-text"
       style={{
         fontFamily: 'var(--font-serif), Georgia, serif',
         fontSize: '1.18rem',
