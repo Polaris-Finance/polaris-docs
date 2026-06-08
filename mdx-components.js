@@ -1,6 +1,7 @@
 import { Children, cloneElement, createElement, isValidElement } from 'react'
 import { useMDXComponents as getThemeComponents } from 'nextra-theme-docs'
 import { Image } from 'nextra/components'
+import { pathWithBase } from './app/site-config.mjs'
 import { AddressBlock } from './components/AddressBlock'
 import { BlogPostCard } from './components/BlogPostCard'
 import { BondingCurveExplorer } from './components/BondingCurveExplorer'
@@ -22,6 +23,29 @@ import { TroveSimulator } from './components/TroveSimulator'
 const themeComponents = getThemeComponents()
 const ThemeTable = themeComponents.table ?? 'table'
 const ThemeTh = themeComponents.th ?? 'th'
+const mdxAnchorClass =
+  'x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]'
+
+function hrefForMdxAnchor(href) {
+  if (typeof href !== 'string') return href
+  if (href.startsWith('#')) return href
+  if (/^(?:https?:|mailto:|tel:)/.test(href)) return href
+  if (href.startsWith(pathWithBase('/'))) return href
+  if (href.startsWith('/') && !href.startsWith('//')) return pathWithBase(href)
+  return href
+}
+
+function MdxAnchor({ href, className, rel, target, ...props }) {
+  const external = typeof href === 'string' && /^https?:\/\//.test(href)
+
+  return createElement('a', {
+    ...props,
+    href: hrefForMdxAnchor(href),
+    className: [mdxAnchorClass, className].filter(Boolean).join(' '),
+    rel: external ? (rel ?? 'noreferrer') : rel,
+    target: external ? (target ?? '_blank') : target
+  })
+}
 
 function getTextContent(node) {
   if (node === null || node === undefined || typeof node === 'boolean') return ''
@@ -122,6 +146,7 @@ export function useMDXComponents(components) {
     // stamps an aria-owns pointing at a modal that only exists once zoomed, which
     // fails axe's aria-valid-attr-value. `Image` keeps Pagefind alt/title indexing.
     img: Image,
+    a: MdxAnchor,
     table: AccessibleTable,
     th: TableHeader,
     AddressBlock,

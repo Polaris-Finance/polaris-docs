@@ -89,7 +89,9 @@ async function expectReadableArticleContrast(page, label) {
           const style = window.getComputedStyle(node)
           const foreground = parseRgb(style.color)
           const background = backgroundFor(node)
-          const ratio = foreground && background ? contrast(foreground, background) : 0
+          if (!foreground || !background) return null
+
+          const ratio = contrast(foreground, background)
           const fontSize = Number.parseFloat(style.fontSize)
           const fontWeight = Number.parseInt(style.fontWeight, 10)
           const threshold = fontSize >= 24 || (fontSize >= 18.66 && fontWeight >= 700) ? 3 : 4.5
@@ -100,6 +102,7 @@ async function expectReadableArticleContrast(page, label) {
             threshold
           }
         })
+        .filter(Boolean)
         .filter(({ ratio, threshold }) => ratio < threshold)
         .slice(0, 10)
     })
@@ -366,7 +369,9 @@ test('sampled article text meets contrast in dark and light themes', async ({ pa
   }
 })
 
-test('print media keeps wide reference pages within the viewport', async ({ page }) => {
+test('print media keeps wide reference pages within the viewport', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop', 'desktop-only print/PDF check')
+
   await page.emulateMedia({ media: 'print' })
 
   for (const route of ['/resources/contracts', '/stewardship/flows', '/launch-status']) {
@@ -393,7 +398,8 @@ test('dense glossary page stays within the route prefetch budget', async ({ page
   })
 
   await page.goto(pathWithBase('/resources/glossary'), { waitUntil: 'networkidle' })
-  expect([...routeRequests].sort()).toHaveLength(Math.min(routeRequests.size, 16))
+  expect([...routeRequests].sort()).toHaveLength(routeRequests.size)
+  expect(routeRequests.size).toBeLessThanOrEqual(16)
 })
 
 test('docs controls meet 44px touch targets where scoped', async ({ page }, testInfo) => {

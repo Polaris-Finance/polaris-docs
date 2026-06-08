@@ -1493,7 +1493,7 @@ article button[title*='Copy'] {
 .dark .pl-callout[data-variant='info'] {
   border-color: rgba(123, 165, 201, 0.45);
   background: rgba(123, 165, 201, 0.08);
-  color: #c6d8ea;
+  color: #faf6ee;
 }
 .dark .pl-callout[data-variant='info'] .pl-callout-icon {
   color: #7ba5c9;
@@ -1502,7 +1502,7 @@ article button[title*='Copy'] {
 .dark .pl-callout[data-variant='warning'] {
   border-color: rgba(216, 201, 164, 0.45);
   background: rgba(216, 201, 164, 0.08);
-  color: #e8dcc4;
+  color: #faf6ee;
 }
 .dark .pl-callout[data-variant='warning'] .pl-callout-icon {
   color: #d8c9a4;
@@ -1511,7 +1511,7 @@ article button[title*='Copy'] {
 .dark .pl-callout[data-variant='success'] {
   border-color: rgba(120, 190, 155, 0.45);
   background: rgba(120, 190, 155, 0.08);
-  color: #b8e0cc;
+  color: #faf6ee;
 }
 .dark .pl-callout[data-variant='success'] .pl-callout-icon {
   color: #78be9b;
@@ -1520,7 +1520,7 @@ article button[title*='Copy'] {
 .dark .pl-callout[data-variant='danger'] {
   border-color: rgba(220, 120, 120, 0.45);
   background: rgba(220, 120, 120, 0.08);
-  color: #ecc0c0;
+  color: #faf6ee;
 }
 .dark .pl-callout[data-variant='danger'] .pl-callout-icon {
   color: #dc7878;
