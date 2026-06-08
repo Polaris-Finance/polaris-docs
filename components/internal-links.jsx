@@ -1,5 +1,5 @@
 import { Children, cloneElement, isValidElement } from 'react'
-import { pathWithBase } from '../app/site-config.mjs'
+import { hrefWithBase } from '../app/site-config.mjs'
 
 function shouldPrefixNativeAnchor(child) {
   const href = child.props.href
@@ -8,7 +8,7 @@ function shouldPrefixNativeAnchor(child) {
     typeof href === 'string' &&
     href.startsWith('/') &&
     !href.startsWith('//') &&
-    !href.startsWith(pathWithBase('/'))
+    hrefWithBase(href) !== href
   )
 }
 
@@ -19,7 +19,7 @@ export function withBaseInternalLinks(node, { prefixNativeAnchors = false } = {}
     const nextProps = {}
 
     if (prefixNativeAnchors && shouldPrefixNativeAnchor(child)) {
-      nextProps.href = pathWithBase(child.props.href)
+      nextProps.href = hrefWithBase(child.props.href)
     }
 
     if (child.props.children) {

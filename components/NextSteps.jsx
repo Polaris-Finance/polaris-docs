@@ -1,9 +1,4 @@
-import { pathWithBase } from '../app/site-config.mjs'
-
-function hrefForStep(href) {
-  if (/^https?:\/\//.test(href)) return href
-  return pathWithBase(href)
-}
+import { hrefWithBase, isExternalHref } from '../app/site-config.mjs'
 
 export function NextSteps({ steps = [] }) {
   if (!steps.length) return null
@@ -15,10 +10,10 @@ export function NextSteps({ steps = [] }) {
         {steps.map((step) => (
           <a
             className="pl-next-step-card"
-            href={hrefForStep(step.href)}
+            href={hrefWithBase(step.href)}
             key={step.href}
-            rel={/^https?:\/\//.test(step.href) ? 'noopener noreferrer' : undefined}
-            target={/^https?:\/\//.test(step.href) ? '_blank' : undefined}
+            rel={isExternalHref(step.href) ? 'noopener noreferrer' : undefined}
+            target={isExternalHref(step.href) ? '_blank' : undefined}
           >
             <span className="pl-next-step-title">{step.title}</span>
             {step.description ? (

@@ -46,6 +46,29 @@ export function pathWithBase(pathname = '/') {
   return `${BASE_PATH}${path}`
 }
 
+export function isExternalHref(href) {
+  return typeof href === 'string' && /^https?:\/\//.test(href)
+}
+
+export function isHashHref(href) {
+  return typeof href === 'string' && href.startsWith('#')
+}
+
+export function hrefWithBase(href) {
+  if (typeof href !== 'string') return href
+  if (
+    isHashHref(href) ||
+    isExternalHref(href) ||
+    /^(?:mailto:|tel:|data:|blob:|javascript:)/.test(href) ||
+    href.startsWith('//')
+  ) {
+    return href
+  }
+  if (href.startsWith(pathWithBase('/'))) return href
+  if (href.startsWith('/')) return pathWithBase(href)
+  return href
+}
+
 export function absoluteUrl(pathname = '/') {
   return `${SITE_URL}${pathWithBase(pathname)}`
 }

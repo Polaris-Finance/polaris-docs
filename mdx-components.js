@@ -1,21 +1,14 @@
 import { Children, cloneElement, createElement, isValidElement } from 'react'
 import { useMDXComponents as getThemeComponents } from 'nextra-theme-docs'
 import { Image } from 'nextra/components'
-import { pathWithBase } from './app/site-config.mjs'
-import { AddressBlock } from './components/AddressBlock'
+import { hrefWithBase, isExternalHref } from './app/site-config.mjs'
 import { BlogPostCard } from './components/BlogPostCard'
 import { BondingCurveExplorer } from './components/BondingCurveExplorer'
-import { Breadcrumbs } from './components/Breadcrumbs'
 import { Callout } from './components/Callout'
 import { DefinitionCard } from './components/DefinitionCard'
-import { DetailAccordion } from './components/DetailAccordion'
 import { LaunchTimeline } from './components/LaunchTimeline'
 import { NextSteps } from './components/NextSteps'
 import { PageStatusBanner } from './components/PageStatusBanner'
-import { ReadingTimeBadge } from './components/ReadingTimeBadge'
-import { RiskChip } from './components/RiskChip'
-import { Stepper } from './components/Stepper'
-import { StickyMobileCta } from './components/StickyMobileCta'
 import { SystemOverviewFigure } from './components/SystemOverviewFigure'
 import { TroveSimulator } from './components/TroveSimulator'
 
@@ -26,16 +19,11 @@ const mdxAnchorClass =
   'x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]'
 
 function hrefForMdxAnchor(href) {
-  if (typeof href !== 'string') return href
-  if (href.startsWith('#')) return href
-  if (/^(?:https?:|mailto:|tel:)/.test(href)) return href
-  if (href.startsWith(pathWithBase('/'))) return href
-  if (href.startsWith('/') && !href.startsWith('//')) return pathWithBase(href)
-  return href
+  return hrefWithBase(href)
 }
 
 function MdxAnchor({ href, className, rel, target, ...props }) {
-  const external = typeof href === 'string' && /^https?:\/\//.test(href)
+  const external = isExternalHref(href)
 
   return createElement('a', {
     ...props,
@@ -148,20 +136,13 @@ export function useMDXComponents(components) {
     a: MdxAnchor,
     table: AccessibleTable,
     th: TableHeader,
-    AddressBlock,
     BlogPostCard,
     BondingCurveExplorer,
-    Breadcrumbs,
     Callout,
     DefinitionCard,
-    DetailAccordion,
     LaunchTimeline,
     NextSteps,
     PageStatusBanner,
-    ReadingTimeBadge,
-    RiskChip,
-    Stepper,
-    StickyMobileCta,
     SystemOverviewFigure,
     TroveSimulator,
     ...components
