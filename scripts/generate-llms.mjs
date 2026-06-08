@@ -86,42 +86,10 @@ function renderImageAlt(props) {
   return alt ? `Image: ${alt}` : ''
 }
 
-function plainTextFromJsx(value) {
-  return value
-    .replace(/<a\s+[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi, (_match, href, text) => {
-      const label = plainTextFromJsx(text)
-      return label ? `[${label}](${href})` : href
-    })
-    .replace(/<\/?p[^>]*>/gi, ' ')
-    .replace(/<\/?strong[^>]*>/gi, '')
-    .replace(/<\/?em[^>]*>/gi, '')
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim()
-}
-
 function linkForLlms(href) {
   if (/^https?:\/\//.test(href)) return href
   if (href.startsWith('/')) return absoluteUrl(href)
   return href
-}
-
-function renderDetailAccordion(props) {
-  const itemsBlock = /items=\{\[([\s\S]*?)\]\}/.exec(props)?.[1] ?? props
-  const items = [
-    ...itemsBlock.matchAll(
-      /(?:title|question):\s*(['"`])([\s\S]*?)\1\s*,\s*(?:content|answer):\s*([\s\S]*?)(?=\n\s*},|\n\s*}\s*\])/g
-    )
-  ]
-
-  return items
-    .map((match) => {
-      const title = plainTextFromJsx(match[2])
-      const body = plainTextFromJsx(match[3])
-      return [title ? `### ${title}` : '', body].filter(Boolean).join('\n\n')
-    })
-    .filter(Boolean)
-    .join('\n\n')
 }
 
 function renderNextSteps(props) {
@@ -148,7 +116,6 @@ function renderNextSteps(props) {
 function stripJsxTags(value) {
   return value
     .replace(/<BlogPostCard\s+([\s\S]*?)\/>/g, (_match, props) => renderBlogPostCard(props))
-    .replace(/<DetailAccordion\s+([\s\S]*?)\/>/g, (_match, props) => renderDetailAccordion(props))
     .replace(/<NextSteps\s+([\s\S]*?)\/>/g, (_match, props) => renderNextSteps(props))
     .replace(
       /<LaunchTimeline\s*\/>/g,
