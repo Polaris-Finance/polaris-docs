@@ -15,15 +15,9 @@ If pUSD slips to \$0.98, a redeemer can buy pUSD cheaply, redeem it for about \$
 
 This puts an arbitrage floor under the pAsset's market price.
 
-## Pre-launch parameter status
+## Parameters
 
-| Parameter | Status | Reader impact |
-|---|---|---|
-| Redemption fee formula | Pending final audited implementation | Determines redeemer net proceeds and final collateral movement |
-| Fee decay / update cadence | Pending final implementation | Affects timing and repeated-redemption profitability |
-| Partial-redemption dust rules | Pending final values | Determines whether tiny trove remnants are allowed or closed |
-| Per-transaction caps / cooldowns | Pending final launch decision | Affects large redemptions and MEV surface |
-| Collateral pricing path | Pending final audited implementation | Determines how much pETH corresponds to the redeemed debt value |
+Redemption fees, decay factors, dust rules, and current network values live on [Parameters](/resources/parameters). This page explains the mechanism; the parameter page owns the numbers.
 
 ## How it restores the peg
 

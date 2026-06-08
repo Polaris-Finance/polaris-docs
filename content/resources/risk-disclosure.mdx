@@ -7,7 +7,7 @@ description: A comprehensive catalog of the risks of using Polaris, each paired 
 
 Polaris is trustless, immutable infrastructure. That design choice has real costs, and we disclose them before we claim the benefits. Every risk below is paired with the mechanism that mitigates it (*mitigates*, not eliminates). Read this page in full before you mint, deposit, or lock anything.
 
-> **Note:** Nothing here is financial advice. Polaris is in public Public Testnet 1 on Sepolia: the official testnet app is [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io/), and testnet assets have no monetary value. Production/mainnet app status, canonical production contracts, final audit reports, and the disclosure program are not published yet. Trustlessness means the protocol will not, and cannot, step in to make you whole. You are responsible for understanding the position you take.
+> **Note:** Nothing here is financial advice. Polaris is currently in the phase shown on [Launch Status](/launch-status). Testnet assets have no monetary value, and production use is not live unless Launch Status says it is. Trustlessness means the protocol will not, and cannot, step in to make you whole.
 
 ## Smart-contract risk
 
@@ -73,7 +73,7 @@ Redemptions, liquidations, and [conversion auctions](/polar/conversion-auctions)
 
 ## Dependency risk (Ethereum)
 
-Polaris is currently in public Public Testnet 1 on Sepolia, and production is intended for Ethereum mainnet (chain ID `1`) once launched. Production Polaris inherits Ethereum's risks: consensus failures, severe congestion, or a contentious fork.
+Polaris is currently in Public Testnet 1 on Sepolia, and production is intended for Ethereum mainnet (chain ID `1`) once launched. Production Polaris inherits Ethereum's risks: consensus failures, severe congestion, or a contentious fork.
 
 **Mitigation.** This dependency is deliberate and unhedged: the only counterparties Polaris is meant to ask you to trust are immutable code and Ethereum itself. We do not spread across chains to dilute that exposure, because doing so would reintroduce the bridge and external-dependency risks Polaris exists to avoid.
 

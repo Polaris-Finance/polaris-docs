@@ -1,74 +1,87 @@
 ---
 title: Polaris Contracts & Addresses
-description: "The Polaris contract set: a shared core plus one instance per pAsset. Addresses publish at deployment; verify network, chain ID, and source first."
+description: Canonical Polaris contract addresses, deployment shape, and verification rules for production and Public Testnet 1.
 ---
 
 # Polaris Contracts & Addresses
 
-> **Production note:** Canonical production addresses publish at deployment, not before. The contract *list* below reflects the intended production deployment shape; the **Address** column fills in at launch, each address linking to verified source on the official explorer. Current Sepolia addresses and parameters are testnet-only and live on [Public Testnet 1](/resources/testnet). Treat any production address not linked from these docs as unverified. See [Polaris Launch Status](/launch-status) for the current network state.
+<PageStatusBanner lastUpdated="June 2026" />
 
-## How the system deploys
+This page owns contract addresses and verification rules. Public Testnet 1 addresses are Sepolia artifacts and may be redeployed. Production addresses are not published yet.
 
-Polaris is a *factory* of pAsset instances. A single **shared core** — the bonding curve, POLAR, the Fee Router, and the oracles — deploys **once**. Then **one instance set** deploys **per pAsset** (pUSD, pGOLD, …): each gets its own CDP manager, Stability Pool, and internal Peg Stability Module, but all share the same pETH collateral, bonding curve, and POLAR.
+<Callout variant="warning" title="No production addresses yet">
+Do not use any claimed production address unless it appears here after <a href="/launch-status">Launch Status</a> says production is live.
+</Callout>
 
-So the address table has a **core section** plus **one block per pAsset**. The current docs focus on **pUSD** and **pGOLD**; production deployment status remains governed by [Launch Status](/launch-status), while current Sepolia artifacts are listed on [Public Testnet 1](/resources/testnet).
+## Deployment shape
 
-## Current Public Testnet 1 (Sepolia)
+Polaris has one shared core plus one instance set per pAsset.
 
-Public Testnet 1 runs on **Sepolia (chain ID `11155111`)**. Its addresses are testnet artifacts, may be redeployed, and use testnet stand-ins such as mock WETH, mock oracles, and testnet price feeds. Do not use them as production defaults.
+| Layer | What deploys |
+|---|---|
+| Shared core | pETH/bonding curve, splitter, POLAR/ShareSystem, Fee Router, stewardship, staking, reserve loans, reserve token |
+| Per-pAsset instance | pAsset token, CDP manager, CDP NFT, Stability Pool, internal PSM, interest controller, price feeds, read helper |
 
-The manifest paths below are relative to `/home/ahirice/Documents/git/polaris`.
+## Public Testnet 1 addresses
 
-| Source | Use it for | Location |
-|---|---|---|
-| [Public Testnet 1 contracts](/resources/testnet#public-testnet-1-contracts) | Current Sepolia addresses in a user-facing table | Docs |
-| [Public Testnet 1 parameters](/resources/testnet#public-testnet-1-parameters) | Current Sepolia MCR, Emergency Mode thresholds, curve constants, and fee defaults | Docs |
-| Core manifest | Current Sepolia core addresses and curve constants | `deployments/sepolia/deployment-manifest.core.ts` |
-| pUSD manifest | Current Sepolia pUSD instance addresses and manifest parameters | `deployments/sepolia/deployment-manifest.pusd.ts` |
-| pGOLD manifest | Current Sepolia pGOLD instance addresses and manifest parameters | `deployments/sepolia/deployment-manifest.pgold.ts` |
-| Deploy script defaults | Fee-floor, alpha, decay, and other defaults not all written into the manifests | `script/DeployPolaris.s.sol` |
+Network: Sepolia, chain ID `11155111`. Source artifacts are listed on [Public Testnet 1 Artifacts](/resources/testnet). Parameter values live on [Parameters](/resources/parameters).
 
-For testnet work, load the manifest for the network and pAsset you are actually using. For production work, wait until this page publishes canonical mainnet addresses.
+### Shared core
 
-## Shared core
+| Contract | Sepolia address |
+|---|---|
+| Reserve token, mock WETH | `0x290a733a8f078d1f1efb2b4faac5f2f7f50673df` |
+| pETH / bonding curve | `0xbec3a5aff85df00e9344c0cb553b2b6b1db80243` |
+| Fee Router | `0x518833a8305b6a0f4a782813bc9b3acb6dd20803` |
+| POLAR / ShareSystem | `0x9652015bf2a1a1eef53affdf8a83f52c916cb8fe` |
+| Reserve Loans NFT | `0xe198955bc9ffd7dc6bb0266a1ba9e7f49c1eb5ce` |
+| Reserve Loans Manager | `0xa62d290638d315b57640f88af61d80d38c57f7f8` |
+| MultiReserveLoanGetter | `0x2cddd6bfb2848b57ac9f251ebdc3cd7b53beb962` |
+| Testnet stewardship | `0xea04aa2a4550862bf12a15e3f2becf48a5fb4b10` |
+| Testnet POLAR staking | `0x56a7088cdb41a04eddb9c9b46f27359a6797324b` |
+| BondingCurveTokenSplitter | `0xc880eb4ba6e7f1c60ce4968dc50b24056e67cc00` |
+| vpToken | `0xd59019504ea81813632c8f5e8014027b47c82ab1` |
 
-| Contract | Source (`src/`) | Address |
-|---|---|---|
-| **pETH** — the [bonding curve](/peth): swaps ETH ↔ pETH, enforces the rising floor. pETH is the sole collateral and is this ERC-20 itself. | `BondingCurve/ABDKBondingCurve.sol` | _Forthcoming_ |
-| Bonding-curve token splitter — internal pETH accounting (floor / variable components). | `BondingCurve/BondingCurveTokenSplitter.sol`, `BondingCurve/VPToken.sol` | _Forthcoming_ |
-| **POLAR** — the stewardship token. The [conversion auction](/polar/conversion-auctions) (burn pETH → mint POLAR) lives **inside this contract**, not a separate deployment. | `Shares/ShareSystem.sol` | _Forthcoming_ |
-| POLAR staking — stake POLAR to receive routed yield. The [vePOLAR](/stewardship/vepolar) lock layer is forthcoming; today this is the staking surface. | _Forthcoming_ | _Forthcoming_ |
-| [Fee Router](/stewardship/fee-router) — buffers pETH fee revenue and routes rewards to troves and staking. | `FeeRouter.sol` | _Forthcoming_ |
-| Stewardship — bounded-parameter control; cannot reach the immutable core. | _Forthcoming_ | _Forthcoming_ |
-| Reserve token (WETH) — the wrapped ETH the bonding curve takes in. | external WETH | _Forthcoming_ |
-| Reserve Loans — borrow ETH against pETH at the floor. | `ReserveLoansManager.sol`, `ReserveLoansNFT.sol` | _Forthcoming_ |
+### pUSD instance
 
-## Per-pAsset instance
+| Contract | Sepolia address |
+|---|---|
+| pUSD token | `0xf06a3e9420176351d0341507f91d243014510d5b` |
+| Stability Pool | `0x8da97da1f6ab14d144a4966360e19ca5f2b5aece` |
+| CDP NFT | `0xace616e3a3b07bfe2424ae48c1b4fb8aed90eea0` |
+| ETH/USD medianiser | `0xbad4c21ea10259280b1980b6c3f8de806b8ec31a` |
+| pUSD testnet price feed | `0x26998cd15cbfddcb1e8c81fb7dff75886dc90185` |
+| CDP Manager | `0x71b5c3b88510206203ec8363c56f908777ad52c8` |
+| Interest Controller | `0x0e957229c4fe20e5099206b3b615cf2563200545` |
+| Internal PSM | `0x49cf0fff51fdd7140237e3fc6cd2b4daf6a4ffe5` |
+| MultiCDPGetter | `0x5b396a8e4adff7480c0dd2858890f55d5b028149` |
+| Primary Interest Router | `0xb5971ee694ca881963533114c1694f5f0c56ac09` |
 
-One set deploys per pAsset. Key everything by `(pAsset, owner)` — a pUSD trove and a pGOLD trove are unrelated positions in different instances.
+### pGOLD instance
 
-| Contract | Source (`src/`) | Address |
-|---|---|---|
-| **pAsset token** (e.g. pUSD, pGOLD) — the synthetic pegged ERC-20. | `StableToken.sol` | _Forthcoming_ |
-| **CDP / Trove manager** — trove accounting, mint/redeem, liquidations, interest, Emergency Mode. | `CDPManager.sol` | _Forthcoming_ |
-| Trove NFT — tokenizes each trove position. | `CDPNFT.sol` | _Forthcoming_ |
-| [Stability Pool](/yield) — absorbs liquidations; the primary yield venue. | `StabilityPool.sol` | _Forthcoming_ |
-| Collateral Surplus Pool — holds post-liquidation collateral surplus for borrowers to claim. | `CollSurplusPool.sol` | _Forthcoming_ |
-| **Internal Peg Stability Module** — mint/redeem the pAsset against pETH; the peg and [redemption](/redemptions-liquidations) entry point. This is not a custodial or external-collateral PSM. | `PegStabilityModule.sol` | _Forthcoming_ |
-| Interest controller — primary (autonomous) and secondary (utilization) interest rates. | `InterestRate/InterestController.sol` | _Forthcoming_ |
-| Primary interest router — splits borrower interest across the Stability Pool, POLAR staking, and ecosystem. | `PrimaryInterestRouter.sol` | _Forthcoming_ |
-| Price feed — the pAsset's reference price path. | `PUSDTestnetPriceFeed.sol` / `PGOLDTestnetPriceFeed.sol` | _Forthcoming_ |
-| Oracle (medianiser) — median of multiple ETH/USD feeds (plus XAU/USD for pGOLD). | `Medianiser.sol` | _Forthcoming_ |
+| Contract | Sepolia address |
+|---|---|
+| pGOLD token | `0x664396097e787956eaf25214049ab58a7d53d2e1` |
+| Stability Pool | `0x3308842b03248838c83205100a0a33d716dc37d6` |
+| CDP NFT | `0xb621912e3c7383bb65b4d720ac946aa618ed129b` |
+| ETH/USD medianiser | `0xbad4c21ea10259280b1980b6c3f8de806b8ec31a` |
+| XAU/USD medianiser | `0x8f4256ec2674ed87fdf7e8079ec3933263326fe1` |
+| pGOLD testnet price feed | `0x8a891736218fb98cabf23b39e4b8f6f2876011f4` |
+| CDP Manager | `0xf45fb3acf8dbd12673ecb0be1ee376846000c4ed` |
+| Interest Controller | `0xbd415a7ea90f448b3633b76f5c59c84a219b2448` |
+| Internal PSM | `0x6bcdf4a0d67ce12bf24ba4899a3be55033f90acc` |
+| MultiCDPGetter | `0xe79538c2d2c2e6b6d31de4456cbabbf2adab4410` |
+| Primary Interest Router | `0xaa9833e7d33003004b0d66685e05bace4058d89c` |
 
-> **Read helpers** (`Helpers/MultiCDPGetter.sol`, `Helpers/MultiReserveLoanGetter.sol`) are view contracts for batched reads; integrations may use them but should treat direct contract reads as the source of truth.
+## Production addresses
 
-> **A note on naming.** "pETH" and "the bonding curve" are the **same contract**. The "conversion auction" is **part of POLAR**, not a separate contract. The per-pAsset internal Peg Stability Module is the pETH mint/redeem path, not the custodial/external-collateral PSM model Polaris rejects. The "vePOLAR" lock layer is **not yet production-deployed**; production yield and staking details are pending. `pCHF`, `pBigMac`, and other catalog entries are illustrative; **pUSD** and **pGOLD** are the current Public Testnet 1 focus.
+| Network | Status |
+|---|---|
+| Ethereum mainnet, chain ID `1` | Forthcoming. No canonical production addresses are published in these docs yet. |
 
 ## Before you interact
 
-1. Confirm the **network and chain ID** match the official deployment manifest.
-2. Confirm every **address** matches [Public Testnet 1](/resources/testnet) for Sepolia or this page for production once populated.
-3. Confirm the **ABI** matches that verified source.
-4. Never paste an address from a screenshot, DM, or search result without that explorer check — address-spoofing is how these attacks succeed.
-
-While production addresses are pending, see [Audits & Security](/resources/audits-security) for the security model, [Public Testnet 1](/resources/testnet) for Sepolia artifacts, or the [Glossary](/resources) for what each contract does.
+1. Confirm the network and chain ID match [Launch Status](/launch-status).
+2. Confirm the address appears on this page.
+3. Confirm the source or ABI matches the verified explorer entry for that address when verification is published.
+4. Never paste an address from a screenshot, direct message, ad, or search result without checking this page.

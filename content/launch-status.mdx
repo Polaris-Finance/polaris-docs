@@ -1,68 +1,52 @@
 ---
 title: Polaris Launch Status
-description: Polaris launch-status and on-ramp, covering official network, app URL, what's actionable today, and the basic flow from ETH to a pAsset.
+description: Current Polaris phase, official app URL, supported network, production status, and what is safe to use today.
 ---
 
 # Polaris Launch Status
 
 <PageStatusBanner lastUpdated="June 2026" />
 
-This page is the source of truth for what is actionable today — conceptual, testnet-actionable, or production-actionable — and the shortest path from "I have ETH" to using Polaris.
+This page owns current status: what is live, what is testnet-only, what is not live, and which app URL is official.
 
-<Callout variant="warning" title="Open Testnet App">
-Use <a href="https://app.testnet.polarisfinance.io">app.testnet.polarisfinance.io</a> only on Sepolia (<code>11155111</code>) with test assets. Testnet assets have no monetary value, and production/mainnet use is not live.
+<Callout variant="warning" title="Current status">
+Polaris is in <strong>Public Testnet 1</strong>. Use <a href="https://app.testnet.polarisfinance.io">app.testnet.polarisfinance.io</a> only on Sepolia (<code>11155111</code>) with test assets. Production/mainnet use is not live.
 </Callout>
 
-## Current status
+## Current phase
 
-| Item | Current status |
+| Item | Status |
 |---|---|
 | Public phase | **Public Testnet 1** |
 | Testnet network | **Sepolia**, chain ID `11155111` |
-| Production network | **Ethereum mainnet**, chain ID `1`, forthcoming |
-| Official Public Testnet 1 app | [https://app.testnet.polarisfinance.io/](https://app.testnet.polarisfinance.io/) |
+| Official testnet app | [https://app.testnet.polarisfinance.io/](https://app.testnet.polarisfinance.io/) |
+| Testnet-active pAssets | pUSD and pGOLD |
+| Illustrative or future pAssets | pCHF, pBigMac, and other catalog examples |
+| Production network | Ethereum mainnet, chain ID `1`, forthcoming |
 | Production / mainnet app | Not live or published in these docs |
 | Canonical production contracts | Not published yet |
-| Testnet contracts and parameters | Published for Sepolia on [Public Testnet 1](/resources/testnet); not canonical production addresses |
 | Final audit reports | Not published in these docs yet |
 | Bug bounty / disclosure program | Not public yet |
 
-## What you need
+## What this means
 
-- **An Ethereum wallet** — any standard EOA or smart-account wallet.
-- **For Public Testnet 1:** Sepolia ETH for gas, plus test WETH/reserve tokens from the app faucet when it's enabled for your wallet. Testnet assets have no monetary value.
-- **For production later:** ETH on Ethereum mainnet — the only asset you need to begin; Polaris converts it to [pETH](/peth) for you.
+- You can try Polaris on Public Testnet 1 with Sepolia test assets only.
+- Testnet assets have no monetary value, no production redemption, and no mainnet claim.
+- Do not use a production app, production address, audit claim, bounty link, or mainnet workflow unless this page says it is live.
+- Current Sepolia artifacts can change after redeploys.
 
-No KYC, no whitelist, no offchain account.
+## Where each exact fact lives
 
-## The basic flow
+| Need | Canonical page |
+|---|---|
+| Fastest safe testnet flow | [Public Testnet Quickstart](/quickstart) |
+| Frontend, network, wallet, and signing checks | [Safety & Verification](/resources/safety-verification) |
+| Sepolia manifest paths and artifact sources | [Public Testnet 1 Artifacts](/resources/testnet) |
+| Contract addresses and verification rules | [Contracts & Addresses](/resources/contracts) |
+| Numeric protocol parameters | [Parameters](/resources/parameters) |
+| Risk taxonomy | [Risk Disclosure](/resources/risk-disclosure) |
+| Audit and disclosure status | [Audits & Security](/resources/audits-security) |
 
-In one line: **deposit ETH ⇒ receive pETH ⇒ open a trove and mint a pAsset ⇒ optionally deposit to the Stability Pool to earn yield.** On Public Testnet 1 this uses Sepolia test assets; in production it uses Ethereum mainnet once this page says mainnet is live.
+## Start here
 
-1. **Deposit ETH or test assets.** On Public Testnet 1, mint mock WETH/reserve tokens from the app faucet when available. In production later, you start from mainnet ETH.
-2. **Receive pETH from the [bonding curve](/peth).** Your input is swapped for pETH at the curve's current price. pETH is an ETH proxy with a floor price that only rises, and the only collateral Polaris accepts.
-3. **Open a [trove](/minting/open-a-trove) and mint a pAsset.** Post pETH as collateral, then choose your pAsset. pUSD and pGOLD are Testnet-active; pCHF and pBigMac are illustrative catalog examples. The pAsset lands in your wallet; the debt stays in your trove — see [the catalog](/minting/passet-catalog).
-4. **Optionally, earn yield.** Deposit your pAsset into the [Stability Pool](/yield) for a share of borrower interest plus discounted pETH from liquidations. Or hold, LP, or use it anywhere in DeFi.
-
-## Before any transaction
-
-Do not connect a wallet or sign a transaction unless all relevant checks pass:
-
-- For Public Testnet 1, the app URL is exactly [https://app.testnet.polarisfinance.io/](https://app.testnet.polarisfinance.io/).
-- For production/mainnet, wait until this page publishes a production app URL.
-- The wallet network matches the intended environment: Sepolia for Public Testnet 1, Ethereum mainnet only after production launch.
-- The contract address appears in [Contracts & Addresses](/resources/contracts), [Public Testnet 1](/resources/testnet), or the official deployment manifest you are using.
-- Explorer source and ABI match the documented contract.
-- The relevant product page has final values for the parameters your action depends on.
-- Audit and disclosure status are clear on [Audits & Security](/resources/audits-security).
-
-## Choose your journey
-
-Now pick the path that matches what you want to do:
-
-- **Borrow pAssets** — get pETH, open a trove, mint a pAsset, and manage liquidation risk: [Minting & Troves](/minting).
-- **Earn yield** — deposit pAssets into a Stability Pool or understand Fee Router yield: [Earning Yield](/yield).
-- **Hold or use pETH** — understand the bonding curve, floor price, and external collateral use: [pETH & Bonding Curve](/peth).
-- **Convert and lock POLAR** — burn pETH to mint POLAR, lock as vePOLAR, and participate in bounded stewardship: [POLAR & Staking](/polar).
-- **Integrate** — plan an integration, indexer, vault, analytics surface, or risk tool: [Safety and Verification](/resources/safety-verification).
-- **Verify before you sign** — confirm the official app, network, contracts, and audits: [Safety and Verification](/resources/safety-verification).
+If you want to use the app now, follow [Public Testnet Quickstart](/quickstart). If anything in your wallet prompt conflicts with this page, stop and verify before signing.

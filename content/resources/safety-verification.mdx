@@ -1,48 +1,43 @@
 ---
-title: Polaris Safety and Verification
-description: The safety path for verifying Polaris launch status, official contracts, audit status, intended invariants, and user risk before interacting.
+title: Polaris Safety & Verification
+description: A pre-signing checklist for verifying the Polaris frontend, network, contracts, parameters, risks, and audit status.
 ---
 
-# Polaris Safety and Verification
+# Polaris Safety & Verification
 
-**Who this is for:** every Polaris user and integrator; run this path before connecting a wallet, sending ETH, minting a pAsset, depositing into a pool, locking POLAR, or integrating contracts.
+<PageStatusBanner lastUpdated="June 2026" />
 
-**Prerequisites:** none. Complete this path *first*, before any other journey, because impersonation and phishing are most likely around launch and testnet phases.
-
-> **Launch status:** [Polaris Launch Status](/launch-status) is the source of truth. As of June 8, 2026, public Public Testnet 1 is on Sepolia (`11155111`) and the official testnet app is [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io/). Production Ethereum mainnet (`1`) is forthcoming, and no production app, production addresses, ABIs, verified source, final parameters, or audit reports are published yet.
-
-> **Open Testnet App:** Use [https://app.testnet.polarisfinance.io/](https://app.testnet.polarisfinance.io/) only on Sepolia (`11155111`) with no-value test assets. Treat any production frontend, token, contract, airdrop, or support message as unverified until it is linked from [Launch Status](/launch-status).
-
-<Callout variant="info" title="Where this appears in the app">
-App anchors: **Dashboard** first for network and system state, then any action tab's pre-confirmation screen for contract, token, amount, fee, approval, and simulation checks.
-</Callout>
+Use this checklist before connecting a wallet, approving a token, or signing a transaction.
 
 ## Verification checklist
 
-Work top to bottom; each row names a check and where it will be confirmed at launch.
-
-| Check | Where it will be confirmed |
+| Check | Required source |
 |---|---|
-| Current launch phase and network | [Polaris Launch Status](/launch-status) |
-| Testnet app URL and production app status | [Polaris Launch Status](/launch-status) |
-| Deployed addresses | [Launch Status](/launch-status), official Sepolia manifests, and [Contracts and Addresses](/resources/contracts) once production is live |
-| Verified source and ABIs | [Contracts and Addresses](/resources/contracts), official manifests, and block explorer links |
-| Audit reports | [Audits and Security](/resources/audits-security) |
-| Final user parameters | The relevant product page and contract reference |
-| Stewardship bounds | [Stewardship, not Governance](/stewardship) |
+| Current phase and official app | [Launch Status](/launch-status) |
+| Public Testnet 1 quickstart | [Public Testnet Quickstart](/quickstart) |
+| Network and chain ID | [Launch Status](/launch-status) |
+| Contract addresses | [Contracts & Addresses](/resources/contracts) |
+| Numeric parameters | [Parameters](/resources/parameters) |
+| Testnet manifest paths | [Public Testnet 1 Artifacts](/resources/testnet) |
+| Risk model | [Risk Disclosure](/resources/risk-disclosure) |
+| Audit, bounty, and disclosure status | [Audits & Security](/resources/audits-security) |
 
 ## Things Polaris will not ask for
 
-- A seed phrase or private key.
-- KYC for protocol use.
-- A direct transfer to a support wallet.
-- Interaction with an unpublished address.
-- Trust in a frontend that is not linked from official Polaris channels.
+- Your seed phrase, private key, or recovery words.
+- A signature from an unofficial frontend.
+- Mainnet funds for Public Testnet 1.
+- A production address before [Launch Status](/launch-status) says production is live.
+- A bug-bounty or disclosure form not linked from [Audits & Security](/resources/audits-security).
 
-## Risk docs
+## Wallet prompt checks
 
-Read [Risk Disclosure](/resources/risk-disclosure) for smart-contract, collateral, liquidation, peg, Stability Pool, pETH, stewardship, and phishing risks. Read [Audits and Security](/resources/audits-security) for the security model and audit status.
+Before signing, verify:
 
-## Developer verification
+1. The app URL is the official URL for the current phase.
+2. The wallet network is the intended network.
+3. The token, amount, spender, and receiving contract match the action.
+4. The address appears on [Contracts & Addresses](/resources/contracts).
+5. The transaction matches the action tab you are using.
 
-For apps and indexers, add explicit allowlists for network IDs and contract addresses. Testnet allowlists should point to Sepolia (`11155111`) artifacts from [Launch Status](/launch-status) and the linked manifests. Production allowlists should stay empty until production addresses are published. Your integration should fail closed if the deployment manifest, ABI, or verified source does not match the official docs.
+If any item fails, reject the signature and use [Troubleshooting](/troubleshooting) before trying again.
