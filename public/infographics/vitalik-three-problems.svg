@@ -1,0 +1,344 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1300 820" fill="none">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&amp;family=Inter:wght@400;500;600&amp;display=swap');
+    </style>
+
+    <!-- Background gradient -->
+    <radialGradient id="bgGradient" cx="50%" cy="48%" r="65%">
+      <stop offset="0%" style="stop-color:#0d1f3c"/>
+      <stop offset="100%" style="stop-color:#050a14"/>
+    </radialGradient>
+
+    <!-- Card shadow -->
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+
+    <!-- Soft glow -->
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Emblem star gradients -->
+    <linearGradient id="emblemLeft" x1="0" y1="15" x2="15" y2="15" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#E8DCC4" stop-opacity="0"/>
+      <stop offset="46%" stop-color="#E8DCC4" stop-opacity="1"/>
+    </linearGradient>
+    <linearGradient id="emblemRight" x1="30" y1="15" x2="15" y2="15" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#E8DCC4" stop-opacity="0"/>
+      <stop offset="46%" stop-color="#E8DCC4" stop-opacity="1"/>
+    </linearGradient>
+    <linearGradient id="emblemTop" x1="15" y1="0" x2="15" y2="15" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#E8DCC4" stop-opacity="0"/>
+      <stop offset="46%" stop-color="#E8DCC4" stop-opacity="1"/>
+    </linearGradient>
+    <linearGradient id="emblemBottom" x1="15" y1="30" x2="15" y2="15" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#E8DCC4" stop-opacity="0"/>
+      <stop offset="46%" stop-color="#E8DCC4" stop-opacity="1"/>
+    </linearGradient>
+    <radialGradient id="emblemGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#E8DCC4" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#E8DCC4" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Token icon gradients (Card 1) -->
+    <linearGradient id="c1tokenBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a3a5c"/>
+      <stop offset="100%" style="stop-color:#0d1f3c"/>
+    </linearGradient>
+    <linearGradient id="c1pusdAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F5F0E6"/>
+      <stop offset="100%" style="stop-color:#E8DCC4"/>
+    </linearGradient>
+    <linearGradient id="c1pchfAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F2E0E0"/>
+      <stop offset="100%" style="stop-color:#D9B3B3"/>
+    </linearGradient>
+    <linearGradient id="c1pgoldAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F5D76E"/>
+      <stop offset="100%" style="stop-color:#D4A830"/>
+    </linearGradient>
+    <linearGradient id="c1pgoldDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#C49A2A"/>
+      <stop offset="100%" style="stop-color:#A67C1A"/>
+    </linearGradient>
+    <linearGradient id="c1bmBun" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E8B458"/>
+      <stop offset="100%" style="stop-color:#C48A2A"/>
+    </linearGradient>
+    <linearGradient id="c1bmPatty" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#A85838"/>
+      <stop offset="100%" style="stop-color:#7A3E20"/>
+    </linearGradient>
+    <radialGradient id="c1bmGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#D09838;stop-opacity:0.12"/>
+      <stop offset="100%" style="stop-color:#D09838;stop-opacity:0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1300" height="820" fill="url(#bgGradient)"/>
+
+  <!-- Starfield -->
+  <g fill="#E8DCC4">
+    <!-- Large 5-point stars -->
+    <polygon points="100,50 101.2,53 104.5,53 101.8,55.5 103,59 100,56.5 97,59 98.2,55.5 95.5,53 98.8,53" opacity="0.26"/>
+    <polygon points="1200,70 1201.2,73 1204.5,73 1201.8,75.5 1203,79 1200,76.5 1197,79 1198.2,75.5 1195.5,73 1198.8,73" opacity="0.22"/>
+    <polygon points="180,760 181.2,763 184.5,763 181.8,765.5 183,769 180,766.5 177,769 178.2,765.5 175.5,763 178.8,763" opacity="0.2"/>
+    <polygon points="1100,790 1101.2,793 1104.5,793 1101.8,795.5 1103,799 1100,796.5 1097,799 1098.2,795.5 1095.5,793 1098.8,793" opacity="0.18"/>
+    <polygon points="60,380 61.2,383 64.5,383 61.8,385.5 63,389 60,386.5 57,389 58.2,385.5 55.5,383 58.8,383" opacity="0.24"/>
+    <polygon points="1250,430 1251.2,433 1254.5,433 1251.8,435.5 1253,439 1250,436.5 1247,439 1248.2,435.5 1245.5,433 1248.8,433" opacity="0.2"/>
+
+    <!-- Medium stars -->
+    <polygon points="300,35 301,37 304,37 301.5,39 302.5,42 300,40 297.5,42 298.5,39 296,37 299,37" opacity="0.18"/>
+    <polygon points="1050,45 1051,47 1054,47 1051.5,49 1052.5,52 1050,50 1047.5,52 1048.5,49 1046,47 1049,47" opacity="0.16"/>
+    <polygon points="80,590 81,592 84,592 81.5,594 82.5,597 80,595 77.5,597 78.5,594 76,592 79,592" opacity="0.14"/>
+    <polygon points="1230,620 1231,622 1234,622 1231.5,624 1232.5,627 1230,625 1227.5,627 1228.5,624 1226,622 1229,622" opacity="0.16"/>
+    <polygon points="40,210 41,212 44,212 41.5,214 42.5,217 40,215 37.5,217 38.5,214 36,212 39,212" opacity="0.15"/>
+    <polygon points="1260,270 1261,272 1264,272 1261.5,274 1262.5,277 1260,275 1257.5,277 1258.5,274 1256,272 1259,272" opacity="0.18"/>
+
+    <!-- Small stars -->
+    <polygon points="500,25 500.6,26.5 502.2,26.5 500.9,27.6 501.4,29.2 500,28 498.6,29.2 499.1,27.6 497.8,26.5 499.4,26.5" opacity="0.12"/>
+    <polygon points="850,40 850.6,41.5 852.2,41.5 850.9,42.6 851.4,44.2 850,43 848.6,44.2 849.1,42.6 847.8,41.5 849.4,41.5" opacity="0.14"/>
+    <polygon points="150,700 150.6,701.5 152.2,701.5 150.9,702.6 151.4,704.2 150,703 148.6,704.2 149.1,702.6 147.8,701.5 149.4,701.5" opacity="0.1"/>
+    <polygon points="1180,740 1180.6,741.5 1182.2,741.5 1180.9,742.6 1181.4,744.2 1180,743 1178.6,744.2 1179.1,742.6 1177.8,741.5 1179.4,741.5" opacity="0.12"/>
+
+    <!-- Tiny dot stars -->
+    <circle cx="75" cy="110" r="1.2" opacity="0.16"/>
+    <circle cx="1220" cy="140" r="1" opacity="0.14"/>
+    <circle cx="50" cy="300" r="1.1" opacity="0.12"/>
+    <circle cx="1260" cy="520" r="1.2" opacity="0.13"/>
+    <circle cx="130" cy="490" r="1" opacity="0.1"/>
+    <circle cx="1180" cy="560" r="1.1" opacity="0.11"/>
+    <circle cx="280" cy="800" r="0.9" opacity="0.09"/>
+    <circle cx="950" cy="810" r="1" opacity="0.08"/>
+    <circle cx="600" cy="800" r="1.1" opacity="0.1"/>
+    <circle cx="750" cy="30" r="1.2" opacity="0.14"/>
+    <circle cx="30" cy="680" r="1" opacity="0.09"/>
+    <circle cx="1270" cy="700" r="0.9" opacity="0.08"/>
+    <circle cx="200" cy="440" r="1.1" opacity="0.11"/>
+    <circle cx="1100" cy="480" r="1" opacity="0.1"/>
+    <circle cx="420" cy="810" r="0.9" opacity="0.09"/>
+  </g>
+
+  <!-- ===== TITLE ===== -->
+  <text x="650" y="58" font-family="'Cormorant Garamond', Georgia, serif" font-size="56" font-weight="600" fill="#F5F0E6" text-anchor="middle" letter-spacing="0.05em">Solving Stablecoins</text>
+  <text x="650" y="92" font-family="'Inter', Arial, sans-serif" font-size="22" font-weight="400" fill="rgba(232,220,196,0.5)" text-anchor="middle">Polaris addresses Vitalik's three challenges for decentralized stablecoins</text>
+
+  <!-- Thin decorative line under title -->
+  <line x1="480" y1="112" x2="820" y2="112" stroke="rgba(232,220,196,0.12)" stroke-width="1"/>
+
+
+  <!-- ===== CARD 1 — Better index than USD ===== -->
+  <g transform="translate(80, 138)">
+    <!-- Card background -->
+    <rect x="0" y="0" width="1140" height="186" rx="24" fill="#0d1f3c" stroke="rgba(232,220,196,0.10)" stroke-width="1.5" filter="url(#shadow)"/>
+
+    <!-- Left accent bar -->
+    <rect x="0" y="24" width="4" height="138" rx="2" fill="#E8DCC4" opacity="0.3"/>
+
+    <!-- Step number circle -->
+    <g transform="translate(42, 44)">
+      <circle cx="0" cy="0" r="18" fill="rgba(232,220,196,0.08)" stroke="rgba(232,220,196,0.25)" stroke-width="1.5"/>
+      <text x="0" y="7" font-family="'Inter', Arial, sans-serif" font-size="20" font-weight="600" fill="#E8DCC4" text-anchor="middle">1</text>
+    </g>
+
+    <!-- Problem section header -->
+    <text x="78" y="32" font-family="'Inter', Arial, sans-serif" font-size="18" font-weight="600" fill="#627D92" letter-spacing="0.15em">THE PROBLEM</text>
+
+    <!-- Problem text (two lines) -->
+    <text x="78" y="64" font-family="'Inter', Arial, sans-serif" font-size="20" font-weight="400" fill="#F5F0E6">Figuring out an index to peg to</text>
+    <text x="78" y="92" font-family="'Inter', Arial, sans-serif" font-size="20" font-weight="400" fill="#F5F0E6">that is better than USD</text>
+
+    <!-- Vertical divider -->
+    <line x1="520" y1="24" x2="520" y2="162" stroke="rgba(232,220,196,0.10)" stroke-width="1"/>
+
+    <!-- Polaris emblem (right half) -->
+    <g transform="translate(545, 32)" filter="url(#softGlow)">
+      <circle cx="15" cy="15" r="18" fill="url(#emblemGlow)"/>
+      <path d="M0 15L12.4 13.6L15 15L12.4 16.4L0 15Z" fill="url(#emblemLeft)"/>
+      <path d="M30 15L17.6 13.6L15 15L17.6 16.4L30 15Z" fill="url(#emblemRight)"/>
+      <path d="M15 0L16.4 12.4L15 15L13.6 12.4L15 0Z" fill="url(#emblemTop)"/>
+      <path d="M15 30L16.4 17.6L15 15L13.6 17.6L15 30Z" fill="url(#emblemBottom)"/>
+      <circle cx="15" cy="15" r="1.5" fill="#E8DCC4"/>
+    </g>
+
+    <!-- Solution section header -->
+    <text x="594" y="32" font-family="'Inter', Arial, sans-serif" font-size="18" font-weight="600" fill="#627D92" letter-spacing="0.15em">POLARIS APPROACH</text>
+
+    <!-- Solution text -->
+    <text x="594" y="64" font-family="'Inter', Arial, sans-serif" font-size="20" font-weight="500" fill="#E8DCC4">StablecoinOS — synthetic asset factory</text>
+    <text x="594" y="92" font-family="'Inter', Arial, sans-serif" font-size="20" font-weight="400" fill="rgba(232,220,196,0.55)">pUSD, pCHF, pGOLD, pBigMac...</text>
+    <text x="594" y="120" font-family="'Inter', Arial, sans-serif" font-size="20" font-weight="400" fill="rgba(232,220,196,0.55)">Any index with an oracle feed.</text>
+
+    <!-- Token icons row -->
+    <g transform="translate(594, 132)">
+      <!-- pUSD -->
+      <g transform="translate(18, 18) scale(0.5625) translate(-32, -32)">
+        <circle cx="32" cy="32" r="30" fill="url(#c1tokenBg)" stroke="#E8DCC4" stroke-width="1.5" stroke-opacity="0.3"/>
+        <text x="32" y="42" font-family="'Cormorant Garamond', Georgia, serif" font-size="26" font-weight="500" fill="url(#c1pusdAccent)" text-anchor="middle">$</text>
+        <polygon points="32,16 32.8,18.5 35.5,18.5 33.3,20.2 34.2,22.8 32,21 29.8,22.8 30.7,20.2 28.5,18.5 31.2,18.5" fill="#E8DCC4" fill-opacity="0.6"/>
+      </g>
+
+      <!-- pCHF -->
+      <g transform="translate(76, 18) scale(0.5625) translate(-32, -32)">
+        <circle cx="32" cy="32" r="30" fill="url(#c1tokenBg)" stroke="#D9B3B3" stroke-width="1.5" stroke-opacity="0.3"/>
+        <polygon points="32,16 32.8,18.5 35.5,18.5 33.3,20.2 34.2,22.8 32,21 29.8,22.8 30.7,20.2 28.5,18.5 31.2,18.5" fill="#D9B3B3" fill-opacity="0.6"/>
+        <text x="32" y="43" font-family="'Cormorant Garamond', Georgia, serif" font-size="28" font-weight="500" fill="url(#c1pchfAccent)" text-anchor="middle">&#x20A3;</text>
+      </g>
+
+      <!-- pGOLD -->
+      <g transform="translate(134, 18) scale(0.5625) translate(-32, -32)">
+        <circle cx="32" cy="32" r="30" fill="url(#c1tokenBg)" stroke="#D4A830" stroke-width="1.5" stroke-opacity="0.4"/>
+        <polygon points="32,16 32.8,18.5 35.5,18.5 33.3,20.2 34.2,22.8 32,21 29.8,22.8 30.7,20.2 28.5,18.5 31.2,18.5" fill="#D4A830" fill-opacity="0.7"/>
+        <g transform="translate(32, 38)">
+          <polygon points="-11,2 11,2 11,8 -11,8" fill="url(#c1pgoldDark)"/>
+          <polygon points="-11,2 -8,-2 12,-2 11,2" fill="url(#c1pgoldAccent)"/>
+          <polygon points="11,2 12,-2 12,4 11,8" fill="#A67C1A" fill-opacity="0.7"/>
+          <polygon points="-7,-4 7,-4 7,2 -7,2" fill="url(#c1pgoldDark)"/>
+          <polygon points="-7,-4 -4,-8 10,-8 7,-4" fill="url(#c1pgoldAccent)"/>
+          <polygon points="7,-4 10,-8 10,-2 7,2" fill="#A67C1A" fill-opacity="0.7"/>
+        </g>
+      </g>
+
+      <!-- pBigMac -->
+      <g transform="translate(192, 18) scale(0.5625) translate(-32, -32)">
+        <circle cx="32" cy="32" r="30" fill="url(#c1tokenBg)" stroke="#D09838" stroke-width="1.5" stroke-opacity="0.4"/>
+        <circle cx="32" cy="36" r="18" fill="url(#c1bmGlow)"/>
+        <polygon points="32,12 32.8,14.5 35.5,14.5 33.3,16.2 34.2,18.8 32,17 29.8,18.8 30.7,16.2 28.5,14.5 31.2,14.5" fill="#D09838" fill-opacity="0.7"/>
+        <g transform="translate(32, 36)">
+          <path d="M-9,-9 Q-9,-16 0,-16 Q9,-16 9,-9 L9,-7 L-9,-7 Z" fill="url(#c1bmBun)"/>
+          <ellipse cx="-3" cy="-13" rx="1.4" ry="0.7" fill="#F5E8C0" fill-opacity="0.5" transform="rotate(-20,-3,-13)"/>
+          <ellipse cx="4" cy="-12" rx="1.4" ry="0.7" fill="#F5E8C0" fill-opacity="0.5" transform="rotate(15,4,-12)"/>
+          <ellipse cx="0" cy="-14.5" rx="1.2" ry="0.6" fill="#F5E8C0" fill-opacity="0.4" transform="rotate(-5,0,-14.5)"/>
+          <path d="M-10,-7 Q-7,-8.5 -4,-7 Q-1,-8.5 2,-7 Q5,-8.5 8,-7 L10.5,-7" stroke="#7BAF68" stroke-width="1" fill="none" stroke-opacity="0.55"/>
+          <rect x="-10.5" y="-6.5" width="21" height="3" rx="1.5" fill="url(#c1bmPatty)"/>
+          <rect x="-8" y="-3" width="16" height="2.5" rx="1.2" fill="url(#c1bmBun)"/>
+          <path d="M-8,-0.5 L8,-0.5 L8,0.3 L5,0.3 L4.5,1.5 L3.5,0.3 L-2,0.3 L-2.5,1.2 L-3.5,0.3 L-8,0.3 Z" fill="#F0D060" fill-opacity="0.5"/>
+          <rect x="-10.5" y="0.5" width="21" height="3" rx="1.5" fill="url(#c1bmPatty)"/>
+          <path d="M-9,4 L9,4 L9,6 Q9,9 0,9 Q-9,9 -9,6 Z" fill="url(#c1bmBun)"/>
+        </g>
+      </g>
+    </g>
+
+    <!-- Status: SOLVED -->
+    <g transform="translate(1076, 80)">
+      <circle cx="0" cy="0" r="18" fill="rgba(107,202,160,0.15)" stroke="#6BCAA0" stroke-width="1.5"/>
+      <path d="M-7,0 L-2,6 L8,-6" fill="none" stroke="#6BCAA0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <text x="1076" y="118" font-family="'Inter', Arial, sans-serif" font-size="18" font-weight="600" fill="#6BCAA0" text-anchor="middle" letter-spacing="0.08em">SOLVED</text>
+  </g>
+
+
+  <!-- ===== CARD 2 — Decentralized oracles ===== -->
+  <g transform="translate(80, 362)">
+    <!-- Card background -->
+    <rect x="0" y="0" width="1140" height="186" rx="24" fill="#0d1f3c" stroke="rgba(232,220,196,0.10)" stroke-width="1.5" filter="url(#shadow)"/>
+
+    <!-- Left accent bar -->
+    <rect x="0" y="24" width="4" height="138" rx="2" fill="#8BA4B8" opacity="0.3"/>
+
+    <!-- Step number circle -->
+    <g transform="translate(42, 44)">
+      <circle cx="0" cy="0" r="18" fill="rgba(139,164,184,0.08)" stroke="rgba(139,164,184,0.25)" stroke-width="1.5"/>
+      <text x="0" y="7" font-family="'Inter', Arial, sans-serif" font-size="20" font-weight="600" fill="#8BA4B8" text-anchor="middle">2</text>
+    </g>
+
+    <!-- Problem section header -->
+    <text x="78" y="32" font-family="'Inter', Arial, sans-serif" font-size="18" font-weight="600" fill="#627D92" letter-spacing="0.15em">THE PROBLEM</text>
+
+    <!-- Problem text (three lines) -->
+    <text x="78" y="64" font-family="'Inter', Arial, sans-serif" font-size="20" font-weight="400" fill="#F5F0E6">Oracle design that's decentralised</text>
+    <text x="78" y="92" font-family="'Inter', Arial, sans-serif" font-size="20" font-weight="400" fill="#F5F0E6">and not capturable with</text>
+    <text x="78" y="120" font-family="'Inter', Arial, sans-serif" font-size="20" font-weight="400" fill="#F5F0E6">a large pool of money</text>
+
+    <!-- Vertical divider -->
+    <line x1="520" y1="24" x2="520" y2="162" stroke="rgba(232,220,196,0.10)" stroke-width="1"/>
+
+    <!-- Polaris emblem (right half) -->
+    <g transform="translate(545, 32)" filter="url(#softGlow)">
+      <circle cx="15" cy="15" r="18" fill="url(#emblemGlow)"/>
+      <path d="M0 15L12.4 13.6L15 15L12.4 16.4L0 15Z" fill="url(#emblemLeft)"/>
+      <path d="M30 15L17.6 13.6L15 15L17.6 16.4L30 15Z" fill="url(#emblemRight)"/>
+      <path d="M15 0L16.4 12.4L15 15L13.6 12.4L15 0Z" fill="url(#emblemTop)"/>
+      <path d="M15 30L16.4 17.6L15 15L13.6 17.6L15 30Z" fill="url(#emblemBottom)"/>
+      <circle cx="15" cy="15" r="1.5" fill="#E8DCC4"/>
+    </g>
+
+    <!-- Solution section header -->
+    <text x="594" y="32" font-family="'Inter', Arial, sans-serif" font-size="18" font-weight="600" fill="#627D92" letter-spacing="0.15em">POLARIS APPROACH</text>
+
+    <!-- Solution text -->
+    <text x="594" y="64" font-family="'Inter', Arial, sans-serif" font-size="20" font-weight="500" fill="#8BA4B8">Minimised oracle surface.</text>
+    <text x="594" y="92" font-family="'Inter', Arial, sans-serif" font-size="20" font-weight="400" fill="rgba(232,220,196,0.55)">pUSD needs only ETH/USD. Price</text>
+    <text x="594" y="120" font-family="'Inter', Arial, sans-serif" font-size="20" font-weight="400" fill="rgba(232,220,196,0.55)">from mint/redeem — no USD oracle.</text>
+
+    <!-- Note -->
+    <text x="594" y="158" font-family="'Inter', Arial, sans-serif" font-size="18" font-weight="400" fill="rgba(208,152,56,0.6)" font-style="italic">Industry-wide challenge — Polaris minimises exposure</text>
+
+    <!-- Status: PARTIALLY ADDRESSED -->
+    <g transform="translate(1076, 80)">
+      <circle cx="0" cy="0" r="18" fill="rgba(208,152,56,0.15)" stroke="#D09838" stroke-width="1.5"/>
+      <line x1="-7" y1="0" x2="7" y2="0" stroke="#D09838" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+    <text x="1076" y="118" font-family="'Inter', Arial, sans-serif" font-size="18" font-weight="600" fill="#D09838" text-anchor="middle" letter-spacing="0.05em">PARTIAL</text>
+  </g>
+
+
+  <!-- ===== CARD 3 — Staking yield competition ===== -->
+  <g transform="translate(80, 586)">
+    <!-- Card background -->
+    <rect x="0" y="0" width="1140" height="186" rx="24" fill="#0d1f3c" stroke="rgba(232,220,196,0.10)" stroke-width="1.5" filter="url(#shadow)"/>
+
+    <!-- Left accent bar -->
+    <rect x="0" y="24" width="4" height="138" rx="2" fill="#9ECBEB" opacity="0.3"/>
+
+    <!-- Step number circle -->
+    <g transform="translate(42, 44)">
+      <circle cx="0" cy="0" r="18" fill="rgba(158,203,235,0.08)" stroke="rgba(158,203,235,0.25)" stroke-width="1.5"/>
+      <text x="0" y="7" font-family="'Inter', Arial, sans-serif" font-size="20" font-weight="600" fill="#9ECBEB" text-anchor="middle">3</text>
+    </g>
+
+    <!-- Problem section header -->
+    <text x="78" y="32" font-family="'Inter', Arial, sans-serif" font-size="18" font-weight="600" fill="#627D92" letter-spacing="0.15em">THE PROBLEM</text>
+
+    <!-- Problem text -->
+    <text x="78" y="64" font-family="'Inter', Arial, sans-serif" font-size="20" font-weight="400" fill="#F5F0E6">Solving the problem that staking</text>
+    <text x="78" y="92" font-family="'Inter', Arial, sans-serif" font-size="20" font-weight="400" fill="#F5F0E6">yield is competition</text>
+
+    <!-- Vertical divider -->
+    <line x1="520" y1="24" x2="520" y2="162" stroke="rgba(232,220,196,0.10)" stroke-width="1"/>
+
+    <!-- Polaris emblem (right half) -->
+    <g transform="translate(545, 32)" filter="url(#softGlow)">
+      <circle cx="15" cy="15" r="18" fill="url(#emblemGlow)"/>
+      <path d="M0 15L12.4 13.6L15 15L12.4 16.4L0 15Z" fill="url(#emblemLeft)"/>
+      <path d="M30 15L17.6 13.6L15 15L17.6 16.4L30 15Z" fill="url(#emblemRight)"/>
+      <path d="M15 0L16.4 12.4L15 15L13.6 12.4L15 0Z" fill="url(#emblemTop)"/>
+      <path d="M15 30L16.4 17.6L15 15L13.6 17.6L15 30Z" fill="url(#emblemBottom)"/>
+      <circle cx="15" cy="15" r="1.5" fill="#E8DCC4"/>
+    </g>
+
+    <!-- Solution section header -->
+    <text x="594" y="32" font-family="'Inter', Arial, sans-serif" font-size="18" font-weight="600" fill="#627D92" letter-spacing="0.15em">POLARIS APPROACH</text>
+
+    <!-- Solution text -->
+    <text x="594" y="64" font-family="'Inter', Arial, sans-serif" font-size="20" font-weight="500" fill="#9ECBEB">pETH — a new reserve asset.</text>
+    <text x="594" y="92" font-family="'Inter', Arial, sans-serif" font-size="20" font-weight="400" fill="rgba(232,220,196,0.55)">Yield from bonding curve activity,</text>
+    <text x="594" y="120" font-family="'Inter', Arial, sans-serif" font-size="20" font-weight="400" fill="rgba(232,220,196,0.55)">not staking. Uncorrelated, censorship-</text>
+    <text x="594" y="148" font-family="'Inter', Arial, sans-serif" font-size="20" font-weight="400" fill="rgba(232,220,196,0.55)">resistant, Ethereum-aligned.</text>
+
+    <!-- Status: SOLVED -->
+    <g transform="translate(1076, 80)">
+      <circle cx="0" cy="0" r="18" fill="rgba(107,202,160,0.15)" stroke="#6BCAA0" stroke-width="1.5"/>
+      <path d="M-7,0 L-2,6 L8,-6" fill="none" stroke="#6BCAA0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <text x="1076" y="118" font-family="'Inter', Arial, sans-serif" font-size="18" font-weight="600" fill="#6BCAA0" text-anchor="middle" letter-spacing="0.08em">SOLVED</text>
+  </g>
+
+</svg>

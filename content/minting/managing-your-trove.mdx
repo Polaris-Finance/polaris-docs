@@ -40,17 +40,9 @@ The simulator below defaults to the current Public Testnet 1 MCR of 115%, not th
 Minting more or withdrawing collateral lowers your ICR. Drop below the minimum and your trove is <a href="/redemptions-liquidations/liquidations">liquidated</a> automatically: your collateral covers the debt plus a liquidation penalty, with no margin call, and only the surplus is returned for you to claim. <a href="/redemptions-liquidations">Redemptions</a> can also reach your position while it is still solvent — there is no minimum ICR to cross — shrinking your collateral and pETH exposure proportionally without your consent. See the <a href="/resources/risk-disclosure">Risk Disclosure</a>.
 </Callout>
 
-## Parameter status
+## Values to check
 
-Current Public Testnet 1 values are published on [Parameters](/resources/parameters). Production values remain pending and can differ.
-
-| Parameter | Current Public Testnet 1 status | Why it matters |
-|---|---|---|
-| Minimum ICR / MCR | pUSD and pGOLD: 115% | Defines the liquidation line in Normal Mode |
-| Recovery Mode trigger | pUSD and pGOLD: 110% | When system backing is thin, risk-increasing actions face stricter rules; liquidation eligibility stays at the normal minimum |
-| Recovery Mode action minimum | pUSD and pGOLD: 150% | Defines the higher bar for actions that withdraw collateral or add debt while Recovery Mode is active |
-| Fee and decay constants | Current mint/redemption fee floors, alpha values, and decay factors live on [Parameters](/resources/parameters); production-final audited values remain pending | Determines how costs and rate reactions evolve |
-| Minimum debt / dust rules | Production-final rules pending; follow the app quote and live contract state on testnet | Can affect partial repayments, partial redemptions, and closing |
+Current MCR, Recovery Mode, fee, decay, minimum-debt, and dust values live on [Parameters](/resources/parameters). Before changing a trove, check the live app quote and the parameter page for the pAsset you are managing.
 
 ## Add collateral
 

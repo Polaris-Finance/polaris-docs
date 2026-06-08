@@ -28,21 +28,16 @@ Liquidation runs in two tiers.
 
 **Collateral surplus.** When the Stability Pool absorbs a liquidation, the trove surrenders only what covers its debt, a liquidation penalty, and gas compensation for the liquidator. Any collateral beyond that goes to the **Collateral Surplus Pool**, where the former borrower can claim it. (Collateral spread through the redistribution fallback is not returned this way.)
 
-## Parameter status
+## Values to check
 
-Current Public Testnet 1 values that exist are published on [Parameters](/resources/parameters). Production values remain pending and can differ.
+Current MCR, Recovery Mode, fee, dust, and liquidation values live on [Parameters](/resources/parameters). This page explains the closeout path; the parameter page owns the numbers.
 
-| Parameter | Current Public Testnet 1 status | Reader impact |
-|---|---|---|
-| Minimum ICR / MCR per pAsset | pUSD and pGOLD: 115%; production final pending | Defines when a trove becomes liquidatable in Normal Mode |
-| Recovery Mode trigger | pUSD and pGOLD: 110%; production final pending | Signals system stress, but does not change the liquidation line |
-| Recovery Mode action MCR | pUSD and pGOLD: 150%; production final pending | Tightens risk-increasing borrower actions while Recovery Mode is active |
-| Liquidation penalty / discount | Production-final value pending; verify app and contract state on testnet | Determines borrower loss and Stability Pool upside |
-| Gas compensation / keeper incentive | Implemented in the testnet flow; production-final value pending | Affects whether liquidations execute quickly during stress |
-| Stability Pool offset priority | Stability Pool first, then redistribution; audit-final details pending | Determines how much debt the pool absorbs before redistribution |
-| Redistribution formula | Audit-final publication pending | Determines how uncovered debt and collateral spread across remaining troves |
-| Oracle freshness and fallback rules | Audit-final publication pending | Determines whether liquidations pause, continue, or use fallback pricing on stale data |
-| Minimum debt / dust handling | Production-final rules pending | Affects edge cases when troves are nearly closed |
+Before acting, check:
+
+- The pAsset's minimum collateral ratio.
+- Any liquidation penalty, gas compensation, and keeper incentive.
+- Stability Pool coverage and whether redistribution can apply.
+- Oracle freshness and fallback behavior.
 
 ## Worked example: liquidation
 
@@ -62,17 +57,9 @@ Liquidation is involuntary and can happen fast. A liquidated trove gives up its 
 You are the system's first-loss backstop. In a flash crash, troves can be liquidated near — or in extreme cases below — 100% collateralization, and you may receive pETH worth less than the pAsset burned. Over a full cycle the surplus from healthy liquidations compensates for that risk, but it is not riskless yield. See <a href="/yield">The Stability Pool</a> and the <a href="/resources/risk-disclosure">Risk Disclosure</a>.
 </Callout>
 
-<Callout variant="info">
-Current Public Testnet 1 MCR and Recovery Mode action values are published on [Parameters](/resources/parameters). Production liquidation thresholds, penalties, gas compensation, and audit-final behavior remain pending.
-</Callout>
-
 ## How liquidation interacts with system health
 
 A trove's individual ratio is not all that matters. When system-wide backing runs thin, the protocol enters [Recovery Mode](/redemptions-liquidations/recovery-mode), which tightens risk-increasing borrower operations while it lasts. Liquidation eligibility is unchanged: a trove is liquidated whenever its ICR falls below the minimum, in every mode. Recovery Mode is the system-level safeguard complementing the trove-level liquidation described here.
-
----
-
-Liquidations are not punishment — they are the mechanism designed to keep a pAsset backed by the collateral it claims. Keep a buffer, and you are less likely to lose your trove.
 
 <NextSteps
   steps={[

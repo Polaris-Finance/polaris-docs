@@ -43,43 +43,29 @@ Their volumes also serve as the protocol's peg signal: a spike in redemptions re
 
 ## Mechanics in detail
 
-### Fee formula
+### Fees and fill limits
 
-The production-final redemption-fee formula is pending. Current Public Testnet 1 fee floors, alpha values, and decay factors live on [Parameters](/resources/parameters). The user-facing rule is simple: the redeemer receives the redeemed amount's reference value in pETH **minus** the fee and execution costs. If pUSD trades at \$0.98 but the fee, gas, pETH slippage, and MEV risk exceed the \$0.02 spread, the redemption is unprofitable.
+Current fee floors, decay factors, and fill constraints live on [Parameters](/resources/parameters). The user-facing rule is simple: the redeemer receives the redeemed amount's reference value in pETH **minus** the fee and execution costs. If the fee, gas, pETH slippage, MEV risk, or price movement exceed the below-peg spread, the redemption is unprofitable.
 
 The app should show a pre-confirmation quote once the interface is live. Treat examples here as arithmetic only.
 
-### How redemptions are distributed
+### Borrower impact
 
-Redemptions target no specific trove, and there is no sorted ICR queue. A redemption applies **collectively** across every open trove on that pAsset at once. The protocol adjusts a global mint/redeem accounting product, and each trove's share of the redeemed debt and of the pETH removed is proportional to its recorded collateral. A larger trove absorbs a larger absolute share; ICR moves no trove ahead of or behind any other. Adding pETH collateral or repaying debt changes your trove's size, but moves you out of no queue, because none exists.
+A redemption targets the whole pAsset system, not a specific trove. It reduces debt and pETH collateral across **all** open troves for that pAsset, pro-rata to each trove's recorded collateral. There is no ICR queue, no "riskiest trove first," and no collateralization ratio that exempts a trove.
 
-The only fill limits are at the system level: you cannot redeem the entire outstanding debt (the call reverts if the requested pAsset is greater than or equal to total system debt), and the system must stay above its minimum total collateral. Current published ratios live on [Parameters](/resources/parameters); production-final minimum-debt and dust rules remain pending.
+Being redeemed against is not a liquidation penalty: your debt is repaid at face value with your own collateral, so net equity is broadly unchanged before fees and rounding. The cost is control. Your trove becomes smaller, your pETH exposure falls, and future pETH-linked yield potential falls with it.
 
-### Borrower effects
-
-A redemption repays your debt with your own collateral, so what changes is not your net equity (roughly unchanged at reference prices before fees, rounding, and final fee-routing) but your *control*: your trove shrinks, your pETH exposure shrinks, and your future pETH-linked yield potential falls.
-
-Because redemptions remove equal reference value from both sides of an overcollateralized trove, the remaining ICR often rises after a partial redemption. That does not make redemptions harmless; it makes them an involuntary deleveraging event, not a liquidation penalty.
+A higher ICR protects against **liquidation**, not redemption. It can still matter after a redemption, because the remaining ICR often rises but the position is smaller.
 
 ### MEV and transaction ordering
 
-Redemptions are visible onchain transactions. Searchers can compete for the same spread, the pETH exit price can move, and the system's totals can shift before your transaction lands. Use the app's slippage limits, fee quotes, and any private-transaction support.
-
-## Who gets redeemed against
-
-A redemption applies collectively across **all** open troves carrying that pAsset's debt. Each trove's debt and pETH collateral are reduced in proportion to its recorded collateral, through the protocol's global mint/redeem accounting. There is no per-trove [Individual Collateralization Ratio (ICR)](/resources) ranking, no "riskiest trove first," and no queue: redemption does not single out the lowest-ICR troves.
-
-Being redeemed against is not a liquidation loss: your debt is repaid at face value with your own collateral, so your net equity is broadly unchanged before fees and rounding. But it is not free either: it closes part of your position involuntarily, at a moment you did not choose.
-
-A higher collateralization ratio protects you against **liquidation**, but does **not** exempt you from redemptions. Every open trove on that pAsset absorbs a proportional share of each redemption regardless of ICR. Because the split is by collateral, a larger trove absorbs a larger absolute amount, but no level of ICR moves you out of range.
-
-> **Note:** Polaris adds borrower-protection details to the naive redemption design. Current published fee constants live on [Parameters](/resources/parameters); production-final fee routing, dust handling, caps, cooldowns, and related mechanics remain pending.
+Redemptions are visible onchain transactions. Searchers can compete for the same spread, the pETH exit price can move, and system totals can shift before your transaction lands. Use the app's slippage limits, fee quotes, and any private-transaction support.
 
 ## Worked example: redemption impact
 
 Assume pUSD trades at \$0.98, the redemption fee quote is 0.5%, and gas/slippage are ignored. A redeemer buys 10,000 pUSD for \$9,800 and redeems it for \$10,000 of pETH minus the 0.5% fee, or about \$9,950 of pETH. The gross spread is about \$150 before gas, slippage, MEV, and price movement.
 
-Now the borrower side. A 4,000 pUSD redemption applies **collectively**: it reduces total system debt by 4,000 pUSD and removes roughly \$4,000 of pETH from the pool, both reductions shared across every open trove in proportion to its recorded collateral. No single trove has its debt cut from 12,000 to 8,000; each trove absorbs only its proportional slice.
+Now the borrower side. A 4,000 pUSD redemption reduces total system debt by 4,000 pUSD and removes roughly \$4,000 of pETH from the pool. Both reductions are shared across every open trove in proportion to recorded collateral.
 
 For intuition, here is the proportional share for one trove holding a fifth of the system's collateral, so it absorbs a fifth of the redemption (800 pUSD of debt and about \$800 of pETH):
 
@@ -88,23 +74,21 @@ For intuition, here is the proportional share for one trove holding a fifth of t
 | Before redemption | \$18,000 | 12,000 pUSD | 150% |
 | After absorbing its pro-rata share | About \$17,200 | 11,200 pUSD | About 154% |
 
-The borrower did not pay off debt voluntarily; the market did it through the redemption path. The trove is slightly safer by ICR, but smaller and less exposed to pETH, as is every other open trove on that pAsset.
+The borrower did not repay voluntarily; the market did it through the redemption path. The trove is slightly safer by ICR, but smaller and less exposed to pETH.
 
-## For borrowers
+## Before you act
 
-> **Before you act:**
-> A redemption can reduce your trove **while it is still solvent**; there is no minimum ICR to cross. Whenever the pAsset trades below peg, every open trove backing it is redeemed against proportionally to its collateral share, shrinking your position and pETH exposure without your consent. ICR governs liquidation safety, not redemption order, so a higher collateralization ratio does not exempt you. See the [Risk Disclosure](/resources/risk-disclosure).
-
-1. Track your **ICR** in absolute terms and keep a comfortable buffer above the MCR; a redemption can touch your position whenever the pAsset is below peg.
-2. Redemptions apply pro-rata across all troves backing that pAsset, so there is no ICR queue to climb out of; raising your ICR protects against liquidation, not redemption.
-3. Treat a below-peg pAsset as a live signal: that is exactly when redemptions get worked.
-4. Interest accrual raises your debt over time, eroding your ICR even if collateral prices are flat.
-
-See [Managing Your Trove](/minting/managing-your-trove) for the levers, and the [Risk Disclosure](/resources/risk-disclosure) for the full picture.
+1. Track your **ICR** with enough buffer for price moves, interest accrual, and redemption impact.
+2. Treat a below-peg pAsset as a live signal that redemptions may shrink your position.
+3. Use [Managing Your Trove](/minting/managing-your-trove) for borrower levers and [Risk Disclosure](/resources/risk-disclosure) for the full risk model.
 
 ---
 
-A redemption is the market repricing your pAsset back to par through borrower collateral and arbitrage incentives. It reaches every open trove proportionally, so keep your buffer wide and treat below-peg conditions as the moment your position can shrink.
+## Next actions
+
+- [Managing Your Trove](/minting/managing-your-trove) for borrower levers.
+- [Liquidations](/redemptions-liquidations/liquidations) for the forced-close path.
+- [Parameters](/resources/parameters) for current redemption values.
 
 <BlogPostCard
   url="https://polarisfinance.io/blog/polaris-mints-anything/"

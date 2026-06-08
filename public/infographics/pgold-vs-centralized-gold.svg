@@ -1,0 +1,223 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" fill="none">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&amp;family=Inter:wght@400;500;600&amp;display=swap');
+      .title { font-family: 'Cormorant Garamond', Georgia, serif; fill: #F5F0E6; }
+      .label { font-family: 'Inter', Arial, sans-serif; fill: #8BA4B8; }
+      .label-bright { font-family: 'Inter', Arial, sans-serif; fill: #F5F0E6; }
+      .label-cream { font-family: 'Inter', Arial, sans-serif; fill: #E8DCC4; }
+    </style>
+
+    <!-- Background gradient -->
+    <radialGradient id="bgGradient" cx="50%" cy="48%" r="65%">
+      <stop offset="0%" style="stop-color:#0d1f3c"/>
+      <stop offset="100%" style="stop-color:#050a14"/>
+    </radialGradient>
+
+    <!-- Filters -->
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- pGOLD gradients -->
+    <linearGradient id="pgoldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F5D76E"/>
+      <stop offset="100%" style="stop-color:#D4A830"/>
+    </linearGradient>
+    <linearGradient id="pgoldDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#C49A2A"/>
+      <stop offset="100%" style="stop-color:#A67C1A"/>
+    </linearGradient>
+    <radialGradient id="pgoldCircleBg" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#1a2a3c"/>
+      <stop offset="100%" style="stop-color:#0d1f3c"/>
+    </radialGradient>
+
+    <!-- XAUT/PAXG circle backgrounds -->
+    <radialGradient id="xautCircleBg" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#1a2a3c"/>
+      <stop offset="100%" style="stop-color:#0d1f3c"/>
+    </radialGradient>
+    <radialGradient id="paxgCircleBg" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#1a2a3c"/>
+      <stop offset="100%" style="stop-color:#0d1f3c"/>
+    </radialGradient>
+
+    <!-- XAUT logo gradient -->
+    <linearGradient id="xautGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#d8b35d"/>
+      <stop offset="100%" style="stop-color:#f5e7bf"/>
+    </linearGradient>
+
+    <!-- PAXG mask for clipped path -->
+    <mask id="paxgMask" x="0" y="4.82" width="23.84" height="54.6" maskUnits="userSpaceOnUse">
+      <polygon points="0 4.82 23.84 4.82 23.84 59.42 0 59.42 0 4.82" fill="#fff" fill-rule="evenodd"/>
+    </mask>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="750" fill="url(#bgGradient)"/>
+
+  <!-- Title area -->
+  <text x="600" y="55" class="title" font-size="36" font-weight="600" text-anchor="middle" letter-spacing="0.05em">pGOLD vs Centralized Gold</text>
+  <text x="600" y="84" class="label" font-size="15" font-weight="400" text-anchor="middle" letter-spacing="0.08em" opacity="0.5">DECENTRALIZED GOLD STABLECOIN COMPARISON</text>
+
+  <!-- ==================== CARD 1: pGOLD (highlighted) ==================== -->
+  <g transform="translate(120, 120)">
+    <!-- Card background with gold tint -->
+    <rect x="0" y="0" width="440" height="590" rx="24" fill="#0d1f3c" stroke="rgba(212,168,48,0.15)" stroke-width="1.5" filter="url(#shadow)"/>
+    <rect x="4" y="4" width="432" height="582" rx="22" fill="none" stroke="rgba(212,168,48,0.05)" stroke-width="1"/>
+
+    <!-- pGOLD token icon -->
+    <g transform="translate(220, 50)">
+      <circle cx="0" cy="0" r="40" fill="url(#pgoldCircleBg)" stroke="#D4A830" stroke-width="1.5" stroke-opacity="0.4"/>
+      <!-- Polaris star -->
+      <g filter="url(#softGlow)">
+        <polygon points="0,-26 1.4,-21 6.8,-21 2.6,-17.2 4,-11.5 0,-15.4 -4,-11.5 -2.6,-17.2 -6.8,-21 -1.4,-21" fill="#D4A830" fill-opacity="0.7"/>
+      </g>
+      <!-- Gold bars -->
+      <g transform="translate(0, 10)">
+        <polygon points="-10,2 10,2 10,7 -10,7" fill="url(#pgoldDark)"/>
+        <polygon points="-10,2 -8,-1 11,-1 10,2" fill="url(#pgoldGradient)"/>
+        <polygon points="10,2 11,-1 11,4 10,7" fill="#A67C1A" fill-opacity="0.7"/>
+        <polygon points="-6,-3 6,-3 6,2 -6,2" fill="url(#pgoldDark)"/>
+        <polygon points="-6,-3 -4,-6 8,-6 6,-3" fill="url(#pgoldGradient)"/>
+        <polygon points="6,-3 8,-6 8,-1 6,2" fill="#A67C1A" fill-opacity="0.7"/>
+      </g>
+    </g>
+    <text x="220" y="120" font-family="'Cormorant Garamond', Georgia, serif" font-size="26" font-weight="600" fill="#D4A830" text-anchor="middle">pGOLD</text>
+
+    <!-- Divider under header -->
+    <line x1="35" y1="142" x2="405" y2="142" stroke="#3A5068" stroke-width="1" opacity="0.15"/>
+
+    <!-- Row 1: COLLATERAL -->
+    <g transform="translate(0, 162)">
+      <text x="220" y="0" font-family="Inter, sans-serif" font-size="12" font-weight="500" fill="#8BA4B8" text-anchor="middle" letter-spacing="0.1em" opacity="0.6">COLLATERAL</text>
+      <text x="220" y="32" font-family="Inter, sans-serif" font-size="16" font-weight="500" fill="#D4A830" text-anchor="middle">pETH</text>
+      <text x="220" y="55" font-family="Inter, sans-serif" font-size="13" font-weight="400" fill="#D4A830" text-anchor="middle" opacity="0.45">Decentralized, onchain</text>
+    </g>
+    <line x1="35" y1="235" x2="405" y2="235" stroke="#3A5068" stroke-width="1" opacity="0.15"/>
+
+    <!-- Row 2: REDEMPTION -->
+    <g transform="translate(0, 252)">
+      <text x="220" y="0" font-family="Inter, sans-serif" font-size="12" font-weight="500" fill="#8BA4B8" text-anchor="middle" letter-spacing="0.1em" opacity="0.6">REDEMPTION</text>
+      <text x="220" y="32" font-family="Inter, sans-serif" font-size="16" font-weight="500" fill="#D4A830" text-anchor="middle">Permissionless</text>
+      <text x="220" y="55" font-family="Inter, sans-serif" font-size="13" font-weight="400" fill="#D4A830" text-anchor="middle" opacity="0.45">Instant, no KYC, no minimums</text>
+    </g>
+    <line x1="35" y1="325" x2="405" y2="325" stroke="#3A5068" stroke-width="1" opacity="0.15"/>
+
+    <!-- Row 3: FEES -->
+    <g transform="translate(0, 342)">
+      <text x="220" y="0" font-family="Inter, sans-serif" font-size="12" font-weight="500" fill="#8BA4B8" text-anchor="middle" letter-spacing="0.1em" opacity="0.6">FEES</text>
+      <text x="220" y="32" font-family="Inter, sans-serif" font-size="16" font-weight="500" fill="#D4A830" text-anchor="middle">Protocol rate only</text>
+      <text x="220" y="55" font-family="Inter, sans-serif" font-size="13" font-weight="400" fill="#D4A830" text-anchor="middle" opacity="0.45">No custody or redemption fees</text>
+    </g>
+    <line x1="35" y1="415" x2="405" y2="415" stroke="#3A5068" stroke-width="1" opacity="0.15"/>
+
+    <!-- Row 4: DECENTRALIZATION -->
+    <g transform="translate(0, 432)">
+      <text x="220" y="0" font-family="Inter, sans-serif" font-size="12" font-weight="500" fill="#8BA4B8" text-anchor="middle" letter-spacing="0.1em" opacity="0.6">DECENTRALIZATION</text>
+      <text x="220" y="32" font-family="Inter, sans-serif" font-size="16" font-weight="500" fill="#D4A830" text-anchor="middle">Fully onchain</text>
+      <text x="220" y="55" font-family="Inter, sans-serif" font-size="13" font-weight="400" fill="#D4A830" text-anchor="middle" opacity="0.45">No centralized issuer</text>
+    </g>
+    <line x1="35" y1="505" x2="405" y2="505" stroke="#3A5068" stroke-width="1" opacity="0.15"/>
+
+    <!-- Row 5: TRUST -->
+    <g transform="translate(0, 522)">
+      <text x="220" y="0" font-family="Inter, sans-serif" font-size="12" font-weight="500" fill="#8BA4B8" text-anchor="middle" letter-spacing="0.1em" opacity="0.6">TRUST ASSUMPTION</text>
+      <text x="220" y="32" font-family="Inter, sans-serif" font-size="16" font-weight="500" fill="#D4A830" text-anchor="middle">No counterparty risk</text>
+      <text x="220" y="55" font-family="Inter, sans-serif" font-size="13" font-weight="400" fill="#D4A830" text-anchor="middle" opacity="0.45">Code is the custodian</text>
+    </g>
+  </g>
+
+  <!-- ==================== "vs" badge ==================== -->
+  <g transform="translate(600, 420)">
+    <circle cx="0" cy="0" r="24" fill="#0a1628" stroke="rgba(232,220,196,0.2)" stroke-width="1"/>
+    <text x="0" y="6" font-family="'Cormorant Garamond', Georgia, serif" font-size="20" font-weight="400" fill="#E8DCC4" text-anchor="middle" opacity="0.6">vs</text>
+  </g>
+
+  <!-- ==================== CARD 2: XAUT / PAXG (merged) ==================== -->
+  <g transform="translate(640, 120)">
+    <!-- Card background neutral -->
+    <rect x="0" y="0" width="440" height="590" rx="24" fill="#0d1f3c" stroke="rgba(232,220,196,0.12)" stroke-width="1" filter="url(#shadow)"/>
+    <rect x="4" y="4" width="432" height="582" rx="22" fill="none" stroke="rgba(232,220,196,0.03)" stroke-width="1"/>
+
+    <!-- Two token logos side by side -->
+    <!-- XAUT circle (left) -->
+    <g transform="translate(175, 50)">
+      <circle cx="0" cy="0" r="30" fill="url(#xautCircleBg)" stroke="#d8b35d" stroke-width="1.5" stroke-opacity="0.35"/>
+      <!-- XAUT Tether Gold logo (scaled from 611.9x532.43 viewBox) -->
+      <g transform="translate(-21, -18.5) scale(0.069)">
+        <path d="M112.11,2.71.49,237.12a4.36,4.36,0,0,0,.9,5.23L302.7,531.22a4.72,4.72,0,0,0,6.32,0L610.51,242.35a4.41,4.41,0,0,0,.9-5.23L499.79,2.71a4.12,4.12,0,0,0-4-2.71H116.07a4.49,4.49,0,0,0-4,2.71Z" fill="url(#xautGold)" fill-rule="evenodd"/>
+        <path d="M344.72,261.1h0c-2.16.18-13.34.9-38.23.9-19.83,0-33.9-.54-38.95-.9h0c-76.63-3.42-133.79-16.77-133.79-32.64s57.16-29.39,133.79-32.81v52.11c5,.36,19.3,1.26,39.13,1.26,23.8,0,35.7-1.08,37.87-1.26V195.65c76.45,3.42,133.61,16.77,133.61,32.63s-57,29.4-133.43,32.82Zm0-70.68V143.71H451.47V72.49H160.8v71.22H267.54v46.71c-86.73,4-152,21.09-152,41.83s65.27,37.69,152,41.83V423.57h77.18V274.08c86.55-4,151.65-21.1,151.65-41.65s-65.1-38.05-151.65-42h0Z" fill="#fff" fill-rule="evenodd"/>
+      </g>
+    </g>
+
+    <!-- PAXG circle (right) -->
+    <g transform="translate(265, 50)">
+      <circle cx="0" cy="0" r="30" fill="url(#paxgCircleBg)" stroke="#cca727" stroke-width="1.5" stroke-opacity="0.35"/>
+      <!-- PAXG Pax Gold logo (scaled from 71.98x67.9 viewBox) -->
+      <g transform="translate(-21.5, -20) scale(0.6)">
+        <g mask="url(#paxgMask)">
+          <path d="M20,8.84c1.37-1.56,2.63-2.88,3.83-4-20.26-.65-14.36,14-21,28.87-7.6,17.14.9,23.67,13.56,25.71a27.56,27.56,0,0,1-4.28-7C3.94,42.09,7.25,23.26,20,8.84" fill="#efe812"/>
+        </g>
+        <path d="M68.75,27.1A57.87,57.87,0,0,1,58.52,44.23,49.09,49.09,0,0,1,46.09,55a33.56,33.56,0,0,1-18.34,5.21,72.2,72.2,0,0,1-11.32-.79A23.14,23.14,0,0,0,24,65.35c18.32,8.86,19.47-7.59,38.85-15.94,10.88-4.69,10.92-13.85,5.89-22.31" fill="#ede70a"/>
+        <path d="M46.09,10a24.07,24.07,0,0,1,7.56,2.68A42.17,42.17,0,0,1,68.75,27.1c3.3-9.3,1.76-16.6-5.45-17.92C55.36,7.73,49.16,7.26,43.2,3.1,35.86-2,29.42-.34,23.84,4.85l1.21.05c7.74.46,15.14,2,21,5.08" fill="#ede70a"/>
+        <path d="M20,8.84C7.25,23.26,3.94,42.09,12.15,52.42a31.36,31.36,0,0,1,1.77-28C20.83,12.9,34.7,7.9,46.09,10c-5.9-3.12-13.3-4.62-21-5.08l-1.21-.06C22.64,6,21.38,7.28,20,8.84" fill="#dec21c"/>
+        <path d="M53.65,12.66A24.07,24.07,0,0,0,46.09,10C53.85,14.08,59,21,59,31.94A27.53,27.53,0,0,1,46.09,55,48.89,48.89,0,0,0,58.52,44.23,57.87,57.87,0,0,0,68.75,27.1a42.17,42.17,0,0,0-15.1-14.44" fill="#e5cb22"/>
+        <path d="M46.09,10C34.7,7.9,20.83,12.9,13.92,24.37a31.33,31.33,0,0,0-1.77,28.05,27.28,27.28,0,0,0,4.28,7,72.2,72.2,0,0,0,11.32.79A33.56,33.56,0,0,0,46.09,55,27.52,27.52,0,0,0,59,31.94C59,21,53.85,14.08,46.09,10m-1.28,39.8a18.94,18.94,0,0,1-26.12-5.62c-5.66-8.73-2.86-20,5.63-26,9.5-6.75,21.68-4.09,26.12,5.62,4.33,9.46,3.14,20.39-5.63,26" fill="#cca727"/>
+      </g>
+    </g>
+
+    <text x="220" y="120" font-family="'Cormorant Garamond', Georgia, serif" font-size="26" font-weight="600" fill="#E8DCC4" text-anchor="middle">XAUT / PAXG</text>
+
+    <!-- Divider under header -->
+    <line x1="35" y1="142" x2="405" y2="142" stroke="#3A5068" stroke-width="1" opacity="0.15"/>
+
+    <!-- Row 1: COLLATERAL -->
+    <g transform="translate(0, 162)">
+      <text x="220" y="0" font-family="Inter, sans-serif" font-size="12" font-weight="500" fill="#8BA4B8" text-anchor="middle" letter-spacing="0.1em" opacity="0.6">COLLATERAL</text>
+      <text x="220" y="32" font-family="Inter, sans-serif" font-size="16" font-weight="500" fill="#F5F0E6" text-anchor="middle">Physical gold</text>
+      <text x="220" y="55" font-family="Inter, sans-serif" font-size="13" font-weight="400" fill="#F5F0E6" text-anchor="middle" opacity="0.4">Custody risk, counterparty exposure</text>
+    </g>
+    <line x1="35" y1="235" x2="405" y2="235" stroke="#3A5068" stroke-width="1" opacity="0.15"/>
+
+    <!-- Row 2: REDEMPTION -->
+    <g transform="translate(0, 252)">
+      <text x="220" y="0" font-family="Inter, sans-serif" font-size="12" font-weight="500" fill="#8BA4B8" text-anchor="middle" letter-spacing="0.1em" opacity="0.6">REDEMPTION</text>
+      <text x="220" y="32" font-family="Inter, sans-serif" font-size="16" font-weight="500" fill="#F5F0E6" text-anchor="middle">Permissioned</text>
+      <text x="220" y="55" font-family="Inter, sans-serif" font-size="13" font-weight="400" fill="#F5F0E6" text-anchor="middle" opacity="0.4">KYC required, minimums apply</text>
+    </g>
+    <line x1="35" y1="325" x2="405" y2="325" stroke="#3A5068" stroke-width="1" opacity="0.15"/>
+
+    <!-- Row 3: FEES -->
+    <g transform="translate(0, 342)">
+      <text x="220" y="0" font-family="Inter, sans-serif" font-size="12" font-weight="500" fill="#8BA4B8" text-anchor="middle" letter-spacing="0.1em" opacity="0.6">FEES</text>
+      <text x="220" y="32" font-family="Inter, sans-serif" font-size="16" font-weight="500" fill="#F5F0E6" text-anchor="middle">Redemption + custody fees</text>
+      <text x="220" y="55" font-family="Inter, sans-serif" font-size="13" font-weight="400" fill="#F5F0E6" text-anchor="middle" opacity="0.4">0.25% (XAUT), variable (PAXG)</text>
+    </g>
+    <line x1="35" y1="415" x2="405" y2="415" stroke="#3A5068" stroke-width="1" opacity="0.15"/>
+
+    <!-- Row 4: DECENTRALIZATION -->
+    <g transform="translate(0, 432)">
+      <text x="220" y="0" font-family="Inter, sans-serif" font-size="12" font-weight="500" fill="#8BA4B8" text-anchor="middle" letter-spacing="0.1em" opacity="0.6">DECENTRALIZATION</text>
+      <text x="220" y="32" font-family="Inter, sans-serif" font-size="16" font-weight="500" fill="#F5F0E6" text-anchor="middle">Centralized issuer</text>
+      <text x="220" y="55" font-family="Inter, sans-serif" font-size="13" font-weight="400" fill="#F5F0E6" text-anchor="middle" opacity="0.4">Tether (XAUT) / Paxos (PAXG)</text>
+    </g>
+    <line x1="35" y1="505" x2="405" y2="505" stroke="#3A5068" stroke-width="1" opacity="0.15"/>
+
+    <!-- Row 5: TRUST -->
+    <g transform="translate(0, 522)">
+      <text x="220" y="0" font-family="Inter, sans-serif" font-size="12" font-weight="500" fill="#8BA4B8" text-anchor="middle" letter-spacing="0.1em" opacity="0.6">TRUST ASSUMPTION</text>
+      <text x="220" y="32" font-family="Inter, sans-serif" font-size="16" font-weight="500" fill="#F5F0E6" text-anchor="middle">Trust the issuer</text>
+      <text x="220" y="55" font-family="Inter, sans-serif" font-size="13" font-weight="400" fill="#F5F0E6" text-anchor="middle" opacity="0.4">Can freeze, blacklist, or fail</text>
+    </g>
+  </g>
+</svg>

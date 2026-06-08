@@ -1,0 +1,281 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 780" fill="none">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&amp;family=Inter:wght@400;500;600&amp;display=swap');
+      .title { font-family: 'Cormorant Garamond', Georgia, serif; fill: #F5F0E6; }
+      .label { font-family: 'Inter', Arial, sans-serif; fill: #8BA4B8; }
+      .label-bright { font-family: 'Inter', Arial, sans-serif; fill: #F5F0E6; }
+      .label-cream { font-family: 'Inter', Arial, sans-serif; fill: #E8DCC4; }
+      .label-blue { font-family: 'Inter', Arial, sans-serif; fill: #9ECBEB; }
+    </style>
+
+    <!-- Background gradient -->
+    <radialGradient id="bgGradient" cx="50%" cy="45%" r="65%">
+      <stop offset="0%" style="stop-color:#0d1f3c"/>
+      <stop offset="100%" style="stop-color:#050a14"/>
+    </radialGradient>
+
+    <!-- Card shadow -->
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+
+    <!-- Soft glow -->
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Chart glow -->
+    <filter id="chartGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Arrow marker cream (upward) -->
+    <marker id="arrowCreamUp" markerWidth="12" markerHeight="12" refX="6" refY="2" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M2,10 L6,2 L10,10" fill="none" stroke="#E8DCC4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+
+    <!-- Ratchet arrow marker -->
+    <marker id="arrowRatchet" markerWidth="10" markerHeight="10" refX="5" refY="2" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M1,8 L5,2 L9,8" fill="none" stroke="#E8DCC4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+
+    <!-- Clip path for chart area -->
+    <clipPath id="chartClip">
+      <rect x="180" y="195" width="625" height="430"/>
+    </clipPath>
+
+    <!-- Under-curve area gradient (vertical fade) -->
+    <linearGradient id="underCurveGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" style="stop-color:#9ECBEB;stop-opacity:0.07"/>
+      <stop offset="60%" style="stop-color:#9ECBEB;stop-opacity:0.03"/>
+      <stop offset="100%" style="stop-color:#9ECBEB;stop-opacity:0"/>
+    </linearGradient>
+
+    <!-- Burned zone gradient (vertical fade) -->
+    <linearGradient id="burnedGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" style="stop-color:#9B8FCF;stop-opacity:0.4"/>
+      <stop offset="70%" style="stop-color:#9B8FCF;stop-opacity:0.12"/>
+      <stop offset="100%" style="stop-color:#9B8FCF;stop-opacity:0.04"/>
+    </linearGradient>
+
+    <!-- Floor rise highlight gradient (horizontal fade) -->
+    <linearGradient id="floorRiseGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" style="stop-color:#E8DCC4;stop-opacity:0.08"/>
+      <stop offset="100%" style="stop-color:#E8DCC4;stop-opacity:0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1400" height="780" fill="url(#bgGradient)"/>
+
+  <!-- Starfield -->
+  <circle cx="120" cy="90" r="1" fill="#F5F0E6" opacity="0.3"/>
+  <circle cx="340" cy="50" r="0.8" fill="#F5F0E6" opacity="0.2"/>
+  <circle cx="580" cy="110" r="1.2" fill="#F5F0E6" opacity="0.25"/>
+  <circle cx="810" cy="40" r="0.7" fill="#F5F0E6" opacity="0.15"/>
+  <circle cx="1050" cy="80" r="1" fill="#F5F0E6" opacity="0.2"/>
+  <circle cx="1280" cy="55" r="0.9" fill="#F5F0E6" opacity="0.3"/>
+  <circle cx="200" cy="740" r="0.8" fill="#F5F0E6" opacity="0.15"/>
+  <circle cx="450" cy="720" r="1" fill="#F5F0E6" opacity="0.2"/>
+  <circle cx="700" cy="750" r="0.7" fill="#F5F0E6" opacity="0.25"/>
+  <circle cx="1100" cy="730" r="1.1" fill="#F5F0E6" opacity="0.18"/>
+  <circle cx="1320" cy="700" r="0.6" fill="#F5F0E6" opacity="0.2"/>
+  <circle cx="950" cy="120" r="1.3" fill="#F5F0E6" opacity="0.15"/>
+  <circle cx="1200" cy="150" r="0.8" fill="#F5F0E6" opacity="0.22"/>
+  <circle cx="85" cy="400" r="0.9" fill="#F5F0E6" opacity="0.18"/>
+  <circle cx="1350" cy="380" r="1" fill="#F5F0E6" opacity="0.12"/>
+  <circle cx="60" cy="600" r="0.7" fill="#F5F0E6" opacity="0.2"/>
+  <circle cx="1380" cy="550" r="0.8" fill="#F5F0E6" opacity="0.15"/>
+
+  <!-- ==================== TITLE BLOCK ==================== -->
+  <text x="700" y="58" class="title" font-size="56" font-weight="500" text-anchor="middle" letter-spacing="0.05em">The Floor Only Goes Up</text>
+  <text x="700" y="92" class="label" font-size="22" font-weight="400" text-anchor="middle" fill="rgba(232,220,196,0.5)">Every conversion burns pETH supply, permanently raising the floor price</text>
+
+  <!-- ==================== MAIN CHART CARD ==================== -->
+  <rect x="55" y="120" width="795" height="540" rx="24" fill="#0d1f3c" stroke="rgba(232,220,196,0.12)" stroke-width="1" filter="url(#shadow)"/>
+  <!-- Inner border -->
+  <rect x="59" y="124" width="787" height="532" rx="22" fill="none" stroke="rgba(232,220,196,0.03)" stroke-width="1"/>
+
+  <!-- Chart inner container -->
+  <rect x="150" y="165" width="670" height="480" rx="10" fill="#122a4d" opacity="0.4"/>
+
+  <!-- ==================== GRID LINES ==================== -->
+  <!-- Horizontal grid -->
+  <line x1="180" y1="536" x2="800" y2="536" stroke="#3A5068" stroke-width="0.5" opacity="0.05"/>
+  <line x1="180" y1="452" x2="800" y2="452" stroke="#3A5068" stroke-width="0.5" opacity="0.05"/>
+  <line x1="180" y1="368" x2="800" y2="368" stroke="#3A5068" stroke-width="0.5" opacity="0.05"/>
+  <line x1="180" y1="284" x2="800" y2="284" stroke="#3A5068" stroke-width="0.5" opacity="0.05"/>
+  <line x1="180" y1="200" x2="800" y2="200" stroke="#3A5068" stroke-width="0.5" opacity="0.05"/>
+  <!-- Vertical grid -->
+  <line x1="304" y1="200" x2="304" y2="620" stroke="#3A5068" stroke-width="0.5" opacity="0.05"/>
+  <line x1="428" y1="200" x2="428" y2="620" stroke="#3A5068" stroke-width="0.5" opacity="0.05"/>
+  <line x1="552" y1="200" x2="552" y2="620" stroke="#3A5068" stroke-width="0.5" opacity="0.05"/>
+  <line x1="676" y1="200" x2="676" y2="620" stroke="#3A5068" stroke-width="0.5" opacity="0.05"/>
+  <line x1="800" y1="200" x2="800" y2="620" stroke="#3A5068" stroke-width="0.5" opacity="0.05"/>
+
+  <!-- ==================== AXES ==================== -->
+  <!-- X axis -->
+  <line x1="180" y1="620" x2="800" y2="620" stroke="#3A5068" stroke-width="1.5"/>
+  <!-- Y axis -->
+  <line x1="180" y1="200" x2="180" y2="620" stroke="#3A5068" stroke-width="1.5"/>
+
+  <!-- Axis labels -->
+  <text x="490" y="656" class="label" font-size="18" font-weight="500" text-anchor="middle">pETH Supply</text>
+  <text x="145" y="415" class="label" font-size="18" font-weight="500" text-anchor="middle" transform="rotate(-90, 145, 415)">Price</text>
+
+  <!-- Y-axis tick labels -->
+  <text x="170" y="540" class="label" font-size="18" font-weight="400" text-anchor="end" opacity="0.6">0.2</text>
+  <text x="170" y="456" class="label" font-size="18" font-weight="400" text-anchor="end" opacity="0.6">0.4</text>
+  <text x="170" y="372" class="label" font-size="18" font-weight="400" text-anchor="end" opacity="0.6">0.6</text>
+  <!-- 0.8 tick omitted: F1/F2 labels occupy this range -->
+  <text x="170" y="204" class="label" font-size="18" font-weight="400" text-anchor="end" opacity="0.6">1.0</text>
+
+  <!-- ==================== FLOOR RISE HIGHLIGHT BAND ==================== -->
+  <!-- Subtle horizontal band between F1 and F2 showing the price gain -->
+  <rect x="180" y="292.4" width="294" height="27.7" fill="url(#floorRiseGrad)" clip-path="url(#chartClip)"/>
+
+  <!-- ==================== BURNED ZONE (purple gradient) ==================== -->
+  <path d="M564.4,261.9 L571.6,259.6 L583.6,256.0 L595.7,252.4 L607.7,248.9 L619.7,245.5 L631.7,242.1 L635.1,241.1 L635.1,620.0 L564.4,620.0 Z"
+    fill="url(#burnedGrad)" clip-path="url(#chartClip)"/>
+  <!-- Burned zone top edge accent -->
+  <path d="M564.4,261.9 L571.6,259.6 L583.6,256.0 L595.7,252.4 L607.7,248.9 L619.7,245.5 L631.7,242.1 L635.1,241.1"
+    fill="none" stroke="#9B8FCF" stroke-width="1" opacity="0.3" clip-path="url(#chartClip)"/>
+
+  <!-- ==================== "BEFORE" STATE (reduced opacity) ==================== -->
+  <!-- Full bonding curve (before) -->
+  <path d="M180.0,620.0 L180.0,613.8 L180.0,607.6 L180.1,601.4 L180.1,595.2 L180.2,589.1 L180.4,582.9 L180.7,576.7 L181.0,570.5 L181.4,564.3 L182.0,558.1 L182.6,551.9 L183.4,545.7 L184.4,539.5 L185.4,533.4 L186.7,527.2 L188.1,521.0 L189.7,514.8 L191.6,508.6 L193.6,502.4 L195.9,496.2 L198.4,490.0 L201.1,483.8 L204.1,477.6 L207.4,471.5 L211.0,465.3 L211.0,465.3 L223.0,447.4 L235.0,432.6 L247.1,419.9 L259.1,408.6 L271.1,398.4 L283.1,389.0 L295.1,380.4 L307.2,372.3 L319.2,364.7 L331.2,357.6 L343.2,350.8 L355.2,344.4 L367.3,338.2 L379.3,332.3 L391.3,326.6 L403.3,321.2 L415.3,315.9 L427.4,310.8 L439.4,305.9 L451.4,301.1 L463.4,296.5 L475.4,291.9 L487.5,287.6 L499.5,283.3 L511.5,279.1 L523.5,275.0 L535.6,271.1 L547.6,267.2 L559.6,263.4 L571.6,259.6 L583.6,256.0 L595.7,252.4 L607.7,248.9 L619.7,245.5 L631.7,242.1 L643.7,238.8 L655.8,235.5 L667.8,232.3 L679.8,229.1 L691.8,226.0 L703.8,222.9 L715.9,219.9 L727.9,217.0 L739.9,214.0 L751.9,211.2 L763.9,208.3 L776.0,205.5 L788.0,202.7 L800.0,200.0"
+    fill="none" stroke="#F5F0E6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"/>
+
+  <!-- Before: supply line S1 (vertical dashed) -->
+  <line x1="635.1" y1="241.1" x2="635.1" y2="620" stroke="#9ECBEB" stroke-width="1" stroke-dasharray="6,4" opacity="0.3"/>
+
+  <!-- Before: floor price line F1 (horizontal dashed) -->
+  <line x1="180" y1="320.1" x2="405.7" y2="320.1" stroke="#E8DCC4" stroke-width="1" stroke-dasharray="6,4" opacity="0.3"/>
+
+  <!-- Before: floor intersection dot -->
+  <circle cx="405.7" cy="320.1" r="4" fill="#F5F0E6" opacity="0.3"/>
+  <circle cx="405.7" cy="320.1" r="2.5" fill="#E8DCC4" opacity="0.3"/>
+
+  <!-- Before labels -->
+  <text x="635.1" y="638" class="label-blue" font-size="18" font-weight="500" text-anchor="middle" opacity="0.4">S&#x2081;</text>
+  <text x="167" y="324" class="label-cream" font-size="18" font-weight="500" text-anchor="end" opacity="0.4">F&#x2081;</text>
+
+  <!-- ==================== "AFTER" STATE (full brightness) ==================== -->
+  <!-- Under-curve area fill (subtle gradient) -->
+  <path d="M180.0,620.0 L180.0,613.8 L180.0,607.6 L180.1,601.4 L180.1,595.2 L180.2,589.1 L180.4,582.9 L180.7,576.7 L181.0,570.5 L181.4,564.3 L182.0,558.1 L182.6,551.9 L183.4,545.7 L184.4,539.5 L185.4,533.4 L186.7,527.2 L188.1,521.0 L189.7,514.8 L191.6,508.6 L193.6,502.4 L195.9,496.2 L198.4,490.0 L201.1,483.8 L204.1,477.6 L207.4,471.5 L211.0,465.3 L211.0,465.3 L223.0,447.4 L235.0,432.6 L247.1,419.9 L259.1,408.6 L271.1,398.4 L283.1,389.0 L295.1,380.4 L307.2,372.3 L319.2,364.7 L331.2,357.6 L343.2,350.8 L355.2,344.4 L367.3,338.2 L379.3,332.3 L391.3,326.6 L403.3,321.2 L415.3,315.9 L427.4,310.8 L439.4,305.9 L451.4,301.1 L463.4,296.5 L475.4,291.9 L487.5,287.6 L499.5,283.3 L511.5,279.1 L523.5,275.0 L535.6,271.1 L547.6,267.2 L559.6,263.4 L564.4,261.9 L564.4,620.0 Z"
+    fill="url(#underCurveGrad)" clip-path="url(#chartClip)"/>
+
+  <!-- Bonding curve up to S2 (bright, glowing) -->
+  <path d="M180.0,620.0 L180.0,613.8 L180.0,607.6 L180.1,601.4 L180.1,595.2 L180.2,589.1 L180.4,582.9 L180.7,576.7 L181.0,570.5 L181.4,564.3 L182.0,558.1 L182.6,551.9 L183.4,545.7 L184.4,539.5 L185.4,533.4 L186.7,527.2 L188.1,521.0 L189.7,514.8 L191.6,508.6 L193.6,502.4 L195.9,496.2 L198.4,490.0 L201.1,483.8 L204.1,477.6 L207.4,471.5 L211.0,465.3 L211.0,465.3 L223.0,447.4 L235.0,432.6 L247.1,419.9 L259.1,408.6 L271.1,398.4 L283.1,389.0 L295.1,380.4 L307.2,372.3 L319.2,364.7 L331.2,357.6 L343.2,350.8 L355.2,344.4 L367.3,338.2 L379.3,332.3 L391.3,326.6 L403.3,321.2 L415.3,315.9 L427.4,310.8 L439.4,305.9 L451.4,301.1 L463.4,296.5 L475.4,291.9 L487.5,287.6 L499.5,283.3 L511.5,279.1 L523.5,275.0 L535.6,271.1 L547.6,267.2 L559.6,263.4 L564.4,261.9"
+    fill="none" stroke="#F5F0E6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+    filter="url(#chartGlow)"/>
+
+  <!-- After: supply line S2 (vertical dashed, bright) -->
+  <line x1="564.4" y1="261.9" x2="564.4" y2="620" stroke="#9ECBEB" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.7"/>
+
+  <!-- After: floor price line F2 (horizontal dashed, bright) -->
+  <line x1="180" y1="292.4" x2="474.2" y2="292.4" stroke="#E8DCC4" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.6"/>
+
+  <!-- After: floor intersection dot (glowing) -->
+  <circle cx="474.2" cy="292.4" r="5" fill="#F5F0E6" filter="url(#softGlow)"/>
+  <circle cx="474.2" cy="292.4" r="3" fill="#E8DCC4"/>
+
+  <!-- After: S2 curve endpoint dot (glowing) -->
+  <circle cx="564.4" cy="261.9" r="5" fill="#F5F0E6" filter="url(#softGlow)"/>
+  <circle cx="564.4" cy="261.9" r="3" fill="#9ECBEB"/>
+
+  <!-- After labels -->
+  <text x="564.4" y="638" class="label-blue" font-size="20" font-weight="600" text-anchor="middle" opacity="0.9">S&#x2082;</text>
+  <text x="167" y="296" class="label-cream" font-size="20" font-weight="600" text-anchor="end" opacity="0.9">F&#x2082;</text>
+
+  <!-- ==================== BURNED ZONE LABEL ==================== -->
+  <text x="599.7" y="440" font-family="'Inter', Arial, sans-serif" font-size="18" font-weight="500" fill="#9B8FCF" text-anchor="middle" opacity="0.85">Burned</text>
+  <text x="599.7" y="462" font-family="'Inter', Arial, sans-serif" font-size="18" font-weight="500" fill="#9B8FCF" text-anchor="middle" opacity="0.85">pETH</text>
+
+  <!-- ==================== FLOOR PRICE RATCHET VISUAL ==================== -->
+  <!-- "Floor rises" label — next to F1/F2 bracket -->
+  <text x="90" y="297" font-family="'Inter', Arial, sans-serif" font-size="18" font-weight="600" fill="#E8DCC4" text-anchor="middle" opacity="0.85">Floor</text>
+  <text x="90" y="315" font-family="'Inter', Arial, sans-serif" font-size="18" font-weight="600" fill="#E8DCC4" text-anchor="middle" opacity="0.85">rises</text>
+
+  <!-- Bracket showing floor price increase on Y axis -->
+  <!-- Horizontal ticks at F1 and F2 -->
+  <line x1="112" y1="320.1" x2="132" y2="320.1" stroke="#E8DCC4" stroke-width="1.5" opacity="0.35"/>
+  <line x1="112" y1="292.4" x2="132" y2="292.4" stroke="#E8DCC4" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- Vertical connecting line -->
+  <line x1="122" y1="317" x2="122" y2="296" stroke="#E8DCC4" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- Upward arrow head -->
+  <path d="M118,300 L122,293 L126,300" fill="none" stroke="#E8DCC4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+
+  <!-- ==================== HORIZONTAL SUPPLY CONTRACTION ARROWS ==================== -->
+  <!-- Arrow showing supply moving left (S1 to S2) -->
+  <line x1="630" y1="616" x2="572" y2="616" stroke="#9B8FCF" stroke-width="1.5" opacity="0.5"/>
+  <path d="M577,611.5 L569,616 L577,620.5" fill="none" stroke="#9B8FCF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+
+  <!-- ==================== ANNOTATION CARDS ==================== -->
+  <!-- Card 1: Supply contracts -->
+  <rect x="880" y="190" width="460" height="110" rx="24" fill="#0d1f3c" stroke="rgba(232,220,196,0.12)" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="884" y="194" width="452" height="102" rx="22" fill="none" stroke="rgba(232,220,196,0.03)" stroke-width="1"/>
+
+  <!-- Step number -->
+  <circle cx="920" cy="245" r="18" fill="#0a1628" stroke="#E8DCC4" stroke-width="1" opacity="0.4"/>
+  <text x="920" y="251" font-family="'Cormorant Garamond', Georgia, serif" font-size="21" font-weight="500" fill="#E8DCC4" text-anchor="middle" opacity="0.8">1</text>
+
+  <text x="948" y="234" font-family="'Inter', Arial, sans-serif" font-size="21" font-weight="500" fill="#E8DCC4" opacity="0.9">pETH holders convert to POLAR</text>
+  <text x="948" y="262" font-family="'Inter', Arial, sans-serif" font-size="18" font-weight="400" fill="#E8DCC4" opacity="0.45">The converted pETH is burned forever</text>
+
+  <!-- Card 2: Floor rises -->
+  <rect x="880" y="325" width="460" height="110" rx="24" fill="#0d1f3c" stroke="rgba(232,220,196,0.12)" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="884" y="329" width="452" height="102" rx="22" fill="none" stroke="rgba(232,220,196,0.03)" stroke-width="1"/>
+
+  <circle cx="920" cy="380" r="18" fill="#0a1628" stroke="#9ECBEB" stroke-width="1" opacity="0.4"/>
+  <text x="920" y="386" font-family="'Cormorant Garamond', Georgia, serif" font-size="21" font-weight="500" fill="#9ECBEB" text-anchor="middle" opacity="0.8">2</text>
+
+  <text x="948" y="369" font-family="'Inter', Arial, sans-serif" font-size="21" font-weight="500" fill="#9ECBEB" opacity="0.9">Supply contracts, floor rises</text>
+  <text x="948" y="397" font-family="'Inter', Arial, sans-serif" font-size="18" font-weight="400" fill="#9ECBEB" opacity="0.45">Same ETH reserve, fewer pETH outstanding</text>
+
+  <!-- Card 3: One-way -->
+  <rect x="880" y="460" width="460" height="110" rx="24" fill="#0d1f3c" stroke="rgba(155,143,207,0.15)" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="884" y="464" width="452" height="102" rx="22" fill="none" stroke="rgba(155,143,207,0.03)" stroke-width="1"/>
+
+  <circle cx="920" cy="515" r="18" fill="#0a1628" stroke="#B8A8DF" stroke-width="1" opacity="0.4"/>
+  <text x="920" y="521" font-family="'Cormorant Garamond', Georgia, serif" font-size="21" font-weight="500" fill="#B8A8DF" text-anchor="middle" opacity="0.8">3</text>
+
+  <text x="948" y="504" font-family="'Inter', Arial, sans-serif" font-size="21" font-weight="500" fill="#B8A8DF" opacity="0.9">Irreversible ratchet</text>
+  <text x="948" y="532" font-family="'Inter', Arial, sans-serif" font-size="18" font-weight="400" fill="#B8A8DF" opacity="0.45">One-way pETH &#x2192; POLAR conversions</text>
+
+  <!-- ==================== LEGEND ==================== -->
+  <g transform="translate(880, 600)">
+    <rect x="0" y="0" width="460" height="80" rx="16" fill="#0d1f3c" stroke="rgba(232,220,196,0.08)" stroke-width="1"/>
+
+    <!-- Column divider -->
+    <line x1="246" y1="14" x2="246" y2="66" stroke="rgba(232,220,196,0.06)" stroke-width="1"/>
+
+    <!-- Dashed line swatch: Before conversion -->
+    <line x1="20" y1="25" x2="44" y2="25" stroke="#F5F0E6" stroke-width="2" stroke-dasharray="4,3" opacity="0.35"/>
+    <text x="54" y="30" class="label" font-size="18">Before conversion</text>
+
+    <!-- Solid line swatch: After conversion -->
+    <line x1="20" y1="53" x2="44" y2="53" stroke="#F5F0E6" stroke-width="2.5"/>
+    <text x="54" y="58" class="label" font-size="18">After conversion</text>
+
+    <!-- Purple swatch: Burned pETH -->
+    <rect x="260" y="17" width="18" height="18" rx="3" fill="#9B8FCF" opacity="0.5"/>
+    <text x="286" y="31" class="label" font-size="18" fill="#9B8FCF">Burned pETH</text>
+
+    <!-- Dashed blue: Supply line -->
+    <line x1="260" y1="53" x2="278" y2="53" stroke="#9ECBEB" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.7"/>
+    <text x="286" y="58" class="label" font-size="18" fill="#9ECBEB">Current supply</text>
+  </g>
+
+</svg>

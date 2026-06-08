@@ -1,0 +1,283 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" fill="none">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&amp;family=Inter:wght@400;500;600&amp;display=swap');
+    </style>
+
+    <!-- Background gradient -->
+    <radialGradient id="bgGradient" cx="50%" cy="48%" r="65%">
+      <stop offset="0%" style="stop-color:#0d1f3c"/>
+      <stop offset="100%" style="stop-color:#050a14"/>
+    </radialGradient>
+
+    <!-- Overpeg zone fill -->
+    <linearGradient id="overpegFill" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E8DCC4; stop-opacity:0.10"/>
+      <stop offset="100%" style="stop-color:#E8DCC4; stop-opacity:0.01"/>
+    </linearGradient>
+
+    <!-- Underpeg zone fill -->
+    <linearGradient id="underpegFill" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#7BA5C9; stop-opacity:0.01"/>
+      <stop offset="100%" style="stop-color:#7BA5C9; stop-opacity:0.10"/>
+    </linearGradient>
+
+    <!-- Curve stroke gradient: blue left to cream right -->
+    <linearGradient id="curveStroke" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#7BA5C9"/>
+      <stop offset="35%" style="stop-color:#7BA5C9"/>
+      <stop offset="50%" style="stop-color:#c4d4de"/>
+      <stop offset="65%" style="stop-color:#E8DCC4"/>
+      <stop offset="100%" style="stop-color:#E8DCC4"/>
+    </linearGradient>
+
+    <!-- Card shadow -->
+    <filter id="cardShadow" x="-15%" y="-15%" width="130%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+
+    <!-- Curve glow -->
+    <filter id="curveGlow" x="-10%" y="-30%" width="120%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Dot glow -->
+    <filter id="dotGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="6" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Soft glow for arrows -->
+    <filter id="arrowGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Peg line glow -->
+    <filter id="pegGlow" x="-5%" y="-100%" width="110%" height="300%">
+      <feGaussianBlur stdDeviation="2" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- pUSD icon gradients -->
+    <linearGradient id="pusdIconBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a3a5c"/>
+      <stop offset="100%" style="stop-color:#0d1f3c"/>
+    </linearGradient>
+    <linearGradient id="pusdIconAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F5F0E6"/>
+      <stop offset="100%" style="stop-color:#E8DCC4"/>
+    </linearGradient>
+
+    <!-- Arrow markers -->
+    <marker id="arrowheadCream" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#E8DCC4" fill-opacity="0.6"/>
+    </marker>
+    <marker id="arrowheadBlue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#7BA5C9" fill-opacity="0.6"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="750" fill="url(#bgGradient)"/>
+
+  <!-- Subtle grid lines -->
+  <line x1="120" y1="390" x2="1100" y2="390" stroke="#E8DCC4" stroke-opacity="0.05" stroke-width="0.5"/>
+  <line x1="120" y1="290" x2="1100" y2="290" stroke="#E8DCC4" stroke-opacity="0.03" stroke-width="0.5"/>
+  <line x1="120" y1="490" x2="1100" y2="490" stroke="#E8DCC4" stroke-opacity="0.03" stroke-width="0.5"/>
+
+  <!-- Title with pUSD icon -->
+  <g transform="translate(342, 10) scale(1.5)">
+    <circle cx="32" cy="32" r="30" fill="url(#pusdIconBg)" stroke="#E8DCC4" stroke-width="1.5" stroke-opacity="0.3"/>
+    <text x="32" y="42" font-family="'Cormorant Garamond', Georgia, serif" font-size="26" font-weight="500" fill="url(#pusdIconAccent)" text-anchor="middle">$</text>
+    <polygon points="32,16 32.8,18.5 35.5,18.5 33.3,20.2 34.2,22.8 32,21 29.8,22.8 30.7,20.2 28.5,18.5 31.2,18.5" fill="#E8DCC4" fill-opacity="0.6"/>
+  </g>
+  <text x="658" y="60" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-weight="400" font-size="32" fill="#E8DCC4" letter-spacing="0.05em">Interest Rate &amp; Peg Stability</text>
+  <text x="600" y="94" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="400" font-size="13" fill="#E8DCC4" fill-opacity="0.5" letter-spacing="0.08em">HOW POLARIS MAINTAINS THE pUSD PEG</text>
+
+  <!-- Y-axis label -->
+  <text x="48" y="390" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-weight="400" font-size="18" fill="#E8DCC4" fill-opacity="0.7" transform="rotate(-90 48 390)">pUSD Price</text>
+
+  <!-- X-axis label -->
+  <text x="1170" y="408" text-anchor="end" font-family="'Cormorant Garamond', serif" font-weight="400" font-size="16" fill="#E8DCC4" fill-opacity="0.5">Time →</text>
+
+  <!-- Peg line ($1.00) -->
+  <line x1="100" y1="390" x2="1100" y2="390" stroke="#E8DCC4" stroke-opacity="0.25" stroke-width="1.5" stroke-dasharray="8 6" filter="url(#pegGlow)"/>
+  <text x="112" y="383" text-anchor="start" font-family="'Inter', sans-serif" font-weight="600" font-size="14" fill="#E8DCC4" fill-opacity="0.55">$1.00</text>
+
+  <!-- ===== INVERTED SINUSOIDAL PRICE CURVE ===== -->
+  <!--
+    Now starts underpeg (dip) then overpeg (rise).
+    Y-values mirrored around peg line (y=390):
+    Q1: (160,390) → (390,565)  CP1=(237,482)  CP2=(313,565)
+    Q2: (390,565) → (620,390)  CP1=(467,565)  CP2=(543,482)
+    Q3: (620,390) → (850,215)  CP1=(697,298)  CP2=(773,215)
+    Q4: (850,215) → (1080,390) CP1=(927,215)  CP2=(1003,298)
+  -->
+
+  <!-- Underpeg zone shading (left half, below peg) -->
+  <path d="M 160 390 C 237 482, 313 565, 390 565 C 467 565, 543 482, 620 390 L 160 390 Z" fill="url(#underpegFill)"/>
+
+  <!-- Overpeg zone shading (right half, above peg) -->
+  <path d="M 620 390 C 697 298, 773 215, 850 215 C 927 215, 1003 298, 1080 390 L 620 390 Z" fill="url(#overpegFill)"/>
+
+  <!-- Main price curve -->
+  <path d="M 160 390 C 237 482, 313 565, 390 565 C 467 565, 543 482, 620 390 C 697 298, 773 215, 850 215 C 927 215, 1003 298, 1080 390" stroke="url(#curveStroke)" stroke-width="2.5" fill="none" stroke-linecap="round" filter="url(#curveGlow)"/>
+
+  <!-- Inflection markers -->
+  <!-- Trough (left) -->
+  <circle cx="390" cy="565" r="5" fill="#7BA5C9" filter="url(#dotGlow)" opacity="0.9"/>
+  <circle cx="390" cy="565" r="2.5" fill="#FFFFFF"/>
+  <!-- Center crossing -->
+  <circle cx="620" cy="390" r="4" fill="#c4d4de" filter="url(#dotGlow)" opacity="0.6"/>
+  <!-- Peak (right) -->
+  <circle cx="850" cy="215" r="5" fill="#E8DCC4" filter="url(#dotGlow)" opacity="0.9"/>
+  <circle cx="850" cy="215" r="2.5" fill="#FFFFFF"/>
+
+  <!-- ===== ZONE LABELS ===== -->
+  <!-- UNDERPEG: above the trough (trough at 565, label at 530) -->
+  <text x="390" y="530" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-weight="600" font-size="20" fill="#7BA5C9" fill-opacity="0.35" letter-spacing="0.2em">UNDERPEG</text>
+
+  <!-- OVERPEG: below the peak (peak at 215, label at 275) -->
+  <text x="850" y="275" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-weight="600" font-size="20" fill="#E8DCC4" fill-opacity="0.35" letter-spacing="0.2em">OVERPEG</text>
+
+  <!-- ===================================================== -->
+  <!-- OVERPEG CARDS (top row) — y=138                       -->
+  <!-- Widths: 180/180/180/210px. Gap: 25px.                 -->
+  <!-- Arrow y = 138 + 31 = 169                              -->
+  <!-- ===================================================== -->
+
+  <!-- Card 1: Minting Volume Up (x=90) -->
+  <g transform="translate(90, 138)" filter="url(#cardShadow)">
+    <rect x="0" y="0" width="180" height="62" rx="10" ry="10" fill="rgba(13,31,60,0.85)"/>
+    <rect x="0" y="0" width="180" height="62" rx="10" ry="10" fill="none" stroke="#E8DCC4" stroke-opacity="0.12" stroke-width="1"/>
+    <g transform="translate(16, 19)">
+      <circle cx="10" cy="10" r="9" stroke="#E8DCC4" stroke-width="1.2" fill="none" opacity="0.5"/>
+      <text x="10" y="14" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="600" font-size="11" fill="#E8DCC4" fill-opacity="0.6">$</text>
+    </g>
+    <text x="44" y="26" font-family="'Inter', sans-serif" font-weight="500" font-size="13" fill="#E8DCC4" fill-opacity="0.9">Minting volume ↑</text>
+    <text x="44" y="46" font-family="'Inter', sans-serif" font-weight="400" font-size="11" fill="#E8DCC4" fill-opacity="0.4">arbitrage opportunity</text>
+  </g>
+
+  <!-- Arrow 1→2 -->
+  <line x1="274" y1="169" x2="298" y2="169" stroke="#E8DCC4" stroke-opacity="0.4" stroke-width="1.2" marker-end="url(#arrowheadCream)" filter="url(#arrowGlow)"/>
+
+  <!-- Card 2: Overpeg Detected (x=300) -->
+  <g transform="translate(300, 138)" filter="url(#cardShadow)">
+    <rect x="0" y="0" width="180" height="62" rx="10" ry="10" fill="rgba(13,31,60,0.85)"/>
+    <rect x="0" y="0" width="180" height="62" rx="10" ry="10" fill="none" stroke="#E8DCC4" stroke-opacity="0.12" stroke-width="1"/>
+    <g transform="translate(16, 20)">
+      <polyline points="0,16 8,0 16,16" stroke="#E8DCC4" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+    </g>
+    <text x="42" y="26" font-family="'Inter', sans-serif" font-weight="500" font-size="13" fill="#E8DCC4" fill-opacity="0.9">Overpeg detected</text>
+    <text x="42" y="46" font-family="'Inter', sans-serif" font-weight="400" font-size="11" fill="#E8DCC4" fill-opacity="0.4">pUSD &gt; $1.00</text>
+  </g>
+
+  <!-- Arrow 2→3 -->
+  <line x1="484" y1="169" x2="508" y2="169" stroke="#E8DCC4" stroke-opacity="0.4" stroke-width="1.2" marker-end="url(#arrowheadCream)" filter="url(#arrowGlow)"/>
+
+  <!-- Card 3: Interest Rate Down (x=510) -->
+  <g transform="translate(510, 138)" filter="url(#cardShadow)">
+    <rect x="0" y="0" width="180" height="62" rx="10" ry="10" fill="rgba(13,31,60,0.85)"/>
+    <rect x="0" y="0" width="180" height="62" rx="10" ry="10" fill="none" stroke="#E8DCC4" stroke-opacity="0.12" stroke-width="1"/>
+    <g transform="translate(16, 17)">
+      <line x1="10" y1="0" x2="10" y2="20" stroke="#E8DCC4" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+      <polyline points="4,14 10,20 16,14" stroke="#E8DCC4" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+    </g>
+    <text x="44" y="26" font-family="'Inter', sans-serif" font-weight="500" font-size="13" fill="#E8DCC4" fill-opacity="0.9">Interest rate ↓</text>
+    <text x="44" y="46" font-family="'Inter', sans-serif" font-weight="400" font-size="11" fill="#E8DCC4" fill-opacity="0.4">cheaper to borrow</text>
+  </g>
+
+  <!-- Arrow 3→4 -->
+  <line x1="694" y1="169" x2="718" y2="169" stroke="#E8DCC4" stroke-opacity="0.4" stroke-width="1.2" marker-end="url(#arrowheadCream)" filter="url(#arrowGlow)"/>
+
+  <!-- Card 4: Back to Peg (x=720) -->
+  <g transform="translate(720, 138)" filter="url(#cardShadow)">
+    <rect x="0" y="0" width="210" height="62" rx="10" ry="10" fill="rgba(13,31,60,0.85)"/>
+    <rect x="0" y="0" width="210" height="62" rx="10" ry="10" fill="none" stroke="#E8DCC4" stroke-opacity="0.15" stroke-width="1"/>
+    <g transform="translate(16, 19)">
+      <circle cx="10" cy="10" r="9" stroke="#E8DCC4" stroke-width="1.2" fill="none" opacity="0.5"/>
+      <polyline points="5,10 9,14 15,6" stroke="#E8DCC4" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+    </g>
+    <text x="44" y="26" font-family="'Inter', sans-serif" font-weight="500" font-size="13" fill="#E8DCC4" fill-opacity="0.9">Supply ↑ → peg restored</text>
+    <text x="44" y="46" font-family="'Inter', sans-serif" font-weight="400" font-size="11" fill="#E8DCC4" fill-opacity="0.4">more pUSD in circulation</text>
+  </g>
+
+
+  <!-- ===================================================== -->
+  <!-- UNDERPEG CARDS (bottom row) — y=595                   -->
+  <!-- Widths: 180/185/180/215px. Gap: 25px.                 -->
+  <!-- Arrow y = 595 + 31 = 626                              -->
+  <!-- ===================================================== -->
+
+  <!-- Card 5: Redemption Volume Up (x=260) -->
+  <g transform="translate(260, 580)" filter="url(#cardShadow)">
+    <rect x="0" y="0" width="185" height="62" rx="10" ry="10" fill="rgba(13,31,60,0.85)"/>
+    <rect x="0" y="0" width="185" height="62" rx="10" ry="10" fill="none" stroke="#7BA5C9" stroke-opacity="0.12" stroke-width="1"/>
+    <g transform="translate(16, 19)">
+      <circle cx="10" cy="10" r="9" stroke="#7BA5C9" stroke-width="1.2" fill="none" opacity="0.5"/>
+      <line x1="5" y1="10" x2="15" y2="10" stroke="#7BA5C9" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+    </g>
+    <text x="44" y="26" font-family="'Inter', sans-serif" font-weight="500" font-size="13" fill="#7BA5C9" fill-opacity="0.9">Redemption vol. ↑</text>
+    <text x="44" y="46" font-family="'Inter', sans-serif" font-weight="400" font-size="11" fill="#7BA5C9" fill-opacity="0.4">arbitrage opportunity</text>
+  </g>
+
+  <!-- Arrow 5→6 -->
+  <line x1="449" y1="611" x2="473" y2="611" stroke="#7BA5C9" stroke-opacity="0.4" stroke-width="1.2" marker-end="url(#arrowheadBlue)" filter="url(#arrowGlow)"/>
+
+  <!-- Card 6: Underpeg Detected (x=475) -->
+  <g transform="translate(475, 580)" filter="url(#cardShadow)">
+    <rect x="0" y="0" width="180" height="62" rx="10" ry="10" fill="rgba(13,31,60,0.85)"/>
+    <rect x="0" y="0" width="180" height="62" rx="10" ry="10" fill="none" stroke="#7BA5C9" stroke-opacity="0.12" stroke-width="1"/>
+    <g transform="translate(16, 19)">
+      <polyline points="0,0 8,16 16,0" stroke="#7BA5C9" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+    </g>
+    <text x="42" y="26" font-family="'Inter', sans-serif" font-weight="500" font-size="13" fill="#7BA5C9" fill-opacity="0.9">Underpeg detected</text>
+    <text x="42" y="46" font-family="'Inter', sans-serif" font-weight="400" font-size="11" fill="#7BA5C9" fill-opacity="0.4">pUSD &lt; $1.00</text>
+  </g>
+
+  <!-- Arrow 6→7 -->
+  <line x1="659" y1="611" x2="683" y2="611" stroke="#7BA5C9" stroke-opacity="0.4" stroke-width="1.2" marker-end="url(#arrowheadBlue)" filter="url(#arrowGlow)"/>
+
+  <!-- Card 7: Interest Rate Up (x=685) -->
+  <g transform="translate(685, 580)" filter="url(#cardShadow)">
+    <rect x="0" y="0" width="180" height="62" rx="10" ry="10" fill="rgba(13,31,60,0.85)"/>
+    <rect x="0" y="0" width="180" height="62" rx="10" ry="10" fill="none" stroke="#7BA5C9" stroke-opacity="0.12" stroke-width="1"/>
+    <g transform="translate(16, 17)">
+      <line x1="10" y1="20" x2="10" y2="0" stroke="#7BA5C9" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+      <polyline points="4,6 10,0 16,6" stroke="#7BA5C9" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+    </g>
+    <text x="44" y="26" font-family="'Inter', sans-serif" font-weight="500" font-size="13" fill="#7BA5C9" fill-opacity="0.9">Interest rate ↑</text>
+    <text x="44" y="46" font-family="'Inter', sans-serif" font-weight="400" font-size="11" fill="#7BA5C9" fill-opacity="0.4">expensive to borrow</text>
+  </g>
+
+  <!-- Arrow 7→8 -->
+  <line x1="869" y1="611" x2="893" y2="611" stroke="#7BA5C9" stroke-opacity="0.4" stroke-width="1.2" marker-end="url(#arrowheadBlue)" filter="url(#arrowGlow)"/>
+
+  <!-- Card 8: Back to Peg (x=895) -->
+  <g transform="translate(895, 580)" filter="url(#cardShadow)">
+    <rect x="0" y="0" width="215" height="62" rx="10" ry="10" fill="rgba(13,31,60,0.85)"/>
+    <rect x="0" y="0" width="215" height="62" rx="10" ry="10" fill="none" stroke="#7BA5C9" stroke-opacity="0.15" stroke-width="1"/>
+    <g transform="translate(16, 19)">
+      <circle cx="10" cy="10" r="9" stroke="#7BA5C9" stroke-width="1.2" fill="none" opacity="0.5"/>
+      <polyline points="5,10 9,14 15,6" stroke="#7BA5C9" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+    </g>
+    <text x="44" y="26" font-family="'Inter', sans-serif" font-weight="500" font-size="13" fill="#7BA5C9" fill-opacity="0.9">Supply ↓ → peg restored</text>
+    <text x="44" y="46" font-family="'Inter', sans-serif" font-weight="400" font-size="11" fill="#7BA5C9" fill-opacity="0.4">repayments + less borrowing</text>
+  </g>
+
+
+</svg>

@@ -5,13 +5,13 @@ description: Why POLAR exists, how it is minted only by burning pETH, why its di
 
 # POLAR Token, Staking, and Conversion
 
-POLAR is Polaris's stewardship token and the protocol's **growth lever**. It earns that role through one deliberate constraint: after the initial distribution, new POLAR is intended to be minted only by burning pETH in a [conversion auction](/polar/conversion-auctions).
+POLAR is Polaris's stewardship token and outward-facing growth lever. After the initial distribution, new POLAR is intended to enter through one path: [burn pETH in a conversion auction](/polar/conversion-auctions).
 
 <Callout variant="info" title="Where this appears in the app">
 App anchors: **Earn** for current POLAR Staking where exposed, and **Advanced** or a conversion panel for pETH -> POLAR conversion actions.
 </Callout>
 
-> **Status distinction:** The app may expose **POLAR Staking** as a current stake/unstake/claim surface on testnet. **vePOLAR locking** is separate and forthcoming: lock durations, vote-power decay, voting rules, and production addresses are pending audited deployment. Do not use a conversion, staking, or locking interface unless [Launch Status](/launch-status) and [Contracts & Addresses](/resources/contracts) point to it.
+> **Status distinction:** The app may expose **POLAR Staking** as a current stake/unstake/claim surface on testnet. **vePOLAR locking** is separate and forthcoming: lock durations, vote-power decay, voting rules, and production addresses are pending. Do not use a conversion, staking, or locking interface unless [Launch Status](/launch-status) and [Contracts & Addresses](/resources/contracts) point to it.
 
 ## Why a third token
 
@@ -28,32 +28,11 @@ POLAR is deliberately separated from the core so the core's sustainability never
 
 ## Minted only by burning pETH
 
-There is no team mint function and no inflation schedule disconnected from protocol activity. Every POLAR entering circulation after the initial distribution is intended to require a pETH burn through the [conversion auction](/polar/conversion-auctions).
-
-This is the point: POLAR's issuance is welded to the **most protocol-synergetic action possible**. Burning pETH simultaneously:
-
-- **Raises the [floor price](/peth/floor-price)** under the curve assumptions, by contracting pETH supply.
-- **Releases ETH** from the bonding curve reserve, which becomes pETH yield routed through the [Fee Router](/stewardship/fee-router).
-- **Mints the token** that funds ecosystem growth.
-
-> **Note:**
-> Most conversions are executed by arbitrage bots and MEV searchers, not by hand. POLAR issuance therefore tracks real arbitrage activity, not a calendar.
-
-## Productive dilution
-
-Every token emission is dilutive. We will not pretend otherwise — minting new POLAR shrinks existing holders' share of supply. That is a real cost.
-
-The difference is what the dilution *buys*. Each conversion that dilutes POLAR holders also burns pETH, raises the floor, and releases ETH yield. **Every unit of POLAR dilution corresponds to a concrete improvement in protocol fundamentals.** This differs structurally from emission models like CRV, where inflation is disconnected from any protocol benefit.
-
-Conversion uses three stewarded parameters: the reserve rebate (bounded to 0–100%), the price-decay half-life, and the supply-inflation spike sensitivity. Issuance is self-limiting: [spike-and-decay pricing](/polar/conversion-auctions#spike-and-decay-pricing) makes large or rapid minting throttle itself, so issuance tracks real arbitrage demand. A hardcoded issuance cap and an explicit disable switch are not yet enforced in the current prototype; final parameter bounds await audited deployment.
-
-For the founding team this means progressive dilution by structure, not by a forum promise: the faster Polaris grows, the more attractive conversions become, and the more the team's initial share dilutes.
+There is no planned team mint function or calendar inflation schedule disconnected from protocol activity. The detailed economics live on [POLAR Tokenomics](/polar/tokenomics); the auction mechanics live on [Conversion Auctions](/polar/conversion-auctions).
 
 ## POLAR Staking and future vePOLAR
 
-POLAR can be put to work two ways: current **POLAR Staking** (the app's stake/unstake/claim surface for routed rewards) and forthcoming **[vePOLAR](/stewardship/vepolar)** locking (stewardship power plus a yield path). See [POLAR Staking vs vePOLAR](/polar/tokenomics#polar-staking-vs-vepolar) for the full distinction.
-
-The intended loop is self-reinforcing: more conversions ⇒ higher floor + more ETH yield + more potential POLAR supply ⇒ more reason to stake or, once live, lock as vePOLAR ⇒ more stewardship participation.
+POLAR can be put to work two ways: current **POLAR Staking** where exposed, and forthcoming **[vePOLAR](/stewardship/vepolar)** locking for stewardship rights. See [POLAR Tokenomics](/polar/tokenomics#polar-staking-vs-vepolar) for the full distinction.
 
 ## Go deeper
 
@@ -63,7 +42,7 @@ The intended loop is self-reinforcing: more conversions ⇒ higher floor + more 
 | [POLAR Conversion Auctions](/polar/conversion-auctions) | How spike-and-decay pricing, pETH burns, rebates, and floor growth work, plus how to convert. |
 | [vePOLAR Locking and Stewardship](/stewardship/vepolar) | The forthcoming vote-escrow layer and its stewardship role. |
 
-POLAR exists because burning pETH to mint it is the most protocol-synergetic action possible. The token is not a claim on a treasury or a vote in an unbounded DAO — it is a claim on a flywheel whose every turn strengthens the collateral beneath it.
+POLAR is not a claim on a treasury or a vote in an unbounded DAO. It is the token used for outward-facing growth and bounded stewardship.
 
 <NextSteps
   steps={[
@@ -71,14 +50,4 @@ POLAR exists because burning pETH to mint it is the most protocol-synergetic act
     { href: '/polar/conversion-auctions', title: 'Conversion Auctions', description: 'How spike-and-decay pricing, rebates, and floor growth work.' },
     { href: '/stewardship', title: 'Stewardship', description: 'Bounded parameter control and future vePOLAR.' }
   ]}
-/>
-
----
-
-<BlogPostCard
-  url="https://polarisfinance.io/blog/burn-pETH-mint-POLAR/"
-  title="Burn pETH, Mint POLAR: The Conversion Mechanism"
-  description="How a single primitive connects Polaris' three engines, and why every conversion strengthens the protocol."
-  readingTime={11}
-  image="https://polarisfinance.io/blog/burn-peth-mint-polar-cover.png"
 />

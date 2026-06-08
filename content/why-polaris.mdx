@@ -27,7 +27,7 @@ The lesson: a stablecoin built for trustlessness must be <em>architected</em> so
 </Callout>
 
 <Callout variant="info" title="Source and as-of frame">
-Competitive comparisons are high-level docs framing reviewed on June 8, 2026. The LUSD peg-history language below is qualitative and should be rechecked against live datasets such as [CoinMarketCap LUSD historical data](https://coinmarketcap.com/currencies/lusd/historical-data/) before quoting. Liquity V2/BOLD dates distinguish the 2024 public codebase/testnet period from Liquity's [May 19, 2025 mainnet launch](https://www.liquity.org/blog/liquity-v2-is-live/).
+Competitive comparisons were reviewed on June 8, 2026. Recheck live datasets before quoting exact peg-history or launch-date claims.
 </Callout>
 
 ## The counterparty-free lineage
@@ -47,17 +47,13 @@ In text, the lineage reads:
 
 ## How Polaris resolves it
 
-Polaris is built so the only counterparty you trust is **immutable code and Ethereum**:
+Polaris is designed so the main dependencies are immutable code and Ethereum:
 
 - **Onchain-only yield.** Every yield source — borrower interest, bonding curve swap fees, conversion gains — is internal to the protocol and grows with activity. Nothing is rented from a CEX or T-bill desk.
 - **Immutable core.** The bonding curve, CDP logic, liquidations, redemptions, and the Stability Pool are intended to be fixed in audited deployment code. No admin key can add a custodial PSM, external-collateral module, or freeze function under pressure.
 - **Counterparty-free by construction.** pUSD sits in the same counterparty-free lineage as LUSD and BOLD — but adds yield that *scales* with DeFi volume rather than capping growth at what a counterparty can deliver.
 
-<Callout variant="warning">
-Having a counterparty means capping your growth to whatever yield that counterparty can deliver.
-</Callout>
-
-Polaris turns onchain trading volume itself into a stablecoin yield source through its bonding curve, and extends the model to *any* asset through the [StablecoinOS](/core-concepts). DeFi has had uncensorable-but-small and censorable-but-scalable stablecoins. Polaris is built to be the uncensorable, scalable one.
+Polaris turns onchain activity into yield through its bonding curve, and extends the model to other assets through [StablecoinOS](/core-concepts).
 
 <NextSteps
   steps={[

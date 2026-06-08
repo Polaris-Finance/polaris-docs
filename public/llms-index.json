@@ -481,7 +481,7 @@
       "url": "https://tokenbrice.github.io/polaris-docs/stewardship/fee-router",
       "section": "Understand Polaris",
       "title": "Fee Router & Flows",
-      "description": "Polaris revenue routing: the Fee Router buffers protocol yield to troves and stakers, while Flows share hard-asset revenue with contracts building on Polaris.",
+      "description": "Polaris revenue routing: the Fee Router buffers protocol yield, while Flows share protocol revenue with contracts building on Polaris.",
       "keywords": [],
       "updated": null,
       "lastVerified": null

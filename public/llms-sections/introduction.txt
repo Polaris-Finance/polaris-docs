@@ -10,11 +10,9 @@ URL: https://tokenbrice.github.io/polaris-docs/
 
 # Polaris Finance Documentation
 
-Polaris is the **pETH-powered yield layer for all of DeFi**, a self-scaling stablecoin operating system. It produces yield-bearing **pETH** and uses it as the base collateral for minting synthetic assets (**pAssets**) through onchain debt positions.
+Polaris produces **pETH** and uses it as base collateral for synthetic assets (**pAssets**) minted through onchain debt positions.
 
-The infrastructure is trustless and immutable, and every pAsset is backed entirely by onchain collateral and yield, with no T-bill or CEX dependency. The result is a competitive, risk-adjusted yield source for both ETH and stablecoins. Through **Flows**, third-party protocols can build on Polaris assets and share in protocol yield.
-
-This documentation explains how the system works, how to use it, and the trade-offs it makes. For the current network, contract, and actionability status, start with [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status).
+This documentation covers how the system works, how to use the app, and which risks to check before signing. For current network, contract, and actionability status, start with [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status).
 
 ## Launch timeline
 
@@ -24,11 +22,11 @@ Image: Polaris system overview: ETH swaps into pETH on the bonding curve, pETH c
 
 ## The three engines
 
-Polaris is three products that each stand on their own, but whose real power is their synergy. The bonding curve makes pETH work. The CDP makes pAssets work. The conversion mechanism and POLAR make them work together:
+Polaris has three engines:
 
 Engine | What it is | Why it matters
 
-**1. pETH** | ETH deposited into a two-way **bonding curve**, with a floor price designed to rise under the curve invariants | A capital-efficient, yield-bearing collateral with a contract-defined exit path under stated assumptions
+**1. pETH** | ETH deposited into a two-way **bonding curve**, with a contract-defined floor under stated assumptions | A capital-efficient, yield-bearing collateral with a contract-defined exit path
 **2. pAssets** | Synthetic pegged (USD, Gold, etc.) assets minted against collateral, via a Collateralized Debt Position (CDP) | Counterparty-free stables that scale with onchain activity
 **3. POLAR** | The stewardship token, minted only by burning pETH in a **conversion auction** | Aligns long-term incentives and steers the protocol within hardcoded bounds
 

@@ -23,13 +23,11 @@ Two things make pETH's curve different from Pump.fun's:
 
 ## What's unique about pETH's curve
 
-pETH's curve is **two-way** (ETH ⇒ pETH and pETH ⇒ ETH) and enforces a price floor for pETH, measured in ETH, under the curve's audited invariants. Two mechanisms are designed to lift the floor, while normal protocol actions are not designed to lower it: swap fees, charged in pETH and periodically burned, and [conversion auctions](/polar/conversion-auctions) that burn pETH to mint POLAR. See [The Floor Price](/peth/floor-price) for the assumptions behind that floor.
+pETH's curve is **two-way** (ETH ⇒ pETH and pETH ⇒ ETH) and gives pETH a price floor measured in ETH under the curve assumptions. The full floor and floor-ratio explanation lives on [pETH Floor Price](/peth/floor-price).
 
 ![pETH bonding curve: ETH deposits mint pETH along a power-law curve with a rising floor price](/infographics/polaris-bonding-curve.svg)
 
 *Key takeaway: the curve is both the issuance path and the reserve-backed exit path; fees and conversion burns are designed to lift the floor.*
-
-A rising floor is more than a safety hatch for holders. It lets the **whole protocol capture value on each interaction**, and defines a reserve-backed exit path while the contracts are live, Ethereum is processing transactions, and users can pay execution costs.
 
 ### The maths
 
@@ -43,7 +41,7 @@ $$
 - **Q**: the supply of pETH.
 - **β**: the power-law exponent that sets the curve's behaviour.
 
-As supply `Q` increases, the price of pETH (in ETH) increases. **β** sets how tightly pETH tracks ETH: a large β decouples pETH and makes it volatile; a small β couples them closely. Public Testnet 1 uses **β = 0.15 (15%)**, as listed on [Parameters](/resources/parameters). Older drafts or examples may mention a different beta, but they are not the current testnet value.
+As supply `Q` increases, the price of pETH in ETH increases. **β** sets how tightly pETH tracks ETH: a large β decouples pETH and makes it more volatile; a small β couples them closely. Current values live on [Parameters](/resources/parameters).
 
 <Callout variant="info">
 The Public Testnet 1 beta is testnet-only. The production beta remains pending; verify [Parameters](/resources/parameters) before using any numeric value.
@@ -77,7 +75,7 @@ stETH is a prime asset, but it lacks contract-native liquidity from its own rese
 | Main risk | Price risk vs ETH, bounded by the floor under the curve assumptions | LP/liquidity risk |
 
 <Callout variant="info">
-stETH is a prime asset, don't get us wrong. It just doesn't provide this kind of reserve-backed onchain sell path.
+stETH is a major ETH asset, but it does not provide pETH's reserve-backed onchain sell path.
 </Callout>
 
 ## Risk overview

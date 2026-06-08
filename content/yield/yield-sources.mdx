@@ -5,7 +5,7 @@ description: Every source of pAsset yield on Polaris is onchain, internal to the
 
 # Polaris Yield Sources
 
-Most stablecoin yield is **rented** from offchain sources — T-bills, CEX lending, custodial strategies — which means counterparty risk and a hard ceiling: your yield is capped at whatever that counterparty delivers. Polaris yield is **owned**. Every source is onchain, internal to the protocol, and grows with usage.
+Polaris yield comes from onchain protocol activity: borrowing, liquidations, swaps, and conversions. This page lists the sources; [Fee Router & Flows](/stewardship/fee-router) covers routing.
 
 > Adoption ⇒ activity ⇒ velocity ⇒ fees ⇒ yield ⇒ more demand.
 
@@ -13,7 +13,7 @@ Most stablecoin yield is **rented** from offchain sources — T-bills, CEX lendi
 
 | Source | Where it originates | Flows to |
 |---|---|---|
-| **Borrower interest** | Interest [trove](/minting/managing-your-trove) owners pay on minted pAssets | Primarily [Stability Pool](/yield) depositors; a stewarded split also funds POLAR stakers (the Stability Pool and stakers each floored at 25%) and routes the remainder to the ecosystem fund, with secondary interest rebated to troves pro-rata to collateral |
+| **Borrower interest** | Interest [trove](/minting/managing-your-trove) owners pay on minted pAssets | Primarily [Stability Pool](/yield) depositors, with stewarded splits where configured |
 | **Liquidation gains** | The penalty on liquidated troves, paid in discounted pETH | Stability Pool depositors |
 | **Bonding curve swap fees** | Fees on every ETH ⇄ pETH swap, buffered by the Fee Router and later floor-sold and burned to raise the [floor price](/peth/floor-price) | pETH holders / troves |
 | **Conversion gains** | ETH released when pETH is burned to mint POLAR in a [conversion auction](/polar/conversion-auctions) | pETH holders / troves |
@@ -22,26 +22,26 @@ The first two drive [Stability Pool](/yield) yield and are the primary venue for
 
 ## Why this is "self-scaling"
 
-None of these sources depends on an external rate environment. They depend on **activity**:
+These sources depend on protocol **activity**:
 
 - More troves opened ⇒ more borrower interest.
 - More volatility ⇒ more liquidation gains.
 - More trading ⇒ more bonding curve swap fees.
 - More POLAR minted ⇒ more conversion gains.
 
-Yield is therefore tied to protocol adoption, not to a counterparty's balance sheet. The mechanism scales with pAsset supply, but realized yield still depends on actual activity, rates, liquidations, contract execution, and market conditions. That is what "self-scaling" means: **activity ⇒ yield**, with no offchain dependency to compress or disappear.
+Yield scales with pAsset supply and protocol use, but realized returns still depend on activity, rates, liquidations, contract execution, and market conditions.
 
 ## Owned, not rented
 
-Polaris yield is not subsidized, bridged in, or discretionarily voted into being. It emerges from the protocol's own usage and is captured by the protocol itself — *internalized, not rented*. Because the core is intended to be immutable, no admin key should be able to swap these onchain sources for a T-bill desk under pressure after audited deployment; that architecture is designed to avoid the [degradation pattern](/why-polaris).
+Polaris yield is not subsidized, bridged in, or voted into being. It emerges from protocol use and is captured by the protocol itself.
 
 ## How yield is distributed
 
-Onchain fees do not flow straight to recipients: conversion proceeds and swap fees go to the **[Fee Router](/stewardship/fee-router)**, which buffers them and distributes pETH yield to troves pro-rata to recorded debt. POLAR Staking rewards and future [vePOLAR](/stewardship/vepolar) locker rewards are separate from that pETH stream. The stewarded primary-interest split that funds the Stability Pool, POLAR stakers, and the ecosystem fund is a distinct, pAsset-denominated stream. Exact values are finalized closer to launch.
+Conversion proceeds and swap fees go through the **[Fee Router](/stewardship/fee-router)**. Borrower interest follows separate pAsset-denominated split logic. Current values and pending production status live on [Parameters](/resources/parameters).
 
 ## Parameters
 
-Current yield-related values and production-finality status live on [Parameters](/resources/parameters). This page owns the source model, not the numeric table.
+Use [Parameters](/resources/parameters) for current yield-related values. This page owns the source model, not numeric tables.
 
 ---
 

@@ -42,7 +42,7 @@ An annualized rate estimate, commonly shown for borrow cost or yield. APR is not
 ## B
 
 **Bonding curve**
-The two-way curve that backs [pETH](/peth). It enforces a mathematical relationship between pETH supply and price (minting raises it, burning lowers it), providing a contract-native buy/sell path with no liquidity providers and a [floor price](/peth/floor-price) designed to rise under the curve invariants. See [The Bonding Curve](/peth).
+The two-way curve that mints and burns [pETH](/peth), giving it a contract-native buy/sell path with no liquidity providers. See [pETH Bonding Curve](/peth) and [pETH Floor Price](/peth/floor-price).
 
 ## C
 
@@ -50,7 +50,7 @@ The two-way curve that backs [pETH](/peth). It enforces a mathematical relations
 The mechanism behind minting: post collateral, mint a pAsset directly from the protocol rather than borrowing another user's funds. Each position is an isolated [trove](#t). See [Minting pAssets](/minting).
 
 **Conversion auction**
-The mechanism connecting pETH and POLAR: it burns [pETH](/peth) to mint new [POLAR](/polar). The most protocol-synergetic action possible: every conversion raises the floor and releases ETH yield. See [Conversion Auctions](/polar/conversion-auctions).
+The mechanism that burns [pETH](/peth) to mint new [POLAR](/polar). See [Conversion Auctions](/polar/conversion-auctions).
 
 **Converter rebate**
 A stewardship-controlled percentage of ETH returned to the converter in a [conversion auction](/polar/conversion-auctions). The dial between conversion volume and system yield.
@@ -58,13 +58,13 @@ A stewardship-controlled percentage of ETH returned to the converter in a [conve
 ## F
 
 **Fee Router**
-Receives pETH from conversions and bonding-curve swap-fee buybacks, buffers it over a reward period, and distributes pETH rewards to a stewardship-designated receiver — currently troves, pro-rata to debt. Staker yield is distributed separately, in pAsset terms, via the interest router. See [Stewardship](/stewardship).
+Receives protocol revenue, buffers it, and routes it to configured yield paths. See [Fee Router & Flows](/stewardship/fee-router).
 
 **Floor Carry**
 The possible return from holding [fpETH](#f) while the pETH [floor price](#f) rises. It is not a fixed APR or a guarantee; it depends on actual floor growth, market pricing, execution costs, and the redemption path remaining available.
 
 **Floor price**
-The contract-defined minimum price of [pETH](/peth), in ETH terms, under the bonding-curve invariants. It is designed to move upward during normal protocol operation and represents the modeled *last person out* price if everyone exited at once, subject to contract correctness, Ethereum liveness, gas, slippage, and MEV. See [The Floor Price](/peth/floor-price).
+The contract-defined minimum price of [pETH](/peth), in ETH terms, under the bonding-curve assumptions. See [pETH Floor Price](/peth/floor-price).
 
 **Floor ratio**
 The floor price divided by the market price, as a percentage. It frames the curve-implied drawdown before gas, slippage, MEV, smart-contract risk, and chain-liveness risk. See [The Floor Price](/peth/floor-price).
@@ -86,7 +86,7 @@ The app area that routes users by goal, such as getting pETH, borrowing pAssets,
 The collateralization ratio of a single [trove](#t): the value of its pETH collateral divided by its pAsset debt. If a trove's ICR falls below the minimum, it can be [liquidated](/redemptions-liquidations/liquidations).
 
 **Inward-facing / Outward-facing**
-The design split deciding which token handles what. *Inward-facing* flows (interest rates, floor growth, Stability Pool incentivization, liquidations) are handled by pETH and the pAssets. *Outward-facing* growth (external liquidity, Flow onboarding and weights, ecosystem incentives) is handled by [POLAR](/polar).
+The design split between core mechanics handled by pETH/pAssets and ecosystem growth handled by [POLAR](/polar).
 
 ## L
 
@@ -104,7 +104,7 @@ Creating a pAsset by opening a [trove](#t) and drawing pAsset debt against pETH 
 ## O
 
 **Oracle**
-An onchain feed Polaris is expected to use to price ETH collateral. Peg awareness needs no oracle: redemption and minting volume serve as an internal price signal for each pAsset. The final provider and feed address are forthcoming; Public Testnet 1 uses Sepolia and production is intended for Ethereum mainnet. See [Minting pAssets](/minting), [Launch Status](/launch-status), and [Contracts & Addresses](/resources/contracts).
+An onchain feed used to price ETH collateral. Peg awareness uses minting and redemption volume as internal signals; address status lives on [Contracts & Addresses](/resources/contracts).
 
 ## P
 
@@ -118,33 +118,33 @@ A novelty pAsset demonstrating the "mint anything" thesis: if a price feed exist
 The Polaris synthetic Swiss franc — a pAsset pegged to CHF.
 
 **pETH**
-ETH deposited into the two-way [bonding curve](/peth). The *only* collateral Polaris accepts: yield-bearing, with a [floor price](/peth/floor-price) designed to rise under the curve invariants. Volatile against ETH, with a contract-defined floor under stated assumptions. See [The Bonding Curve](/peth).
+ETH deposited into the two-way [bonding curve](/peth), and the only collateral Polaris accepts for pAsset troves. See [pETH Bonding Curve](/peth).
 
 **pGOLD**
 The Polaris synthetic gold pAsset, designed to track gold without issuer custody or KYC at the base protocol layer. See [The pAsset Catalog](/minting/passet-catalog).
 
 **Pathfinders**
-Core believers, not just early followers. Access is earned through merit (explanatory threads, deep research, finding Easter eggs) and rewarded with early alphas, testnet access, and dev-stage updates.
+Early Polaris contributors and community members selected through public contribution paths.
 
 **Polar Council**
-A planned treasury-funded program for onboarding and ecosystem contributors, similar in spirit to veAERO's Flight School. Its final allocation, eligibility, operating framework, and reporting rules are pending publication.
+A planned treasury-funded program for onboarding and ecosystem contributors. Terms are pending publication.
 
 **POLAR**
 The protocol's stewardship token and outward-facing growth lever. After the initial distribution, new POLAR can be minted *only* by burning pETH in a [conversion auction](/polar/conversion-auctions). See [The POLAR Token](/polar).
 
 **POLAR Staking**
-The current app staking surface for staking POLAR and claiming routed rewards where the deployment exposes it. It is distinct from forthcoming [vePOLAR](#v) locking, which adds lock durations, vote-power decay, and stewardship rights.
+The current app surface for staking POLAR and claiming routed rewards where exposed. It is distinct from forthcoming [vePOLAR](#v) locking.
 
 **PSM (Peg Stability Module)**
 The contract/module that handles pAsset minting and redemption mechanics for a pAsset instance. Use PSM or redemption actions only after checking the pAsset, fee, output amount, and contract address.
 
 **pUSD**
-The flagship pAsset, designed to track the US dollar and be backed by pETH collateral. Intended to be counterparty-free and fully onchain. See [Minting pAssets](/minting).
+The flagship pAsset, designed to track the US dollar and be backed by pETH collateral. See [Minting pAssets](/minting).
 
 ## R
 
 **Recovery Mode**
-A protocol-wide protective state (Emergency Mode in the contracts) triggered when a pAsset's system-wide reserve-to-debt ratio (the [TCR](#t)) falls below a fixed threshold. While active, operations that reduce a trove's collateral or increase its debt are restricted (they must clear a higher minimum ratio and may not lower an existing trove's ICR); liquidation eligibility is unchanged. See [Recovery Mode](/redemptions-liquidations/recovery-mode).
+A protective state triggered when a pAsset's system-wide reserve-to-debt ratio falls below a threshold. It restricts risk-increasing borrower actions; liquidation eligibility is unchanged. See [Recovery Mode](/redemptions-liquidations/recovery-mode).
 
 **Redemption**
 Exchanging a pAsset for its underlying collateral at face value (minus a fee) when the pAsset trades *below* peg. Redemptions restore the floor and are one of the onchain signals used to set interest rates. See [Redemptions](/redemptions-liquidations).
@@ -178,7 +178,7 @@ The bounded role stewards play: tuning *quantitative parameters within the bound
 ## T
 
 **TCR (Total Collateralization Ratio)**
-The system-wide health metric: the bonding-curve reserve backing total collateral, valued in the pAsset, divided by total pAsset debt (the contract's reserve-to-debt ratio). Not a plain market-value-of-collateral over debt figure. Dropping below the configured threshold triggers [Recovery Mode](/redemptions-liquidations/recovery-mode).
+The system-wide reserve-to-debt health metric for a pAsset. Dropping below the configured threshold triggers [Recovery Mode](/redemptions-liquidations/recovery-mode).
 
 **Trove**
 An individual borrowing position in a Polaris CDP. Each trove is isolated, with its own collateral, debt, and [ICR](#i). Polaris uses *trove*, never "vault" or "position". See [Minting pAssets](/minting).
@@ -186,7 +186,7 @@ An individual borrowing position in a Polaris CDP. Each trove is isolated, with 
 ## V
 
 **vePOLAR**
-The forthcoming vote-escrow layer for POLAR — POLAR locked for [stewardship](/stewardship) rights and a share of protocol yield. It is distinct from current POLAR Staking; the vePOLAR locking mechanism, contract address, lock durations, and vote-power rules are pending audited deployment. See [vePOLAR](/stewardship/vepolar).
+The forthcoming vote-escrow layer for POLAR, used for [stewardship](/stewardship) rights and a yield path. See [vePOLAR](/stewardship/vepolar).
 
 **vpETH**
 The volatility-premium leg created when [pETH](/peth/split) is split into [fpETH](#f) and vpETH. vpETH represents exposure to pETH's market value above the floor and can lose significant value if the premium compresses.

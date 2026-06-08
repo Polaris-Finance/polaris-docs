@@ -18,11 +18,7 @@ The diagram traces four steps and an outcome:
 3. **Borrow.** A CDP mints **pUSD** (or another pAsset) against that pETH, for scalable onchain yield.
 4. **Stewardship.** Burning pETH in a conversion auction mints **POLAR**, raising the pETH floor price and releasing ETH.
 
-> Adoption ⇒ activity ⇒ velocity ⇒ fees ⇒ yield ⇒ more demand.
-
-A single primitive, the bonding curve, produces pETH. pETH collateralizes every pAsset. Activity on any pAsset generates fees; fees burn pETH and raise its floor; a rising floor strengthens every position. POLAR captures the flywheel's long-term value and steers it.
-
-This page is the map. Each term is defined in a sentence or two and links to its full treatment. If you read nothing else, read this.
+This page is the system map. Each term is defined briefly and links to its full treatment.
 
 ## The assets
 
@@ -35,7 +31,7 @@ The flagship pAsset, pegged to the US dollar, backed by pETH collateral. See [Mi
 </DefinitionCard>
 
 <DefinitionCard term="pETH" token="peth">
-ETH deposited into a two-way [bonding curve](/peth). It is not CDP-minted debt; it is the <em>only</em> collateral Polaris accepts, has a floor price that is designed to rise under the curve invariants, and is yield-bearing.
+ETH deposited into a two-way [bonding curve](/peth). It is not CDP-minted debt; it is the <em>only</em> collateral Polaris accepts, has a contract-defined floor, and is yield-bearing.
 </DefinitionCard>
 
 <DefinitionCard term="POLAR" token="polar">
@@ -91,7 +87,7 @@ A reserve of pAssets that processes liquidations and is the primary venue for ea
 </DefinitionCard>
 
 <DefinitionCard term="Conversion auction" token="polar">
-The mechanism that mints POLAR by burning pETH; the most protocol-synergetic action possible. See [Conversion Auctions](/polar/conversion-auctions).
+The mechanism that mints POLAR by burning pETH. See [Conversion Auctions](/polar/conversion-auctions).
 </DefinitionCard>
 
 <DefinitionCard term="Fee Router" token="default">

@@ -1,0 +1,217 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" fill="none">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&amp;family=Inter:wght@400;500;600&amp;display=swap');
+      .title { font-family: 'Cormorant Garamond', Georgia, serif; fill: #E8DCC4; }
+      .subtitle { font-family: 'Inter', Arial, sans-serif; fill: #E8DCC4; }
+      .label { font-family: 'Inter', Arial, sans-serif; fill: #8BA4B8; }
+      .label-cream { font-family: 'Inter', Arial, sans-serif; fill: #E8DCC4; }
+      .label-bright { font-family: 'Inter', Arial, sans-serif; fill: #F5F0E6; }
+      .label-blue { font-family: 'Inter', Arial, sans-serif; fill: #9ECBEB; }
+    </style>
+
+    <!-- Background gradient -->
+    <radialGradient id="bgGradient" cx="50%" cy="48%" r="65%">
+      <stop offset="0%" style="stop-color:#0d1f3c"/>
+      <stop offset="100%" style="stop-color:#050a14"/>
+    </radialGradient>
+
+    <!-- Filters -->
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="chartGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Arrow marker -->
+    <marker id="arrowSlate" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,1 L7,4 L0,7" fill="none" stroke="#8BA4B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+
+    <!-- Clip path for the fill area -->
+    <clipPath id="chartClip">
+      <rect x="60" y="120" width="980" height="400"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="700" fill="url(#bgGradient)"/>
+
+  <!-- Subtle grid -->
+  <g opacity="0.03">
+    <line x1="100" y1="0" x2="100" y2="700" stroke="#F5F0E6" stroke-width="1"/>
+    <line x1="200" y1="0" x2="200" y2="700" stroke="#F5F0E6" stroke-width="1"/>
+    <line x1="300" y1="0" x2="300" y2="700" stroke="#F5F0E6" stroke-width="1"/>
+    <line x1="400" y1="0" x2="400" y2="700" stroke="#F5F0E6" stroke-width="1"/>
+    <line x1="500" y1="0" x2="500" y2="700" stroke="#F5F0E6" stroke-width="1"/>
+    <line x1="600" y1="0" x2="600" y2="700" stroke="#F5F0E6" stroke-width="1"/>
+    <line x1="700" y1="0" x2="700" y2="700" stroke="#F5F0E6" stroke-width="1"/>
+    <line x1="800" y1="0" x2="800" y2="700" stroke="#F5F0E6" stroke-width="1"/>
+    <line x1="900" y1="0" x2="900" y2="700" stroke="#F5F0E6" stroke-width="1"/>
+    <line x1="1000" y1="0" x2="1000" y2="700" stroke="#F5F0E6" stroke-width="1"/>
+    <line x1="1100" y1="0" x2="1100" y2="700" stroke="#F5F0E6" stroke-width="1"/>
+  </g>
+
+  <!-- Title -->
+  <text x="80" y="60" class="title" font-size="36" font-weight="600">The Floor Ratio</text>
+  <text x="80" y="90" class="subtitle" font-size="14" font-weight="400" opacity="0.5" letter-spacing="0.05em">Your built-in safety net</text>
+
+  <!-- Chart card -->
+  <g transform="translate(80, 120)">
+    <rect x="0" y="0" width="1040" height="460" rx="24" fill="#0d1f3c" stroke="rgba(232,220,196,0.12)" stroke-width="1.5" filter="url(#shadow)"/>
+
+    <!-- Chart axes -->
+    <!-- Y-axis -->
+    <line x1="60" y1="60" x2="60" y2="400" stroke="#3A5068" stroke-width="1.5"/>
+    <text x="40" y="235" class="label" font-size="11" font-weight="500" text-anchor="middle" transform="rotate(-90, 40, 235)">Price (ETH)</text>
+
+    <!-- X-axis -->
+    <line x1="60" y1="400" x2="980" y2="400" stroke="#3A5068" stroke-width="1.5"/>
+    <line x1="940" y1="400" x2="980" y2="400" stroke="#8BA4B8" stroke-width="1.5" marker-end="url(#arrowSlate)"/>
+    <text x="520" y="435" class="label" font-size="11" font-weight="500" text-anchor="middle">time</text>
+
+    <!-- Y-axis tick labels -->
+    <text x="50" y="395" class="label" font-size="10" text-anchor="end">0</text>
+    <text x="50" y="295" class="label" font-size="10" text-anchor="end">0.5</text>
+    <text x="50" y="195" class="label" font-size="10" text-anchor="end">1.0</text>
+    <text x="50" y="95" class="label" font-size="10" text-anchor="end">1.5</text>
+
+    <!-- Horizontal grid lines -->
+    <line x1="60" y1="295" x2="960" y2="295" stroke="#3A5068" stroke-width="0.5" stroke-dasharray="4,4" opacity="0.3"/>
+    <line x1="60" y1="195" x2="960" y2="195" stroke="#3A5068" stroke-width="0.5" stroke-dasharray="4,4" opacity="0.3"/>
+
+    <!-- Fill area between the two lines (max drawdown zone) -->
+    <path d="M60,360 L140,352 L220,344 L300,336 L380,328 L460,318 L540,306 L620,292 L700,276 L780,258 L860,238 L960,215
+             L960,140
+             C940,135 910,126 890,128
+             C875,129 850,135 830,138
+             C818,140 798,145 780,148
+             C768,150 752,156 740,160
+             C728,164 712,176 700,178
+             C688,180 665,184 650,188
+             C635,192 618,200 605,205
+             C592,210 578,220 565,230
+             C552,240 542,256 530,268
+             C518,280 508,298 500,298
+             C492,298 482,288 475,275
+             C465,258 455,222 445,215
+             C435,208 422,194 410,195
+             C395,196 382,203 370,208
+             C358,213 342,223 330,228
+             C318,233 302,241 290,248
+             C278,255 262,272 250,260
+             C238,248 222,225 215,225
+             C208,225 198,232 190,238
+             C182,244 170,262 160,275
+             C150,288 140,312 130,310
+             C120,308 112,298 100,300
+             C88,302 72,308 60,310
+             Z"
+          fill="#E8DCC4" opacity="0.08" clip-path="url(#chartClip)"/>
+
+    <!-- Floor price line (steady rising, cream color) -->
+    <path d="M60,360 L140,352 L220,344 L300,336 L380,328 L460,318 L540,306 L620,292 L700,276 L780,258 L860,238 L960,215"
+          fill="none" stroke="#E8DCC4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" filter="url(#chartGlow)"/>
+
+    <!-- Market price line (volatile, blue color — smooth Bezier curves) -->
+    <!-- Narrative: modest start → spike (ratio ~30%) → uptrend → crash near floor (ratio ~85%) → recovery → annotation (55%) → rally -->
+    <path d="M60,310
+             C72,308 88,302 100,300
+             C112,298 120,308 130,310
+             C140,312 150,288 160,275
+             C170,262 182,244 190,238
+             C198,232 208,225 215,225
+             C222,225 238,248 250,260
+             C262,272 278,255 290,248
+             C302,241 318,233 330,228
+             C342,223 358,213 370,208
+             C382,203 395,196 410,195
+             C422,194 435,208 445,215
+             C455,222 465,258 475,275
+             C482,288 492,298 500,298
+             C508,298 518,280 530,268
+             C542,256 552,240 565,230
+             C578,220 592,210 605,205
+             C618,200 635,192 650,188
+             C665,184 688,180 700,178
+             C712,176 728,164 740,160
+             C752,156 768,150 780,148
+             C798,145 818,140 830,138
+             C850,135 875,129 890,128
+             C910,126 940,135 960,140"
+          fill="none" stroke="#9ECBEB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- Callout annotation at x=700 -->
+    <!-- Vertical dashed line connecting the two -->
+    <line x1="700" y1="178" x2="700" y2="276" stroke="#F5F0E6" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.7"/>
+
+    <!-- Market price dot and label -->
+    <circle cx="700" cy="178" r="7" fill="#9ECBEB" filter="url(#softGlow)"/>
+    <circle cx="700" cy="178" r="3.5" fill="#0d1f3c"/>
+    <g transform="translate(715, 178)">
+      <rect x="0" y="-14" width="70" height="28" rx="6" fill="#122a4d" stroke="rgba(158,203,235,0.3)" stroke-width="1"/>
+      <text x="35" y="-1" class="label-blue" font-size="10" font-weight="500" text-anchor="middle">market</text>
+      <text x="35" y="11" class="label-blue" font-size="13" font-weight="600" text-anchor="middle">1.09</text>
+    </g>
+
+    <!-- Floor price dot and label -->
+    <circle cx="700" cy="276" r="7" fill="#E8DCC4" filter="url(#softGlow)"/>
+    <circle cx="700" cy="276" r="3.5" fill="#0d1f3c"/>
+    <g transform="translate(715, 276)">
+      <rect x="0" y="-14" width="70" height="28" rx="6" fill="#122a4d" stroke="rgba(232,220,196,0.3)" stroke-width="1"/>
+      <text x="35" y="-1" class="label-cream" font-size="10" font-weight="500" text-anchor="middle">floor</text>
+      <text x="35" y="11" class="label-cream" font-size="13" font-weight="600" text-anchor="middle">0.60</text>
+    </g>
+
+    <!-- Bracket showing the gap (max drawdown) -->
+    <g transform="translate(680, 227)">
+      <path d="M-8,-45 L-14,-45 L-14,45 L-8,45" fill="none" stroke="#E8887D" stroke-width="1.5" opacity="0.6"/>
+    </g>
+
+    <!-- Max drawdown label -->
+    <g transform="translate(550, 227)">
+      <rect x="0" y="-14" width="110" height="28" rx="8" fill="#122a4d" stroke="rgba(232,136,125,0.3)" stroke-width="1"/>
+      <text x="55" y="5" font-family="Inter, sans-serif" font-size="11" font-weight="500" fill="#E8887D" text-anchor="middle">45% max drawdown</text>
+    </g>
+
+    <!-- Floor ratio calculation box -->
+    <g transform="translate(715, 310)">
+      <rect x="0" y="0" width="160" height="80" rx="12" fill="#122a4d" stroke="rgba(107,202,160,0.4)" stroke-width="1.5"/>
+      <text x="80" y="20" class="label" font-size="10" font-weight="500" text-anchor="middle" letter-spacing="0.08em">FLOOR RATIO</text>
+      <text x="80" y="42" font-family="Inter, sans-serif" font-size="12" fill="#8BA4B8" text-anchor="middle">0.60 ÷ 1.09 =</text>
+      <text x="80" y="68" font-family="'Cormorant Garamond', Georgia, serif" font-size="28" font-weight="600" fill="#6BCAA0" text-anchor="middle">55%</text>
+    </g>
+
+    <!-- Legend -->
+    <g transform="translate(80, 60)">
+      <line x1="0" y1="0" x2="25" y2="0" stroke="#9ECBEB" stroke-width="2.5" stroke-linecap="round"/>
+      <text x="35" y="4" class="label" font-size="11">Market price (volatile)</text>
+
+      <line x1="170" y1="0" x2="195" y2="0" stroke="#E8DCC4" stroke-width="3" stroke-linecap="round"/>
+      <text x="205" y="4" class="label" font-size="11">Floor price (rising)</text>
+
+      <rect x="350" y="-6" width="16" height="12" fill="#E8DCC4" opacity="0.15"/>
+      <text x="375" y="4" class="label" font-size="11">Max drawdown zone</text>
+    </g>
+
+  </g>
+
+  <!-- Bottom caption -->
+  <g transform="translate(600, 640)">
+    <text x="0" y="0" class="label-bright" font-size="15" text-anchor="middle" font-weight="500">Higher floor ratio = smaller max drawdown = safer entry</text>
+    <text x="0" y="26" class="label" font-size="12" text-anchor="middle" opacity="0.5">Floor ratio = floor price ÷ market price</text>
+  </g>
+
+</svg>

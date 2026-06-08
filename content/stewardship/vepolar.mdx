@@ -5,9 +5,9 @@ description: vePOLAR is vote-escrowed POLAR. Lock POLAR to receive stewardship r
 
 # vePOLAR Locking and Stewardship
 
-**vePOLAR is vote-escrowed POLAR.** Lock [POLAR](/polar) and receive vePOLAR: the right to steward bounded parameters and participate in the protocol's edge decisions.
+**vePOLAR is vote-escrowed POLAR.** Lock [POLAR](/polar) to receive stewardship rights for bounded parameters and edge decisions.
 
-> **Current status:** vePOLAR is not the same as current **POLAR Staking**. The app may expose stake/unstake/claim actions for POLAR rewards on testnet, while the vePOLAR locking interface, contract address, lock durations, vote-power decay, unlock rules, proposal thresholds, and final yield split are pending audited deployment. Do not lock POLAR through an unofficial interface.
+> **Current status:** vePOLAR is not the same as current **POLAR Staking**. The app may expose stake/unstake/claim actions for POLAR rewards on testnet, while the vePOLAR locking interface, contract address, lock durations, vote-power decay, unlock rules, proposal thresholds, and final yield split are pending. Do not lock POLAR through an unofficial interface.
 
 ## What vePOLAR does
 
@@ -15,7 +15,7 @@ description: vePOLAR is vote-escrowed POLAR. Lock POLAR to receive stewardship r
 lock POLAR -> receive vePOLAR -> steward bounded parameters + receive routed yield
 ```
 
-vePOLAR holders are **stewards, not governors**. vePOLAR steers quantitative parameters within hardcoded ranges and votes on permitted onboarding decisions. It cannot reach the immutable core: the bonding curve, CDP logic, liquidations, redemptions, and Stability Pool mechanics are beyond any vote.
+vePOLAR holders are **stewards, not governors**. They steer quantitative parameters within hardcoded ranges and vote on permitted onboarding decisions. The bonding curve, CDP logic, liquidations, redemptions, and Stability Pool mechanics are outside vote scope.
 
 vePOLAR holders can participate in decisions to:
 
@@ -25,7 +25,7 @@ vePOLAR holders can participate in decisions to:
 - Tune [conversion](/polar/conversion-auctions) parameters within their hardcoded range.
 - Vote on treasury programs once the framework is published.
 
-Each action is bounded, auditable, and limited to the surfaces in [Stewardship, not Governance](/stewardship). None can denature the protocol.
+Each action is bounded, auditable, and limited to the surfaces in [Stewardship, not Governance](/stewardship).
 
 ## POLAR Staking is separate
 
@@ -35,7 +35,7 @@ vePOLAR is the future locking layer. Once live, this page will list the official
 
 ## What vePOLAR does not do
 
-vePOLAR cannot upgrade core contracts; change pETH, CDP, liquidation, redemption, or Stability Pool mechanics; create gauges or bribe markets; direct POLAR emissions; mint POLAR outside the [conversion auction](/polar/conversion-auctions); or move any parameter outside its immutable min/max range. The full list of what no vote can reach is in [Stewardship, not Governance](/stewardship#what-stewardship-does-not-do).
+vePOLAR cannot upgrade core contracts; change pETH, CDP, liquidation, redemption, or Stability Pool mechanics; create gauges or bribe markets; direct POLAR emissions; mint POLAR outside the [conversion auction](/polar/conversion-auctions); or move any parameter outside its immutable min/max range.
 
 ## Lock status
 
@@ -57,7 +57,7 @@ The final lock design is pending. When vePOLAR is deployed, this page will list:
 
 vePOLAR is intended to be more than influence alone. Lockers are expected to be one destination of distributed protocol yield, while current POLAR Staking is the app surface that can receive routed staking rewards where the deployment exposes it. The pETH the [Fee Router](/stewardship/fee-router) distributes to troves is a separate stream.
 
-The exact split, buffering, and claim mechanics are pending final deployment. This is routed protocol revenue, not POLAR emissions.
+The exact split, buffering, and claim mechanics are pending final deployment. This is protocol revenue, not POLAR emissions.
 
 ## Prerequisites for locking
 
@@ -75,13 +75,3 @@ Locking is an illiquid commitment by design. Do not lock through any contract or
 ## The Polar Council
 
 The **Polar Council** is a treasury-funded program to cultivate aligned, active stewards. See [The Polar Council](/polar/tokenomics#the-polar-council) for its scope and pending terms.
-
----
-
-<BlogPostCard
-  url="https://polarisfinance.io/blog/stewardship-not-governance/"
-  title="Stewardship, not Governance"
-  description="Governance fails because of structure, not people. Here's how stewardship fixes the structure."
-  readingTime={11}
-  image="https://polarisfinance.io/blog/stewardship-not-governance-cover.png"
-/>

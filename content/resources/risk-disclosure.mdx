@@ -19,7 +19,7 @@ Polaris lives entirely onchain. Its bonding curve, CDPs, Stability Pool, and con
 
 The only collateral is [pETH](/peth), which is **volatile against ETH**. pETH trades at a varying premium above its [floor price](/peth/floor-price), and that premium can compress sharply in a drawdown.
 
-**Mitigation.** The [floor ratio](/peth/floor-price) frames your curve-implied downside in ETH terms before execution and technical risk: a 90% floor ratio means 10% drawdown to the floor, a 67% floor ratio means 33% drawdown. Your risk is set at *entry*: the spread between your entry price and the floor. Under the intended curve invariant, the floor rises during normal operation; it is still dependent on functioning contracts and live Ethereum execution.
+**Mitigation.** The [floor ratio](/peth/floor-price) frames curve-implied downside in ETH terms before execution and technical risk. Your risk is set at entry: the spread between your entry price and the floor, plus contract and chain assumptions.
 
 > **Warning:** A high floor ratio does not protect against ETH's own volatility. pETH's floor is denominated in ETH terms. If ETH itself falls against the dollar, your pETH falls with it.
 
@@ -27,7 +27,7 @@ The only collateral is [pETH](/peth), which is **volatile against ETH**. pETH tr
 
 Pricing pETH collateral for liquidation requires an ETH price feed. A stale, manipulated, or failed oracle could misprice collateral and trigger wrong liquidations, or fail to trigger correct ones.
 
-**Mitigation.** Peg awareness needs no oracle: redemption and minting volume act as the protocol's internal price signal for each pAsset (see [Minting pAssets](/minting)). The oracle dependency is meant to be confined to pricing the *collateral*, ETH. Current Sepolia testnet price-feed and medianiser addresses are listed on [Public Testnet 1](/resources/testnet); final production providers and feed addresses are forthcoming. Do not treat any production oracle address as official until it is listed in [Contracts & Addresses](/resources/contracts).
+**Mitigation.** Peg awareness uses redemption and minting volume as internal signals for each pAsset (see [Minting pAssets](/minting)). The oracle dependency is confined to pricing ETH collateral. Current testnet and production address status lives on [Contracts & Addresses](/resources/contracts).
 
 ## Peg and depeg risk
 
@@ -63,13 +63,13 @@ When the system-wide reserve backing relative to total debt (the [reserve-to-deb
 
 Stewards control quantitative parameters: the interest splits, conversion-price parameters, and the [converter rebate](/resources). Parameter changes can affect your yield and your position's economics.
 
-**Mitigation.** Stewardship is *constrained*: many economic parameters move only within hardcoded ranges (for example the converter rebate and the interest-split floors), and the core logic cannot be touched at all (see [Stewardship, not Governance](/stewardship)). Some conversion-price parameters are not yet bounded in the current prototype; instead, conversion issuance is self-throttled by its [spike-and-decay pricing](/polar/conversion-auctions), so large or rapid minting limits itself. What remains is ordinary parameter risk, not the unbounded-governance risk that has denatured other protocols. Final per-parameter bounds are pending audited deployment.
+**Mitigation.** Stewardship is constrained: many economic parameters move only within hardcoded ranges, and the core logic cannot be changed by vote. See [Stewardship, not Governance](/stewardship) and [Parameters](/resources/parameters) for the current scope.
 
 ## MEV risk
 
 Redemptions, liquidations, and [conversion auctions](/polar/conversion-auctions) are profitable, permissionless actions, so they attract MEV searchers and arbitrage bots. Ordinary users competing by hand will usually lose the race to automation.
 
-**Mitigation.** This is by design: MEV competition keeps the peg tight and the floor rising, because searchers do the protocol's stabilizing work for profit. Do not expect to win arbitrage races manually; interact with the protocol for the position you want (a trove, a Stability Pool deposit, a pETH hold), not to front-run the bots.
+**Mitigation.** MEV competition helps execute stabilizing actions, but ordinary users should not expect to win arbitrage races manually. Use the protocol for the position you want, not to front-run bots.
 
 ## Dependency risk (Ethereum)
 
@@ -81,7 +81,7 @@ Polaris is currently in Public Testnet 1 on Sepolia, and production is intended 
 
 Fake frontends, fake contract addresses, and fake support channels can appear before users know what the official ones look like. A malicious frontend can ask you to approve tokens, sign dangerous messages, or connect to the wrong network.
 
-**Mitigation.** For Public Testnet 1, use only [https://app.testnet.polarisfinance.io/](https://app.testnet.polarisfinance.io/) on Sepolia (`11155111`) and only with no-value test assets. Use no production app URL, production network, production contract address, audit claim, or bug-bounty link unless it is listed in these docs. Never enter a seed phrase, private key, or recovery words into any Polaris-related site. The current status checklist lives on [Polaris Launch Status](/launch-status), [Public Testnet 1](/resources/testnet), and [Safety and Verification](/resources/safety-verification).
+**Mitigation.** Use only the frontend, network, and addresses listed in these docs. Use no production app URL, production network, production contract address, audit claim, or bug-bounty link unless it is listed here. Never enter a seed phrase, private key, or recovery words into any Polaris-related site. The current status checklist lives on [Polaris Launch Status](/launch-status), [Public Testnet 1](/resources/testnet), and [Safety and Verification](/resources/safety-verification).
 
 ---
 

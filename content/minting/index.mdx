@@ -42,7 +42,7 @@ The CDP model is ~8 years proven, its strengths and weaknesses well understood; 
 
 Polaris does not accept wstETH or other staked-ETH tokens: they would be external dependencies that cap scaling. It accepts only **[pETH](/peth)**, ETH deposited into the bonding curve. This dampens the CDP model's capital-inefficiency weakness, because pETH is:
 
-1. an ETH proxy with a floor price designed to rise under the curve assumptions, and
+1. an ETH proxy with a contract-defined floor, and
 2. **yield-bearing** — collateral pETH also earns from other parts of the system (e.g. ETH released by conversions).
 
 ### Autonomous, market-aware interest rates

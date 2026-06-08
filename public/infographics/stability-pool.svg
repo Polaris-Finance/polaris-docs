@@ -1,0 +1,399 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 540" fill="none">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&amp;family=Inter:wght@400;500;600&amp;display=swap');
+    </style>
+
+    <!-- Enhanced Gradients -->
+    <linearGradient id="ethGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7BA5C9"/>
+      <stop offset="100%" style="stop-color:#5A84A8"/>
+    </linearGradient>
+    <linearGradient id="pethGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#9ECBEB"/>
+      <stop offset="100%" style="stop-color:#7BA5C9"/>
+    </linearGradient>
+    <linearGradient id="pusdGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F5F0E6"/>
+      <stop offset="100%" style="stop-color:#E8DCC4"/>
+    </linearGradient>
+    <linearGradient id="curveGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#122a4d"/>
+      <stop offset="100%" style="stop-color:#1a3a5c"/>
+    </linearGradient>
+
+    <!-- Radial gradients for token circle backgrounds -->
+    <radialGradient id="ethCircleBg" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#142d4f"/>
+      <stop offset="100%" style="stop-color:#0d1f3c"/>
+    </radialGradient>
+    <radialGradient id="pethCircleBg" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#0f2a4a"/>
+      <stop offset="100%" style="stop-color:#0d1f3c"/>
+    </radialGradient>
+    <radialGradient id="pusdCircleBg" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#1a2f48"/>
+      <stop offset="100%" style="stop-color:#0d1f3c"/>
+    </radialGradient>
+
+    <!-- Arrow path gradients -->
+    <linearGradient id="arrowGradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#627D92"/>
+      <stop offset="100%" style="stop-color:#7BA5C9"/>
+    </linearGradient>
+    <linearGradient id="arrowGradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#7BA5C9"/>
+      <stop offset="100%" style="stop-color:#9ECBEB"/>
+    </linearGradient>
+    <linearGradient id="arrowGradient3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#7BA5C9"/>
+      <stop offset="100%" style="stop-color:#E8DCC4"/>
+    </linearGradient>
+    <linearGradient id="arrowGradient4" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#E8DCC4"/>
+      <stop offset="100%" style="stop-color:#F5F0E6"/>
+    </linearGradient>
+
+    <!-- Enhanced bonding curve area gradients -->
+    <linearGradient id="burnedAreaGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B8FCF"/>
+      <stop offset="100%" style="stop-color:#7B6FAF"/>
+    </linearGradient>
+    <linearGradient id="availableAreaGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#5A84A8"/>
+      <stop offset="100%" style="stop-color:#7BA5C9"/>
+    </linearGradient>
+
+    <!-- Stability Pool gradient -->
+    <linearGradient id="spPoolGradient" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" style="stop-color:#E8DCC4;stop-opacity:0"/>
+      <stop offset="100%" style="stop-color:#E8DCC4;stop-opacity:0.15"/>
+    </linearGradient>
+
+    <!-- Enhanced Shadows -->
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="6" stdDeviation="12" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+    <filter id="shadowSmall" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#000000" flood-opacity="0.25"/>
+    </filter>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="innerShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feOffset dx="0" dy="2"/>
+      <feGaussianBlur stdDeviation="3" result="offset-blur"/>
+      <feComposite operator="out" in="SourceGraphic" in2="offset-blur" result="inverse"/>
+      <feFlood flood-color="#000" flood-opacity="0.15" result="color"/>
+      <feComposite operator="in" in="color" in2="inverse" result="shadow"/>
+      <feComposite operator="over" in="shadow" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Outer glow for token circles -->
+    <filter id="tokenGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Arrow markers - Clean chevron style -->
+    <marker id="arrowCream" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M2,2 L10,6 L2,10" fill="none" stroke="#E8DCC4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M2,2 L10,6 L2,10" fill="none" stroke="#7BA5C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="arrowSlate" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M2,2 L10,6 L2,10" fill="none" stroke="#627D92" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- Background - Dark theme with subtle gradient -->
+  <rect width="1200" height="540" fill="#0a1628"/>
+  <rect width="1200" height="540" fill="url(#curveGradient)" opacity="0.3"/>
+
+  <!-- Step Labels at Top - cream color with enhanced styling -->
+  <g font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#E8DCC4" letter-spacing="0.15em">
+    <text x="120" y="48" text-anchor="middle">STEP 1</text>
+    <text x="380" y="48" text-anchor="middle">STEP 2</text>
+    <text x="630" y="48" text-anchor="middle">STEP 3</text>
+    <text x="870" y="48" text-anchor="middle">STEP 4</text>
+    <text x="1100" y="48" text-anchor="middle">OUTCOME</text>
+  </g>
+
+  <!-- ==================== STEP 1: ETH ==================== -->
+  <g transform="translate(70, 125)">
+    <!-- Outer glow ring -->
+    <circle cx="50" cy="50" r="58" fill="none" stroke="#627D92" stroke-width="1" opacity="0.2"/>
+    <!-- ETH Circle -->
+    <circle cx="50" cy="50" r="50" fill="url(#ethCircleBg)" stroke="#627D92" stroke-width="2" filter="url(#shadow)"/>
+    <!-- ETH Diamond Logo -->
+    <g transform="translate(50, 50)">
+      <polygon points="0,-26 17,0 0,10 -17,0" fill="#7BA5C9" opacity="0.95"/>
+      <polygon points="0,10 17,0 0,26 -17,0" fill="#5A84A8" opacity="0.85"/>
+      <!-- Highlight on upper facet -->
+      <polygon points="0,-26 8,-5 0,-8 -8,-5" fill="#9ECBEB" opacity="0.3"/>
+    </g>
+    <!-- Label -->
+    <text x="50" y="125" font-family="'Cormorant Garamond', Georgia, serif" font-size="18" font-weight="500" fill="#E8DCC4" text-anchor="middle">ETH</text>
+    <text x="50" y="148" font-family="Inter, system-ui, sans-serif" font-size="12" fill="rgba(232,220,196,0.55)" text-anchor="middle" letter-spacing="0.05em">Swap</text>
+  </g>
+
+  <!-- Arrow 1: ETH to Bonding Curve -->
+  <g>
+    <line x1="183" y1="175" x2="275" y2="175" stroke="#627D92" stroke-width="2" stroke-dasharray="8,5" marker-end="url(#arrowSlate)" opacity="0.85"/>
+  </g>
+
+  <!-- ==================== STEP 2: BONDING CURVE ==================== -->
+  <g transform="translate(280, 85)">
+    <!-- Card Background with subtle inner glow -->
+    <rect x="0" y="0" width="200" height="200" rx="24" fill="#0d1f3c" stroke="#4E6A82" stroke-width="1" filter="url(#shadow)"/>
+    <rect x="4" y="4" width="192" height="192" rx="22" fill="none" stroke="rgba(232,220,196,0.03)" stroke-width="1"/>
+
+    <!-- Mini Bonding Curve Graph -->
+    <g transform="translate(40, 30)">
+      <!-- Box border with softer corners -->
+      <rect x="0" y="0" width="120" height="100" fill="#122a4d" stroke="rgba(232,220,196,0.15)" stroke-width="1" rx="6"/>
+
+      <!-- Grid lines -->
+      <line x1="0" y1="50" x2="120" y2="50" stroke="rgba(232,220,196,0.05)" stroke-width="1"/>
+      <line x1="60" y1="0" x2="60" y2="100" stroke="rgba(232,220,196,0.05)" stroke-width="1"/>
+
+      <!-- Area 1: released ETH (purple) -->
+      <path d="M0.0,100.0 L0.2,87.2 L0.5,83.9 L0.8,81.6 L1.0,79.7 L1.2,78.2 L1.5,76.8 L1.8,75.6 L2.0,74.5 L2.2,73.4 L2.5,72.5 L2.8,71.6 L3.0,70.8 L3.2,70.0 L3.5,69.2 L3.8,68.5 L4.0,67.8 L4.3,67.2 L4.5,66.5 L4.8,65.9 L5.0,65.3 L5.3,64.8 L5.5,64.2 L5.8,63.7 L6.0,63.2 L6.0,63.2 L8.3,59.0 L10.6,55.5 L12.8,52.5 L15.1,49.9 L17.4,47.5 L19.7,45.3 L22.0,43.2 L24.2,41.3 L26.5,39.5 L28.8,37.9 L31.1,36.3 L33.4,34.7 L35.6,33.3 L37.9,31.9 L40.2,30.5 L42.5,29.3 L43.7,28.6 L43.7,100 L0,100 Z" fill="#9B8FCF" opacity="0.35"/>
+
+      <!-- Area 2: pUSD (cream) -->
+      <path d="M43.7,28.6 L44.8,28.0 L47.0,26.8 L49.3,25.7 L51.6,24.5 L53.9,23.4 L56.2,22.4 L58.4,21.3 L60.7,20.3 L63.0,19.3 L65.3,18.4 L67.6,17.4 L69.8,16.5 L72.1,15.6 L74.4,14.7 L76.7,13.9 L79.0,13.0 L81.2,12.2 L83.5,11.4 L85.8,10.6 L88.1,9.8 L88.1,100 L43.7,100 Z" fill="#E8DCC4" opacity="0.20"/>
+
+      <!-- Area 3: pETH mcap (green) -->
+      <path d="M43.7,28.6 L44.8,28.0 L47.0,26.8 L49.3,25.7 L51.6,24.5 L53.9,23.4 L56.2,22.4 L58.4,21.3 L60.7,20.3 L63.0,19.3 L65.3,18.4 L67.6,17.4 L69.8,16.5 L72.1,15.6 L74.4,14.7 L76.7,13.9 L79.0,13.0 L81.2,12.2 L83.5,11.4 L85.8,10.6 L88.1,9.8 L90.4,9.0 L92.6,8.3 L94.9,7.5 L97.2,6.8 L99.5,6.1 L101.8,5.3 L104.0,4.6 L106.3,4.0 L108.6,3.3 L110.9,2.6 L113.2,1.9 L115.4,1.3 L117.7,0.6 L120.0,0.0 L120,0 L43.7,0 Z" fill="#6BCAA0" opacity="0.22"/>
+
+      <!-- Area 4: ETH reserve (steel blue) -->
+      <path d="M88.1,9.8 L90.4,9.0 L92.6,8.3 L94.9,7.5 L97.2,6.8 L99.5,6.1 L101.8,5.3 L104.0,4.6 L106.3,4.0 L108.6,3.3 L110.9,2.6 L113.2,1.9 L115.4,1.3 L117.7,0.6 L120.0,0.0 L120,0 L120,100 L88.1,100 Z" fill="#7BA5C9" opacity="0.25"/>
+
+      <!-- Bonding curve polyline -->
+      <path d="M0.0,100.0 L0.2,87.2 L0.5,83.9 L0.8,81.6 L1.0,79.7 L1.2,78.2 L1.5,76.8 L1.8,75.6 L2.0,74.5 L2.2,73.4 L2.5,72.5 L2.8,71.6 L3.0,70.8 L3.2,70.0 L3.5,69.2 L3.8,68.5 L4.0,67.8 L4.3,67.2 L4.5,66.5 L4.8,65.9 L5.0,65.3 L5.3,64.8 L5.5,64.2 L5.8,63.7 L6.0,63.2 L6.0,63.2 L8.3,59.0 L10.6,55.5 L12.8,52.5 L15.1,49.9 L17.4,47.5 L19.7,45.3 L22.0,43.2 L24.2,41.3 L26.5,39.5 L28.8,37.9 L31.1,36.3 L33.4,34.7 L35.6,33.3 L37.9,31.9 L40.2,30.5 L42.5,29.3 L44.8,28.0 L47.0,26.8 L49.3,25.7 L51.6,24.5 L53.9,23.4 L56.2,22.4 L58.4,21.3 L60.7,20.3 L63.0,19.3 L65.3,18.4 L67.6,17.4 L69.8,16.5 L72.1,15.6 L74.4,14.7 L76.7,13.9 L79.0,13.0 L81.2,12.2 L83.5,11.4 L85.8,10.6 L88.1,9.8 L90.4,9.0 L92.6,8.3 L94.9,7.5 L97.2,6.8 L99.5,6.1 L101.8,5.3 L104.0,4.6 L106.3,4.0 L108.6,3.3 L110.9,2.6 L113.2,1.9 L115.4,1.3 L117.7,0.6 L120.0,0.0" fill="none" stroke="#E8DCC4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#softGlow)"/>
+
+
+      <!-- Floor price dot -->
+      <circle cx="43.7" cy="28.6" r="3" fill="#E8DCC4" opacity="0.8"/>
+
+      <!-- Market price dot at endpoint -->
+      <circle cx="120" cy="0" r="3" fill="#9ECBEB" opacity="0.8"/>
+    </g>
+
+    <!-- Title -->
+    <text x="100" y="162" font-family="'Cormorant Garamond', Georgia, serif" font-size="16" font-weight="500" fill="#E8DCC4" text-anchor="middle">Bonding Curve</text>
+    <text x="100" y="182" font-family="Inter, system-ui, sans-serif" font-size="11" fill="rgba(232,220,196,0.55)" text-anchor="middle" letter-spacing="0.03em">Capture volatility</text>
+  </g>
+
+  <!-- Arrow 2: Bonding Curve to pETH -->
+  <g>
+    <line x1="485" y1="175" x2="567" y2="175" stroke="#7BA5C9" stroke-width="2" marker-end="url(#arrowBlue)" opacity="0.85"/>
+    <!-- Label pill -->
+    <rect x="504" y="145" width="44" height="18" rx="9" fill="#0d1f3c" stroke="rgba(123,165,201,0.3)" stroke-width="1"/>
+    <text x="526" y="158" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#7BA5C9" text-anchor="middle" font-weight="500">issue</text>
+  </g>
+
+  <!-- ==================== STEP 3: pETH ==================== -->
+  <g transform="translate(580, 125)">
+    <!-- Outer glow ring -->
+    <circle cx="50" cy="50" r="58" fill="none" stroke="#7BA5C9" stroke-width="1" opacity="0.2"/>
+    <!-- pETH Circle -->
+    <circle cx="50" cy="50" r="50" fill="url(#pethCircleBg)" stroke="#7BA5C9" stroke-width="2" filter="url(#shadow)"/>
+    <!-- Small star above with glow -->
+    <g filter="url(#softGlow)">
+      <polygon points="50,22 51.6,27.5 57.9,27.5 52.9,31.6 54.6,37.2 50,33.0 45.4,37.2 47.1,31.6 42.1,27.5 48.4,27.5" fill="#9ECBEB" fill-opacity="0.8"/>
+    </g>
+    <!-- pETH Diamond -->
+    <g transform="translate(50, 58)">
+      <polygon points="0,-22 17,0 0,8 -17,0" fill="#9ECBEB" opacity="0.9"/>
+      <polygon points="0,8 17,0 0,24 -17,0" fill="#7BA5C9" opacity="0.8"/>
+      <!-- Highlight -->
+      <polygon points="0,-22 8,-4 0,-6 -8,-4" fill="#B8D4F0" opacity="0.3"/>
+    </g>
+    <!-- Label -->
+    <text x="50" y="125" font-family="'Cormorant Garamond', Georgia, serif" font-size="18" font-weight="500" fill="#E8DCC4" text-anchor="middle">pETH</text>
+    <text x="50" y="148" font-family="Inter, system-ui, sans-serif" font-size="12" fill="rgba(232,220,196,0.55)" text-anchor="middle" letter-spacing="0.05em">Collateral</text>
+  </g>
+
+  <!-- Arrow 3: pETH to CDP/pUSD -->
+  <g>
+    <line x1="693" y1="175" x2="775" y2="175" stroke="#7BA5C9" stroke-width="2" marker-end="url(#arrowBlue)" opacity="0.85"/>
+    <!-- Label pill -->
+    <rect x="709" y="145" width="50" height="18" rx="9" fill="#0d1f3c" stroke="rgba(123,165,201,0.3)" stroke-width="1"/>
+    <text x="734" y="158" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#7BA5C9" text-anchor="middle" font-weight="500">deposit</text>
+  </g>
+
+  <!-- ==================== STEP 4: CDPs ==================== -->
+  <g transform="translate(780, 85)">
+    <!-- Card Background -->
+    <rect x="0" y="0" width="180" height="200" rx="24" fill="#0d1f3c" stroke="#4E6A82" stroke-width="1" filter="url(#shadow)"/>
+    <rect x="4" y="4" width="172" height="192" rx="22" fill="none" stroke="rgba(232,220,196,0.03)" stroke-width="1"/>
+
+    <!-- CDPs Container -->
+    <g transform="translate(90, 70)">
+      <!-- Container outline -->
+      <rect x="-70" y="-40" width="140" height="90" rx="10" fill="#122a4d" stroke="rgba(232,220,196,0.08)" stroke-width="1"/>
+
+      <!-- CDP 1 (large) -->
+      <g transform="translate(-52, 5)">
+        <rect x="0" y="-30" width="9" height="50" rx="3" fill="#7BA5C9" opacity="0.75" filter="url(#shadowSmall)"/>
+        <rect x="0" y="-30" width="9" height="15" rx="3" fill="#9ECBEB" opacity="0.3"/>
+        <rect x="11" y="-18" width="9" height="38" rx="3" fill="#E8DCC4" opacity="0.75" filter="url(#shadowSmall)"/>
+        <rect x="11" y="-18" width="9" height="12" rx="3" fill="#F5F0E6" opacity="0.3"/>
+      </g>
+
+      <!-- CDP 2 (medium) -->
+      <g transform="translate(-22, 5)">
+        <rect x="0" y="-20" width="9" height="40" rx="3" fill="#7BA5C9" opacity="0.75" filter="url(#shadowSmall)"/>
+        <rect x="0" y="-20" width="9" height="12" rx="3" fill="#9ECBEB" opacity="0.3"/>
+        <rect x="11" y="-8" width="9" height="28" rx="3" fill="#E8DCC4" opacity="0.75" filter="url(#shadowSmall)"/>
+        <rect x="11" y="-8" width="9" height="9" rx="3" fill="#F5F0E6" opacity="0.3"/>
+      </g>
+
+      <!-- CDP 3 (small) -->
+      <g transform="translate(8, 5)">
+        <rect x="0" y="-12" width="9" height="32" rx="3" fill="#7BA5C9" opacity="0.75" filter="url(#shadowSmall)"/>
+        <rect x="0" y="-12" width="9" height="10" rx="3" fill="#9ECBEB" opacity="0.3"/>
+        <rect x="11" y="-2" width="9" height="22" rx="3" fill="#E8DCC4" opacity="0.75" filter="url(#shadowSmall)"/>
+        <rect x="11" y="-2" width="9" height="7" rx="3" fill="#F5F0E6" opacity="0.3"/>
+      </g>
+
+      <!-- CDP 4 (medium-large) -->
+      <g transform="translate(38, 5)">
+        <rect x="0" y="-25" width="9" height="45" rx="3" fill="#7BA5C9" opacity="0.75" filter="url(#shadowSmall)"/>
+        <rect x="0" y="-25" width="9" height="14" rx="3" fill="#9ECBEB" opacity="0.3"/>
+        <rect x="11" y="-12" width="9" height="32" rx="3" fill="#E8DCC4" opacity="0.75" filter="url(#shadowSmall)"/>
+        <rect x="11" y="-12" width="9" height="10" rx="3" fill="#F5F0E6" opacity="0.3"/>
+      </g>
+
+      <!-- Labels with pill backgrounds -->
+      <rect x="-52" y="50" width="34" height="14" rx="7" fill="rgba(123,165,201,0.1)"/>
+      <text x="-35" y="60" font-family="Inter, system-ui, sans-serif" font-size="9" fill="#7BA5C9" text-anchor="middle" font-weight="500">pETH</text>
+      <rect x="18" y="50" width="34" height="14" rx="7" fill="rgba(232,220,196,0.1)"/>
+      <text x="35" y="60" font-family="Inter, system-ui, sans-serif" font-size="9" fill="#E8DCC4" text-anchor="middle" font-weight="500">pUSD</text>
+    </g>
+
+    <!-- Title -->
+    <text x="90" y="162" font-family="'Cormorant Garamond', Georgia, serif" font-size="16" font-weight="500" fill="#E8DCC4" text-anchor="middle">CDPs</text>
+    <text x="90" y="182" font-family="Inter, system-ui, sans-serif" font-size="11" fill="rgba(232,220,196,0.55)" text-anchor="middle" letter-spacing="0.03em">Borrow pUSD</text>
+  </g>
+
+  <!-- Arrow 4: CDP to pUSD -->
+  <g>
+    <line x1="965" y1="175" x2="1033" y2="175" stroke="#E8DCC4" stroke-width="2" marker-end="url(#arrowCream)" opacity="0.85"/>
+    <!-- Label pill -->
+    <rect x="983" y="145" width="32" height="18" rx="9" fill="#0d1f3c" stroke="rgba(232,220,196,0.25)" stroke-width="1"/>
+    <text x="999" y="158" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#E8DCC4" text-anchor="middle" font-weight="500">mint</text>
+  </g>
+
+  <!-- ==================== OUTCOME: pUSD ==================== -->
+  <g transform="translate(1050, 125)">
+    <!-- Outer glow ring - brighter for outcome emphasis -->
+    <circle cx="50" cy="50" r="58" fill="none" stroke="#E8DCC4" stroke-width="1" opacity="0.25"/>
+    <circle cx="50" cy="50" r="62" fill="none" stroke="#E8DCC4" stroke-width="0.5" opacity="0.12"/>
+    <!-- pUSD Circle -->
+    <circle cx="50" cy="50" r="50" fill="url(#pusdCircleBg)" stroke="#E8DCC4" stroke-width="2.5" filter="url(#shadow)"/>
+    <!-- pUSD Dollar Symbol with shadow -->
+    <text x="50" y="70" font-family="'Cormorant Garamond', Georgia, serif" font-size="43" font-weight="500" fill="url(#pusdGradient)" text-anchor="middle" filter="url(#softGlow)">$</text>
+    <!-- Small star above with glow -->
+    <g filter="url(#softGlow)">
+      <polygon points="50,22 51.6,27.5 57.9,27.5 52.9,31.6 54.6,37.2 50,33.0 45.4,37.2 47.1,31.6 42.1,27.5 48.4,27.5" fill="#F5F0E6" fill-opacity="0.85"/>
+    </g>
+    <!-- Label -->
+    <text x="50" y="125" font-family="'Cormorant Garamond', Georgia, serif" font-size="18" font-weight="600" fill="#E8DCC4" text-anchor="middle">pUSD</text>
+  </g>
+
+  <!-- ==================== STABILITY POOL SECTION ==================== -->
+
+  <!-- Two-way arrow: pUSD <-> Stability Pool (deposit / yield) — solid, constant flux -->
+  <path d="M1100 258 L1100 455 L1015 455" stroke="#E8DCC4" stroke-width="2" fill="none" opacity="0.8" stroke-linejoin="round"/>
+  <!-- Chevron at card end (pointing left, deposit into SP) -->
+  <path d="M1023,449 L1015,455 L1023,461" fill="none" stroke="#E8DCC4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
+  <!-- Chevron at pUSD end (pointing up, yield back to pUSD) -->
+  <path d="M1094,266 L1100,258 L1106,266" fill="none" stroke="#E8DCC4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
+  <!-- Deposit label pill (left side, near SP card) -->
+  <rect x="1038" y="432" width="52" height="18" rx="9" fill="#0d1f3c" stroke="rgba(232,220,196,0.25)" stroke-width="1"/>
+  <text x="1064" y="445" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#E8DCC4" text-anchor="middle" font-weight="500">deposit</text>
+  <!-- pUSD yield from interest label pill (right side, two lines) -->
+  <rect x="1110" y="286" width="82" height="30" rx="9" fill="#0d1f3c" stroke="rgba(232,220,196,0.25)" stroke-width="1"/>
+  <text x="1151" y="299" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#E8DCC4" text-anchor="middle" font-weight="500">pUSD yield</text>
+  <text x="1151" y="311" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#E8DCC4" text-anchor="middle" font-weight="500">from interest</text>
+
+  <!-- Stability Pool Card -->
+  <g transform="translate(810, 395)">
+    <!-- Card Background -->
+    <rect x="0" y="0" width="200" height="120" rx="24" fill="#0d1f3c" stroke="#4E6A82" stroke-width="1" filter="url(#shadow)"/>
+    <rect x="4" y="4" width="192" height="112" rx="22" fill="none" stroke="rgba(232,220,196,0.03)" stroke-width="1"/>
+
+    <!-- Inner container: harbor scene (Wave Hunter) — 140x75 to match CDP proportions -->
+    <g transform="translate(30, 12)">
+      <rect x="0" y="0" width="140" height="75" rx="6" fill="#122a4d" stroke="rgba(232,220,196,0.08)" stroke-width="1"/>
+
+      <!-- Water body (consistent level) -->
+      <rect x="0" y="48" width="140" height="27" fill="#1a3a5c" opacity="0.5"/>
+
+      <!-- Focused big wave -->
+      <path d="M0,44 Q10,40 17,32 Q27,22 33,29 Q36,35 35,42 Q32,48 28,50" fill="#7BA5C9" opacity="0.15"/>
+      <path d="M0,44 Q10,40 17,32 Q27,22 33,29 Q36,35 35,42" stroke="#7BA5C9" stroke-width="1.2" fill="none" opacity="0.5"/>
+      <!-- Smaller trailing waves -->
+      <path d="M4,50 Q10,47 16,50 Q22,53 28,50 Q33,47 37,49" stroke="#7BA5C9" stroke-width="0.6" fill="none" opacity="0.25"/>
+      <!-- Spray at crest -->
+      <circle cx="31" cy="24" r="0.8" fill="#7BA5C9" opacity="0.3"/>
+      <circle cx="34" cy="22" r="0.6" fill="#7BA5C9" opacity="0.25"/>
+
+      <!-- Wall -->
+      <rect x="48" y="16" width="5" height="52" fill="#627D92" opacity="0.65" rx="1"/>
+
+      <!-- Lighthouse behind wall -->
+      <rect x="61" y="6" width="9" height="44" fill="#E8DCC4" opacity="0.7" rx="0.5"/>
+      <rect x="59" y="46" width="13" height="4" fill="#627D92" opacity="0.4"/>
+      <rect x="59" y="28" width="13" height="1.5" fill="#627D92" opacity="0.2"/>
+      <path d="M59.5,6 L65.5,0 L71.5,6" fill="#E8DCC4" opacity="0.6"/>
+      <circle cx="65.5" cy="3" r="3" fill="#F5D76E" opacity="0.55" filter="url(#softGlow)"/>
+
+      <!-- Wide beam flooding the wave -->
+      <path d="M62,3 L0,0 L0,50 Z" fill="#F5D76E" opacity="0.07"/>
+      <path d="M62,3 L2,1 L4,44 Z" fill="#F5D76E" opacity="0.04"/>
+
+      <!-- Calm water right -->
+      <path d="M53,48 Q78,47 104,48 Q125,48.5 140,48" stroke="#7BA5C9" stroke-width="0.25" fill="none" opacity="0.15"/>
+      <!-- Boats in calm harbor -->
+      <path d="M88,46 Q93,49 98,46 L96.5,43.5 L89.5,43.5 Z" fill="#E8DCC4" opacity="0.4"/>
+      <line x1="93" y1="43.5" x2="93" y2="37" stroke="#E8DCC4" stroke-width="0.5" opacity="0.3"/>
+      <path d="M116,47 Q120,49 124,47" stroke="#E8DCC4" stroke-width="0.6" fill="none" opacity="0.25"/>
+    </g>
+
+    <!-- Title -->
+    <text x="100" y="106" font-family="'Cormorant Garamond', Georgia, serif" font-size="16" font-weight="500" fill="#E8DCC4" text-anchor="middle">Stability Pool</text>
+    <text x="100" y="118" font-family="Inter, system-ui, sans-serif" font-size="11" fill="rgba(232,220,196,0.55)" text-anchor="middle" letter-spacing="0.03em">Earn discounted pETH</text>
+  </g>
+
+  <!-- Two-way arrow: Stability Pool <-> CDPs (liquidate / pETH) — dashed, irregular -->
+  <line x1="870" y1="287" x2="870" y2="393" stroke="#E8DCC4" stroke-width="2" stroke-dasharray="6,4" opacity="0.7"/>
+  <!-- Chevron at top (pointing up, pUSD liquidates CDPs) -->
+  <path d="M864,295 L870,287 L876,295" fill="none" stroke="#E8DCC4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+  <!-- Chevron at bottom (pointing down, discounted pETH flows back) -->
+  <path d="M864,385 L870,393 L876,385" fill="none" stroke="#E8DCC4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+  <!-- Liquidate label pill (left side) -->
+  <rect x="793" y="312" width="63" height="18" rx="9" fill="#0d1f3c" stroke="rgba(232,220,196,0.2)" stroke-width="1"/>
+  <text x="824" y="325" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#E8DCC4" text-anchor="middle" font-weight="500">liquidate</text>
+  <!-- pETH liquidation gains label pill (right side) -->
+  <rect x="884" y="358" width="120" height="18" rx="9" fill="#0d1f3c" stroke="rgba(232,220,196,0.2)" stroke-width="1"/>
+  <text x="944" y="371" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#E8DCC4" text-anchor="middle" font-weight="500">pETH liquidation gains</text>
+
+</svg>
