@@ -186,7 +186,13 @@ export function buildPageMetadata(metadata, path) {
     description,
     alternates: {
       ...metadata.alternates,
-      canonical: pathWithBase(path)
+      canonical: pathWithBase(path),
+      types: {
+        'text/markdown': [
+          { url: pathWithBase('/llms.txt'), title: 'llms.txt' },
+          { url: pathWithBase('/llms-full.txt'), title: 'llms-full.txt' }
+        ]
+      }
     },
     openGraph: {
       ...metadata.openGraph,
@@ -238,11 +244,18 @@ export function buildGlobalJsonLd() {
       '@id': organizationId,
       '@type': 'Organization',
       name: ORGANIZATION_NAME,
+      alternateName: 'Polaris',
       description: SITE_DESCRIPTION,
       url: 'https://polarisfinance.io',
+      // Add official X / GitHub / Discord profile URLs here once confirmed, so answer
+      // engines can disambiguate Polaris Finance from other projects named Polaris.
+      sameAs: ['https://polarisfinance.io'],
+      knowsAbout: ['pETH', 'pAssets', 'pUSD', 'POLAR', 'CDP stablecoin', 'bonding curve'],
       logo: {
         '@type': 'ImageObject',
-        url: absoluteUrl('/emblem.svg')
+        url: absoluteUrl('/favicon.png'),
+        width: 192,
+        height: 192
       }
     },
     website
@@ -302,6 +315,9 @@ export function buildTechArticleJsonLd({ metadata, path, sourceCode }) {
   if (freshness.datePublished) article.datePublished = freshness.datePublished
   if (freshness.dateModified) article.dateModified = freshness.dateModified
 
+  const section = path.split('/').filter(Boolean)[0]
+  if (section) article.articleSection = readableSegment(section)
+
   return article
 }
 
@@ -357,7 +373,7 @@ export function extractFaqJsonLd(sourceCode, path) {
 
   for (const line of lines) {
     const trimmed = line.trim()
-    const questionMatch = /^\*\*([^*?]+\?)\*\*$/.exec(trimmed)
+    const questionMatch = /^###\s+(.+\?)\s*$/.exec(trimmed) ?? /^\*\*([^*?]+\?)\*\*$/.exec(trimmed)
 
     if (questionMatch) {
       finishCurrent()

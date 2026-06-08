@@ -331,6 +331,11 @@ for (const requiredAsset of [
   }
 }
 
+const faqHtml = readOut('resources/faq.html')
+if (faqHtml && !faqHtml.includes('"@type":"FAQPage"')) {
+  failures.push('out/resources/faq.html is missing FAQPage structured data')
+}
+
 if (failures.length) {
   console.error('Export artifact smoke check failed:\n')
   for (const failure of failures) console.error(`- ${failure}`)

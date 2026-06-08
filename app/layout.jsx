@@ -51,7 +51,13 @@ export const metadata = {
     apple: [{ url: pathWithBase('/apple-touch-icon.png'), sizes: '180x180', type: 'image/png' }]
   },
   alternates: {
-    canonical: pathWithBase('/')
+    canonical: pathWithBase('/'),
+    types: {
+      'text/markdown': [
+        { url: pathWithBase('/llms.txt'), title: 'llms.txt' },
+        { url: pathWithBase('/llms-full.txt'), title: 'llms-full.txt' }
+      ]
+    }
   },
   applicationName: SITE_NAME,
   appleWebApp: { title: SITE_NAME },
@@ -140,6 +146,12 @@ const footer = (
         The pETH-powered yield layer for all of DeFi
       </span>
       <span style={{ opacity: 0.9 }}>© {new Date().getFullYear()} Polaris Finance</span>
+      <a
+        href={pathWithBase('/llms.txt')}
+        style={{ opacity: 0.7, fontSize: '0.85rem', color: 'inherit' }}
+      >
+        Docs for LLMs (llms.txt)
+      </a>
     </div>
   </Footer>
 )
