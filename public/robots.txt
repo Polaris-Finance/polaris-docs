@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tokenbrice.github.io/polaris-docs/sitemap.xml
+Sitemap: https://docs.polarisfinance.io/sitemap.xml
