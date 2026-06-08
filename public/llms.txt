@@ -24,7 +24,7 @@
 - [Managing Your Trove](https://docs.polarisfinance.io/minting/managing-your-trove): Manage a Polaris trove around its Individual Collateralization Ratio (ICR) — add collateral, mint or repay debt, track interest, and close out cleanly.
 - [Minting pAssets](https://docs.polarisfinance.io/minting/minting-passets): How the Polaris CDP model mints pAssets directly from the protocol against pETH collateral, with autonomous market-aware interest rates.
 - [Open a Trove](https://docs.polarisfinance.io/minting/open-a-trove): Step-by-step guide to opening a Polaris trove — deposit pETH, mint a pAsset, and pick a safe buffer to stay clear of liquidation and redemption.
-- [pAsset Catalog](https://docs.polarisfinance.io/minting/passet-catalog): The pAssets Polaris can mint (pUSD, pETH, pGOLD, pCHF, pBigMac) and how StablecoinOS lets credible teams add new ones, all sharing the same pETH collateral.
+- [pAsset Catalog](https://docs.polarisfinance.io/minting/passet-catalog): The pAssets Polaris can mint (pUSD, pETH, pGOLD, pCHF, pBigMac) and how StablecoinOS lets credible teams add new ones on shared pETH collateral.
 
 ## pETH & Bonding Curve
 
@@ -52,7 +52,7 @@
 
 ## Stewardship
 
-- [Fee Router](https://docs.polarisfinance.io/stewardship/fee-router): Polaris's yield plumbing: the Fee Router buffers protocol revenue and routes pETH yield to troves, vePOLAR lockers, and Flow recipients under bounded rules.
+- [Fee Router](https://docs.polarisfinance.io/stewardship/fee-router): Polaris's yield plumbing: the Fee Router buffers protocol revenue and routes pETH yield to troves, POLAR stakers, and Flow recipients under bounded rules.
 - [Flows](https://docs.polarisfinance.io/stewardship/flows): Flows distribute protocol revenue to contracts building on Polaris: hard-asset revenue sharing by formula, with no gauges, no bribes, and no emissions.
 - [Stewardship, not Governance](https://docs.polarisfinance.io/stewardship/stewardship): Polaris keeps its core immutable and lets vePOLAR steward only bounded parameters, onboarding decisions, and edge processes that cannot be automated.
 - [vePOLAR](https://docs.polarisfinance.io/stewardship/vepolar): vePOLAR is vote-escrowed POLAR. Lock POLAR to receive stewardship rights and a share of protocol yield without touching the immutable core.
@@ -61,7 +61,7 @@
 
 - [Audits & Security](https://docs.polarisfinance.io/resources/audits-security): Polaris security model, audit-report status, bug-bounty status, and disclosure guidance. Pre-launch reports and bounty details are not published yet.
 - [Brand Assets](https://docs.polarisfinance.io/resources/brand-assets): Polaris logos, the Celestial Night Sky palette, and typography, with usage do's and don'ts. Dark mode is the canonical surface.
-- [Contracts & Addresses](https://docs.polarisfinance.io/resources/contracts): Pre-launch: the contract list will be updated at deployment.
+- [Contracts & Addresses](https://docs.polarisfinance.io/resources/contracts): The Polaris contract set: a shared core plus one instance per pAsset. Addresses publish at deployment; verify network, chain ID, and source first.
 - [FAQ](https://docs.polarisfinance.io/resources/faq): Frequently asked questions about Polaris: what it is, how minting and troves work, how the peg holds, where yield comes from, and how security works.
 - [Glossary](https://docs.polarisfinance.io/resources/glossary): Every Polaris term defined in one or two sentences, alphabetized and linked to its full explanation. The fast way to look anything up.
 - [Risk Disclosure](https://docs.polarisfinance.io/resources/risk-disclosure): A comprehensive catalog of the risks of using Polaris, each paired with the mechanism that mitigates it, without implying any risk is eliminated.
