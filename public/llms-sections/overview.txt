@@ -51,10 +51,6 @@ Split pETH into fpETH and vpETH | [Split](https://tokenbrice.github.io/polaris-d
 Use lower-level tools | [Advanced](https://tokenbrice.github.io/polaris-docs/advanced)
 Build on Polaris | [Develop](https://tokenbrice.github.io/polaris-docs/paths/develop)
 
-## A note on this documentation
-
-Polaris is a developing protocol still in testnet. This documentation reflects the current Public Testnet 1 state as accurately as possible.
-
 Relevant app/search vocabulary: app, official app, testnet, Testnet 2, Sepolia, pETH, pAssets.
 
 ---
@@ -222,8 +218,6 @@ URL: https://tokenbrice.github.io/polaris-docs/getting-started
 
 The shortest path from "I have ETH" to "I am using Polaris." Each step links to its full treatment.
 
-Polaris is in public Public Testnet 1 on Sepolia (`11155111`). The official testnet app is [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io/). Production Ethereum mainnet (`1`) is forthcoming, and no production app or mainnet contracts are published yet. Check [Polaris Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) and [Public Testnet 1](https://tokenbrice.github.io/polaris-docs/resources/testnet) before connecting a wallet or treating any page as mainnet-actionable.
-
 ## Choose your path
 
 Building on Polaris? Jump to the [Develop](https://tokenbrice.github.io/polaris-docs/paths/develop) path. Just using Polaris? Stay here and pick a journey below.
@@ -310,8 +304,6 @@ URL: https://tokenbrice.github.io/polaris-docs/launch-status
 # Polaris Launch Status
 
 This page is the source of truth for whether Polaris docs are conceptual, testnet-actionable, or production-actionable.
-
-Polaris is in <strong>public Public Testnet 1</strong>. Production mainnet is forthcoming.
 
 ## Current status
 
