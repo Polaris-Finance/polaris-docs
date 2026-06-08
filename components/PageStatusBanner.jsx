@@ -1,6 +1,6 @@
 import { pathWithBase } from '../app/site-config.mjs'
 
-export function PageStatusBanner({ lastUpdated, network = 'Sepolia', phase = 'Testnet 2' }) {
+export function PageStatusBanner({ lastUpdated, network = 'Sepolia', phase = 'Public Testnet 1' }) {
   return (
     <aside className="pl-status-banner">
       <span className="pl-status-pill">

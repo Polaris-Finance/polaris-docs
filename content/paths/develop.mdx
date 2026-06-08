@@ -9,7 +9,7 @@ description: The developer path for integrating with Polaris before launch artif
 
 **Prerequisites:** familiarity with onchain reads/writes (viem, ethers, or equivalent) and the Polaris product model. New to these concepts? Read [Core Concepts](/core-concepts) first.
 
-> **Launch status:** Polaris is in public Testnet 2 on Sepolia, with production mainnet forthcoming. Contract addresses, ABIs, verified source, canonical events, SDKs, subgraphs, and API endpoints for production are not yet published. Build against the documented model, but do not hardcode pre-launch addresses, method names, or event signatures. Track [Polaris Launch Status](/launch-status) before binding to artifacts.
+> **Launch status:** Polaris is in public Public Testnet 1 on Sepolia, with production mainnet forthcoming. Contract addresses, ABIs, verified source, canonical events, SDKs, subgraphs, and API endpoints for production are not yet published. Build against the documented model, but do not hardcode pre-launch addresses, method names, or event signatures. Track [Polaris Launch Status](/launch-status) before binding to artifacts.
 
 ## Reading sequence
 
@@ -62,7 +62,7 @@ type PolarisDeployment = {
   abiHashes: Record<string, string>
 }
 
-const EXPECTED_CHAIN_ID = 11155111 // Testnet 2 today; production mainnet is 1 after launch.
+const EXPECTED_CHAIN_ID = 11155111 // Public Testnet 1 today; production mainnet is 1 after launch.
 
 export async function loadPolaris(client, deployment: PolarisDeployment) {
   if (deployment.chainId !== EXPECTED_CHAIN_ID) {

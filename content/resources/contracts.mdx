@@ -5,24 +5,24 @@ description: "The Polaris contract set: a shared core plus one instance per pAss
 
 # Polaris Contracts & Addresses
 
-> **Production note:** Canonical production addresses publish at deployment, not before. The contract *list* below reflects the intended production deployment shape; the **Address** column fills in at launch, each address linking to verified source on the official explorer. Current Sepolia addresses and parameters are testnet-only and live on [Testnet 2](/resources/testnet). Treat any production address not linked from these docs as unverified. See [Polaris Launch Status](/launch-status) for the current network state.
+> **Production note:** Canonical production addresses publish at deployment, not before. The contract *list* below reflects the intended production deployment shape; the **Address** column fills in at launch, each address linking to verified source on the official explorer. Current Sepolia addresses and parameters are testnet-only and live on [Public Testnet 1](/resources/testnet). Treat any production address not linked from these docs as unverified. See [Polaris Launch Status](/launch-status) for the current network state.
 
 ## How the system deploys
 
 Polaris is a *factory* of pAsset instances. A single **shared core** — the bonding curve, POLAR, the Fee Router, and the oracles — deploys **once**. Then **one instance set** deploys **per pAsset** (pUSD, pGOLD, …): each gets its own CDP manager, Stability Pool, and internal Peg Stability Module, but all share the same pETH collateral, bonding curve, and POLAR.
 
-So the address table has a **core section** plus **one block per pAsset**. The current docs focus on **pUSD** and **pGOLD**; production deployment status remains governed by [Launch Status](/launch-status), while current Sepolia artifacts are listed on [Testnet 2](/resources/testnet).
+So the address table has a **core section** plus **one block per pAsset**. The current docs focus on **pUSD** and **pGOLD**; production deployment status remains governed by [Launch Status](/launch-status), while current Sepolia artifacts are listed on [Public Testnet 1](/resources/testnet).
 
-## Current Testnet 2 (Sepolia)
+## Current Public Testnet 1 (Sepolia)
 
-Testnet 2 runs on **Sepolia (chain ID `11155111`)**. Its addresses are testnet artifacts, may be redeployed, and use testnet stand-ins such as mock WETH, mock oracles, and testnet price feeds. Do not use them as production defaults.
+Public Testnet 1 runs on **Sepolia (chain ID `11155111`)**. Its addresses are testnet artifacts, may be redeployed, and use testnet stand-ins such as mock WETH, mock oracles, and testnet price feeds. Do not use them as production defaults.
 
 The manifest paths below are relative to `/home/ahirice/Documents/git/polaris`.
 
 | Source | Use it for | Location |
 |---|---|---|
-| [Testnet 2 contracts](/resources/testnet#testnet-2-contracts) | Current Sepolia addresses in a user-facing table | Docs |
-| [Testnet 2 parameters](/resources/testnet#testnet-2-parameters) | Current Sepolia MCR, Emergency Mode thresholds, curve constants, and fee defaults | Docs |
+| [Public Testnet 1 contracts](/resources/testnet#testnet-2-contracts) | Current Sepolia addresses in a user-facing table | Docs |
+| [Public Testnet 1 parameters](/resources/testnet#testnet-2-parameters) | Current Sepolia MCR, Emergency Mode thresholds, curve constants, and fee defaults | Docs |
 | Core manifest | Current Sepolia core addresses and curve constants | `deployments/sepolia/deployment-manifest.core.ts` |
 | pUSD manifest | Current Sepolia pUSD instance addresses and manifest parameters | `deployments/sepolia/deployment-manifest.pusd.ts` |
 | pGOLD manifest | Current Sepolia pGOLD instance addresses and manifest parameters | `deployments/sepolia/deployment-manifest.pgold.ts` |
@@ -62,13 +62,13 @@ One set deploys per pAsset. Key everything by `(pAsset, owner)` — a pUSD trove
 
 > **Read helpers** (`Helpers/MultiCDPGetter.sol`, `Helpers/MultiReserveLoanGetter.sol`) are view contracts for batched reads; integrations may use them but should treat direct contract reads as the source of truth.
 
-> **A note on naming.** "pETH" and "the bonding curve" are the **same contract**. The "conversion auction" is **part of POLAR**, not a separate contract. The per-pAsset internal Peg Stability Module is the pETH mint/redeem path, not the custodial/external-collateral PSM model Polaris rejects. The "vePOLAR" lock layer is **not yet production-deployed**; production yield and staking details are pending. `pCHF`, `pBigMac`, and other catalog entries are illustrative; **pUSD** and **pGOLD** are the current Testnet 2 focus.
+> **A note on naming.** "pETH" and "the bonding curve" are the **same contract**. The "conversion auction" is **part of POLAR**, not a separate contract. The per-pAsset internal Peg Stability Module is the pETH mint/redeem path, not the custodial/external-collateral PSM model Polaris rejects. The "vePOLAR" lock layer is **not yet production-deployed**; production yield and staking details are pending. `pCHF`, `pBigMac`, and other catalog entries are illustrative; **pUSD** and **pGOLD** are the current Public Testnet 1 focus.
 
 ## Before you interact
 
 1. Confirm the **network and chain ID** match the official deployment manifest.
-2. Confirm every **address** matches [Testnet 2](/resources/testnet) for Sepolia or this page for production once populated.
+2. Confirm every **address** matches [Public Testnet 1](/resources/testnet) for Sepolia or this page for production once populated.
 3. Confirm the **ABI** matches that verified source.
 4. Never paste an address from a screenshot, DM, or search result without that explorer check — address-spoofing is how these attacks succeed.
 
-While production addresses are pending, see [Audits & Security](/resources/audits-security) for the security model, [Testnet 2](/resources/testnet) for Sepolia artifacts, or the [Glossary](/resources/glossary) for what each contract does.
+While production addresses are pending, see [Audits & Security](/resources/audits-security) for the security model, [Public Testnet 1](/resources/testnet) for Sepolia artifacts, or the [Glossary](/resources/glossary) for what each contract does.

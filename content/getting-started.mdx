@@ -10,7 +10,7 @@ description: "What you need to use Polaris and the basic flow: deposit ETH, rece
 The shortest path from "I have ETH" to "I am using Polaris." Each step links to its full treatment.
 
 <Callout variant="warning" title="Current Status">
-Polaris is in public Testnet 2 on Sepolia (`11155111`). The official testnet app is [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io/). Production Ethereum mainnet (`1`) is forthcoming, and no production app or mainnet contracts are published yet. Check [Polaris Launch Status](/launch-status) and [Testnet 2](/resources/testnet) before connecting a wallet or treating any page as mainnet-actionable.
+Polaris is in public Public Testnet 1 on Sepolia (`11155111`). The official testnet app is [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io/). Production Ethereum mainnet (`1`) is forthcoming, and no production app or mainnet contracts are published yet. Check [Polaris Launch Status](/launch-status) and [Public Testnet 1](/resources/testnet) before connecting a wallet or treating any page as mainnet-actionable.
 </Callout>
 
 ## Choose your path
@@ -31,44 +31,44 @@ If you already know why you're here, start with the matching journey:
 ## What you need
 
 - **An Ethereum wallet** — any standard EOA or smart-account wallet.
-- **For Testnet 2:** Sepolia ETH for gas, plus test WETH/reserve tokens from the app faucet when the faucet is enabled for your wallet. Testnet assets have no monetary value.
+- **For Public Testnet 1:** Sepolia ETH for gas, plus test WETH/reserve tokens from the app faucet when the faucet is enabled for your wallet. Testnet assets have no monetary value.
 - **For production later:** ETH on Ethereum mainnet — the only asset you need to begin; Polaris converts it to [pETH](/peth/bonding-curve) for you.
 
 That's the whole list. No KYC, no whitelist, no offchain account.
 
 ## Sepolia ETH, test WETH, and pETH
 
-On Testnet 2, three "ETH-like" assets can appear in the flow:
+On Public Testnet 1, three "ETH-like" assets can appear in the flow:
 
 - **Sepolia ETH** pays gas on Sepolia. Get it from a public Sepolia faucet; it is not mainnet ETH.
 - **Test WETH / reserve token** is the mock reserve token in the Sepolia manifest. The app faucet can mint it when enabled for your wallet. It is not mainnet WETH and has no value.
-- **pETH** is the Polaris bonding-curve collateral token. On Testnet 2, it is Sepolia-only pETH created from the test reserve token; it is not production pETH.
+- **pETH** is the Polaris bonding-curve collateral token. On Public Testnet 1, it is Sepolia-only pETH created from the test reserve token; it is not production pETH.
 
-The first testnet path is: open the [Testnet 2 app](https://app.testnet.polarisfinance.io/), switch to Sepolia, mint test WETH/reserve tokens if the faucet is available, swap them through the bonding curve for pETH, borrow or mint a Testnet-active pAsset, then optionally deposit that pAsset into the Stability Pool to test Earn.
+The first testnet path is: open the [Public Testnet 1 app](https://app.testnet.polarisfinance.io/), switch to Sepolia, mint test WETH/reserve tokens if the faucet is available, swap them through the bonding curve for pETH, borrow or mint a Testnet-active pAsset, then optionally deposit that pAsset into the Stability Pool to test Earn.
 
 ## The basic flow
 
-In one line: **deposit ETH ⇒ receive pETH ⇒ open a trove and mint a pAsset ⇒ optionally deposit to the Stability Pool to earn yield.** On Testnet 2 this uses Sepolia test assets; in production it uses Ethereum mainnet once launch status says mainnet is live. Step by step:
+In one line: **deposit ETH ⇒ receive pETH ⇒ open a trove and mint a pAsset ⇒ optionally deposit to the Stability Pool to earn yield.** On Public Testnet 1 this uses Sepolia test assets; in production it uses Ethereum mainnet once launch status says mainnet is live. Step by step:
 
-1. **Deposit or swap into pETH.** On Testnet 2, use the app faucet for mock WETH/reserve tokens when available, then use the bonding-curve / swap surface to receive pETH. In production later, this starts from mainnet ETH.
-2. **Receive pETH from the [bonding curve](/peth/bonding-curve).** Your input asset is swapped for pETH at the curve's current price: mock WETH/reserve tokens on Testnet 2, and ETH in production later. pETH is an ETH proxy with a floor price that only rises, and the only collateral Polaris accepts.
+1. **Deposit or swap into pETH.** On Public Testnet 1, use the app faucet for mock WETH/reserve tokens when available, then use the bonding-curve / swap surface to receive pETH. In production later, this starts from mainnet ETH.
+2. **Receive pETH from the [bonding curve](/peth/bonding-curve).** Your input asset is swapped for pETH at the curve's current price: mock WETH/reserve tokens on Public Testnet 1, and ETH in production later. pETH is an ETH proxy with a floor price that only rises, and the only collateral Polaris accepts.
 3. **Open a [trove](/minting/open-a-trove) and mint a pAsset.** Post your pETH as collateral, then choose which pAsset to mint. pUSD and pGOLD are Testnet-active; pCHF and pBigMac are illustrative or future catalog examples. The pAsset lands in your wallet; the debt stays in your trove. See [the catalog](/minting/passet-catalog) for what you can mint.
 4. **Optionally, earn yield.** Deposit your pAsset into the [Stability Pool](/yield/stability-pool) to earn a share of borrower interest plus discounted pETH from liquidations. This is optional — you can instead hold, LP, or use your pAsset anywhere in DeFi.
 
 ## Where the app lives
 
 <Callout variant="success" title="Open Testnet App">
-[app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io/) is the official public Testnet 2 app on Sepolia only. Production/mainnet app status remains **not live** until [Polaris Launch Status](/launch-status) publishes otherwise.
+[app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io/) is the official public Public Testnet 1 app on Sepolia only. Production/mainnet app status remains **not live** until [Polaris Launch Status](/launch-status) publishes otherwise.
 </Callout>
 
 ## Launch verification
 
 Before you connect a wallet or sign a transaction, verify:
 
-- For Testnet 2, the app URL is exactly [https://app.testnet.polarisfinance.io/](https://app.testnet.polarisfinance.io/).
+- For Public Testnet 1, the app URL is exactly [https://app.testnet.polarisfinance.io/](https://app.testnet.polarisfinance.io/).
 - For production/mainnet, wait until [Polaris Launch Status](/launch-status) publishes the production app URL.
-- The app is connected to the intended network: Sepolia (`11155111`) for Testnet 2, or Ethereum mainnet (`1`) only after production launch.
-- Testnet contract addresses match [Testnet 2](/resources/testnet) and the linked Sepolia manifests.
+- The app is connected to the intended network: Sepolia (`11155111`) for Public Testnet 1, or Ethereum mainnet (`1`) only after production launch.
+- Testnet contract addresses match [Public Testnet 1](/resources/testnet) and the linked Sepolia manifests.
 - Production contract addresses, verified source, ABIs, and audit status match [Contracts and Addresses](/resources/contracts) and [Audits and Security](/resources/audits-security) once production launches.
 - The product page you're following has been updated from conceptual flow to launch parameters.
 

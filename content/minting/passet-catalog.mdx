@@ -7,7 +7,7 @@ description: The pAsset debt tokens Polaris can mint (pUSD, pGOLD, pCHF, pBigMac
 
 A **pAsset** is a synthetic debt asset minted from a Polaris CDP against pETH collateral. Each pAsset is overcollateralized, counterparty-free, and redeemable through onchain protocol mechanics under the usual assumptions: functioning contracts, live Ethereum execution, available gas, and valid pricing data. **pETH is different:** it is not minted from a trove; it is the bonding-curve collateral token that backs pAssets. The catalog is open: through [StablecoinOS](#stablecoinos-an-open-catalog), credible teams can add new pAssets, all sharing the same pETH collateral and bonding curve.
 
-> **Current Testnet 2 focus:** pUSD and pGOLD are Testnet-active on Sepolia. pCHF, pBigMac, and other catalog ideas are illustrative or future until [Launch Status](/launch-status) says otherwise.
+> **Current Public Testnet 1 focus:** pUSD and pGOLD are Testnet-active on Sepolia. pCHF, pBigMac, and other catalog ideas are illustrative or future until [Launch Status](/launch-status) says otherwise.
 
 ## Polaris assets
 
@@ -15,7 +15,7 @@ A **pAsset** is a synthetic debt asset minted from a Polaris CDP against pETH co
 |---|---|---|---|
 | **pUSD** | US dollar | **Testnet-active** | The flagship pAsset. Counterparty-free dollar with yield that scales with protocol activity. See [Minting pAssets](/minting/minting-passets). |
 | **pETH** | ETH | **Testnet-active collateral** | *Special.* Not minted from a trove: it is the collateral itself, produced by the [bonding curve](/peth/bonding-curve) with a floor price designed to rise under the curve assumptions. It backs every other pAsset. |
-| **pGOLD** | 1 ounce of gold | **Testnet-active** | Decentralized gold exposure, backed by pETH rather than bullion. Testnet 2 uses Sepolia testnet price-feed plumbing; see the comparison below. |
+| **pGOLD** | 1 ounce of gold | **Testnet-active** | Decentralized gold exposure, backed by pETH rather than bullion. Public Testnet 1 uses Sepolia testnet price-feed plumbing; see the comparison below. |
 | **pCHF** | Swiss franc | **Illustrative / future** | A non-USD fiat peg, demonstrating that the model is debt-asset agnostic across currencies. Not Testnet-active unless Launch Status later lists it. |
 | **pBigMac** | The [Big Mac Index](https://en.wikipedia.org/wiki/Big_Mac_Index) | **Illustrative / future** | A novelty pAsset tracking a Big Mac's price, proof that Polaris can mint anything with a price feed and a flexible enough fee flow. Not Testnet-active unless Launch Status later lists it. |
 

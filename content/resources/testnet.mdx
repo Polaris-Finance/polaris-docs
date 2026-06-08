@@ -1,21 +1,21 @@
 ---
-title: Polaris Testnet 2 Source of Truth
-description: "Public Testnet 2 source of truth: Sepolia chain ID, app URL, caveats, active pAssets, manifests, addresses, and parameters."
+title: Polaris Public Testnet 1 Source of Truth
+description: "Public Public Testnet 1 source of truth: Sepolia chain ID, app URL, caveats, active pAssets, manifests, addresses, and parameters."
 ---
 
-# Polaris Testnet 2 Source of Truth
+# Polaris Public Testnet 1 Source of Truth
 
 This page is the source of truth for the current public Polaris testnet environment. It is not a production launch page.
 
-> **Last verified:** June 8, 2026. Testnet 2 is public on Sepolia. Production mainnet is not live.
+> **Last verified:** June 8, 2026. Public Testnet 1 is public on Sepolia. Production mainnet is not live.
 
-> **Open Testnet App:** [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io/) is the official Testnet 2 app. Use it only on Sepolia (`11155111`) with test assets that have no monetary value.
+> **Open Testnet App:** [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io/) is the official Public Testnet 1 app. Use it only on Sepolia (`11155111`) with test assets that have no monetary value.
 
-## Testnet 2 status
+## Public Testnet 1 status
 
-| Item | Testnet 2 source of truth |
+| Item | Public Testnet 1 source of truth |
 |---|---|
-| Public phase | **Testnet 2** |
+| Public phase | **Public Testnet 1** |
 | Network | **Sepolia** |
 | Chain ID | `11155111` |
 | Official testnet app | [https://app.testnet.polarisfinance.io/](https://app.testnet.polarisfinance.io/) |
@@ -52,7 +52,7 @@ The current Sepolia artifacts are checked into the Polaris protocol repository a
 
 Treat these as testnet artifacts. They are useful for testing, indexer scaffolding, and UI verification, but they are not production-canonical.
 
-## Testnet 2 contracts
+## Public Testnet 1 contracts
 
 These are Sepolia addresses from the current manifests. They may be redeployed and should not be hardcoded as production defaults.
 
@@ -103,13 +103,13 @@ These are Sepolia addresses from the current manifests. They may be redeployed a
 | MultiCDPGetter | `0xe79538c2d2c2e6b6d31de4456cbabbf2adab4410` |
 | Primary Interest Router | `0xaa9833e7d33003004b0d66685e05bace4058d89c` |
 
-## Testnet 2 parameters
+## Public Testnet 1 parameters
 
 Values marked "manifest" are copied from the current Sepolia manifests. Values marked "deploy script" come from the current deployment script defaults; verify live quotes in the app or contract before relying on them for a transaction.
 
 ### Shared core parameters
 
-| Parameter | Testnet 2 value | Source |
+| Parameter | Public Testnet 1 value | Source |
 |---|---:|---|
 | Bonding curve alpha | `193218996973422650` | Core manifest |
 | Bonding curve beta | `150000000000000000` (15%) | Core manifest |
@@ -132,7 +132,7 @@ Production parameters are not published. Do not copy Sepolia parameters into a m
 
 ## Before you sign
 
-Check all of these before any Testnet 2 transaction:
+Check all of these before any Public Testnet 1 transaction:
 
 - The URL is exactly [https://app.testnet.polarisfinance.io/](https://app.testnet.polarisfinance.io/).
 - Your wallet network is Sepolia and the chain ID is `11155111`.

@@ -18,7 +18,7 @@ const phases = [
     link: null
   },
   {
-    name: 'Testnet 1',
+    name: 'Private Testnet 1',
     date: 'Private · March 2026',
     labelPos: 'above',
     style: 'spark',
@@ -26,7 +26,7 @@ const phases = [
     link: '/resources/testnet'
   },
   {
-    name: 'Testnet 2',
+    name: 'Public Testnet 1',
     date: 'Public · May 2026',
     labelPos: 'below',
     style: 'polaris',
@@ -49,23 +49,18 @@ function Tooltip({ title, desc, link }) {
     <div className="pl-tooltip">
       <div className="pl-tooltip-title">{title}</div>
       <div>{desc}</div>
-      {link && (
-        <a href={pathWithBase(link)} className="pl-tooltip-link">
-          Learn more →
-        </a>
-      )}
     </div>
   )
 }
 
 export function LaunchTimeline() {
   return (
-    <div
-      className="pl-voyage"
-      role="img"
-      aria-label="Polaris launch timeline. Early Research in 2024. Team Formation in June 2025. Testnet 1, private, March 2026. Testnet 2, public, May 2026, the current phase. Mainnet, forthcoming."
-    >
-      <div className="pl-chart" aria-hidden="true">
+    <figure className="pl-voyage" aria-labelledby="launch-timeline-caption">
+      <div
+        className="pl-chart"
+        role="img"
+        aria-label="Polaris launch timeline. Early Research in 2024. Team Formation in June 2025. Private Testnet 1, March 2026. Public Testnet 1, May 2026, the current phase. Mainnet, forthcoming."
+      >
         <svg className="pl-route" viewBox="0 0 1000 168" preserveAspectRatio="none">
           <defs>
             <linearGradient id="pl-grad-l" x1="0" y1="0" x2="1" y2="0">
@@ -133,6 +128,18 @@ export function LaunchTimeline() {
           )
         })}
       </div>
-    </div>
+      <figcaption id="launch-timeline-caption" className="pl-timeline-caption">
+        Polaris is currently in Public Testnet 1 on Sepolia; mainnet remains forthcoming.
+      </figcaption>
+      <ol className="pl-timeline-list">
+        {phases.map((phase) => (
+          <li key={phase.name} aria-current={phase.isNow ? 'step' : undefined}>
+            <span>{phase.name}</span>
+            <span>{phase.date}</span>
+            <p>{phase.desc}</p>
+          </li>
+        ))}
+      </ol>
+    </figure>
   )
 }

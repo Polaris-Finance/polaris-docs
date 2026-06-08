@@ -7,9 +7,9 @@ description: "The borrower path for using Polaris: get pETH, open a trove, mint 
 
 **Who this is for:** anyone who wants to mint pUSD, pGOLD, or another pAsset against pETH collateral and actively manage that position.
 
-**Prerequisites:** an Ethereum wallet, test assets on Sepolia for Testnet 2 or ETH on Ethereum mainnet after production launch, and a working grasp of overcollateralization and liquidation. If those terms are new, read [Core Concepts](/core-concepts) first.
+**Prerequisites:** an Ethereum wallet, test assets on Sepolia for Public Testnet 1 or ETH on Ethereum mainnet after production launch, and a working grasp of overcollateralization and liquidation. If those terms are new, read [Core Concepts](/core-concepts) first.
 
-> **Launch status:** Borrowing is testnet-actionable on Sepolia only when using the official Testnet 2 manifests. Production borrowing is not mainnet-actionable until [Polaris Launch Status](/launch-status) publishes the app URL, production addresses, final collateral thresholds, and audit status. Do not connect to a frontend or contract that claims to be Polaris unless it is linked from these docs or another official Polaris channel.
+> **Launch status:** Borrowing is testnet-actionable on Sepolia only when using the official Public Testnet 1 manifests. Production borrowing is not mainnet-actionable until [Polaris Launch Status](/launch-status) publishes the app URL, production addresses, final collateral thresholds, and audit status. Do not connect to a frontend or contract that claims to be Polaris unless it is linked from these docs or another official Polaris channel.
 
 > **Terminology:** In the app, **Borrow** is the task label. Docs call a pAsset debt position a **trove**; contracts may call the mechanism a **CDP**. **Reserve loans** are separate WETH loans against [fpETH](/peth/split), not pAsset troves.
 
@@ -27,7 +27,7 @@ Read these in order — each step builds context the next one assumes.
 ## What to verify at launch
 
 - The official app URL.
-- The intended network: Sepolia (`11155111`) for Testnet 2, or Ethereum mainnet (`1`) after production launch.
+- The intended network: Sepolia (`11155111`) for Public Testnet 1, or Ethereum mainnet (`1`) after production launch.
 - The pETH, pAsset, trove manager, and Stability Pool addresses.
 - Final minimum collateralization, liquidation, redemption, and fee parameters for the pAsset you mint.
 - Audit reports and verified contract source.

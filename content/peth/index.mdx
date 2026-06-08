@@ -7,6 +7,19 @@ description: The pETH hub for the bonding curve, floor price, ETH-denominated do
 
 pETH is ETH deposited into the Polaris bonding curve. It is not a CDP-minted pAsset; it is the collateral token that backs pAssets.
 
+<Callout variant="info" title="Start here">
+If you are trying to get pETH in the app, start with [Swap](/using-app/swap). If you are trying to understand fpETH, vpETH, or reserve loans, start with [pETH Split](/peth/split).
+</Callout>
+
+## Start here if
+
+| You want to... | Start with |
+|---|---|
+| Know how WETH becomes pETH | [pETH Bonding Curve](/peth/bonding-curve) |
+| Split pETH into floor and premium legs | [pETH Split](/peth/split) |
+| Understand downside framing and exit assumptions | [pETH Floor Price](/peth/floor-price) |
+| Use pETH as borrowing collateral | [Open a Polaris Trove](/minting/open-a-trove) |
+
 ## Read in order
 
 | Page | What it answers |
@@ -17,7 +30,7 @@ pETH is ETH deposited into the Polaris bonding curve. It is not a CDP-minted pAs
 
 ## Launch status
 
-The current public phase is Testnet 2 on Sepolia. Production pETH use is not mainnet-actionable until [Launch Status](/launch-status) links the official app, production bonding-curve address, verified source, final parameters, and audit status.
+The current public phase is Public Testnet 1 on Sepolia. Production pETH use is not mainnet-actionable until [Launch Status](/launch-status) links the official app, production bonding-curve address, verified source, final parameters, and audit status.
 
 ## Related pages
 
@@ -25,3 +38,11 @@ The current public phase is Testnet 2 on Sepolia. Production pETH use is not mai
 - [Split](/using-app/split) for the app flow.
 - [Minting Polaris pAssets](/minting/minting-passets) for using pETH inside troves.
 - [Risk Disclosure](/resources/risk-disclosure) for collateral, execution, and smart-contract risk.
+
+<NextSteps
+  steps={[
+    { href: '/swap', title: 'Swap shortcut', description: 'Use the app-label route if you searched for Swap.' },
+    { href: '/split', title: 'Split shortcut', description: 'Use the app-label route if you searched for Split.' },
+    { href: '/using-app/advanced', title: 'Reserve loans', description: 'Manual fpETH-backed WETH loan checks.' }
+  ]}
+/>

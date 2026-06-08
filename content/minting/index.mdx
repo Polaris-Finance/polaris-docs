@@ -7,6 +7,19 @@ description: The Polaris minting hub for pAssets, troves, collateralization, pAs
 
 Minting means opening a trove, posting pETH collateral, and drawing a pAsset directly from the protocol. Production minting is not mainnet-actionable until [Launch Status](/launch-status) publishes the app, verified addresses, final parameters, and audit status.
 
+<Callout variant="warning" title="Status">
+Public Testnet 1 exposes pUSD and pGOLD flows on Sepolia. Production borrower flows remain pending until Launch Status publishes mainnet contracts and final parameters.
+</Callout>
+
+## Start here if
+
+| You want to... | Start with |
+|---|---|
+| Understand pAsset borrowing from first principles | [Minting Polaris pAssets](/minting/minting-passets) |
+| Open a first pUSD or pGOLD trove | [Open a Polaris Trove](/minting/open-a-trove) |
+| Add collateral, repay, or close a position | [Managing a Polaris Trove](/minting/managing-your-trove) |
+| Check which pAssets are testnet-active | [Polaris Asset Catalog](/minting/passet-catalog) |
+
 ## Read in order
 
 | Page | What it answers |
@@ -18,8 +31,16 @@ Minting means opening a trove, posting pETH collateral, and drawing a pAsset dir
 
 ## Launch status
 
-For Testnet 2, use Sepolia (`11155111`) and the current testnet deployment manifests. For production, wait for Ethereum mainnet (`1`) contracts and final borrower parameters.
+For Public Testnet 1, use Sepolia (`11155111`) and the current testnet deployment manifests. For production, wait for Ethereum mainnet (`1`) contracts and final borrower parameters.
 
 ## Related risk
 
 Borrowers should also read [Liquidations](/redemptions-liquidations/liquidations), [pAsset Redemptions](/redemptions-liquidations/redemptions), [Polaris Recovery Mode](/redemptions-liquidations/recovery-mode), and the [Risk Disclosure](/resources/risk-disclosure).
+
+<NextSteps
+  steps={[
+    { href: '/using-app/borrow', title: 'Borrow app tab', description: 'Map app wording to troves, CDPs, and reserve loans.' },
+    { href: '/resources/testnet', title: 'Public Testnet 1', description: 'Current Sepolia contracts, pAssets, and parameters.' },
+    { href: '/paths/safety-verification', title: 'Safety', description: 'Run the verification checklist before signing.' }
+  ]}
+/>
