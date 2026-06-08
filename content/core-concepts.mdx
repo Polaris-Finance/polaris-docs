@@ -58,7 +58,7 @@ Redemption and minting volume serve as onchain proxy signals for the peg, lettin
 ## Risk states
 
 <DefinitionCard term="Liquidation" token="default">
-If a trove falls below its minimum collateralization ratio, it is liquidated, and the [Stability Pool](/yield) absorbs the debt. See [Liquidations](/redemptions-liquidations/liquidations).
+If a trove falls below its minimum collateralization ratio, it is liquidated, and the [Stability Pool](/yield) absorbs the debt — or, if the pool is too small, the debt and collateral redistribute to other troves. See [Liquidations](/redemptions-liquidations/liquidations).
 </DefinitionCard>
 
 <DefinitionCard term="Recovery Mode" token="default">
@@ -84,7 +84,7 @@ Receives pETH from conversions and bonding-curve swap fees, then buffers and dis
 </DefinitionCard>
 
 <DefinitionCard term="Stewardship" token="default">
-A stewardship role steers <em>quantitative parameters within the bounds the contracts define</em>. It does not govern the immutable core. See [Stewardship, not Governance](/stewardship).
+A stewardship role steers <em>quantitative parameters</em>, with safety-critical bounds hardcoded in the contracts and the remaining bounds set at audited deployment. It does not govern the immutable core. See [Stewardship, not Governance](/stewardship).
 </DefinitionCard>
 
 ## The shape of the system

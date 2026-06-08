@@ -91,7 +91,7 @@ The design split deciding which token handles what. *Inward-facing* flows (inter
 ## L
 
 **Liquidation**
-The process that closes an undercollateralized [trove](#t): when its [ICR](#i) drops below the minimum, the [Stability Pool](/yield) absorbs its debt and receives its collateral. See [Liquidations](/redemptions-liquidations/liquidations).
+The process that closes an undercollateralized [trove](#t): when its [ICR](#i) drops below the minimum, the [Stability Pool](/yield) absorbs its debt and receives its collateral — or, if the pool is too small, the debt and collateral redistribute to other troves. See [Liquidations](/redemptions-liquidations/liquidations).
 
 ## M
 
@@ -134,9 +134,6 @@ The protocol's stewardship token and outward-facing growth lever. After the init
 
 **POLAR Staking**
 The current app staking surface for staking POLAR and claiming routed rewards where the deployment exposes it. It is distinct from forthcoming [vePOLAR](#v) locking, which adds lock durations, vote-power decay, and stewardship rights.
-
-**PolarEX**
-Polaris' integrated DEX. Its swap fees are one of the system's yield sources.
 
 **PSM (Peg Stability Module)**
 The contract/module that handles pAsset minting and redemption mechanics for a pAsset instance. Use PSM or redemption actions only after checking the pAsset, fee, output amount, and contract address.
