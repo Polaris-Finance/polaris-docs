@@ -79,7 +79,7 @@ export const metadata = {
 // otherwise trip axe's label-content-name-mismatch.
 const logo = (
   <a
-    href="/"
+    href={pathWithBase('/')}
     className="pl-logo-link"
     style={{
       display: 'inline-flex',
