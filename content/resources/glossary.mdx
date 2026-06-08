@@ -5,12 +5,12 @@ description: Every Polaris term defined in one or two sentences, alphabetized an
 
 # Glossary
 
-Every key Polaris term, alphabetized. Each entry is one or two sentences and links to its full treatment where one exists. For the narrative map of how the pieces fit together, read [Core Concepts](/core-concepts).
+Every key Polaris term, alphabetized. Each entry is one or two sentences and links to its full treatment where one exists. For the narrative map of how the pieces fit, read [Core Concepts](/core-concepts).
 
 ## B
 
 **Bonding curve**
-The two-way curve that backs [pETH](/peth/bonding-curve). It enforces a mathematical relationship between pETH supply and price (minting raises it, burning lowers it), providing instant, guaranteed liquidity with no liquidity providers, and an ever-rising [floor price](/peth/floor-price). See [The Bonding Curve](/peth/bonding-curve).
+The two-way curve that backs [pETH](/peth/bonding-curve). It enforces a mathematical relationship between pETH supply and price (minting raises it, burning lowers it), providing instant, guaranteed liquidity with no liquidity providers and an ever-rising [floor price](/peth/floor-price). See [The Bonding Curve](/peth/bonding-curve).
 
 ## C
 
@@ -18,7 +18,7 @@ The two-way curve that backs [pETH](/peth/bonding-curve). It enforces a mathemat
 The mechanism behind minting: post collateral, mint a pAsset directly from the protocol rather than borrowing another user's funds. Each position is an isolated [trove](#t). See [Minting pAssets](/minting/minting-passets).
 
 **Conversion auction**
-The mechanism that connects pETH and POLAR: it burns [pETH](/peth/bonding-curve) to mint new [POLAR](/polar/polar-token). The most protocol-synergetic action possible: every conversion raises the floor and releases ETH yield. See [Conversion Auctions](/polar/conversion-auctions).
+The mechanism connecting pETH and POLAR: it burns [pETH](/peth/bonding-curve) to mint new [POLAR](/polar/polar-token). The most protocol-synergetic action possible: every conversion raises the floor and releases ETH yield. See [Conversion Auctions](/polar/conversion-auctions).
 
 **Converter rebate**
 A stewardship-controlled percentage of ETH returned to the converter in a [conversion auction](/polar/conversion-auctions). The dial between conversion volume and system yield.
@@ -29,31 +29,31 @@ A stewardship-controlled percentage of ETH returned to the converter in a [conve
 Receives pETH from conversions and bonding-curve swap-fee buybacks, buffers it over a reward period, and distributes pETH rewards to a stewardship-designated receiver — currently troves, pro-rata to debt. Staker yield is distributed separately, in pAsset terms, via the interest router. See [Stewardship](/stewardship/stewardship).
 
 **Floor price**
-The mathematically enforced minimum price of [pETH](/peth/bonding-curve), in ETH terms. It only ever rises. It is the price guaranteed to the *last person out* if everyone exited at once; most exiters get a better price. See [The Floor Price](/peth/floor-price).
+The mathematically enforced minimum price of [pETH](/peth/bonding-curve), in ETH terms. It only ever rises — the price guaranteed to the *last person out* if everyone exited at once; most exiters get a better price. See [The Floor Price](/peth/floor-price).
 
 **Floor ratio**
-The floor price divided by the market price, expressed as a percentage. It tells you your maximum drawdown: a 90% floor ratio means at most 10% downside in ETH terms. See [The Floor Price](/peth/floor-price).
+The floor price divided by the market price, as a percentage. It tells you your maximum drawdown: a 90% floor ratio means at most 10% downside in ETH terms. See [The Floor Price](/peth/floor-price).
 
 **Flows**
-The internal value movements of the protocol (fees, conversions, yield distribution), routed by the [Fee Router](#f). Inward-facing flows sustain the core; outward-facing flows grow the ecosystem (see *Inward-facing / Outward-facing*).
+The protocol's internal value movements (fees, conversions, yield distribution), routed by the [Fee Router](#f). Inward-facing flows sustain the core; outward-facing flows grow the ecosystem (see *Inward-facing / Outward-facing*).
 
 ## I
 
 **ICR (Individual Collateralization Ratio)**
-The collateralization ratio of a single [trove](#t): the value of its pETH collateral divided by its pAsset debt. If a trove's ICR falls below the minimum, the trove can be [liquidated](/redemptions-liquidations/liquidations).
+The collateralization ratio of a single [trove](#t): the value of its pETH collateral divided by its pAsset debt. If a trove's ICR falls below the minimum, it can be [liquidated](/redemptions-liquidations/liquidations).
 
 **Inward-facing / Outward-facing**
-The design split that decides which token handles what. *Inward-facing* flows (interest rates, floor growth, Stability Pool incentivization, liquidations) are handled by pETH and the pAssets. *Outward-facing* growth (external liquidity, Flow onboarding and weights, ecosystem incentives) is handled by [POLAR](/polar/polar-token).
+The design split deciding which token handles what. *Inward-facing* flows (interest rates, floor growth, Stability Pool incentivization, liquidations) are handled by pETH and the pAssets. *Outward-facing* growth (external liquidity, Flow onboarding and weights, ecosystem incentives) is handled by [POLAR](/polar/polar-token).
 
 ## L
 
 **Liquidation**
-The process that closes an undercollateralized [trove](#t): when a trove's [ICR](#i) drops below the minimum, the [Stability Pool](/yield/stability-pool) absorbs its debt and receives its collateral. See [Liquidations](/redemptions-liquidations/liquidations).
+The process that closes an undercollateralized [trove](#t): when its [ICR](#i) drops below the minimum, the [Stability Pool](/yield/stability-pool) absorbs its debt and receives its collateral. See [Liquidations](/redemptions-liquidations/liquidations).
 
 ## M
 
 **Minting (mechanism)**
-The inverse of [redemption](#r): when a pAsset trades *above* peg (e.g. pUSD > $1), arbitrageurs add pETH to troves to mint the pAsset and sell it, pushing the price back down. This restores the ceiling and is one of the onchain signals used to set interest rates. See [Minting pAssets](/minting/minting-passets).
+The inverse of [redemption](#r): when a pAsset trades *above* peg (e.g. pUSD > $1), arbitrageurs add pETH to troves to mint the pAsset and sell it, pushing the price down. This restores the ceiling and is one of the onchain signals used to set interest rates. See [Minting pAssets](/minting/minting-passets).
 
 **Minting (verb)**
 Creating a pAsset by opening a [trove](#t) and drawing pAsset debt against pETH collateral. Polaris *mints* pAssets, not "issues" or "creates" them.
@@ -69,31 +69,31 @@ An onchain feed Polaris is expected to use to price ETH collateral. Peg awarenes
 A Polaris synthetic asset — pUSD, pETH, pGOLD, pCHF, and beyond. Each is overcollateralized by pETH and counterparty-free. See [The pAsset Catalog](/minting/passet-catalog).
 
 **pBigMac**
-A novelty pAsset that demonstrates the "mint anything" thesis: if a price feed exists, Polaris can mint a pAsset that tracks it.
+A novelty pAsset demonstrating the "mint anything" thesis: if a price feed exists, Polaris can mint a pAsset that tracks it.
 
 **pCHF**
 The Polaris synthetic Swiss franc — a pAsset pegged to CHF.
 
 **pETH**
-ETH deposited into the two-way [bonding curve](/peth/bonding-curve). It is the *only* collateral Polaris accepts, is yield-bearing, and carries an ever-rising [floor price](/peth/floor-price). Volatile against ETH, but bounded below by the floor. See [The Bonding Curve](/peth/bonding-curve).
+ETH deposited into the two-way [bonding curve](/peth/bonding-curve). The *only* collateral Polaris accepts: yield-bearing, with an ever-rising [floor price](/peth/floor-price). Volatile against ETH, but bounded below by the floor. See [The Bonding Curve](/peth/bonding-curve).
 
 **pGOLD**
 The Polaris synthetic gold pAsset, designed to track gold without issuer custody or KYC at the base protocol layer. See [The pAsset Catalog](/minting/passet-catalog).
 
 **Pathfinders**
-Core believers, not just early followers. Access is earned through merit (explanatory threads, deep research, finding Easter eggs) and is rewarded with early alphas, testnet access, and dev-stage updates.
+Core believers, not just early followers. Access is earned through merit (explanatory threads, deep research, finding Easter eggs) and rewarded with early alphas, testnet access, and dev-stage updates.
 
 **Polar Council**
 A treasury-funded program (8.2% of POLAR supply) for onboarding and ecosystem contributors, similar in spirit to veAERO's Flight School.
 
 **POLAR**
-The protocol's stewardship token, and its outward-facing growth lever. After the initial distribution, new POLAR can be minted *only* by burning pETH in a [conversion auction](/polar/conversion-auctions). See [The POLAR Token](/polar/polar-token).
+The protocol's stewardship token and outward-facing growth lever. After the initial distribution, new POLAR can be minted *only* by burning pETH in a [conversion auction](/polar/conversion-auctions). See [The POLAR Token](/polar/polar-token).
 
 **PolarEX**
 Polaris' integrated DEX. Its swap fees are one of the system's yield sources.
 
 **pUSD**
-The flagship pAsset, designed to track the US dollar and be backed by pETH collateral. It is intended to be counterparty-free and fully onchain. See [Minting pAssets](/minting/minting-passets).
+The flagship pAsset, designed to track the US dollar and be backed by pETH collateral. Intended to be counterparty-free and fully onchain. See [Minting pAssets](/minting/minting-passets).
 
 ## R
 
@@ -112,7 +112,7 @@ The pricing model for [conversion auctions](/polar/conversion-auctions): the con
 A reserve of pAssets that absorbs the debt of [liquidated](/redemptions-liquidations/liquidations) troves and is the protocol's primary venue for earning yield. See [The Stability Pool](/yield/stability-pool).
 
 **StablecoinOS**
-The CDP-factory layer: many distinct pAssets, each issued by its own CDP instance, all sharing the same pETH collateral and bonding curve. See [Core Concepts](/core-concepts).
+The CDP-factory layer: many distinct pAssets, each issued by its own CDP instance, all sharing one pETH collateral and bonding curve. See [Core Concepts](/core-concepts).
 
 **Stewardship**
 The bounded role stewards play: tuning *quantitative parameters within the bounds the contracts define*. The immutable core cannot be changed; stewards steward, they do not govern. See [Stewardship, not Governance](/stewardship/stewardship).
@@ -120,7 +120,7 @@ The bounded role stewards play: tuning *quantitative parameters within the bound
 ## T
 
 **TCR (Total Collateralization Ratio)**
-The system-wide health metric: the bonding-curve reserve backing total collateral, valued in the pAsset, divided by total pAsset debt (the contract's reserve-to-debt ratio). It is not a plain market-value-of-collateral over debt figure. Dropping below the configured threshold triggers [Recovery Mode](/redemptions-liquidations/recovery-mode).
+The system-wide health metric: the bonding-curve reserve backing total collateral, valued in the pAsset, divided by total pAsset debt (the contract's reserve-to-debt ratio). Not a plain market-value-of-collateral over debt figure. Dropping below the configured threshold triggers [Recovery Mode](/redemptions-liquidations/recovery-mode).
 
 **Trove**
 An individual borrowing position in a Polaris CDP. Each trove is isolated, with its own collateral, debt, and [ICR](#i). Polaris uses *trove*, never "vault" or "position". See [Minting pAssets](/minting/minting-passets).
@@ -128,8 +128,8 @@ An individual borrowing position in a Polaris CDP. Each trove is isolated, with 
 ## V
 
 **vePOLAR**
-The forthcoming vote-escrow layer for POLAR — POLAR locked for [stewardship](/stewardship/stewardship) rights and a share of protocol yield. The locking/vote-escrow mechanism is not yet implemented in the contracts; today stewardship is exercised through a single stewardship address. See [vePOLAR](/stewardship/vepolar).
+The forthcoming vote-escrow layer for POLAR — POLAR locked for [stewardship](/stewardship/stewardship) rights and a share of protocol yield. The locking mechanism is not yet implemented in the contracts; today stewardship runs through a single stewardship address. See [vePOLAR](/stewardship/vepolar).
 
 ---
 
-Missing a term? The narrative version of every concept lives on its dedicated page, starting from [Core Concepts](/core-concepts), and the long-form essays are on the [Polaris blog](https://polarisfinance.io/blog).
+Missing a term? The narrative version of every concept lives on its dedicated page, starting from [Core Concepts](/core-concepts); the long-form essays are on the [Polaris blog](https://polarisfinance.io/blog).

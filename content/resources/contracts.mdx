@@ -5,11 +5,11 @@ description: "The Polaris contract set: a shared core plus one instance per pAss
 
 # Contracts & Addresses
 
-> **Pre-launch note:** Canonical addresses are published at deployment, not before. The contract *list* below reflects the deployed system; the **Address** column is filled in at launch, with each address linking to verified source on the official explorer. If any app, post, or message gives you an address that is not linked from these docs, treat it as unverified.
+> **Pre-launch note:** Canonical addresses publish at deployment, not before. The contract *list* below reflects the deployed system; the **Address** column fills in at launch, each address linking to verified source on the official explorer. Treat any address not linked from these docs as unverified.
 
 ## How the system is deployed
 
-Polaris is a *factory* of pAsset instances. A single **shared core** — the bonding curve, POLAR, the Fee Router, and the oracles — is deployed **once**. Then **one instance set** is deployed **per pAsset** (pUSD, pGOLD, …): each gets its own CDP manager, Stability Pool, and PSM, but they all share the same pETH collateral, bonding curve, and POLAR.
+Polaris is a *factory* of pAsset instances. A single **shared core** — the bonding curve, POLAR, the Fee Router, and the oracles — deploys **once**. Then **one instance set** deploys **per pAsset** (pUSD, pGOLD, …): each gets its own CDP manager, Stability Pool, and PSM, but all share the same pETH collateral, bonding curve, and POLAR.
 
 So the address table has a **core section** plus **one block per pAsset**. Two pAsset instances exist today: **pUSD** and **pGOLD**.
 
@@ -28,7 +28,7 @@ So the address table has a **core section** plus **one block per pAsset**. Two p
 
 ## Per-pAsset instance
 
-One set of these is deployed for each pAsset. Key everything by `(pAsset, owner)` — a pUSD trove and a pGOLD trove are unrelated positions in different instances.
+One set deploys per pAsset. Key everything by `(pAsset, owner)` — a pUSD trove and a pGOLD trove are unrelated positions in different instances.
 
 | Contract | Source (`src/`) | Address |
 |---|---|---|
@@ -43,19 +43,19 @@ One set of these is deployed for each pAsset. Key everything by `(pAsset, owner)
 | Price feed — the pAsset's reference price path. | `PUSDTestnetPriceFeed.sol` / `PGOLDTestnetPriceFeed.sol` | _Forthcoming_ |
 | Oracle (medianiser) — median of multiple ETH/USD feeds (plus XAU/USD for pGOLD). | `Medianiser.sol` | _Forthcoming_ |
 
-> **Read helpers** (`Helpers/MultiCDPGetter.sol`, `Helpers/MultiReserveLoanGetter.sol`) are convenience view contracts for batched reads; integrations may use them but should treat direct contract reads as the source of truth.
+> **Read helpers** (`Helpers/MultiCDPGetter.sol`, `Helpers/MultiReserveLoanGetter.sol`) are view contracts for batched reads; integrations may use them but should treat direct contract reads as the source of truth.
 
 > **A note on naming.** "pETH" and "the bonding curve" are the **same contract**. The "conversion auction" is **part of POLAR**, not a separate contract. The "vePOLAR" lock layer is **not yet deployed** — POLAR yield currently flows through plain staking. `pCHF`, `pBigMac`, and other catalog entries are illustrative; only **pUSD** and **pGOLD** are deployed.
 
 ## Testnet 2 (Sepolia)
 
-Testnet 2 runs on **Sepolia (chain ID `11155111`)**. Its addresses are intentionally **not** listed here as canonical — they are testnet, may be redeployed, and the public contracts use testnet stand-ins (mock WETH, mock oracles, testnet price feeds) that will be replaced by production contracts at launch. Builders who need the current testnet addresses can read them from the protocol repository's deployment manifests.
+Testnet 2 runs on **Sepolia (chain ID `11155111`)**. Its addresses are intentionally **not** listed here as canonical — they are testnet, may be redeployed, and use testnet stand-ins (mock WETH, mock oracles, testnet price feeds) that production contracts replace at launch. Builders who need the current testnet addresses can read them from the protocol repository's deployment manifests.
 
 ## Before you interact
 
 1. Confirm the **network and chain ID** match the official deployment manifest.
 2. Confirm every **address** matches this page (once populated) and resolves to **verified source** on the official explorer.
 3. Confirm the **ABI** matches that verified source.
-4. Never paste an address from a screenshot, DM, or search result without that explorer check — address-spoofing is exactly how these attacks succeed.
+4. Never paste an address from a screenshot, DM, or search result without that explorer check — address-spoofing is how these attacks succeed.
 
 While addresses are pending, see [Audits & Security](/resources/audits-security) for the security model, or the [Glossary](/resources/glossary) for what each contract does.
