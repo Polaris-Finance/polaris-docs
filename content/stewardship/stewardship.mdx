@@ -5,11 +5,11 @@ description: Polaris keeps its core immutable and lets vePOLAR steward only boun
 
 # Stewardship, not Governance
 
-Governance doesn't fail because of bad people; it fails because of **bad structure**. Unlimited scope, undefined boundaries, and misaligned incentives eventually turn a DAO into an extraction arena, no matter who is at the table.
+Governance doesn't fail because of bad people; it fails because of **bad structure**. Unlimited scope, undefined boundaries, and misaligned incentives eventually turn a DAO into an extraction arena, whoever is at the table.
 
-Polaris's answer is not a fully immutable protocol with no adjustable parameters, nor an unbounded DAO. It is a third path: an immutable core, plus a clearly scoped layer where humans exercise judgment only where judgment is load-bearing. We call it **stewardship** rather than governance because the difference is structural, not cosmetic.
+Polaris's answer is neither a fully immutable protocol with no adjustable parameters nor an unbounded DAO. It is a third path: an immutable core plus a clearly scoped layer where humans exercise judgment only where judgment is load-bearing. We call it **stewardship** rather than governance because the difference is structural, not cosmetic.
 
-> **Current status:** The stewardship process is not live yet. POLAR and vePOLAR contract addresses, lock terms, proposal thresholds, voting periods, execution delays, and final numeric parameter bounds are pending audited deployment. These docs describe the intended scope and lifecycle without inventing launch parameters.
+> **Current status:** Stewardship is not live yet. POLAR and vePOLAR contract addresses, lock terms, proposal thresholds, voting periods, execution delays, and final numeric parameter bounds await audited deployment. These docs describe the intended scope and lifecycle without inventing launch parameters.
 
 ## The core is immutable
 
@@ -21,11 +21,11 @@ The mechanisms that define Polaris **cannot be changed by anyone**: not the team
 - [Redemptions](/redemptions-liquidations/redemptions)
 - The [Stability Pool](/yield/stability-pool)
 
-The Polaris you understand on day one is the Polaris you hold later. There is no reverse-engineering the base protocol after each vote, because the load-bearing logic is out of reach by design.
+The Polaris you understand on day one is the Polaris you hold later. There is no re-learning the base protocol after each vote, because the load-bearing logic is out of reach by design.
 
 ## What stewardship controls
 
-Stewardship operates at the edges: StablecoinOS onboarding, permitted parameter dials, the POLAR stewardship layer, fee and interest splits, Flow participation, and treasury programs. Safety-critical adjustable values ship with hardcoded limits; the remaining numeric bounds are finalized at audited deployment.
+Stewardship operates at the edges: StablecoinOS onboarding, permitted parameter dials, the POLAR stewardship layer, fee and interest splits, Flow participation, and treasury programs. Safety-critical adjustable values ship with hardcoded limits; the remaining numeric bounds are set at audited deployment.
 
 | Domain | Power | Constraint | Launch status |
 |---|---|---|---|
@@ -37,7 +37,7 @@ Stewardship operates at the edges: StablecoinOS onboarding, permitted parameter 
 | **Flow weights** | Set whitelisted recipient weights and related edge parameters | Hardcoded limits; no gauges, bribes, or emissions | Numeric bounds pending |
 | **Treasury programs** | Operate programs such as the Polar Council | Initially team-managed until a framework is published | Framework pending |
 
-A stewardship vote can bring a new pAsset or Flow participant into the system, or move an approved parameter inside its range. It cannot alter the bonding curve, redemption mechanism, liquidation logic, Stability Pool mechanics, or core contract immutability.
+A stewardship vote can bring a new pAsset or Flow participant into the system, or move an approved parameter within its range. It cannot alter the bonding curve, redemption mechanism, liquidation logic, Stability Pool mechanics, or core contract immutability.
 
 ## What stewardship does not do
 
@@ -64,7 +64,7 @@ Teams seeking onboarding, a pAsset instance, Flow participation, or another stew
 - Revenue-sharing, Flow, or integration assumptions, if relevant.
 - Monitoring and reporting commitments after approval.
 
-The final submission template is pending. Until it is published, operators should prepare around these fields rather than assume an informal approval path.
+The final submission template is pending. Until it is published, operators should prepare around these fields rather than assume an informal path.
 
 ## Proposal and voting lifecycle
 
@@ -80,25 +80,25 @@ The final stewardship UI and contract-level process are pending. The intended li
 | **Verification** | Docs, indexers, and monitors confirm the new state onchain | Artifact plan pending |
 | **Monitoring** | Operators and stewards watch the result and propose reversals or adjustments if needed | Reporting framework pending |
 
-No proposal should be treated as executable until the official process, contracts, and parameter bounds are published.
+No proposal is executable until the official process, contracts, and parameter bounds are published.
 
 ## The three-tier decision model
 
-Polaris is built on a simple ordering: solve a problem at the lowest tier it can be solved, and only escalate what the tier below cannot handle.
+Polaris follows a simple ordering: solve a problem at the lowest tier that can solve it, and escalate only what the tier below cannot handle.
 
 1. **Automate what you can.** Interest-rate setting, floor-price growth, liquidation processing, and redemptions run autonomously.
-2. **Incentivize what you can't automate.** Where behavior can't be hardcoded but can be paid for, durable protocol revenue and Flow formulas do the work.
+2. **Incentivize what you can't automate.** Where behavior can't be hardcoded but can be paid for, durable protocol revenue and Flow formulas handle it.
 3. **Steward only what's left.** Only what genuinely requires qualitative judgment goes to vePOLAR.
 
-This ordering preserves vePOLAR attention for the few decisions where human discernment matters.
+This ordering reserves vePOLAR attention for the few decisions where human discernment matters.
 
 ## Bounded blast radius
 
-Stewards hold real power, so they can make real mistakes, but the immutable core caps the damage. License a weak pAsset that fails? It affects that instance and its marginal share of the system, not the bonding curve or liquidation engine. Set a poor split? It can be moved back inside the same hardcoded bounds. The design absorbs errors rather than letting them rewrite the protocol.
+Stewards hold real power, so they can make real mistakes, but the immutable core caps the damage. License a weak pAsset that fails? It affects that instance and its marginal share of the system, not the bonding curve or liquidation engine. Set a poor split? It can be moved back inside the same hardcoded bounds. The design absorbs errors instead of letting them rewrite the protocol.
 
 ## How this compares to DAO governance
 
-A structural comparison, not an attack. Every team named below shipped real, valuable work; the point is the shape of the system, not the people in it.
+A structural comparison, not an attack. Every team named below shipped real, valuable work; the point is the system's shape, not the people in it.
 
 | | Unbounded DAO governance | Polaris stewardship |
 |---|---|---|
@@ -109,13 +109,13 @@ A structural comparison, not an attack. Every team named below shipped real, val
 
 - **Maker** repeatedly denatured its base protocol, chasing trends and creating bespoke markets that benefited insiders; unanchored scope is the enabling condition.
 - **Aave** carried sizable undisclosed conflicts of interest; a proposal to enforce basic disclosure was rejected by entities that themselves failed to disclose. The system resisted its own cleanup.
-- **Uniswap** protects its base protocol, yet unscoped governance over the UNI token still produced familiar extraction. Even a protected core invites extraction when the surrounding scope is unbounded.
+- **Uniswap** protects its base protocol, yet unscoped governance over the UNI token still produced familiar extraction. Even a protected core invites extraction when surrounding scope is unbounded.
 
 The lesson Polaris draws: bound the scope first, and most of these failure modes lose their oxygen. Less to capture, less to overpay for, nothing to denature.
 
 ## Structure over trust
 
-Stewardship is not a promise to behave well; it is a structure in which misbehavior has a small, bounded surface. The core is immutable. Each lever is bounded, auditable, and reversible where the underlying contract permits reversal. The team's outsized early influence is progressively diluted through the [conversion mechanism](/polar/conversion-auctions): the faster Polaris grows, the faster new POLAR enters circulation and the team's share shrinks. That dilution is enforced by code, not pledged in a forum.
+Stewardship is not a promise to behave well; it is a structure in which misbehavior has a small, bounded surface. The core is immutable. Each lever is bounded, auditable, and reversible where the underlying contract permits. The team's outsized early influence is progressively diluted through the [conversion mechanism](/polar/conversion-auctions): the faster Polaris grows, the faster new POLAR enters circulation and the team's share shrinks. That dilution is enforced by code, not pledged in a forum.
 
 ---
 
