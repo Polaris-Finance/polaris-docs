@@ -41,6 +41,15 @@ export const metadata = {
     template: SITE_TITLE_TEMPLATE
   },
   description: SITE_DESCRIPTION,
+  icons: {
+    icon: [
+      { url: pathWithBase('/favicon.ico'), sizes: 'any' },
+      { url: pathWithBase('/favicon.svg'), type: 'image/svg+xml' },
+      { url: pathWithBase('/favicon.png'), type: 'image/png', sizes: '192x192' }
+    ],
+    shortcut: pathWithBase('/favicon.ico'),
+    apple: [{ url: pathWithBase('/apple-touch-icon.png'), sizes: '180x180', type: 'image/png' }]
+  },
   alternates: {
     canonical: pathWithBase('/')
   },
