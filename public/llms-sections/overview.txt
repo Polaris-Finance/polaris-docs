@@ -129,6 +129,8 @@ URL: https://tokenbrice.github.io/polaris-docs/core-concepts
 
 # Polaris Core Concepts
 
+A single primitive, the bonding curve, produces pETH. pETH collateralizes every pAsset. Activity on any pAsset generates fees; fees burn pETH and raise its floor; a rising floor strengthens every position. POLAR captures the flywheel's long-term value and steers it.
+
 This page is the map. Each term is defined in a sentence or two and links to its full treatment. If you read nothing else, read this.
 
 ## The assets
@@ -176,8 +178,6 @@ Receives pETH from conversions and bonding-curve swap fees, then buffers and dis
 A stewardship role steers <em>quantitative parameters within the bounds the contracts define</em>. It does not govern the immutable core. See [Stewardship, not Governance](https://tokenbrice.github.io/polaris-docs/stewardship/stewardship).
 
 ## The shape of the system
-
-A single primitive, the bonding curve, produces pETH. pETH collateralizes every pAsset. Activity on any pAsset generates fees; fees burn pETH and raise its floor; a rising floor strengthens every position. POLAR captures the flywheel's long-term value and steers it.
 
 Image: Polaris system overview: ETH swaps into pETH on the bonding curve, pETH collateralizes CDPs that mint pUSD, and burning pETH for POLAR raises the floor and releases ETH
 
