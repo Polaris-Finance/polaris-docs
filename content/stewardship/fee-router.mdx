@@ -33,7 +33,7 @@ The router distributes yield according to published rules and bounds:
 | **POLAR stakers** | A stewarded share of distributed protocol yield | Final split and claim path pending |
 | **Flow recipients** | Revenue-sharing distributions for whitelisted contracts, where applicable | Flow deployment and parameters pending |
 
-The Fee Router itself does not enforce a per-destination split: [stewardship](/stewardship/stewardship) pushes buffered pETH rewards to a chosen receiver, bounded by the accrued buffer and the immutable buffering cadence. The bounded, stewarded split with hardcoded floors applies to primary interest (the pAsset-denominated revenue stream) via the separate [interest router](/yield/yield-sources), not the Fee Router's pETH rewards. Either way, the router moves only existing assets and cannot create token emissions.
+The Fee Router itself does not enforce a per-destination split: [stewardship](/stewardship) pushes buffered pETH rewards to a chosen receiver, bounded by the accrued buffer and the immutable buffering cadence. The bounded, stewarded split with hardcoded floors applies to primary interest (the pAsset-denominated revenue stream) via the separate [interest router](/yield/yield-sources), not the Fee Router's pETH rewards. Either way, the router moves only existing assets and cannot create token emissions.
 
 ## Why buffer at all
 
