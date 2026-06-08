@@ -8,7 +8,7 @@ description: Step-by-step guide to opening a Polaris trove — deposit pETH, min
 import { Steps } from 'nextra/components'
 
 
-A **trove** is your individual borrowing position: its own collateral, debt, and collateralization ratio. Opening one is how you mint a pAsset: **connect wallet ⇒ acquire pETH ⇒ deposit pETH as collateral ⇒ choose and mint a pAsset ⇒ confirm ⇒ monitor your ICR**. This page walks each step; for the concepts behind it, see [Minting pAssets](/minting) and [Managing Your Trove](/minting/managing-your-trove).
+A **trove** is your individual borrowing position: its own collateral, debt, and loan-to-value (LTV). Opening one is how you mint a pAsset: **connect wallet ⇒ acquire pETH ⇒ deposit pETH as collateral ⇒ choose and mint a pAsset ⇒ confirm ⇒ monitor your LTV**. This page walks each step; for the concepts behind it, see [Minting pAssets](/minting) and [Managing Your Trove](/minting/managing-your-trove).
 
 <Callout variant="info" title="Where this appears in the app">
 App anchor: **Borrow** tab -> pAsset trove flow. If the app says CDP, it is referring to the same pAsset debt-position mechanism this page calls a trove.
@@ -48,23 +48,23 @@ Choose how much pETH to lock in the trove. This collateral stays in the trove un
 
 ### Choose pAsset and amount
 
-Pick the pAsset (pUSD, pGOLD, …) and the amount of debt to take on. The app shows the resulting **Individual Collateralization Ratio (ICR)** — your collateral value divided by your debt value — before you confirm.
+Pick the pAsset (pUSD, pGOLD, …) and the amount of debt to take on. The app shows the resulting **loan-to-value (LTV)** — your debt value divided by your collateral value — before you confirm.
 
 ### Confirm
 
 Sign the transaction. The minted pAsset arrives in your wallet; the debt is recorded against your trove.
 
-### Monitor your ICR
+### Monitor your LTV
 
-Your ICR moves with the price of ETH and with any changes you make. Watch it from the trove dashboard and adjust before it nears a threshold. See [Managing Your Trove](/minting/managing-your-trove).
+Your LTV moves with the price of ETH and with any changes you make. Watch it from the trove dashboard and adjust before it nears the maximum. See [Managing Your Trove](/minting/managing-your-trove).
 
 </Steps>
 
-## Choose a collateralization buffer
+## Choose an LTV buffer
 
-Your ICR is the number that determines liquidation risk. Keep enough margin above the minimum to absorb ETH price moves, interest accrual, gas delays, and redemption impact.
+Your LTV is the number that determines liquidation risk. Keep enough room below the maximum to absorb ETH price moves, interest accrual, gas delays, and redemption impact.
 
-Redemptions are different from liquidations: a higher ICR does not exempt your trove from proportional redemptions, but it can keep the smaller post-redemption position away from the liquidation line. See [Managing Your Trove](/minting/managing-your-trove) for buffer strategy and examples.
+Redemptions are different from liquidations: lower LTV does not exempt your trove from proportional redemptions, but it can keep the smaller post-redemption position away from the liquidation line. See [Managing Your Trove](/minting/managing-your-trove) for buffer strategy and examples.
 
 <Callout variant="danger">
 There is no margin call and no grace period. If ETH moves against you faster than you top up, liquidation is automatic. Size your buffer for the worst day you are willing to sit through, not the average one.

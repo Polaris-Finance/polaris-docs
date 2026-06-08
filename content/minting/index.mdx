@@ -12,7 +12,7 @@ Polaris issues pAssets through a **Collateralized Debt Position (CDP)**. From th
 - A **money market** matches lenders and borrowers through a shared pool. You borrow funds another user supplied; an interest rate floats with pool utilization.
 - A **CDP** lets each borrower **mint** the pAsset directly from the protocol. You aren't borrowing anyone's deposit; you're your own mini central bank: post collateral ⇒ mint a pAsset ⇒ owe that debt back.
 
-Each position is isolated in a **[trove](/minting/managing-your-trove)** with its own collateral, debt, and collateralization ratio. Users of a given pAsset share only (1) the pAsset and its peg state, and (2) system-wide parameters like the [Total Collateralization Ratio and Recovery Mode](/redemptions-liquidations/recovery-mode). That isolation bounds the blast radius: each pAsset keeps its own debt accounting, so trouble in one cannot reach the troves or collateral of another.
+Each position is isolated in a **[trove](/minting/managing-your-trove)** with its own collateral, debt, and loan-to-value (LTV). Users of a given pAsset share only (1) the pAsset and its peg state, and (2) system-wide parameters like the [Total Collateralization Ratio and Recovery Mode](/redemptions-liquidations/recovery-mode). That isolation bounds the blast radius: each pAsset keeps its own debt accounting, so trouble in one cannot reach the troves or collateral of another.
 
 ## Borrower terminology
 
@@ -20,7 +20,7 @@ Each position is isolated in a **[trove](/minting/managing-your-trove)** with it
 |---|---|---|
 | **Borrow** | User action | The app tab/action for taking on debt. |
 | **CDP** | Mechanism | The collateralized debt contract model for a pAsset instance. |
-| **Trove** | Position | Your individual pAsset borrowing position: collateral, debt, and ICR. |
+| **Trove** | Position | Your individual pAsset borrowing position: collateral, debt, and LTV. |
 | **Loan / Reserve Loan** | Separate product | A WETH loan against fpETH floor-value collateral, not a pAsset trove. |
 
 When these docs say **trove**, they mean a pAsset debt position. When the app says **Reserve Loan**, read [pETH Split: fpETH and vpETH](/peth/split) instead; reserve loans use fpETH, not pETH trove collateral.

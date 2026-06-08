@@ -47,7 +47,8 @@ const searchVocabulary = [
       'close trove',
       'pUSD',
       'pGOLD',
-      'ICR',
+      'LTV',
+      'loan-to-value',
       'official app'
     ]
   },

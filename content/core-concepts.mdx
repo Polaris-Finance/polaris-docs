@@ -45,7 +45,7 @@ Collateralized Debt Position: the mechanism behind minting. You post collateral 
 </DefinitionCard>
 
 <DefinitionCard term="Trove" token="default">
-Your individual borrowing position in a Polaris CDP. Each trove is isolated, with its own collateral, debt, and collateralization ratio. See [Managing Your Trove](/minting/managing-your-trove).
+Your individual borrowing position in a Polaris CDP. Each trove is isolated, with its own collateral, debt, and loan-to-value (LTV). See [Managing Your Trove](/minting/managing-your-trove).
 </DefinitionCard>
 
 <DefinitionCard term="StablecoinOS" token="default">
@@ -69,7 +69,7 @@ Redemption and minting volume serve as onchain proxy signals for the peg, lettin
 ## Risk states
 
 <DefinitionCard term="Liquidation" token="default">
-If a trove falls below its minimum collateralization ratio, it is liquidated, and the [Stability Pool](/yield) absorbs the debt — or, if the pool is too small, the debt and collateral redistribute to other troves. See [Liquidations](/redemptions-liquidations/liquidations).
+If a trove's LTV exceeds the maximum, it is liquidated, and the [Stability Pool](/yield) absorbs the debt — or, if the pool is too small, the debt and collateral redistribute to other troves. See [Liquidations](/redemptions-liquidations/liquidations).
 </DefinitionCard>
 
 <DefinitionCard term="Recovery Mode" token="default">

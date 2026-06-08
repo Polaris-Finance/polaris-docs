@@ -25,13 +25,13 @@ Recovery Mode thresholds and current per-pAsset values live on [Parameters](/res
 
 ## How behavior changes
 
-Recovery Mode does **not** change which troves are liquidatable. In every mode, a trove is liquidatable only once its ICR falls below the minimum. What tightens is the set of borrower actions allowed while the state is active.
+Recovery Mode does **not** change which troves are liquidatable. In every mode, a trove is liquidatable only once its LTV exceeds the normal maximum. What tightens is the set of borrower actions allowed while the state is active.
 
 | Your action | Normal Mode | Recovery Mode |
 |---|---|---|
 | **Add collateral / repay debt** | Allowed | Allowed |
-| **Withdraw collateral / mint more debt** | Allowed if ICR stays above the minimum | Allowed only if the resulting ICR clears a higher recovery minimum and does not decrease your ICR |
-| **Liquidation eligibility** | ICR below the minimum | ICR below the minimum (unchanged) |
+| **Withdraw collateral / mint more debt** | Allowed if LTV stays below the maximum | Allowed only if the resulting LTV stays below the stricter recovery maximum and does not increase your LTV |
+| **Liquidation eligibility** | LTV above the maximum | LTV above the maximum (unchanged) |
 
 The principle: actions that strengthen backing stay open; actions that thin backing face a higher bar. Current trigger and action values are published on [Parameters](/resources/parameters).
 
@@ -39,18 +39,18 @@ The principle: actions that strengthen backing stay open; actions that thin back
 
 The trigger is the system's reserve-backing-to-debt ratio, so plain collateral value divided by debt is only a rough proxy. Treat the example as shape, not exact arithmetic.
 
-Suppose the protective state is active for pUSD. A trove above the normal minimum is **not** liquidated by Recovery Mode, but it may lose freedom to withdraw collateral or mint more debt. Those actions must clear the higher recovery minimum and cannot lower the trove's ICR. Adding collateral and repaying debt are always allowed.
+Suppose the protective state is active for pUSD. A trove below the normal max LTV is **not** liquidated by Recovery Mode, but it may lose freedom to withdraw collateral or mint more debt. Those actions must clear the stricter recovery max LTV and cannot raise the trove's LTV. Adding collateral and repaying debt are always allowed.
 
-The borrower's defense is the same as always: add collateral, repay debt, or both. For example, a trove with \$13,000 of collateral and 10,000 pUSD of debt is at 130%; repaying 2,000 pUSD moves it to \$13,000 / 8,000 pUSD, or 162.5%, before fees and price movement — and a healthier ICR also widens your room to act while the system is stressed.
+The borrower's defense is the same as always: add collateral, repay debt, or both. For example, a trove with \$13,000 of collateral and 10,000 pUSD of debt is at 76.9% LTV; repaying 2,000 pUSD moves it to 8,000 / \$13,000, or 61.5% LTV, before fees and price movement — and lower LTV also widens your room to act while the system is stressed.
 
 ## How to make your trove safe
 
-If the system is in or near Recovery Mode, the move is the same one that always protects a trove: raise your **ICR**.
+If the system is in or near Recovery Mode, the move is the same one that always protects a trove: lower your **LTV**.
 
-1. **Add pETH collateral.** More collateral against the same debt lifts your ICR directly.
-2. **Repay debt.** Burning pAsset to reduce what you owe lifts your ICR from the other side.
+1. **Add pETH collateral.** More collateral against the same debt lowers your LTV directly.
+2. **Repay debt.** Burning pAsset to reduce what you owe lowers your LTV from the other side.
 3. **Do both early.** Build the buffer before stress arrives, not while actions are already restricted.
 
-See [Managing Your Trove](/minting/managing-your-trove) for the mechanics, and [Liquidations](/redemptions-liquidations/liquidations) for what happens to a trove that falls below the line.
+See [Managing Your Trove](/minting/managing-your-trove) for the mechanics, and [Liquidations](/redemptions-liquidations/liquidations) for what happens to a trove that exceeds the max LTV.
 
 > **Warning:** Recovery Mode is most likely during volatile conditions when adding collateral is hardest. The reliable defense is a buffer maintained in calm markets. See the [Risk Disclosure](/resources/risk-disclosure).

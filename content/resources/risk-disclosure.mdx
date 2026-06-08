@@ -42,9 +42,9 @@ Because both pay arbitrageurs the moment the peg slips, they activate without an
 
 ## Liquidation risk (borrowers)
 
-If your [trove](/minting)'s [Individual Collateralization Ratio (ICR)](/resources) falls below the minimum, the trove is [liquidated](/redemptions-liquidations/liquidations): you lose your collateral to cover the debt.
+If your [trove](/minting)'s loan-to-value (LTV) rises above the maximum, the trove is [liquidated](/redemptions-liquidations/liquidations): you lose your collateral to cover the debt. Protocol parameters may publish the inverse threshold as a minimum collateral ratio (MCR).
 
-**Mitigation.** Liquidation logic is transparent and auditable onchain, with no discretionary calls. You control your ICR: post more collateral, or repay debt, to stay clear of the threshold. pETH's rising floor and yield-bearing nature dampen, but do not remove, the volatility that causes liquidations. Monitor your trove actively, especially in volatile markets.
+**Mitigation.** Liquidation logic is transparent and auditable onchain, with no discretionary calls. You control your LTV: post more collateral, or repay debt, to stay clear of the threshold. pETH's rising floor and yield-bearing nature dampen, but do not remove, the volatility that causes liquidations. Monitor your trove actively, especially in volatile markets.
 
 
 ## Stability Pool first-loss risk (depositors)
@@ -57,7 +57,7 @@ Depositing pAssets into the [Stability Pool](/yield) is the primary way to earn 
 
 When the system-wide reserve backing relative to total debt (the [reserve-to-debt ratio, shown as the TCR](/resources)) drops below a threshold, the protocol enters [Recovery Mode](/redemptions-liquidations/recovery-mode), a defensive state with tighter requirements.
 
-**Mitigation.** Recovery Mode is a feature, not a failure: it raises the bar for the whole system to rebuild collateralization quickly. Borrowers bear the cost: in Recovery Mode you cannot withdraw collateral or take on more debt unless you clear a higher minimum ratio and do not lower your ICR (pure collateral top-ups and repayments stay allowed). Liquidation eligibility itself does not change; it stays at the normal minimum in every mode. Keep your ICR comfortably above the minimum so a stress event does not box in your ability to act.
+**Mitigation.** Recovery Mode is a feature, not a failure: it raises the bar for the whole system to rebuild collateralization quickly. Borrowers bear the cost: in Recovery Mode you cannot withdraw collateral or take on more debt unless you stay below the stricter recovery max LTV and do not increase your LTV (pure collateral top-ups and repayments stay allowed). Liquidation eligibility itself does not change; it stays at the normal max LTV in every mode. Keep your LTV comfortably below the maximum so a stress event does not box in your ability to act.
 
 ## Stewardship and economic risk
 

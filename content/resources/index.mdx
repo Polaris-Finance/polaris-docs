@@ -20,6 +20,7 @@ These labels match the current testnet app and route users to the glossary entry
 | Floor Carry | [Floor Carry](#f) | [Split](/using-app/split) |
 | fpETH / vpETH | [fpETH](#f), [vpETH](#v) | [Split](/using-app/split) |
 | Guide | [Guide](#g) | [Polaris App](/using-app) |
+| LTV | [LTV](#l) | [Managing Your Trove](/minting/managing-your-trove) |
 | POLAR Staking | [POLAR Staking](#p) | [POLAR token](/polar) |
 | PSM / Redemption | [PSM](#p), [Redemption](#r) | [Advanced](/using-app/advanced) |
 | Reserve Loan | [Reserve Loan](#r) | [Advanced](/using-app/advanced) |
@@ -83,15 +84,18 @@ The app area that routes users by goal, such as getting pETH, borrowing pAssets,
 ## I
 
 **ICR (Individual Collateralization Ratio)**
-The collateralization ratio of a single [trove](#t): the value of its pETH collateral divided by its pAsset debt. If a trove's ICR falls below the minimum, it can be [liquidated](/redemptions-liquidations/liquidations).
+The protocol-side inverse of [LTV](#l): pETH collateral value divided by pAsset debt. The app shows LTV; if ICR falls below the minimum, the equivalent LTV has crossed the maximum and the trove can be [liquidated](/redemptions-liquidations/liquidations).
 
 **Inward-facing / Outward-facing**
 The design split between core mechanics handled by pETH/pAssets and ecosystem growth handled by [POLAR](/polar).
 
 ## L
 
+**LTV (loan-to-value)**
+The app-facing health metric for a [trove](#t): pAsset debt divided by pETH collateral value. Lower LTV is safer; if LTV exceeds the maximum, the trove can be [liquidated](/redemptions-liquidations/liquidations).
+
 **Liquidation**
-The process that closes an undercollateralized [trove](#t): when its [ICR](#i) drops below the minimum, the [Stability Pool](/yield) absorbs its debt and receives its collateral — or, if the pool is too small, the debt and collateral redistribute to other troves. See [Liquidations](/redemptions-liquidations/liquidations).
+The process that closes an undercollateralized [trove](#t): when its [LTV](#l) exceeds the maximum, the [Stability Pool](/yield) absorbs its debt and receives its collateral — or, if the pool is too small, the debt and collateral redistribute to other troves. See [Liquidations](/redemptions-liquidations/liquidations).
 
 ## M
 
@@ -181,7 +185,7 @@ The bounded role stewards play: tuning *quantitative parameters within the bound
 The system-wide reserve-to-debt health metric for a pAsset. Dropping below the configured threshold triggers [Recovery Mode](/redemptions-liquidations/recovery-mode).
 
 **Trove**
-An individual borrowing position in a Polaris CDP. Each trove is isolated, with its own collateral, debt, and [ICR](#i). Polaris uses *trove*, never "vault" or "position". See [Minting pAssets](/minting).
+An individual borrowing position in a Polaris CDP. Each trove is isolated, with its own collateral, debt, and [LTV](#l). Polaris uses *trove*, never "vault" or "position". See [Minting pAssets](/minting).
 
 ## V
 

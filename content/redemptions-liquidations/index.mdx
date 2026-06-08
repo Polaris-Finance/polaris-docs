@@ -41,6 +41,10 @@ The two mechanisms are mirror images:
 
 Their volumes also serve as the protocol's peg signal: a spike in redemptions reads as a downward depeg, a spike in mintings as an upward one. That is how Polaris sets [autonomous interest rates](/minting) without a direct pUSD market-price feed.
 
+![Interest rate and peg stability: above peg, minting volume rises and the interest rate falls to expand supply; below peg, redemption volume rises and the interest rate climbs to contract supply — each loop pushing the price back toward peg](/infographics/peg-stability.svg)
+
+*Redemption and minting volume are the onchain peg signal; the loops above show the mechanism's direction, not exact arithmetic.*
+
 ## Mechanics in detail
 
 ### Fees and fill limits
@@ -51,11 +55,11 @@ The app should show a pre-confirmation quote once the interface is live. Treat e
 
 ### Borrower impact
 
-A redemption targets the whole pAsset system, not a specific trove. It reduces debt and pETH collateral across **all** open troves for that pAsset, pro-rata to each trove's recorded collateral. There is no ICR queue, no "riskiest trove first," and no collateralization ratio that exempts a trove.
+A redemption targets the whole pAsset system, not a specific trove. It reduces debt and pETH collateral across **all** open troves for that pAsset, pro-rata to each trove's recorded collateral. There is no LTV queue, no "riskiest trove first," and no health metric that exempts a trove.
 
 Being redeemed against is not a liquidation penalty: your debt is repaid at face value with your own collateral, so net equity is broadly unchanged before fees and rounding. The cost is control. Your trove becomes smaller, your pETH exposure falls, and future pETH-linked yield potential falls with it.
 
-A higher ICR protects against **liquidation**, not redemption. It can still matter after a redemption, because the remaining ICR often rises but the position is smaller.
+Lower LTV protects against **liquidation**, not redemption. It can still matter after a redemption, because the remaining LTV often improves but the position is smaller.
 
 ### MEV and transaction ordering
 
@@ -69,16 +73,16 @@ Now the borrower side. A 4,000 pUSD redemption reduces total system debt by 4,00
 
 For intuition, here is the proportional share for one trove holding a fifth of the system's collateral, so it absorbs a fifth of the redemption (800 pUSD of debt and about \$800 of pETH):
 
-| Step | Collateral value | Debt | ICR |
+| Step | Collateral value | Debt | LTV |
 |---|---:|---:|---:|
-| Before redemption | \$18,000 | 12,000 pUSD | 150% |
-| After absorbing its pro-rata share | About \$17,200 | 11,200 pUSD | About 154% |
+| Before redemption | \$18,000 | 12,000 pUSD | 66.7% |
+| After absorbing its pro-rata share | About \$17,200 | 11,200 pUSD | About 65.1% |
 
-The borrower did not repay voluntarily; the market did it through the redemption path. The trove is slightly safer by ICR, but smaller and less exposed to pETH.
+The borrower did not repay voluntarily; the market did it through the redemption path. The trove is slightly safer by LTV, but smaller and less exposed to pETH.
 
 ## Before you act
 
-1. Track your **ICR** with enough buffer for price moves, interest accrual, and redemption impact.
+1. Track your **LTV** with enough buffer for price moves, interest accrual, and redemption impact.
 2. Treat a below-peg pAsset as a live signal that redemptions may shrink your position.
 3. Use [Managing Your Trove](/minting/managing-your-trove) for borrower levers and [Risk Disclosure](/resources/risk-disclosure) for the full risk model.
 

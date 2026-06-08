@@ -1,12 +1,12 @@
 ---
 title: Managing a Polaris Trove
-description: Manage a Polaris trove around its Individual Collateralization Ratio (ICR) — add collateral, mint or repay debt, track interest, and close out cleanly.
+description: Manage a Polaris trove around its loan-to-value (LTV) — add collateral, mint or repay debt, track interest, and close out cleanly.
 ---
 
 # Managing a Polaris Trove
 
 
-A trove is a living position. After you [open it](/minting/open-a-trove), you can adjust it freely: add collateral, mint more, repay debt, or close it. Everything traces back to one number — your **Individual Collateralization Ratio**.
+A trove is a living position. After you [open it](/minting/open-a-trove), you can adjust it freely: add collateral, mint more, repay debt, or close it. The app-facing health metric is **loan-to-value (LTV)**.
 
 <Callout variant="warning" title="Actionability">
 Trove management is testnet-actionable only on Sepolia with test assets and current manifests. Production management is not mainnet-actionable until <a href="/launch-status">Polaris Launch Status</a> publishes the official app, production addresses, final parameters, and audit status. Use live app and contract values over examples on this page.
@@ -16,46 +16,52 @@ Trove management is testnet-actionable only on Sepolia with test assets and curr
 <strong>Scope:</strong> this page covers pAsset troves/CDPs (shown under <strong>Borrow</strong>), not reserve loans. For the full vocabulary, see [Borrower terminology](/minting#borrower-terminology).
 </Callout>
 
-## Individual Collateralization Ratio (ICR)
+## Loan-to-value (LTV)
 
-Your **Individual Collateralization Ratio (ICR)** is the value of your trove's collateral divided by the recorded value of its debt:
+Your **loan-to-value (LTV)** is the recorded value of your debt divided by the value of your trove's collateral:
+
+> LTV = debt face value ÷ collateral value
+
+Collateral value comes from the protocol's collateral pricing path. Debt value is what you owe in that pAsset's reference unit, including accrued interest; it is not the temporary market price at which you might buy the pAsset on a DEX. A trove holding pETH worth \$15,000 against 10,000 pUSD of debt has an LTV of 66.7%. Lower is safer.
+
+Some protocol materials and parameters use **ICR** or **MCR**, the inverse collateral ratio:
 
 > ICR = collateral value ÷ debt face value
 
-Collateral value comes from the protocol's collateral pricing path. Debt value is what you owe in that pAsset's reference unit, including accrued interest; it is not the temporary market price at which you might buy the pAsset on a DEX. A trove holding pETH worth \$15,000 against 10,000 pUSD of debt has an ICR of 150%. Higher is safer. Two thresholds matter:
+That means 150% ICR is the same position as 66.7% LTV. A maximum LTV is the inverse of a minimum collateral ratio. Two rules matter:
 
-- Below the **minimum ICR**, the trove can be [liquidated](/redemptions-liquidations/liquidations).
-- [Redemptions](/redemptions-liquidations) draw collateral from every open trove collectively, pro-rata to its recorded collateral and regardless of ICR — a higher ICR protects against liquidation, not redemption.
+- Above the **maximum LTV**, the trove can be [liquidated](/redemptions-liquidations/liquidations).
+- [Redemptions](/redemptions-liquidations) draw collateral from every open trove collectively, pro-rata to its recorded collateral and regardless of LTV. Lower LTV protects against liquidation, not redemption.
 
-Your ICR moves on its own as ETH's price moves — you need not touch the trove for it to drift. Managing the trove is mostly about keeping the ICR where you want it.
+Your LTV moves on its own as ETH's price moves — you need not touch the trove for it to drift. Managing the trove is mostly about keeping LTV below the risk line with enough room for volatility.
 
 ## Trove Health Simulator
 
-The simulator below defaults to the current Public Testnet 1 MCR of 115%, not the Emergency Mode action MCR of 150%. Always verify the live value on [Parameters](/resources/parameters) and in the app before signing.
+The simulator below defaults to the current Public Testnet 1 MCR of 115%, equivalent to about 87.0% max LTV, not the Emergency Mode action MCR of 150%. Always verify the live value on [Parameters](/resources/parameters) and in the app before signing.
 
 <TroveSimulator minCollateralRatio={1.15} />
 
 
 <Callout variant="danger" title="Warning">
-Minting more or withdrawing collateral lowers your ICR. Drop below the minimum and your trove is <a href="/redemptions-liquidations/liquidations">liquidated</a> automatically: your collateral covers the debt plus a liquidation penalty, with no margin call, and only the surplus is returned for you to claim. <a href="/redemptions-liquidations">Redemptions</a> can also reach your position while it is still solvent — there is no minimum ICR to cross — shrinking your collateral and pETH exposure proportionally without your consent. See the <a href="/resources/risk-disclosure">Risk Disclosure</a>.
+Minting more or withdrawing collateral raises your LTV. Cross the maximum and your trove is <a href="/redemptions-liquidations/liquidations">liquidated</a> automatically: your collateral covers the debt plus a liquidation penalty, with no margin call, and only the surplus is returned for you to claim. <a href="/redemptions-liquidations">Redemptions</a> can also reach your position while it is still solvent — there is no LTV exemption — shrinking your collateral and pETH exposure proportionally without your consent. See the <a href="/resources/risk-disclosure">Risk Disclosure</a>.
 </Callout>
 
 ## Values to check
 
-Current MCR, Recovery Mode, fee, decay, minimum-debt, and dust values live on [Parameters](/resources/parameters). Before changing a trove, check the live app quote and the parameter page for the pAsset you are managing.
+Current MCR, max LTV equivalents, Recovery Mode, fee, decay, minimum-debt, and dust values live on [Parameters](/resources/parameters). Before changing a trove, check the live app quote and the parameter page for the pAsset you are managing.
 
 ## Add collateral
 
-Deposit more pETH into the trove to **raise your ICR** without changing your debt. This is the simplest way to step back from a liquidation or redemption threshold during a drawdown. (Need pETH? Mint it on the [bonding curve](/peth).)
+Deposit more pETH into the trove to **lower your LTV** without changing your debt. This is the simplest way to step back from a liquidation threshold during a drawdown. (Need pETH? Mint it on the [bonding curve](/peth).)
 
 ## Mint more / repay debt
 
-- **Mint more.** If your ICR has room, mint more pAsset against the same collateral. This *lowers* your ICR, so leave a buffer.
-- **Repay debt.** Burn pAsset back into the trove to reduce your debt and *raise* your ICR. Repaying is the other lever for recovering a thinning position, and it frees headroom to withdraw collateral.
+- **Mint more.** If your LTV has room, mint more pAsset against the same collateral. This *raises* your LTV, so leave a buffer.
+- **Repay debt.** Burn pAsset back into the trove to reduce your debt and *lower* your LTV. Repaying is the other lever for recovering a thinning position, and it frees headroom to withdraw collateral.
 
 ## Monitor interest accrual
 
-Borrowers pay an [autonomous, market-aware interest rate](/minting) that accrues continuously against your trove. Interest adds to your debt over time, so your ICR drifts *down* even if ETH holds flat and you do nothing. Check your accrued debt periodically and repay or top up so accrual does not quietly walk you toward a threshold.
+Borrowers pay an [autonomous, market-aware interest rate](/minting) that accrues continuously against your trove. Interest adds to your debt over time, so your LTV drifts *up* even if ETH holds flat and you do nothing. Check your accrued debt periodically and repay or top up so accrual does not quietly walk you toward a threshold.
 
 Collateral pETH also *earns* yield while it sits in the trove, partly offsetting the interest cost; see [Minting pAssets](/minting) for how the effective rate is composed.
 
@@ -68,7 +74,7 @@ Suppose your trove owes 10,000 pUSD and the app quotes an 8% annualized borrow r
 | 30 days | 10,000 × 8% × 30 / 365 = 65.75 pUSD | 10,065.75 pUSD |
 | 90 days | 10,000 × 8% × 90 / 365 = 197.26 pUSD | 10,197.26 pUSD |
 
-If your collateral value stays flat at \$15,000, the 30-day estimate moves your ICR from 150% to about 149%. The contract may accrue continuously and the rate may change, so use the app's recorded debt for precise decisions.
+If your collateral value stays flat at \$15,000, the 30-day estimate moves your LTV from 66.7% to about 67.1%. The contract may accrue continuously and the rate may change, so use the app's recorded debt for precise decisions.
 
 ## Close the trove
 
@@ -79,20 +85,20 @@ Closing is the reverse of opening (**repay debt ⇒ withdraw collateral**):
 
 If you do not hold enough pAsset to repay (for example, you sold it), buy it back on the market first.
 
-## How ICR maps to your exposure
+## How LTV maps to your exposure
 
-| ICR | Liquidation exposure | Redemption exposure |
+| LTV | Liquidation exposure | Redemption exposure |
 |---|---|---|
-| Comfortably high | Minimal — survives large ETH drops | Low — redemptions reduce every trove pro-rata to its collateral, and a large buffer keeps your ICR healthy afterward |
+| Low | Minimal — survives large ETH drops | Low — redemptions reduce every trove pro-rata to its collateral, and a large buffer keeps your LTV healthy afterward |
 | Moderate | Survives normal volatility | Moderate — a system-wide redemption shrinks your collateral proportionally and can erode your buffer |
-| Near the minimum | High — a sharp ETH move liquidates you | A system-wide redemption reduces your collateral pro-rata and, on thin margin, can leave you closer to the liquidation line |
+| Near max | High — a sharp ETH move liquidates you | A system-wide redemption reduces your collateral pro-rata and, on thin margin, can leave you closer to the liquidation line |
 
 The takeaway: a buffer is not wasted capital, it is the price of staying in control of your position. Keep enough margin that ordinary volatility and quiet interest accrual cannot force an outcome you did not choose.
 
 <NextSteps
   steps={[
     { href: '/minting/open-a-trove', title: 'Open a Trove', description: 'Step-by-step guide to opening your first trove.' },
-    { href: '/redemptions-liquidations/liquidations', title: 'Liquidations', description: 'Understand what happens if your ICR falls below the minimum.' },
+    { href: '/redemptions-liquidations/liquidations', title: 'Liquidations', description: 'Understand what happens if your LTV crosses the maximum.' },
     { href: '/yield', title: 'Stability Pool', description: 'Earn yield by depositing pAssets.' }
   ]}
 />

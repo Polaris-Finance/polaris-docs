@@ -9,19 +9,22 @@ export function TroveSimulator({ minCollateralRatio = 1.5 }) {
 
   const results = useMemo(() => {
     const collateralValue = collateral * ethPrice
-    const icr = debt > 0 ? collateralValue / debt : Number.POSITIVE_INFINITY
+    const ltv =
+      debt === 0 ? 0 : collateralValue > 0 ? debt / collateralValue : Number.POSITIVE_INFINITY
+    const maxLtv = 1 / minCollateralRatio
+    const warningLtv = 1 / (minCollateralRatio * 1.5)
+    const dangerLtv = 1 / (minCollateralRatio * 1.1)
     const liquidationPrice = collateral > 0 ? (debt * minCollateralRatio) / collateral : 0
-    const maxDebt = collateralValue / minCollateralRatio
     let health = 'safe'
 
-    if (icr < minCollateralRatio * 1.1) health = 'danger'
-    else if (icr < minCollateralRatio * 1.5) health = 'warning'
+    if (ltv > dangerLtv) health = 'danger'
+    else if (ltv > warningLtv) health = 'warning'
 
     return {
       health,
-      icr: Number.isFinite(icr) ? icr.toFixed(2) : 'N/A',
-      liquidationPrice: liquidationPrice.toFixed(2),
-      maxDebt: maxDebt.toFixed(2)
+      ltv: Number.isFinite(ltv) ? `${(ltv * 100).toFixed(1)}%` : 'N/A',
+      maxLtv: `${(maxLtv * 100).toFixed(1)}%`,
+      liquidationPrice: liquidationPrice.toFixed(2)
     }
   }, [collateral, debt, ethPrice, minCollateralRatio])
 
@@ -69,9 +72,9 @@ export function TroveSimulator({ minCollateralRatio = 1.5 }) {
 
       <div className="pl-trove-results">
         <div className="pl-trove-metric">
-          <span className="pl-trove-metric-label">Collateral Ratio</span>
+          <span className="pl-trove-metric-label">LTV</span>
           <span className="pl-trove-metric-value" data-health={results.health}>
-            {results.icr}x
+            {results.ltv}
           </span>
         </div>
         <div className="pl-trove-metric">
@@ -81,8 +84,8 @@ export function TroveSimulator({ minCollateralRatio = 1.5 }) {
           </span>
         </div>
         <div className="pl-trove-metric">
-          <span className="pl-trove-metric-label">Max Safe Debt</span>
-          <span className="pl-trove-metric-value">${results.maxDebt}</span>
+          <span className="pl-trove-metric-label">Max LTV</span>
+          <span className="pl-trove-metric-value">{results.maxLtv}</span>
         </div>
         <div className="pl-trove-metric">
           <span className="pl-trove-metric-label">Status</span>

@@ -11,7 +11,7 @@ description: How to open Polaris borrow positions from the app Borrow tab.
 
 Borrow is where you create collateralized positions. For pAssets, this means depositing pETH collateral and minting debt through a trove/CDP flow. Where exposed, Borrow may also include reserve-loan actions against fpETH.
 
-![Polaris Borrow tab showing a pAsset trove form with collateral amount, debt amount, collateral ratio, and risk details](/screenshots/borrow.jpg)
+![Polaris Borrow tab showing a pAsset trove form with collateral amount, debt amount, LTV, and risk details](/screenshots/borrow.jpg)
 
 *Borrow surfaces the position inputs and health checks before a trove action is signed.*
 
@@ -26,7 +26,7 @@ Borrow is where you create collateralized positions. For pAssets, this means dep
 
 1. Choose the borrow asset or position type.
 2. Enter collateral and debt amounts.
-3. Review collateral ratio, liquidation exposure, debt, fees, and projected position health.
+3. Review LTV, liquidation exposure, debt, fees, and projected position health.
 4. Approve collateral if required.
 5. Sign the borrow transaction.
 6. Return to Dashboard and confirm debt, collateral, and health updated.
@@ -35,7 +35,7 @@ A borrow action worked when the position appears with the expected collateral, d
 
 ## Common failures
 
-- Collateral ratio is below the allowed threshold.
+- LTV exceeds the allowed threshold.
 - Debt amount is too small or too large for the current position.
 - Recovery Mode or system restrictions block the action.
 - Price movement changes projected health before inclusion.
