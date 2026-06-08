@@ -10,11 +10,13 @@ const withNextra = nextra({
   }
 })
 
-// Static export to GitHub Pages — served at the root of the docs.polarisfinance.io
-// subdomain, so no basePath is required. `images.unoptimized` is mandatory for
-// `output: 'export'` or the build fails.
+// Static export to GitHub Pages. When deploying to a custom domain (docs.polarisfinance.io)
+// BASE_PATH is unset and the site lives at the root. When deploying to a GitHub Pages
+// subdirectory (e.g. tokenbrice.github.io/polaris-docs), set BASE_PATH=/polaris-docs in CI
+// so Next.js prefixes all asset URLs correctly.
 export default withNextra({
   output: 'export',
+  basePath: process.env.BASE_PATH ?? '',
   images: {
     unoptimized: true
   },

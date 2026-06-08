@@ -37,6 +37,8 @@ jobs:
 
       - name: Validate and build static site
         run: npm run ci
+        env:
+          BASE_PATH: /polaris-docs
 
       - name: Check external links
         run: npm run check:links:external
