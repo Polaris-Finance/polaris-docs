@@ -25,6 +25,8 @@ Polaris is not starting from scratch. It descends from a line of immutable, coun
 
 ![Polaris counterparty-free CDP lineage: SAI (2017), LUSD (2021), BOLD / Liquity V2 (2024), pUSD (2026)](/infographics/polaris-lineage.svg)
 
+*Key takeaway: Polaris inherits the counterparty-free CDP lineage while changing the yield source from scarce redemption revenue to protocol activity.*
+
 - **SAI (2017):** The first single-collateral CDP stablecoin. Proved the model works. Later became multi-collateral DAI, then drifted toward centralized backing — Real World Assets, USDC in the PSM, governance-controlled rates.
 - **LUSD (2021):** Immutable, counterparty-free, governance-free. Years with no admin breach. But capital-inefficient: it spent roughly 20% of its life more than 1% above peg, and its yield was limited to redemption fee revenue.
 - **BOLD (2024):** Liquity V2 — refined CDP mechanics, multi-collateral, still trustless. A genuine improvement, still yield-constrained.
@@ -114,6 +116,8 @@ The distinction matters: Polaris has stewardship, not governance. The core is fi
 
 ![Polaris system: ETH enters the bonding curve as pETH, pETH collateralizes CDPs that mint pAssets, burning pETH for POLAR raises the floor and releases ETH](/polaris-system-v2.svg)
 
+*Key takeaway: ETH becomes pETH once, then pETH powers collateral, yield routing, and POLAR conversion across the system.*
+
 The four-step picture:
 1. **Swap.** ETH enters the bonding curve and is issued as pETH at the current price.
 2. **Collateralize.** pETH is the only collateral every CDP instance accepts.
@@ -123,6 +127,8 @@ The four-step picture:
 ## The flywheel
 
 ![Polaris flywheel: more adoption drives activity, activity generates fees, fees fund conversions, conversions raise the pETH floor, a higher floor strengthens collateral, stronger collateral enables more minting, which drives more adoption](/infographics/polaris-flywheel.svg)
+
+*Key takeaway: the loop is endogenous; more useful pAssets create more pETH demand, more fees, and a stronger pETH floor under the stated assumptions.*
 
 > Adoption → activity → fees → conversions → higher pETH floor → stronger collateral → more minting → more adoption.
 

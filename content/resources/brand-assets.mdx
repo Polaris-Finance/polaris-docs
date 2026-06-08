@@ -9,6 +9,8 @@ Everything you need to represent Polaris correctly: logos, palette, and type. Th
 
 ![Polaris full logo](/full-logo.svg)
 
+*Full logo preview for placement checks; keep the SVG unmodified and provide enough contrast around it.*
+
 ## Logos
 
 The logo files live at the site root and link directly:
@@ -27,31 +29,33 @@ The logo files live at the site root and link directly:
 
 The canonical surfaces. Layer from darkest to lighter for depth.
 
-| Name | Hex | Role |
-|---|---|---|
-| Navy darkest | `#050a14` | Primary background |
-| Navy dark | `#0a1628` | Raised surfaces, panels |
-| Navy | `#0d1f3c` | Cards, borders, accents |
+| Swatch | Name | Hex | Role | Accessible use |
+|---|---|---|---|---|
+| <span className="pl-swatch" style={{ background: '#050a14' }} aria-label="Navy darkest swatch"></span> | Navy darkest | `#050a14` | Primary background | Use with Star or Star bright text. |
+| <span className="pl-swatch" style={{ background: '#0a1628' }} aria-label="Navy dark swatch"></span> | Navy dark | `#0a1628` | Raised surfaces, panels | Use with Star text for body copy. |
+| <span className="pl-swatch" style={{ background: '#0d1f3c' }} aria-label="Navy swatch"></span> | Navy | `#0d1f3c` | Cards, borders, accents | Use as a surface or border color, not low-contrast body text. |
 
 ### Star and cream
 
 The light values: text and starlight against the navy.
 
-| Name | Hex | Role |
-|---|---|---|
-| Star | `#E8DCC4` | Primary text, default starlight |
-| Star bright | `#FAF6EE` | Brightest highlights, emphasis |
-| Cream | `#F5F0E6` | Secondary light surfaces |
+| Swatch | Name | Hex | Role | Accessible use |
+|---|---|---|---|---|
+| <span className="pl-swatch" style={{ background: '#E8DCC4' }} aria-label="Star swatch"></span> | Star | `#E8DCC4` | Primary text, default starlight | Primary body text on navy backgrounds. |
+| <span className="pl-swatch" style={{ background: '#FAF6EE' }} aria-label="Star bright swatch"></span> | Star bright | `#FAF6EE` | Brightest highlights, emphasis | Use sparingly for high-emphasis text and icons. |
+| <span className="pl-swatch" style={{ background: '#F5F0E6' }} aria-label="Cream swatch"></span> | Cream | `#F5F0E6` | Secondary light surfaces | Pair with dark navy text; do not use as text on white. |
 
 ### Token colors
 
 Each core asset has a signature color.
 
-| Token | Hex |
-|---|---|
-| pUSD | `#E8DCC4` |
-| pETH | `#7BA5C9` |
-| POLAR | `#9B8FCF` |
+| Swatch | Token | Hex | Accessible use |
+|---|---|---|---|
+| <span className="pl-swatch" style={{ background: '#E8DCC4' }} aria-label="pUSD color swatch"></span> | pUSD | `#E8DCC4` | Works as text/icon color on navy; add text labels in charts. |
+| <span className="pl-swatch" style={{ background: '#7BA5C9' }} aria-label="pETH color swatch"></span> | pETH | `#7BA5C9` | Works for lines and icons on navy; avoid color-only legends. |
+| <span className="pl-swatch" style={{ background: '#9B8FCF' }} aria-label="POLAR color swatch"></span> | POLAR | `#9B8FCF` | Works for accent graphics on navy; pair with visible labels. |
+
+Do not rely on color alone. Token charts, route maps, and warnings should pair these colors with labels, icons, or table text so the meaning survives in grayscale, print, and assistive technologies.
 
 ## Typography
 

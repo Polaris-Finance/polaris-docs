@@ -1,8 +1,10 @@
 import { Children, cloneElement, isValidElement } from 'react'
 import { pathWithBase } from '../app/site-config.mjs'
 
-function shouldPrefixHref(href) {
+function shouldPrefixNativeAnchor(child) {
+  const href = child.props.href
   return (
+    child.type === 'a' &&
     typeof href === 'string' &&
     href.startsWith('/') &&
     !href.startsWith('//') &&
@@ -10,18 +12,18 @@ function shouldPrefixHref(href) {
   )
 }
 
-export function withBaseInternalLinks(node) {
+export function withBaseInternalLinks(node, { prefixNativeAnchors = false } = {}) {
   return Children.map(node, (child) => {
     if (!isValidElement(child)) return child
 
     const nextProps = {}
 
-    if (shouldPrefixHref(child.props.href)) {
+    if (prefixNativeAnchors && shouldPrefixNativeAnchor(child)) {
       nextProps.href = pathWithBase(child.props.href)
     }
 
     if (child.props.children) {
-      nextProps.children = withBaseInternalLinks(child.props.children)
+      nextProps.children = withBaseInternalLinks(child.props.children, { prefixNativeAnchors })
     }
 
     return Object.keys(nextProps).length ? cloneElement(child, nextProps) : child

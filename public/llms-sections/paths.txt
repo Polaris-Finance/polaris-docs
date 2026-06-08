@@ -165,17 +165,37 @@ Unknown pAsset instance | Do not share pUSD assumptions with another pAsset; loa
 
 ## Worked integration sketch
 
-The exact package, ABI, and method names are pending. The important pattern is a fail-closed deployment gate before any read or write:
+The exact package, ABI, and method names are pending. The important pattern is a fail-closed deployment gate before any read or write.
+
+This is integration pseudo-code, not a published SDK. The shape is copy-safe TypeScript, but the explorer-verification implementation must come from your own stack or a future Polaris SDK after canonical ABIs publish.
 
 ```ts
+type Address = `0x${string}`
+
 type PolarisDeployment = {
   chainId: number
-  contracts: Record<string, `0x${string}`>
+  contracts: Record<string, Address>
   abiHashes: Record<string, string>
 }
 
-const EXPECTED_CHAIN_ID = 11155111 // Public Testnet 1 today; production mainnet is 1 after launch.
+type ReadClient = {
+  getBytecode(args: { address: Address }): Promise<`0x${string}` | null | undefined>
+}
 
+type ExplorerVerifier = (args: {
+  address: Address
+  expectedAbiHash: string
+}) => Promise<boolean>
+
+const EXPECTED_CHAIN_ID = 11155111 // Public Testnet 1 today; production mainnet is 1 after launch.
+```
+
+```ts
+
+  client: ReadClient,
+  deployment: PolarisDeployment,
+  verifyExplorerSourceAndAbiHash: ExplorerVerifier
+) {
   if (deployment.chainId !== EXPECTED_CHAIN_ID) {
     throw new Error(`Unexpected Polaris network: ${deployment.chainId}`)
   }

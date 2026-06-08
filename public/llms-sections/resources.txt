@@ -95,6 +95,8 @@ Everything you need to represent Polaris correctly: logos, palette, and type. Th
 
 Image: Polaris full logo
 
+*Full logo preview for placement checks; keep the SVG unmodified and provide enough contrast around it.*
+
 ## Logos
 
 The logo files live at the site root and link directly:
@@ -113,31 +115,33 @@ Apple touch icon | `/apple-touch-icon.png` | iOS home-screen icon
 
 The canonical surfaces. Layer from darkest to lighter for depth.
 
-Name | Hex | Role
+Swatch | Name | Hex | Role | Accessible use
 
-Navy darkest | `#050a14` | Primary background
-Navy dark | `#0a1628` | Raised surfaces, panels
-Navy | `#0d1f3c` | Cards, borders, accents
+Navy darkest | `#050a14` | Primary background | Use with Star or Star bright text.
+Navy dark | `#0a1628` | Raised surfaces, panels | Use with Star text for body copy.
+Navy | `#0d1f3c` | Cards, borders, accents | Use as a surface or border color, not low-contrast body text.
 
 ### Star and cream
 
 The light values: text and starlight against the navy.
 
-Name | Hex | Role
+Swatch | Name | Hex | Role | Accessible use
 
-Star | `#E8DCC4` | Primary text, default starlight
-Star bright | `#FAF6EE` | Brightest highlights, emphasis
-Cream | `#F5F0E6` | Secondary light surfaces
+Star | `#E8DCC4` | Primary text, default starlight | Primary body text on navy backgrounds.
+Star bright | `#FAF6EE` | Brightest highlights, emphasis | Use sparingly for high-emphasis text and icons.
+Cream | `#F5F0E6` | Secondary light surfaces | Pair with dark navy text; do not use as text on white.
 
 ### Token colors
 
 Each core asset has a signature color.
 
-Token | Hex
+Swatch | Token | Hex | Accessible use
 
-pUSD | `#E8DCC4`
-pETH | `#7BA5C9`
-POLAR | `#9B8FCF`
+pUSD | `#E8DCC4` | Works as text/icon color on navy; add text labels in charts.
+pETH | `#7BA5C9` | Works for lines and icons on navy; avoid color-only legends.
+POLAR | `#9B8FCF` | Works for accent graphics on navy; pair with visible labels.
+
+Do not rely on color alone. Token charts, route maps, and warnings should pair these colors with labels, icons, or table text so the meaning survives in grayscale, print, and assistive technologies.
 
 ## Typography
 
@@ -348,6 +352,30 @@ URL: https://tokenbrice.github.io/polaris-docs/resources/glossary
 # Polaris Glossary
 
 Every key Polaris term, alphabetized. Each entry is one or two sentences and links to its full treatment where one exists. For the narrative map of how the pieces fit, read [Core Concepts](https://tokenbrice.github.io/polaris-docs/core-concepts).
+
+## Live app terms
+
+These labels match the current testnet app and route users to the glossary entry plus the matching guide page.
+
+App term | Glossary entry | Guide
+
+Advanced | [Advanced](https://tokenbrice.github.io/polaris-docs/resources/glossary#a) | [Advanced app tools](https://tokenbrice.github.io/polaris-docs/using-app/advanced)
+APR | [APR](https://tokenbrice.github.io/polaris-docs/resources/glossary#a) | [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn)
+Borrow / CDP | [CDP](https://tokenbrice.github.io/polaris-docs/resources/glossary#c), [Trove](https://tokenbrice.github.io/polaris-docs/resources/glossary#t) | [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow)
+Earn / SP | [Stability Pool](https://tokenbrice.github.io/polaris-docs/resources/glossary#s), [SP](https://tokenbrice.github.io/polaris-docs/resources/glossary#s) | [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn)
+Floor Carry | [Floor Carry](https://tokenbrice.github.io/polaris-docs/resources/glossary#f) | [Split](https://tokenbrice.github.io/polaris-docs/using-app/split)
+fpETH / vpETH | [fpETH](https://tokenbrice.github.io/polaris-docs/resources/glossary#f), [vpETH](https://tokenbrice.github.io/polaris-docs/resources/glossary#v) | [Split](https://tokenbrice.github.io/polaris-docs/using-app/split)
+Guide | [Guide](https://tokenbrice.github.io/polaris-docs/resources/glossary#g) | [Guide](https://tokenbrice.github.io/polaris-docs/using-app/guide)
+POLAR Staking | [POLAR Staking](https://tokenbrice.github.io/polaris-docs/resources/glossary#p) | [POLAR token](https://tokenbrice.github.io/polaris-docs/polar/polar-token)
+PSM / Redemption | [PSM](https://tokenbrice.github.io/polaris-docs/resources/glossary#p), [Redemption](https://tokenbrice.github.io/polaris-docs/resources/glossary#r) | [Advanced](https://tokenbrice.github.io/polaris-docs/using-app/advanced)
+Reserve Loan | [Reserve Loan](https://tokenbrice.github.io/polaris-docs/resources/glossary#r) | [Advanced](https://tokenbrice.github.io/polaris-docs/using-app/advanced)
+Split | [Split](https://tokenbrice.github.io/polaris-docs/resources/glossary#s) | [Split](https://tokenbrice.github.io/polaris-docs/using-app/split)
+Swap / WETH | [WETH](https://tokenbrice.github.io/polaris-docs/resources/glossary#w), [pETH](https://tokenbrice.github.io/polaris-docs/resources/glossary#p) | [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap)
+Zap | [Zap](https://tokenbrice.github.io/polaris-docs/resources/glossary#z) | [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap)
+
+## A-Z jump
+
+[A](https://tokenbrice.github.io/polaris-docs/resources/glossary#a) · [B](https://tokenbrice.github.io/polaris-docs/resources/glossary#b) · [C](https://tokenbrice.github.io/polaris-docs/resources/glossary#c) · [F](https://tokenbrice.github.io/polaris-docs/resources/glossary#f) · [G](https://tokenbrice.github.io/polaris-docs/resources/glossary#g) · [I](https://tokenbrice.github.io/polaris-docs/resources/glossary#i) · [L](https://tokenbrice.github.io/polaris-docs/resources/glossary#l) · [M](https://tokenbrice.github.io/polaris-docs/resources/glossary#m) · [O](https://tokenbrice.github.io/polaris-docs/resources/glossary#o) · [P](https://tokenbrice.github.io/polaris-docs/resources/glossary#p) · [R](https://tokenbrice.github.io/polaris-docs/resources/glossary#r) · [S](https://tokenbrice.github.io/polaris-docs/resources/glossary#s) · [T](https://tokenbrice.github.io/polaris-docs/resources/glossary#t) · [V](https://tokenbrice.github.io/polaris-docs/resources/glossary#v) · [W](https://tokenbrice.github.io/polaris-docs/resources/glossary#w) · [Z](https://tokenbrice.github.io/polaris-docs/resources/glossary#z)
 
 ## A
 

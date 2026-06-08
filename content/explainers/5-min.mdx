@@ -21,6 +21,8 @@ Polaris descends from the line of immutable CDP stablecoins:
 
 ![Polaris lineage: SAI (2017) → LUSD (2021) → BOLD / Liquity V2 (2024) → pUSD (2026)](/infographics/polaris-lineage.svg)
 
+*Key takeaway: Polaris keeps the immutable CDP lineage and adds an onchain yield source that scales with usage.*
+
 Each generation fixed a flaw the previous hit. SAI proved CDPs could work; LUSD proved they could be immutable; BOLD refined the mechanism. Polaris extends the lineage by solving the *yield-scaling* constraint: the bonding curve converts trading volume directly into protocol revenue, so yield grows with adoption rather than being rented from a CEX.
 
 ## The three engines
@@ -62,6 +64,8 @@ POLAR confers stewardship: a designated stewardship role can steer a small set o
 
 ![Polaris system: ETH enters the bonding curve as pETH, pETH collateralizes CDPs that mint pAssets, burning pETH for POLAR raises the floor and releases ETH](/polaris-system-v2.svg)
 
+*Key takeaway: pETH is the shared collateral layer; every pAsset instance and POLAR conversion loops back into that same base.*
+
 Four steps:
 1. **Swap.** ETH enters the bonding curve and is issued as pETH.
 2. **Collateralize.** pETH is deposited as the sole collateral in a CDP.
@@ -71,6 +75,8 @@ Four steps:
 ## The flywheel
 
 ![Polaris flywheel: adoption drives activity, fees enable conversions, conversions raise the floor, a higher floor strengthens collateral, stronger collateral enables more minting](/infographics/polaris-flywheel.svg)
+
+*Key takeaway: fees and conversions strengthen pETH, and stronger pETH makes future borrowing and minting safer under the curve assumptions.*
 
 > Adoption → activity → fees → conversions → higher pETH floor → stronger collateral → more minting.
 
