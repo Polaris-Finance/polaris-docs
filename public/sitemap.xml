@@ -20,6 +20,7 @@
   </url>
   <url>
     <loc>https://docs.polarisfinance.io/explainers</loc>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -49,11 +50,13 @@
   </url>
   <url>
     <loc>https://docs.polarisfinance.io/launch-status</loc>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://docs.polarisfinance.io/minting</loc>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -83,6 +86,7 @@
   </url>
   <url>
     <loc>https://docs.polarisfinance.io/paths</loc>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -124,6 +128,7 @@
   </url>
   <url>
     <loc>https://docs.polarisfinance.io/peth</loc>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -141,6 +146,7 @@
   </url>
   <url>
     <loc>https://docs.polarisfinance.io/polar</loc>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -170,6 +176,7 @@
   </url>
   <url>
     <loc>https://docs.polarisfinance.io/redemptions-liquidations</loc>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -193,6 +200,7 @@
   </url>
   <url>
     <loc>https://docs.polarisfinance.io/resources</loc>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -234,6 +242,7 @@
   </url>
   <url>
     <loc>https://docs.polarisfinance.io/stewardship</loc>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -269,6 +278,7 @@
   </url>
   <url>
     <loc>https://docs.polarisfinance.io/yield</loc>
+    <lastmod>2026-06-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
