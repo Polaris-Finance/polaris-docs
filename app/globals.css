@@ -127,8 +127,8 @@ html:not(.dark) .x\:focus-visible\:nextra-focus:focus-visible {
   color: #7ba5c9;
 }
 
-/* Home: launch timeline, system diagram, and timed explainer cards. Kept in CSS
-   instead of homepage MDX so content exports and search indexes stay clean. */
+/* Home: launch timeline and system diagram. Kept in CSS instead of homepage
+   MDX so content exports and search indexes stay clean. */
 .pl-voyage {
   margin: 1.1rem 0 2.75rem;
 }
@@ -649,7 +649,6 @@ html:not(.dark) .x\:focus-visible\:nextra-focus:focus-visible {
   width: 100%;
   height: auto;
 }
-
 
 @media (max-width: 1023px) {
   .pl-voyage {
@@ -1932,7 +1931,6 @@ article a[href^='https']:hover::after {
 /* Exclude image links and already-marked internals */
 article a[href^='http']:has(img)::after,
 article a.pl-blog-card::after,
-article a.pl-depth-card::after,
 article a.pl-next-step-card::after {
   display: none !important;
 }

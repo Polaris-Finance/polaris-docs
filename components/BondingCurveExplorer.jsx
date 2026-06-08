@@ -52,7 +52,9 @@ export function BondingCurveExplorer() {
     const innerWidth = width - 2 * padding
     const innerHeight = height - 2 * padding
 
-    const maxQuantity = supply * 2 // keep the current point centred
+    // Window ends at the current supply (the market point sits at the top-right,
+    // like the reference infographic) — a buy extends it to the new supply.
+    const maxQuantity = Math.max(supply, results.newSupply)
     const maxPrice = priceAt(maxQuantity)
 
     const toX = (quantity) => padding + (quantity / maxQuantity) * innerWidth
@@ -67,13 +69,14 @@ export function BondingCurveExplorer() {
     const floorSupply = (supply * floorPct) / 100
     return {
       path: `M ${curve.join(' L ')}`,
-      currentX: toX(supply),
-      currentY: toY(priceAt(supply)),
+      leftX: padding,
+      baseY: height - padding,
+      marketX: toX(supply),
+      marketY: toY(priceAt(supply)),
       floorX: toX(floorSupply),
       floorY: toY(priceAt(floorSupply)),
       tradeX: toX(results.newSupply),
-      tradeY: toY(results.newPrice),
-      baseY: height - padding
+      tradeY: toY(results.newPrice)
     }
   }, [supply, floorPct, results.newSupply, results.newPrice])
 
@@ -163,31 +166,56 @@ export function BondingCurveExplorer() {
           ))}
           <path d={`${viz.path} L 590 ${viz.baseY} L 10 ${viz.baseY} Z`} fill="url(#bc-grad)" />
           <path d={viz.path} fill="none" stroke="#7ba5c9" strokeWidth="2" strokeLinecap="round" />
+
+          {/* floor price guides */}
+          <line
+            x1={viz.leftX}
+            y1={viz.floorY}
+            x2={viz.floorX}
+            y2={viz.floorY}
+            stroke="rgba(123,165,201,0.35)"
+            strokeWidth="1"
+            strokeDasharray="3 3"
+          />
           <line
             x1={viz.floorX}
             y1={viz.floorY}
             x2={viz.floorX}
             y2={viz.baseY}
-            stroke="rgba(123,165,201,0.4)"
+            stroke="rgba(123,165,201,0.25)"
             strokeWidth="1"
             strokeDasharray="3 3"
           />
-          <circle
-            cx={viz.floorX}
-            cy={viz.floorY}
-            r="4"
-            fill="#7ba5c9"
-            stroke="#0a1628"
-            strokeWidth="1.5"
+
+          {/* market price guides */}
+          <line
+            x1={viz.leftX}
+            y1={viz.marketY}
+            x2={viz.marketX}
+            y2={viz.marketY}
+            stroke="rgba(216,201,164,0.4)"
+            strokeWidth="1"
+            strokeDasharray="3 3"
           />
+          <line
+            x1={viz.marketX}
+            y1={viz.marketY}
+            x2={viz.marketX}
+            y2={viz.baseY}
+            stroke="rgba(216,201,164,0.25)"
+            strokeWidth="1"
+            strokeDasharray="3 3"
+          />
+
+          {/* trade marker */}
           {tradePct !== 0 && (
             <>
               <line
-                x1={viz.currentX}
-                y1={viz.currentY}
+                x1={viz.marketX}
+                y1={viz.marketY}
                 x2={viz.tradeX}
                 y2={viz.tradeY}
-                stroke="rgba(216,201,164,0.5)"
+                stroke="rgba(216,201,164,0.6)"
                 strokeWidth="1.5"
                 strokeDasharray="2 2"
               />
@@ -201,9 +229,18 @@ export function BondingCurveExplorer() {
               />
             </>
           )}
+
           <circle
-            cx={viz.currentX}
-            cy={viz.currentY}
+            cx={viz.floorX}
+            cy={viz.floorY}
+            r="4"
+            fill="#7ba5c9"
+            stroke="#0a1628"
+            strokeWidth="1.5"
+          />
+          <circle
+            cx={viz.marketX}
+            cy={viz.marketY}
             r="5"
             fill="#d8c9a4"
             stroke="#0a1628"

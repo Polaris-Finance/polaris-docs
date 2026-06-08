@@ -17,36 +17,22 @@ const searchVocabulary = [
       'official app',
       'testnet app',
       'app.testnet.polarisfinance.io',
+      'connect wallet',
       'testnet',
       'Public Testnet 1',
       'Sepolia',
+      'Sepolia ETH',
       'chain ID 11155111',
       'WETH faucet',
+      'borrow',
+      'earn',
+      'swap',
       'contracts',
       'audits'
     ]
   },
   {
-    match: /^\/getting-started$/,
-    terms: [
-      'app',
-      'official app',
-      'connect wallet',
-      'testnet',
-      'Sepolia',
-      'Sepolia ETH',
-      'WETH faucet',
-      'borrow',
-      'earn',
-      'swap'
-    ]
-  },
-  {
-    match: /^\/paths$/,
-    terms: ['Dashboard', 'Swap', 'Borrow', 'Earn', 'Split', 'Zap', 'Guide', 'Advanced', 'Analytics']
-  },
-  {
-    match: /^\/paths\/safety-verification$/,
+    match: /^\/resources\/safety-verification$/,
     terms: ['official app', 'app URL', 'phishing', 'verify contracts', 'testnet', 'mainnet']
   },
   {

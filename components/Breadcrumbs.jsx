@@ -3,8 +3,8 @@ import { pathWithBase } from '../app/site-config.mjs'
 const labels = new Map([
   ['using-app', 'Using the App'],
   ['resources', 'Resources'],
+  ['safety-verification', 'Safety and Verification'],
   ['peth', 'pETH'],
-  ['paths', 'Choose Your Path'],
   ['minting', 'Minting'],
   ['yield', 'Yield'],
   ['polar', 'POLAR'],
