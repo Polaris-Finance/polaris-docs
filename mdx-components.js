@@ -1,4 +1,4 @@
-import { Children, createElement, isValidElement } from 'react'
+import { Children, cloneElement, createElement, isValidElement } from 'react'
 import { useMDXComponents as getThemeComponents } from 'nextra-theme-docs'
 import { Image } from 'nextra/components'
 import { AddressBlock } from './components/AddressBlock'
@@ -46,6 +46,51 @@ function collectHeaderLabels(node, labels = []) {
   return labels
 }
 
+function annotateRowCells(children, headers) {
+  let cellIndex = 0
+
+  return Children.map(children, (child) => {
+    if (!isValidElement(child)) return child
+
+    if (child.type === 'td') {
+      const label = headers[cellIndex] ?? ''
+      cellIndex += 1
+      return cloneElement(child, {
+        'data-label': label || undefined,
+        children: annotateTableChildren(child.props.children, headers, false)
+      })
+    }
+
+    if (child.type === 'th') cellIndex += 1
+
+    return cloneElement(child, {
+      children: annotateTableChildren(child.props.children, headers, false)
+    })
+  })
+}
+
+function annotateTableChildren(node, headers, insideBody = false) {
+  return Children.map(node, (child) => {
+    if (!isValidElement(child)) return child
+
+    if (child.type === 'tbody') {
+      return cloneElement(child, {
+        children: annotateTableChildren(child.props.children, headers, true)
+      })
+    }
+
+    if (insideBody && child.type === 'tr') {
+      return cloneElement(child, {
+        children: annotateRowCells(child.props.children, headers)
+      })
+    }
+
+    return cloneElement(child, {
+      children: annotateTableChildren(child.props.children, headers, insideBody)
+    })
+  })
+}
+
 function TableHeader({ scope = 'col', ...props }) {
   return createElement(ThemeTh, { scope, ...props })
 }
@@ -53,12 +98,19 @@ function TableHeader({ scope = 'col', ...props }) {
 function AccessibleTable({ children, tabIndex = 0, ...props }) {
   const headers = collectHeaderLabels(children)
   const caption = headers.length ? `Table columns: ${headers.join(', ')}` : 'Data table'
+  const isWide = headers.length >= 3
 
   return createElement(
     ThemeTable,
-    { tabIndex, 'data-pl-table': 'true', ...props },
-    createElement('caption', { className: 'pl-sr-only' }, caption),
-    children
+    {
+      tabIndex,
+      'aria-label': caption,
+      'data-pl-table': 'true',
+      'data-pl-wide': isWide ? 'true' : undefined,
+      ...props
+    },
+    createElement('caption', { className: 'pl-table-caption' }, caption),
+    annotateTableChildren(children, headers)
   )
 }
 

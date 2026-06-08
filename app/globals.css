@@ -965,6 +965,47 @@ html:not(.dark) .x\:focus-visible\:nextra-focus:focus-visible {
     bottom: auto;
     height: auto;
   }
+
+  .pl-timeline-list {
+    display: grid;
+  }
+}
+
+.pl-timeline-list {
+  display: none;
+  gap: 0.65rem;
+  margin: 1rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.pl-timeline-list li {
+  max-width: none;
+  padding-left: 0.15rem;
+}
+
+.pl-timeline-list li span:first-child {
+  display: block;
+  font-weight: 700;
+}
+
+.pl-timeline-list li span:nth-child(2) {
+  display: block;
+  color: rgba(58, 74, 90, 0.76);
+  font-size: 0.78rem;
+}
+
+.dark .pl-timeline-list li span:nth-child(2) {
+  color: rgba(232, 220, 196, 0.68);
+}
+
+.pl-timeline-list li[aria-current='step'] span:first-child::after {
+  content: ' - current';
+  color: #2c5f8a;
+  font-size: 0.75rem;
+}
+
+.dark .pl-timeline-list li[aria-current='step'] span:first-child::after {
+  color: #9cc2e0;
 }
 
 @media (max-width: 700px) {
@@ -974,6 +1015,15 @@ html:not(.dark) .x\:focus-visible\:nextra-focus:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
   .pl-route-line,
   .pl-route-glow,
   .pl-route-ahead,
@@ -989,6 +1039,14 @@ html:not(.dark) .x\:focus-visible\:nextra-focus:focus-visible {
   .pl-label .pl-date,
   .pl-depth-card:hover .pl-depth-mark {
     animation: none;
+  }
+
+  .pl-depth-card:hover,
+  .pl-blog-card:hover,
+  .pl-next-step-card:hover,
+  .pl-definition-card:hover,
+  .pl-mobile-cta a:hover {
+    transform: none !important;
   }
 }
 
@@ -1007,6 +1065,18 @@ article table[data-pl-table] {
   scroll-margin-top: 5rem;
 }
 
+.pl-table-caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 article table[data-pl-table]:focus-visible {
   outline: 2px solid var(--x-color-primary-600);
   outline-offset: 3px;
@@ -1017,11 +1087,16 @@ article :is(.katex-display, pre) {
   overflow-x: auto;
 }
 
+article :is(.katex-display, pre):focus-visible {
+  outline: 2px solid var(--x-color-primary-600);
+  outline-offset: 3px;
+}
+
 /* Prose measure. --nextra-content-width stays at 94rem so wide tables and
    diagrams have room, but unbounded that lets body prose run to ~88ch on
    large monitors. Cap the text column; figures and tables stay full width. */
 article :is(p, li) {
-  max-width: 80ch;
+  max-width: 72ch;
 }
 
 /* Anchor jumps shouldn't tuck headings under the sticky navbar. */
@@ -1074,6 +1149,22 @@ article img[src$='.svg'] {
 }
 html:not(.dark) article img[src$='.svg'] {
   box-shadow: 0 0 0 1px rgba(44, 74, 110, 0.12);
+}
+
+article figcaption,
+article .pl-figure-caption,
+.pl-timeline-caption {
+  max-width: 72ch;
+  margin-top: 0.55rem;
+  color: rgba(58, 74, 90, 0.86);
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.dark article figcaption,
+.dark article .pl-figure-caption,
+.dark .pl-timeline-caption {
+  color: rgba(232, 220, 196, 0.74);
 }
 
 /* ── Navbar logo ─────────────────────────────────────────────────────────── */
@@ -1867,6 +1958,7 @@ article button[title*='Copy'] {
 .pl-status-pill {
   display: inline-flex;
   align-items: center;
+  gap: 0.35rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -2110,6 +2202,84 @@ article [class*='overflow-x-auto']::after {
 article .overflow-x-auto:has(table)::after,
 article [class*='overflow-x-auto']:has(table)::after {
   opacity: 1;
+}
+
+@media (max-width: 640px) {
+  article table[data-pl-table][data-pl-wide='true'] {
+    display: block;
+    border-spacing: 0;
+  }
+
+  article table[data-pl-table][data-pl-wide='true'] .pl-table-caption {
+    position: static;
+    width: auto;
+    height: auto;
+    clip: auto;
+    margin: 0 0 0.6rem;
+    padding: 0.45rem 0.65rem;
+    border-radius: 6px;
+    background: rgba(63, 127, 168, 0.07);
+    color: #2c5f8a;
+    white-space: normal;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .dark article table[data-pl-table][data-pl-wide='true'] .pl-table-caption {
+    background: rgba(123, 165, 201, 0.09);
+    color: #9cc2e0;
+  }
+
+  article table[data-pl-table][data-pl-wide='true'] :is(thead, tbody, tr, th, td) {
+    display: block;
+  }
+
+  article table[data-pl-table][data-pl-wide='true'] thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+  }
+
+  article table[data-pl-table][data-pl-wide='true'] tbody tr {
+    margin: 0 0 0.85rem;
+    padding: 0.65rem 0.75rem;
+    border: 1px solid rgba(44, 74, 110, 0.14);
+    border-radius: 8px;
+    background: rgba(44, 74, 110, 0.025);
+  }
+
+  .dark article table[data-pl-table][data-pl-wide='true'] tbody tr {
+    border-color: rgba(123, 165, 201, 0.16);
+    background: rgba(10, 22, 40, 0.38);
+  }
+
+  article table[data-pl-table][data-pl-wide='true'] td {
+    display: grid;
+    grid-template-columns: minmax(7.5rem, 40%) 1fr;
+    gap: 0.65rem;
+    min-width: 0;
+    padding: 0.45rem 0;
+    border-bottom: 1px solid rgba(44, 74, 110, 0.08);
+  }
+
+  article table[data-pl-table][data-pl-wide='true'] td:last-child {
+    border-bottom: 0;
+  }
+
+  article table[data-pl-table][data-pl-wide='true'] td::before {
+    content: attr(data-label);
+    color: #3f5a78;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .dark article table[data-pl-table][data-pl-wide='true'] td::before {
+    color: #9cc2e0;
+  }
 }
 
 /* ── TOC Active Section Highlight ────────────────────────────────────────── */
@@ -2504,6 +2674,12 @@ article [class*='overflow-x-auto']:has(table)::after {
   overflow: hidden;
 }
 
+.pl-curve-viz svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .dark .pl-curve-viz {
   background: rgba(0, 0, 0, 0.25);
   border-color: rgba(123, 165, 201, 0.12);
@@ -2675,5 +2851,90 @@ article [class*='overflow-x-auto']:has(table)::after {
   .pl-next-step-card:hover,
   .pl-definition-card:hover {
     transform: none !important;
+  }
+}
+
+/* ── Brand swatches and print/PDF output ─────────────────────────────────── */
+
+.pl-swatch {
+  display: inline-block;
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 999px;
+  border: 1px solid rgba(44, 74, 110, 0.22);
+  vertical-align: middle;
+}
+
+.dark .pl-swatch {
+  border-color: rgba(232, 220, 196, 0.28);
+}
+
+@media print {
+  :root {
+    color-scheme: light;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    color: #111 !important;
+  }
+
+  header,
+  nav,
+  aside,
+  footer,
+  .nextra-sidebar-container,
+  .nextra-toc,
+  .pl-mobile-cta,
+  .pl-tooltip,
+  button {
+    display: none !important;
+  }
+
+  main,
+  article {
+    display: block !important;
+    max-width: none !important;
+    width: 100% !important;
+  }
+
+  article :is(p, li),
+  article figcaption {
+    max-width: 72ch !important;
+  }
+
+  article table[data-pl-table] {
+    display: table !important;
+    page-break-inside: avoid;
+    width: 100% !important;
+    font-size: 9pt;
+  }
+
+  article table[data-pl-table] :is(thead, tbody, tr, th, td) {
+    display: revert !important;
+  }
+
+  article table[data-pl-table] td::before {
+    content: none !important;
+  }
+
+  article img,
+  article svg,
+  .pl-system-overview,
+  .pl-voyage,
+  .pl-curve-explorer,
+  .pl-trove-sim {
+    page-break-inside: avoid;
+  }
+
+  a[href^='http']::after {
+    content: ' (' attr(href) ')' !important;
+    display: inline !important;
+    mask-image: none !important;
+    background: none !important;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 !important;
   }
 }

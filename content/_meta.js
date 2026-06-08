@@ -3,6 +3,34 @@ export default {
   'launch-status': 'Launch Status',
   'getting-started': 'Getting Started',
   'using-app': 'Using the App',
+  borrow: {
+    title: 'Borrow',
+    display: 'hidden'
+  },
+  earn: {
+    title: 'Earn',
+    display: 'hidden'
+  },
+  swap: {
+    title: 'Swap',
+    display: 'hidden'
+  },
+  zap: {
+    title: 'Zap',
+    display: 'hidden'
+  },
+  guide: {
+    title: 'Guide',
+    display: 'hidden'
+  },
+  split: {
+    title: 'Split',
+    display: 'hidden'
+  },
+  advanced: {
+    title: 'Advanced',
+    display: 'hidden'
+  },
   'why-polaris': 'Why Polaris',
   'core-concepts': 'Core Concepts',
   paths: 'Choose Your Path',

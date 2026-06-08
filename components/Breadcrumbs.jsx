@@ -24,22 +24,31 @@ export function Breadcrumbs({ path }) {
 
   return (
     <nav className="pl-breadcrumbs" aria-label="Breadcrumb">
-      <a href={pathWithBase('/')}>Docs</a>
-      {segments.map((segment, index) => {
-        const href = `/${segments.slice(0, index + 1).join('/')}`
-        const current = index === segments.length - 1
+      <ol className="pl-breadcrumb-list">
+        <li className="pl-breadcrumb-item">
+          <a className="pl-breadcrumb-link" href={pathWithBase('/')}>
+            Docs
+          </a>
+        </li>
+        {segments.map((segment, index) => {
+          const href = `/${segments.slice(0, index + 1).join('/')}`
+          const current = index === segments.length - 1
 
-        return (
-          <span key={href}>
-            <span aria-hidden="true">/</span>
-            {current ? (
-              <span aria-current="page">{titleize(segment)}</span>
-            ) : (
-              <a href={pathWithBase(href)}>{titleize(segment)}</a>
-            )}
-          </span>
-        )
-      })}
+          return (
+            <li className="pl-breadcrumb-item" key={href}>
+              {current ? (
+                <span className="pl-breadcrumb-current" aria-current="page">
+                  {titleize(segment)}
+                </span>
+              ) : (
+                <a className="pl-breadcrumb-link" href={pathWithBase(href)}>
+                  {titleize(segment)}
+                </a>
+              )}
+            </li>
+          )
+        })}
+      </ol>
     </nav>
   )
 }

@@ -7,6 +7,19 @@ description: The Polaris yield hub for Stability Pool deposits, pETH and pAsset 
 
 Polaris yield is intended to come from onchain protocol activity, not token emissions or offchain counterparties. Production yield actions are not mainnet-actionable until [Launch Status](/launch-status) publishes official contracts and parameters.
 
+<Callout variant="warning" title="Yield is not a promise">
+APR and reward estimates are live-state estimates. Realized yield depends on borrower interest, liquidation events, pETH price movement, fees, gas, and whether wrapper vaults are available.
+</Callout>
+
+## Start here if
+
+| You want to... | Start with |
+|---|---|
+| See every source of yield | [Polaris Yield Sources](/yield/yield-sources) |
+| Understand first-loss risk | [Polaris Stability Pool](/yield/stability-pool) |
+| Deposit, claim, or withdraw | [Deposit to the Polaris Stability Pool](/yield/deposit-to-stability-pool) |
+| Use the app label directly | [Earn](/earn) or [Zap](/zap) |
+
 ## Read in order
 
 | Page | What it answers |
@@ -22,3 +35,11 @@ Polaris yield is intended to come from onchain protocol activity, not token emis
 - [Polaris Fee Router](/stewardship/fee-router) for pETH reward buffering.
 - [Polaris Flows](/stewardship/flows) for ecosystem revenue sharing.
 - [Risk Disclosure](/resources/risk-disclosure) before depositing.
+
+<NextSteps
+  steps={[
+    { href: '/using-app/earn', title: 'Earn app tab', description: 'Direct Stability Pool and staking surfaces.' },
+    { href: '/using-app/zap', title: 'Zap app tab', description: 'Bundled WETH -> pAsset -> pool flow.' },
+    { href: '/resources/risk-disclosure', title: 'Risk Disclosure', description: 'Read before treating yield as principal-safe.' }
+  ]}
+/>
