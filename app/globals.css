@@ -450,11 +450,18 @@ html:not(.dark) .x\:focus-visible\:nextra-focus:focus-visible {
   animation: pl-fade 0.8s ease 1.65s both;
 }
 
-.pl-spark,
 .pl-polaris-star,
 .pl-polaris-core,
 .pl-distant span {
   animation: pl-ignite 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* The spark glyph is statically positioned and centered by its .pl-star box,
+   so it must NOT carry pl-ignite's translate(-50%,-50%) — that double-offsets
+   it 6.5px off the meridian (left on mobile, above the line on desktop). Ignite
+   with scale/rotate only; default transform-origin keeps it centered. */
+.pl-spark {
+  animation: pl-ignite-spark 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
 .pl-s1 .pl-spark {
@@ -548,6 +555,18 @@ html:not(.dark) .x\:focus-visible\:nextra-focus:focus-visible {
   100% {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1) rotate(0);
+  }
+}
+
+@keyframes pl-ignite-spark {
+  0% {
+    opacity: 0;
+    transform: scale(0.2) rotate(-25deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0);
   }
 }
 
@@ -1675,25 +1694,8 @@ article [class*='overflow-x-auto']:has(table)::after {
     border-spacing: 0;
   }
 
-  article table[data-pl-table][data-pl-wide='true'] .pl-table-caption {
-    position: static;
-    width: auto;
-    height: auto;
-    clip: auto;
-    margin: 0 0 0.6rem;
-    padding: 0.45rem 0.65rem;
-    border-radius: 6px;
-    background: rgba(63, 127, 168, 0.07);
-    color: #2c5f8a;
-    white-space: normal;
-    font-size: 0.75rem;
-    font-weight: 600;
-  }
-
-  .dark article table[data-pl-table][data-pl-wide='true'] .pl-table-caption {
-    background: rgba(123, 165, 201, 0.09);
-    color: #9cc2e0;
-  }
+  /* The caption stays screen-reader-only (base .pl-table-caption): each cell now
+     carries its column label, so a visible "Table columns: …" box is redundant. */
 
   article table[data-pl-table][data-pl-wide='true'] :is(thead, tbody, tr, th, td) {
     display: block;
@@ -1720,12 +1722,13 @@ article [class*='overflow-x-auto']:has(table)::after {
     background: rgba(10, 22, 40, 0.38);
   }
 
+  /* Stack each cell as label-over-value. Block (not grid) so cells with mixed
+     inline content — text + <strong>/<a>/<em> — render as one flowing value
+     instead of each inline node becoming its own grid item. */
   article table[data-pl-table][data-pl-wide='true'] td {
-    display: grid;
-    grid-template-columns: minmax(7.5rem, 40%) 1fr;
-    gap: 0.65rem;
+    display: block;
     min-width: 0;
-    padding: 0.45rem 0;
+    padding: 0.4rem 0;
     border-bottom: 1px solid rgba(44, 74, 110, 0.08);
   }
 
@@ -1733,16 +1736,18 @@ article [class*='overflow-x-auto']:has(table)::after {
     border-bottom: 0;
   }
 
-  article table[data-pl-table][data-pl-wide='true'] td::before {
+  article table[data-pl-table][data-pl-wide='true'] td[data-label]::before {
     content: attr(data-label);
+    display: block;
+    margin-bottom: 0.15rem;
     color: #3f5a78;
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.05em;
   }
 
-  .dark article table[data-pl-table][data-pl-wide='true'] td::before {
+  .dark article table[data-pl-table][data-pl-wide='true'] td[data-label]::before {
     color: #9cc2e0;
   }
 }
@@ -1788,6 +1793,36 @@ article [class*='overflow-x-auto']:has(table)::after {
   border-left: 3px solid #b1934f;
 }
 @media (max-width: 767px) {
+  /* Collapse the "Copy page" button to just its icon so the page title
+     reclaims the horizontal space. The label is a bare text node beside the
+     icon (no wrapper to target), so zero the button font-size; the icon keeps
+     its explicit 16px size. The chevron Select button (2nd child) is untouched. */
+  article [class*='x:float-end'] > button:first-child {
+    font-size: 0;
+    gap: 0;
+    justify-content: center;
+    padding-inline: 0;
+  }
+
+  article [class*='x:float-end'] > button:first-child svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* Let long tokens — contract addresses, URLs, inline code — break inside
+     table cells instead of forcing the whole table to scroll horizontally.
+     overflow-wrap:anywhere (not break-word) lowers the cell's intrinsic width
+     so 2-column tables fit the viewport. The code/a rules override the theme's
+     code {overflow-wrap:break-word}, which otherwise keeps URLs unbreakable.
+     Desktop layout is untouched. */
+  article :is(th, td) {
+    overflow-wrap: anywhere;
+  }
+  /* !important to beat the theme's higher-specificity code.nextra-code rule
+     (overflow-wrap:break-word), which keeps URLs/addresses unbreakable. */
+  article :is(th, td) :is(code, a) {
+    overflow-wrap: anywhere !important;
+  }
 }
 
 /* ── Launch Timeline Tooltip ─────────────────────────────────────────────── */

@@ -15,6 +15,11 @@ import { TroveSimulator } from './components/TroveSimulator'
 const themeComponents = getThemeComponents()
 const ThemeTable = themeComponents.table ?? 'table'
 const ThemeTh = themeComponents.th ?? 'th'
+// Nextra maps td/tr to Table.Td/Table.Tr components, so the cell/row elements
+// reaching AccessibleTable have those component types — not the string literals.
+// Match both so the responsive-card data-label annotation actually applies.
+const ThemeTd = themeComponents.td ?? 'td'
+const ThemeTr = themeComponents.tr ?? 'tr'
 const mdxAnchorClass =
   'x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]'
 
@@ -63,7 +68,7 @@ function annotateRowCells(children, headers) {
   return Children.map(children, (child) => {
     if (!isValidElement(child)) return child
 
-    if (child.type === 'td') {
+    if (child.type === 'td' || child.type === ThemeTd) {
       const label = headers[cellIndex] ?? ''
       cellIndex += 1
       return cloneElement(child, {
@@ -72,7 +77,7 @@ function annotateRowCells(children, headers) {
       })
     }
 
-    if (child.type === 'th') cellIndex += 1
+    if (child.type === 'th' || child.type === ThemeTh || child.type === TableHeader) cellIndex += 1
 
     return cloneElement(child, {
       children: annotateTableChildren(child.props.children, headers, false)
@@ -90,7 +95,7 @@ function annotateTableChildren(node, headers, insideBody = false) {
       })
     }
 
-    if (insideBody && child.type === 'tr') {
+    if (insideBody && (child.type === 'tr' || child.type === ThemeTr)) {
       return cloneElement(child, {
         children: annotateRowCells(child.props.children, headers)
       })
