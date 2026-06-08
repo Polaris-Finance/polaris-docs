@@ -5,11 +5,6 @@ description: A trove below its minimum collateralization ratio is liquidated to 
 
 # Polaris Liquidations
 
-
-<Callout variant="danger" title="Before You Act">
-Borrowers: do not manage a trove from the liquidation line. Check the app's current minimum ICR, Recovery Mode status, accrued interest, collateral-price freshness, and gas conditions before withdrawing collateral or minting more debt. Stability Pool depositors: liquidations convert part of your pAsset deposit into pETH exposure.
-</Callout>
-
 ## What a liquidation is
 
 A **liquidation** closes a trove that has fallen below its **minimum collateralization ratio** — the point at which its collateral no longer comfortably covers its debt. The protocol cancels the trove's debt and seizes its pETH collateral.
@@ -22,7 +17,7 @@ Unlike a [redemption](/redemptions-liquidations), a liquidation is not an arbitr
 
 Liquidation runs in two tiers.
 
-1. **The Stability Pool absorbs it first.** The [Stability Pool](/yield/stability-pool) holds a reserve of the pAsset. When a trove is liquidated, the pool burns pAsset equal to the trove's debt and receives its pETH collateral in return. Because liquidated troves are seized while still *overcollateralized* (above 100%, below the minimum), the pool typically receives more value in pETH than the pAsset it burns. That surplus is the depositors' compensation.
+1. **The Stability Pool absorbs it first.** The [Stability Pool](/yield) holds a reserve of the pAsset. When a trove is liquidated, the pool burns pAsset equal to the trove's debt and receives its pETH collateral in return. Because liquidated troves are seized while still *overcollateralized* (above 100%, below the minimum), the pool typically receives more value in pETH than the pAsset it burns. That surplus is the depositors' compensation.
 
 2. **Redistribution is the fallback.** If the Stability Pool is empty or too small to cover the debt, the trove's debt *and* collateral spread across the remaining troves on that pAsset, in proportion to their size. Other borrowers take on a slice of debt and a matching slice of pETH. The system stays solvent either way.
 
@@ -60,7 +55,7 @@ Liquidation is involuntary and can happen fast. A liquidated trove gives up its 
 </Callout>
 
 <Callout variant="danger" title="Warning — For Stability Pool Depositors">
-You are the system's first-loss backstop. In a flash crash, troves can be liquidated near — or in extreme cases below — 100% collateralization, and you may receive pETH worth less than the pAsset burned. Over a full cycle the surplus from healthy liquidations compensates for that risk, but it is not riskless yield. See <a href="/yield/stability-pool">The Stability Pool</a> and the <a href="/resources/risk-disclosure">Risk Disclosure</a>.
+You are the system's first-loss backstop. In a flash crash, troves can be liquidated near — or in extreme cases below — 100% collateralization, and you may receive pETH worth less than the pAsset burned. Over a full cycle the surplus from healthy liquidations compensates for that risk, but it is not riskless yield. See <a href="/yield">The Stability Pool</a> and the <a href="/resources/risk-disclosure">Risk Disclosure</a>.
 </Callout>
 
 <Callout variant="info">
@@ -78,7 +73,7 @@ Liquidations are not punishment — they are the mechanism designed to keep a pA
 <NextSteps
   steps={[
     { href: '/minting/managing-your-trove', title: 'Managing Your Trove', description: 'Keep your ICR healthy and avoid liquidation.' },
-    { href: '/yield/stability-pool', title: 'Stability Pool', description: 'Understand how the pool absorbs liquidations.' },
+    { href: '/yield', title: 'Stability Pool', description: 'Understand how the pool absorbs liquidations.' },
     { href: '/redemptions-liquidations/recovery-mode', title: 'Recovery Mode', description: 'The system-level safeguard for thin backing.' }
   ]}
 />

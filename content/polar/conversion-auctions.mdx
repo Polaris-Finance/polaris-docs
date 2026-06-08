@@ -41,7 +41,7 @@ Because conversions are designed to lift the floor under those assumptions, each
 | CDP borrowers | Collateral's modeled floor value improves ⇒ self-recollateralizing loans get safer |
 | Stability Pool depositors | Healthier system-wide collateralization ratio |
 
-This is the second of two floor-raising mechanisms (the other being [swap-fee burns](/peth/bonding-curve)). Swap fees are frequent and lift the floor regardless of POLAR's price; conversions are more sporadic but have larger floor-raising potential.
+This is the second of two floor-raising mechanisms (the other being [swap-fee burns](/peth)). Swap fees are frequent and lift the floor regardless of POLAR's price; conversions are more sporadic but have larger floor-raising potential.
 
 ## The converter rebate
 
@@ -71,7 +71,7 @@ Intellectual honesty requires naming the limits:
 
 Conversions are a continuous, permissionless auction tuned for arbitrage bots and MEV searchers, so converting profitably means competing with them. Most users will hold POLAR, use current POLAR Staking where the app exposes it, or wait for [vePOLAR](/stewardship/vepolar) locking instead of converting directly.
 
-**You need** pETH to burn (bought on the [bonding curve](/peth/bonding-curve) or a DEX) and a wallet connected to the Polaris app. On Public Testnet 1 this is Sepolia-only; production conversions are not actionable until [Launch Status](/launch-status) publishes the official app, conversion contract, final parameters, and audit status.
+**You need** pETH to burn (bought on the [bonding curve](/peth) or a DEX) and a wallet connected to the Polaris app. On Public Testnet 1 this is Sepolia-only; production conversions are not actionable until [Launch Status](/launch-status) publishes the official app, conversion contract, final parameters, and audit status.
 
 <Steps>
 
@@ -103,7 +103,7 @@ Stake POLAR where the current app exposes POLAR Staking, wait for [vePOLAR](/ste
 
 ---
 
-The conversion auction answers "why does POLAR exist?" with a mechanism rather than a promise: POLAR exists because burning pETH to mint it is the most protocol-synergetic action possible. The [bonding curve](/peth/bonding-curve) makes pETH work; the CDP makes pAssets work; the conversion auction makes them work together.
+The conversion auction answers "why does POLAR exist?" with a mechanism rather than a promise: POLAR exists because burning pETH to mint it is the most protocol-synergetic action possible. The [bonding curve](/peth) makes pETH work; the CDP makes pAssets work; the conversion auction makes them work together.
 
 <BlogPostCard
   url="https://polarisfinance.io/blog/burn-pETH-mint-POLAR/"

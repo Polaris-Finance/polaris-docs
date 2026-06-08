@@ -17,7 +17,7 @@ Polaris lives entirely onchain. Its bonding curve, CDPs, Stability Pool, and con
 
 ## Collateral and price risk
 
-The only collateral is [pETH](/peth/bonding-curve), which is **volatile against ETH**. pETH trades at a varying premium above its [floor price](/peth/floor-price), and that premium can compress sharply in a drawdown.
+The only collateral is [pETH](/peth), which is **volatile against ETH**. pETH trades at a varying premium above its [floor price](/peth/floor-price), and that premium can compress sharply in a drawdown.
 
 **Mitigation.** The [floor ratio](/peth/floor-price) frames your curve-implied downside in ETH terms before execution and technical risk: a 90% floor ratio means 10% drawdown to the floor, a 67% floor ratio means 33% drawdown. Your risk is set at *entry*: the spread between your entry price and the floor. Under the intended curve invariant, the floor rises during normal operation; it is still dependent on functioning contracts and live Ethereum execution.
 
@@ -27,7 +27,7 @@ The only collateral is [pETH](/peth/bonding-curve), which is **volatile against 
 
 Pricing pETH collateral for liquidation requires an ETH price feed. A stale, manipulated, or failed oracle could misprice collateral and trigger wrong liquidations, or fail to trigger correct ones.
 
-**Mitigation.** Peg awareness needs no oracle: redemption and minting volume act as the protocol's internal price signal for each pAsset (see [Minting pAssets](/minting/minting-passets)). The oracle dependency is meant to be confined to pricing the *collateral*, ETH. Current Sepolia testnet price-feed and medianiser addresses are listed on [Public Testnet 1](/resources/testnet); final production providers and feed addresses are forthcoming. Do not treat any production oracle address as official until it is listed in [Contracts & Addresses](/resources/contracts).
+**Mitigation.** Peg awareness needs no oracle: redemption and minting volume act as the protocol's internal price signal for each pAsset (see [Minting pAssets](/minting)). The oracle dependency is meant to be confined to pricing the *collateral*, ETH. Current Sepolia testnet price-feed and medianiser addresses are listed on [Public Testnet 1](/resources/testnet); final production providers and feed addresses are forthcoming. Do not treat any production oracle address as official until it is listed in [Contracts & Addresses](/resources/contracts).
 
 ## Peg and depeg risk
 
@@ -42,26 +42,26 @@ Because both pay arbitrageurs the moment the peg slips, they activate without an
 
 ## Liquidation risk (borrowers)
 
-If your [trove](/minting/minting-passets)'s [Individual Collateralization Ratio (ICR)](/resources/glossary) falls below the minimum, the trove is [liquidated](/redemptions-liquidations/liquidations): you lose your collateral to cover the debt.
+If your [trove](/minting)'s [Individual Collateralization Ratio (ICR)](/resources) falls below the minimum, the trove is [liquidated](/redemptions-liquidations/liquidations): you lose your collateral to cover the debt.
 
 **Mitigation.** Liquidation logic is transparent and auditable onchain, with no discretionary calls. You control your ICR: post more collateral, or repay debt, to stay clear of the threshold. pETH's rising floor and yield-bearing nature dampen, but do not remove, the volatility that causes liquidations. Monitor your trove actively, especially in volatile markets.
 
 
 ## Stability Pool first-loss risk (depositors)
 
-Depositing pAssets into the [Stability Pool](/yield/stability-pool) is the primary way to earn yield, but the Pool is the system's **first-loss buffer**. When a trove is liquidated, your deposited pAssets are burned to cancel its debt, and you receive the liquidated pETH collateral in exchange.
+Depositing pAssets into the [Stability Pool](/yield) is the primary way to earn yield, but the Pool is the system's **first-loss buffer**. When a trove is liquidated, your deposited pAssets are burned to cancel its debt, and you receive the liquidated pETH collateral in exchange.
 
 **Mitigation.** Liquidations are designed to occur while the trove is still overcollateralized, so depositors typically receive collateral worth *more* than the pAssets they gave up, and that surplus is the source of the Pool's yield. The risk is the opposite case: a liquidation processed below the value of the burned deposit, or a sharp collapse in the received collateral's value. You take on liquidation-processing risk in exchange for yield; size your deposit accordingly.
 
 ## Recovery Mode
 
-When the system-wide reserve backing relative to total debt (the [reserve-to-debt ratio, shown as the TCR](/resources/glossary)) drops below a threshold, the protocol enters [Recovery Mode](/redemptions-liquidations/recovery-mode), a defensive state with tighter requirements.
+When the system-wide reserve backing relative to total debt (the [reserve-to-debt ratio, shown as the TCR](/resources)) drops below a threshold, the protocol enters [Recovery Mode](/redemptions-liquidations/recovery-mode), a defensive state with tighter requirements.
 
 **Mitigation.** Recovery Mode is a feature, not a failure: it raises the bar for the whole system to rebuild collateralization quickly. Borrowers bear the cost: in Recovery Mode you cannot withdraw collateral or take on more debt unless you clear a higher minimum ratio and do not lower your ICR (pure collateral top-ups and repayments stay allowed). Liquidation eligibility itself does not change; it stays at the normal minimum in every mode. Keep your ICR comfortably above the minimum so a stress event does not box in your ability to act.
 
 ## Stewardship and economic risk
 
-Stewards control quantitative parameters: the interest splits, conversion-price parameters, and the [converter rebate](/resources/glossary). Parameter changes can affect your yield and your position's economics.
+Stewards control quantitative parameters: the interest splits, conversion-price parameters, and the [converter rebate](/resources). Parameter changes can affect your yield and your position's economics.
 
 **Mitigation.** Stewardship is *constrained*: many economic parameters move only within hardcoded ranges (for example the converter rebate and the interest-split floors), and the core logic cannot be touched at all (see [Stewardship, not Governance](/stewardship)). Some conversion-price parameters are not yet bounded in the current prototype; instead, conversion issuance is self-throttled by its [spike-and-decay pricing](/polar/conversion-auctions), so large or rapid minting limits itself. What remains is ordinary parameter risk, not the unbounded-governance risk that has denatured other protocols. Final per-parameter bounds are pending audited deployment.
 
@@ -81,8 +81,8 @@ Polaris is currently in public Public Testnet 1 on Sepolia, and production is in
 
 Fake frontends, fake contract addresses, and fake support channels can appear before users know what the official ones look like. A malicious frontend can ask you to approve tokens, sign dangerous messages, or connect to the wrong network.
 
-**Mitigation.** For Public Testnet 1, use only [https://app.testnet.polarisfinance.io/](https://app.testnet.polarisfinance.io/) on Sepolia (`11155111`) and only with no-value test assets. Use no production app URL, production network, production contract address, audit claim, or bug-bounty link unless it is listed in these docs. Never enter a seed phrase, private key, or recovery words into any Polaris-related site. The current status checklist lives on [Polaris Launch Status](/launch-status), [Public Testnet 1](/resources/testnet), and [Safety and Verification](/paths/safety-verification).
+**Mitigation.** For Public Testnet 1, use only [https://app.testnet.polarisfinance.io/](https://app.testnet.polarisfinance.io/) on Sepolia (`11155111`) and only with no-value test assets. Use no production app URL, production network, production contract address, audit claim, or bug-bounty link unless it is listed in these docs. Never enter a seed phrase, private key, or recovery words into any Polaris-related site. The current status checklist lives on [Polaris Launch Status](/launch-status), [Public Testnet 1](/resources/testnet), and [Safety and Verification](/resources/safety-verification).
 
 ---
 
-For the reasoning behind these trade-offs, read [Why Polaris?](/why-polaris). For the precise definition of any term above, see the [Glossary](/resources/glossary).
+For the reasoning behind these trade-offs, read [Why Polaris?](/why-polaris). For the precise definition of any term above, see the [Glossary](/resources).

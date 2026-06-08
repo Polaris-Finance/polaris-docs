@@ -7,12 +7,9 @@ description: A redemption swaps a below-peg pAsset for its pETH collateral at fa
 
 > **Actionability:** Redemptions are testnet-actionable only on Sepolia using test assets and current manifests. Production redemptions are not mainnet-actionable until [Polaris Launch Status](/launch-status) publishes the official app, production addresses, final fee formula, dust rules, and audit status.
 
-> **Before you act:**
-> Redemptions are economic transactions, not guaranteed profit. Check the live fee quote, pETH execution price, gas, expected slippage, possible MEV, and whether the trade stays profitable if conditions change before inclusion. Borrowers should know that a redemption applies collectively and pro-rata across all open troves' collateral, not to a single lowest-ICR trove first, so a below-peg pAsset shrinks every open position carrying that pAsset's debt regardless of its ICR.
-
 ## What a redemption is
 
-A **redemption** exchanges a pAsset for the **[pETH](/peth/bonding-curve)** collateral backing it at the pAsset's protocol reference value, minus a fee. It pays when the pAsset trades *below* peg by more than the fee, gas, slippage, and execution risk.
+A **redemption** exchanges a pAsset for the **[pETH](/peth)** collateral backing it at the pAsset's protocol reference value, minus a fee. It pays when the pAsset trades *below* peg by more than the fee, gas, slippage, and execution risk.
 
 If pUSD slips to \$0.98, a redeemer can buy pUSD cheaply, redeem it for about \$1 of pETH minus the fee, and sell or hold the pETH. The pETH comes from the collateral of troves carrying that pUSD debt, and their debt shrinks by the pUSD redeemed. No counterparty agrees to the trade; the protocol enforces it.
 
@@ -39,7 +36,7 @@ A below-peg pAsset is a standing arbitrage. Walk the loop:
 
 Each pass buys pUSD on the open market, applying **upward price pressure**. Arbitrageurs keep going until pUSD is back at peg and the trade stops paying. Self-interest restores the peg, not intervention.
 
-> **Note:** Redemptions handle the *below*-peg case. The *above*-peg case is handled by the inverse mechanism, **minting**, where arbitrageurs add pETH to troves to mint pAssets when the pAsset trades over peg. See [Minting pAssets](/minting/minting-passets).
+> **Note:** Redemptions handle the *below*-peg case. The *above*-peg case is handled by the inverse mechanism, **minting**, where arbitrageurs add pETH to troves to mint pAssets when the pAsset trades over peg. See [Minting pAssets](/minting).
 
 The two mechanisms are mirror images:
 
@@ -48,7 +45,7 @@ The two mechanisms are mirror images:
 | **Redemption** | pAsset < peg | Burns pAsset (repays debt) ⇒ takes pETH | Debt and collateral both shrink |
 | **Minting** | pAsset > peg | Adds pETH ⇒ mints pAsset | Debt and collateral both grow |
 
-Their volumes also serve as the protocol's peg signal: a spike in redemptions reads as a downward depeg, a spike in mintings as an upward one. That is how Polaris sets [autonomous interest rates](/minting/minting-passets) without a direct pUSD market-price feed.
+Their volumes also serve as the protocol's peg signal: a spike in redemptions reads as a downward depeg, a spike in mintings as an upward one. That is how Polaris sets [autonomous interest rates](/minting) without a direct pUSD market-price feed.
 
 ## Mechanics in detail
 
@@ -76,7 +73,7 @@ Redemptions are visible onchain transactions. Searchers can compete for the same
 
 ## Who gets redeemed against
 
-A redemption applies collectively across **all** open troves carrying that pAsset's debt. Each trove's debt and pETH collateral are reduced in proportion to its recorded collateral, through the protocol's global mint/redeem accounting. There is no per-trove [Individual Collateralization Ratio (ICR)](/resources/glossary) ranking, no "riskiest trove first," and no queue: redemption does not single out the lowest-ICR troves.
+A redemption applies collectively across **all** open troves carrying that pAsset's debt. Each trove's debt and pETH collateral are reduced in proportion to its recorded collateral, through the protocol's global mint/redeem accounting. There is no per-trove [Individual Collateralization Ratio (ICR)](/resources) ranking, no "riskiest trove first," and no queue: redemption does not single out the lowest-ICR troves.
 
 Being redeemed against is not a liquidation loss: your debt is repaid at face value with your own collateral, so your net equity is broadly unchanged before fees and rounding. But it is not free either: it closes part of your position involuntarily, at a moment you did not choose.
 

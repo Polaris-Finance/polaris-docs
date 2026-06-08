@@ -1,6 +1,5 @@
 export default {
-  index: 'Overview',
-  dashboard: 'Dashboard & Analytics',
+  index: 'Dashboard & Analytics',
   swap: 'Swap',
   borrow: 'Borrow',
   earn: 'Earn',

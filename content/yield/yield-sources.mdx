@@ -13,13 +13,13 @@ Most stablecoin yield is **rented** from offchain sources — T-bills, CEX lendi
 
 | Source | Where it originates | Flows to |
 |---|---|---|
-| **Borrower interest** | Interest [trove](/minting/managing-your-trove) owners pay on minted pAssets | Primarily [Stability Pool](/yield/stability-pool) depositors; a stewarded split (each floored at 25%) can also fund POLAR stakers and the ecosystem fund, with secondary interest rebates pro-rata to troves |
+| **Borrower interest** | Interest [trove](/minting/managing-your-trove) owners pay on minted pAssets | Primarily [Stability Pool](/yield) depositors; a stewarded split (each floored at 25%) can also fund POLAR stakers and the ecosystem fund, with secondary interest rebates pro-rata to troves |
 | **Liquidation gains** | The penalty on liquidated troves, paid in discounted pETH | Stability Pool depositors |
 | **Bonding curve swap fees** | Fees on every ETH ⇄ pETH swap, buffered by the Fee Router and later floor-sold and burned to raise the [floor price](/peth/floor-price) | pETH holders / troves |
 | **Conversion gains** | ETH released when pETH is burned to mint POLAR in a [conversion auction](/polar/conversion-auctions) | pETH holders / troves |
 | **PolarEX swap fees** | Trading fees from Polaris's integrated DEX, [PolarEX](/core-concepts) | Troves, POLAR Staking, or future vePOLAR paths where launch configuration exposes them |
 
-The first two drive [Stability Pool](/yield/stability-pool) yield and are the primary venue for pAsset holders. The bonding curve and conversion components make **pETH itself yield-bearing**, which is why using pETH as collateral can lower a borrower's net effective cost.
+The first two drive [Stability Pool](/yield) yield and are the primary venue for pAsset holders. The bonding curve and conversion components make **pETH itself yield-bearing**, which is why using pETH as collateral can lower a borrower's net effective cost.
 
 ## Why this is "self-scaling"
 

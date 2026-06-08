@@ -1,8 +1,8 @@
 export default {
-  index: 'Overview',
+  index: 'Glossary',
   testnet: 'Public Testnet 1',
-  glossary: 'Glossary',
   'risk-disclosure': 'Risk Disclosure',
+  'safety-verification': 'Safety and Verification',
   faq: 'FAQ',
   contracts: 'Contracts & Addresses',
   'audits-security': 'Audits & Security',

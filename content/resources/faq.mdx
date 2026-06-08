@@ -8,7 +8,7 @@ description: "Frequently asked questions about Polaris: what it is, how minting 
 Short answers, grouped by theme. Each links to the page that covers it in full.
 
 <Callout variant="warning" title="Launch Note">
-The official public Public Testnet 1 app is live at [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io/) on Sepolia only. Production/mainnet app status, canonical production contracts, final audit reports, and the disclosure program are not published yet. Check [Polaris Launch Status](/launch-status), [Public Testnet 1](/resources/testnet), and [Safety and Verification](/paths/safety-verification) before interacting with any frontend or address.
+The official public Public Testnet 1 app is live at [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io/) on Sepolia only. Production/mainnet app status, canonical production contracts, final audit reports, and the disclosure program are not published yet. Check [Polaris Launch Status](/launch-status), [Public Testnet 1](/resources/testnet), and [Safety and Verification](/resources/safety-verification) before interacting with any frontend or address.
 </Callout>
 
 ## General
@@ -25,11 +25,11 @@ The official public Public Testnet 1 app is live at [app.testnet.polarisfinance.
     },
     {
       question: 'What is pUSD?',
-      answer: <p>The flagship pAsset, designed to track the US dollar and be backed by pETH. It sits in the same counterparty-free design family as LUSD and BOLD, adding Polaris's pETH collateral and yield mechanics. See <a href="/minting/minting-passets">Minting pAssets</a>.</p>
+      answer: <p>The flagship pAsset, designed to track the US dollar and be backed by pETH. It sits in the same counterparty-free design family as LUSD and BOLD, adding Polaris's pETH collateral and yield mechanics. See <a href="/minting">Minting pAssets</a>.</p>
     },
     {
       question: 'What is pETH?',
-      answer: <p>ETH deposited into a two-way <a href="/peth/bonding-curve">bonding curve</a>. It is the only collateral Polaris accepts, is yield-bearing, and has a <a href="/peth/floor-price">floor price</a> that only rises.</p>
+      answer: <p>ETH deposited into a two-way <a href="/peth">bonding curve</a>. It is the only collateral Polaris accepts, is yield-bearing, and has a <a href="/peth/floor-price">floor price</a> that only rises.</p>
     },
     {
       question: 'What is POLAR?',
@@ -52,23 +52,23 @@ The official public Public Testnet 1 app is live at [app.testnet.polarisfinance.
   items={[
     {
       question: 'What is a trove?',
-      answer: <p>Your individual borrowing position in a Polaris CDP, isolated with its own collateral, debt, and collateralization ratio. Polaris uses <em>trove</em>, never "vault". See <a href="/minting/minting-passets">Minting pAssets</a>.</p>
+      answer: <p>Your individual borrowing position in a Polaris CDP, isolated with its own collateral, debt, and collateralization ratio. Polaris uses <em>trove</em>, never "vault". See <a href="/minting">Minting pAssets</a>.</p>
     },
     {
       question: 'How do I mint a pAsset?',
-      answer: <p>You open a trove: post pETH as collateral and mint the pAsset directly from the protocol, owing that debt back. You are your own mini central bank, not borrowing another user's funds. See <a href="/minting/minting-passets">Minting pAssets</a>.</p>
+      answer: <p>You open a trove: post pETH as collateral and mint the pAsset directly from the protocol, owing that debt back. You are your own mini central bank, not borrowing another user's funds. See <a href="/minting">Minting pAssets</a>.</p>
     },
     {
       question: 'Why does Polaris accept only pETH as collateral?',
-      answer: <p>External collateral like staked-ETH tokens would be a dependency that caps scaling and reintroduces counterparty risk. pETH is a yield-bearing ETH proxy with a rising floor, which dampens the CDP model's capital-inefficiency weakness. See <a href="/minting/minting-passets">Minting pAssets</a>.</p>
+      answer: <p>External collateral like staked-ETH tokens would be a dependency that caps scaling and reintroduces counterparty risk. pETH is a yield-bearing ETH proxy with a rising floor, which dampens the CDP model's capital-inefficiency weakness. See <a href="/minting">Minting pAssets</a>.</p>
     },
     {
       question: 'How are interest rates set?',
-      answer: <p>Autonomously, with no governance vote and no price oracle for the peg. Redemption volume (profitable below peg) and minting volume (profitable above peg) are read as onchain signals of where the peg sits, and rates adjust accordingly. See <a href="/minting/minting-passets">Minting pAssets</a>.</p>
+      answer: <p>Autonomously, with no governance vote and no price oracle for the peg. Redemption volume (profitable below peg) and minting volume (profitable above peg) are read as onchain signals of where the peg sits, and rates adjust accordingly. See <a href="/minting">Minting pAssets</a>.</p>
     },
     {
       question: 'Can my trove be liquidated?',
-      answer: <p>Yes. If your <a href="/resources/glossary">ICR</a> falls below the minimum, the trove is <a href="/redemptions-liquidations/liquidations">liquidated</a> and the <a href="/yield/stability-pool">Stability Pool</a> absorbs its debt. Keep your ratio above the threshold, especially in volatile markets.</p>
+      answer: <p>Yes. If your <a href="/resources">ICR</a> falls below the minimum, the trove is <a href="/redemptions-liquidations/liquidations">liquidated</a> and the <a href="/yield">Stability Pool</a> absorbs its debt. Keep your ratio above the threshold, especially in volatile markets.</p>
     }
   ]}
 />
@@ -94,11 +94,11 @@ The official public Public Testnet 1 app is live at [app.testnet.polarisfinance.
   items={[
     {
       question: 'Where does the yield come from?',
-      answer: <p>From onchain activity, not offchain T-bills: CDP interest, bonding-curve swap fees, conversion gains, and PolarEX swap fees, all of which grow with usage. See <a href="/yield/stability-pool">The Stability Pool</a>.</p>
+      answer: <p>From onchain activity, not offchain T-bills: CDP interest, bonding-curve swap fees, conversion gains, and PolarEX swap fees, all of which grow with usage. See <a href="/yield">The Stability Pool</a>.</p>
     },
     {
       question: 'How do I earn yield?',
-      answer: <p>The primary venue is depositing pAssets into the <a href="/yield/stability-pool">Stability Pool</a>. Locking POLAR as <a href="/stewardship/vepolar">vePOLAR</a> is also planned, earning a stewarded share of routed protocol interest; the final yield split and claim path are pending deployment.</p>
+      answer: <p>The primary venue is depositing pAssets into the <a href="/yield">Stability Pool</a>. Locking POLAR as <a href="/stewardship/vepolar">vePOLAR</a> is also planned, earning a stewarded share of routed protocol interest; the final yield split and claim path are pending deployment.</p>
     }
   ]}
 />
@@ -143,7 +143,7 @@ The official public Public Testnet 1 app is live at [app.testnet.polarisfinance.
 
 <NextSteps
   steps={[
-    { href: '/resources/glossary', title: 'Glossary', description: 'Look up any Polaris term.' },
+    { href: '/resources', title: 'Glossary', description: 'Look up any Polaris term.' },
     { href: '/core-concepts', title: 'Core Concepts', description: 'The one-page map of the entire system.' },
     { href: 'https://polarisfinance.io/blog/', title: 'Polaris Blog', description: 'Long-form essays and deep dives.' }
   ]}

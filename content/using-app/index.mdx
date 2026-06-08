@@ -1,55 +1,61 @@
 ---
-title: Using the Polaris App
-description: "A route map for the live Polaris app labels: Dashboard, Swap, Borrow, Earn, Split, Zap, Guide, Advanced, and Analytics."
+title: Dashboard & Analytics
+description: "How to read the Polaris app Dashboard and Analytics: balances, positions, rewards, system status, protocol-wide metrics, and next actions."
 ---
 
-# Using the Polaris App
+# Dashboard & Analytics
 
 <PageStatusBanner lastUpdated="June 2026" />
 
-<Callout variant="success" title="Open the Testnet App">
-The app runs at [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io/) on **Sepolia testnet** (`11155111`) with test assets only — they have no monetary value. Production/mainnet is not live until [Launch Status](/launch-status) says otherwise.
+The **Dashboard** is the app's orientation view. It is where you check balances, open positions, pending rewards, and system health before choosing a transaction tab. The **Analytics** view, covered further down, shows the protocol-wide metrics behind those numbers.
+
+<Callout variant="info" title="Where this appears in the app">
+App anchors: **Dashboard** for your own state, and **Analytics** for protocol-wide context. Use both for inspection only; execute actions from the matching task tab after checking a fresh quote.
 </Callout>
 
-The app is organized around task labels. Use this section when you know the label you see in the app and want the matching docs page.
+![Polaris Dashboard Earn cards: pUSD and pGOLD Stability Pools, POLAR Staking, and vpETH Staking, each showing APR, deposited or staked amount, and pending gains](/screenshots/dashboard.jpg)
 
-## App labels
+*Each Earn card shows its APR, your deposited or staked amount, and the gains accrued so far across each reward token.*
 
-| App label | Use it for | Start here |
-|---|---|---|
-| **Dashboard** | Account balances, open positions, claimable rewards, and system status | [Dashboard & Analytics](/using-app/dashboard) |
-| **Swap** | WETH/pETH/pAsset swaps and bonding-curve quotes | [Swap](/using-app/swap) |
-| **Borrow** | pAsset troves and reserve loans | [Borrow](/using-app/borrow) |
-| **Earn** | Stability Pool deposits and staking rewards | [Earn](/using-app/earn) |
-| **Split** | Split pETH into fpETH and vpETH, or merge them back | [Split](/using-app/split) |
-| **Zap** | Bundle a purchase and Stability Pool deposit into one guided flow | [Zap](/using-app/zap) |
-| **Guide** | Guided routing by goal | [Choose by goal](#choose-by-goal) |
-| **Advanced** | Manual approvals, PSM/redemption tools, reserve loans, and staking controls | [Advanced](/using-app/advanced) |
-| **Analytics** | Protocol metrics, floor ratio, rates, liquidity, and pool health | [Dashboard & Analytics](/using-app/dashboard#analytics-protocol-wide-metrics) |
+## What to check
 
-## Choose by goal
+| Area | What it tells you |
+|---|---|
+| **Balances** | WETH, pETH, fpETH, vpETH, pAssets, POLAR, and claimable rewards held by the connected wallet |
+| **Borrow positions** | Open troves, reserve loans, debt, collateral, and health metrics |
+| **Earn positions** | Stability Pool deposits, POLAR Staking balances, and claimable gains |
+| **System status** | Recovery Mode, floor ratio, borrow rates, pool size, and other launch/runtime signals |
+| **Next actions** | Which tabs can adjust or close the position you are viewing |
 
-When you know the outcome you want but not which tab to start in:
+## Read before acting
 
-| Goal | App tab | Start with |
-|---|---|---|
-| Get pETH | Swap | [pETH & Bonding Curve](/peth) |
-| Mint pUSD or pGOLD | Borrow | [Minting & Troves](/minting) |
-| Deposit into the Stability Pool | Earn or Zap | [Earning Yield](/yield) |
-| Split pETH into fpETH and vpETH | Split | [pETH Split](/peth/split) |
-| Convert pETH into POLAR | Advanced or conversion panel | [POLAR & Staking](/polar) |
-| Verify before interacting | Dashboard, then any action tab | [Safety and Verification](/paths/safety-verification) |
+- A dashboard number is a state read, not a transaction quote.
+- A position can change between the Dashboard and the moment your transaction lands.
+- Use the transaction tab's quote and simulation before signing.
 
-Read the linked page before signing, then return to the app tab for the live quote and simulation — a goal router cannot verify that a quote is fresh or that an address is official.
+## Analytics: protocol-wide metrics
 
-## Before any transaction
+Use **Analytics** to inspect protocol-wide state before deciding on a transaction. Analytics is for context and monitoring; action tabs provide the final quote.
 
-Before signing in any app tab, verify:
+| Metric | Why it matters |
+|---|---|
+| **Floor price** | The contract-defined pETH floor under the bonding-curve assumptions |
+| **Floor ratio** | pETH floor price divided by current pETH market price; frames curve-implied drawdown |
+| **Borrow APR** | Annualized estimate of current pAsset debt cost |
+| **Stability Pool size** | Available first-loss buffer for liquidations |
+| **Recovery Mode status** | Whether a pAsset instance is under system-wide stress restrictions |
+| **PSM/redemption activity** | Peg pressure and fee context for pAsset markets |
+| **POLAR Staking rewards** | Current routed rewards where the staking surface is live |
 
-- You are on Sepolia for Public Testnet 1, or Ethereum mainnet only after production launch.
-- The app URL and contracts match [Launch Status](/launch-status) and [Contracts & Addresses](/resources/contracts).
-- The token, amount, fee, slippage limit, quote freshness, and resulting position are what you intended.
-- Any approval is limited to the contract and token shown in the app.
-- You understand the risk of the specific action: debt, liquidation, first-loss exposure, one-way conversion, or pETH floor/execution assumptions.
+Before relying on a metric:
 
-For broader wallet and contract checks, use [Safety and Verification](/paths/safety-verification).
+- Check the timestamp or refresh state before acting.
+- Distinguish an APR estimate from realized yield.
+- Confirm whether a metric is testnet-only, illustrative, or production-published.
+- Use the action tab's current quote for fees, slippage, and final amounts.
+
+## Related docs
+
+- [Borrow](/using-app/borrow) for troves and reserve loans.
+- [Earn](/using-app/earn) for Stability Pool and POLAR Staking positions.
+- [pETH Floor Price](/peth/floor-price), [Minting pAssets](/minting), and [Where the Yield Comes From](/yield/yield-sources) for the volatile concepts behind the metrics.

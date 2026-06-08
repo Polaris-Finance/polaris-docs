@@ -16,11 +16,11 @@ A synthetic debt asset minted from a Polaris CDP (pUSD, pGOLD, pCHF, …). Each 
 </DefinitionCard>
 
 <DefinitionCard term="pUSD" token="pusd">
-The flagship pAsset, pegged to the US dollar, backed by pETH collateral. See [Minting pAssets](/minting/minting-passets).
+The flagship pAsset, pegged to the US dollar, backed by pETH collateral. See [Minting pAssets](/minting).
 </DefinitionCard>
 
 <DefinitionCard term="pETH" token="peth">
-ETH deposited into a two-way [bonding curve](/peth/bonding-curve). It is not CDP-minted debt; it is the <em>only</em> collateral Polaris accepts, has a floor price that is designed to rise under the curve invariants, and is yield-bearing.
+ETH deposited into a two-way [bonding curve](/peth). It is not CDP-minted debt; it is the <em>only</em> collateral Polaris accepts, has a floor price that is designed to rise under the curve invariants, and is yield-bearing.
 </DefinitionCard>
 
 <DefinitionCard term="POLAR" token="polar">
@@ -30,7 +30,7 @@ The protocol's stewardship token. After a fixed distribution at launch, new POLA
 ## Minting & positions
 
 <DefinitionCard term="CDP" token="default">
-Collateralized Debt Position: the mechanism behind minting. You post collateral and mint the pAsset directly from the protocol, not by borrowing another user's funds. See [Minting pAssets](/minting/minting-passets).
+Collateralized Debt Position: the mechanism behind minting. You post collateral and mint the pAsset directly from the protocol, not by borrowing another user's funds. See [Minting pAssets](/minting).
 </DefinitionCard>
 
 <DefinitionCard term="Trove" token="default">
@@ -58,11 +58,11 @@ Redemption and minting volume serve as onchain proxy signals for the peg, lettin
 ## Risk states
 
 <DefinitionCard term="Liquidation" token="default">
-If a trove falls below its minimum collateralization ratio, it is liquidated, and the [Stability Pool](/yield/stability-pool) absorbs the debt. See [Liquidations](/redemptions-liquidations/liquidations).
+If a trove falls below its minimum collateralization ratio, it is liquidated, and the [Stability Pool](/yield) absorbs the debt. See [Liquidations](/redemptions-liquidations/liquidations).
 </DefinitionCard>
 
 <DefinitionCard term="Recovery Mode" token="default">
-A protocol-wide protective state entered when the system-wide reserve-backing-to-debt ratio (the [TCR](/resources/glossary)) falls below a fixed threshold. See [Recovery Mode](/redemptions-liquidations/recovery-mode).
+A protocol-wide protective state entered when the system-wide reserve-backing-to-debt ratio (the [TCR](/resources)) falls below a fixed threshold. See [Recovery Mode](/redemptions-liquidations/recovery-mode).
 </DefinitionCard>
 
 <DefinitionCard term="Floor price / floor ratio" token="peth">
@@ -72,7 +72,7 @@ The mathematically enforced minimum price of pETH (in ETH), and that floor as a 
 ## Yield & coordination
 
 <DefinitionCard term="Stability Pool" token="default">
-A reserve of pAssets that processes liquidations and is the primary venue for earning yield. See [The Stability Pool](/yield/stability-pool).
+A reserve of pAssets that processes liquidations and is the primary venue for earning yield. See [The Stability Pool](/yield).
 </DefinitionCard>
 
 <DefinitionCard term="Conversion auction" token="polar">
@@ -104,8 +104,8 @@ The diagram traces four steps and an outcome:
 
 <NextSteps
   steps={[
-    { href: '/getting-started', title: 'Getting Started', description: 'The shortest path from "I have ETH" to "I am using Polaris."' },
-    { href: '/minting/minting-passets', title: 'Minting pAssets', description: 'How the CDP works from first principles.' },
+    { href: '/launch-status', title: 'Launch Status', description: 'Official app and network status, plus the shortest path from "I have ETH" to using Polaris.' },
+    { href: '/minting', title: 'Minting pAssets', description: 'How the CDP works from first principles.' },
     { href: '/why-polaris', title: 'Why Polaris?', description: 'The stablecoin trilemma and how Polaris resolves it.' }
   ]}
 />

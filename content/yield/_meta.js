@@ -1,5 +1,4 @@
 export default {
-  index: 'Overview',
-  'stability-pool': 'Stability Pool',
+  index: 'Stability Pool',
   'yield-sources': 'Yield Sources'
 }

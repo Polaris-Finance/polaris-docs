@@ -13,7 +13,7 @@ Trove management is testnet-actionable only on Sepolia with test assets and curr
 </Callout>
 
 <Callout variant="info">
-<strong>Scope:</strong> this page covers pAsset troves/CDPs (shown under <strong>Borrow</strong>), not reserve loans. For the full vocabulary, see [Borrower terminology](/minting/minting-passets#borrower-terminology).
+<strong>Scope:</strong> this page covers pAsset troves/CDPs (shown under <strong>Borrow</strong>), not reserve loans. For the full vocabulary, see [Borrower terminology](/minting#borrower-terminology).
 </Callout>
 
 ## Individual Collateralization Ratio (ICR)
@@ -49,7 +49,7 @@ Minting more or withdrawing collateral lowers your ICR. Drop below the minimum a
 
 ## Add collateral
 
-Deposit more pETH into the trove to **raise your ICR** without changing your debt. This is the simplest way to step back from a liquidation or redemption threshold during a drawdown. (Need pETH? Mint it on the [bonding curve](/peth/bonding-curve).)
+Deposit more pETH into the trove to **raise your ICR** without changing your debt. This is the simplest way to step back from a liquidation or redemption threshold during a drawdown. (Need pETH? Mint it on the [bonding curve](/peth).)
 
 ## Mint more / repay debt
 
@@ -58,9 +58,9 @@ Deposit more pETH into the trove to **raise your ICR** without changing your deb
 
 ## Monitor interest accrual
 
-Borrowers pay an [autonomous, market-aware interest rate](/minting/minting-passets) that accrues continuously against your trove. Interest adds to your debt over time, so your ICR drifts *down* even if ETH holds flat and you do nothing. Check your accrued debt periodically and repay or top up so accrual does not quietly walk you toward a threshold.
+Borrowers pay an [autonomous, market-aware interest rate](/minting) that accrues continuously against your trove. Interest adds to your debt over time, so your ICR drifts *down* even if ETH holds flat and you do nothing. Check your accrued debt periodically and repay or top up so accrual does not quietly walk you toward a threshold.
 
-Collateral pETH also *earns* yield while it sits in the trove, partly offsetting the interest cost; see [Minting pAssets](/minting/minting-passets) for how the effective rate is composed.
+Collateral pETH also *earns* yield while it sits in the trove, partly offsetting the interest cost; see [Minting pAssets](/minting) for how the effective rate is composed.
 
 ### Worked example: interest accrual
 
@@ -96,6 +96,6 @@ The takeaway: a buffer is not wasted capital, it is the price of staying in cont
   steps={[
     { href: '/minting/open-a-trove', title: 'Open a Trove', description: 'Step-by-step guide to opening your first trove.' },
     { href: '/redemptions-liquidations/liquidations', title: 'Liquidations', description: 'Understand what happens if your ICR falls below the minimum.' },
-    { href: '/yield/stability-pool', title: 'Stability Pool', description: 'Earn yield by depositing pAssets.' }
+    { href: '/yield', title: 'Stability Pool', description: 'Earn yield by depositing pAssets.' }
   ]}
 />

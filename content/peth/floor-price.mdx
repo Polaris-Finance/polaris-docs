@@ -15,7 +15,7 @@ The floor is not a promise or a target defended by a treasury. It is a direct co
 
 Two mechanisms push the floor up under the intended curve invariants. Normal protocol actions are not designed to push it down:
 
-- **Swap fees feed the burn.** Every swap on the [bonding curve](/peth/bonding-curve) charges a pETH fee that accrues to the protocol's Fee Router. The Fee Router periodically floor-sells and burns accumulated pETH, reducing supply against an unchanged-or-growing ETH reserve and raising the floor.
+- **Swap fees feed the burn.** Every swap on the [bonding curve](/peth) charges a pETH fee that accrues to the protocol's Fee Router. The Fee Router periodically floor-sells and burns accumulated pETH, reducing supply against an unchanged-or-growing ETH reserve and raising the floor.
 - **Conversion auctions.** Minting POLAR requires [burning pETH](/polar/conversion-auctions), which again reduces supply and lifts the floor.
 
 The result is a staircase under normal operation: pETH's market price fluctuates above the floor, while the floor itself steps upward over time.

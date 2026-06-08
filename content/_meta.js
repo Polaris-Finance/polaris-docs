@@ -1,11 +1,9 @@
 export default {
   index: 'Introduction',
   'launch-status': 'Launch Status',
-  'getting-started': 'Getting Started',
   'using-app': 'Using the App',
   'why-polaris': 'Why Polaris',
   'core-concepts': 'Core Concepts',
-  paths: 'Choose Your Path',
   '-- using': {
     type: 'separator',
     title: 'Using Polaris'

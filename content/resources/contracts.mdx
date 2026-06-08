@@ -34,7 +34,7 @@ For testnet work, load the manifest for the network and pAsset you are actually 
 
 | Contract | Source (`src/`) | Address |
 |---|---|---|
-| **pETH** — the [bonding curve](/peth/bonding-curve): swaps ETH ↔ pETH, enforces the rising floor. pETH is the sole collateral and is this ERC-20 itself. | `BondingCurve/ABDKBondingCurve.sol` | _Forthcoming_ |
+| **pETH** — the [bonding curve](/peth): swaps ETH ↔ pETH, enforces the rising floor. pETH is the sole collateral and is this ERC-20 itself. | `BondingCurve/ABDKBondingCurve.sol` | _Forthcoming_ |
 | Bonding-curve token splitter — internal pETH accounting (floor / variable components). | `BondingCurve/BondingCurveTokenSplitter.sol`, `BondingCurve/VPToken.sol` | _Forthcoming_ |
 | **POLAR** — the stewardship token. The [conversion auction](/polar/conversion-auctions) (burn pETH → mint POLAR) lives **inside this contract**, not a separate deployment. | `Shares/ShareSystem.sol` | _Forthcoming_ |
 | POLAR staking — stake POLAR to receive routed yield. The [vePOLAR](/stewardship/vepolar) lock layer is forthcoming; today this is the staking surface. | _Forthcoming_ | _Forthcoming_ |
@@ -52,7 +52,7 @@ One set deploys per pAsset. Key everything by `(pAsset, owner)` — a pUSD trove
 | **pAsset token** (e.g. pUSD, pGOLD) — the synthetic pegged ERC-20. | `StableToken.sol` | _Forthcoming_ |
 | **CDP / Trove manager** — trove accounting, mint/redeem, liquidations, interest, Emergency Mode. | `CDPManager.sol` | _Forthcoming_ |
 | Trove NFT — tokenizes each trove position. | `CDPNFT.sol` | _Forthcoming_ |
-| [Stability Pool](/yield/stability-pool) — absorbs liquidations; the primary yield venue. | `StabilityPool.sol` | _Forthcoming_ |
+| [Stability Pool](/yield) — absorbs liquidations; the primary yield venue. | `StabilityPool.sol` | _Forthcoming_ |
 | Collateral Surplus Pool — holds post-liquidation collateral surplus for borrowers to claim. | `CollSurplusPool.sol` | _Forthcoming_ |
 | **Internal Peg Stability Module** — mint/redeem the pAsset against pETH; the peg and [redemption](/redemptions-liquidations) entry point. This is not a custodial or external-collateral PSM. | `PegStabilityModule.sol` | _Forthcoming_ |
 | Interest controller — primary (autonomous) and secondary (utilization) interest rates. | `InterestRate/InterestController.sol` | _Forthcoming_ |
@@ -71,4 +71,4 @@ One set deploys per pAsset. Key everything by `(pAsset, owner)` — a pUSD trove
 3. Confirm the **ABI** matches that verified source.
 4. Never paste an address from a screenshot, DM, or search result without that explorer check — address-spoofing is how these attacks succeed.
 
-While production addresses are pending, see [Audits & Security](/resources/audits-security) for the security model, [Public Testnet 1](/resources/testnet) for Sepolia artifacts, or the [Glossary](/resources/glossary) for what each contract does.
+While production addresses are pending, see [Audits & Security](/resources/audits-security) for the security model, [Public Testnet 1](/resources/testnet) for Sepolia artifacts, or the [Glossary](/resources) for what each contract does.

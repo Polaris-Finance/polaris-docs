@@ -8,7 +8,7 @@ description: Step-by-step guide to opening a Polaris trove — deposit pETH, min
 import { Steps } from 'nextra/components'
 
 
-A **trove** is your individual borrowing position: its own collateral, debt, and collateralization ratio. Opening one is how you mint a pAsset: **connect wallet ⇒ acquire pETH ⇒ deposit pETH as collateral ⇒ choose and mint a pAsset ⇒ confirm ⇒ monitor your ICR**. This page walks each step; for the concepts behind it, see [Minting pAssets](/minting/minting-passets) and [Managing Your Trove](/minting/managing-your-trove).
+A **trove** is your individual borrowing position: its own collateral, debt, and collateralization ratio. Opening one is how you mint a pAsset: **connect wallet ⇒ acquire pETH ⇒ deposit pETH as collateral ⇒ choose and mint a pAsset ⇒ confirm ⇒ monitor your ICR**. This page walks each step; for the concepts behind it, see [Minting pAssets](/minting) and [Managing Your Trove](/minting/managing-your-trove).
 
 <Callout variant="info" title="Where this appears in the app">
 App anchor: **Borrow** tab -> pAsset trove flow. If the app says CDP, it is referring to the same pAsset debt-position mechanism this page calls a trove.
@@ -18,7 +18,7 @@ App anchor: **Borrow** tab -> pAsset trove flow. If the app says CDP, it is refe
 This flow is testnet-actionable only on Sepolia (<code>11155111</code>) using the current Public Testnet 1 manifests. Production troves are not mainnet-actionable until <a href="/launch-status">Polaris Launch Status</a> publishes the official app, production addresses, final parameters, and audit status. Screenshots and exact UI labels are forthcoming; the steps below describe the flow, not the final button copy.
 </Callout>
 
-For the full **Borrow / CDP / trove / reserve loan** vocabulary — including why a reserve loan is not a pAsset trove — see [Borrower terminology](/minting/minting-passets#borrower-terminology).
+For the full **Borrow / CDP / trove / reserve loan** vocabulary — including why a reserve loan is not a pAsset trove — see [Borrower terminology](/minting#borrower-terminology).
 
 ## Before you start
 
@@ -47,7 +47,7 @@ Open the Polaris app and connect.
 
 ### Acquire pETH
 
-Deposit ETH into the [bonding curve](/peth/bonding-curve) to receive pETH. pETH is the *only* collateral Polaris accepts. If you already hold pETH, skip this step.
+Deposit ETH into the [bonding curve](/peth) to receive pETH. pETH is the *only* collateral Polaris accepts. If you already hold pETH, skip this step.
 
 ### Deposit pETH as collateral
 
@@ -97,7 +97,7 @@ That buffer survives the modeled move. Had the same user opened at 135%, a 20% c
 <NextSteps
   steps={[
     { href: '/minting/managing-your-trove', title: 'Managing Your Trove', description: 'Adjust, monitor, and close your trove safely.' },
-    { href: '/peth/bonding-curve', title: 'The Bonding Curve', description: 'Acquire pETH, the only collateral Polaris accepts.' },
-    { href: '/yield/stability-pool', title: 'Stability Pool', description: 'Earn yield by depositing the pAssets you mint.' }
+    { href: '/peth', title: 'The Bonding Curve', description: 'Acquire pETH, the only collateral Polaris accepts.' },
+    { href: '/yield', title: 'Stability Pool', description: 'Earn yield by depositing the pAssets you mint.' }
   ]}
 />
