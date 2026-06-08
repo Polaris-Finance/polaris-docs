@@ -31,9 +31,29 @@ npm run lint:content          # frontmatter, MDX gotchas, unresolved TODOs
 npm run check:links           # local routes, anchors, and public assets
 npm run check:links:external  # also checks outbound links over the network
 npm run ci                    # content check + links + build + Pagefind smoke + prod audit
+npm run local:push-gate       # local mirror of the reproducible deploy build job
 ```
 
 Pull requests run the validation workflow in `.github/workflows/ci.yml`. The deploy workflow runs the same local validation before uploading `out/` to GitHub Pages.
+
+## Local push gate
+
+This repo includes a tracked pre-push hook in `.githooks/pre-push`. Enable it in a checkout with:
+
+```bash
+git config core.hooksPath .githooks
+```
+
+The hook runs `npm run local:push-gate` before branch pushes. It mirrors the locally reproducible part of `.github/workflows/deploy.yml`: clean install, Playwright browser install, `npm run ci`, external-link checking as a non-blocking warning, and the Pages artifact smoke check. The final GitHub Pages upload/deploy actions require GitHub's Pages environment and are not run locally.
+
+Useful overrides:
+
+```bash
+SKIP_LOCAL_PUSH_GATE=1 git push              # emergency bypass
+LOCAL_PUSH_GATE_SKIP_INSTALL=1 git push      # keep node_modules for a faster local retry
+LOCAL_PUSH_GATE_WITH_BROWSER_DEPS=1 git push # also install Playwright system deps
+npm run local:push-gate:strict-node          # fail unless the shell matches .nvmrc
+```
 
 ## Important build constraints
 
