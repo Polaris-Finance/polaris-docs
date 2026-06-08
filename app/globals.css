@@ -886,12 +886,44 @@ article hr {
   background: linear-gradient(90deg, transparent, rgba(216, 201, 164, 0.4) 50%, transparent);
 }
 
-/* Tables: a quiet brand tint on the header row. */
-article thead th {
-  background: rgba(63, 127, 168, 0.06);
+/* ── Tables: editorial rules, not a spreadsheet grid ────────────────────────
+   The docs theme draws a 1px border on all four sides of every cell. Replace
+   that full grid with horizontal row rules only (keep the theme's bottom
+   border, drop top + sides), a defined header, and a row-hover highlight, so
+   dense reference tables read like an editorial data table. */
+article table[data-pl-table] :is(th, td) {
+  border-top: 0;
+  border-inline: 0;
 }
-.dark article thead th {
-  background: rgba(123, 165, 201, 0.08);
+
+/* A quiet brand tint plus a gold hairline anchors the header to its columns.
+   Headers align left to sit over the left-aligned body cells; numeric columns
+   keep their inline text-align:right (it beats this rule). */
+article table[data-pl-table] thead th {
+  text-align: left;
+  background: rgba(63, 127, 168, 0.07);
+  border-bottom: 1.5px solid rgba(177, 147, 79, 0.5);
+}
+.dark article table[data-pl-table] thead th {
+  background: rgba(123, 165, 201, 0.1);
+  border-bottom-color: rgba(216, 201, 164, 0.42);
+}
+
+/* The first column is the row's subject; a touch more weight lets the eye run
+   down the table by row label. */
+article table[data-pl-table] tbody td:first-child {
+  font-weight: 500;
+}
+
+/* Row hover aids horizontal scanning across many columns. */
+article table[data-pl-table] tbody tr {
+  transition: background-color 0.12s ease;
+}
+article table[data-pl-table] tbody tr:hover {
+  background: rgba(63, 127, 168, 0.05);
+}
+.dark article table[data-pl-table] tbody tr:hover {
+  background: rgba(123, 165, 201, 0.06);
 }
 
 /* Blockquotes read as a deliberate aside, not default-theme gray: brand the
@@ -1709,46 +1741,79 @@ article [class*='overflow-x-auto']:has(table)::after {
     clip: rect(0, 0, 0, 0);
   }
 
+  /* Each row becomes a self-contained card. */
   article table[data-pl-table][data-pl-wide='true'] tbody tr {
-    margin: 0 0 0.85rem;
-    padding: 0.65rem 0.75rem;
-    border: 1px solid rgba(44, 74, 110, 0.14);
-    border-radius: 8px;
-    background: rgba(44, 74, 110, 0.025);
+    margin: 0 0 1rem;
+    padding: 0.9rem 1rem;
+    border: 1px solid rgba(44, 74, 110, 0.16);
+    border-radius: 10px;
+    background: rgba(44, 74, 110, 0.035);
   }
 
   .dark article table[data-pl-table][data-pl-wide='true'] tbody tr {
     border-color: rgba(123, 165, 201, 0.16);
-    background: rgba(10, 22, 40, 0.38);
+    background: rgba(10, 22, 40, 0.4);
   }
 
   /* Stack each cell as label-over-value. Block (not grid) so cells with mixed
      inline content — text + <strong>/<a>/<em> — render as one flowing value
-     instead of each inline node becoming its own grid item. */
+     instead of each inline node becoming its own grid item. text-align is
+     forced left because numeric columns carry an inline text-align:right that
+     would otherwise float values to the card's right edge, away from their
+     labels. */
   article table[data-pl-table][data-pl-wide='true'] td {
     display: block;
     min-width: 0;
-    padding: 0.4rem 0;
+    padding: 0.35rem 0;
+    text-align: left !important;
     border-bottom: 1px solid rgba(44, 74, 110, 0.08);
   }
 
+  .dark article table[data-pl-table][data-pl-wide='true'] td {
+    border-bottom-color: rgba(123, 165, 201, 0.1);
+  }
+
   article table[data-pl-table][data-pl-wide='true'] td:last-child {
+    padding-bottom: 0;
     border-bottom: 0;
   }
 
   article table[data-pl-table][data-pl-wide='true'] td[data-label]::before {
     content: attr(data-label);
     display: block;
-    margin-bottom: 0.15rem;
+    margin-bottom: 0.2rem;
     color: #3f5a78;
-    font-size: 0.68rem;
-    font-weight: 700;
+    font-size: 0.7rem;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
 
   .dark article table[data-pl-table][data-pl-wide='true'] td[data-label]::before {
     color: #9cc2e0;
+  }
+
+  /* The first column is the row's subject: render it as the card title rather
+     than another labelled field — drop its column-name eyebrow, give it heading
+     weight, and divide it from the fields below. */
+  article table[data-pl-table][data-pl-wide='true'] td:first-child {
+    margin-bottom: 0.55rem;
+    padding-top: 0;
+    padding-bottom: 0.55rem;
+    border-bottom: 1px solid rgba(44, 74, 110, 0.16);
+    font-size: 1.02rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--polaris-navy);
+  }
+
+  .dark article table[data-pl-table][data-pl-wide='true'] td:first-child {
+    border-bottom-color: rgba(123, 165, 201, 0.18);
+    color: var(--polaris-star-bright);
+  }
+
+  article table[data-pl-table][data-pl-wide='true'] td:first-child::before {
+    display: none;
   }
 }
 
