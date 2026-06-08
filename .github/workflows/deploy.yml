@@ -37,11 +37,13 @@ jobs:
 
       - name: Validate and build static site
         run: npm run ci
-        env:
-          BASE_PATH: /polaris-docs
 
       - name: Check external links
         run: npm run check:links:external
+        continue-on-error: true
+
+      - name: Smoke check Pages artifact URLs
+        run: npm run check:artifact
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v5

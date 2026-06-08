@@ -12,17 +12,24 @@
     "predev": "node scripts/sync-pagefind.mjs --if-exists",
     "dev": "next dev",
     "dev:search": "npm run build && npm run dev",
+    "generate": "node scripts/generate-sitemap.mjs && node scripts/generate-llms.mjs",
     "prebuild": "node scripts/generate-sitemap.mjs && node scripts/generate-llms.mjs",
     "build": "next build --webpack",
     "postbuild": "pagefind --site out --output-subdir _pagefind && node scripts/sync-pagefind.mjs",
-    "ci": "npm run lint:content && npm run check:links && npm run build && npm run check:pagefind && npm run audit:prod",
+    "ci": "npm run lint && npm run format:check && npm run lint:content && npm run check:links && npm run check:generated && npm run build && npm run check:artifact && npm run check:pagefind && npm run test:e2e && npm run audit:prod",
+    "lint": "eslint .",
+    "format": "prettier --write \"{app,components,scripts,tests}/**/*.{js,jsx,mjs,css}\" \"*.{mjs,json}\" \".github/workflows/*.{yml,yaml}\"",
+    "format:check": "prettier --check \"{app,components,scripts,tests}/**/*.{js,jsx,mjs,css}\" \"*.{mjs,json}\" \".github/workflows/*.{yml,yaml}\"",
     "lint:content": "node scripts/check-content.mjs",
     "check:links": "node scripts/check-links.mjs",
     "check:links:external": "node scripts/check-links.mjs --external",
+    "check:generated": "node scripts/generate-sitemap.mjs --check && node scripts/generate-llms.mjs --check",
+    "check:artifact": "node scripts/check-export-artifact.mjs",
     "check:pagefind": "node scripts/check-pagefind.mjs",
     "sync:pagefind": "node scripts/sync-pagefind.mjs",
+    "test:e2e": "playwright test",
     "audit:prod": "npm audit --omit=dev --audit-level=high",
-    "start": "next start",
+    "start": "npm run serve",
     "serve": "npx serve out"
   },
   "dependencies": {
@@ -33,7 +40,15 @@
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
-    "pagefind": "^1.5.2"
+    "@eslint/js": "^9.39.4",
+    "@playwright/test": "^1.60.0",
+    "eslint": "^9.39.4",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^17.6.0",
+    "pagefind": "^1.5.2",
+    "prettier": "^3.8.3"
   },
   "overrides": {
     "postcss": "8.5.10",

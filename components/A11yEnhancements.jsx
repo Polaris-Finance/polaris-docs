@@ -30,9 +30,13 @@ export function A11yEnhancements() {
       const isClosed =
         style.display === 'none' || style.visibility === 'hidden' || rect.bottom <= 1
 
-      nav.inert = isClosed
-      nav.toggleAttribute('inert', isClosed)
-      nav.setAttribute('aria-hidden', String(isClosed))
+      if (nav.inert !== isClosed) nav.inert = isClosed
+      if (nav.hasAttribute('inert') !== isClosed) nav.toggleAttribute('inert', isClosed)
+      if (isClosed) {
+        if (nav.getAttribute('aria-hidden') !== 'true') nav.setAttribute('aria-hidden', 'true')
+      } else if (nav.hasAttribute('aria-hidden')) {
+        nav.removeAttribute('aria-hidden')
+      }
     }
 
     const applyEnhancements = () => {

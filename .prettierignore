@@ -1,0 +1,11 @@
+node_modules
+.next
+out
+public
+content
+agents
+.playwright
+.playwright-cli
+.playwright-mcp
+playwright-report
+test-results

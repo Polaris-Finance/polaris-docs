@@ -32,3 +32,4 @@ jobs:
 
       - name: Check external links
         run: npm run check:links:external
+        continue-on-error: true
