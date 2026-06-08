@@ -149,7 +149,7 @@ export default async function Page(props) {
           sourceCode
         })}
       />
-<MDXContent {...props} params={params} />
+      <MDXContent {...props} params={params} />
     </Wrapper>
   )
 }

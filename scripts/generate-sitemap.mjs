@@ -117,6 +117,7 @@ function sitemapPolicy(route) {
 
   const volatileRoutes = new Set([
     '/launch-status',
+    '/paths/safety-verification',
     '/resources/contracts',
     '/resources/audits-security',
     '/resources/faq',

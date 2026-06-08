@@ -1,10 +1,19 @@
-import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs'
+import {
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  readdirSync,
+  rmSync,
+  statSync,
+  writeFileSync
+} from 'node:fs'
 import path from 'node:path'
 import { absoluteUrl } from '../app/site-config.mjs'
 
 const root = process.cwd()
 const contentDir = path.join(root, 'content')
 const publicDir = path.join(root, 'public')
+const sectionDir = path.join(publicDir, 'llms-sections')
 const checkOnly = process.argv.includes('--check')
 
 function walk(dir) {
@@ -83,9 +92,70 @@ function renderImageAlt(props) {
   return alt ? `Image: ${alt}` : ''
 }
 
+function plainTextFromJsx(value) {
+  return value
+    .replace(/<a\s+[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi, (_match, href, text) => {
+      const label = plainTextFromJsx(text)
+      return label ? `[${label}](${href})` : href
+    })
+    .replace(/<\/?p[^>]*>/gi, ' ')
+    .replace(/<\/?strong[^>]*>/gi, '')
+    .replace(/<\/?em[^>]*>/gi, '')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
+function linkForLlms(href) {
+  if (/^https?:\/\//.test(href)) return href
+  if (href.startsWith('/')) return absoluteUrl(href)
+  return href
+}
+
+function renderDetailAccordion(props) {
+  const itemsBlock = /items=\{\[([\s\S]*?)\]\}/.exec(props)?.[1] ?? props
+  const items = [
+    ...itemsBlock.matchAll(
+      /(?:title|question):\s*(['"`])([\s\S]*?)\1\s*,\s*(?:content|answer):\s*([\s\S]*?)(?=\n\s*},|\n\s*}\s*\])/g
+    )
+  ]
+
+  return items
+    .map((match) => {
+      const title = plainTextFromJsx(match[2])
+      const body = plainTextFromJsx(match[3])
+      return [title ? `### ${title}` : '', body].filter(Boolean).join('\n\n')
+    })
+    .filter(Boolean)
+    .join('\n\n')
+}
+
+function renderNextSteps(props) {
+  const stepsBlock = /steps=\{\[([\s\S]*?)\]\}/.exec(props)?.[1] ?? props
+  const steps = [
+    ...stepsBlock.matchAll(
+      /href:\s*(['"])(.*?)\1\s*,\s*title:\s*(['"])(.*?)\3(?:\s*,\s*description:\s*(['"])(.*?)\5)?/g
+    )
+  ]
+
+  if (!steps.length) return ''
+
+  return [
+    'Next steps:',
+    ...steps.map((match) => {
+      const href = linkForLlms(match[2])
+      const title = match[4]
+      const description = match[6] ? `: ${match[6]}` : ''
+      return `- [${title}](${href})${description}`
+    })
+  ].join('\n')
+}
+
 function stripJsxTags(value) {
   return value
     .replace(/<BlogPostCard\s+([\s\S]*?)\/>/g, (_match, props) => renderBlogPostCard(props))
+    .replace(/<DetailAccordion\s+([\s\S]*?)\/>/g, (_match, props) => renderDetailAccordion(props))
+    .replace(/<NextSteps\s+([\s\S]*?)\/>/g, (_match, props) => renderNextSteps(props))
     .replace(
       /<LaunchTimeline\s*\/>/g,
       'Image: Polaris launch timeline. Early Research in 2024. Team Formation in June 2025. Testnet 1, private, March 2026. Testnet 2, public, May 2026, the current phase. Mainnet, forthcoming.'
@@ -110,7 +180,7 @@ function stripJsxTags(value) {
     .replace(/^\s*(import|export)\s.+$/gm, '')
     .replace(/<svg[\s\S]*?<\/svg>/gi, '')
     .replace(/<[^>\n]+\/>/g, '')
-    .replace(/<\/?(?:Steps|Callout|div|span|a)[^>]*>/g, '')
+    .replace(/<\/?(?:Steps|Callout|div|span|a|figure|figcaption)[^>]*>/g, '')
     .replace(/<\/?[A-Z][^>]*>/g, '')
     .replace(/<\/?[a-z][^>]*\s(?:class|className|style)=["'][^"']*["'][^>]*>/gi, '')
 }
@@ -343,6 +413,10 @@ const sectionOrder = ['', ...Object.keys(sectionTitles)]
 const overviewTitle = 'Overview'
 
 mkdirSync(publicDir, { recursive: true })
+if (!checkOnly) {
+  rmSync(sectionDir, { recursive: true, force: true })
+}
+mkdirSync(sectionDir, { recursive: true })
 
 const pages = walk(contentDir)
   .map((fullPath) => ({
@@ -392,6 +466,23 @@ const fullBody = orderedSections
 
 const llmsFull = `${header}\n${fullBody}\n`
 
+function sectionSlug(section) {
+  return section === '' ? 'overview' : section.replace(/[^a-z0-9-]/gi, '-').toLowerCase()
+}
+
+const sectionArtifacts = orderedSections.map((section) => {
+  const heading = section === '' ? overviewTitle : (sectionTitles[section] ?? section)
+  const body = grouped
+    .get(section)
+    .map(({ route, title, body }) => `## ${title}\n\nURL: ${absoluteUrl(route)}\n\n${body}`)
+    .join('\n\n---\n\n')
+
+  return {
+    relativePath: `llms-sections/${sectionSlug(section)}.txt`,
+    content: `${header}\n# ${heading}\n\n${body}\n`
+  }
+})
+
 const llmsIndex = `${JSON.stringify(
   {
     site: absoluteUrl('/'),
@@ -414,6 +505,7 @@ const failures = [
   checkOrWrite('llms.txt', llms),
   checkOrWrite('llms-full.txt', llmsFull),
   checkOrWrite('llms-index.json', llmsIndex),
+  ...sectionArtifacts.map(({ relativePath, content }) => checkOrWrite(relativePath, content)),
   ...validateCleanLlmsFull(llmsFull)
 ].filter(Boolean)
 
@@ -425,6 +517,6 @@ if (failures.length) {
 
 console.log(
   checkOnly
-    ? `LLM artifacts are fresh and clean (${pages.length} pages).`
-    : `Generated llms.txt, llms-full.txt, and llms-index.json with ${pages.length} pages.`
+    ? `LLM artifacts are fresh and clean (${pages.length} pages, ${sectionArtifacts.length} sections).`
+    : `Generated llms.txt, llms-full.txt, llms-index.json, and ${sectionArtifacts.length} section files with ${pages.length} pages.`
 )

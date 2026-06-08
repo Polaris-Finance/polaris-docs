@@ -139,7 +139,11 @@ export function LaunchTimeline() {
       <ol className="pl-timeline-list">
         {phases.map((phase) => (
           <li key={phase.name} aria-current={phase.isNow ? 'step' : undefined}>
-            {phase.link ? <a href={pathWithBase(phase.link)}>{phase.name}</a> : <span>{phase.name}</span>}
+            {phase.link ? (
+              <a href={pathWithBase(phase.link)}>{phase.name}</a>
+            ) : (
+              <span>{phase.name}</span>
+            )}
             <span>{phase.date}</span>
             <p>{phase.desc}</p>
           </li>

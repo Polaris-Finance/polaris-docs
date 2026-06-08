@@ -37,6 +37,13 @@ for (const generatedFile of ['llms.txt', 'llms-full.txt', 'llms-index.json']) {
   if (existsSync(file)) sourceFiles.push(file)
 }
 
+const sectionLlmsDir = path.join(publicDir, 'llms-sections')
+if (existsSync(sectionLlmsDir)) {
+  walk(sectionLlmsDir, (file) => {
+    if (file.endsWith('.txt')) sourceFiles.push(file)
+  })
+}
+
 walk(contentDir, (file) => {
   if (file.endsWith('.mdx')) mdxFiles.push(file)
 })
@@ -185,6 +192,22 @@ function hasAssetExtension(href) {
   return expectedMimeTypes(href) !== null
 }
 
+function shouldHaveTrailingSlash(href) {
+  if (!/^https?:\/\//.test(href)) return false
+
+  try {
+    const url = new URL(href)
+    return (
+      url.origin === 'https://polarisfinance.io' &&
+      (url.pathname === '/blog' || url.pathname.startsWith('/blog/')) &&
+      !url.pathname.endsWith('/') &&
+      !hasAssetExtension(href)
+    )
+  } catch {
+    return false
+  }
+}
+
 function contentTypeMatches(contentType, expected) {
   if (!contentType) return false
   const normalized = contentType.split(';')[0].trim().toLowerCase()
@@ -240,6 +263,12 @@ function checkAnchor(route, hash, file, href) {
 }
 
 for (const { file, href: originalHref } of links) {
+  if (shouldHaveTrailingSlash(originalHref)) {
+    failures.push(
+      `${path.relative(root, file)}: Polaris blog URL should include a trailing slash ${originalHref}`
+    )
+  }
+
   const ownHref = /^https?:\/\//.test(originalHref) ? localHrefForOwnAbsolute(originalHref) : null
   const href = ownHref ?? originalHref
 

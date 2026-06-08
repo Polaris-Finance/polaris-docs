@@ -1,0 +1,345 @@
+# Polaris Documentation
+
+> User and developer documentation for Polaris Finance — the self-scaling stablecoin operating system. Mint pAssets backed entirely by onchain collateral and yield. No T-bills. No CEXs. No compromises.
+
+# Choose Your Path
+
+## Polaris User Paths
+
+URL: https://tokenbrice.github.io/polaris-docs/paths
+
+# Polaris User Paths
+
+Start with the path that matches the action you want to take, but check [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) first. Polaris is currently public Public Testnet 1 on Sepolia; production mainnet actions are not yet live.
+
+## Start here if
+
+If you want to... | Read
+
+Verify the official app, network, addresses, and audit status | [Polaris Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status), then [Safety and Verification](https://tokenbrice.github.io/polaris-docs/paths/safety-verification)
+Mint pUSD, pGOLD, or another pAsset | [Borrow pAssets](https://tokenbrice.github.io/polaris-docs/paths/borrow-passets)
+Earn pAsset or pETH-denominated yield | [Earn Yield](https://tokenbrice.github.io/polaris-docs/paths/earn-yield)
+Hold pETH or understand the bonding curve first | [Hold or Use pETH](https://tokenbrice.github.io/polaris-docs/paths/hold-use-peth)
+Convert pETH, stake POLAR, or study future vePOLAR locking | [Convert / Stake POLAR](https://tokenbrice.github.io/polaris-docs/paths/convert-lock-polar)
+Build an app, indexer, vault, or risk system | [Develop on Polaris](https://tokenbrice.github.io/polaris-docs/paths/develop)
+
+## Actionability
+
+These paths are decision guides, not production launch instructions until [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) lists the official app, production contracts, final parameters, and audit status. For now, builders can plan integrations and test on Sepolia with testnet manifests.
+
+Relevant app/search vocabulary: Dashboard, Swap, Borrow, Earn, Split, Zap, Guide, Advanced, Analytics.
+
+---
+
+## Borrow Polaris pAssets
+
+URL: https://tokenbrice.github.io/polaris-docs/paths/borrow-passets
+
+# Borrow Polaris pAssets
+
+**Who this is for:** anyone who wants to mint pUSD, pGOLD, or another pAsset against pETH collateral and actively manage that position.
+
+**Prerequisites:** an Ethereum wallet, test assets on Sepolia for Public Testnet 1 or ETH on Ethereum mainnet after production launch, and a working grasp of overcollateralization and liquidation. If those terms are new, read [Core Concepts](https://tokenbrice.github.io/polaris-docs/core-concepts) first.
+
+> **Launch status:** Borrowing is testnet-actionable on Sepolia only when using the official Public Testnet 1 manifests. Production borrowing is not mainnet-actionable until [Polaris Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) publishes the app URL, production addresses, final collateral thresholds, and audit status. Do not connect to a frontend or contract that claims to be Polaris unless it is linked from these docs or another official Polaris channel.
+
+> **Terminology:** In the app, **Borrow** is the task label. Docs call a pAsset debt position a **trove**; contracts may call the mechanism a **CDP**. **Reserve loans** are separate WETH loans against [fpETH](https://tokenbrice.github.io/polaris-docs/peth/split), not pAsset troves.
+
+## Reading sequence
+
+Read these in order — each step builds context the next one assumes.
+
+1. [Getting Started](https://tokenbrice.github.io/polaris-docs/getting-started) — confirms your wallet, network, and launch status so you avoid an unverified deployment.
+2. [The Bonding Curve](https://tokenbrice.github.io/polaris-docs/peth/bonding-curve) — pETH is the *only* collateral Polaris accepts; you must hold it before borrowing.
+3. [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting/minting-passets) — explains the CDP model and the peg mechanics that determine your interest rate.
+4. [Open a Trove](https://tokenbrice.github.io/polaris-docs/minting/open-a-trove) — the conceptual flow for posting collateral and minting your pAsset.
+5. [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove) — how collateralization, debt, and interest move over time, and how to stay clear of liquidation.
+6. [Liquidations](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations) and [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode) — the failure states that decide how conservatively to size your position.
+
+## What to verify at launch
+
+- The official app URL.
+- The intended network: Sepolia (`11155111`) for Public Testnet 1, or Ethereum mainnet (`1`) after production launch.
+- The pETH, pAsset, trove manager, and Stability Pool addresses.
+- Final minimum collateralization, liquidation, redemption, and fee parameters for the pAsset you mint.
+- Audit reports and verified contract source.
+
+## Next
+
+- Want yield on the pAsset after minting? Continue to [Earn Yield](https://tokenbrice.github.io/polaris-docs/paths/earn-yield).
+- Want to understand the collateral first? Continue to [Hold or Use pETH](https://tokenbrice.github.io/polaris-docs/paths/hold-use-peth).
+- Want the safety checklist? Continue to [Polaris Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) and [Safety and Verification](https://tokenbrice.github.io/polaris-docs/paths/safety-verification).
+
+Relevant app/search vocabulary: Borrow, borrow, mint, open trove, pUSD, pGOLD, ICR, official app.
+
+---
+
+## Convert, Stake, and Future-Lock POLAR
+
+URL: https://tokenbrice.github.io/polaris-docs/paths/convert-lock-polar
+
+# Convert, Stake, and Future-Lock POLAR
+
+**Who this is for:** long-term participants who want to acquire POLAR through conversion, use current POLAR Staking where available, and understand forthcoming vePOLAR locking.
+
+**Prerequisites:** pETH to burn in a conversion auction, and acceptance that conversion is one-way — you cannot un-burn pETH. To understand what your burn contributes, read [The Floor Price](https://tokenbrice.github.io/polaris-docs/peth/floor-price) first.
+
+> **Launch status:** Conversion and current staking are testnet-actionable only where Sepolia artifacts exist. Production conversion, staking, and vePOLAR locking are not mainnet-actionable until [Polaris Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) publishes the official app, POLAR, staking, and vePOLAR addresses, lock durations, voting process, final parameter bounds, and audit status. Do not use an unofficial conversion, staking, or locking interface.
+
+## Reading sequence
+
+Read these in order — understand the token and the irreversible burn before committing pETH.
+
+1. [The POLAR Token](https://tokenbrice.github.io/polaris-docs/polar/polar-token) — POLAR's role and why, after the initial distribution, new POLAR can be minted *only* by burning pETH.
+2. [Conversion Auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions) — the mechanism and its risks; read before burning any pETH to mint POLAR.
+3. [Participate in a Conversion](https://tokenbrice.github.io/polaris-docs/polar/participate-in-conversion) — the conceptual user flow for a conversion.
+4. [vePOLAR](https://tokenbrice.github.io/polaris-docs/stewardship/vepolar) — how future locking will differ from current POLAR Staking.
+5. [Stewardship, not Governance](https://tokenbrice.github.io/polaris-docs/stewardship/stewardship) — the hardcoded bounds your vote operates within; read before voting on any proposal.
+
+## POLAR Staking vs vePOLAR
+
+POLAR Staking is the current app staking/rewards surface where exposed. vePOLAR is forthcoming vote-escrow locking. Once live, vePOLAR can steward bounded parameters, vote on permitted onboarding decisions, and receive a stewarded share of protocol yield. It cannot upgrade contracts, change the bonding curve, change liquidation or redemption logic, create emissions gauges, or mint POLAR except through pETH conversion.
+
+## What to verify at launch
+
+- The official POLAR, conversion auction, and vePOLAR addresses.
+- The official POLAR Staking address and claim path, if staking is exposed.
+- Verified source and ABI for each contract.
+- Final lock duration choices and vote-power decay rules.
+- Final proposal, voting, quorum, timelock, and execution rules.
+- The hardcoded parameter bounds for any proposal you vote on.
+
+---
+
+## Develop on Polaris
+
+URL: https://tokenbrice.github.io/polaris-docs/paths/develop
+
+# Develop on Polaris
+
+**Who this is for:** engineers building an app, indexer, risk system, vault, liquidation monitor, analytics surface, or external market around Polaris.
+
+**Prerequisites:** familiarity with onchain reads/writes (viem, ethers, or equivalent) and the Polaris product model. New to these concepts? Read [Core Concepts](https://tokenbrice.github.io/polaris-docs/core-concepts) first.
+
+> **Launch status:** Polaris is in public Public Testnet 1 on Sepolia, with production mainnet forthcoming. Contract addresses, ABIs, verified source, canonical events, SDKs, subgraphs, and API endpoints for production are not yet published. Build against the documented model, but do not hardcode pre-launch addresses, method names, or event signatures. Track [Polaris Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) before binding to artifacts.
+
+## Reading sequence
+
+Read these in order — model the system before you bind to any artifact.
+
+1. [Core Concepts](https://tokenbrice.github.io/polaris-docs/core-concepts) — the system model and its component boundaries.
+2. [Contracts and Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts) — the deployment shape (a shared core plus one instance per pAsset), the contract set, and the address, source, and ABI format to verify against.
+3. [Audits and Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security) — the security model and audit status; read before treating a deployment as production-grade.
+4. [Polaris Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) and [Safety and Verification](https://tokenbrice.github.io/polaris-docs/paths/safety-verification) — the pre-interaction checklist for network, chain ID, addresses, and verified source.
+
+## Build now, bind later
+
+Until deployment artifacts ship, the safest useful work is interface planning:
+
+- Model the product concepts: pETH, pAssets, troves, Stability Pools, Fee Router, POLAR, and vePOLAR.
+- Design data schemas around stable conceptual entities, not unpublished function names.
+- Build verification gates so your app refuses unverified networks or addresses.
+- Keep chain-specific config external and replaceable.
+- Track the official docs for the deployment manifest, ABIs, and event catalog.
+
+## Gotchas
+
+- **Testnet addresses are not production addresses.** Treat Sepolia manifests as replaceable fixtures. Never use them as defaults for mainnet.
+- **One pAsset means one instance.** A pUSD trove and a pGOLD trove are unrelated positions with different managers, pools, parameters, and risk states.
+- **pETH is collateral, not pAsset debt.** Do not put pETH in the same accounting bucket as CDP-minted pAssets.
+- **Redemptions are global to an instance.** There is no sorted lowest-ICR queue. If you model borrower exposure, model pro-rata reduction across all open troves for that pAsset.
+- **Fee Router pETH rewards and primary-interest splits are separate streams.** Do not assume every yield destination is paid by the same contract or denomination.
+- **Final event names are pending.** Build your indexer so event bindings are generated from the published ABI, not copied from draft examples.
+
+## Failure modes to handle
+
+Failure mode | Integration response
+
+Wrong chain ID | Refuse reads/writes and show the expected chain from [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status).
+Address missing from the manifest | Disable the feature rather than falling back to a search result or environment default.
+Explorer source or ABI mismatch | Treat the deployment as unverified and fail closed.
+Stale oracle or unavailable price path | Hide leverage/borrowing actions and show risk state as unknown.
+Recovery Mode active | Block or warn on collateral-reducing and debt-increasing flows according to live contract state.
+Redemption, liquidation, or conversion quote changes before inclusion | Requote before signing and use explicit user slippage bounds.
+Unknown pAsset instance | Do not share pUSD assumptions with another pAsset; load per-instance parameters.
+
+## Worked integration sketch
+
+The exact package, ABI, and method names are pending. The important pattern is a fail-closed deployment gate before any read or write:
+
+```ts
+type PolarisDeployment = {
+  chainId: number
+  contracts: Record<string, `0x${string}`>
+  abiHashes: Record<string, string>
+}
+
+const EXPECTED_CHAIN_ID = 11155111 // Public Testnet 1 today; production mainnet is 1 after launch.
+
+  if (deployment.chainId !== EXPECTED_CHAIN_ID) {
+    throw new Error(`Unexpected Polaris network: ${deployment.chainId}`)
+  }
+
+  for (const [name, address] of Object.entries(deployment.contracts)) {
+    const code = await client.getBytecode({ address })
+    if (!code) throw new Error(`Missing bytecode for ${name}`)
+
+    const verified = await verifyExplorerSourceAndAbiHash({
+      address,
+      expectedAbiHash: deployment.abiHashes[name]
+    })
+    if (!verified) throw new Error(`Unverified Polaris contract: ${name}`)
+  }
+
+  return {
+    peth: deployment.contracts.peth,
+    pUSDManager: deployment.contracts.pUSDManager,
+    pUSDStabilityPool: deployment.contracts.pUSDStabilityPool
+  }
+}
+```
+
+Use the same shape for production later, but with Ethereum mainnet chain ID `1` and only after [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts) publishes canonical production artifacts.
+
+## Next
+
+- Need the system model? See [Core Concepts](https://tokenbrice.github.io/polaris-docs/core-concepts).
+- Need artifact expectations (addresses, source, ABIs)? See [Contracts and Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts).
+- Need safety gates before connecting to a deployment? See [Polaris Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) and [Safety and Verification](https://tokenbrice.github.io/polaris-docs/paths/safety-verification).
+
+---
+
+## Earn Yield on Polaris
+
+URL: https://tokenbrice.github.io/polaris-docs/paths/earn-yield
+
+# Earn Yield on Polaris
+
+**Who this is for:** holders who want protocol-native yield from pAssets, pETH, current POLAR Staking, or future locked POLAR — without token emissions, bribes, or offchain backing.
+
+**Prerequisites:** a pAsset to deposit (so most readers come here after [Borrow pAssets](https://tokenbrice.github.io/polaris-docs/paths/borrow-passets)) or pETH, plus awareness that Stability Pool yield carries liquidation-conversion exposure to your principal.
+
+> **Launch status:** Yield flows are conceptual and testnet-actionable only where Sepolia artifacts exist. Production deposits are not mainnet-actionable until [Polaris Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) publishes the official app, production pool addresses, final splits, buffering parameters, and audit status.
+
+## Reading sequence
+
+Read these in order — start with where the yield originates before committing capital.
+
+1. [Where the Yield Comes From](https://tokenbrice.github.io/polaris-docs/yield/yield-sources) — the full source map, so you can judge whether each yield stream is sustainable rather than subsidized.
+2. [The Stability Pool](https://tokenbrice.github.io/polaris-docs/yield/stability-pool) — the primary venue for pAsset yield, and how liquidations can convert your deposit into discounted pETH.
+3. [Deposit to the Stability Pool](https://tokenbrice.github.io/polaris-docs/yield/deposit-to-stability-pool) — the user flow you will follow once the app is public.
+4. [The Fee Router](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router) — how pETH from fees and conversions reaches configured receivers, and how that differs from pAsset-denominated staking rewards.
+5. [Flows](https://tokenbrice.github.io/polaris-docs/stewardship/flows) — only if you are an integrator or operator seeking protocol revenue sharing; safe to skip as a plain depositor.
+
+## What yield is not
+
+Polaris yield is not a token-emission program, gauge market, bribe market, T-bill wrapper, or CEX lending strategy. It comes from protocol activity: borrower interest, liquidation gains, bonding-curve fees, conversion gains, and other onchain fees described in the yield docs.
+
+## What to verify at launch
+
+- The official app URL.
+- The Stability Pool address for the pAsset you deposit.
+- The final interest split and liquidation parameters for that pAsset.
+- The Fee Router address and verified source.
+- Whether any wrapper vault you use is official, audited, and listed by the project that operates it.
+
+## Next
+
+- Borrow first? Go to [Borrow pAssets](https://tokenbrice.github.io/polaris-docs/paths/borrow-passets).
+- Stake POLAR or study future vePOLAR locking? Go to [Convert / Stake POLAR](https://tokenbrice.github.io/polaris-docs/paths/convert-lock-polar).
+- Verify contracts before depositing? Go to [Polaris Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) and [Safety and Verification](https://tokenbrice.github.io/polaris-docs/paths/safety-verification).
+
+Relevant app/search vocabulary: Earn, earn, yield, APR, Stability Pool, deposit, claim rewards.
+
+---
+
+## Hold or Use Polaris pETH
+
+URL: https://tokenbrice.github.io/polaris-docs/paths/hold-use-peth
+
+# Hold or Use Polaris pETH
+
+**Who this is for:** anyone who wants to hold pETH for its rising floor, use it as collateral, or understand the asset before borrowing against it.
+
+**Prerequisites:** a wallet and the right ETH for the environment: Sepolia ETH for Public Testnet 1, or ETH on Ethereum mainnet after production launch. No trove or pAsset is required to hold pETH; borrowing is optional and comes later.
+
+> **Launch status:** pETH is testnet-actionable only through the current Sepolia deployment manifests. Production pETH use is not mainnet-actionable until [Polaris Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) publishes the official app, production bonding-curve address, verified source, final curve parameters, and audit status. Do not trust unofficial addresses.
+
+## Reading sequence
+
+Read these in order to understand pETH and its downside bound before relying on it.
+
+1. [The Bonding Curve](https://tokenbrice.github.io/polaris-docs/peth/bonding-curve) — how ETH deposits become pETH, and where your exit liquidity comes from.
+2. [The Floor Price](https://tokenbrice.github.io/polaris-docs/peth/floor-price) — the contract-defined downside bound in ETH terms under the curve assumptions.
+3. [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting/minting-passets) — only if you may use pETH inside a trove; explains what changes when pETH becomes collateral.
+4. [Where the Yield Comes From](https://tokenbrice.github.io/polaris-docs/yield/yield-sources) — how bonding-curve and conversion activity raises the floor for pETH holders.
+5. [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure) — read before using pETH as collateral anywhere, inside or outside Polaris.
+
+## pETH roles
+
+Role | What to read
+
+Hold pETH directly | [Bonding Curve](https://tokenbrice.github.io/polaris-docs/peth/bonding-curve), [Floor Price](https://tokenbrice.github.io/polaris-docs/peth/floor-price)
+Borrow against pETH | [Borrow pAssets](https://tokenbrice.github.io/polaris-docs/paths/borrow-passets)
+Integrate pETH externally | [Develop](https://tokenbrice.github.io/polaris-docs/paths/develop), [Core Concepts](https://tokenbrice.github.io/polaris-docs/core-concepts)
+Verify the asset | [Polaris Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status), [Safety and Verification](https://tokenbrice.github.io/polaris-docs/paths/safety-verification)
+
+## What to verify at launch
+
+- The official pETH contract address and verified source.
+- The bonding-curve address on the intended network: Sepolia for Public Testnet 1, Ethereum mainnet after production launch.
+- Final curve, fee, and floor-ratio parameters once published.
+- The exit path from pETH back to ETH.
+- Any external venue's risk controls before using pETH outside Polaris.
+
+Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor price.
+
+---
+
+## Polaris Safety and Verification
+
+URL: https://tokenbrice.github.io/polaris-docs/paths/safety-verification
+
+# Polaris Safety and Verification
+
+**Who this is for:** every Polaris user and integrator; run this path before connecting a wallet, sending ETH, minting a pAsset, depositing into a pool, locking POLAR, or integrating contracts.
+
+**Prerequisites:** none. Complete this path *first*, before any other journey, because impersonation and phishing are most likely around launch and testnet phases.
+
+> **Launch status:** [Polaris Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) is the source of truth. As of June 8, 2026, public Public Testnet 1 is on Sepolia (`11155111`) and the official testnet app is [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io/). Production Ethereum mainnet (`1`) is forthcoming, and no production app, production addresses, ABIs, verified source, final parameters, or audit reports are published yet.
+
+> **Open Testnet App:** Use [https://app.testnet.polarisfinance.io/](https://app.testnet.polarisfinance.io/) only on Sepolia (`11155111`) with no-value test assets. Treat any production frontend, token, contract, airdrop, or support message as unverified until it is linked from [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status).
+
+App anchors: **Dashboard** first for network and system state, then any action tab's pre-confirmation screen for contract, token, amount, fee, approval, and simulation checks.
+
+## Verification checklist
+
+Work top to bottom; each row names a check and where it will be confirmed at launch.
+
+Check | Where it will be confirmed
+
+Current launch phase and network | [Polaris Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status)
+Testnet app URL and production app status | [Polaris Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) and [Getting Started](https://tokenbrice.github.io/polaris-docs/getting-started)
+Deployed addresses | [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status), official Sepolia manifests, and [Contracts and Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts) once production is live
+Verified source and ABIs | [Contracts and Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts), official manifests, and block explorer links
+Audit reports | [Audits and Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security)
+Final user parameters | The relevant product page and contract reference
+Stewardship bounds | [Stewardship, not Governance](https://tokenbrice.github.io/polaris-docs/stewardship/stewardship)
+
+## Things Polaris will not ask for
+
+- A seed phrase or private key.
+- KYC for protocol use.
+- A direct transfer to a support wallet.
+- Interaction with an unpublished address.
+- Trust in a frontend that is not linked from official Polaris channels.
+
+## Risk docs
+
+Read [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure) for smart-contract, collateral, liquidation, peg, Stability Pool, pETH, stewardship, and phishing risks. Read [Audits and Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security) for the security model and audit status.
+
+## Developer verification
+
+For apps and indexers, add explicit allowlists for network IDs and contract addresses. Testnet allowlists should point to Sepolia (`11155111`) artifacts from [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) and the linked manifests. Production allowlists should stay empty until production addresses are published. Your integration should fail closed if the deployment manifest, ABI, or verified source does not match the official docs.
+
+Relevant app/search vocabulary: official app, app URL, phishing, verify contracts, testnet, mainnet.

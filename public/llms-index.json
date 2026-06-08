@@ -20,6 +20,26 @@
       "lastVerified": null
     },
     {
+      "route": "/advanced",
+      "url": "https://tokenbrice.github.io/polaris-docs/advanced",
+      "section": "Overview",
+      "title": "Polaris Advanced",
+      "description": "Shortcut page for the Polaris Advanced app label, covering manual approvals, PSM actions, reserve loans, and staking controls.",
+      "keywords": [],
+      "updated": null,
+      "lastVerified": null
+    },
+    {
+      "route": "/borrow",
+      "url": "https://tokenbrice.github.io/polaris-docs/borrow",
+      "section": "Overview",
+      "title": "Borrow with Polaris",
+      "description": "Shortcut page for the Polaris Borrow app label, covering pAsset troves, reserve loans, and borrower safety checks.",
+      "keywords": [],
+      "updated": null,
+      "lastVerified": null
+    },
+    {
       "route": "/changelog",
       "url": "https://tokenbrice.github.io/polaris-docs/changelog",
       "section": "Overview",
@@ -35,6 +55,16 @@
       "section": "Overview",
       "title": "Polaris Core Concepts",
       "description": "A one-page map of the Polaris system, with every key term defined briefly and linked to its full explanation.",
+      "keywords": [],
+      "updated": null,
+      "lastVerified": null
+    },
+    {
+      "route": "/earn",
+      "url": "https://tokenbrice.github.io/polaris-docs/earn",
+      "section": "Overview",
+      "title": "Earn with Polaris",
+      "description": "Shortcut page for the Polaris Earn app label, covering Stability Pool deposits, POLAR Staking, and yield-risk checks.",
       "keywords": [],
       "updated": null,
       "lastVerified": null
@@ -97,6 +127,16 @@
         "earn",
         "swap"
       ],
+      "updated": null,
+      "lastVerified": null
+    },
+    {
+      "route": "/guide",
+      "url": "https://tokenbrice.github.io/polaris-docs/guide",
+      "section": "Overview",
+      "title": "Polaris Guide",
+      "description": "Shortcut page for the Polaris Guide app label, routing users from goals to the matching docs pages.",
+      "keywords": [],
       "updated": null,
       "lastVerified": null
     },
@@ -603,11 +643,21 @@
       "route": "/resources/testnet",
       "url": "https://tokenbrice.github.io/polaris-docs/resources/testnet",
       "section": "Resources",
-      "title": "Polaris Testnet 2 Source of Truth",
-      "description": "Public Testnet 2 source of truth: Sepolia chain ID, app URL, caveats, active pAssets, manifests, addresses, and parameters.",
+      "title": "Polaris Public Testnet 1 Source of Truth",
+      "description": "Public Public Testnet 1 source of truth: Sepolia chain ID, app URL, caveats, active pAssets, manifests, addresses, and parameters.",
       "keywords": [],
       "updated": null,
       "lastVerified": "2026-06-08"
+    },
+    {
+      "route": "/split",
+      "url": "https://tokenbrice.github.io/polaris-docs/split",
+      "section": "Overview",
+      "title": "Split pETH in Polaris",
+      "description": "Shortcut page for the Polaris Split app label, covering fpETH, vpETH, merge behavior, and reserve-loan checks.",
+      "keywords": [],
+      "updated": null,
+      "lastVerified": null
     },
     {
       "route": "/stewardship",
@@ -655,6 +705,16 @@
       "section": "Stewardship",
       "title": "vePOLAR Locking and Stewardship",
       "description": "vePOLAR is vote-escrowed POLAR. Lock POLAR to receive stewardship rights and a share of protocol yield without touching the immutable core.",
+      "keywords": [],
+      "updated": null,
+      "lastVerified": null
+    },
+    {
+      "route": "/swap",
+      "url": "https://tokenbrice.github.io/polaris-docs/swap",
+      "section": "Overview",
+      "title": "Swap in Polaris",
+      "description": "Shortcut page for the Polaris Swap app label, covering WETH, pETH, pAssets, quotes, and slippage checks.",
       "keywords": [],
       "updated": null,
       "lastVerified": null
@@ -830,6 +890,16 @@
         "deposit",
         "claim rewards"
       ],
+      "updated": null,
+      "lastVerified": null
+    },
+    {
+      "route": "/zap",
+      "url": "https://tokenbrice.github.io/polaris-docs/zap",
+      "section": "Overview",
+      "title": "Zap in Polaris",
+      "description": "Shortcut page for the Polaris Zap app label, covering bundled WETH to pAsset to Stability Pool flows.",
+      "keywords": [],
       "updated": null,
       "lastVerified": null
     }

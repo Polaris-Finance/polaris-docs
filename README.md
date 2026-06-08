@@ -74,7 +74,7 @@ Other notes:
 ## Authoring
 
 - Follow the Polaris voice & spelling conventions (onchain, DeFi, pUSD/pETH lowercase `p`, logical arrow `⇒`, **trove** not vault, T-bills). See the content guide in the `polaris-content` repo.
-- Each concept page ends with a **Go deeper →** link to the matching essay on the [Polaris blog](https://polarisfinance.io/blog).
+- Each concept page ends with a **Go deeper →** link to the matching essay on the [Polaris blog](https://polarisfinance.io/blog/).
 - Add a page: create `content/<section>/<page>.mdx` and register its title/order in the section's `_meta.js`.
 
 ## Deploy

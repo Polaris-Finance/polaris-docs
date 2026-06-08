@@ -55,6 +55,22 @@ const forbiddenPatterns = [
   }
 ]
 
+function slugifyHeading(value) {
+  return value
+    .replace(/\[([^\]]+)]\([^)]+\)/g, '$1')
+    .replace(/`([^`]+)`/g, '$1')
+    .replace(/<[^>]+>/g, '')
+    .replace(/&amp;/g, 'and')
+    .replace(/&/g, 'and')
+    .toLowerCase()
+    .trim()
+    .replace(/['"]/g, '')
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '')
+}
+
 for (const file of files) {
   const rel = path.relative(root, file)
   const text = readFileSync(file, 'utf8')
@@ -80,6 +96,24 @@ for (const file of files) {
             `${rel}: description is ${description.length} chars (keep ≤160 so search engines don't truncate it)`
           )
         }
+      }
+    }
+
+    const headingSlugs = new Map()
+    for (const [index, line] of text.split('\n').entries()) {
+      const match = /^(#{1,6})\s+(.+)$/.exec(line)
+      if (!match) continue
+
+      const slug = slugifyHeading(match[2])
+      if (!slug) continue
+
+      const firstLine = headingSlugs.get(slug)
+      if (firstLine) {
+        failures.push(
+          `${rel}:${index + 1}: duplicate heading slug "${slug}" already used on line ${firstLine}`
+        )
+      } else {
+        headingSlugs.set(slug, index + 1)
       }
     }
   }

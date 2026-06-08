@@ -255,6 +255,27 @@ function assertLlmsIndex(text) {
   }
 }
 
+function assertLlmsSections() {
+  const sectionDir = path.join(outDir, 'llms-sections')
+  if (!existsSync(sectionDir)) {
+    failures.push('out/llms-sections is missing')
+    return
+  }
+
+  const files = walk(sectionDir).filter((file) => file.endsWith('.txt'))
+  if (!files.length) {
+    failures.push('out/llms-sections contains no section text files')
+    return
+  }
+
+  for (const file of files) {
+    const relativePath = relativeOut(file)
+    const text = readFileSync(file, 'utf8')
+    assertGeneratedTextArtifact(relativePath, text)
+    assertLlms(relativePath, text)
+  }
+}
+
 function assertCnameMode() {
   const cnamePath = path.join(outDir, 'CNAME')
   if (BASE_PATH && existsSync(cnamePath)) {
@@ -296,6 +317,7 @@ assertRobots(robots)
 assertLlms('llms.txt', llms)
 assertLlms('llms-full.txt', llmsFull)
 assertLlmsIndex(llmsIndex)
+assertLlmsSections()
 assertCnameMode()
 
 for (const requiredAsset of [

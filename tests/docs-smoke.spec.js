@@ -36,6 +36,77 @@ async function expectNoDocumentOverflow(page) {
   expect(overflow).toBeLessThanOrEqual(2)
 }
 
+async function expectReadableArticleContrast(page, label) {
+  const issues = await page
+    .locator('article :is(p, li, td, th, summary, figcaption)')
+    .evaluateAll((nodes) => {
+      const parseRgb = (value) => {
+        const match = /rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([.\d]+))?\)/.exec(value)
+        if (!match) return null
+        return {
+          r: Number(match[1]),
+          g: Number(match[2]),
+          b: Number(match[3]),
+          a: match[4] === undefined ? 1 : Number(match[4])
+        }
+      }
+
+      const channel = (value) => {
+        const normalized = value / 255
+        return normalized <= 0.03928 ? normalized / 12.92 : ((normalized + 0.055) / 1.055) ** 2.4
+      }
+
+      const luminance = ({ r, g, b }) =>
+        0.2126 * channel(r) + 0.7152 * channel(g) + 0.0722 * channel(b)
+
+      const contrast = (foreground, background) => {
+        const lighter = Math.max(luminance(foreground), luminance(background))
+        const darker = Math.min(luminance(foreground), luminance(background))
+        return (lighter + 0.05) / (darker + 0.05)
+      }
+
+      const backgroundFor = (node) => {
+        for (let element = node; element; element = element.parentElement) {
+          const color = parseRgb(window.getComputedStyle(element).backgroundColor)
+          if (color && color.a > 0) return color
+        }
+        return parseRgb(window.getComputedStyle(document.body).backgroundColor)
+      }
+
+      return nodes
+        .filter((node) => {
+          const rect = node.getBoundingClientRect()
+          const style = window.getComputedStyle(node)
+          return (
+            node.textContent.trim().length > 2 &&
+            rect.width > 0 &&
+            rect.height > 0 &&
+            style.visibility !== 'hidden' &&
+            style.display !== 'none'
+          )
+        })
+        .map((node) => {
+          const style = window.getComputedStyle(node)
+          const foreground = parseRgb(style.color)
+          const background = backgroundFor(node)
+          const ratio = foreground && background ? contrast(foreground, background) : 0
+          const fontSize = Number.parseFloat(style.fontSize)
+          const fontWeight = Number.parseInt(style.fontWeight, 10)
+          const threshold = fontSize >= 24 || (fontSize >= 18.66 && fontWeight >= 700) ? 3 : 4.5
+
+          return {
+            text: node.textContent.trim().replace(/\s+/g, ' ').slice(0, 80),
+            ratio: Math.round(ratio * 100) / 100,
+            threshold
+          }
+        })
+        .filter(({ ratio, threshold }) => ratio < threshold)
+        .slice(0, 10)
+    })
+
+  expect(issues, `${label} article text contrast`).toEqual([])
+}
+
 async function expectRequiredMetadata(page, route) {
   await expect(page).toHaveTitle(/Polaris/i)
   await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', /.+/)
@@ -253,6 +324,21 @@ test('search opens, returns useful results, and keeps the result panel aligned',
   await expect(results).toContainText(/Risk Disclosure/i)
 })
 
+test('search snippets avoid hidden vocabulary and table boilerplate', async ({ page }) => {
+  await page.goto(pathWithBase('/'))
+
+  const input = page.locator('input[type="search"][placeholder*="Search"]:visible').first()
+  await input.click()
+  await input.fill('zap')
+
+  const results = page.locator('.nextra-search-results')
+  await expect(results).toBeVisible()
+  await expect(results).toContainText(/Zap/i)
+
+  const text = (await results.textContent()) ?? ''
+  expect(text).not.toMatch(/Search vocabulary|Table columns|Skip to content/i)
+})
+
 test('desktop theme menu can switch to light mode', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'desktop', 'desktop-only theme check')
 
@@ -262,6 +348,52 @@ test('desktop theme menu can switch to light mode', async ({ page }, testInfo) =
   await page.getByRole('option', { name: /light/i }).click()
 
   await expect(page.locator('html')).toHaveClass(/light/)
+})
+
+test('sampled article text meets contrast in dark and light themes', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop', 'desktop-only contrast sample')
+
+  const routes = ['/', '/resources/glossary', '/resources/brand-assets', '/yield/stability-pool']
+
+  for (const route of routes) {
+    await page.goto(pathWithBase(route))
+    await expectReadableArticleContrast(page, `${route} dark`)
+
+    await page.locator('button[title="Change theme"]:visible').first().click()
+    await page.getByRole('option', { name: /light/i }).click()
+    await expect(page.locator('html')).toHaveClass(/light/)
+    await expectReadableArticleContrast(page, `${route} light`)
+  }
+})
+
+test('print media keeps wide reference pages within the viewport', async ({ page }) => {
+  await page.emulateMedia({ media: 'print' })
+
+  for (const route of ['/resources/contracts', '/stewardship/flows', '/launch-status']) {
+    await page.goto(pathWithBase(route), { waitUntil: 'networkidle' })
+    await expectNoDocumentOverflow(page)
+  }
+})
+
+test('dense glossary page stays within the route prefetch budget', async ({ page }) => {
+  const routeRequests = new Set()
+  page.on('request', (request) => {
+    const type = request.resourceType()
+    if (!['document', 'fetch', 'xhr'].includes(type)) return
+
+    const url = new URL(request.url())
+    const currentOrigin = new URL(page.url() || 'http://127.0.0.1').origin
+    if (url.origin !== currentOrigin) return
+    if (url.pathname.includes('/_next/') || url.pathname.includes('/_pagefind/')) return
+    if (url.pathname === pathWithBase('/resources/glossary')) return
+
+    if (/\/polaris-docs\/.+(?:\.txt|\.html)?$/.test(url.pathname)) {
+      routeRequests.add(url.pathname)
+    }
+  })
+
+  await page.goto(pathWithBase('/resources/glossary'), { waitUntil: 'networkidle' })
+  expect([...routeRequests].sort()).toHaveLength(Math.min(routeRequests.size, 16))
 })
 
 test('docs controls meet 44px touch targets where scoped', async ({ page }, testInfo) => {
