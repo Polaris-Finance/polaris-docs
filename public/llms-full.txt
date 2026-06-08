@@ -1503,19 +1503,6 @@ The structure deliberately omits the usual extraction surfaces:
 
 The **Polar Council** is a planned treasury-funded program for onboarding and ecosystem contributors, comparable in spirit to veAERO's Flight School. Initially team-managed; its allocation, operating framework, eligibility, and reporting requirements are pending publication.
 
-## Numbers that are pending
-
-The economic *structure* above is fixed by design. The following are not yet finalized and must not be assumed:
-
-Item | Status
-
-Total / initial POLAR supply | Pending
-Distribution schedule | Pending
-Vesting terms | Pending
-Conversion rate and parameter bounds | Pending (parameter bounds forthcoming)
-Destination splits across yield recipients | Pending
-Lock durations and vote-power decay | Pending
-
 ---
 
 **[Go deeper →](https://polarisfinance.io/blog/)**
