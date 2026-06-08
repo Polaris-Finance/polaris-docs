@@ -34,7 +34,8 @@ const forbiddenPatterns = [
   },
   {
     pattern: /<!--[\s\S]*?-->/,
-    message: 'HTML comments are not supported in this MDX setup; use JSX comments only when truly needed'
+    message:
+      'HTML comments are not supported in this MDX setup; use JSX comments only when truly needed'
   },
   {
     pattern: /^>\s*\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]/im,
@@ -75,7 +76,9 @@ for (const file of files) {
       if (descMatch) {
         const description = descMatch[1].trim().replace(/^["']|["']$/g, '')
         if (description.length > 160) {
-          failures.push(`${rel}: description is ${description.length} chars (keep ≤160 so search engines don't truncate it)`)
+          failures.push(
+            `${rel}: description is ${description.length} chars (keep ≤160 so search engines don't truncate it)`
+          )
         }
       }
     }

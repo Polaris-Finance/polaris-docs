@@ -2,7 +2,8 @@ import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
 import path from 'node:path'
 
 const root = process.cwd()
-const checkExternal = process.argv.includes('--external') || process.env.CHECK_EXTERNAL_LINKS === '1'
+const checkExternal =
+  process.argv.includes('--external') || process.env.CHECK_EXTERNAL_LINKS === '1'
 const sourceRoots = ['content', 'app', 'README.md'].map((entry) => path.join(root, entry))
 const publicDir = path.join(root, 'public')
 const contentDir = path.join(root, 'content')
@@ -78,7 +79,8 @@ for (const file of sourceFiles) {
   let match
   while ((match = linkPattern.exec(text))) {
     const href = match[1] || match[2]
-    if (!href || href.startsWith('{') || href.startsWith('mailto:') || href.startsWith('tel:')) continue
+    if (!href || href.startsWith('{') || href.startsWith('mailto:') || href.startsWith('tel:'))
+      continue
     links.push({ file, href })
   }
 }
@@ -161,7 +163,9 @@ async function checkExternalLink(url, file) {
       })
     }
     if (response.status >= 400) {
-      failures.push(`${path.relative(root, file)}: external link returned ${response.status} ${url}`)
+      failures.push(
+        `${path.relative(root, file)}: external link returned ${response.status} ${url}`
+      )
     }
   } catch (error) {
     failures.push(`${path.relative(root, file)}: external link failed ${url} (${error.message})`)
