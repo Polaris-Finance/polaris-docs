@@ -1,6 +1,6 @@
 # Polaris Documentation
 
-User documentation for [Polaris Finance](https://polarisfinance.io) — the self-scaling stablecoin operating system. Built with [Nextra 4](https://nextra.site) (Next.js App Router), statically exported and deployed to GitHub Pages at **docs.polarisfinance.io**.
+User documentation for [Polaris Finance](https://polarisfinance.io) — the self-scaling stablecoin operating system. Built with [Nextra 4](https://nextra.site) (Next.js App Router), statically exported and deployed to GitHub Pages at **tokenbrice.github.io/polaris-docs**.
 
 Content lives as MDX in [`content/`](./content); the sidebar is driven by `_meta.js` files. No SaaS backend — the docs are fully git-native.
 
@@ -59,7 +59,7 @@ npm run local:push-gate:strict-node          # fail unless the shell matches .nv
 
 Two non-obvious requirements — do not "fix" these without testing:
 
-1. **`zod` is pinned to `4.1.12`** via `overrides` in `package.json`. Nextra 4.6.1's `<Layout>` validates props with a schema where a *missing* (vs present-but-undefined) `children` key is rejected by zod 4.4.x, breaking every page at static-export prerender time. 4.1.12 tolerates it.
+1. **`zod` is pinned to `4.1.12`** via `overrides` in `package.json`. Nextra 4.6.1's `<Layout>` validates props with a schema where a _missing_ (vs present-but-undefined) `children` key is rejected by zod 4.4.x, breaking every page at static-export prerender time. 4.1.12 tolerates it.
 2. **The build uses `next build --webpack`.** Next 16 defaults `build` to Turbopack, which mis-compiles Nextra's React Server Components and fails the prerender. Dev mode (Turbopack) is fine.
 
 Other notes:
@@ -77,10 +77,10 @@ Other notes:
 
 ## Deploy
 
-Pushing to `main` triggers `.github/workflows/deploy.yml` (build → Pagefind → GitHub Pages). Before the first deploy:
+Pushing to `main` triggers `.github/workflows/deploy.yml` (validation → project-path build → Pagefind → GitHub Pages). Before the first deploy:
 
 0. Rename the local default branch to `main`, add the GitHub remote, and confirm the public repository URL. The initial local branch is currently not sufficient for deployment.
 1. In the repo's **Settings → Pages**, set **Source** to **GitHub Actions**.
-2. Add a DNS **CNAME** record: `docs` → `<org>.github.io`. The `public/CNAME` file pins the custom domain; `public/.nojekyll` lets GitHub Pages serve the `_next/` assets.
+2. Keep `BASE_PATH=/polaris-docs` and `SITE_URL=https://tokenbrice.github.io` in the deploy workflow while the production URL is `https://tokenbrice.github.io/polaris-docs/`.
 
-The site is configured for a root custom domain, so no `basePath` is set. If you ever deploy to a project subpath instead (`<org>.github.io/polaris-docs`), add `basePath`/`assetPrefix` to `next.config.mjs`.
+The site is deployed as a GitHub Pages project site, so the deploy workflow builds with `BASE_PATH=/polaris-docs`. If the docs later move to a working root custom domain, remove that deploy-time base path and update `SITE_URL`.
