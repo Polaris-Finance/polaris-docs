@@ -12,7 +12,7 @@ URL: https://tokenbrice.github.io/polaris-docs/launch-status
 
 This page owns current status: what is live, what is testnet-only, what is not live, and which app URL is official.
 
-Polaris is in <strong>Public Testnet 1</strong>. Use app.testnet.polarisfinance.io only on Sepolia (<code>11155111</code>) with test assets. Production/mainnet use is not live.
+Polaris is in **Public Testnet 1**. Use app.testnet.polarisfinance.io only on Sepolia (`11155111`) with test assets. Production/mainnet use is not live.
 
 ## Current phase
 

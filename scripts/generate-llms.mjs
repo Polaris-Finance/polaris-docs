@@ -140,6 +140,10 @@ function stripJsxTags(value) {
     .replace(/<style[\s\S]*?<\/style>/gi, '')
     .replace(/^\s*(import|export)\s.+$/gm, '')
     .replace(/<svg[\s\S]*?<\/svg>/gi, '')
+    .replace(/<(strong|b)>([\s\S]*?)<\/\1>/gi, '**$2**')
+    .replace(/<(em|i)>([\s\S]*?)<\/\1>/gi, '*$2*')
+    .replace(/<code>([\s\S]*?)<\/code>/gi, '`$1`')
+    .replace(/<\/?(?:strong|b|em|i|code|kbd|sup|sub|abbr|mark|small|aside)\b[^>]*>/gi, '')
     .replace(/<[^>\n]+\/>/g, '')
     .replace(/<\/?(?:Steps|Callout|div|span|a|figure|figcaption)[^>]*>/g, '')
     .replace(/<\/?[A-Z][^>]*>/g, '')
@@ -208,7 +212,8 @@ function validateCleanLlmsFull(value) {
     /\bstyle=/,
     /^\s*import\s/m,
     /^\s*export\s/m,
-    /<svg[\s>]/i
+    /<svg[\s>]/i,
+    /<\/?(?:strong|em|code)[\s>]/i
   ]
   return forbidden
     .filter((pattern) => pattern.test(value))

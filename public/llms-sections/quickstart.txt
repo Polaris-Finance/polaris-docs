@@ -12,7 +12,7 @@ URL: https://tokenbrice.github.io/polaris-docs/quickstart
 
 Use this page for the shortest safe path from a wallet to a first Polaris testnet action. It covers Public Testnet 1 only.
 
-Use app.testnet.polarisfinance.io on Sepolia (<code>11155111</code>). Testnet assets have no monetary value. Production/mainnet use is not live unless Launch Status says it is.
+Use app.testnet.polarisfinance.io on Sepolia (`11155111`). Testnet assets have no monetary value. Production/mainnet use is not live unless Launch Status says it is.
 
 ## Before you start
 

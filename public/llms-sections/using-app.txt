@@ -60,7 +60,7 @@ Dashboard values are state reads, not final transaction terms. Use the action ta
 
 ---
 
-## Advanced
+## Advanced Tools in the Polaris App
 
 URL: https://tokenbrice.github.io/polaris-docs/using-app/advanced
 
@@ -108,7 +108,7 @@ Advanced actions can bypass guardrails. Use [Safety & Verification](https://toke
 
 ---
 
-## Borrow
+## Borrow in the Polaris App
 
 URL: https://tokenbrice.github.io/polaris-docs/using-app/borrow
 
@@ -163,7 +163,7 @@ Relevant app/search vocabulary: Borrow, Manage Trove, borrow, mint, open trove, 
 
 ---
 
-## Earn
+## Earn in the Polaris App
 
 URL: https://tokenbrice.github.io/polaris-docs/using-app/earn
 
@@ -323,7 +323,7 @@ Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor pri
 
 ---
 
-## Swap
+## Swap in the Polaris App
 
 URL: https://tokenbrice.github.io/polaris-docs/using-app/swap
 
@@ -378,7 +378,7 @@ Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor pri
 
 ---
 
-## Zap
+## Zap in the Polaris App
 
 URL: https://tokenbrice.github.io/polaris-docs/using-app/zap
 

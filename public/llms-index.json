@@ -503,7 +503,7 @@
       "url": "https://tokenbrice.github.io/polaris-docs/troubleshooting",
       "section": "Troubleshooting",
       "title": "Troubleshooting",
-      "description": "Fix common Polaris app issues on Public Testnet 1.",
+      "description": "Fix common Polaris app issues on Public Testnet 1 — wrong network, missing Sepolia ETH, failed approvals, stale quotes, and reverted transactions.",
       "keywords": [
         "quickstart",
         "troubleshooting",
@@ -531,7 +531,7 @@
       "route": "/using-app/advanced",
       "url": "https://tokenbrice.github.io/polaris-docs/using-app/advanced",
       "section": "Using the App",
-      "title": "Advanced",
+      "title": "Advanced Tools in the Polaris App",
       "description": "How to use Polaris Advanced tools for approvals, PSM actions, reserve loans, staking, conversion, and manual checks.",
       "keywords": [],
       "updated": null,
@@ -541,7 +541,7 @@
       "route": "/using-app/borrow",
       "url": "https://tokenbrice.github.io/polaris-docs/using-app/borrow",
       "section": "Using the App",
-      "title": "Borrow",
+      "title": "Borrow in the Polaris App",
       "description": "How to open Polaris borrow positions from the app Borrow tab.",
       "keywords": [
         "Borrow",
@@ -564,7 +564,7 @@
       "route": "/using-app/earn",
       "url": "https://tokenbrice.github.io/polaris-docs/using-app/earn",
       "section": "Using the App",
-      "title": "Earn",
+      "title": "Earn in the Polaris App",
       "description": "How to deposit, withdraw, claim, and check Polaris Earn positions.",
       "keywords": [
         "Earn",
@@ -623,7 +623,7 @@
       "route": "/using-app/swap",
       "url": "https://tokenbrice.github.io/polaris-docs/using-app/swap",
       "section": "Using the App",
-      "title": "Swap",
+      "title": "Swap in the Polaris App",
       "description": "How to use Polaris Swap with quote, approval, slippage, and route checks.",
       "keywords": [
         "Swap",
@@ -641,7 +641,7 @@
       "route": "/using-app/zap",
       "url": "https://tokenbrice.github.io/polaris-docs/using-app/zap",
       "section": "Using the App",
-      "title": "Zap",
+      "title": "Zap in the Polaris App",
       "description": "How to use Polaris Zap routes and recover safely when one bundled step fails.",
       "keywords": [
         "Earn",

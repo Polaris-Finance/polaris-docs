@@ -31,9 +31,9 @@ A synthetic debt asset minted from a Polaris CDP (pUSD, pGOLD, pCHF, …). Each 
 
 The flagship pAsset, pegged to the US dollar, backed by pETH collateral. See [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting).
 
-ETH deposited into a two-way [bonding curve](https://tokenbrice.github.io/polaris-docs/peth). It is not CDP-minted debt; it is the <em>only</em> collateral Polaris accepts, has a contract-defined floor, and is yield-bearing.
+ETH deposited into a two-way [bonding curve](https://tokenbrice.github.io/polaris-docs/peth). It is not CDP-minted debt; it is the *only* collateral Polaris accepts, has a contract-defined floor, and is yield-bearing.
 
-The protocol's stewardship token. After a fixed distribution at launch, new POLAR can be minted <em>only</em> by burning pETH in a [conversion auction](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions). <strong>vePOLAR</strong>, a vote-escrow layer for stewardship rights, is forthcoming.
+The protocol's stewardship token. After a fixed distribution at launch, new POLAR can be minted *only* by burning pETH in a [conversion auction](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions). **vePOLAR**, a vote-escrow layer for stewardship rights, is forthcoming.
 
 ## Minting & positions
 
@@ -41,13 +41,13 @@ Collateralized Debt Position: the mechanism behind minting. You post collateral 
 
 Your individual borrowing position in a Polaris CDP. Each trove is isolated, with its own collateral, debt, and loan-to-value (LTV). See [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove).
 
-Polaris is a <em>factory</em> of CDP instances, each issuing a different pAsset but all sharing the same pETH collateral and bonding curve.
+Polaris is a *factory* of CDP instances, each issuing a different pAsset but all sharing the same pETH collateral and bonding curve.
 
 ## Keeping the peg
 
-Exchanging a pAsset for its underlying collateral at face value (minus a fee) when it trades <em>below</em> peg. Restores the floor. See [Redemptions](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations).
+Exchanging a pAsset for its underlying collateral at face value (minus a fee) when it trades *below* peg. Restores the floor. See [Redemptions](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations).
 
-The inverse of redemption. Arbitrageurs add pETH to troves to mint pAssets when the pAsset trades <em>above</em> peg. Restores the ceiling.
+The inverse of redemption. Arbitrageurs add pETH to troves to mint pAssets when the pAsset trades *above* peg. Restores the ceiling.
 
 Redemption and minting volume serve as onchain proxy signals for the peg, letting Polaris set rates without an external oracle.
 
@@ -67,7 +67,7 @@ The mechanism that mints POLAR by burning pETH. See [Conversion Auctions](https:
 
 Receives pETH from conversions and bonding-curve swap fees, then buffers and distributes it as yield to troves, pro-rata to their debt. See [The Fee Router](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router).
 
-A stewardship role steers <em>quantitative parameters</em>, with safety-critical bounds hardcoded in the contracts and the remaining bounds set at audited deployment. It does not govern the immutable core. See [Stewardship, not Governance](https://tokenbrice.github.io/polaris-docs/stewardship).
+A stewardship role steers *quantitative parameters*, with safety-critical bounds hardcoded in the contracts and the remaining bounds set at audited deployment. It does not govern the immutable core. See [Stewardship, not Governance](https://tokenbrice.github.io/polaris-docs/stewardship).
 
 Next steps:
 - [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status): Official app and network status, plus the shortest path from "I have ETH" to using Polaris.
@@ -154,7 +154,7 @@ A trove is a living position. After you [open it](https://tokenbrice.github.io/p
 
 Trove management is testnet-actionable only on Sepolia with test assets and current manifests. Production management is not mainnet-actionable until Polaris Launch Status publishes the official app, production addresses, final parameters, and audit status. Use live app and contract values over examples on this page.
 
-<strong>Scope:</strong> this page covers pAsset troves/CDPs (shown under <strong>Borrow</strong>), not reserve loans. For the full vocabulary, see [Borrower terminology](https://tokenbrice.github.io/polaris-docs/minting#borrower-terminology).
+**Scope:** this page covers pAsset troves/CDPs (shown under **Borrow**), not reserve loans. For the full vocabulary, see [Borrower terminology](https://tokenbrice.github.io/polaris-docs/minting#borrower-terminology).
 
 ## Loan-to-value (LTV)
 
@@ -249,7 +249,7 @@ A **trove** is your individual borrowing position: its own collateral, debt, and
 
 App anchor: **Borrow** tab -> pAsset trove flow. If the app says CDP, it is referring to the same pAsset debt-position mechanism this page calls a trove.
 
-This flow is testnet-actionable only on Sepolia (<code>11155111</code>) using the current Public Testnet 1 manifests. Production troves are not mainnet-actionable until Polaris Launch Status publishes the official app, production addresses, final parameters, and audit status. Screenshots and exact UI labels are forthcoming; the steps below describe the flow, not the final button copy.
+This flow is testnet-actionable only on Sepolia (`11155111`) using the current Public Testnet 1 manifests. Production troves are not mainnet-actionable until Polaris Launch Status publishes the official app, production addresses, final parameters, and audit status. Screenshots and exact UI labels are forthcoming; the steps below describe the flow, not the final button copy.
 
 For the full **Borrow / CDP / trove / reserve loan** vocabulary — including why a reserve loan is not a pAsset trove — see [Borrower terminology](https://tokenbrice.github.io/polaris-docs/minting#borrower-terminology).
 
@@ -966,7 +966,7 @@ If the Stability Pool is empty or too small, the uncovered portion follows the r
 
 ## Risks
 
-Liquidation is involuntary and can happen fast. A liquidated trove gives up its collateral to cover the debt plus a liquidation penalty and gas compensation; any surplus is returned to you to claim, but the penalty makes liquidation a real loss to avoid. Keep a <strong>buffer</strong> below max LTV so a sharp move in collateral price does not cross the line. The thinner your margin, the less room you have when volatility hits. See Managing Your Trove.
+Liquidation is involuntary and can happen fast. A liquidated trove gives up its collateral to cover the debt plus a liquidation penalty and gas compensation; any surplus is returned to you to claim, but the penalty makes liquidation a real loss to avoid. Keep a **buffer** below max LTV so a sharp move in collateral price does not cross the line. The thinner your margin, the less room you have when volatility hits. See Managing Your Trove.
 
 You are the system's first-loss backstop. In a flash crash, troves can be liquidated near — or in extreme cases below — 100% collateralization, and you may receive pETH worth less than the pAsset burned. Over a full cycle the surplus from healthy liquidations compensates for that risk, but it is not riskless yield. See The Stability Pool and the Risk Disclosure.
 
@@ -1388,7 +1388,7 @@ Yield source | Offchain reserves (not passed to holders) | Mixed: crypto + RWA +
 Scalability constraint | Banking relationships | Governance decisions | Counterparty capacity | Capital inefficiency | Bonding-curve scaling
 Immutable core | No | Partial | No | Yes | Yes
 
-The lesson: a stablecoin built for trustlessness must be <em>architected</em> so degradation cannot happen, not merely intend to stay clean.
+The lesson: a stablecoin built for trustlessness must be *architected* so degradation cannot happen, not merely intend to stay clean.
 
 Competitive comparisons were reviewed on June 8, 2026. Recheck live datasets before quoting exact peg-history or launch-date claims.
 

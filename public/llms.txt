@@ -17,17 +17,17 @@
 ## Using the App
 
 - [Dashboard & Analytics](https://tokenbrice.github.io/polaris-docs/using-app): How to read the Polaris app Dashboard and Analytics before choosing an action.
-- [Advanced](https://tokenbrice.github.io/polaris-docs/using-app/advanced): How to use Polaris Advanced tools for approvals, PSM actions, reserve loans, staking, conversion, and manual checks.
-- [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow): How to open Polaris borrow positions from the app Borrow tab.
-- [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn): How to deposit, withdraw, claim, and check Polaris Earn positions.
+- [Advanced Tools in the Polaris App](https://tokenbrice.github.io/polaris-docs/using-app/advanced): How to use Polaris Advanced tools for approvals, PSM actions, reserve loans, staking, conversion, and manual checks.
+- [Borrow in the Polaris App](https://tokenbrice.github.io/polaris-docs/using-app/borrow): How to open Polaris borrow positions from the app Borrow tab.
+- [Earn in the Polaris App](https://tokenbrice.github.io/polaris-docs/using-app/earn): How to deposit, withdraw, claim, and check Polaris Earn positions.
 - [Manage Trove](https://tokenbrice.github.io/polaris-docs/using-app/manage-trove): How to add collateral, mint more, repay debt, close, and monitor a Polaris trove.
 - [Split](https://tokenbrice.github.io/polaris-docs/using-app/split): How to split pETH into fpETH and vpETH, merge them back, and avoid common execution mistakes.
-- [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap): How to use Polaris Swap with quote, approval, slippage, and route checks.
-- [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap): How to use Polaris Zap routes and recover safely when one bundled step fails.
+- [Swap in the Polaris App](https://tokenbrice.github.io/polaris-docs/using-app/swap): How to use Polaris Swap with quote, approval, slippage, and route checks.
+- [Zap in the Polaris App](https://tokenbrice.github.io/polaris-docs/using-app/zap): How to use Polaris Zap routes and recover safely when one bundled step fails.
 
 ## Troubleshooting
 
-- [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting): Fix common Polaris app issues on Public Testnet 1.
+- [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting): Fix common Polaris app issues on Public Testnet 1 — wrong network, missing Sepolia ETH, failed approvals, stale quotes, and reverted transactions.
 
 ## Understand Polaris
 
