@@ -2075,8 +2075,6 @@ URL: https://tokenbrice.github.io/polaris-docs/yield
 
 The Stability Pool is a **first-loss pool**. When a trove is liquidated, the pool burns pAssets to cover the debt and receives pETH collateral in return. Your deposit can be partially consumed and replaced by pETH. This is the mechanism, not an edge case.
 
-App anchors: **Earn** for direct Stability Pool deposits and claims, and **Zap** for bundled WETH -> pAsset -> pool flows.
-
 ## What the Stability Pool does
 
 The Stability Pool keeps Polaris solvent. It holds pAsset deposits that are used to absorb liquidated trove debt. In exchange, depositors receive the pETH collateral seized from liquidated troves, usually at a discount to market price. This creates an alignment of incentives: depositors profit from liquidations, which keeps the system healthy.
