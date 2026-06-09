@@ -9,7 +9,7 @@
   },
   "status": {
     "publicPhase": "Public Testnet 1",
-    "productionFinality": "Pending; production addresses and parameters are not published yet"
+    "productionFinality": ""
   },
   "environment": {
     "network": "Sepolia",

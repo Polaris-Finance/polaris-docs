@@ -31,9 +31,6 @@ Testnet value | No monetary value, no production redemption, no mainnet claim
 Testnet gas | Sepolia ETH
 Reserve token | Mock WETH/reserve token from the app faucet when enabled
 Active pAssets | pUSD and pGOLD
-Illustrative or future pAssets | pCHF, pBigMac, and other catalog examples
-Production finality | Pending; production addresses and parameters are not published yet
-Public artifact commit/source URL | Not published in these docs during Public Testnet 1
 
 ## Manifest sources
 
@@ -145,7 +142,7 @@ Ethereum mainnet, chain ID `1` | Forthcoming. No canonical production addresses 
 
 1. Confirm the network and chain ID match [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status).
 2. Confirm the address appears in [Contracts and addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses) above.
-3. Open `https://sepolia.etherscan.io/address/` and match the address exactly; confirm the source or ABI matches the verified explorer entry when verification is published.
+3. Open [Sepolia Etherscan](https://sepolia.etherscan.io/) and search for the exact address; confirm the source or ABI matches the verified explorer entry when verification is published.
 4. Never paste an address from a screenshot, direct message, ad, or search result without checking this page.
 
 ## Related pages
