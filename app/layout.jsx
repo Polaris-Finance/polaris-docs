@@ -3,7 +3,7 @@ import { Head } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
 import { Inter, Cormorant_Garamond } from 'next/font/google'
 import { A11yEnhancements } from '../components/A11yEnhancements'
-import { SearchPanelFix } from '../components/SearchPanelFix'
+import { PolarisSearch } from '../components/PolarisSearch'
 import { JsonLd } from './JsonLd'
 import { buildGlobalJsonLd, metadataBase } from './seo.mjs'
 import {
@@ -174,6 +174,7 @@ export default async function RootLayout({ children }) {
           navbar={navbar}
           footer={footer}
           pageMap={await getPageMap()}
+          search={<PolarisSearch />}
           editLink={null}
           feedback={{ content: null }}
           sidebar={{ defaultMenuCollapseLevel: 1, toggleButton: true }}
@@ -182,7 +183,6 @@ export default async function RootLayout({ children }) {
           {children}
         </Layout>
         <A11yEnhancements />
-        <SearchPanelFix />
       </body>
     </html>
   )

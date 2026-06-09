@@ -2,7 +2,9 @@ import { pathWithBase } from '../app/site-config.mjs'
 
 export function PageStatusBanner({ lastUpdated, network = 'Sepolia', phase = 'Public Testnet 1' }) {
   return (
-    <aside className="pl-status-banner">
+    // Indexed-page chrome: keep it out of Pagefind so it never becomes a result
+    // excerpt (it otherwise leads every page's snippet with testnet/status text).
+    <aside className="pl-status-banner" data-pagefind-ignore>
       <span className="pl-status-pill">
         <span className="pl-status-dot" aria-hidden="true" />
         {phase}

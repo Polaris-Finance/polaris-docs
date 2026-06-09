@@ -645,6 +645,21 @@ html:not(.dark) .x\:focus-visible\:nextra-focus:focus-visible {
   height: auto;
 }
 
+/* Mobile gets the tall vertical diagram; desktop keeps the wide one. */
+.pl-system-overview img.pl-system-overview__vertical {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .pl-system-overview img.pl-system-overview__horizontal {
+    display: none;
+  }
+
+  .pl-system-overview img.pl-system-overview__vertical {
+    display: block;
+  }
+}
+
 @media (max-width: 1023px) {
   .pl-voyage {
     overflow-x: visible;
@@ -1104,7 +1119,458 @@ article button[title*='Copy'] {
   header nav .nextra-search input {
     width: 100% !important;
   }
-  /* SearchPanelFix.jsx aligns the portaled results panel via JS */
+  /* PolarisSearch renders the results panel as an absolute child of the input
+     wrapper, so it tracks the input width with no JS alignment. */
+}
+
+/* ── PolarisSearch (forked Pagefind UI) ─────────────────────────────────────
+   Theme defaults are light; .dark overrides follow each rule group. Accents use
+   the theme primary (gold). Type marker hues reuse the token palette, and the
+   section label always carries the meaning the color only reinforces. */
+
+.pl-search {
+  position: relative;
+  width: 100%;
+}
+
+.pl-search-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.pl-search-icon {
+  position: absolute;
+  left: 0.72rem;
+  color: rgba(13, 31, 60, 0.5);
+  pointer-events: none;
+}
+:is(.dark) .pl-search-icon {
+  color: rgba(232, 220, 196, 0.5);
+}
+
+.pl-search-input {
+  width: 100%;
+  padding: 0.5rem 3rem 0.5rem 2.3rem;
+  border-radius: 0.6rem;
+  border: 1px solid rgba(13, 31, 60, 0.16);
+  background: rgba(13, 31, 60, 0.04);
+  color: var(--polaris-navy);
+  font-size: 0.9rem;
+  line-height: 1.3;
+  transition:
+    border-color 0.16s ease,
+    box-shadow 0.16s ease,
+    background-color 0.16s ease;
+}
+.pl-search-input::placeholder {
+  color: rgba(13, 31, 60, 0.62);
+}
+.pl-search-input:focus-visible {
+  outline: none;
+  border-color: var(--x-color-primary-600);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--x-color-primary-600) 26%, transparent);
+  background: rgba(13, 31, 60, 0.02);
+}
+.pl-search-input::-webkit-search-cancel-button {
+  appearance: none;
+}
+:is(.dark) .pl-search-input {
+  border-color: rgba(232, 220, 196, 0.16);
+  background: rgba(232, 220, 196, 0.06);
+  color: var(--polaris-star);
+}
+:is(.dark) .pl-search-input::placeholder {
+  color: rgba(232, 220, 196, 0.56);
+}
+:is(.dark) .pl-search-input:focus-visible {
+  background: rgba(232, 220, 196, 0.04);
+}
+
+.pl-search-kbd {
+  position: absolute;
+  right: 0.55rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.1rem;
+  height: 1.35rem;
+  padding: 0 0.4rem;
+  border: 1px solid rgba(13, 31, 60, 0.18);
+  border-radius: 0.35rem;
+  background: rgba(13, 31, 60, 0.03);
+  color: rgba(13, 31, 60, 0.6);
+  font-family: var(--font-sans-stack);
+  font-size: 0.68rem;
+  font-weight: 500;
+  pointer-events: none;
+}
+.pl-search-cmd {
+  font-size: 0.82rem;
+}
+:is(.dark) .pl-search-kbd {
+  border-color: rgba(232, 220, 196, 0.18);
+  background: rgba(232, 220, 196, 0.05);
+  color: rgba(232, 220, 196, 0.62);
+}
+
+/* Panel: absolute under the input on desktop, full-screen sheet on mobile. */
+.pl-search-results.pl-search-results {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  max-height: min(70vh, 30rem);
+  border-radius: 0.85rem;
+  border: 1px solid rgba(13, 31, 60, 0.12);
+  background: rgba(250, 247, 240, 0.92);
+  box-shadow: 0 22px 60px -18px rgba(13, 31, 60, 0.32);
+  backdrop-filter: blur(16px) saturate(1.25);
+  color: var(--polaris-navy);
+  overflow: hidden;
+  animation: pl-search-pop 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+}
+:is(.dark) .pl-search-results.pl-search-results {
+  border-color: rgba(232, 220, 196, 0.16);
+  background: color-mix(in srgb, var(--polaris-navy-dark) 84%, transparent);
+  box-shadow: 0 26px 64px -18px rgba(0, 0, 0, 0.66);
+  color: var(--polaris-star);
+}
+
+@keyframes pl-search-pop {
+  from {
+    opacity: 0;
+    transform: translateY(-0.4rem) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Facet chips */
+.pl-search-facets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0.6rem 0.7rem;
+  border-bottom: 1px solid rgba(13, 31, 60, 0.1);
+}
+:is(.dark) .pl-search-facets {
+  border-bottom-color: rgba(232, 220, 196, 0.12);
+}
+.pl-search-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(13, 31, 60, 0.16);
+  background: transparent;
+  color: inherit;
+  font-size: 0.74rem;
+  line-height: 1.2;
+  cursor: pointer;
+  transition:
+    background-color 0.14s ease,
+    border-color 0.14s ease;
+}
+.pl-search-chip:hover {
+  border-color: var(--x-color-primary-600);
+}
+.pl-search-chip[aria-pressed='true'] {
+  border-color: var(--x-color-primary-600);
+  background: color-mix(in srgb, var(--x-color-primary-600) 18%, transparent);
+  font-weight: 600;
+}
+.pl-search-chip-count {
+  opacity: 0.6;
+  font-variant-numeric: tabular-nums;
+}
+:is(.dark) .pl-search-chip {
+  border-color: rgba(232, 220, 196, 0.18);
+}
+
+/* Scroll region */
+.pl-search-list {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 0.4rem 0.35rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(13, 31, 60, 0.28) transparent;
+}
+:is(.dark) .pl-search-list {
+  scrollbar-color: rgba(232, 220, 196, 0.24) transparent;
+}
+.pl-search-list::-webkit-scrollbar {
+  width: 0.55rem;
+}
+.pl-search-list::-webkit-scrollbar-thumb {
+  background: rgba(13, 31, 60, 0.22);
+  border-radius: 999px;
+  border: 0.15rem solid transparent;
+  background-clip: padding-box;
+}
+:is(.dark) .pl-search-list::-webkit-scrollbar-thumb {
+  background: rgba(232, 220, 196, 0.2);
+  background-clip: padding-box;
+}
+
+/* Group: section context above a page's matched rows */
+.pl-search-group + .pl-search-group {
+  margin-top: 0.35rem;
+}
+.pl-search-group-head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.55rem 0.3rem;
+  position: sticky;
+  top: 0;
+  background: linear-gradient(rgba(250, 247, 240, 0.96), rgba(250, 247, 240, 0.82));
+  backdrop-filter: blur(4px);
+  z-index: 1;
+}
+:is(.dark) .pl-search-group-head {
+  background: linear-gradient(
+    color-mix(in srgb, var(--polaris-navy-dark) 92%, transparent),
+    color-mix(in srgb, var(--polaris-navy-dark) 70%, transparent)
+  );
+}
+.pl-search-group-head--simple {
+  position: static;
+  background: none;
+  backdrop-filter: none;
+}
+.pl-search-page-title {
+  font-family: var(--font-serif-stack);
+  font-size: 0.98rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--polaris-navy);
+}
+:is(.dark) .pl-search-page-title {
+  color: var(--polaris-star-bright);
+}
+
+.pl-search-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: rgba(13, 31, 60, 0.66);
+  white-space: nowrap;
+}
+:is(.dark) .pl-search-eyebrow {
+  color: rgba(232, 220, 196, 0.66);
+}
+.pl-search-eyebrow--plain {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.64rem;
+}
+.pl-search-dot {
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 999px;
+  background: var(--x-color-primary-600);
+  flex: none;
+}
+.pl-search-eyebrow[data-kind='app'] .pl-search-dot {
+  background: var(--polaris-peth);
+}
+.pl-search-eyebrow[data-kind='reference'] .pl-search-dot {
+  background: var(--polaris-polar);
+}
+
+/* Result + link rows */
+.pl-search-row {
+  display: block;
+  padding: 0.45rem 0.6rem;
+  margin: 0.05rem 0.2rem;
+  border-radius: 0.5rem;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  scroll-margin: 0.6rem;
+  border: 0;
+  background: transparent;
+  width: calc(100% - 0.4rem);
+  text-align: left;
+  font: inherit;
+}
+.pl-search-row--recent {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+.pl-search-row[data-active] {
+  background: rgba(13, 31, 60, 0.06);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--x-color-primary-600) 45%, transparent);
+}
+:is(.dark) .pl-search-row[data-active] {
+  background: rgba(232, 220, 196, 0.08);
+}
+.pl-search-row-title {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--polaris-navy);
+}
+:is(.dark) .pl-search-row-title {
+  color: var(--polaris-star);
+}
+.pl-search-row--link .pl-search-row-title {
+  margin-top: 0.12rem;
+}
+.pl-search-row-excerpt {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-top: 0.15rem;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: rgba(13, 31, 60, 0.78);
+}
+:is(.dark) .pl-search-row-excerpt {
+  color: rgba(232, 220, 196, 0.78);
+}
+.pl-search-row-excerpt mark {
+  background: color-mix(in srgb, var(--x-color-primary-600) 22%, transparent);
+  color: inherit;
+  border-radius: 0.15rem;
+  padding: 0 0.08rem;
+  text-decoration: underline;
+  text-decoration-color: var(--x-color-primary-600);
+  text-underline-offset: 0.12em;
+  font-weight: 600;
+}
+.pl-search-row-icon {
+  color: rgba(13, 31, 60, 0.5);
+  flex: none;
+}
+:is(.dark) .pl-search-row-icon {
+  color: rgba(232, 220, 196, 0.5);
+}
+
+/* Messages, empty, footer */
+.pl-search-message {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 1.6rem 0.85rem;
+  color: rgba(13, 31, 60, 0.7);
+  font-size: 0.85rem;
+}
+:is(.dark) .pl-search-message {
+  color: rgba(232, 220, 196, 0.7);
+}
+.pl-search-message p {
+  margin: 0;
+}
+.pl-search-spinner {
+  animation: pl-search-spin 0.7s linear infinite;
+  color: var(--x-color-primary-600);
+}
+@keyframes pl-search-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.pl-search-empty-lead {
+  padding: 0.9rem 0.95rem 0.3rem;
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--polaris-navy);
+}
+:is(.dark) .pl-search-empty-lead {
+  color: var(--polaris-star);
+}
+
+.pl-search-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.5rem 0.85rem;
+  border-top: 1px solid rgba(13, 31, 60, 0.1);
+  font-size: 0.72rem;
+  color: rgba(13, 31, 60, 0.62);
+}
+:is(.dark) .pl-search-footer {
+  border-top-color: rgba(232, 220, 196, 0.12);
+  color: rgba(232, 220, 196, 0.62);
+}
+.pl-search-count {
+  font-variant-numeric: tabular-nums;
+}
+.pl-search-legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.pl-search-footer kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.1rem;
+  height: 1.1rem;
+  padding: 0 0.25rem;
+  border: 1px solid rgba(13, 31, 60, 0.18);
+  border-radius: 0.3rem;
+  font-family: var(--font-sans-stack);
+  font-size: 0.66rem;
+}
+:is(.dark) .pl-search-footer kbd {
+  border-color: rgba(232, 220, 196, 0.18);
+}
+
+/* Mobile: the panel becomes a full-screen sheet below the navbar. */
+@media (max-width: 767px) {
+  .pl-search-results.pl-search-results {
+    position: fixed;
+    top: var(--nextra-navbar-height, 4rem);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    max-height: none;
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+  }
+  .pl-search-legend {
+    display: none;
+  }
+}
+@media (max-width: 639px) {
+  .pl-search-kbd {
+    display: none;
+  }
+  .pl-search-input {
+    padding-right: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pl-search-results.pl-search-results {
+    animation: none;
+  }
+  .pl-search-spinner {
+    animation: none;
+  }
+  .pl-search-input {
+    transition: none;
+  }
 }
 
 /* ── Stewardship Flow formula ───────────────────────────────────────────── */
@@ -1566,7 +2032,7 @@ article button[title*='Copy'] {
   flex-wrap: wrap;
   gap: 0.5rem 0.65rem;
   padding: 0.55rem 1rem;
-  margin: 0 0 1.25rem;
+  margin: 1rem 0 1.25rem;
   border-radius: 8px;
   border: 1px solid rgba(44, 74, 110, 0.14);
   background: rgba(44, 74, 110, 0.03);

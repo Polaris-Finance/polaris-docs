@@ -316,9 +316,7 @@ test('homepage renders with metadata and basic accessibility', async ({ page }) 
   await expectNoUnnamedVisibleControls(page)
 })
 
-test('search opens, returns useful results, and keeps the result panel aligned', async ({
-  page
-}) => {
+test('search opens, returns useful results, and fits its surface', async ({ page }, testInfo) => {
   await page.goto(pathWithBase('/'))
 
   const input = page.locator('input[type="search"][placeholder*="Search"]:visible').first()
@@ -335,8 +333,16 @@ test('search opens, returns useful results, and keeps the result panel aligned',
   expect(inputBox).not.toBeNull()
   expect(resultsBox).not.toBeNull()
 
-  expect(Math.abs(resultsBox.x - inputBox.x)).toBeLessThanOrEqual(2)
-  expect(Math.abs(resultsBox.width - inputBox.width)).toBeLessThanOrEqual(2)
+  if (testInfo.project.name === 'mobile') {
+    // Mobile opens a full-screen sheet rather than tracking the narrow input.
+    const viewport = page.viewportSize()
+    expect(Math.abs(resultsBox.width - viewport.width)).toBeLessThanOrEqual(2)
+    expect(resultsBox.x).toBeLessThanOrEqual(2)
+  } else {
+    // Desktop panel tracks the input's left edge and width.
+    expect(Math.abs(resultsBox.x - inputBox.x)).toBeLessThanOrEqual(2)
+    expect(Math.abs(resultsBox.width - inputBox.width)).toBeLessThanOrEqual(2)
+  }
 
   await input.fill('risk')
   await expect(results).toContainText(/Risk Disclosure/i)
