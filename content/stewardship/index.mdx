@@ -27,15 +27,15 @@ The base protocol does not need to be relearned after each vote, because the cor
 
 Stewardship operates at the edges: StablecoinOS onboarding, permitted parameter dials, the POLAR stewardship layer, fee and interest splits, Flow participation, and treasury programs. Safety-critical adjustable values ship with hardcoded limits; the remaining numeric bounds are set at audited deployment.
 
-| Domain | Power | Constraint | Launch status |
-|---|---|---|---|
-| **pAsset licensing** | Approve a team or instance to deploy a new pAsset on Polaris infrastructure | Standardized eligibility and launch requirements | Process pending |
-| **CDP parameters** | Adjust permitted fee and distribution splits for a pAsset instance | Hardcoded min/max bounds | Numeric bounds pending |
-| **Conversion parameters** | Tune pETH-to-POLAR conversion settings (rebate, half-life, spike sensitivity) | Rebate bounded 0–100%; other bounds pending | Numeric bounds pending |
-| **StablecoinOS onboarding** | Whitelist eligible participants into Flow revenue sharing | Must build on pETH/pAssets and meet published requirements | Process pending |
-| **Primary interest split** | Set how primary interest is split between the Stability Pool and POLAR stakers (remainder to the ecosystem fund) | Stability Pool and stakers each floored at 25% (hardcoded) | Floors hardcoded; values pending |
-| **Flow weights** | Set whitelisted recipient weights and related edge parameters | Hardcoded limits; no gauges, bribes, or emissions | Numeric bounds pending |
-| **Treasury programs** | Operate programs such as the Polar Council | Initially team-managed until a framework is published | Framework pending |
+| Domain | Power | Constraint |
+|---|---|---|
+| **pAsset licensing** | Approve a team or instance to deploy a new pAsset on Polaris infrastructure | Standardized eligibility and launch requirements |
+| **CDP parameters** | Adjust permitted fee and distribution splits for a pAsset instance | Hardcoded min/max bounds |
+| **Conversion parameters** | Tune pETH-to-POLAR conversion settings (rebate, half-life, spike sensitivity) | Rebate bounded 0–100%; other bounds pending |
+| **StablecoinOS onboarding** | Whitelist eligible participants into Flow revenue sharing | Must build on pETH/pAssets and meet published requirements |
+| **Primary interest split** | Set how primary interest is split between the Stability Pool and POLAR stakers (remainder to the ecosystem fund) | Stability Pool and stakers each floored at 25% (hardcoded) |
+| **Flow weights** | Set whitelisted recipient weights and related edge parameters | Hardcoded limits; no gauges, bribes, or emissions |
+| **Treasury programs** | Operate programs such as the Polar Council | Initially team-managed until a framework is published |
 
 A stewardship vote can bring a new pAsset or Flow participant into the system, or move an approved parameter within its range. It cannot alter the bonding curve, redemption mechanism, liquidation logic, Stability Pool mechanics, or core contract immutability.
 
