@@ -330,7 +330,6 @@ export function PolarisSearch() {
     rows: m.rows.map((sub, k) => ({ ...sub, index: modelOffsets[i] + 1 + k }))
   }))
   const recoveryRows = RECOVERY.map((r, i) => ({ ...r, index: i }))
-  const resultCount = readyGroups.reduce((n, g) => n + 1 + g.rows.length, 0)
 
   return (
     <div ref={containerRef} className="nextra-search pl-search">
@@ -521,7 +520,7 @@ export function PolarisSearch() {
           <div className="pl-search-footer">
             <span className="pl-search-count">
               {status === 'ready'
-                ? `${resultCount} result${resultCount === 1 ? '' : 's'}${section ? ` in ${section}` : ''}`
+                ? `${pages.length} page${pages.length === 1 ? '' : 's'}${section ? ` in ${section}` : ''}`
                 : status === 'idle'
                   ? 'Type to search'
                   : status === 'empty'
