@@ -33,18 +33,14 @@ pETH's curve is **two-way** (ETH ⇒ pETH and pETH ⇒ ETH) and gives pETH a pri
 
 The curve follows the formula:
 
-$$
-P = \alpha \cdot Q^{\beta}
-$$
-
 - **α**: a scaling parameter of little importance.
 - **Q**: the supply of pETH.
 - **β**: the power-law exponent that sets the curve's behaviour.
 
-As supply `Q` increases, the price of pETH in ETH increases. **β** sets how tightly pETH tracks ETH: a large β decouples pETH and makes it more volatile; a small β couples them closely. Current values live on [Parameters](/resources/parameters).
+As supply `Q` increases, the price of pETH in ETH increases. **β** sets how tightly pETH tracks ETH: a large β decouples pETH and makes it more volatile; a small β couples them closely. Current values live on [Parameters](/resources/testnet#parameters).
 
 <Callout variant="info">
-The Public Testnet 1 beta is testnet-only. The production beta remains pending; verify [Parameters](/resources/parameters) before using any numeric value.
+The Public Testnet 1 beta is testnet-only. The production beta remains pending; verify [Parameters](/resources/testnet#parameters) before using any numeric value.
 </Callout>
 
 ## Interactive explorer

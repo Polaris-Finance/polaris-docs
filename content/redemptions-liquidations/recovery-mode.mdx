@@ -21,7 +21,7 @@ A high TCR means a deep, well-backed system; a low TCR means the reserve behind 
 
 ## Parameters
 
-Recovery Mode thresholds and current per-pAsset values live on [Parameters](/resources/parameters). This page explains behavior, not current numbers.
+Recovery Mode thresholds and current per-pAsset values live on [Parameters](/resources/testnet#parameters). This page explains behavior, not current numbers.
 
 ## How behavior changes
 
@@ -33,7 +33,7 @@ Recovery Mode does **not** change which troves are liquidatable. In every mode, 
 | **Withdraw collateral / mint more debt** | Allowed if LTV stays below the maximum | Allowed only if the resulting LTV stays below the stricter recovery maximum and does not increase your LTV |
 | **Liquidation eligibility** | LTV above the maximum | LTV above the maximum (unchanged) |
 
-The principle: actions that strengthen backing stay open; actions that thin backing face a higher bar. Current trigger and action values are published on [Parameters](/resources/parameters).
+The principle: actions that strengthen backing stay open; actions that thin backing face a higher bar. Current trigger and action values are published on [Parameters](/resources/testnet#parameters).
 
 ## Worked example: Recovery Mode
 

@@ -17,7 +17,7 @@ This puts an arbitrage floor under the pAsset's market price.
 
 ## Parameters
 
-Redemption fees, decay factors, dust rules, and current network values live on [Parameters](/resources/parameters). This page explains the mechanism; the parameter page owns the numbers.
+Redemption fees, decay factors, dust rules, and current network values live on [Parameters](/resources/testnet#parameters). This page explains the mechanism; the parameter page owns the numbers.
 
 ## How it restores the peg
 
@@ -49,7 +49,7 @@ Their volumes also serve as the protocol's peg signal: a spike in redemptions re
 
 ### Fees and fill limits
 
-Current fee floors, decay factors, and fill constraints live on [Parameters](/resources/parameters). The user-facing rule is simple: the redeemer receives the redeemed amount's reference value in pETH **minus** the fee and execution costs. If the fee, gas, pETH slippage, MEV risk, or price movement exceed the below-peg spread, the redemption is unprofitable.
+Current fee floors, decay factors, and fill constraints live on [Parameters](/resources/testnet#parameters). The user-facing rule is simple: the redeemer receives the redeemed amount's reference value in pETH **minus** the fee and execution costs. If the fee, gas, pETH slippage, MEV risk, or price movement exceed the below-peg spread, the redemption is unprofitable.
 
 The app should show a pre-confirmation quote once the interface is live. Treat examples here as arithmetic only.
 
@@ -92,7 +92,7 @@ The borrower did not repay voluntarily; the market did it through the redemption
 
 - [Managing Your Trove](/minting/managing-your-trove) for borrower levers.
 - [Liquidations](/redemptions-liquidations/liquidations) for the forced-close path.
-- [Parameters](/resources/parameters) for current redemption values.
+- [Parameters](/resources/testnet#parameters) for current redemption values.
 
 <BlogPostCard
   url="https://polarisfinance.io/blog/polaris-mints-anything/"

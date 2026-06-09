@@ -27,7 +27,7 @@ The only collateral is [pETH](/peth), which is **volatile against ETH**. pETH tr
 
 Pricing pETH collateral for liquidation requires an ETH price feed. A stale, manipulated, or failed oracle could misprice collateral and trigger wrong liquidations, or fail to trigger correct ones.
 
-**Mitigation.** Peg awareness uses redemption and minting volume as internal signals for each pAsset (see [Minting pAssets](/minting)). The oracle dependency is confined to pricing ETH collateral. Current testnet and production address status lives on [Contracts & Addresses](/resources/contracts).
+**Mitigation.** Peg awareness uses redemption and minting volume as internal signals for each pAsset (see [Minting pAssets](/minting)). The oracle dependency is confined to pricing ETH collateral. Current testnet and production address status lives on [Contracts & Addresses](/resources/testnet#contracts-and-addresses).
 
 ## Peg and depeg risk
 
@@ -63,7 +63,7 @@ When the system-wide reserve backing relative to total debt (the [reserve-to-deb
 
 Stewards control quantitative parameters: the interest splits, conversion-price parameters, and the [converter rebate](/resources). Parameter changes can affect your yield and your position's economics.
 
-**Mitigation.** Stewardship is constrained: many economic parameters move only within hardcoded ranges, and the core logic cannot be changed by vote. See [Stewardship, not Governance](/stewardship) and [Parameters](/resources/parameters) for the current scope.
+**Mitigation.** Stewardship is constrained: many economic parameters move only within hardcoded ranges, and the core logic cannot be changed by vote. See [Stewardship, not Governance](/stewardship) and [Parameters](/resources/testnet#parameters) for the current scope.
 
 ## MEV risk
 
@@ -81,7 +81,7 @@ Polaris is currently in Public Testnet 1 on Sepolia, and production is intended 
 
 Fake frontends, fake contract addresses, and fake support channels can appear before users know what the official ones look like. A malicious frontend can ask you to approve tokens, sign dangerous messages, or connect to the wrong network.
 
-**Mitigation.** Use only the frontend, network, and addresses listed in these docs. Use no production app URL, production network, production contract address, audit claim, or bug-bounty link unless it is listed here. Never enter a seed phrase, private key, or recovery words into any Polaris-related site. The current status checklist lives on [Polaris Launch Status](/launch-status), [Public Testnet 1](/resources/testnet), and [Safety and Verification](/resources/safety-verification).
+**Mitigation.** Use only the frontend, network, and addresses listed in these docs. Use no production app URL, production network, production contract address, audit claim, or bug-bounty link unless it is listed here. Never enter a seed phrase, private key, or recovery words into any Polaris-related site. The current status checklist lives on [Polaris Launch Status](/launch-status) and [Public Testnet 1](/resources/testnet).
 
 ---
 

@@ -14,10 +14,6 @@ A **trove** is your individual borrowing position: its own collateral, debt, and
 App anchor: **Borrow** tab -> pAsset trove flow. If the app says CDP, it is referring to the same pAsset debt-position mechanism this page calls a trove.
 </Callout>
 
-<Callout variant="warning" title="Actionability">
-This flow is testnet-actionable only on Sepolia (<code>11155111</code>) using the current Public Testnet 1 manifests. Production troves are not mainnet-actionable until <a href="/launch-status">Polaris Launch Status</a> publishes the official app, production addresses, final parameters, and audit status. Screenshots and exact UI labels are forthcoming; the steps below describe the flow, not the final button copy.
-</Callout>
-
 For the full **Borrow / CDP / trove / reserve loan** vocabulary — including why a reserve loan is not a pAsset trove — see [Borrower terminology](/minting#borrower-terminology).
 
 ## Before you start
@@ -28,7 +24,7 @@ For the full **Borrow / CDP / trove / reserve loan** vocabulary — including wh
 
 ## Parameters
 
-Current testnet parameters and production-finality status live on [Parameters](/resources/parameters). Use the app quote and live contract state before signing.
+Current testnet parameters and production-finality status live on [Parameters](/resources/testnet#parameters). Use the app quote and live contract state before signing.
 
 ## Steps
 
@@ -65,10 +61,6 @@ Your LTV moves with the price of ETH and with any changes you make. Watch it fro
 Your LTV is the number that determines liquidation risk. Keep enough room below the maximum to absorb ETH price moves, interest accrual, gas delays, and redemption impact.
 
 Redemptions are different from liquidations: lower LTV does not exempt your trove from proportional redemptions, but it can keep the smaller post-redemption position away from the liquidation line. See [Managing Your Trove](/minting/managing-your-trove) for buffer strategy and examples.
-
-<Callout variant="danger">
-There is no margin call and no grace period. If ETH moves against you faster than you top up, liquidation is automatic. Size your buffer for the worst day you are willing to sit through, not the average one.
-</Callout>
 
 <NextSteps
   steps={[

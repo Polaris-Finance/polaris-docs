@@ -8,10 +8,6 @@ description: Manage a Polaris trove around its loan-to-value (LTV) — add colla
 
 A trove is a living position. After you [open it](/minting/open-a-trove), you can adjust it freely: add collateral, mint more, repay debt, or close it. The app-facing health metric is **loan-to-value (LTV)**.
 
-<Callout variant="warning" title="Actionability">
-Trove management is testnet-actionable only on Sepolia with test assets and current manifests. Production management is not mainnet-actionable until <a href="/launch-status">Polaris Launch Status</a> publishes the official app, production addresses, final parameters, and audit status. Use live app and contract values over examples on this page.
-</Callout>
-
 <Callout variant="info">
 <strong>Scope:</strong> this page covers pAsset troves/CDPs (shown under <strong>Borrow</strong>), not reserve loans. For the full vocabulary, see [Borrower terminology](/minting#borrower-terminology).
 </Callout>
@@ -37,7 +33,7 @@ Your LTV moves on its own as ETH's price moves — you need not touch the trove 
 
 ## Trove Health Simulator
 
-The simulator below defaults to the current Public Testnet 1 MCR of 115%, equivalent to about 87.0% max LTV, not the Emergency Mode action MCR of 150%. Always verify the live value on [Parameters](/resources/parameters) and in the app before signing.
+The simulator below defaults to the current Public Testnet 1 MCR of 115%, equivalent to about 87.0% max LTV, not the Emergency Mode action MCR of 150%. Always verify the live value on [Parameters](/resources/testnet#parameters) and in the app before signing.
 
 <TroveSimulator minCollateralRatio={1.15} />
 
@@ -48,7 +44,7 @@ Minting more or withdrawing collateral raises your LTV. Cross the maximum and yo
 
 ## Values to check
 
-Current MCR, max LTV equivalents, Recovery Mode, fee, decay, minimum-debt, and dust values live on [Parameters](/resources/parameters). Before changing a trove, check the live app quote and the parameter page for the pAsset you are managing.
+Current MCR, max LTV equivalents, Recovery Mode, fee, decay, minimum-debt, and dust values live on [Parameters](/resources/testnet#parameters). Before changing a trove, check the live app quote and the parameter page for the pAsset you are managing.
 
 ## Add collateral
 
