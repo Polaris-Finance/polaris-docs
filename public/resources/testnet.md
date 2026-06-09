@@ -56,7 +56,7 @@ Parameter | Public Testnet 1 value | Source
 Bonding curve alpha | `193218996973422650` | Core manifest
 Bonding curve beta | `150000000000000000` (15%) | Core manifest
 
-### pAsset instance parameters
+### pAsset branch parameters
 
 Parameter | pUSD | pGOLD | Source
 
@@ -78,12 +78,12 @@ Use the app quote and live contract reads before signing. Do not copy Sepolia va
 
 This section owns contract addresses and verification rules. Public Testnet 1 addresses are Sepolia artifacts and may be redeployed; production addresses are not published yet.
 
-Polaris deploys one shared core plus one instance set per pAsset.
+Polaris deploys one shared core plus one branch set per pAsset.
 
 Layer | What deploys
 
 Shared core | pETH/bonding curve, splitter, POLAR/ShareSystem, Fee Router, stewardship, staking, reserve loans, reserve token
-Per-pAsset instance | pAsset token, CDP manager, CDP NFT, Stability Pool, internal PSM, interest controller, price feeds, read helper
+Per-pAsset branch | pAsset token, CDP manager, CDP NFT, Stability Pool, internal PSM, interest controller, price feeds, read helper
 
 ### Shared core
 
@@ -101,7 +101,7 @@ Testnet POLAR staking | [`0x56a7088cdb41a04eddb9c9b46f27359a6797324b`](https://s
 BondingCurveTokenSplitter | [`0xc880eb4ba6e7f1c60ce4968dc50b24056e67cc00`](https://sepolia.etherscan.io/address/0xc880eb4ba6e7f1c60ce4968dc50b24056e67cc00)
 vpToken | [`0xd59019504ea81813632c8f5e8014027b47c82ab1`](https://sepolia.etherscan.io/address/0xd59019504ea81813632c8f5e8014027b47c82ab1)
 
-### pUSD instance
+### pUSD branch
 
 Contract | Sepolia address
 
@@ -116,7 +116,7 @@ Internal PSM | [`0x49cf0fff51fdd7140237e3fc6cd2b4daf6a4ffe5`](https://sepolia.et
 MultiCDPGetter | [`0x5b396a8e4adff7480c0dd2858890f55d5b028149`](https://sepolia.etherscan.io/address/0x5b396a8e4adff7480c0dd2858890f55d5b028149)
 Primary Interest Router | [`0xb5971ee694ca881963533114c1694f5f0c56ac09`](https://sepolia.etherscan.io/address/0xb5971ee694ca881963533114c1694f5f0c56ac09)
 
-### pGOLD instance
+### pGOLD branch
 
 Contract | Sepolia address
 

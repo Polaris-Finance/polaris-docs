@@ -125,7 +125,7 @@ Markdown URL: https://tokenbrice.github.io/polaris-docs/using-app/borrow.md
 
 Borrow is where you open and manage Polaris debt positions. It has three sub-tabs:
 
-- **pUSD** and **pGOLD:** deposit **pETH** collateral and mint an overcollateralized stablecoin (a CDP, also called a trove). You set collateral and debt with an LTV slider and see a projected liquidation price, estimated monthly cost, and effective rate before signing.
+- **pUSD** and **pGOLD:** deposit **pETH** collateral and mint an overcollateralized stablecoin from an individual CDP, called a trove in Polaris. You set collateral and debt with an LTV slider and see a projected liquidation price, estimated monthly cost, and effective rate before signing.
 - **ETH:** a reserve loan — borrow **ETH** against **fpETH** collateral at up to 100% LTV with no liquidation risk, because the fpETH floor only ever rises.
 
 Existing positions are adjusted, repaid, and closed from this same tab once your wallet is connected.
@@ -344,7 +344,7 @@ Markdown URL: https://tokenbrice.github.io/polaris-docs/using-app/zap.md
 
 Zap bundles several on-chain steps into one guided transaction. Pick a strategy:
 
-- **pUSD Stable Yield:** market-buys pUSD with your WETH and deposits it into the pUSD Stability Pool in a single transaction, earning SP yield from CDP interest plus liquidation gains.
+- **pUSD Stable Yield:** market-buys pUSD with your WETH and deposits it into the pUSD Stability Pool in a single transaction, earning SP yield from borrower interest plus liquidation gains.
 - **Floor Carry:** converts ETH into fpETH and borrows ETH against it — a non-liquidatable, loopable ETH-yield position.
 
 You stay the position owner with full self-custody, slippage is bounded by your slippage setting, and a simulation confirms the expected result before you sign. A zap is an execution shortcut — it doesn't change the economics of the underlying steps, and you can always exit or manage the resulting position from Earn or Borrow.

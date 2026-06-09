@@ -22,13 +22,13 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 lock POLAR -> receive vePOLAR -> steward bounded parameters + receive routed yield
 ```
 
-vePOLAR holders are **stewards, not governors**. They steer quantitative parameters within hardcoded ranges and vote on permitted onboarding decisions. The bonding curve, CDP logic, liquidations, redemptions, and Stability Pool mechanics are outside vote scope.
+vePOLAR holders are **stewards, not governors**. They steer quantitative parameters within hardcoded ranges and vote on permitted onboarding decisions. The bonding curve, branch logic, liquidations, redemptions, and Stability Pool mechanics are outside vote scope.
 
 vePOLAR holders can participate in decisions to:
 
 - License new pAssets onto Polaris infrastructure.
 - Onboard eligible participants into StablecoinOS and [Flow](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router) revenue sharing.
-- Set bounded interest splits and CDP parameters.
+- Set bounded interest splits and branch parameters.
 - Tune [conversion](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions) parameters within their hardcoded range.
 - Vote on treasury programs once the framework is published.
 
@@ -42,7 +42,7 @@ vePOLAR is the future locking layer. Once live, this page will list the official
 
 ## What vePOLAR does not do
 
-vePOLAR cannot upgrade core contracts; change pETH, CDP, liquidation, redemption, or Stability Pool mechanics; create gauges or bribe markets; direct POLAR emissions; mint POLAR outside the [conversion auction](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions); or move any parameter outside its immutable min/max range.
+vePOLAR cannot upgrade core contracts; change pETH, branch or CDP mechanics, liquidation, redemption, or Stability Pool mechanics; create gauges or bribe markets; direct POLAR emissions; mint POLAR outside the [conversion auction](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions); or move any parameter outside its immutable min/max range.
 
 ## Lock status
 

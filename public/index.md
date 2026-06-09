@@ -14,7 +14,7 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 ---
 
-Polaris sustains a yield layer for all of DeFi to seize, centered on **pETH**, a tailor-made collateral for Polaris CDPs that also has a life of its own.
+Polaris sustains a yield layer for all of DeFi to seize, centered on **pETH**, a tailor-made collateral for Polaris pAsset branches and user CDPs that also has a life of its own.
 
 - **pETH**, backed by the bonding curve, a foundational yield primitive with strong constant liquidity
 - **pUSD**, **pGOLD** and other Polaris immutable stablecoins use **pETH** as collateral
@@ -29,7 +29,7 @@ This documentation covers how the system works, how to use the app, and which ri
 
 Image: Polaris launch timeline. Early Research in 2024. Team Formation in June 2025. Public Testnet 1 on Sepolia in March 2026, the current phase. Mainnet, forthcoming.
 
-Image: Polaris system overview: ETH swaps into pETH on the bonding curve, pETH collateralizes CDPs that mint pUSD, and burning pETH for POLAR raises the floor and releases ETH.
+Image: Polaris system overview: ETH swaps into pETH on the bonding curve, pETH collateralizes pAsset branches that mint pUSD, and burning pETH for POLAR raises the floor and releases ETH.
 
 ## The three engines
 
@@ -38,7 +38,7 @@ Polaris has three engines:
 Engine | What it is | Why it matters
 
 **1. pETH** | ETH deposited into a two-way **bonding curve**, with a contract-defined floor under stated assumptions | A capital-efficient, yield-bearing collateral with a contract-defined exit path
-**2. pAssets** | Synthetic pegged (USD, Gold, etc.) assets minted against collateral, via a Collateralized Debt Position (CDP) | Counterparty-free stables that scale with onchain activity
+**2. pAssets** | Synthetic pegged (USD, Gold, etc.) assets minted against collateral, through pAsset branches and user CDPs | Counterparty-free stables that scale with onchain activity
 **3. POLAR** | The stewardship token, minted only by burning pETH in a **conversion auction** | Aligns long-term incentives and steers the protocol within hardcoded bounds
 
 Relevant app/search vocabulary: app, official app, testnet, Public Testnet 1, Sepolia, pETH, pAssets.

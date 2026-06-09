@@ -102,7 +102,7 @@
       "markdownUrl": "https://tokenbrice.github.io/polaris-docs/minting.md",
       "section": "Understand Polaris",
       "title": "Minting Polaris pAssets",
-      "description": "How the Polaris CDP model mints pAssets directly from the protocol against pETH collateral, with autonomous market-aware interest rates.",
+      "description": "How Polaris branches let user CDPs mint pAssets directly from the protocol against pETH collateral, with autonomous market-aware interest rates.",
       "keywords": [],
       "updated": null,
       "lastVerified": null

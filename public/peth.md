@@ -50,9 +50,9 @@ The Public Testnet 1 beta is testnet-only. The production beta remains pending; 
 
 ## Interactive explorer
 
-## pETH beyond the CDP
+## pETH beyond CDPs
 
-pETH is tailor-made collateral for Polaris CDPs, but it has a life of its own.
+pETH is tailor-made collateral for Polaris pAsset branches and user CDPs, but it has a life of its own.
 
 ### Reserve loans and Split
 

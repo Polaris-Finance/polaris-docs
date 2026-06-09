@@ -38,7 +38,7 @@ Open the official testnet app, connect Sepolia, use test assets only, swap into 
 
 ### Why does the app show Borrow if docs say mint?
 
-The app says Borrow because the user action creates debt. The mechanism is a CDP/trove: you deposit pETH collateral and mint a pAsset directly from the protocol. See [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow) and [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting).
+The app says Borrow because the user action creates debt. You open an individual CDP, called a trove in Polaris: deposit pETH collateral and mint a pAsset directly from the protocol. See [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow) and [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting).
 
 ### What should I do if a quote or transaction fails?
 

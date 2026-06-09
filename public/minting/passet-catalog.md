@@ -12,7 +12,7 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 ---
 
-A **pAsset** is a synthetic debt asset minted from a Polaris CDP against pETH collateral. **pETH is different:** it is the bonding-curve collateral token that backs pAssets, not debt minted from a trove.
+A **pAsset** is a synthetic debt asset minted from a Polaris branch through user CDPs against pETH collateral. **pETH is different:** it is the bonding-curve collateral token that backs pAssets, not debt minted from a trove.
 
 > **Current Public Testnet 1 focus:** pUSD and pGOLD are Testnet-active on Sepolia. pCHF, pBigMac, and other catalog ideas are illustrative or future until [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) says otherwise.
 
@@ -48,11 +48,11 @@ Image: Borrowing pGOLD is not shorting gold: deposit pETH and borrow pGOLD, then
 
 ## StablecoinOS: an open catalog
 
-The CDP model is **debt-asset agnostic**: it can mint a synthetic pegged to any asset with robust reference pricing and risk parameters. Polaris uses **StablecoinOS** as a factory of CDP instances: one CDP per pAsset, all sharing the same pETH collateral pool and bonding curve.
+The CDP model is **debt-asset agnostic**: it can mint a synthetic pegged to any asset with robust reference pricing and risk parameters. Polaris uses **StablecoinOS** as a factory of branches: one branch per pAsset, all sharing the same pETH collateral pool and bonding curve.
 
-Shared collateral lets teams add a new pAsset without bootstrapping a fresh collateral base. Each instance still has its own debt accounting, so stress in one pAsset does not directly liquidate another pAsset's troves.
+Shared collateral lets teams add a new pAsset without bootstrapping a fresh collateral base. Each branch still has its own debt accounting, so stress in one pAsset does not directly liquidate another pAsset's troves.
 
-Image: StablecoinOS as a factory: ETH enters one shared bonding curve to mint pETH, which collateralizes multiple independent CDP instances that each mint a different pAsset — pUSD, pGOLD, pCHF — over the same pETH collateral base
+Image: StablecoinOS as a factory: ETH enters one shared bonding curve to mint pETH, which collateralizes multiple independent branches that each mint a different pAsset — pUSD, pGOLD, pCHF — over the same pETH collateral base
 
 ---
 

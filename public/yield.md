@@ -18,7 +18,7 @@ The Stability Pool is a **first-loss pool**. When a trove is liquidated, the poo
 
 The Stability Pool keeps Polaris solvent. It holds pAsset deposits that are used to absorb liquidated trove debt. In exchange, depositors receive the pETH collateral seized from liquidated troves, usually at a discount to market price. This creates an alignment of incentives: depositors profit from liquidations, which keeps the system healthy.
 
-Image: How the Stability Pool fits the system: ETH enters the bonding curve as pETH, which collateralizes CDPs that mint pUSD; pUSD deposited in the Stability Pool absorbs liquidated debt and earns discounted pETH plus a share of borrower interest
+Image: How the Stability Pool fits the system: ETH enters the bonding curve as pETH, which collateralizes the pUSD branch and its user CDPs; pUSD deposited in the Stability Pool absorbs liquidated debt and earns discounted pETH plus a share of borrower interest
 
 ## Where the yield comes from
 

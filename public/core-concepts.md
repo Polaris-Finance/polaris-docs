@@ -14,34 +14,36 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 ## The shape of the system
 
-*Key takeaway: one collateral primitive feeds the whole system; pETH creates collateral, CDPs mint pAssets, and POLAR conversion raises the pETH floor.*
+*Key takeaway: one collateral primitive feeds the whole system; pETH creates collateral, branches mint pAssets, and POLAR conversion raises the pETH floor.*
 
 The diagram traces four steps and an outcome:
 
 1. **Swap.** ETH enters the **bonding curve** and is issued as **pETH**; the curve captures volatility.
-2. **Collateral.** pETH is deposited as the sole collateral for **CDPs**.
-3. **Borrow.** A CDP mints **pUSD** (or another pAsset) against that pETH, for scalable onchain yield.
+2. **Collateral.** pETH is deposited as the sole collateral for pAsset **branches**.
+3. **Borrow.** A user opens a **CDP** in a branch to mint **pUSD** (or another pAsset) against that pETH, for scalable onchain yield.
 4. **Stewardship.** Burning pETH in a conversion auction mints **POLAR**, raising the pETH floor price and releasing ETH.
 
 This page is the system map. Each term is defined briefly and links to its full treatment.
 
 ## The assets
 
-A synthetic debt asset minted from a Polaris CDP (pUSD, pGOLD, pCHF, …). Each is overcollateralized by pETH and counterparty-free. See [The pAsset Catalog](https://tokenbrice.github.io/polaris-docs/minting/passet-catalog).
+A synthetic debt asset minted from a Polaris branch through user CDPs (pUSD, pGOLD, pCHF, …). Each is overcollateralized by pETH and counterparty-free. See [The pAsset Catalog](https://tokenbrice.github.io/polaris-docs/minting/passet-catalog).
 
 The flagship pAsset, pegged to the US dollar, backed by pETH collateral. See [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting).
 
-ETH deposited into a two-way [bonding curve](https://tokenbrice.github.io/polaris-docs/peth). It is not CDP-minted debt; it is the *only* collateral Polaris accepts, has a contract-defined floor, and is yield-bearing.
+ETH deposited into a two-way [bonding curve](https://tokenbrice.github.io/polaris-docs/peth). It is not debt minted from a CDP; it is the *only* collateral Polaris accepts, has a contract-defined floor, and is yield-bearing.
 
 The protocol's stewardship token. After a fixed distribution at launch, new POLAR can be minted *only* by burning pETH in a [conversion auction](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions). **vePOLAR**, a vote-escrow layer for stewardship rights, is forthcoming.
 
 ## Minting & positions
 
-Collateralized Debt Position: the mechanism behind minting. You post collateral and mint the pAsset directly from the protocol, not by borrowing another user's funds. See [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting).
+Collateralized Debt Branch: the aggregate protocol branch for one pAsset. A branch contains that pAsset's minting and redemption logic, debt accounting, risk parameters, Stability Pool, and all user CDPs. See [The pAsset Catalog](https://tokenbrice.github.io/polaris-docs/minting/passet-catalog).
 
-Your individual borrowing position in a Polaris CDP. Each trove is isolated, with its own collateral, debt, and loan-to-value (LTV). See [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove).
+Collateralized Debt Position: your individual borrowing position inside a branch. You post pETH collateral and mint the pAsset directly from the protocol, not by borrowing another user's funds. Each CDP has its own collateral, debt, and loan-to-value (LTV). See [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting).
 
-Polaris is a *factory* of CDP instances, each issuing a different pAsset but all sharing the same pETH collateral and bonding curve.
+The Polaris app term for an individual CDP. Each trove is isolated, with its own collateral, debt, and loan-to-value (LTV). See [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove).
+
+Polaris is a *factory* of pAsset branches, each issuing a different pAsset but all sharing the same pETH collateral and bonding curve.
 
 ## Keeping the peg
 
@@ -71,5 +73,5 @@ A stewardship role steers *quantitative parameters*, with safety-critical bounds
 
 Next steps:
 - [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status): Official app and network status, plus the shortest path from "I have ETH" to using Polaris.
-- [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting): How the CDP works from first principles.
+- [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting): How branches and individual CDPs work from first principles.
 - [Why Polaris?](https://tokenbrice.github.io/polaris-docs/why-polaris): The stablecoin trilemma and how Polaris resolves it.

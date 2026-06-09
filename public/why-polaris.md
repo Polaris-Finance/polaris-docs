@@ -53,7 +53,7 @@ In text, the lineage reads:
 Polaris is designed so the main dependencies are immutable code and Ethereum:
 
 - **Onchain-only yield.** Every yield source — borrower interest, bonding curve swap fees, conversion gains — is internal to the protocol and grows with activity. Nothing is rented from a CEX or T-bill desk.
-- **Immutable core.** The bonding curve, CDP logic, liquidations, redemptions, and the Stability Pool are intended to be fixed in audited deployment code. No admin key can add a custodial PSM, external-collateral module, or freeze function under pressure.
+- **Immutable core.** The bonding curve, branch and CDP logic, liquidations, redemptions, and the Stability Pool are intended to be fixed in audited deployment code. No admin key can add a custodial PSM, external-collateral module, or freeze function under pressure.
 - **Counterparty-free by construction.** pUSD sits in the same counterparty-free lineage as LUSD and BOLD — but adds yield that *scales* with DeFi volume rather than capping growth at what a counterparty can deliver.
 
 Polaris turns onchain activity into yield through its bonding curve, and extends the model to other assets through [StablecoinOS](https://tokenbrice.github.io/polaris-docs/core-concepts).
@@ -61,7 +61,7 @@ Polaris turns onchain activity into yield through its bonding curve, and extends
 Next steps:
 - [Core Concepts](https://tokenbrice.github.io/polaris-docs/core-concepts): A one-page map of every key term in the Polaris system.
 - [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status): Official app and network status, plus the shortest path from "I have ETH" to using Polaris.
-- [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting): How the CDP works from first principles.
+- [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting): How branches and individual CDPs work from first principles.
 
 ---
 

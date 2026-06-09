@@ -12,9 +12,9 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 ---
 
-A trove is a living position. After you [open it](https://tokenbrice.github.io/polaris-docs/minting/open-a-trove), you can adjust it freely: add collateral, mint more, repay debt, or close it. The app-facing health metric is **loan-to-value (LTV)**.
+A trove is a living CDP. After you [open it](https://tokenbrice.github.io/polaris-docs/minting/open-a-trove), you can adjust it freely: add collateral, mint more, repay debt, or close it. The app-facing health metric is **loan-to-value (LTV)**.
 
-**Scope:** this page covers pAsset troves/CDPs (shown under **Borrow**), not reserve loans. For the full vocabulary, see [Borrower terminology](https://tokenbrice.github.io/polaris-docs/minting#borrower-terminology).
+**Scope:** this page covers individual pAsset CDPs/troves (shown under **Borrow**), not branches or reserve loans. For the full vocabulary, see [Borrower terminology](https://tokenbrice.github.io/polaris-docs/minting#borrower-terminology).
 
 ## Loan-to-value (LTV)
 

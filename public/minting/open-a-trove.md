@@ -12,11 +12,11 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 ---
 
-A **trove** is your individual borrowing position: its own collateral, debt, and loan-to-value (LTV). Opening one is how you mint a pAsset: **connect wallet ⇒ acquire pETH ⇒ deposit pETH as collateral ⇒ choose and mint a pAsset ⇒ confirm ⇒ monitor your LTV**. This page walks each step; for the concepts behind it, see [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting) and [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove).
+A **trove** is your individual CDP: its own collateral, debt, and loan-to-value (LTV). Opening one is how you mint a pAsset: **connect wallet ⇒ acquire pETH ⇒ deposit pETH as collateral ⇒ choose and mint a pAsset ⇒ confirm ⇒ monitor your LTV**. This page walks each step; for the concepts behind it, see [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting) and [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove).
 
-App anchor: **Borrow** tab -> pAsset trove flow. If the app says CDP, it is referring to the same pAsset debt-position mechanism this page calls a trove.
+App anchor: **Borrow** tab -> pAsset trove flow. If the app says CDP, it is referring to the same individual pAsset debt position this page calls a trove.
 
-For the full **Borrow / CDP / trove / reserve loan** vocabulary — including why a reserve loan is not a pAsset trove — see [Borrower terminology](https://tokenbrice.github.io/polaris-docs/minting#borrower-terminology).
+For the full **Borrow / CDB / CDP / trove / reserve loan** vocabulary — including why a reserve loan is not a pAsset trove — see [Borrower terminology](https://tokenbrice.github.io/polaris-docs/minting#borrower-terminology).
 
 ## Before you start
 

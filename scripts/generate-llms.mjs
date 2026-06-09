@@ -125,7 +125,7 @@ function stripJsxTags(value) {
     )
     .replace(
       /<SystemOverviewFigure\s*\/>/g,
-      'Image: Polaris system overview: ETH swaps into pETH on the bonding curve, pETH collateralizes CDPs that mint pUSD, and burning pETH for POLAR raises the floor and releases ETH.'
+      'Image: Polaris system overview: ETH swaps into pETH on the bonding curve, pETH collateralizes pAsset branches that mint pUSD, and burning pETH for POLAR raises the floor and releases ETH.'
     )
     .replace(
       /<TimedExplainers\s*\/>/g,
@@ -461,7 +461,7 @@ function buildProtocolManifest(pages) {
   )
 
   const sharedCoreRows = tableAfterHeading(source, 'Shared core parameters')
-  const pAssetRows = tableAfterHeading(source, 'pAsset instance parameters')
+  const pAssetRows = tableAfterHeading(source, 'pAsset branch parameters')
   const productionRows = tableAfterHeading(source, 'Production addresses')
   const lastVerified = normalizeDate(environment['Last verified'] ?? '') ?? page.lastVerified
 
@@ -487,8 +487,8 @@ function buildProtocolManifest(pages) {
 
   const contracts = [
     ...contractEntries(tableAfterHeading(source, 'Shared core'), 'shared-core'),
-    ...contractEntries(tableAfterHeading(source, 'pUSD instance'), 'pusd-instance'),
-    ...contractEntries(tableAfterHeading(source, 'pGOLD instance'), 'pgold-instance')
+    ...contractEntries(tableAfterHeading(source, 'pUSD branch'), 'pusd-branch'),
+    ...contractEntries(tableAfterHeading(source, 'pGOLD branch'), 'pgold-branch')
   ]
 
   const production = productionRows.map((row) => ({

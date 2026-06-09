@@ -18,7 +18,7 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 Borrow is where you open and manage Polaris debt positions. It has three sub-tabs:
 
-- **pUSD** and **pGOLD:** deposit **pETH** collateral and mint an overcollateralized stablecoin (a CDP, also called a trove). You set collateral and debt with an LTV slider and see a projected liquidation price, estimated monthly cost, and effective rate before signing.
+- **pUSD** and **pGOLD:** deposit **pETH** collateral and mint an overcollateralized stablecoin from an individual CDP, called a trove in Polaris. You set collateral and debt with an LTV slider and see a projected liquidation price, estimated monthly cost, and effective rate before signing.
 - **ETH:** a reserve loan — borrow **ETH** against **fpETH** collateral at up to 100% LTV with no liquidation risk, because the fpETH floor only ever rises.
 
 Existing positions are adjusted, repaid, and closed from this same tab once your wallet is connected.

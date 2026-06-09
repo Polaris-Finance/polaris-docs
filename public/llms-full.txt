@@ -15,7 +15,7 @@
 URL: https://tokenbrice.github.io/polaris-docs/
 Markdown URL: https://tokenbrice.github.io/polaris-docs/index.md
 
-Polaris sustains a yield layer for all of DeFi to seize, centered on **pETH**, a tailor-made collateral for Polaris CDPs that also has a life of its own.
+Polaris sustains a yield layer for all of DeFi to seize, centered on **pETH**, a tailor-made collateral for Polaris pAsset branches and user CDPs that also has a life of its own.
 
 - **pETH**, backed by the bonding curve, a foundational yield primitive with strong constant liquidity
 - **pUSD**, **pGOLD** and other Polaris immutable stablecoins use **pETH** as collateral
@@ -30,7 +30,7 @@ This documentation covers how the system works, how to use the app, and which ri
 
 Image: Polaris launch timeline. Early Research in 2024. Team Formation in June 2025. Public Testnet 1 on Sepolia in March 2026, the current phase. Mainnet, forthcoming.
 
-Image: Polaris system overview: ETH swaps into pETH on the bonding curve, pETH collateralizes CDPs that mint pUSD, and burning pETH for POLAR raises the floor and releases ETH.
+Image: Polaris system overview: ETH swaps into pETH on the bonding curve, pETH collateralizes pAsset branches that mint pUSD, and burning pETH for POLAR raises the floor and releases ETH.
 
 ## The three engines
 
@@ -39,7 +39,7 @@ Polaris has three engines:
 Engine | What it is | Why it matters
 
 **1. pETH** | ETH deposited into a two-way **bonding curve**, with a contract-defined floor under stated assumptions | A capital-efficient, yield-bearing collateral with a contract-defined exit path
-**2. pAssets** | Synthetic pegged (USD, Gold, etc.) assets minted against collateral, via a Collateralized Debt Position (CDP) | Counterparty-free stables that scale with onchain activity
+**2. pAssets** | Synthetic pegged (USD, Gold, etc.) assets minted against collateral, through pAsset branches and user CDPs | Counterparty-free stables that scale with onchain activity
 **3. POLAR** | The stewardship token, minted only by burning pETH in a **conversion auction** | Aligns long-term incentives and steers the protocol within hardcoded bounds
 
 Relevant app/search vocabulary: app, official app, testnet, Public Testnet 1, Sepolia, pETH, pAssets.
@@ -251,7 +251,7 @@ Markdown URL: https://tokenbrice.github.io/polaris-docs/using-app/borrow.md
 
 Borrow is where you open and manage Polaris debt positions. It has three sub-tabs:
 
-- **pUSD** and **pGOLD:** deposit **pETH** collateral and mint an overcollateralized stablecoin (a CDP, also called a trove). You set collateral and debt with an LTV slider and see a projected liquidation price, estimated monthly cost, and effective rate before signing.
+- **pUSD** and **pGOLD:** deposit **pETH** collateral and mint an overcollateralized stablecoin from an individual CDP, called a trove in Polaris. You set collateral and debt with an LTV slider and see a projected liquidation price, estimated monthly cost, and effective rate before signing.
 - **ETH:** a reserve loan — borrow **ETH** against **fpETH** collateral at up to 100% LTV with no liquidation risk, because the fpETH floor only ever rises.
 
 Existing positions are adjusted, repaid, and closed from this same tab once your wallet is connected.
@@ -470,7 +470,7 @@ Markdown URL: https://tokenbrice.github.io/polaris-docs/using-app/zap.md
 
 Zap bundles several on-chain steps into one guided transaction. Pick a strategy:
 
-- **pUSD Stable Yield:** market-buys pUSD with your WETH and deposits it into the pUSD Stability Pool in a single transaction, earning SP yield from CDP interest plus liquidation gains.
+- **pUSD Stable Yield:** market-buys pUSD with your WETH and deposits it into the pUSD Stability Pool in a single transaction, earning SP yield from borrower interest plus liquidation gains.
 - **Floor Carry:** converts ETH into fpETH and borrows ETH against it — a non-liquidatable, loopable ETH-yield position.
 
 You stay the position owner with full self-custody, slippage is bounded by your slippage setting, and a simulation confirms the expected result before you sign. A zap is an execution shortcut — it doesn't change the economics of the underlying steps, and you can always exit or manage the resulting position from Earn or Borrow.
@@ -659,34 +659,36 @@ Markdown URL: https://tokenbrice.github.io/polaris-docs/core-concepts.md
 
 ## The shape of the system
 
-*Key takeaway: one collateral primitive feeds the whole system; pETH creates collateral, CDPs mint pAssets, and POLAR conversion raises the pETH floor.*
+*Key takeaway: one collateral primitive feeds the whole system; pETH creates collateral, branches mint pAssets, and POLAR conversion raises the pETH floor.*
 
 The diagram traces four steps and an outcome:
 
 1. **Swap.** ETH enters the **bonding curve** and is issued as **pETH**; the curve captures volatility.
-2. **Collateral.** pETH is deposited as the sole collateral for **CDPs**.
-3. **Borrow.** A CDP mints **pUSD** (or another pAsset) against that pETH, for scalable onchain yield.
+2. **Collateral.** pETH is deposited as the sole collateral for pAsset **branches**.
+3. **Borrow.** A user opens a **CDP** in a branch to mint **pUSD** (or another pAsset) against that pETH, for scalable onchain yield.
 4. **Stewardship.** Burning pETH in a conversion auction mints **POLAR**, raising the pETH floor price and releasing ETH.
 
 This page is the system map. Each term is defined briefly and links to its full treatment.
 
 ## The assets
 
-A synthetic debt asset minted from a Polaris CDP (pUSD, pGOLD, pCHF, …). Each is overcollateralized by pETH and counterparty-free. See [The pAsset Catalog](https://tokenbrice.github.io/polaris-docs/minting/passet-catalog).
+A synthetic debt asset minted from a Polaris branch through user CDPs (pUSD, pGOLD, pCHF, …). Each is overcollateralized by pETH and counterparty-free. See [The pAsset Catalog](https://tokenbrice.github.io/polaris-docs/minting/passet-catalog).
 
 The flagship pAsset, pegged to the US dollar, backed by pETH collateral. See [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting).
 
-ETH deposited into a two-way [bonding curve](https://tokenbrice.github.io/polaris-docs/peth). It is not CDP-minted debt; it is the *only* collateral Polaris accepts, has a contract-defined floor, and is yield-bearing.
+ETH deposited into a two-way [bonding curve](https://tokenbrice.github.io/polaris-docs/peth). It is not debt minted from a CDP; it is the *only* collateral Polaris accepts, has a contract-defined floor, and is yield-bearing.
 
 The protocol's stewardship token. After a fixed distribution at launch, new POLAR can be minted *only* by burning pETH in a [conversion auction](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions). **vePOLAR**, a vote-escrow layer for stewardship rights, is forthcoming.
 
 ## Minting & positions
 
-Collateralized Debt Position: the mechanism behind minting. You post collateral and mint the pAsset directly from the protocol, not by borrowing another user's funds. See [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting).
+Collateralized Debt Branch: the aggregate protocol branch for one pAsset. A branch contains that pAsset's minting and redemption logic, debt accounting, risk parameters, Stability Pool, and all user CDPs. See [The pAsset Catalog](https://tokenbrice.github.io/polaris-docs/minting/passet-catalog).
 
-Your individual borrowing position in a Polaris CDP. Each trove is isolated, with its own collateral, debt, and loan-to-value (LTV). See [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove).
+Collateralized Debt Position: your individual borrowing position inside a branch. You post pETH collateral and mint the pAsset directly from the protocol, not by borrowing another user's funds. Each CDP has its own collateral, debt, and loan-to-value (LTV). See [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting).
 
-Polaris is a *factory* of CDP instances, each issuing a different pAsset but all sharing the same pETH collateral and bonding curve.
+The Polaris app term for an individual CDP. Each trove is isolated, with its own collateral, debt, and loan-to-value (LTV). See [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove).
+
+Polaris is a *factory* of pAsset branches, each issuing a different pAsset but all sharing the same pETH collateral and bonding curve.
 
 ## Keeping the peg
 
@@ -716,7 +718,7 @@ A stewardship role steers *quantitative parameters*, with safety-critical bounds
 
 Next steps:
 - [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status): Official app and network status, plus the shortest path from "I have ETH" to using Polaris.
-- [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting): How the CDP works from first principles.
+- [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting): How branches and individual CDPs work from first principles.
 - [Why Polaris?](https://tokenbrice.github.io/polaris-docs/why-polaris): The stablecoin trilemma and how Polaris resolves it.
 
 ---
@@ -726,29 +728,30 @@ Next steps:
 URL: https://tokenbrice.github.io/polaris-docs/minting
 Markdown URL: https://tokenbrice.github.io/polaris-docs/minting.md
 
-## The CDP model
+## Branches and CDPs
 
-Polaris issues pAssets through a **Collateralized Debt Position (CDP)**. From the outside it looks like borrowing against collateral, but underneath it differs from a money market like Aave.
+Polaris issues each pAsset through a **Collateralized Debt Branch (CDB)**. A branch is the aggregate protocol layer for one pAsset; each borrower opens an individual **Collateralized Debt Position (CDP)** inside that branch. From the outside it looks like borrowing against collateral, but underneath it differs from a money market like Aave.
 
 - A **money market** matches lenders and borrowers through a shared pool. You borrow funds another user supplied; an interest rate floats with pool utilization.
 - A **CDP** lets each borrower **mint** the pAsset directly from the protocol. You aren't borrowing anyone's deposit; you're your own mini central bank: post collateral ⇒ mint a pAsset ⇒ owe that debt back.
 
-Each position is isolated in a **[trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove)** with its own collateral, debt, and loan-to-value (LTV). Users of a given pAsset share only (1) the pAsset and its peg state, and (2) system-wide parameters like the [Total Collateralization Ratio and Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode). That isolation bounds the blast radius: each pAsset keeps its own debt accounting, so trouble in one cannot reach the troves or collateral of another.
+Each CDP is isolated in a **[trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove)** with its own collateral, debt, and loan-to-value (LTV). Users of a given pAsset share only (1) the branch's pAsset and peg state, and (2) branch-wide parameters like the [Total Collateralization Ratio and Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode). That isolation bounds the blast radius: each branch keeps its own debt accounting, so trouble in one cannot reach the troves or collateral of another.
 
 ## Borrower terminology
 
 Term you may see | Docs term | Meaning
 
 **Borrow** | User action | The app tab/action for taking on debt.
-**CDP** | Mechanism | The collateralized debt contract model for a pAsset instance.
-**Trove** | Position | Your individual pAsset borrowing position: collateral, debt, and LTV.
+**CDB / Branch** | Aggregate | The pAsset-level protocol branch: token, minting/redemption logic, accounting, parameters, Stability Pool, and all user CDPs.
+**CDP** | Position | Your individual pAsset borrowing position: collateral, debt, and LTV.
+**Trove** | App/docs term | The Polaris name for an individual CDP.
 **Loan / Reserve Loan** | Separate product | A WETH loan against fpETH floor-value collateral, not a pAsset trove.
 
 When these docs say **trove**, they mean a pAsset debt position. When the app says **Reserve Loan**, read [pETH Split: fpETH and vpETH](https://tokenbrice.github.io/polaris-docs/peth/split) instead; reserve loans use fpETH, not pETH trove collateral.
 
 ### Strengths and trade-offs
 
-The CDP model is ~8 years proven, its strengths and weaknesses well understood; Polaris's design amplifies the former and dampens the latter.
+The CDP model is ~8 years proven, its strengths and weaknesses well understood; Polaris applies it through pAsset branches, amplifying the former and dampening the latter.
 
 Strengths | Trade-offs
 
@@ -768,7 +771,7 @@ Polaris does not accept wstETH or other staked-ETH tokens: they would be externa
 
 ### Autonomous, market-aware interest rates
 
-Setting CDP interest rates is where most designs struggle: Maker still uses governance-set rates (spiky, unpredictable); Liquity v1 had none (sustained supply pressure as T-bill rates rose); Liquity v2 pushes rate-setting onto users.
+Setting branch interest rates is where most designs struggle: Maker still uses governance-set rates (spiky, unpredictable); Liquity v1 had none (sustained supply pressure as T-bill rates rose); Liquity v2 pushes rate-setting onto users.
 
 Polaris sets rates **autonomously, without a direct market-price feed for the pAsset**, by reading signals already inside the system:
 
@@ -793,9 +796,9 @@ From Maker to Liquity, CDP models shaped DeFi lending. Polaris takes the bluepri
 URL: https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove
 Markdown URL: https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove.md
 
-A trove is a living position. After you [open it](https://tokenbrice.github.io/polaris-docs/minting/open-a-trove), you can adjust it freely: add collateral, mint more, repay debt, or close it. The app-facing health metric is **loan-to-value (LTV)**.
+A trove is a living CDP. After you [open it](https://tokenbrice.github.io/polaris-docs/minting/open-a-trove), you can adjust it freely: add collateral, mint more, repay debt, or close it. The app-facing health metric is **loan-to-value (LTV)**.
 
-**Scope:** this page covers pAsset troves/CDPs (shown under **Borrow**), not reserve loans. For the full vocabulary, see [Borrower terminology](https://tokenbrice.github.io/polaris-docs/minting#borrower-terminology).
+**Scope:** this page covers individual pAsset CDPs/troves (shown under **Borrow**), not branches or reserve loans. For the full vocabulary, see [Borrower terminology](https://tokenbrice.github.io/polaris-docs/minting#borrower-terminology).
 
 ## Loan-to-value (LTV)
 
@@ -885,11 +888,11 @@ Relevant app/search vocabulary: Borrow, Manage Trove, borrow, mint, open trove, 
 URL: https://tokenbrice.github.io/polaris-docs/minting/open-a-trove
 Markdown URL: https://tokenbrice.github.io/polaris-docs/minting/open-a-trove.md
 
-A **trove** is your individual borrowing position: its own collateral, debt, and loan-to-value (LTV). Opening one is how you mint a pAsset: **connect wallet ⇒ acquire pETH ⇒ deposit pETH as collateral ⇒ choose and mint a pAsset ⇒ confirm ⇒ monitor your LTV**. This page walks each step; for the concepts behind it, see [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting) and [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove).
+A **trove** is your individual CDP: its own collateral, debt, and loan-to-value (LTV). Opening one is how you mint a pAsset: **connect wallet ⇒ acquire pETH ⇒ deposit pETH as collateral ⇒ choose and mint a pAsset ⇒ confirm ⇒ monitor your LTV**. This page walks each step; for the concepts behind it, see [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting) and [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove).
 
-App anchor: **Borrow** tab -> pAsset trove flow. If the app says CDP, it is referring to the same pAsset debt-position mechanism this page calls a trove.
+App anchor: **Borrow** tab -> pAsset trove flow. If the app says CDP, it is referring to the same individual pAsset debt position this page calls a trove.
 
-For the full **Borrow / CDP / trove / reserve loan** vocabulary — including why a reserve loan is not a pAsset trove — see [Borrower terminology](https://tokenbrice.github.io/polaris-docs/minting#borrower-terminology).
+For the full **Borrow / CDB / CDP / trove / reserve loan** vocabulary — including why a reserve loan is not a pAsset trove — see [Borrower terminology](https://tokenbrice.github.io/polaris-docs/minting#borrower-terminology).
 
 ## Before you start
 
@@ -946,7 +949,7 @@ Relevant app/search vocabulary: Borrow, Manage Trove, borrow, mint, open trove, 
 URL: https://tokenbrice.github.io/polaris-docs/minting/passet-catalog
 Markdown URL: https://tokenbrice.github.io/polaris-docs/minting/passet-catalog.md
 
-A **pAsset** is a synthetic debt asset minted from a Polaris CDP against pETH collateral. **pETH is different:** it is the bonding-curve collateral token that backs pAssets, not debt minted from a trove.
+A **pAsset** is a synthetic debt asset minted from a Polaris branch through user CDPs against pETH collateral. **pETH is different:** it is the bonding-curve collateral token that backs pAssets, not debt minted from a trove.
 
 > **Current Public Testnet 1 focus:** pUSD and pGOLD are Testnet-active on Sepolia. pCHF, pBigMac, and other catalog ideas are illustrative or future until [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) says otherwise.
 
@@ -982,11 +985,11 @@ Image: Borrowing pGOLD is not shorting gold: deposit pETH and borrow pGOLD, then
 
 ## StablecoinOS: an open catalog
 
-The CDP model is **debt-asset agnostic**: it can mint a synthetic pegged to any asset with robust reference pricing and risk parameters. Polaris uses **StablecoinOS** as a factory of CDP instances: one CDP per pAsset, all sharing the same pETH collateral pool and bonding curve.
+The CDP model is **debt-asset agnostic**: it can mint a synthetic pegged to any asset with robust reference pricing and risk parameters. Polaris uses **StablecoinOS** as a factory of branches: one branch per pAsset, all sharing the same pETH collateral pool and bonding curve.
 
-Shared collateral lets teams add a new pAsset without bootstrapping a fresh collateral base. Each instance still has its own debt accounting, so stress in one pAsset does not directly liquidate another pAsset's troves.
+Shared collateral lets teams add a new pAsset without bootstrapping a fresh collateral base. Each branch still has its own debt accounting, so stress in one pAsset does not directly liquidate another pAsset's troves.
 
-Image: StablecoinOS as a factory: ETH enters one shared bonding curve to mint pETH, which collateralizes multiple independent CDP instances that each mint a different pAsset — pUSD, pGOLD, pCHF — over the same pETH collateral base
+Image: StablecoinOS as a factory: ETH enters one shared bonding curve to mint pETH, which collateralizes multiple independent branches that each mint a different pAsset — pUSD, pGOLD, pCHF — over the same pETH collateral base
 
 ---
 
@@ -1038,9 +1041,9 @@ The Public Testnet 1 beta is testnet-only. The production beta remains pending; 
 
 ## Interactive explorer
 
-## pETH beyond the CDP
+## pETH beyond CDPs
 
-pETH is tailor-made collateral for Polaris CDPs, but it has a life of its own.
+pETH is tailor-made collateral for Polaris pAsset branches and user CDPs, but it has a life of its own.
 
 ### Reserve loans and Split
 
@@ -1236,7 +1239,7 @@ App anchors: **Earn** for current POLAR Staking where exposed, and **Advanced** 
 
 ## Why a third token
 
-Polaris runs on three engines: pETH, the pAssets, and POLAR. The first two handle everything the protocol *needs* to function: pETH backs the CDPs, the Stability Pool generates yield, interest rates self-adjust, and liquidations process autonomously. **Polaris works without POLAR.**
+Polaris runs on three engines: pETH, the pAssets, and POLAR. The first two handle everything the protocol *needs* to function: pETH backs the pAsset branches and their user CDPs, the Stability Pool generates yield, interest rates self-adjust, and liquidations process autonomously. **Polaris works without POLAR.**
 
 So why add a third token? Because functioning and scaling differ. The design splits along an **inward- vs. outward-facing** logic:
 
@@ -1684,7 +1687,7 @@ Polaris's answer is neither a fully immutable protocol with no adjustable parame
 The mechanisms that define Polaris **cannot be changed by anyone**: not the team, not vePOLAR, not a vote. They are enforced by immutable contracts:
 
 - The [bonding curve](https://tokenbrice.github.io/polaris-docs/peth) backing pETH
-- CDP logic and [trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove) accounting
+- Branch logic and [trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove) accounting
 - [Liquidations](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations)
 - [Redemptions](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations)
 - The [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield)
@@ -1697,8 +1700,8 @@ Stewardship operates at the edges: StablecoinOS onboarding, permitted parameter 
 
 Domain | Power | Constraint
 
-**pAsset licensing** | Approve a team or instance to deploy a new pAsset on Polaris infrastructure | Standardized eligibility and launch requirements
-**CDP parameters** | Adjust permitted fee and distribution splits for a pAsset instance | Hardcoded min/max bounds
+**pAsset licensing** | Approve a team or branch to deploy a new pAsset on Polaris infrastructure | Standardized eligibility and launch requirements
+**Branch parameters** | Adjust permitted fee and distribution splits for a pAsset branch | Hardcoded min/max bounds
 **Conversion parameters** | Tune pETH-to-POLAR conversion settings (rebate, half-life, spike sensitivity) | Rebate bounded 0–100%; other bounds pending
 **StablecoinOS onboarding** | Whitelist eligible participants into Flow revenue sharing | Must build on pETH/pAssets and meet published requirements
 **Primary interest split** | Set how primary interest is split between the Stability Pool and POLAR stakers (remainder to the ecosystem fund) | Stability Pool and stakers each floored at 25% (hardcoded)
@@ -1721,7 +1724,7 @@ Polaris stewardship does **not**:
 
 ## Operator prerequisites
 
-Teams seeking onboarding, a pAsset instance, Flow participation, or another stewarded action should expect to provide:
+Teams seeking onboarding, a pAsset branch, Flow participation, or another stewarded action should expect to provide:
 
 - Clear contract addresses once deployed and verified.
 - A concise description of the product, risk surface, and user flow.
@@ -1760,7 +1763,7 @@ Polaris follows a simple ordering: solve a problem at the lowest tier that can s
 
 ## Bounded blast radius
 
-Stewards hold real power, so they can make real mistakes, but the immutable core caps the damage. A weak pAsset affects that instance, not the bonding curve or liquidation engine. A poor split can be moved back inside the same hardcoded bounds.
+Stewards hold real power, so they can make real mistakes, but the immutable core caps the damage. A weak pAsset affects that branch, not the bonding curve or liquidation engine. A poor split can be moved back inside the same hardcoded bounds.
 
 ## How this compares to DAO governance
 
@@ -1917,13 +1920,13 @@ Markdown URL: https://tokenbrice.github.io/polaris-docs/stewardship/vepolar.md
 lock POLAR -> receive vePOLAR -> steward bounded parameters + receive routed yield
 ```
 
-vePOLAR holders are **stewards, not governors**. They steer quantitative parameters within hardcoded ranges and vote on permitted onboarding decisions. The bonding curve, CDP logic, liquidations, redemptions, and Stability Pool mechanics are outside vote scope.
+vePOLAR holders are **stewards, not governors**. They steer quantitative parameters within hardcoded ranges and vote on permitted onboarding decisions. The bonding curve, branch logic, liquidations, redemptions, and Stability Pool mechanics are outside vote scope.
 
 vePOLAR holders can participate in decisions to:
 
 - License new pAssets onto Polaris infrastructure.
 - Onboard eligible participants into StablecoinOS and [Flow](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router) revenue sharing.
-- Set bounded interest splits and CDP parameters.
+- Set bounded interest splits and branch parameters.
 - Tune [conversion](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions) parameters within their hardcoded range.
 - Vote on treasury programs once the framework is published.
 
@@ -1937,7 +1940,7 @@ vePOLAR is the future locking layer. Once live, this page will list the official
 
 ## What vePOLAR does not do
 
-vePOLAR cannot upgrade core contracts; change pETH, CDP, liquidation, redemption, or Stability Pool mechanics; create gauges or bribe markets; direct POLAR emissions; mint POLAR outside the [conversion auction](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions); or move any parameter outside its immutable min/max range.
+vePOLAR cannot upgrade core contracts; change pETH, branch or CDP mechanics, liquidation, redemption, or Stability Pool mechanics; create gauges or bribe markets; direct POLAR emissions; mint POLAR outside the [conversion auction](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions); or move any parameter outside its immutable min/max range.
 
 ## Lock status
 
@@ -2025,7 +2028,7 @@ In text, the lineage reads:
 Polaris is designed so the main dependencies are immutable code and Ethereum:
 
 - **Onchain-only yield.** Every yield source — borrower interest, bonding curve swap fees, conversion gains — is internal to the protocol and grows with activity. Nothing is rented from a CEX or T-bill desk.
-- **Immutable core.** The bonding curve, CDP logic, liquidations, redemptions, and the Stability Pool are intended to be fixed in audited deployment code. No admin key can add a custodial PSM, external-collateral module, or freeze function under pressure.
+- **Immutable core.** The bonding curve, branch and CDP logic, liquidations, redemptions, and the Stability Pool are intended to be fixed in audited deployment code. No admin key can add a custodial PSM, external-collateral module, or freeze function under pressure.
 - **Counterparty-free by construction.** pUSD sits in the same counterparty-free lineage as LUSD and BOLD — but adds yield that *scales* with DeFi volume rather than capping growth at what a counterparty can deliver.
 
 Polaris turns onchain activity into yield through its bonding curve, and extends the model to other assets through [StablecoinOS](https://tokenbrice.github.io/polaris-docs/core-concepts).
@@ -2033,7 +2036,7 @@ Polaris turns onchain activity into yield through its bonding curve, and extends
 Next steps:
 - [Core Concepts](https://tokenbrice.github.io/polaris-docs/core-concepts): A one-page map of every key term in the Polaris system.
 - [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status): Official app and network status, plus the shortest path from "I have ETH" to using Polaris.
-- [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting): How the CDP works from first principles.
+- [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting): How branches and individual CDPs work from first principles.
 
 ---
 
@@ -2053,7 +2056,7 @@ The Stability Pool is a **first-loss pool**. When a trove is liquidated, the poo
 
 The Stability Pool keeps Polaris solvent. It holds pAsset deposits that are used to absorb liquidated trove debt. In exchange, depositors receive the pETH collateral seized from liquidated troves, usually at a discount to market price. This creates an alignment of incentives: depositors profit from liquidations, which keeps the system healthy.
 
-Image: How the Stability Pool fits the system: ETH enters the bonding curve as pETH, which collateralizes CDPs that mint pUSD; pUSD deposited in the Stability Pool absorbs liquidated debt and earns discounted pETH plus a share of borrower interest
+Image: How the Stability Pool fits the system: ETH enters the bonding curve as pETH, which collateralizes the pUSD branch and its user CDPs; pUSD deposited in the Stability Pool absorbs liquidated debt and earns discounted pETH plus a share of borrower interest
 
 ## Where the yield comes from
 
@@ -2188,7 +2191,7 @@ App term | Glossary entry | Guide
 
 Advanced | [Advanced](https://tokenbrice.github.io/polaris-docs/resources#a) | [Advanced app tools](https://tokenbrice.github.io/polaris-docs/using-app/advanced)
 APR | [APR](https://tokenbrice.github.io/polaris-docs/resources#a) | [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn)
-Borrow / CDP | [CDP](https://tokenbrice.github.io/polaris-docs/resources#c), [Trove](https://tokenbrice.github.io/polaris-docs/resources#t) | [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow)
+Borrow / CDP | [CDP](https://tokenbrice.github.io/polaris-docs/resources#c), [Trove](https://tokenbrice.github.io/polaris-docs/resources#t), [CDB / Branch](https://tokenbrice.github.io/polaris-docs/resources#c) | [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow)
 Earn / SP | [Stability Pool](https://tokenbrice.github.io/polaris-docs/resources#s), [SP](https://tokenbrice.github.io/polaris-docs/resources#s) | [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn)
 Floor Carry | [Floor Carry](https://tokenbrice.github.io/polaris-docs/resources#f) | [Split](https://tokenbrice.github.io/polaris-docs/using-app/split)
 fpETH / vpETH | [fpETH](https://tokenbrice.github.io/polaris-docs/resources#f), [vpETH](https://tokenbrice.github.io/polaris-docs/resources#v) | [Split](https://tokenbrice.github.io/polaris-docs/using-app/split)
@@ -2220,8 +2223,11 @@ The two-way curve that mints and burns [pETH](https://tokenbrice.github.io/polar
 
 ## C
 
+**CDB (Collateralized Debt Branch)**
+The aggregate protocol branch for one pAsset. A branch contains that pAsset's minting and redemption logic, debt accounting, risk parameters, Stability Pool, and all user [CDPs](https://tokenbrice.github.io/polaris-docs/resources#c). See [Core Concepts](https://tokenbrice.github.io/polaris-docs/core-concepts).
+
 **CDP (Collateralized Debt Position)**
-The mechanism behind minting: post collateral, mint a pAsset directly from the protocol rather than borrowing another user's funds. Each position is an isolated [trove](https://tokenbrice.github.io/polaris-docs/resources#t). See [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting).
+Your individual borrowing position inside a [branch](https://tokenbrice.github.io/polaris-docs/resources#c): post pETH collateral, mint a pAsset directly from the protocol, and owe that debt back. In the Polaris app and these docs, an individual CDP is also called a [trove](https://tokenbrice.github.io/polaris-docs/resources#t). See [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting).
 
 **Conversion auction**
 The mechanism that burns [pETH](https://tokenbrice.github.io/polaris-docs/peth) to mint new [POLAR](https://tokenbrice.github.io/polaris-docs/polar). See [Conversion Auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions).
@@ -2286,7 +2292,7 @@ An onchain feed used to price ETH collateral. Peg awareness uses minting and red
 ## P
 
 **pAsset**
-A Polaris synthetic debt asset minted from a CDP — pUSD, pGOLD, pCHF, and beyond. Each is overcollateralized by pETH and counterparty-free. pETH itself is the collateral token, not CDP-minted pAsset debt. See [The pAsset Catalog](https://tokenbrice.github.io/polaris-docs/minting/passet-catalog).
+A Polaris synthetic debt asset minted from a branch through user CDPs — pUSD, pGOLD, pCHF, and beyond. Each is overcollateralized by pETH and counterparty-free. pETH itself is the collateral token, not CDP-minted pAsset debt. See [The pAsset Catalog](https://tokenbrice.github.io/polaris-docs/minting/passet-catalog).
 
 **pBigMac**
 A novelty pAsset demonstrating the "mint anything" thesis: if a price feed exists, Polaris can mint a pAsset that tracks it.
@@ -2313,7 +2319,7 @@ The protocol's stewardship token and outward-facing growth lever. After the init
 The current app surface for staking POLAR and claiming routed rewards where exposed. It is distinct from forthcoming [vePOLAR](https://tokenbrice.github.io/polaris-docs/resources#v) locking.
 
 **PSM (Peg Stability Module)**
-The contract/module that handles pAsset minting and redemption mechanics for a pAsset instance. Use PSM or redemption actions only after checking the pAsset, fee, output amount, and contract address.
+The contract/module that handles pAsset minting and redemption mechanics for a pAsset branch. Use PSM or redemption actions only after checking the pAsset, fee, output amount, and contract address.
 
 **pUSD**
 The flagship pAsset, designed to track the US dollar and be backed by pETH collateral. See [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting).
@@ -2347,7 +2353,7 @@ The pricing model for [conversion auctions](https://tokenbrice.github.io/polaris
 A reserve of pAssets that absorbs the debt of [liquidated](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations) troves and is the protocol's primary venue for earning yield. See [The Stability Pool](https://tokenbrice.github.io/polaris-docs/yield).
 
 **StablecoinOS**
-The CDP-factory layer: many distinct pAssets, each issued by its own CDP instance, all sharing one pETH collateral and bonding curve. See [Core Concepts](https://tokenbrice.github.io/polaris-docs/core-concepts).
+The branch factory: many distinct pAsset branches, each issuing its own pAsset, all sharing one pETH collateral and bonding curve. See [Core Concepts](https://tokenbrice.github.io/polaris-docs/core-concepts).
 
 **Stewardship**
 The bounded role stewards play: tuning *quantitative parameters within the bounds the contracts define*. The immutable core cannot be changed; stewards steward, they do not govern. See [Stewardship, not Governance](https://tokenbrice.github.io/polaris-docs/stewardship).
@@ -2358,7 +2364,7 @@ The bounded role stewards play: tuning *quantitative parameters within the bound
 The system-wide reserve-to-debt health metric for a pAsset. Dropping below the configured threshold triggers [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode).
 
 **Trove**
-An individual borrowing position in a Polaris CDP. Each trove is isolated, with its own collateral, debt, and [LTV](https://tokenbrice.github.io/polaris-docs/resources#l). Polaris uses *trove*, never "vault" or "position". See [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting).
+The Polaris app term for an individual [CDP](https://tokenbrice.github.io/polaris-docs/resources#c). Each trove is isolated, with its own collateral, debt, and [LTV](https://tokenbrice.github.io/polaris-docs/resources#l). Polaris uses *trove*, never "vault". See [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting).
 
 ## V
 
@@ -2521,7 +2527,7 @@ Open the official testnet app, connect Sepolia, use test assets only, swap into 
 
 ### Why does the app show Borrow if docs say mint?
 
-The app says Borrow because the user action creates debt. The mechanism is a CDP/trove: you deposit pETH collateral and mint a pAsset directly from the protocol. See [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow) and [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting).
+The app says Borrow because the user action creates debt. You open an individual CDP, called a trove in Polaris: deposit pETH collateral and mint a pAsset directly from the protocol. See [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow) and [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting).
 
 ### What should I do if a quote or transaction fails?
 
@@ -2584,7 +2590,7 @@ Polaris is trustless, immutable infrastructure. That design choice has real cost
 
 ## Smart-contract risk
 
-Polaris lives entirely onchain. Its bonding curve, CDPs, Stability Pool, and conversion auctions are smart contracts, and any smart contract can contain bugs.
+Polaris lives entirely onchain. Its bonding curve, branch contracts, CDP accounting, Stability Pool, and conversion auctions are smart contracts, and any smart contract can contain bugs.
 
 **Mitigation.** The intended core is immutable and admin-key-free, removing upgrade and governance-key attack surface but raising the stakes on getting the code right. Final audit reports are not published in these docs yet; until reports appear on [Audits & Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security), treat the protocol as unaudited. Immutability cuts both ways: it cannot be tampered with, and it cannot be patched. Residual risk is never zero.
 
@@ -2710,7 +2716,7 @@ Parameter | Public Testnet 1 value | Source
 Bonding curve alpha | `193218996973422650` | Core manifest
 Bonding curve beta | `150000000000000000` (15%) | Core manifest
 
-### pAsset instance parameters
+### pAsset branch parameters
 
 Parameter | pUSD | pGOLD | Source
 
@@ -2732,12 +2738,12 @@ Use the app quote and live contract reads before signing. Do not copy Sepolia va
 
 This section owns contract addresses and verification rules. Public Testnet 1 addresses are Sepolia artifacts and may be redeployed; production addresses are not published yet.
 
-Polaris deploys one shared core plus one instance set per pAsset.
+Polaris deploys one shared core plus one branch set per pAsset.
 
 Layer | What deploys
 
 Shared core | pETH/bonding curve, splitter, POLAR/ShareSystem, Fee Router, stewardship, staking, reserve loans, reserve token
-Per-pAsset instance | pAsset token, CDP manager, CDP NFT, Stability Pool, internal PSM, interest controller, price feeds, read helper
+Per-pAsset branch | pAsset token, CDP manager, CDP NFT, Stability Pool, internal PSM, interest controller, price feeds, read helper
 
 ### Shared core
 
@@ -2755,7 +2761,7 @@ Testnet POLAR staking | [`0x56a7088cdb41a04eddb9c9b46f27359a6797324b`](https://s
 BondingCurveTokenSplitter | [`0xc880eb4ba6e7f1c60ce4968dc50b24056e67cc00`](https://sepolia.etherscan.io/address/0xc880eb4ba6e7f1c60ce4968dc50b24056e67cc00)
 vpToken | [`0xd59019504ea81813632c8f5e8014027b47c82ab1`](https://sepolia.etherscan.io/address/0xd59019504ea81813632c8f5e8014027b47c82ab1)
 
-### pUSD instance
+### pUSD branch
 
 Contract | Sepolia address
 
@@ -2770,7 +2776,7 @@ Internal PSM | [`0x49cf0fff51fdd7140237e3fc6cd2b4daf6a4ffe5`](https://sepolia.et
 MultiCDPGetter | [`0x5b396a8e4adff7480c0dd2858890f55d5b028149`](https://sepolia.etherscan.io/address/0x5b396a8e4adff7480c0dd2858890f55d5b028149)
 Primary Interest Router | [`0xb5971ee694ca881963533114c1694f5f0c56ac09`](https://sepolia.etherscan.io/address/0xb5971ee694ca881963533114c1694f5f0c56ac09)
 
-### pGOLD instance
+### pGOLD branch
 
 Contract | Sepolia address
 
