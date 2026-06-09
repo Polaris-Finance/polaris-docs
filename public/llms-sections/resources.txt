@@ -495,6 +495,8 @@ Fake frontends, fake contract addresses, and fake support channels can appear be
 
 For the reasoning behind these trade-offs, read [Why Polaris?](https://tokenbrice.github.io/polaris-docs/why-polaris). For the precise definition of any term above, see the [Glossary](https://tokenbrice.github.io/polaris-docs/resources).
 
+Relevant app/search vocabulary: risk, risks, risk disclosure, smart contract risk, liquidation risk.
+
 ---
 
 ## Polaris Public Testnet 1

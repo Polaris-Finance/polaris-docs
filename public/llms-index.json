@@ -84,7 +84,10 @@
         "pGOLD",
         "LTV",
         "loan-to-value",
-        "official app"
+        "official app",
+        "trove",
+        "manage trove",
+        "borrower trove"
       ],
       "updated": null,
       "lastVerified": null
@@ -107,7 +110,10 @@
         "pGOLD",
         "LTV",
         "loan-to-value",
-        "official app"
+        "official app",
+        "trove",
+        "manage trove",
+        "borrower trove"
       ],
       "updated": null,
       "lastVerified": null
@@ -135,7 +141,10 @@
         "fpETH",
         "vpETH",
         "pETH",
-        "floor price"
+        "floor price",
+        "pETH bonding curve",
+        "bonding curve",
+        "pETH floor"
       ],
       "updated": null,
       "lastVerified": null
@@ -153,7 +162,10 @@
         "fpETH",
         "vpETH",
         "pETH",
-        "floor price"
+        "floor price",
+        "pETH bonding curve",
+        "bonding curve",
+        "pETH floor"
       ],
       "updated": null,
       "lastVerified": null
@@ -171,7 +183,10 @@
         "fpETH",
         "vpETH",
         "pETH",
-        "floor price"
+        "floor price",
+        "pETH bonding curve",
+        "bonding curve",
+        "pETH floor"
       ],
       "updated": null,
       "lastVerified": null
@@ -188,7 +203,10 @@
         "lock",
         "vePOLAR",
         "burn pETH",
-        "conversion auction"
+        "conversion auction",
+        "POLAR token",
+        "POLAR staking",
+        "POLAR tokenomics"
       ],
       "updated": null,
       "lastVerified": null
@@ -222,7 +240,10 @@
         "lock",
         "vePOLAR",
         "burn pETH",
-        "conversion auction"
+        "conversion auction",
+        "POLAR token",
+        "POLAR staking",
+        "POLAR tokenomics"
       ],
       "updated": null,
       "lastVerified": null
@@ -262,7 +283,13 @@
       "section": "Understand Polaris",
       "title": "Polaris Liquidations",
       "description": "A trove above its maximum LTV is liquidated to keep the pAsset backed. The Stability Pool absorbs the debt, or it redistributes to troves.",
-      "keywords": [],
+      "keywords": [
+        "liquidation",
+        "liquidations",
+        "liquidate",
+        "liquidated",
+        "liquidation penalty"
+      ],
       "updated": null,
       "lastVerified": null
     },
@@ -356,7 +383,13 @@
       "section": "Resources",
       "title": "Polaris Risk Disclosure",
       "description": "A comprehensive catalog of the risks of using Polaris, each paired with the mechanism that mitigates it, without implying any risk is eliminated.",
-      "keywords": [],
+      "keywords": [
+        "risk",
+        "risks",
+        "risk disclosure",
+        "smart contract risk",
+        "liquidation risk"
+      ],
       "updated": null,
       "lastVerified": null
     },
