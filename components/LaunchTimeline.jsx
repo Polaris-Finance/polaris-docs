@@ -49,11 +49,6 @@ function Tooltip({ title, desc, link }) {
     <div className="pl-tooltip">
       <div className="pl-tooltip-title">{title}</div>
       <div>{desc}</div>
-      {link ? (
-        <a className="pl-tooltip-link" href={pathWithBase(link)}>
-          View details
-        </a>
-      ) : null}
     </div>
   )
 }
