@@ -349,9 +349,17 @@ test('search opens, returns useful results, and fits its surface', async ({ page
   await expect(results).toBeVisible()
   await expect(results).toContainText(/trove/i)
   await expect(results).toContainText(/open|managing/i)
+  await expect(results.locator('.pl-search-count')).toContainText(/Top \d+ of \d+|\d+ shown/)
   await expect(input).toHaveAttribute('aria-autocomplete', 'list')
   await expect(input).toHaveAttribute('aria-expanded', 'true')
   await expect(input).toHaveAttribute('aria-controls', /.+-listbox$/)
+
+  const mintingChip = results.getByRole('button', { name: /Minting & Troves/i })
+  await expect(mintingChip).toBeVisible()
+  await mintingChip.click()
+  await expect(mintingChip).toHaveAttribute('aria-pressed', 'true')
+  await expect(results.locator('.pl-search-count')).toContainText(/in Minting & Troves/)
+  await results.getByRole('button', { name: /^All$/ }).click()
 
   const inputBox = await input.boundingBox()
   const resultsBox = await results.boundingBox()
@@ -418,6 +426,11 @@ test('search keyboard, clear, and empty-state refinements work', async ({ page }
   await page.getByRole('option', { name: /search for .liquidation./i }).click()
   await expect(input).toHaveValue('liquidation')
   await expect(results).toContainText(/Polaris Liquidations/i)
+
+  await input.fill('xqzvnotfound')
+  await expect(results).toContainText(/No matches/i)
+  await expect(results).toContainText(/Try instead/i)
+  await expect(results).toContainText(/FAQ/i)
 })
 
 test('search ranking favors direct destinations for high-intent queries', async ({ page }) => {
