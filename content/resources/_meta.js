@@ -1,11 +1,8 @@
 export default {
-  index: 'Glossary',
-  parameters: 'Parameters',
-  contracts: 'Contracts & Addresses',
-  testnet: 'Public Testnet 1 Artifacts',
-  'risk-disclosure': 'Risk Disclosure',
-  'safety-verification': 'Safety & Verification',
-  faq: 'FAQ',
+  testnet: 'Public Testnet 1',
   'audits-security': 'Audits & Security',
+  'risk-disclosure': 'Risk Disclosure',
+  faq: 'FAQ',
+  index: 'Glossary',
   'brand-assets': 'Brand Assets'
 }

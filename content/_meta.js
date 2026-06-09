@@ -20,6 +20,5 @@ export default {
     type: 'separator',
     title: 'Reference'
   },
-  resources: 'Resources',
-  changelog: 'Changelog'
+  resources: 'Resources'
 }
