@@ -1,7 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { expect, test } from '@playwright/test'
-import { pathWithBase } from '../app/site-config.mjs'
+import { BASE_PATH, pathWithBase } from '../app/site-config.mjs'
 
 const contentDir = path.join(process.cwd(), 'content')
 
@@ -28,6 +28,28 @@ function fileToRoute(filePath) {
 
 const generatedRoutes = collectMdxFiles(contentDir).map(fileToRoute).sort()
 const routeTestName = (route) => (route === '/' ? 'home' : route.slice(1))
+
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+function routeFromHref(href) {
+  const pathname = new URL(href, 'http://127.0.0.1').pathname.replace(/\/$/, '') || '/'
+  if (BASE_PATH && pathname.startsWith(BASE_PATH)) {
+    return pathname.slice(BASE_PATH.length).replace(/\/$/, '') || '/'
+  }
+  return pathname
+}
+
+async function topSearchRoutes(page, count = 2) {
+  const hrefs = await page
+    .locator('.pl-search-group-head--link')
+    .evaluateAll(
+      (links, max) => links.slice(0, max).map((link) => link.getAttribute('href')),
+      count
+    )
+  return hrefs.filter(Boolean).map(routeFromHref)
+}
 
 async function expectNoDocumentOverflow(page) {
   const overflow = await page.evaluate(
@@ -327,6 +349,9 @@ test('search opens, returns useful results, and fits its surface', async ({ page
   await expect(results).toBeVisible()
   await expect(results).toContainText(/trove/i)
   await expect(results).toContainText(/open|managing/i)
+  await expect(input).toHaveAttribute('aria-autocomplete', 'list')
+  await expect(input).toHaveAttribute('aria-expanded', 'true')
+  await expect(input).toHaveAttribute('aria-controls', /.+-listbox$/)
 
   const inputBox = await input.boundingBox()
   const resultsBox = await results.boundingBox()
@@ -338,14 +363,89 @@ test('search opens, returns useful results, and fits its surface', async ({ page
     const viewport = page.viewportSize()
     expect(Math.abs(resultsBox.width - viewport.width)).toBeLessThanOrEqual(2)
     expect(resultsBox.x).toBeLessThanOrEqual(2)
+
+    await input.fill('POLAR')
+    const facets = results.locator('.pl-search-facets')
+    await expect(facets).toBeVisible()
+    const facetBox = await facets.boundingBox()
+    const firstResultBox = await results
+      .locator('.pl-search-group-head--link')
+      .first()
+      .boundingBox()
+    expect(facetBox).not.toBeNull()
+    expect(firstResultBox).not.toBeNull()
+    expect(facetBox.height).toBeLessThanOrEqual(60)
+    expect(firstResultBox.y).toBeLessThan(viewport.height)
   } else {
-    // Desktop panel tracks the input's left edge and width.
+    // Desktop panel anchors to the input but caps to a readable search surface.
     expect(Math.abs(resultsBox.x - inputBox.x)).toBeLessThanOrEqual(2)
-    expect(Math.abs(resultsBox.width - inputBox.width)).toBeLessThanOrEqual(2)
+    expect(Math.abs(resultsBox.width - Math.min(inputBox.width, 1024))).toBeLessThanOrEqual(2)
   }
 
   await input.fill('risk')
   await expect(results).toContainText(/Risk Disclosure/i)
+})
+
+test('search keyboard, clear, and empty-state refinements work', async ({ page }) => {
+  await page.goto(pathWithBase('/'))
+
+  const input = page.locator('input[type="search"][placeholder*="Search"]:visible').first()
+  await input.click()
+  await input.fill('trove')
+
+  const results = page.locator('.nextra-search-results')
+  await expect(results).toBeVisible()
+  const firstHref = await results
+    .locator('.pl-search-group-head--link')
+    .first()
+    .getAttribute('href')
+  expect(firstHref).toBeTruthy()
+
+  await input.press('Enter')
+  const expectedPath = new URL(firstHref, page.url()).pathname
+  await expect(page).toHaveURL(new RegExp(`${escapeRegExp(expectedPath)}(?:#.*)?$`))
+
+  await page.keyboard.press('/')
+  await expect(input).toBeFocused()
+  await input.fill('risk')
+  await expect(page.getByRole('button', { name: /clear search/i })).toBeVisible()
+  await page.getByRole('button', { name: /clear search/i }).click()
+  await expect(input).toHaveValue('')
+  await expect(results).toContainText(/Start here/i)
+
+  await input.fill('liquidaton')
+  await expect(results).toContainText(/Search for .liquidation./i)
+  await page.getByRole('option', { name: /search for .liquidation./i }).click()
+  await expect(input).toHaveValue('liquidation')
+  await expect(results).toContainText(/Polaris Liquidations/i)
+})
+
+test('search ranking favors direct destinations for high-intent queries', async ({ page }) => {
+  await page.goto(pathWithBase('/'))
+
+  const input = page.locator('input[type="search"][placeholder*="Search"]:visible').first()
+  const cases = [
+    { query: 'POLAR', expectedTopTwo: ['/polar', '/polar/tokenomics'] },
+    { query: 'pETH', expectedTopTwo: ['/peth'] },
+    { query: 'liquidation', expectedTopTwo: ['/redemptions-liquidations/liquidations'] },
+    { query: 'trove', expectedTopTwo: ['/minting/open-a-trove', '/minting/managing-your-trove'] },
+    { query: 'risk', expectedTopTwo: ['/resources/risk-disclosure'] }
+  ]
+
+  await input.click()
+
+  for (const { query, expectedTopTwo } of cases) {
+    await input.fill(query)
+    await expect
+      .poll(
+        async () => {
+          const routes = await topSearchRoutes(page, 2)
+          return routes.some((route) => expectedTopTwo.includes(route))
+        },
+        { message: `${query} should surface ${expectedTopTwo.join(' or ')} in the top two results` }
+      )
+      .toBe(true)
+  }
 })
 
 test('search snippets avoid hidden vocabulary and table boilerplate', async ({ page }) => {

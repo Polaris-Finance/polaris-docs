@@ -1164,6 +1164,9 @@ article button[title*='Copy'] {
     box-shadow 0.16s ease,
     background-color 0.16s ease;
 }
+.pl-search-input--clearable {
+  padding-right: 6rem;
+}
 .pl-search-input::placeholder {
   color: rgba(13, 31, 60, 0.62);
 }
@@ -1186,6 +1189,42 @@ article button[title*='Copy'] {
 }
 :is(.dark) .pl-search-input:focus-visible {
   background: rgba(232, 220, 196, 0.04);
+}
+
+.pl-search-clear {
+  position: absolute;
+  right: 3rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  padding: 0;
+  border: 0;
+  border-radius: 0.45rem;
+  background: transparent;
+  color: rgba(13, 31, 60, 0.54);
+  cursor: pointer;
+  transition:
+    background-color 0.14s ease,
+    color 0.14s ease;
+}
+.pl-search-clear:hover {
+  background: rgba(13, 31, 60, 0.06);
+  color: var(--polaris-navy);
+}
+.pl-search-clear:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--x-color-primary-600) 26%, transparent);
+}
+:is(.dark) .pl-search-clear {
+  color: rgba(232, 220, 196, 0.58);
+}
+:is(.dark) .pl-search-clear:hover {
+  background: rgba(232, 220, 196, 0.07);
+  color: var(--polaris-star-bright);
 }
 
 .pl-search-kbd {
@@ -1241,6 +1280,13 @@ article button[title*='Copy'] {
   color: var(--polaris-star);
 }
 
+@media (min-width: 768px) {
+  .pl-search-results.pl-search-results {
+    right: auto;
+    width: min(100%, 64rem);
+  }
+}
+
 @keyframes pl-search-pop {
   from {
     opacity: 0;
@@ -1267,6 +1313,7 @@ article button[title*='Copy'] {
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
+  white-space: nowrap;
   padding: 0.25rem 0.6rem;
   border-radius: 999px;
   border: 1px solid rgba(13, 31, 60, 0.16);
@@ -1323,7 +1370,7 @@ article button[title*='Copy'] {
 
 /* Group: section context above a page's matched rows */
 .pl-search-group + .pl-search-group {
-  margin-top: 0.35rem;
+  margin-top: 0.5rem;
 }
 .pl-search-group-head {
   display: flex;
@@ -1418,6 +1465,11 @@ article button[title*='Copy'] {
   align-items: center;
   gap: 0.45rem;
 }
+.pl-search-row--query {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
 .pl-search-row[data-active] {
   background: rgba(13, 31, 60, 0.06);
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--x-color-primary-600) 45%, transparent);
@@ -1460,6 +1512,11 @@ article button[title*='Copy'] {
   text-decoration-color: var(--x-color-primary-600);
   text-underline-offset: 0.12em;
   font-weight: 600;
+}
+@media (min-width: 768px) {
+  .pl-search-row-excerpt {
+    -webkit-line-clamp: 1;
+  }
 }
 .pl-search-row-icon {
   color: rgba(13, 31, 60, 0.5);
@@ -1580,7 +1637,19 @@ article button[title*='Copy'] {
   }
   /* Keep the facet row and first results clear of the floating close button. */
   .pl-search-facets {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    padding-block: 0.35rem;
     padding-right: 3rem;
+    scroll-padding-inline: 0.7rem 3rem;
+  }
+  .pl-search-facets::-webkit-scrollbar {
+    display: none;
+  }
+  .pl-search-chip {
+    flex: 0 0 auto;
   }
   .pl-search-list {
     padding-top: 0.5rem;
@@ -1598,6 +1667,12 @@ article button[title*='Copy'] {
   }
   .pl-search-input {
     padding-right: 1rem;
+  }
+  .pl-search-input--clearable {
+    padding-right: 3rem;
+  }
+  .pl-search-clear {
+    right: 0.15rem;
   }
 }
 

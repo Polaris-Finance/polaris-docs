@@ -54,12 +54,22 @@ const searchVocabulary = [
     ]
   },
   {
+    match: /^\/minting\/(open-a-trove|managing-your-trove)$/,
+    terms: ['trove', 'open trove', 'manage trove', 'borrower trove'],
+    priorityTerms: ['trove', 'open trove', 'manage trove', 'borrow', 'CDP']
+  },
+  {
     match: /^\/using-app\/(earn|zap)$|^\/yield(\/.*)?$/,
     terms: ['Earn', 'earn', 'yield', 'APR', 'Stability Pool', 'deposit', 'claim rewards']
   },
   {
     match: /^\/using-app\/(swap|split)$|^\/peth(\/.*)?$/,
     terms: ['Swap', 'swap', 'Split', 'fpETH', 'vpETH', 'pETH', 'floor price']
+  },
+  {
+    match: /^\/peth(\/.*)?$/,
+    terms: ['pETH', 'pETH bonding curve', 'bonding curve', 'pETH floor'],
+    priorityTerms: ['pETH', 'pETH bonding curve', 'bonding curve', 'pETH floor']
   },
   {
     match: /^\/resources$|^\/resources\/(contracts|parameters|testnet|faq)$/,
@@ -87,6 +97,21 @@ const searchVocabulary = [
     terms: ['POLAR', 'convert', 'lock', 'vePOLAR', 'burn pETH', 'conversion auction']
   },
   {
+    match: /^\/polar(\/tokenomics)?$/,
+    terms: ['POLAR token', 'POLAR staking', 'POLAR tokenomics'],
+    priorityTerms: ['POLAR', 'POLAR token', 'POLAR staking', 'staking POLAR', 'vePOLAR']
+  },
+  {
+    match: /^\/redemptions-liquidations\/liquidations$/,
+    terms: ['liquidation', 'liquidations', 'liquidate', 'liquidated', 'liquidation penalty'],
+    priorityTerms: ['liquidation', 'liquidations', 'liquidate', 'liquidated']
+  },
+  {
+    match: /^\/resources\/risk-disclosure$/,
+    terms: ['risk', 'risks', 'risk disclosure', 'smart contract risk', 'liquidation risk'],
+    priorityTerms: ['risk', 'risks', 'risk disclosure']
+  },
+  {
     match: /^\/quickstart$|^\/troubleshooting$/,
     terms: [
       'quickstart',
@@ -103,12 +128,17 @@ const searchVocabulary = [
 
 function searchTermsForPath(path) {
   const terms = new Set()
+  const priorityTerms = new Set()
   for (const entry of searchVocabulary) {
     if (entry.match.test(path)) {
       for (const term of entry.terms) terms.add(term)
+      for (const term of entry.priorityTerms ?? []) priorityTerms.add(term)
     }
   }
-  return [...terms]
+  return {
+    terms: [...terms],
+    priorityTerms: [...priorityTerms]
+  }
 }
 
 const srOnly = {
@@ -133,7 +163,7 @@ const srOnly = {
 function SearchMeta({ path }) {
   const section = sectionForPath(path)
   const kind = kindForPath(path)
-  const terms = searchTermsForPath(path)
+  const { terms, priorityTerms } = searchTermsForPath(path)
 
   return (
     <>
@@ -143,6 +173,11 @@ function SearchMeta({ path }) {
         data-pagefind-filter={`section:${section}`}
       />
       <span style={srOnly} data-pagefind-meta={`kind:${kind}`} />
+      {priorityTerms.length ? (
+        <span aria-hidden="true" style={srOnly} data-pagefind-weight="2">
+          {priorityTerms.join(' ')}
+        </span>
+      ) : null}
       {terms.length ? (
         <span aria-hidden="true" style={srOnly} data-pagefind-weight="0.1">
           {terms.join(' ')}

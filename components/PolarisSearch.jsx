@@ -20,8 +20,9 @@ import { hrefWithBase, pathWithBase } from '../app/site-config.mjs'
 
 const PLACEHOLDER = 'Search the docs…'
 const MAX_PAGES = 8
+const MAX_CANDIDATE_PAGES = 24
 const MAX_SUBRESULTS = 5
-const SEARCH_OPTIONS = { excerptLength: 18 }
+const SEARCH_OPTIONS = { excerptLength: 14 }
 const MAX_FACETS = 8
 const RECENT_KEY = 'polaris-docs:recent-searches'
 const MAX_RECENT = 5
@@ -51,6 +52,33 @@ const RECOVERY = [
   }
 ]
 
+const QUERY_ALIASES = new Map([
+  ['liquidate', 'liquidation'],
+  ['liquidated', 'liquidation'],
+  ['liquidating', 'liquidation'],
+  ['liquidaton', 'liquidation'],
+  ['staking', 'POLAR staking'],
+  ['stake', 'POLAR staking'],
+  ['stake polar', 'POLAR staking'],
+  ['borrow', 'trove'],
+  ['borrowing', 'trove'],
+  ['loan', 'trove'],
+  ['loans', 'trove'],
+  ['pet', 'pETH'],
+  ['p eth', 'pETH'],
+  ['polr', 'POLAR'],
+  ['risks', 'risk'],
+  ['risky', 'risk']
+])
+
+const DIRECT_ROUTE_BOOSTS = [
+  { query: 'polar', routes: ['/polar', '/polar/tokenomics'] },
+  { query: 'peth', routes: ['/peth'] },
+  { query: 'liquidation', routes: ['/redemptions-liquidations/liquidations'] },
+  { query: 'trove', routes: ['/minting/open-a-trove', '/minting/managing-your-trove'] },
+  { query: 'risk', routes: ['/resources/risk-disclosure'] }
+]
+
 const noopSubscribe = () => () => {}
 const serverIsMac = () => false
 const clientIsMac = () => navigator.userAgent.includes('Mac')
@@ -73,8 +101,52 @@ function cleanUrl(url) {
   return url.replace(/\.html$/, '').replace(/\.html#/, '#')
 }
 
+function cleanExcerpt(excerpt) {
+  return excerpt
+    ?.replace(/\s+/g, ' ')
+    .replace(/^(?:[.;,:–—-]\s*)+/, '')
+    .trim()
+}
+
 function isExternalLike(url) {
   return /^https?:/.test(url) || url.endsWith('.txt')
+}
+
+function normalizeQuery(query) {
+  return query
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, ' ')
+    .replace(/\s+/g, ' ')
+}
+
+function suggestedQueryFor(query) {
+  const normalized = normalizeQuery(query)
+  if (!normalized) return null
+  const suggestion = QUERY_ALIASES.get(normalized)
+  return suggestion && normalizeQuery(suggestion) !== normalized ? suggestion : null
+}
+
+function normalizedRoute(url) {
+  const [pathOnly] = url.split('#')
+  return pathOnly.replace(/\/$/, '') || '/'
+}
+
+function directRouteBoost(query, url) {
+  const normalized = normalizeQuery(query)
+  const route = normalizedRoute(url)
+  const match = DIRECT_ROUTE_BOOSTS.find((entry) => entry.query === normalized)
+  if (!match) return 0
+  const index = match.routes.indexOf(route)
+  return index === -1 ? 0 : 100 - index
+}
+
+function rankPages(pages, query) {
+  return pages
+    .map((page, index) => ({ page, index, boost: directRouteBoost(query, page.url) }))
+    .sort((a, b) => b.boost - a.boost || a.index - b.index)
+    .map(({ page }) => page)
+    .slice(0, MAX_PAGES)
 }
 
 function readRecent() {
@@ -111,6 +183,7 @@ export function PolarisSearch() {
   const [status, setStatus] = useState('idle') // idle | loading | ready | empty | error
   const [error, setError] = useState('')
   const [pages, setPages] = useState([])
+  const [resultTotal, setResultTotal] = useState(0)
   const [facets, setFacets] = useState([]) // [{ value, count }]
   const [section, setSection] = useState(null) // active section filter
   const [active, setActive] = useState(-1) // keyboard cursor into navItems
@@ -129,6 +202,7 @@ export function PolarisSearch() {
       if (!term) {
         setStatus('idle')
         setPages([])
+        setResultTotal(0)
         setFacets([])
         setError('')
         return
@@ -144,6 +218,7 @@ export function PolarisSearch() {
         setError(
           'Search runs against the built site. In local dev, run `npm run build` once, then restart `npm run dev`.'
         )
+        setResultTotal(0)
         setStatus('error')
         return
       }
@@ -154,20 +229,25 @@ export function PolarisSearch() {
       const response = await pf.debouncedSearch(term, options)
       if (cancelled || !response) return // superseded by a newer keystroke
 
-      const data = await Promise.all(response.results.slice(0, MAX_PAGES).map((r) => r.data()))
+      const data = await Promise.all(
+        response.results.slice(0, MAX_CANDIDATE_PAGES).map((r) => r.data())
+      )
       if (cancelled) return
 
-      const nextPages = data.map((page) => ({
-        url: cleanUrl(page.url),
-        title: page.meta?.title ?? 'Untitled',
-        section: page.meta?.section ?? '',
-        kind: page.meta?.kind ?? 'concept',
-        subResults: (page.sub_results ?? []).slice(0, MAX_SUBRESULTS).map((sub) => ({
-          url: cleanUrl(sub.url),
-          title: sub.title,
-          excerpt: sub.excerpt
-        }))
-      }))
+      const nextPages = rankPages(
+        data.map((page) => ({
+          url: cleanUrl(page.url),
+          title: page.meta?.title ?? 'Untitled',
+          section: page.meta?.section ?? '',
+          kind: page.meta?.kind ?? 'concept',
+          subResults: (page.sub_results ?? []).slice(0, MAX_SUBRESULTS).map((sub) => ({
+            url: cleanUrl(sub.url),
+            title: sub.title,
+            excerpt: cleanExcerpt(sub.excerpt)
+          }))
+        })),
+        term
+      )
 
       const sectionFacet = response.totalFilters?.section ?? response.filters?.section ?? {}
       const nextFacets = Object.entries(sectionFacet)
@@ -177,6 +257,7 @@ export function PolarisSearch() {
         .slice(0, MAX_FACETS)
 
       setPages(nextPages)
+      setResultTotal(response.results.length)
       setFacets(nextFacets)
       setActive(-1)
       setStatus(nextPages.length ? 'ready' : 'empty')
@@ -191,6 +272,15 @@ export function PolarisSearch() {
   const close = useCallback(() => {
     setOpen(false)
     setActive(-1)
+  }, [])
+
+  const clearQuery = useCallback(() => {
+    setQuery('')
+    setSection(null)
+    setActive(-1)
+    setError('')
+    setOpen(true)
+    inputRef.current?.focus({ preventScroll: true })
   }, [])
 
   const go = useCallback(
@@ -220,25 +310,38 @@ export function PolarisSearch() {
     [close, query, router]
   )
 
+  const aliasSuggestion =
+    status === 'ready' || status === 'empty' ? suggestedQueryFor(deferredQuery) : null
+  const hasAliasSuggestion = Boolean(aliasSuggestion)
+
   // Flat, render-order list of navigable targets (keeps keyboard index in sync
   // with the rendered rows below, which use the same source arrays in order).
   const navItems =
     status === 'ready'
-      ? pages.flatMap((p) => [
-          { url: p.url },
-          ...p.subResults.filter((s) => s.url !== p.url).map((s) => ({ url: s.url }))
-        ])
+      ? [
+          ...(aliasSuggestion ? [{ query: aliasSuggestion }] : []),
+          ...pages.flatMap((p) => [
+            { url: p.url },
+            ...p.subResults.filter((s) => s.url !== p.url).map((s) => ({ url: s.url }))
+          ])
+        ]
       : status === 'idle'
         ? [...recent.map((q) => ({ query: q })), ...START_HERE.map((s) => ({ url: s.url }))]
         : status === 'empty'
-          ? RECOVERY.map((r) => ({ url: r.url }))
+          ? [
+              ...(aliasSuggestion ? [{ query: aliasSuggestion }] : []),
+              ...RECOVERY.map((r) => ({ url: r.url }))
+            ]
           : []
 
   const onItem = useCallback(
     (item) => {
       if (item.query != null) {
         setQuery(item.query)
-        inputRef.current?.focus()
+        setSection(null)
+        setOpen(true)
+        setActive(-1)
+        inputRef.current?.focus({ preventScroll: true })
       } else if (item.url) {
         go(item.url)
       }
@@ -263,9 +366,9 @@ export function PolarisSearch() {
     } else if (event.key === 'ArrowUp' && navItems.length) {
       event.preventDefault()
       setActive((i) => (i <= 0 ? navItems.length - 1 : i - 1))
-    } else if (event.key === 'Enter' && active >= 0 && navItems[active]) {
+    } else if (event.key === 'Enter' && navItems.length) {
       event.preventDefault()
-      onItem(navItems[active])
+      onItem(active >= 0 && navItems[active] ? navItems[active] : navItems[0])
     }
   }
 
@@ -309,6 +412,7 @@ export function PolarisSearch() {
   }
 
   const activeId = active >= 0 ? `${id}-i-${active}` : undefined
+  const listboxId = `${id}-listbox`
 
   // Pre-indexed view models so each row knows its keyboard index without any
   // render-time counter mutation. Indices match navItems order exactly.
@@ -321,18 +425,43 @@ export function PolarisSearch() {
     page,
     rows: page.subResults.filter((s) => s.url !== page.url)
   }))
-  const modelOffsets = readyModels.map((_, i) =>
-    readyModels.slice(0, i).reduce((n, m) => n + 1 + m.rows.length, 0)
+  const readyOffset = hasAliasSuggestion ? 1 : 0
+  const modelOffsets = readyModels.map(
+    (_, i) => readyOffset + readyModels.slice(0, i).reduce((n, m) => n + 1 + m.rows.length, 0)
   )
   const readyGroups = readyModels.map((m, i) => ({
     page: m.page,
     headIndex: modelOffsets[i],
     rows: m.rows.map((sub, k) => ({ ...sub, index: modelOffsets[i] + 1 + k }))
   }))
-  const recoveryRows = RECOVERY.map((r, i) => ({ ...r, index: i }))
+  const recoveryOffset = hasAliasSuggestion ? 1 : 0
+  const recoveryRows = RECOVERY.map((r, i) => ({ ...r, index: recoveryOffset + i }))
+  const countLabel =
+    status === 'ready'
+      ? `${resultTotal > pages.length ? `Top ${pages.length} of ${resultTotal}` : `${pages.length} shown`}${section ? ` in ${section}` : ''}`
+      : status === 'idle'
+        ? 'Type to search'
+        : status === 'empty'
+          ? 'No results'
+          : ''
+  const liveStatus =
+    status === 'ready'
+      ? countLabel
+      : status === 'empty'
+        ? aliasSuggestion
+          ? `No results. Try searching for ${aliasSuggestion}.`
+          : 'No results.'
+        : status === 'loading'
+          ? 'Searching.'
+          : status === 'error'
+            ? error
+            : ''
 
   return (
     <div ref={containerRef} className="nextra-search pl-search">
+      <span id={`${id}-status`} className="pl-sr-only" aria-live="polite" aria-atomic="true">
+        {liveStatus}
+      </span>
       <div className="pl-search-field">
         <SearchIcon />
         <input
@@ -340,13 +469,14 @@ export function PolarisSearch() {
           type="search"
           spellCheck={false}
           autoComplete="off"
-          className="pl-search-input"
+          className={`pl-search-input${query ? ' pl-search-input--clearable' : ''}`}
           placeholder={PLACEHOLDER}
           value={query}
           role="combobox"
           aria-expanded={open}
-          aria-controls={`${id}-listbox`}
+          aria-controls={open ? listboxId : undefined}
           aria-activedescendant={activeId}
+          aria-autocomplete="list"
           aria-label="Search the documentation"
           onChange={(e) => {
             setQuery(e.target.value)
@@ -356,6 +486,17 @@ export function PolarisSearch() {
           onFocus={() => setOpen(true)}
           onKeyDown={onKeyDown}
         />
+        {query && (
+          <button
+            type="button"
+            className="pl-search-clear"
+            aria-label="Clear search"
+            onMouseDown={(e) => e.preventDefault()}
+            onClick={clearQuery}
+          >
+            <CloseIcon />
+          </button>
+        )}
         <kbd className="pl-search-kbd" aria-hidden="true">
           {isMac ? <span className="pl-search-cmd">⌘</span> : 'Ctrl '}K
         </kbd>
@@ -401,7 +542,7 @@ export function PolarisSearch() {
 
           <div
             ref={listRef}
-            id={`${id}-listbox`}
+            id={listboxId}
             role="listbox"
             aria-label="Search results"
             className="pl-search-list"
@@ -454,50 +595,75 @@ export function PolarisSearch() {
               </>
             )}
 
-            {status === 'ready' &&
-              readyGroups.map(({ page, headIndex, rows }) => (
-                <div key={page.url} className="pl-search-group" role="presentation">
-                  <a
-                    id={`${id}-i-${headIndex}`}
-                    href={hrefWithBase(page.url)}
-                    role="option"
-                    aria-selected={active === headIndex}
-                    data-active={active === headIndex ? '' : undefined}
-                    className="pl-search-group-head pl-search-group-head--link"
-                    onMouseMove={() => setActive(headIndex)}
-                    onClick={(e) => {
-                      e.preventDefault()
-                      onItem({ url: page.url })
-                    }}
-                  >
-                    {page.section && (
-                      <span className="pl-search-eyebrow" data-kind={page.kind}>
-                        <span className="pl-search-dot" aria-hidden="true" />
-                        {page.section}
-                      </span>
-                    )}
-                    <span className="pl-search-page-title">{page.title}</span>
-                  </a>
-                  {rows.map((row) => (
-                    <ResultRow
-                      key={row.url}
-                      id={`${id}-i-${row.index}`}
-                      href={hrefWithBase(row.url)}
-                      title={row.title}
-                      excerpt={row.excerpt}
-                      active={active === row.index}
-                      onActivate={() => onItem({ url: row.url })}
-                      onHover={() => setActive(row.index)}
+            {status === 'ready' && (
+              <>
+                {aliasSuggestion && (
+                  <Group label="Suggested search">
+                    <QuerySuggestionRow
+                      id={`${id}-i-0`}
+                      query={aliasSuggestion}
+                      active={active === 0}
+                      onActivate={() => onItem({ query: aliasSuggestion })}
+                      onHover={() => setActive(0)}
                     />
-                  ))}
-                </div>
-              ))}
+                  </Group>
+                )}
+                {readyGroups.map(({ page, headIndex, rows }) => (
+                  <div key={page.url} className="pl-search-group" role="presentation">
+                    <a
+                      id={`${id}-i-${headIndex}`}
+                      href={hrefWithBase(page.url)}
+                      role="option"
+                      aria-selected={active === headIndex}
+                      data-active={active === headIndex ? '' : undefined}
+                      className="pl-search-group-head pl-search-group-head--link"
+                      onMouseMove={() => setActive(headIndex)}
+                      onClick={(e) => {
+                        e.preventDefault()
+                        onItem({ url: page.url })
+                      }}
+                    >
+                      {page.section && (
+                        <span className="pl-search-eyebrow" data-kind={page.kind}>
+                          <span className="pl-search-dot" aria-hidden="true" />
+                          {page.section}
+                        </span>
+                      )}
+                      <span className="pl-search-page-title">{page.title}</span>
+                    </a>
+                    {rows.map((row) => (
+                      <ResultRow
+                        key={row.url}
+                        id={`${id}-i-${row.index}`}
+                        href={hrefWithBase(row.url)}
+                        title={row.title}
+                        excerpt={row.excerpt}
+                        active={active === row.index}
+                        onActivate={() => onItem({ url: row.url })}
+                        onHover={() => setActive(row.index)}
+                      />
+                    ))}
+                  </div>
+                ))}
+              </>
+            )}
 
             {status === 'empty' && (
               <div className="pl-search-empty">
                 <p className="pl-search-empty-lead">
                   No matches for <strong>“{deferredQuery.trim()}”</strong>.
                 </p>
+                {aliasSuggestion && (
+                  <Group label="Suggested search">
+                    <QuerySuggestionRow
+                      id={`${id}-i-0`}
+                      query={aliasSuggestion}
+                      active={active === 0}
+                      onActivate={() => onItem({ query: aliasSuggestion })}
+                      onHover={() => setActive(0)}
+                    />
+                  </Group>
+                )}
                 <Group label="Try instead">
                   {recoveryRows.map((row) => (
                     <LinkRow
@@ -518,15 +684,7 @@ export function PolarisSearch() {
           </div>
 
           <div className="pl-search-footer">
-            <span className="pl-search-count">
-              {status === 'ready'
-                ? `${pages.length} page${pages.length === 1 ? '' : 's'}${section ? ` in ${section}` : ''}`
-                : status === 'idle'
-                  ? 'Type to search'
-                  : status === 'empty'
-                    ? 'No results'
-                    : ''}
-            </span>
+            <span className="pl-search-count">{countLabel}</span>
             <span className="pl-search-legend" aria-hidden="true">
               <kbd>↑</kbd>
               <kbd>↓</kbd> navigate <kbd>↵</kbd> open <kbd>esc</kbd> close
@@ -614,9 +772,44 @@ function RecentRow({ id, query, active, onActivate, onHover }) {
   )
 }
 
+function QuerySuggestionRow({ id, query, active, onActivate, onHover }) {
+  return (
+    <button
+      id={id}
+      type="button"
+      role="option"
+      aria-selected={active}
+      data-active={active ? '' : undefined}
+      className="pl-search-row pl-search-row--query"
+      onMouseMove={onHover}
+      onClick={onActivate}
+    >
+      <SearchGlyphIcon />
+      <span className="pl-search-row-title">Search for “{query}”</span>
+    </button>
+  )
+}
+
 function SearchIcon() {
   return (
     <svg className="pl-search-icon" viewBox="0 0 20 20" width="18" height="18" aria-hidden="true">
+      <path
+        d="M8.5 3a5.5 5.5 0 0 1 4.23 9.02l3.62 3.63a.75.75 0 0 1-1.06 1.06l-3.63-3.62A5.5 5.5 0 1 1 8.5 3Zm0 1.5a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"
+        fill="currentColor"
+      />
+    </svg>
+  )
+}
+
+function SearchGlyphIcon() {
+  return (
+    <svg
+      className="pl-search-row-icon"
+      viewBox="0 0 20 20"
+      width="15"
+      height="15"
+      aria-hidden="true"
+    >
       <path
         d="M8.5 3a5.5 5.5 0 0 1 4.23 9.02l3.62 3.63a.75.75 0 0 1-1.06 1.06l-3.63-3.62A5.5 5.5 0 1 1 8.5 3Zm0 1.5a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"
         fill="currentColor"
