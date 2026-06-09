@@ -577,7 +577,7 @@ Floor carry is not a fixed APR. It depends on actual floor growth from protocol 
 
 - [Split](https://tokenbrice.github.io/polaris-docs/using-app/split) for splitting and merging.
 - [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow) for reserve loans.
-- [Dashboard & Analytics](https://tokenbrice.github.io/polaris-docs/using-app) for floor price and floor ratio.
+- [Dashboard](https://tokenbrice.github.io/polaris-docs/using-app) for live token prices; the floor and market price show on the Split tab.
 
 Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor price.
 
