@@ -2019,16 +2019,12 @@ The deeper problem is **structural drift toward centralization**. Stablecoins te
 
 Image: Only a sliver of the roughly $339B stablecoin market is non-freezable and trustlessly issued: most supply (USDC, USDT, USDS) carries issuer freeze or blacklist power, while counterparty-free names like LUSD and BOLD are a tiny fraction — with pUSD marked as forthcoming
 
-*Figures are time-sensitive and were reviewed June 8, 2026; recheck live datasets before quoting.*
-
 Feature | **USDC** | **USDS / DAI** | **USDe** | **LUSD / BOLD** | **pUSD**
 
 Issuer dependency | Centralized issuer with freeze/blacklist | Governance-set rates, RWA exposure | Market-neutral, custody-dependent | Counterparty-free | Counterparty-free
 Yield source | Offchain reserves (not passed to holders) | Mixed: crypto + RWA + governance | Counterparty-dependent infrastructure | Limited onchain sources | Onchain protocol activity
 Scalability constraint | Banking relationships | Governance decisions | Counterparty capacity | Capital inefficiency | Bonding-curve scaling
 Immutable core | No | Partial | No | Yes | Yes
-
-Competitive comparisons were reviewed on June 8, 2026. Recheck live datasets before quoting exact peg-history or launch-date claims.
 
 ## The counterparty-free lineage
 
