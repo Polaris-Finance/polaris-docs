@@ -46,7 +46,7 @@ This repo includes a tracked pre-push hook in `.githooks/pre-push`. Enable it in
 git config core.hooksPath .githooks
 ```
 
-The hook runs `npm run local:push-gate` before branch pushes. It mirrors the locally reproducible part of `.github/workflows/deploy.yml`: clean install, Playwright browser install, `npm run ci` (including build, artifact, Pagefind, navigation, e2e, and production-audit checks), and external-link checking as a non-blocking warning. The final GitHub Pages upload/deploy actions require GitHub's Pages environment and are not run locally.
+The hook runs `npm run local:push-gate` before branch pushes. It mirrors the locally reproducible required checks from `.github/workflows/deploy.yml`: clean install, Playwright browser install, source checks, static export build, artifact/Pagefind/navigation/e2e checks, production dependency audit, and external-link checking as a non-blocking warning. GitHub-only parallel job scheduling plus the final Pages upload/deploy actions are not run locally.
 
 Useful overrides:
 
@@ -79,7 +79,7 @@ Other notes:
 
 ## Deploy
 
-Pushing to `main` triggers `.github/workflows/deploy.yml` (validation → project-path build → Pagefind → GitHub Pages). Before the first deploy:
+Pushing to `main` triggers `.github/workflows/deploy.yml` (source checks, production audit, external links, and project-path build/Pagefind/artifact checks in parallel → GitHub Pages deploy after required gates pass). Before the first deploy:
 
 0. Rename the local default branch to `main`, add the GitHub remote, and confirm the public repository URL. The initial local branch is currently not sufficient for deployment.
 1. In the repo's **Settings → Pages**, set **Source** to **GitHub Actions**.

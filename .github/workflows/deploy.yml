@@ -17,7 +17,35 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  source-checks:
+    name: Source checks
+    runs-on: ubuntu-latest
+    env:
+      BASE_PATH: /polaris-docs
+      NEXT_PUBLIC_BASE_PATH: /polaris-docs
+      SITE_URL: https://tokenbrice.github.io
+      NEXT_PUBLIC_SITE_URL: https://tokenbrice.github.io
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          # Full history so Nextra can read each page's last-modified git timestamp.
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate source files
+        run: npm run ci:source
+
   build:
+    name: Build and artifact checks
     runs-on: ubuntu-latest
     env:
       BASE_PATH: /polaris-docs
@@ -43,20 +71,65 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
-      - name: Validate and build static site once
-        run: npm run ci
+      - name: Build static site
+        run: npm run build
 
-      - name: Check external links
-        run: npm run check:links:external
-        continue-on-error: true
+      - name: Validate exported artifact
+        run: npm run ci:artifact
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v5
         with:
           path: ./out
 
+  production-audit:
+    name: Production dependency audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Audit production dependencies
+        run: npm run audit:prod
+
+  external-links:
+    name: External link check
+    runs-on: ubuntu-latest
+    env:
+      BASE_PATH: /polaris-docs
+      NEXT_PUBLIC_BASE_PATH: /polaris-docs
+      SITE_URL: https://tokenbrice.github.io
+      NEXT_PUBLIC_SITE_URL: https://tokenbrice.github.io
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check external links
+        run: npm run check:links:external
+        continue-on-error: true
+
   deploy:
-    needs: build
+    needs: [source-checks, build, production-audit]
     runs-on: ubuntu-latest
     env:
       BASE_PATH: /polaris-docs

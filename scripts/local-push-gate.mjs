@@ -73,7 +73,10 @@ function assertDeployWorkflowStillMatchesGate() {
   const expectedFragments = [
     'npm ci',
     'npx playwright install',
-    'npm run ci',
+    'npm run ci:source',
+    'npm run build',
+    'npm run ci:artifact',
+    'npm run audit:prod',
     'npm run check:links:external'
   ]
   const missingFragments = expectedFragments.filter((fragment) => !workflow.includes(fragment))
@@ -124,7 +127,9 @@ assertDeployWorkflowStillMatchesGate()
 
 console.log('Local push gate: mirroring the reproducible build side of GitHub Pages deploy.')
 console.log(`Workflow source: ${deployWorkflow}`)
-console.log('GitHub-only boundary: upload-pages-artifact and deploy-pages are not run locally.')
+console.log(
+  'GitHub-only boundary: parallel job scheduling, upload-pages-artifact, and deploy-pages are not run locally.'
+)
 
 const steps = [
   {
@@ -140,8 +145,20 @@ const steps = [
     skip: skipBrowserInstall
   },
   {
-    label: 'Validate and build static site',
-    command: 'npm run ci'
+    label: 'Validate source files',
+    command: 'npm run ci:source'
+  },
+  {
+    label: 'Build static site',
+    command: 'npm run build'
+  },
+  {
+    label: 'Validate exported artifact',
+    command: 'npm run ci:artifact'
+  },
+  {
+    label: 'Audit production dependencies',
+    command: 'npm run audit:prod'
   },
   {
     label: 'Check external links',
