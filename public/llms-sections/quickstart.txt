@@ -17,7 +17,7 @@ Use this page for the shortest safe path from a wallet to a first Polaris testne
 - A wallet you can connect to Sepolia.
 - Sepolia ETH for gas.
 - The official Public Testnet 1 app URL: [https://app.testnet.polarisfinance.io/](https://app.testnet.polarisfinance.io/).
-- Test WETH from the app faucet: pay `0.1` Sepolia ETH, receive `10` WETH (one claim per address every 4 hours).
+- Test WETH from the app faucet: pay `0.1` Sepolia ETH, receive `10` WETH.
 
 Do not send mainnet ETH, mainnet WETH, or production assets to testnet contracts.
 
