@@ -1,35 +1,34 @@
 ---
 title: Swap in the Polaris App
-description: How to use Polaris Swap with quote, approval, slippage, and route checks.
+description: How to buy and sell pETH on the bonding curve with quote, approval, and slippage checks.
 ---
 
 # Swap
 
-<PageStatusBanner lastUpdated="June 8, 2026" />
+<PageStatusBanner lastUpdated="June 9, 2026" />
 
 ## What it does
 
-Swap exchanges app-supported assets through the route quoted by Polaris. Routes may include WETH, pETH, fpETH, vpETH, pAssets, or protocol modules exposed by the current Public Testnet 1 deployment.
+Swap is the bonding-curve interface for pETH. Sell ETH (WETH) to **buy** pETH, or sell pETH back for ETH — the route is always `WETH → bonding curve → pETH`. Each mint locks ETH into the curve's reserve at the current marginal price, and pETH carries a hard, ever-rising price floor. To get fpETH or vpETH use [Split](/using-app/split); to mint pUSD or pGOLD use [Borrow](/using-app/borrow).
 
-![Polaris Swap tab showing input and output assets, quoted route, minimum received, and slippage controls](/screenshots/swap.jpg)
+![Polaris Swap tab showing the Sell/Buy direction, the WETH to pETH bonding-curve route, the quote, and slippage controls](/screenshots/swap.jpg)
 
-*Swap quotes should be refreshed and reviewed before approval or execution.*
+*Swap routes WETH through the bonding curve to pETH; refresh and review the quote before signing.*
 
 ## Before you start
 
-- Start from [Dashboard & Analytics](/using-app) and verify the current app/network first.
-- Hold the input token and enough Sepolia ETH for gas.
-- Read the route, output, minimum received, price impact, and approval target before signing.
+- Start from the [Dashboard](/using-app) and verify the current app and network first.
+- Hold WETH (claim it from the faucet) and enough Sepolia ETH for gas.
+- Read the direction, output, minimum received, price impact, and approval target before signing.
 
 ## Steps/checks
 
-1. Choose the input and output assets.
-2. Enter the amount.
-3. Review the route and quote.
-4. Check minimum received, price impact, fees, and slippage.
-5. Approve the token only if the spender matches the app flow.
-6. Sign the swap transaction.
-7. Confirm the output balance appears in the wallet and Dashboard.
+1. Choose the direction: buy pETH with WETH, or sell pETH for WETH.
+2. Enter the amount and review the quote and route.
+3. Check minimum received, price impact, fees, and slippage.
+4. Approve the input token only if the spender matches the app flow.
+5. Sign the swap transaction.
+6. Confirm the pETH (or WETH) balance updates in the wallet.
 
 The swap worked when the transaction lands and the output token balance updates.
 
@@ -40,14 +39,13 @@ The swap worked when the transaction lands and the output token balance updates.
 - Input balance or allowance was too low.
 - Gas was too low or Sepolia was congested.
 - Wallet is connected to the wrong account or network.
-- The route changed after refresh.
 
 ## Risks/links
 
-Swaps can lose value through slippage, price movement, stale quotes, gas, and execution ordering. pETH and pAsset mechanics are explained in [pETH](/peth), [pETH Floor Price](/peth/floor-price), and [pAsset Catalog](/minting/passet-catalog). Use [Risk Disclosure](/resources/risk-disclosure) for risk details.
+Swaps can lose value through slippage, price movement, stale quotes, and gas. pETH mechanics are explained in [pETH](/peth) and [pETH Floor Price](/peth/floor-price). Use [Risk Disclosure](/resources/risk-disclosure) for risk details.
 
 ## Next actions
 
-- Use [Borrow](/using-app/borrow) after acquiring pETH or a pAsset.
-- Use [Earn](/using-app/earn) after acquiring a Stability Pool asset.
-- Use [Zap](/using-app/zap) if you want the app to bundle swap plus deposit.
+- Use [Split](/using-app/split) to convert pETH into fpETH and vpETH.
+- Use [Borrow](/using-app/borrow) to mint pUSD or pGOLD against pETH.
+- Use [Zap](/using-app/zap) if you want the app to bundle a swap with a deposit.

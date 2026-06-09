@@ -1,56 +1,53 @@
 ---
-title: Dashboard & Analytics
-description: How to read the Polaris app Dashboard and Analytics before choosing an action.
+title: Dashboard
+description: How to read the Polaris app Dashboard and start your first testnet action.
 ---
 
-# Dashboard & Analytics
+# Dashboard
 
-<PageStatusBanner lastUpdated="June 8, 2026" />
+<PageStatusBanner lastUpdated="June 9, 2026" />
 
 ## What it does
 
-The Dashboard is the app's read-only starting point. Use it to check wallet balances, open positions, claimable rewards, and system health before moving to Swap, Borrow, Earn, Split, Zap, or Advanced.
+The Dashboard ("Your Polaris") is your starting point and onboarding hub. It shows current Stability Pool and staking APRs, a three-step path to your first position (connect a wallet → claim test WETH from the faucet → earn pUSD), an fpETH long-term-yield shortcut, and a live price ticker for pETH, pUSD, pGOLD, and POLAR. The **Activity** panel logs what you do this session (local only). For position detail use [Borrow](/using-app/borrow) and [Earn](/using-app/earn); for protocol-wide charts open **Analytics**, a separate tab.
 
-Analytics shows protocol-wide context such as pool sizes, borrow costs, floor-related metrics, and stress indicators. Treat Analytics as context, not as a transaction quote.
+![Polaris Dashboard ("Your Polaris") showing Stability Pool and staking APR cards, the connect-faucet-earn onboarding steps, and the token price ticker](/screenshots/dashboard.jpg)
 
-![Polaris Dashboard and Analytics showing wallet balances, open positions, rewards, and system-health cards](/screenshots/dashboard.jpg)
-
-*The Dashboard is the read-only checkpoint before moving to action tabs.*
+*The Dashboard is the onboarding and overview screen, not a detailed positions table.*
 
 ## Before you start
 
 - Use Public Testnet 1 at [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io).
-- Connect to Sepolia, chain ID `11155111`.
-- Confirm the frontend, network, and wallet prompts against [Safety & Verification](/resources/safety-verification).
-- Use test assets only. See [Public Testnet 1 Artifacts](/resources/testnet).
+- Connect to Sepolia, chain ID `11155111`, and hold Sepolia ETH for gas.
+- Claim test WETH from the on-Dashboard faucet: pay `0.1` Sepolia ETH, receive `10` WETH. One claim per address every 4 hours, subject to a daily cap.
+- Confirm the frontend, network, and wallet prompts against [Safety & Verification](/resources/safety-verification). Use test assets only — see [Public Testnet 1 Artifacts](/resources/testnet).
 
 ## Steps/checks
 
-1. Connect the wallet you want to inspect.
-2. Check balances for WETH, pETH, fpETH, vpETH, pAssets, POLAR, and pending rewards.
-3. Review borrow positions for debt, collateral, and health.
-4. Review Earn positions for Stability Pool deposits, staking balances, and claimable gains.
-5. Check system status before borrowing, repaying, withdrawing, or zapping.
-6. Open Analytics for protocol-wide context, then return to the relevant action tab for a fresh quote.
+1. Connect your wallet on Sepolia (STEP 1).
+2. Claim test WETH from the faucet (STEP 2).
+3. Review the APR cards for the pUSD and pGOLD Stability Pools and POLAR staking.
+4. Start a first position from STEP 3 (earn pUSD) or the fpETH yield card, or move to an action tab.
+5. Watch the **Activity** panel for this session's transactions, and the ticker for live prices.
+6. Open **Analytics** for protocol-wide charts, then return to the relevant action tab for a fresh quote.
 
-A check worked when the connected wallet, Sepolia network, balances, positions, and timestamps match what you expect.
+The Dashboard is current when the connected wallet, Sepolia network, APRs, and prices match what you expect.
 
 ## Common failures
 
 - Wallet is on the wrong chain.
-- Balances do not appear because the token is not imported in the wallet.
-- Dashboard data is stale; refresh before acting.
-- APR or health values differ from a previous view because app state changed.
-- A position is not shown because it belongs to another wallet.
+- Faucet claim is blocked by the per-address cooldown or the daily cap.
+- APR or price values change because protocol state moved; refresh before acting.
+- A position is not reflected because it belongs to another wallet.
 
 ## Risks/links
 
-Dashboard values are state reads, not final transaction terms. Use the action tab quote before signing. For canonical status, risks, and addresses, use [Launch Status](/launch-status), [Risk Disclosure](/resources/risk-disclosure), and [Contracts & Addresses](/resources/contracts).
+Dashboard values are state reads, not final transaction terms. Use the action tab quote before signing. The Activity panel is local and session-only. For canonical status, risks, and addresses, use [Launch Status](/launch-status), [Risk Disclosure](/resources/risk-disclosure), and [Contracts & Addresses](/resources/testnet#contracts-and-addresses).
 
 ## Next actions
 
-- Use [Swap](/using-app/swap) to get or exit pETH and pAssets.
-- Use [Borrow](/using-app/borrow) to open debt positions.
-- Use [Manage Trove](/using-app/manage-trove) to adjust, repay, or close existing troves.
-- Use [Earn](/using-app/earn) to deposit, withdraw, or claim.
+- Use [Swap](/using-app/swap) to buy pETH on the bonding curve.
+- Use [Borrow](/using-app/borrow) to open and manage debt positions.
+- Use [Earn](/using-app/earn) to supply a Stability Pool or stake POLAR or vpETH.
+- See the in-app **Guide** for a by-token map of what to do.
 - Use [Troubleshooting](/troubleshooting) if wallet state, quotes, or balances look wrong.

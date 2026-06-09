@@ -1,53 +1,58 @@
 ---
 title: Borrow in the Polaris App
-description: How to open Polaris borrow positions from the app Borrow tab.
+description: How to open and manage Polaris debt positions from the app Borrow tab.
 ---
 
 # Borrow
 
-<PageStatusBanner lastUpdated="June 8, 2026" />
+<PageStatusBanner lastUpdated="June 9, 2026" />
 
 ## What it does
 
-Borrow is where you create collateralized positions. For pAssets, this means depositing pETH collateral and minting debt through a trove/CDP flow. Where exposed, Borrow may also include reserve-loan actions against fpETH.
+Borrow is where you open and manage Polaris debt positions. It has three sub-tabs:
 
-![Polaris Borrow tab showing a pAsset trove form with collateral amount, debt amount, LTV, and risk details](/screenshots/borrow.jpg)
+- **pUSD** and **pGOLD:** deposit **pETH** collateral and mint an overcollateralized stablecoin (a CDP, also called a trove). You set collateral and debt with an LTV slider and see a projected liquidation price, estimated monthly cost, and effective rate before signing.
+- **ETH:** a reserve loan — borrow **ETH** against **fpETH** collateral at up to 100% LTV with no liquidation risk, because the fpETH floor only ever rises.
 
-*Borrow surfaces the position inputs and health checks before a trove action is signed.*
+Existing positions are adjusted, repaid, and closed from this same tab once your wallet is connected.
+
+![Polaris Borrow tab with pUSD, pGOLD, and ETH sub-tabs, a collateral field, LTV slider, effective rate, and a projected-position panel](/screenshots/borrow.jpg)
+
+*Borrow opens and manages positions; the projected-position panel previews liquidation price, monthly cost, and LTV before you sign.*
 
 ## Before you start
 
-- Start from [Dashboard & Analytics](/using-app) and verify the current app/network first.
-- Hold the required collateral and gas.
-- Understand that borrow positions can be affected by price movement, redemptions, liquidations, and Recovery Mode.
+- Start from the [Dashboard](/using-app) and verify the current app and network first.
+- Hold the collateral (pETH for pUSD/pGOLD, fpETH for the ETH loan) plus Sepolia ETH for gas.
+- For pUSD/pGOLD, understand that the position carries liquidation, redemption, and Recovery Mode exposure. The ETH/fpETH reserve loan is not liquidated.
 - Review [Open a Trove](/minting/open-a-trove) for the full pAsset minting flow.
 
 ## Steps/checks
 
-1. Choose the borrow asset or position type.
-2. Enter collateral and debt amounts.
-3. Review LTV, liquidation exposure, debt, fees, and projected position health.
-4. Approve collateral if required.
-5. Sign the borrow transaction.
-6. Return to Dashboard and confirm debt, collateral, and health updated.
+1. Choose the sub-tab: pUSD, pGOLD, or ETH.
+2. Enter collateral and set the debt with the LTV slider (25%, 50%, 75% presets are available).
+3. Review the projected liquidation price, estimated monthly cost, effective rate, and LTV.
+4. Approve the collateral token if prompted, then sign.
+5. To manage an existing position, reopen it in this tab and add collateral, mint more, repay, withdraw collateral, or close — review the new LTV first.
+6. Confirm the updated collateral, debt, and LTV.
 
-A borrow action worked when the position appears with the expected collateral, debt, and health metrics.
+A borrow or management action worked when the position reflects the expected collateral, debt, and LTV.
 
 ## Common failures
 
-- LTV exceeds the allowed threshold.
-- Debt amount is too small or too large for the current position.
-- Recovery Mode or system restrictions block the action.
+- LTV exceeds the allowed threshold for the position.
+- Debt amount is too small or too large for the current collateral.
+- Recovery Mode blocks a risk-increasing action.
 - Price movement changes projected health before inclusion.
-- Approval targets the wrong token or spender.
+- Repay amount exceeds your pAsset balance.
 - You are connected with a wallet that does not own the position.
 
 ## Risks/links
 
-Borrowing creates liquidation and redemption exposure. Keep protocol explanations in [Minting pAssets](/minting), [Redemptions](/redemptions-liquidations), [Liquidations](/redemptions-liquidations/liquidations), and [Recovery Mode](/redemptions-liquidations/recovery-mode). Use [Parameters](/resources/parameters) for current values and [Risk Disclosure](/resources/risk-disclosure) for risks.
+Borrowing pUSD or pGOLD creates liquidation and redemption exposure; a low LTV protects against liquidation, not against proportional redemptions. The ETH/fpETH reserve loan avoids liquidation but ties up fpETH. Keep protocol explanations in [Minting pAssets](/minting), [Redemptions](/redemptions-liquidations), [Liquidations](/redemptions-liquidations/liquidations), and [Recovery Mode](/redemptions-liquidations/recovery-mode). Use [Parameters](/resources/testnet#parameters) for current values and [Risk Disclosure](/resources/risk-disclosure) for risks.
 
 ## Next actions
 
-- Use [Manage Trove](/using-app/manage-trove) to adjust, repay, or close the position.
-- Use [Swap](/using-app/swap) to acquire or rebalance assets.
-- Use [Earn](/using-app/earn) if you want to deposit pAssets into the Stability Pool.
+- Use [Swap](/using-app/swap) to acquire pETH collateral, or [Split](/using-app/split) to get fpETH for an ETH loan.
+- Use [Earn](/using-app/earn) to deposit a minted pAsset into its Stability Pool.
+- See the in-app **Guide** for borrow-based strategies such as Floor Carry and collateral-only CDPs.

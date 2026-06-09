@@ -1,36 +1,40 @@
 ---
 title: Earn in the Polaris App
-description: How to deposit, withdraw, claim, and check Polaris Earn positions.
+description: How to supply a Stability Pool, stake POLAR or vpETH, and claim rewards in the Polaris app.
 ---
 
 # Earn
 
-<PageStatusBanner lastUpdated="June 8, 2026" />
+<PageStatusBanner lastUpdated="June 9, 2026" />
 
 ## What it does
 
-Earn groups protocol-native yield actions exposed in the app. This includes Stability Pool deposits, withdrawals, claimable gains, and POLAR staking controls where available in the current deployment.
+Earn groups Polaris's yield positions across four sub-tabs:
 
-![Polaris Earn tab showing Stability Pool deposits, staking controls, claimable rewards, and APR context](/screenshots/earn.jpg)
+- **pUSD** and **pGOLD** Stability Pools: deposit the pAsset to backstop liquidations; earn pro-rata pAsset interest plus pETH liquidation gains.
+- **POLAR** staking: earn a pro-rata share of borrower interest paid in pUSD and pGOLD, plus governance weight.
+- **vpETH** staking: earn a pETH stream from the bonding curve — higher risk, amplified by protocol activity.
 
-*Earn groups deposit, withdrawal, claim, and staking actions in one place.*
+Each sub-tab shows its current APR, a deposit/withdraw (or stake/unstake) control, and an option to claim pending rewards in the same transaction.
+
+![Polaris Earn tab with pUSD, pGOLD, POLAR, and vpETH sub-tabs, an APR, a deposit/withdraw toggle, and a claim-pending option](/screenshots/earn.jpg)
+
+*Earn groups Stability Pool and staking positions; each sub-tab shows its APR and a claim-pending option.*
 
 ## Before you start
 
-- Start from [Dashboard & Analytics](/using-app) and verify the current app/network first.
-- Hold the deposit token and Sepolia ETH for gas.
-- Check whether you are depositing into a Stability Pool, staking POLAR, or claiming rewards.
+- Start from the [Dashboard](/using-app) and verify the current app and network first.
+- Hold the deposit token (the pAsset, POLAR, or vpETH) and Sepolia ETH for gas.
+- Decide which sub-tab you want: a Stability Pool, POLAR staking, or vpETH staking.
 - Read [Stability Pool](/yield) before depositing.
 
 ## Steps/checks
 
-1. Select the Earn surface.
-2. Check deposit balance, current deposit, APR estimate, and pending gains.
-3. Choose deposit, withdraw, claim, or stake/unstake.
-4. Review whether the action also claims pending rewards.
-5. Approve the token if required.
-6. Sign the transaction.
-7. Confirm Dashboard balances, deposits, and claimable gains updated.
+1. Select the sub-tab and review its APR, your current deposit, and pending gains.
+2. Choose deposit/withdraw (or stake/unstake).
+3. Leave "Also claim pending …" checked to claim rewards in the same transaction, or uncheck it.
+4. Approve the token if required, then sign.
+5. Confirm your deposit, balance, and claimable gains updated.
 
 The action worked when the Earn card and wallet balances reflect the transaction.
 
@@ -38,17 +42,16 @@ The action worked when the Earn card and wallet balances reflect the transaction
 
 - Deposit token balance is too low.
 - Approval was signed but the action transaction was not.
-- Pending rewards are dust-sized or not claimable yet.
-- Withdrawal or claim is disabled by current app state.
+- Pending rewards are dust-sized or not yet claimable.
 - APR changed after refresh.
 - Wallet is connected to the wrong account.
 
 ## Risks/links
 
-Stability Pool deposits are first-loss capital during liquidations. APR estimates are not guaranteed returns. Use [Yield Sources](/yield/yield-sources), [POLAR Tokenomics](/polar/tokenomics), and [Risk Disclosure](/resources/risk-disclosure) for the underlying risk model.
+Stability Pool deposits are first-loss capital during liquidations. vpETH staking is the highest-risk Earn position. APRs are shown live but are not guaranteed returns. Use [Yield Sources](/yield/yield-sources), [pETH Split](/peth/split) (for vpETH), [POLAR Tokenomics](/polar/tokenomics), and [Risk Disclosure](/resources/risk-disclosure) for the underlying risk model.
 
 ## Next actions
 
-- Use [Swap](/using-app/swap) to acquire deposit assets.
-- Use [Zap](/using-app/zap) for bundled swap-plus-deposit.
-- Use [Dashboard & Analytics](/using-app) to monitor deposits and rewards.
+- Use [Swap](/using-app/swap) or [Split](/using-app/split) to acquire deposit assets.
+- Use [Zap](/using-app/zap) for a bundled swap-plus-deposit.
+- Use the [Dashboard](/using-app) to monitor deposits and rewards.

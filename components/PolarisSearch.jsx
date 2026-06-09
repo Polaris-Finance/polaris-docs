@@ -1,6 +1,14 @@
 'use client'
 
-import { useCallback, useDeferredValue, useEffect, useId, useRef, useState } from 'react'
+import {
+  useCallback,
+  useDeferredValue,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  useSyncExternalStore
+} from 'react'
 import { useRouter } from 'next/navigation'
 import { hrefWithBase, pathWithBase } from '../app/site-config.mjs'
 
@@ -42,6 +50,10 @@ const RECOVERY = [
   }
 ]
 
+const noopSubscribe = () => () => {}
+const serverIsMac = () => false
+const clientIsMac = () => navigator.userAgent.includes('Mac')
+
 let pagefindPromise = null
 function loadPagefind() {
   if (!pagefindPromise) {
@@ -56,6 +68,10 @@ function loadPagefind() {
 
 function cleanUrl(url) {
   return url.replace(/\.html$/, '').replace(/\.html#/, '#')
+}
+
+function isExternalLike(url) {
+  return /^https?:/.test(url) || url.endsWith('.txt')
 }
 
 function readRecent() {
@@ -89,38 +105,38 @@ export function PolarisSearch() {
   const [query, setQuery] = useState('')
   const deferredQuery = useDeferredValue(query)
   const [open, setOpen] = useState(false)
-  const [mounted, setMounted] = useState(false)
   const [status, setStatus] = useState('idle') // idle | loading | ready | empty | error
   const [error, setError] = useState('')
   const [pages, setPages] = useState([])
   const [facets, setFacets] = useState([]) // [{ value, count }]
   const [section, setSection] = useState(null) // active section filter
-  const [active, setActive] = useState(-1) // keyboard cursor into `items`
-  const [recent, setRecent] = useState([])
+  const [active, setActive] = useState(-1) // keyboard cursor into navItems
+  // The panel (and the recent list) never render during SSR/hydration because it
+  // is closed, so reading localStorage in the initializer is mismatch-safe.
+  const [recent, setRecent] = useState(() => (typeof window === 'undefined' ? [] : readRecent()))
 
+  const isMac = useSyncExternalStore(noopSubscribe, clientIsMac, serverIsMac)
+
+  // Run the Pagefind query whenever the (deferred) text or active facet changes.
   useEffect(() => {
-    setMounted(true)
-    setRecent(readRecent())
-  }, [])
-
-  // Run the Pagefind query whenever the (deferred) text or the active facet changes.
-  useEffect(() => {
-    const term = deferredQuery.trim()
-    if (!term) {
-      setStatus('idle')
-      setPages([])
-      setFacets([])
-      setError('')
-      return
-    }
-
     let cancelled = false
-    setStatus('loading')
-    ;(async () => {
+
+    const run = async () => {
+      const term = deferredQuery.trim()
+      if (!term) {
+        setStatus('idle')
+        setPages([])
+        setFacets([])
+        setError('')
+        return
+      }
+
+      setStatus('loading')
+
       let pf
       try {
         pf = await loadPagefind()
-      } catch (err) {
+      } catch {
         if (cancelled) return
         setError(
           'Search runs against the built site. In local dev, run `npm run build` once, then restart `npm run dev`.'
@@ -160,25 +176,13 @@ export function PolarisSearch() {
       setFacets(nextFacets)
       setActive(-1)
       setStatus(nextPages.length ? 'ready' : 'empty')
-    })()
+    }
 
+    run()
     return () => {
       cancelled = true
     }
   }, [deferredQuery, section])
-
-  // Flat list of keyboard-navigable links for the current view.
-  const items =
-    status === 'ready'
-      ? pages.flatMap((page) => page.subResults.map((sub) => ({ url: sub.url, query: null })))
-      : status === 'idle'
-        ? [
-            ...recent.map((q) => ({ url: null, query: q })),
-            ...START_HERE.map((s) => ({ url: s.url, query: null }))
-          ]
-        : status === 'empty'
-          ? RECOVERY.map((r) => ({ url: r.url, query: null }))
-          : []
 
   const close = useCallback(() => {
     setOpen(false)
@@ -187,9 +191,6 @@ export function PolarisSearch() {
 
   const go = useCallback(
     (url) => {
-      const [pathOnly, hash] = url.split('#')
-      const based = hrefWithBase(pathOnly)
-      const here = location.pathname.replace(/\/$/, '') === based.replace(/\/$/, '')
       const committed = query.trim()
       if (committed) {
         writeRecent(committed)
@@ -198,16 +199,33 @@ export function PolarisSearch() {
       setQuery('')
       close()
       inputRef.current?.blur()
-      if (here && hash) {
-        location.hash = hash
-      } else if (here) {
-        // same page, no anchor: nothing to navigate
+
+      if (isExternalLike(url)) {
+        location.href = hrefWithBase(url)
+        return
+      }
+      const [pathOnly, hash] = url.split('#')
+      const based = hrefWithBase(pathOnly)
+      const here = location.pathname.replace(/\/$/, '') === based.replace(/\/$/, '')
+      if (here) {
+        if (hash) location.hash = hash
       } else {
         router.push(url)
       }
     },
     [close, query, router]
   )
+
+  // Flat, render-order list of navigable targets (keeps keyboard index in sync
+  // with the rendered rows below, which use the same source arrays in order).
+  const navItems =
+    status === 'ready'
+      ? pages.flatMap((p) => p.subResults.map((s) => ({ url: s.url })))
+      : status === 'idle'
+        ? [...recent.map((q) => ({ query: q })), ...START_HERE.map((s) => ({ url: s.url }))]
+        : status === 'empty'
+          ? RECOVERY.map((r) => ({ url: r.url }))
+          : []
 
   const onItem = useCallback(
     (item) => {
@@ -231,16 +249,16 @@ export function PolarisSearch() {
       }
       return
     }
-    if (event.key === 'ArrowDown' && items.length) {
+    if (event.key === 'ArrowDown' && navItems.length) {
       event.preventDefault()
       setOpen(true)
-      setActive((i) => (i + 1) % items.length)
-    } else if (event.key === 'ArrowUp' && items.length) {
+      setActive((i) => (i + 1) % navItems.length)
+    } else if (event.key === 'ArrowUp' && navItems.length) {
       event.preventDefault()
-      setActive((i) => (i <= 0 ? items.length - 1 : i - 1))
-    } else if (event.key === 'Enter' && active >= 0 && items[active]) {
+      setActive((i) => (i <= 0 ? navItems.length - 1 : i - 1))
+    } else if (event.key === 'Enter' && active >= 0 && navItems[active]) {
       event.preventDefault()
-      onItem(items[active])
+      onItem(navItems[active])
     }
   }
 
@@ -251,7 +269,7 @@ export function PolarisSearch() {
     el?.scrollIntoView({ block: 'nearest' })
   }, [active, id])
 
-  // Close on outside pointer / route away.
+  // Close on outside pointer.
   useEffect(() => {
     if (!open) return
     const onPointer = (event) => {
@@ -283,17 +301,21 @@ export function PolarisSearch() {
     setSection((current) => (current === value ? null : value))
   }
 
-  const isMac = mounted && navigator.userAgent.includes('Mac')
   const resultCount = pages.reduce((n, p) => n + p.subResults.length, 0)
-  const showPanel = open
   const activeId = active >= 0 ? `${id}-i-${active}` : undefined
 
-  // Stable per-item index so rows can claim the right keyboard id.
-  let cursor = -1
-  const nextId = () => {
-    cursor += 1
-    return { idx: cursor, domId: `${id}-i-${cursor}` }
-  }
+  // Pre-indexed view models so each row knows its keyboard index without any
+  // render-time counter mutation. Indices match navItems order exactly.
+  const recentRows = recent.map((q, i) => ({ q, index: i }))
+  const startRows = START_HERE.map((s, i) => ({ ...s, index: recent.length + i }))
+  const pageStarts = pages.map((_, i) =>
+    pages.slice(0, i).reduce((n, p) => n + p.subResults.length, 0)
+  )
+  const readyGroups = pages.map((page, i) => ({
+    page,
+    rows: page.subResults.map((sub, k) => ({ ...sub, index: pageStarts[i] + k }))
+  }))
+  const recoveryRows = RECOVERY.map((r, i) => ({ ...r, index: i }))
 
   return (
     <div ref={containerRef} className="nextra-search pl-search">
@@ -308,7 +330,7 @@ export function PolarisSearch() {
           placeholder={PLACEHOLDER}
           value={query}
           role="combobox"
-          aria-expanded={showPanel}
+          aria-expanded={open}
           aria-controls={`${id}-listbox`}
           aria-activedescendant={activeId}
           aria-label="Search the documentation"
@@ -320,19 +342,25 @@ export function PolarisSearch() {
           onFocus={() => setOpen(true)}
           onKeyDown={onKeyDown}
         />
-        {mounted && (
-          <kbd className="pl-search-kbd" aria-hidden="true">
-            {isMac ? <span className="pl-search-cmd">⌘</span> : 'Ctrl '}K
-          </kbd>
-        )}
+        <kbd className="pl-search-kbd" aria-hidden="true">
+          {isMac ? <span className="pl-search-cmd">⌘</span> : 'Ctrl '}K
+        </kbd>
       </div>
 
-      {showPanel && (
-        <div
-          className="nextra-search-results pl-search-results"
-          // Keep input focus when clicking inside the panel; rows handle nav.
-          onMouseDown={(e) => e.preventDefault()}
-        >
+      {open && (
+        <div className="nextra-search-results pl-search-results">
+          <button
+            type="button"
+            className="pl-search-close"
+            aria-label="Close search"
+            onClick={() => {
+              close()
+              inputRef.current?.blur()
+            }}
+          >
+            <CloseIcon />
+          </button>
+
           {facets.length > 1 && status !== 'idle' && (
             <div className="pl-search-facets" role="group" aria-label="Filter by section">
               <button
@@ -380,46 +408,40 @@ export function PolarisSearch() {
 
             {status === 'idle' && (
               <>
-                {recent.length > 0 && (
+                {recentRows.length > 0 && (
                   <Group label="Recent">
-                    {recent.map((q) => {
-                      const { idx, domId } = nextId()
-                      return (
-                        <RecentRow
-                          key={q}
-                          id={domId}
-                          query={q}
-                          active={active === idx}
-                          onActivate={() => onItem({ query: q })}
-                          onHover={() => setActive(idx)}
-                        />
-                      )
-                    })}
+                    {recentRows.map((row) => (
+                      <RecentRow
+                        key={row.q}
+                        id={`${id}-i-${row.index}`}
+                        query={row.q}
+                        active={active === row.index}
+                        onActivate={() => onItem({ query: row.q })}
+                        onHover={() => setActive(row.index)}
+                      />
+                    ))}
                   </Group>
                 )}
                 <Group label="Start here">
-                  {START_HERE.map((s) => {
-                    const { idx, domId } = nextId()
-                    return (
-                      <LinkRow
-                        key={s.url}
-                        id={domId}
-                        href={hrefWithBase(s.url)}
-                        title={s.title}
-                        section={s.section}
-                        kind={s.kind}
-                        active={active === idx}
-                        onActivate={() => onItem({ url: s.url })}
-                        onHover={() => setActive(idx)}
-                      />
-                    )
-                  })}
+                  {startRows.map((row) => (
+                    <LinkRow
+                      key={row.url}
+                      id={`${id}-i-${row.index}`}
+                      href={hrefWithBase(row.url)}
+                      title={row.title}
+                      section={row.section}
+                      kind={row.kind}
+                      active={active === row.index}
+                      onActivate={() => onItem({ url: row.url })}
+                      onHover={() => setActive(row.index)}
+                    />
+                  ))}
                 </Group>
               </>
             )}
 
             {status === 'ready' &&
-              pages.map((page) => (
+              readyGroups.map(({ page, rows }) => (
                 <div key={page.url} className="pl-search-group" role="presentation">
                   <div className="pl-search-group-head">
                     <span className="pl-search-eyebrow" data-kind={page.kind}>
@@ -428,21 +450,18 @@ export function PolarisSearch() {
                     </span>
                     <span className="pl-search-page-title">{page.title}</span>
                   </div>
-                  {page.subResults.map((sub) => {
-                    const { idx, domId } = nextId()
-                    return (
-                      <ResultRow
-                        key={sub.url}
-                        id={domId}
-                        href={hrefWithBase(sub.url)}
-                        title={sub.title}
-                        excerpt={sub.excerpt}
-                        active={active === idx}
-                        onActivate={() => onItem({ url: sub.url })}
-                        onHover={() => setActive(idx)}
-                      />
-                    )
-                  })}
+                  {rows.map((row) => (
+                    <ResultRow
+                      key={row.url}
+                      id={`${id}-i-${row.index}`}
+                      href={hrefWithBase(row.url)}
+                      title={row.title}
+                      excerpt={row.excerpt}
+                      active={active === row.index}
+                      onActivate={() => onItem({ url: row.url })}
+                      onHover={() => setActive(row.index)}
+                    />
+                  ))}
                 </div>
               ))}
 
@@ -452,23 +471,19 @@ export function PolarisSearch() {
                   No matches for <strong>“{deferredQuery.trim()}”</strong>.
                 </p>
                 <Group label="Try instead">
-                  {RECOVERY.map((r) => {
-                    const { idx, domId } = nextId()
-                    const external = r.url.endsWith('.txt')
-                    return (
-                      <LinkRow
-                        key={r.url}
-                        id={domId}
-                        href={hrefWithBase(r.url)}
-                        title={r.title}
-                        section={r.section}
-                        kind={r.kind}
-                        active={active === idx}
-                        onActivate={() => onItem({ url: r.url })}
-                        onHover={() => setActive(idx)}
-                      />
-                    )
-                  })}
+                  {recoveryRows.map((row) => (
+                    <LinkRow
+                      key={row.url}
+                      id={`${id}-i-${row.index}`}
+                      href={hrefWithBase(row.url)}
+                      title={row.title}
+                      section={row.section}
+                      kind={row.kind}
+                      active={active === row.index}
+                      onActivate={() => onItem({ url: row.url })}
+                      onHover={() => setActive(row.index)}
+                    />
+                  ))}
                 </Group>
               </div>
             )}
@@ -593,6 +608,17 @@ function ClockIcon() {
     >
       <path
         d="M10 2.5a7.5 7.5 0 1 0 0 15 7.5 7.5 0 0 0 0-15Zm0 1.5a6 6 0 1 1 0 12 6 6 0 0 1 0-12Zm-.75 2.25a.75.75 0 0 1 1.5 0v3.19l2.03 2.03a.75.75 0 1 1-1.06 1.06l-2.25-2.25a.75.75 0 0 1-.22-.53V6.25Z"
+        fill="currentColor"
+      />
+    </svg>
+  )
+}
+
+function CloseIcon() {
+  return (
+    <svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true">
+      <path
+        d="M5.7 5.7a.75.75 0 0 1 1.06 0L10 8.94l3.24-3.24a.75.75 0 1 1 1.06 1.06L11.06 10l3.24 3.24a.75.75 0 1 1-1.06 1.06L10 11.06l-3.24 3.24a.75.75 0 0 1-1.06-1.06L8.94 10 5.7 6.76a.75.75 0 0 1 0-1.06Z"
         fill="currentColor"
       />
     </svg>
