@@ -301,8 +301,7 @@ const sectionTitles = {
   'using-app': 'Using the App',
   troubleshooting: 'Troubleshooting',
   'understand-polaris': 'Understand Polaris',
-  resources: 'Resources',
-  changelog: 'Changelog'
+  resources: 'Resources'
 }
 const sectionOrder = Object.keys(sectionTitles)
 
@@ -311,7 +310,6 @@ function sectionForRoute(route) {
   if (route === '/launch-status') return 'launch-status'
   if (route === '/quickstart') return 'quickstart'
   if (route === '/troubleshooting') return 'troubleshooting'
-  if (route === '/changelog') return 'changelog'
   if (/^\/using-app(?:\/|$)/.test(route)) return 'using-app'
   if (/^\/resources(?:\/|$)/.test(route)) return 'resources'
   if (

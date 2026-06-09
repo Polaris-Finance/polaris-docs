@@ -119,7 +119,6 @@ function sitemapPolicy(route) {
     '/launch-status',
     '/quickstart',
     '/troubleshooting',
-    '/resources/safety-verification',
     '/resources/contracts',
     '/resources/parameters',
     '/resources/audits-security',

@@ -60,7 +60,6 @@ const exactFreshnessRequired = new Set([
   'content/quickstart.mdx',
   'content/resources/contracts.mdx',
   'content/resources/parameters.mdx',
-  'content/resources/safety-verification.mdx',
   'content/resources/testnet.mdx',
   'content/troubleshooting.mdx'
 ])
