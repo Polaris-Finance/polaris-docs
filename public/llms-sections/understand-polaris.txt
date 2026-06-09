@@ -972,6 +972,8 @@ Next steps:
 [CDPs Mint Dollars. Polaris Mints Anything](https://polarisfinance.io/blog/polaris-mints-anything/)
 From Maker to Liquity, CDP models shaped DeFi lending. Polaris takes the blueprint further with pETH, self-adjusting rates, and a factory for stablecoins pegged to anything.
 
+Relevant app/search vocabulary: liquidation, liquidations, liquidate, liquidated, liquidation penalty.
+
 ---
 
 ## Polaris Recovery Mode
@@ -1103,15 +1105,15 @@ The final submission template is pending. Until it is published, operators shoul
 
 The final stewardship UI and contract-level process are pending. The intended lifecycle is:
 
-Stage | Purpose | Status
+Stage | Purpose
 
-**Draft** | Describe the request, affected contracts, user impact, risks, and requested parameters | Template pending
-**Bounds check** | Confirm each requested value sits inside immutable min/max limits | Final bounds pending
-**Security review** | Confirm verified source, audit status, admin roles, and integration risks | Process pending
-**Vote** | vePOLAR holders vote according to the published lock and vote-power rules | Thresholds and periods pending
-**Queue / execution** | Approved changes are queued and executed through the published contract path | Timelock/execution details pending
-**Verification** | Docs, indexers, and monitors confirm the new state onchain | Artifact plan pending
-**Monitoring** | Operators and stewards watch the result and propose reversals or adjustments if needed | Reporting framework pending
+**Draft** | Describe the request, affected contracts, user impact, risks, and requested parameters
+**Bounds check** | Confirm each requested value sits inside immutable min/max limits
+**Security review** | Confirm verified source, audit status, admin roles, and integration risks
+**Vote** | vePOLAR holders vote according to the published lock and vote-power rules
+**Queue / execution** | Approved changes are queued and executed through the published contract path
+**Verification** | Docs, indexers, and monitors confirm the new state onchain
+**Monitoring** | Operators and stewards watch the result and propose reversals or adjustments if needed
 
 No proposal is executable until the official process, contracts, and parameter bounds are published.
 
