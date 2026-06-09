@@ -7,12 +7,6 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://tokenbrice.github.io/polaris-docs/changelog</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://tokenbrice.github.io/polaris-docs/core-concepts</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
@@ -127,19 +121,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://tokenbrice.github.io/polaris-docs/resources/contracts</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
     <loc>https://tokenbrice.github.io/polaris-docs/resources/faq</loc>
-    <lastmod>2026-06-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://tokenbrice.github.io/polaris-docs/resources/parameters</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
@@ -149,12 +131,6 @@
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://tokenbrice.github.io/polaris-docs/resources/safety-verification</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://tokenbrice.github.io/polaris-docs/resources/testnet</loc>
@@ -206,12 +182,6 @@
   </url>
   <url>
     <loc>https://tokenbrice.github.io/polaris-docs/using-app/earn</loc>
-    <lastmod>2026-06-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://tokenbrice.github.io/polaris-docs/using-app/manage-trove</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

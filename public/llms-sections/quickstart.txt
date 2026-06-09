@@ -12,14 +12,12 @@ URL: https://tokenbrice.github.io/polaris-docs/quickstart
 
 Use this page for the shortest safe path from a wallet to a first Polaris testnet action. It covers Public Testnet 1 only.
 
-Use app.testnet.polarisfinance.io on Sepolia (`11155111`). Testnet assets have no monetary value. Production/mainnet use is not live unless Launch Status says it is.
-
 ## Before you start
 
 - A wallet you can connect to Sepolia.
 - Sepolia ETH for gas.
 - The official Public Testnet 1 app URL: [https://app.testnet.polarisfinance.io/](https://app.testnet.polarisfinance.io/).
-- Test assets from the app faucet when it is enabled for your wallet.
+- Test WETH from the app faucet: pay `0.1` Sepolia ETH, receive `10` WETH (one claim per address every 4 hours).
 
 Do not send mainnet ETH, mainnet WETH, or production assets to testnet contracts.
 
@@ -28,11 +26,11 @@ Do not send mainnet ETH, mainnet WETH, or production assets to testnet contracts
 1. Open [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io/).
 2. Connect your wallet on Sepolia, chain ID `11155111`.
 3. Get Sepolia ETH for gas from a Sepolia faucet if needed.
-4. Use the app faucet if it is enabled for your wallet. The testnet reserve token may be named WETH in manifests and shown as ETH in the prototype UI.
-5. Use [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap) to exchange test reserve tokens for pETH.
-6. Use [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow) to mint a testnet-active pAsset, currently pUSD or pGOLD, where the app surface supports it.
+4. Claim test WETH from the on-Dashboard faucet (pay `0.1` Sepolia ETH, receive `10` WETH).
+5. Use [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap) to buy pETH on the bonding curve.
+6. Use [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow) to mint pUSD or pGOLD against pETH.
 7. Optionally use [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn) or [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap) to deposit a pAsset into the Stability Pool.
-8. Return to [Dashboard & Analytics](https://tokenbrice.github.io/polaris-docs/using-app) and confirm balances, positions, and claimable rewards.
+8. Return to the [Dashboard](https://tokenbrice.github.io/polaris-docs/using-app) and confirm your positions and rewards.
 
 ## Success checks
 
@@ -42,14 +40,13 @@ Network | Wallet shows Sepolia, chain ID `11155111`
 Frontend | URL is exactly `https://app.testnet.polarisfinance.io/`
 Assets | Balances are testnet assets only
 pETH | pETH balance updates after swap
-Borrow | Trove or pAsset debt position appears after minting
+Borrow | pUSD or pGOLD position appears after minting
 Earn | Stability Pool deposit appears after deposit or zap
 
 ## Next actions
 
-- [Safety & Verification](https://tokenbrice.github.io/polaris-docs/resources/safety-verification) before any signature.
 - [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting) if balances, quotes, approvals, or transactions fail.
-- [Parameters](https://tokenbrice.github.io/polaris-docs/resources/parameters) for current testnet values.
+- [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters) for current testnet values.
 - [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure) before treating any testnet behavior as production guidance.
 
 Relevant app/search vocabulary: quickstart, troubleshooting, wrong network, Sepolia, faucet, approval, stale quote, failed transaction.

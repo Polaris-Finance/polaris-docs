@@ -12,8 +12,6 @@ URL: https://tokenbrice.github.io/polaris-docs/core-concepts
 
 ## The shape of the system
 
-Image: Polaris system overview: ETH swaps into pETH on the bonding curve, pETH collateralizes CDPs that mint pUSD, and burning pETH for POLAR raises the floor and releases ETH
-
 *Key takeaway: one collateral primitive feeds the whole system; pETH creates collateral, CDPs mint pAssets, and POLAR conversion raises the pETH floor.*
 
 The diagram traces four steps and an outcome:
@@ -152,8 +150,6 @@ URL: https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove
 
 A trove is a living position. After you [open it](https://tokenbrice.github.io/polaris-docs/minting/open-a-trove), you can adjust it freely: add collateral, mint more, repay debt, or close it. The app-facing health metric is **loan-to-value (LTV)**.
 
-Trove management is testnet-actionable only on Sepolia with test assets and current manifests. Production management is not mainnet-actionable until Polaris Launch Status publishes the official app, production addresses, final parameters, and audit status. Use live app and contract values over examples on this page.
-
 **Scope:** this page covers pAsset troves/CDPs (shown under **Borrow**), not reserve loans. For the full vocabulary, see [Borrower terminology](https://tokenbrice.github.io/polaris-docs/minting#borrower-terminology).
 
 ## Loan-to-value (LTV)
@@ -177,13 +173,13 @@ Your LTV moves on its own as ETH's price moves — you need not touch the trove 
 
 ## Trove Health Simulator
 
-The simulator below defaults to the current Public Testnet 1 MCR of 115%, equivalent to about 87.0% max LTV, not the Emergency Mode action MCR of 150%. Always verify the live value on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/parameters) and in the app before signing.
+The simulator below defaults to the current Public Testnet 1 MCR of 115%, equivalent to about 87.0% max LTV, not the Emergency Mode action MCR of 150%. Always verify the live value on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters) and in the app before signing.
 
 Minting more or withdrawing collateral raises your LTV. Cross the maximum and your trove is liquidated automatically: your collateral covers the debt plus a liquidation penalty, with no margin call, and only the surplus is returned for you to claim. Redemptions can also reach your position while it is still solvent — there is no LTV exemption — shrinking your collateral and pETH exposure proportionally without your consent. See the Risk Disclosure.
 
 ## Values to check
 
-Current MCR, max LTV equivalents, Recovery Mode, fee, decay, minimum-debt, and dust values live on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/parameters). Before changing a trove, check the live app quote and the parameter page for the pAsset you are managing.
+Current MCR, max LTV equivalents, Recovery Mode, fee, decay, minimum-debt, and dust values live on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters). Before changing a trove, check the live app quote and the parameter page for the pAsset you are managing.
 
 ## Add collateral
 
@@ -249,8 +245,6 @@ A **trove** is your individual borrowing position: its own collateral, debt, and
 
 App anchor: **Borrow** tab -> pAsset trove flow. If the app says CDP, it is referring to the same pAsset debt-position mechanism this page calls a trove.
 
-This flow is testnet-actionable only on Sepolia (`11155111`) using the current Public Testnet 1 manifests. Production troves are not mainnet-actionable until Polaris Launch Status publishes the official app, production addresses, final parameters, and audit status. Screenshots and exact UI labels are forthcoming; the steps below describe the flow, not the final button copy.
-
 For the full **Borrow / CDP / trove / reserve loan** vocabulary — including why a reserve loan is not a pAsset trove — see [Borrower terminology](https://tokenbrice.github.io/polaris-docs/minting#borrower-terminology).
 
 ## Before you start
@@ -260,7 +254,7 @@ For the full **Borrow / CDP / trove / reserve loan** vocabulary — including wh
 
 ## Parameters
 
-Current testnet parameters and production-finality status live on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/parameters). Use the app quote and live contract state before signing.
+Current testnet parameters and production-finality status live on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters). Use the app quote and live contract state before signing.
 
 ## Steps
 
@@ -293,8 +287,6 @@ Your LTV moves with the price of ETH and with any changes you make. Watch it fro
 Your LTV is the number that determines liquidation risk. Keep enough room below the maximum to absorb ETH price moves, interest accrual, gas delays, and redemption impact.
 
 Redemptions are different from liquidations: lower LTV does not exempt your trove from proportional redemptions, but it can keep the smaller post-redemption position away from the liquidation line. See [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove) for buffer strategy and examples.
-
-There is no margin call and no grace period. If ETH moves against you faster than you top up, liquidation is automatic. Size your buffer for the worst day you are willing to sit through, not the average one.
 
 Next steps:
 - [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove): Adjust, monitor, and close your trove safely.
@@ -394,17 +386,13 @@ Image: pETH bonding curve: ETH deposits mint pETH along a power-law curve with a
 
 The curve follows the formula:
 
-$$
-P = \alpha \cdot Q^{\beta}
-$$
-
 - **α**: a scaling parameter of little importance.
 - **Q**: the supply of pETH.
 - **β**: the power-law exponent that sets the curve's behaviour.
 
-As supply `Q` increases, the price of pETH in ETH increases. **β** sets how tightly pETH tracks ETH: a large β decouples pETH and makes it more volatile; a small β couples them closely. Current values live on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/parameters).
+As supply `Q` increases, the price of pETH in ETH increases. **β** sets how tightly pETH tracks ETH: a large β decouples pETH and makes it more volatile; a small β couples them closely. Current values live on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters).
 
-The Public Testnet 1 beta is testnet-only. The production beta remains pending; verify [Parameters](https://tokenbrice.github.io/polaris-docs/resources/parameters) before using any numeric value.
+The Public Testnet 1 beta is testnet-only. The production beta remains pending; verify [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters) before using any numeric value.
 
 ## Interactive explorer
 
@@ -605,7 +593,7 @@ POLAR is Polaris's stewardship token and outward-facing growth lever. After the 
 
 App anchors: **Earn** for current POLAR Staking where exposed, and **Advanced** or a conversion panel for pETH -> POLAR conversion actions.
 
-> **Status distinction:** The app may expose **POLAR Staking** as a current stake/unstake/claim surface on testnet. **vePOLAR locking** is separate and forthcoming: lock durations, vote-power decay, voting rules, and production addresses are pending. Do not use a conversion, staking, or locking interface unless [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) and [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts) point to it.
+> **Status distinction:** The app may expose **POLAR Staking** as a current stake/unstake/claim surface on testnet. **vePOLAR locking** is separate and forthcoming: lock durations, vote-power decay, voting rules, and production addresses are pending. Do not use a conversion, staking, or locking interface unless [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) and [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses) point to it.
 
 ## Why a third token
 
@@ -834,7 +822,7 @@ This puts an arbitrage floor under the pAsset's market price.
 
 ## Parameters
 
-Redemption fees, decay factors, dust rules, and current network values live on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/parameters). This page explains the mechanism; the parameter page owns the numbers.
+Redemption fees, decay factors, dust rules, and current network values live on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters). This page explains the mechanism; the parameter page owns the numbers.
 
 ## How it restores the peg
 
@@ -866,7 +854,7 @@ Image: Interest rate and peg stability: above peg, minting volume rises and the 
 
 ### Fees and fill limits
 
-Current fee floors, decay factors, and fill constraints live on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/parameters). The user-facing rule is simple: the redeemer receives the redeemed amount's reference value in pETH **minus** the fee and execution costs. If the fee, gas, pETH slippage, MEV risk, or price movement exceed the below-peg spread, the redemption is unprofitable.
+Current fee floors, decay factors, and fill constraints live on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters). The user-facing rule is simple: the redeemer receives the redeemed amount's reference value in pETH **minus** the fee and execution costs. If the fee, gas, pETH slippage, MEV risk, or price movement exceed the below-peg spread, the redemption is unprofitable.
 
 The app should show a pre-confirmation quote once the interface is live. Treat examples here as arithmetic only.
 
@@ -909,7 +897,7 @@ The borrower did not repay voluntarily; the market did it through the redemption
 
 - [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove) for borrower levers.
 - [Liquidations](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations) for the forced-close path.
-- [Parameters](https://tokenbrice.github.io/polaris-docs/resources/parameters) for current redemption values.
+- [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters) for current redemption values.
 
 [CDPs Mint Dollars. Polaris Mints Anything](https://polarisfinance.io/blog/polaris-mints-anything/)
 From Maker to Liquity, CDP models shaped DeFi lending. Polaris takes the blueprint further with pETH, self-adjusting rates, and a factory for stablecoins pegged to anything.
@@ -947,7 +935,7 @@ Path | Trigger | Absorbs debt | Receives collateral
 
 ## Values to check
 
-Current MCR, Recovery Mode, fee, dust, and liquidation values live on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/parameters). This page explains the closeout path; the parameter page owns the numbers.
+Current MCR, Recovery Mode, fee, dust, and liquidation values live on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters). This page explains the closeout path; the parameter page owns the numbers.
 
 Before acting, check:
 
@@ -1008,7 +996,7 @@ A high TCR means a deep, well-backed system; a low TCR means the reserve behind 
 
 ## Parameters
 
-Recovery Mode thresholds and current per-pAsset values live on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/parameters). This page explains behavior, not current numbers.
+Recovery Mode thresholds and current per-pAsset values live on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters). This page explains behavior, not current numbers.
 
 ## How behavior changes
 
@@ -1020,7 +1008,7 @@ Your action | Normal Mode | Recovery Mode
 **Withdraw collateral / mint more debt** | Allowed if LTV stays below the maximum | Allowed only if the resulting LTV stays below the stricter recovery maximum and does not increase your LTV
 **Liquidation eligibility** | LTV above the maximum | LTV above the maximum (unchanged)
 
-The principle: actions that strengthen backing stay open; actions that thin backing face a higher bar. Current trigger and action values are published on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/parameters).
+The principle: actions that strengthen backing stay open; actions that thin backing face a higher bar. Current trigger and action values are published on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters).
 
 ## Worked example: Recovery Mode
 
@@ -1172,7 +1160,7 @@ This page covers two related systems:
 - **Fee Router:** internal revenue plumbing for protocol yield.
 - **Flows:** formula-based revenue sharing for approved integrations.
 
-> **Current status:** Fee Router addresses, ABIs, events, distribution cadence, Flow whitelists, and final parameter bounds are pending audited deployment. Use [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts) and [Parameters](https://tokenbrice.github.io/polaris-docs/resources/parameters) for published values.
+> **Current status:** Fee Router addresses, ABIs, events, distribution cadence, Flow whitelists, and final parameter bounds are pending audited deployment. Use [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses) and [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters) for published values.
 
 ## Fee Router
 
@@ -1345,8 +1333,8 @@ The exact split, buffering, and claim mechanics are pending final deployment. Th
 Before locking POLAR, verify:
 
 - The official app URL.
-- POLAR and vePOLAR addresses against [Contracts and Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts).
-- Verified source and ABI against [Contracts and Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts).
+- POLAR and vePOLAR addresses against [Contracts and Addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses).
+- Verified source and ABI against [Contracts and Addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses).
 - Lock duration, voting power, unlock, and withdrawal rules.
 - The final yield split and claim path.
 - The audit status of the locking and stewardship contracts.
@@ -1367,9 +1355,9 @@ URL: https://tokenbrice.github.io/polaris-docs/why-polaris
 
 ## The trilemma
 
-Stablecoins are said to be **scalable, yield-bearing, or trustless — pick two**. Market structure mostly reinforces that framing: the largest stablecoins rely on issuers, custodians, offchain assets, or other counterparties, while cleaner trustless designs stay smaller.
+Stablecoins are usually said to be **scalable, yield-bearing, or trustless: pick two**. Market structure mostly reinforces that framing: the largest stablecoins rely on issuers, custodians, offchain assets, or other counterparties, while cleaner trustless designs stay smaller.
 
-That trade-off is real, but it is not a law of nature. It exists because, for years, high offchain interest rates made it *easy* to back a stablecoin with T-bills and CEX yield and bring that yield onchain. Easy, but not trustless — and not innovative.
+That trade-off is real, but it is not a law of nature. It exists because, for years, high offchain interest rates made it *easy* to back a stablecoin with T-bills and CEX yield and bring that yield onchain. Easy, but not trustless; and not innovative.
 
 Image: Vitalik's three challenges for decentralized stablecoins — a better-than-USD index, a capture-resistant oracle, and competing with staking yield — mapped to the Polaris approach, with the oracle surface marked partial
 
@@ -1387,8 +1375,6 @@ Issuer dependency | Centralized issuer with freeze/blacklist | Governance-set ra
 Yield source | Offchain reserves (not passed to holders) | Mixed: crypto + RWA + governance | Counterparty-dependent infrastructure | Limited onchain sources | Onchain protocol activity
 Scalability constraint | Banking relationships | Governance decisions | Counterparty capacity | Capital inefficiency | Bonding-curve scaling
 Immutable core | No | Partial | No | Yes | Yes
-
-The lesson: a stablecoin built for trustlessness must be *architected* so degradation cannot happen, not merely intend to stay clean.
 
 Competitive comparisons were reviewed on June 8, 2026. Recheck live datasets before quoting exact peg-history or launch-date claims.
 
@@ -1452,7 +1438,7 @@ Depositors earn from two streams:
 1. **Borrower interest.** A share of the pAsset-denominated interest paid by all troves borrowing that pAsset routes to the pool. This is the steady-state base yield.
 2. **Liquidation gains.** When a trove is liquidated, the pool absorbs its debt (burning depositors' pAssets) and receives its pETH collateral. The collateral value at the moment of liquidation typically exceeds the absorbed debt, so the net position improves — but the composition shifts from pAssets to pETH.
 
-The interest share is the steady base; liquidation gains spike when markets are turbulent. Together they make the Stability Pool the protocol's primary yield venue for pAssets. Current split values live on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/parameters).
+The interest share is the steady base; liquidation gains spike when markets are turbulent. Together they make the Stability Pool the protocol's primary yield venue for pAssets. Current split values live on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters).
 
 ## First-loss mechanics
 
@@ -1549,11 +1535,11 @@ Polaris yield is not subsidized, bridged in, or voted into being. It emerges fro
 
 ## How yield is distributed
 
-Conversion proceeds and swap fees go through the **[Fee Router](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router)**. Borrower interest follows separate pAsset-denominated split logic. Current values and pending production status live on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/parameters).
+Conversion proceeds and swap fees go through the **[Fee Router](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router)**. Borrower interest follows separate pAsset-denominated split logic. Current values and pending production status live on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters).
 
 ## Parameters
 
-Use [Parameters](https://tokenbrice.github.io/polaris-docs/resources/parameters) for current yield-related values. This page owns the source model, not numeric tables.
+Use [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters) for current yield-related values. This page owns the source model, not numeric tables.
 
 ---
 

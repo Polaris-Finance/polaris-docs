@@ -20,16 +20,6 @@
       "lastVerified": null
     },
     {
-      "route": "/changelog",
-      "url": "https://tokenbrice.github.io/polaris-docs/changelog",
-      "section": "Changelog",
-      "title": "Changelog",
-      "description": "A documentation changelog for the Polaris docs, in Keep a Changelog style. This tracks changes to the docs only, not protocol release history.",
-      "keywords": [],
-      "updated": null,
-      "lastVerified": null
-    },
-    {
       "route": "/core-concepts",
       "url": "https://tokenbrice.github.io/polaris-docs/core-concepts",
       "section": "Understand Polaris",
@@ -334,65 +324,11 @@
       "lastVerified": null
     },
     {
-      "route": "/resources/contracts",
-      "url": "https://tokenbrice.github.io/polaris-docs/resources/contracts",
-      "section": "Resources",
-      "title": "Polaris Contracts & Addresses",
-      "description": "Canonical Polaris contract addresses, deployment shape, and verification rules for production and Public Testnet 1.",
-      "keywords": [
-        "app",
-        "official app",
-        "testnet",
-        "Sepolia",
-        "WETH",
-        "WETH faucet",
-        "Zap",
-        "Split",
-        "Swap",
-        "Borrow",
-        "Earn",
-        "Guide",
-        "Advanced",
-        "Analytics",
-        "APR",
-        "Reserve Loan"
-      ],
-      "updated": null,
-      "lastVerified": null
-    },
-    {
       "route": "/resources/faq",
       "url": "https://tokenbrice.github.io/polaris-docs/resources/faq",
       "section": "Resources",
       "title": "Polaris Finance FAQ",
       "description": "Short answers to common Polaris questions, with links to canonical pages for status, contracts, parameters, risks, and app actions.",
-      "keywords": [
-        "app",
-        "official app",
-        "testnet",
-        "Sepolia",
-        "WETH",
-        "WETH faucet",
-        "Zap",
-        "Split",
-        "Swap",
-        "Borrow",
-        "Earn",
-        "Guide",
-        "Advanced",
-        "Analytics",
-        "APR",
-        "Reserve Loan"
-      ],
-      "updated": null,
-      "lastVerified": null
-    },
-    {
-      "route": "/resources/parameters",
-      "url": "https://tokenbrice.github.io/polaris-docs/resources/parameters",
-      "section": "Resources",
-      "title": "Polaris Parameters",
-      "description": "Canonical Public Testnet 1 parameter values, source, network, and production-finality status.",
       "keywords": [
         "app",
         "official app",
@@ -425,28 +361,11 @@
       "lastVerified": null
     },
     {
-      "route": "/resources/safety-verification",
-      "url": "https://tokenbrice.github.io/polaris-docs/resources/safety-verification",
-      "section": "Resources",
-      "title": "Polaris Safety & Verification",
-      "description": "A pre-signing checklist for verifying the Polaris frontend, network, contracts, parameters, risks, and audit status.",
-      "keywords": [
-        "official app",
-        "app URL",
-        "phishing",
-        "verify contracts",
-        "testnet",
-        "mainnet"
-      ],
-      "updated": null,
-      "lastVerified": null
-    },
-    {
       "route": "/resources/testnet",
       "url": "https://tokenbrice.github.io/polaris-docs/resources/testnet",
       "section": "Resources",
-      "title": "Polaris Public Testnet 1 Artifacts",
-      "description": "Sepolia chain ID, official testnet app, testnet caveats, active pAssets, and manifest locations for Public Testnet 1.",
+      "title": "Polaris Public Testnet 1",
+      "description": "Public Testnet 1 network, manifest sources, parameters, and Sepolia contract addresses, with verification rules and production-finality status.",
       "keywords": [
         "app",
         "official app",
@@ -521,8 +440,8 @@
       "route": "/using-app",
       "url": "https://tokenbrice.github.io/polaris-docs/using-app",
       "section": "Using the App",
-      "title": "Dashboard & Analytics",
-      "description": "How to read the Polaris app Dashboard and Analytics before choosing an action.",
+      "title": "Dashboard",
+      "description": "How to read the Polaris app Dashboard and start your first testnet action.",
       "keywords": [],
       "updated": null,
       "lastVerified": null
@@ -532,7 +451,7 @@
       "url": "https://tokenbrice.github.io/polaris-docs/using-app/advanced",
       "section": "Using the App",
       "title": "Advanced Tools in the Polaris App",
-      "description": "How to use Polaris Advanced tools for approvals, PSM actions, reserve loans, staking, conversion, and manual checks.",
+      "description": "How to use the Polaris Advanced tab for PSM mint/redeem, pETH-to-POLAR conversion, and the testnet faucet.",
       "keywords": [],
       "updated": null,
       "lastVerified": null
@@ -542,7 +461,7 @@
       "url": "https://tokenbrice.github.io/polaris-docs/using-app/borrow",
       "section": "Using the App",
       "title": "Borrow in the Polaris App",
-      "description": "How to open Polaris borrow positions from the app Borrow tab.",
+      "description": "How to open and manage Polaris debt positions from the app Borrow tab.",
       "keywords": [
         "Borrow",
         "Manage Trove",
@@ -565,7 +484,7 @@
       "url": "https://tokenbrice.github.io/polaris-docs/using-app/earn",
       "section": "Using the App",
       "title": "Earn in the Polaris App",
-      "description": "How to deposit, withdraw, claim, and check Polaris Earn positions.",
+      "description": "How to supply a Stability Pool, stake POLAR or vpETH, and claim rewards in the Polaris app.",
       "keywords": [
         "Earn",
         "earn",
@@ -574,29 +493,6 @@
         "Stability Pool",
         "deposit",
         "claim rewards"
-      ],
-      "updated": null,
-      "lastVerified": null
-    },
-    {
-      "route": "/using-app/manage-trove",
-      "url": "https://tokenbrice.github.io/polaris-docs/using-app/manage-trove",
-      "section": "Using the App",
-      "title": "Manage Trove",
-      "description": "How to add collateral, mint more, repay debt, close, and monitor a Polaris trove.",
-      "keywords": [
-        "Borrow",
-        "Manage Trove",
-        "borrow",
-        "mint",
-        "open trove",
-        "repay",
-        "close trove",
-        "pUSD",
-        "pGOLD",
-        "LTV",
-        "loan-to-value",
-        "official app"
       ],
       "updated": null,
       "lastVerified": null
@@ -624,7 +520,7 @@
       "url": "https://tokenbrice.github.io/polaris-docs/using-app/swap",
       "section": "Using the App",
       "title": "Swap in the Polaris App",
-      "description": "How to use Polaris Swap with quote, approval, slippage, and route checks.",
+      "description": "How to buy and sell pETH on the bonding curve with quote, approval, and slippage checks.",
       "keywords": [
         "Swap",
         "swap",
@@ -642,7 +538,7 @@
       "url": "https://tokenbrice.github.io/polaris-docs/using-app/zap",
       "section": "Using the App",
       "title": "Zap in the Polaris App",
-      "description": "How to use Polaris Zap routes and recover safely when one bundled step fails.",
+      "description": "How to use Polaris Zap strategies and recover safely when one bundled step fails.",
       "keywords": [
         "Earn",
         "earn",

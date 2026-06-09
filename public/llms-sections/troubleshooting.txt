@@ -24,7 +24,7 @@ Start from the known-good setup: Public Testnet 1 at [app.testnet.polarisfinance
 
 **When not to proceed:** Do not sign if the wallet prompt shows mainnet or an unexpected chain.
 
-**Related reference:** [Public Testnet 1 Artifacts](https://tokenbrice.github.io/polaris-docs/resources/testnet), [Safety & Verification](https://tokenbrice.github.io/polaris-docs/resources/safety-verification)
+**Related reference:** [Public Testnet 1 Artifacts](https://tokenbrice.github.io/polaris-docs/resources/testnet)
 
 ## Wrong frontend
 
@@ -36,7 +36,7 @@ Start from the known-good setup: Public Testnet 1 at [app.testnet.polarisfinance
 
 **When not to proceed:** Do not connect or sign from an unverified URL.
 
-**Related reference:** [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status), [Safety & Verification](https://tokenbrice.github.io/polaris-docs/resources/safety-verification)
+**Related reference:** [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status)
 
 ## Faucet or test-token shortage
 
@@ -60,7 +60,7 @@ Start from the known-good setup: Public Testnet 1 at [app.testnet.polarisfinance
 
 **When not to proceed:** Do not import token addresses from chat links or search results.
 
-**Related reference:** [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/contracts)
+**Related reference:** [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses)
 
 ## Approval succeeded, action still fails
 
@@ -72,7 +72,7 @@ Start from the known-good setup: Public Testnet 1 at [app.testnet.polarisfinance
 
 **When not to proceed:** Do not grant unlimited approvals to an unexpected spender.
 
-**Related reference:** [Safety & Verification](https://tokenbrice.github.io/polaris-docs/resources/safety-verification), [Advanced](https://tokenbrice.github.io/polaris-docs/using-app/advanced)
+**Related reference:** [Advanced](https://tokenbrice.github.io/polaris-docs/using-app/advanced)
 
 ## Stale quote or changed output
 
@@ -92,11 +92,11 @@ Start from the known-good setup: Public Testnet 1 at [app.testnet.polarisfinance
 
 **Likely cause:** Position health, collateral, debt amount, Recovery Mode, allowance, or price movement blocks the action.
 
-**Fix:** Refresh position data, reduce risk, check collateral and debt amounts, and retry from Borrow or Manage Trove.
+**Fix:** Refresh position data, reduce risk, check collateral and debt amounts, and retry from the Borrow tab.
 
 **When not to proceed:** Do not borrow if you do not understand the displayed liquidation exposure.
 
-**Related reference:** [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow), [Manage Trove](https://tokenbrice.github.io/polaris-docs/using-app/manage-trove), [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode), [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure)
+**Related reference:** [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow), [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode), [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure)
 
 ## Earn action unavailable
 
@@ -132,6 +132,6 @@ Start from the known-good setup: Public Testnet 1 at [app.testnet.polarisfinance
 
 **When not to proceed:** Do not repeatedly submit the same action without checking whether the first transaction changed balances, allowances, or positions.
 
-**Related reference:** [Dashboard & Analytics](https://tokenbrice.github.io/polaris-docs/using-app), [Safety & Verification](https://tokenbrice.github.io/polaris-docs/resources/safety-verification)
+**Related reference:** [Dashboard](https://tokenbrice.github.io/polaris-docs/using-app)
 
 Relevant app/search vocabulary: quickstart, troubleshooting, wrong network, Sepolia, faucet, approval, stale quote, failed transaction.
