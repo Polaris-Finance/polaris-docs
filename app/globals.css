@@ -1534,6 +1534,12 @@ article button[title*='Copy'] {
   border-color: rgba(232, 220, 196, 0.18);
 }
 
+/* The close affordance only exists for the mobile full-screen sheet; the desktop
+   dropdown closes on outside click or Escape. */
+.pl-search-close {
+  display: none;
+}
+
 /* Mobile: the panel becomes a full-screen sheet below the navbar. */
 @media (max-width: 767px) {
   .pl-search-results.pl-search-results {
@@ -1548,9 +1554,36 @@ article button[title*='Copy'] {
     border-left: 0;
     border-right: 0;
   }
+  .pl-search-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0.5rem;
+    right: 0.55rem;
+    z-index: 2;
+    width: 2.1rem;
+    height: 2.1rem;
+    padding: 0;
+    border: 0;
+    border-radius: 0.5rem;
+    background: rgba(13, 31, 60, 0.06);
+    color: inherit;
+    cursor: pointer;
+  }
+  /* Keep the facet row and first results clear of the floating close button. */
+  .pl-search-facets {
+    padding-right: 3rem;
+  }
+  .pl-search-list {
+    padding-top: 0.5rem;
+  }
   .pl-search-legend {
     display: none;
   }
+}
+:is(.dark) .pl-search-close {
+  background: rgba(232, 220, 196, 0.08);
 }
 @media (max-width: 639px) {
   .pl-search-kbd {

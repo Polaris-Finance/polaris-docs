@@ -444,10 +444,12 @@ export function PolarisSearch() {
               readyGroups.map(({ page, rows }) => (
                 <div key={page.url} className="pl-search-group" role="presentation">
                   <div className="pl-search-group-head">
-                    <span className="pl-search-eyebrow" data-kind={page.kind}>
-                      <span className="pl-search-dot" aria-hidden="true" />
-                      {page.section || 'Docs'}
-                    </span>
+                    {page.section && (
+                      <span className="pl-search-eyebrow" data-kind={page.kind}>
+                        <span className="pl-search-dot" aria-hidden="true" />
+                        {page.section}
+                      </span>
+                    )}
                     <span className="pl-search-page-title">{page.title}</span>
                   </div>
                   {rows.map((row) => (
