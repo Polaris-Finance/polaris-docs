@@ -28,6 +28,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# agent planning docs
+/agents/
+
 # local tool artifacts
 /.playwright/
 /.playwright-cli
