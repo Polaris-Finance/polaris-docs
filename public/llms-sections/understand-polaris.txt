@@ -2,13 +2,20 @@
 
 > User and developer documentation for Polaris Finance — the self-scaling stablecoin operating system. Mint pAssets backed entirely by onchain collateral and yield. No T-bills. No CEXs. No compromises.
 
+## Agent Guidance
+
+- Start with [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) for what is live, supported, or production-final.
+- Treat [Public Testnet 1](https://tokenbrice.github.io/polaris-docs/resources/testnet) as the source of truth for Sepolia network, parameter, and contract-address values.
+- Public Testnet 1 assets are Sepolia test assets with no monetary value, no production redemption, and no mainnet claim.
+- Do not infer production addresses, production constants, audit status, or launch status from testnet values.
+- Prefer the Markdown URLs in this file for retrieval, and cite the canonical URL shown beside each page.
+
 # Understand Polaris
 
 ## Polaris Core Concepts
 
 URL: https://tokenbrice.github.io/polaris-docs/core-concepts
-
-# Polaris Core Concepts
+Markdown URL: https://tokenbrice.github.io/polaris-docs/core-concepts.md
 
 ## The shape of the system
 
@@ -77,8 +84,7 @@ Next steps:
 ## Minting Polaris pAssets
 
 URL: https://tokenbrice.github.io/polaris-docs/minting
-
-# Minting Polaris pAssets
+Markdown URL: https://tokenbrice.github.io/polaris-docs/minting.md
 
 ## The CDP model
 
@@ -145,8 +151,7 @@ From Maker to Liquity, CDP models shaped DeFi lending. Polaris takes the bluepri
 ## Managing a Polaris Trove
 
 URL: https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove
-
-# Managing a Polaris Trove
+Markdown URL: https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove.md
 
 A trove is a living position. After you [open it](https://tokenbrice.github.io/polaris-docs/minting/open-a-trove), you can adjust it freely: add collateral, mint more, repay debt, or close it. The app-facing health metric is **loan-to-value (LTV)**.
 
@@ -238,8 +243,7 @@ Relevant app/search vocabulary: Borrow, Manage Trove, borrow, mint, open trove, 
 ## Open a Polaris Trove
 
 URL: https://tokenbrice.github.io/polaris-docs/minting/open-a-trove
-
-# Open a Polaris Trove
+Markdown URL: https://tokenbrice.github.io/polaris-docs/minting/open-a-trove.md
 
 A **trove** is your individual borrowing position: its own collateral, debt, and loan-to-value (LTV). Opening one is how you mint a pAsset: **connect wallet ⇒ acquire pETH ⇒ deposit pETH as collateral ⇒ choose and mint a pAsset ⇒ confirm ⇒ monitor your LTV**. This page walks each step; for the concepts behind it, see [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting) and [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove).
 
@@ -300,8 +304,7 @@ Relevant app/search vocabulary: Borrow, Manage Trove, borrow, mint, open trove, 
 ## Polaris Asset Catalog
 
 URL: https://tokenbrice.github.io/polaris-docs/minting/passet-catalog
-
-# Polaris Asset Catalog
+Markdown URL: https://tokenbrice.github.io/polaris-docs/minting/passet-catalog.md
 
 A **pAsset** is a synthetic debt asset minted from a Polaris CDP against pETH collateral. **pETH is different:** it is the bonding-curve collateral token that backs pAssets, not debt minted from a trove.
 
@@ -355,8 +358,7 @@ How pGOLD breaks the XAUT/PAXG duopoly without touching a single gold bar.
 ## pETH Bonding Curve
 
 URL: https://tokenbrice.github.io/polaris-docs/peth
-
-# pETH Bonding Curve
+Markdown URL: https://tokenbrice.github.io/polaris-docs/peth.md
 
 The bonding curve is the foundation of Polaris. From this one primitive come pETH, its rising floor, [Split](https://tokenbrice.github.io/polaris-docs/peth/split), reserve loans, and value capture on every interaction.
 
@@ -448,8 +450,7 @@ Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor pri
 ## pETH Floor Price
 
 URL: https://tokenbrice.github.io/polaris-docs/peth/floor-price
-
-# pETH Floor Price
+Markdown URL: https://tokenbrice.github.io/polaris-docs/peth/floor-price.md
 
 ## What it is
 
@@ -514,8 +515,7 @@ Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor pri
 ## pETH Split: fpETH and vpETH
 
 URL: https://tokenbrice.github.io/polaris-docs/peth/split
-
-# pETH Split: fpETH and vpETH
+Markdown URL: https://tokenbrice.github.io/polaris-docs/peth/split.md
 
 The **Split** mechanism separates pETH into two matching tokens:
 
@@ -586,8 +586,7 @@ Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor pri
 ## POLAR Token, Staking, and Conversion
 
 URL: https://tokenbrice.github.io/polaris-docs/polar
-
-# POLAR Token, Staking, and Conversion
+Markdown URL: https://tokenbrice.github.io/polaris-docs/polar.md
 
 POLAR is Polaris's stewardship token and outward-facing growth lever. After the initial distribution, new POLAR is intended to enter through one path: [burn pETH in a conversion auction](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions).
 
@@ -638,8 +637,7 @@ Relevant app/search vocabulary: POLAR, convert, lock, vePOLAR, burn pETH, conver
 ## POLAR Conversion Auctions
 
 URL: https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions
-
-# POLAR Conversion Auctions
+Markdown URL: https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions.md
 
 Conversion auctions let converters **burn pETH to mint new POLAR**. This page covers the auction mechanics; POLAR's broader economics live on [POLAR Tokenomics](https://tokenbrice.github.io/polaris-docs/polar/tokenomics).
 
@@ -737,8 +735,7 @@ Relevant app/search vocabulary: POLAR, convert, lock, vePOLAR, burn pETH, conver
 ## POLAR Tokenomics
 
 URL: https://tokenbrice.github.io/polaris-docs/polar/tokenomics
-
-# POLAR Tokenomics
+Markdown URL: https://tokenbrice.github.io/polaris-docs/polar/tokenomics.md
 
 This page consolidates POLAR's economics. Each piece has its own page; here they sit side by side. For the reasoning behind the token, read [The POLAR Token](https://tokenbrice.github.io/polaris-docs/polar); for the issuance mechanism, [Conversion Auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions).
 
@@ -807,8 +804,7 @@ Relevant app/search vocabulary: POLAR, convert, lock, vePOLAR, burn pETH, conver
 ## pAsset Redemptions
 
 URL: https://tokenbrice.github.io/polaris-docs/redemptions-liquidations
-
-# pAsset Redemptions
+Markdown URL: https://tokenbrice.github.io/polaris-docs/redemptions-liquidations.md
 
 > **Actionability:** Redemptions are testnet-actionable only on Sepolia using test assets and current manifests. Production redemptions are not mainnet-actionable until [Polaris Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) publishes the official app, production addresses, final fee formula, dust rules, and audit status.
 
@@ -907,8 +903,7 @@ From Maker to Liquity, CDP models shaped DeFi lending. Polaris takes the bluepri
 ## Polaris Liquidations
 
 URL: https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations
-
-# Polaris Liquidations
+Markdown URL: https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations.md
 
 ## What a liquidation is
 
@@ -979,8 +974,7 @@ Relevant app/search vocabulary: liquidation, liquidations, liquidate, liquidated
 ## Polaris Recovery Mode
 
 URL: https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode
-
-# Polaris Recovery Mode
+Markdown URL: https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode.md
 
 ## The Total Collateralization Ratio
 
@@ -1037,8 +1031,7 @@ See [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/mana
 ## Polaris Stewardship, not Governance
 
 URL: https://tokenbrice.github.io/polaris-docs/stewardship
-
-# Polaris Stewardship, not Governance
+Markdown URL: https://tokenbrice.github.io/polaris-docs/stewardship.md
 
 Governance risk is structural: unlimited scope, undefined boundaries, and misaligned incentives create capture risk.
 
@@ -1154,8 +1147,7 @@ Governance fails because of structure, not people. Here's how stewardship fixes 
 ## Fee Router & Flows
 
 URL: https://tokenbrice.github.io/polaris-docs/stewardship/fee-router
-
-# Fee Router & Flows
+Markdown URL: https://tokenbrice.github.io/polaris-docs/stewardship/fee-router.md
 
 This page covers two related systems:
 
@@ -1273,8 +1265,7 @@ How Polaris replaces emission-style incentives with an autonomous, hard-asset di
 ## vePOLAR Locking and Stewardship
 
 URL: https://tokenbrice.github.io/polaris-docs/stewardship/vepolar
-
-# vePOLAR Locking and Stewardship
+Markdown URL: https://tokenbrice.github.io/polaris-docs/stewardship/vepolar.md
 
 **vePOLAR is vote-escrowed POLAR.** Lock [POLAR](https://tokenbrice.github.io/polaris-docs/polar) to receive stewardship rights for bounded parameters and edge decisions.
 
@@ -1351,8 +1342,7 @@ The **Polar Council** is a treasury-funded program to cultivate aligned, active 
 ## Why Polaris Finance
 
 URL: https://tokenbrice.github.io/polaris-docs/why-polaris
-
-# Why Polaris Finance
+Markdown URL: https://tokenbrice.github.io/polaris-docs/why-polaris.md
 
 ## The trilemma
 
@@ -1415,8 +1405,7 @@ Analyzing where USDC, USDS, USDe, and LUSD fall short — and how pUSD delivers 
 ## Polaris Stability Pool
 
 URL: https://tokenbrice.github.io/polaris-docs/yield
-
-# Polaris Stability Pool
+Markdown URL: https://tokenbrice.github.io/polaris-docs/yield.md
 
 The Stability Pool is a **first-loss pool**. When a trove is liquidated, the pool burns pAssets to cover the debt and receives pETH collateral in return. Your deposit can be partially consumed and replaced by pETH. This is the mechanism, not an edge case.
 
@@ -1495,8 +1484,7 @@ Relevant app/search vocabulary: Earn, earn, yield, APR, Stability Pool, deposit,
 ## Polaris Yield Sources
 
 URL: https://tokenbrice.github.io/polaris-docs/yield/yield-sources
-
-# Polaris Yield Sources
+Markdown URL: https://tokenbrice.github.io/polaris-docs/yield/yield-sources.md
 
 Polaris yield comes from onchain protocol activity: borrowing, liquidations, swaps, and conversions. This page lists the sources; [Fee Router & Flows](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router) covers routing.
 

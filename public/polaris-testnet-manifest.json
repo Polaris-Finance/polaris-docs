@@ -1,0 +1,345 @@
+{
+  "schemaVersion": 1,
+  "site": "https://tokenbrice.github.io/polaris-docs/",
+  "source": {
+    "route": "/resources/testnet",
+    "url": "https://tokenbrice.github.io/polaris-docs/resources/testnet",
+    "markdownUrl": "https://tokenbrice.github.io/polaris-docs/resources/testnet.md",
+    "lastVerified": "2026-06-08"
+  },
+  "status": {
+    "publicPhase": "Public Testnet 1",
+    "productionFinality": "Pending; production addresses and parameters are not published yet"
+  },
+  "environment": {
+    "network": "Sepolia",
+    "chainId": 11155111,
+    "officialApp": "https://app.testnet.polarisfinance.io/",
+    "testnetValue": "No monetary value, no production redemption, no mainnet claim",
+    "testnetGas": "Sepolia ETH",
+    "reserveToken": "Mock WETH/reserve token from the app faucet when enabled",
+    "activePassets": "pUSD and pGOLD"
+  },
+  "warnings": [
+    "Public Testnet 1 values are Sepolia testnet artifacts.",
+    "Testnet assets have no monetary value, no production redemption, and no mainnet claim.",
+    "Do not infer production constants, addresses, audit status, or launch status from testnet values.",
+    "Use Launch Status and Public Testnet 1 as the canonical sources before signing transactions."
+  ],
+  "parameters": {
+    "sharedCore": [
+      {
+        "name": "Bonding curve alpha",
+        "value": "193218996973422650",
+        "source": "Core manifest"
+      },
+      {
+        "name": "Bonding curve beta",
+        "value": "150000000000000000 (15%)",
+        "source": "Core manifest"
+      }
+    ],
+    "pAssets": {
+      "pUSD": [
+        {
+          "name": "Minimum collateral ratio (MCR)",
+          "value": "115%",
+          "source": "Manifest"
+        },
+        {
+          "name": "Emergency Mode action MCR",
+          "value": "150%",
+          "source": "Manifest"
+        },
+        {
+          "name": "Emergency Mode trigger ratio",
+          "value": "110%",
+          "source": "Manifest"
+        },
+        {
+          "name": "Mint fee floor",
+          "value": "0.05%",
+          "source": "Deploy script"
+        },
+        {
+          "name": "Redemption fee floor",
+          "value": "0.05%",
+          "source": "Deploy script"
+        },
+        {
+          "name": "Mint alpha",
+          "value": "1e18",
+          "source": "Deploy script"
+        },
+        {
+          "name": "Redemption alpha",
+          "value": "1e18",
+          "source": "Deploy script"
+        },
+        {
+          "name": "Mint minute decay factor",
+          "value": "998076443575628800",
+          "source": "Deploy script"
+        },
+        {
+          "name": "Redemption minute decay factor",
+          "value": "998076443575628800",
+          "source": "Deploy script"
+        }
+      ],
+      "pGOLD": [
+        {
+          "name": "Minimum collateral ratio (MCR)",
+          "value": "115%",
+          "source": "Manifest"
+        },
+        {
+          "name": "Emergency Mode action MCR",
+          "value": "150%",
+          "source": "Manifest"
+        },
+        {
+          "name": "Emergency Mode trigger ratio",
+          "value": "110%",
+          "source": "Manifest"
+        },
+        {
+          "name": "Mint fee floor",
+          "value": "0.05%",
+          "source": "Deploy script"
+        },
+        {
+          "name": "Redemption fee floor",
+          "value": "0.05%",
+          "source": "Deploy script"
+        },
+        {
+          "name": "Mint alpha",
+          "value": "1e18",
+          "source": "Deploy script"
+        },
+        {
+          "name": "Redemption alpha",
+          "value": "1e18",
+          "source": "Deploy script"
+        },
+        {
+          "name": "Mint minute decay factor",
+          "value": "998076443575628800",
+          "source": "Deploy script"
+        },
+        {
+          "name": "Redemption minute decay factor",
+          "value": "998076443575628800",
+          "source": "Deploy script"
+        }
+      ]
+    }
+  },
+  "contracts": {
+    "network": "Sepolia",
+    "chainId": 11155111,
+    "explorer": "https://sepolia.etherscan.io",
+    "entries": [
+      {
+        "group": "shared-core",
+        "name": "Reserve token, mock WETH",
+        "address": "0x290a733a8f078d1f1efb2b4faac5f2f7f50673df",
+        "explorerUrl": "https://sepolia.etherscan.io/address/0x290a733a8f078d1f1efb2b4faac5f2f7f50673df"
+      },
+      {
+        "group": "shared-core",
+        "name": "pETH / bonding curve",
+        "address": "0xbec3a5aff85df00e9344c0cb553b2b6b1db80243",
+        "explorerUrl": "https://sepolia.etherscan.io/address/0xbec3a5aff85df00e9344c0cb553b2b6b1db80243"
+      },
+      {
+        "group": "shared-core",
+        "name": "Fee Router",
+        "address": "0x518833a8305b6a0f4a782813bc9b3acb6dd20803",
+        "explorerUrl": "https://sepolia.etherscan.io/address/0x518833a8305b6a0f4a782813bc9b3acb6dd20803"
+      },
+      {
+        "group": "shared-core",
+        "name": "POLAR / ShareSystem",
+        "address": "0x9652015bf2a1a1eef53affdf8a83f52c916cb8fe",
+        "explorerUrl": "https://sepolia.etherscan.io/address/0x9652015bf2a1a1eef53affdf8a83f52c916cb8fe"
+      },
+      {
+        "group": "shared-core",
+        "name": "Reserve Loans NFT",
+        "address": "0xe198955bc9ffd7dc6bb0266a1ba9e7f49c1eb5ce",
+        "explorerUrl": "https://sepolia.etherscan.io/address/0xe198955bc9ffd7dc6bb0266a1ba9e7f49c1eb5ce"
+      },
+      {
+        "group": "shared-core",
+        "name": "Reserve Loans Manager",
+        "address": "0xa62d290638d315b57640f88af61d80d38c57f7f8",
+        "explorerUrl": "https://sepolia.etherscan.io/address/0xa62d290638d315b57640f88af61d80d38c57f7f8"
+      },
+      {
+        "group": "shared-core",
+        "name": "MultiReserveLoanGetter",
+        "address": "0x2cddd6bfb2848b57ac9f251ebdc3cd7b53beb962",
+        "explorerUrl": "https://sepolia.etherscan.io/address/0x2cddd6bfb2848b57ac9f251ebdc3cd7b53beb962"
+      },
+      {
+        "group": "shared-core",
+        "name": "Testnet stewardship",
+        "address": "0xea04aa2a4550862bf12a15e3f2becf48a5fb4b10",
+        "explorerUrl": "https://sepolia.etherscan.io/address/0xea04aa2a4550862bf12a15e3f2becf48a5fb4b10"
+      },
+      {
+        "group": "shared-core",
+        "name": "Testnet POLAR staking",
+        "address": "0x56a7088cdb41a04eddb9c9b46f27359a6797324b",
+        "explorerUrl": "https://sepolia.etherscan.io/address/0x56a7088cdb41a04eddb9c9b46f27359a6797324b"
+      },
+      {
+        "group": "shared-core",
+        "name": "BondingCurveTokenSplitter",
+        "address": "0xc880eb4ba6e7f1c60ce4968dc50b24056e67cc00",
+        "explorerUrl": "https://sepolia.etherscan.io/address/0xc880eb4ba6e7f1c60ce4968dc50b24056e67cc00"
+      },
+      {
+        "group": "shared-core",
+        "name": "vpToken",
+        "address": "0xd59019504ea81813632c8f5e8014027b47c82ab1",
+        "explorerUrl": "https://sepolia.etherscan.io/address/0xd59019504ea81813632c8f5e8014027b47c82ab1"
+      },
+      {
+        "group": "pusd-instance",
+        "name": "pUSD token",
+        "address": "0xf06a3e9420176351d0341507f91d243014510d5b",
+        "explorerUrl": "https://sepolia.etherscan.io/address/0xf06a3e9420176351d0341507f91d243014510d5b"
+      },
+      {
+        "group": "pusd-instance",
+        "name": "Stability Pool",
+        "address": "0x8da97da1f6ab14d144a4966360e19ca5f2b5aece",
+        "explorerUrl": "https://sepolia.etherscan.io/address/0x8da97da1f6ab14d144a4966360e19ca5f2b5aece"
+      },
+      {
+        "group": "pusd-instance",
+        "name": "CDP NFT",
+        "address": "0xace616e3a3b07bfe2424ae48c1b4fb8aed90eea0",
+        "explorerUrl": "https://sepolia.etherscan.io/address/0xace616e3a3b07bfe2424ae48c1b4fb8aed90eea0"
+      },
+      {
+        "group": "pusd-instance",
+        "name": "ETH/USD medianiser",
+        "address": "0xbad4c21ea10259280b1980b6c3f8de806b8ec31a",
+        "explorerUrl": "https://sepolia.etherscan.io/address/0xbad4c21ea10259280b1980b6c3f8de806b8ec31a"
+      },
+      {
+        "group": "pusd-instance",
+        "name": "pUSD testnet price feed",
+        "address": "0x26998cd15cbfddcb1e8c81fb7dff75886dc90185",
+        "explorerUrl": "https://sepolia.etherscan.io/address/0x26998cd15cbfddcb1e8c81fb7dff75886dc90185"
+      },
+      {
+        "group": "pusd-instance",
+        "name": "CDP Manager",
+        "address": "0x71b5c3b88510206203ec8363c56f908777ad52c8",
+        "explorerUrl": "https://sepolia.etherscan.io/address/0x71b5c3b88510206203ec8363c56f908777ad52c8"
+      },
+      {
+        "group": "pusd-instance",
+        "name": "Interest Controller",
+        "address": "0x0e957229c4fe20e5099206b3b615cf2563200545",
+        "explorerUrl": "https://sepolia.etherscan.io/address/0x0e957229c4fe20e5099206b3b615cf2563200545"
+      },
+      {
+        "group": "pusd-instance",
+        "name": "Internal PSM",
+        "address": "0x49cf0fff51fdd7140237e3fc6cd2b4daf6a4ffe5",
+        "explorerUrl": "https://sepolia.etherscan.io/address/0x49cf0fff51fdd7140237e3fc6cd2b4daf6a4ffe5"
+      },
+      {
+        "group": "pusd-instance",
+        "name": "MultiCDPGetter",
+        "address": "0x5b396a8e4adff7480c0dd2858890f55d5b028149",
+        "explorerUrl": "https://sepolia.etherscan.io/address/0x5b396a8e4adff7480c0dd2858890f55d5b028149"
+      },
+      {
+        "group": "pusd-instance",
+        "name": "Primary Interest Router",
+        "address": "0xb5971ee694ca881963533114c1694f5f0c56ac09",
+        "explorerUrl": "https://sepolia.etherscan.io/address/0xb5971ee694ca881963533114c1694f5f0c56ac09"
+      },
+      {
+        "group": "pgold-instance",
+        "name": "pGOLD token",
+        "address": "0x664396097e787956eaf25214049ab58a7d53d2e1",
+        "explorerUrl": "https://sepolia.etherscan.io/address/0x664396097e787956eaf25214049ab58a7d53d2e1"
+      },
+      {
+        "group": "pgold-instance",
+        "name": "Stability Pool",
+        "address": "0x3308842b03248838c83205100a0a33d716dc37d6",
+        "explorerUrl": "https://sepolia.etherscan.io/address/0x3308842b03248838c83205100a0a33d716dc37d6"
+      },
+      {
+        "group": "pgold-instance",
+        "name": "CDP NFT",
+        "address": "0xb621912e3c7383bb65b4d720ac946aa618ed129b",
+        "explorerUrl": "https://sepolia.etherscan.io/address/0xb621912e3c7383bb65b4d720ac946aa618ed129b"
+      },
+      {
+        "group": "pgold-instance",
+        "name": "ETH/USD medianiser",
+        "address": "0xbad4c21ea10259280b1980b6c3f8de806b8ec31a",
+        "explorerUrl": "https://sepolia.etherscan.io/address/0xbad4c21ea10259280b1980b6c3f8de806b8ec31a"
+      },
+      {
+        "group": "pgold-instance",
+        "name": "XAU/USD medianiser",
+        "address": "0x8f4256ec2674ed87fdf7e8079ec3933263326fe1",
+        "explorerUrl": "https://sepolia.etherscan.io/address/0x8f4256ec2674ed87fdf7e8079ec3933263326fe1"
+      },
+      {
+        "group": "pgold-instance",
+        "name": "pGOLD testnet price feed",
+        "address": "0x8a891736218fb98cabf23b39e4b8f6f2876011f4",
+        "explorerUrl": "https://sepolia.etherscan.io/address/0x8a891736218fb98cabf23b39e4b8f6f2876011f4"
+      },
+      {
+        "group": "pgold-instance",
+        "name": "CDP Manager",
+        "address": "0xf45fb3acf8dbd12673ecb0be1ee376846000c4ed",
+        "explorerUrl": "https://sepolia.etherscan.io/address/0xf45fb3acf8dbd12673ecb0be1ee376846000c4ed"
+      },
+      {
+        "group": "pgold-instance",
+        "name": "Interest Controller",
+        "address": "0xbd415a7ea90f448b3633b76f5c59c84a219b2448",
+        "explorerUrl": "https://sepolia.etherscan.io/address/0xbd415a7ea90f448b3633b76f5c59c84a219b2448"
+      },
+      {
+        "group": "pgold-instance",
+        "name": "Internal PSM",
+        "address": "0x6bcdf4a0d67ce12bf24ba4899a3be55033f90acc",
+        "explorerUrl": "https://sepolia.etherscan.io/address/0x6bcdf4a0d67ce12bf24ba4899a3be55033f90acc"
+      },
+      {
+        "group": "pgold-instance",
+        "name": "MultiCDPGetter",
+        "address": "0xe79538c2d2c2e6b6d31de4456cbabbf2adab4410",
+        "explorerUrl": "https://sepolia.etherscan.io/address/0xe79538c2d2c2e6b6d31de4456cbabbf2adab4410"
+      },
+      {
+        "group": "pgold-instance",
+        "name": "Primary Interest Router",
+        "address": "0xaa9833e7d33003004b0d66685e05bace4058d89c",
+        "explorerUrl": "https://sepolia.etherscan.io/address/0xaa9833e7d33003004b0d66685e05bace4058d89c"
+      }
+    ]
+  },
+  "production": [
+    {
+      "network": "Ethereum mainnet, chain ID 1",
+      "chainId": 1,
+      "status": "Forthcoming. No canonical production addresses are published in these docs yet."
+    }
+  ]
+}

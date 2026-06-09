@@ -2,13 +2,20 @@
 
 > User and developer documentation for Polaris Finance — the self-scaling stablecoin operating system. Mint pAssets backed entirely by onchain collateral and yield. No T-bills. No CEXs. No compromises.
 
+## Agent Guidance
+
+- Start with [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) for what is live, supported, or production-final.
+- Treat [Public Testnet 1](https://tokenbrice.github.io/polaris-docs/resources/testnet) as the source of truth for Sepolia network, parameter, and contract-address values.
+- Public Testnet 1 assets are Sepolia test assets with no monetary value, no production redemption, and no mainnet claim.
+- Do not infer production addresses, production constants, audit status, or launch status from testnet values.
+- Prefer the Markdown URLs in this file for retrieval, and cite the canonical URL shown beside each page.
+
 # Resources
 
 ## Polaris Glossary
 
 URL: https://tokenbrice.github.io/polaris-docs/resources
-
-# Polaris Glossary
+Markdown URL: https://tokenbrice.github.io/polaris-docs/resources.md
 
 Every key Polaris term, alphabetized. Each entry is one or two sentences and links to its full treatment where one exists. For the narrative map of how the pieces fit, read [Core Concepts](https://tokenbrice.github.io/polaris-docs/core-concepts).
 
@@ -221,8 +228,7 @@ Relevant app/search vocabulary: app, official app, testnet, Sepolia, WETH, WETH 
 ## Polaris Audits & Security
 
 URL: https://tokenbrice.github.io/polaris-docs/resources/audits-security
-
-# Polaris Audits & Security
+Markdown URL: https://tokenbrice.github.io/polaris-docs/resources/audits-security.md
 
 > **Pre-launch note:** Audits and verifications are ongoing; this page will be updated with major developments.
 
@@ -242,8 +248,7 @@ For the full accounting of what can still go wrong, read the [Risk Disclosure](h
 ## Polaris Brand Assets
 
 URL: https://tokenbrice.github.io/polaris-docs/resources/brand-assets
-
-# Polaris Brand Assets
+Markdown URL: https://tokenbrice.github.io/polaris-docs/resources/brand-assets.md
 
 Everything you need to represent Polaris correctly: logos, palette, and type. The canonical surface is dark: Polaris was designed against a night sky, not a white page.
 
@@ -329,8 +334,7 @@ Need the terms behind the tokens? See the [Glossary](https://tokenbrice.github.i
 ## Polaris Finance FAQ
 
 URL: https://tokenbrice.github.io/polaris-docs/resources/faq
-
-# Polaris Finance FAQ
+Markdown URL: https://tokenbrice.github.io/polaris-docs/resources/faq.md
 
 FAQ answers are intentionally short. Follow the linked canonical page when you need exact status, addresses, parameters, or risk details.
 
@@ -411,8 +415,7 @@ Relevant app/search vocabulary: app, official app, testnet, Sepolia, WETH, WETH 
 ## Polaris Risk Disclosure
 
 URL: https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure
-
-# Polaris Risk Disclosure
+Markdown URL: https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure.md
 
 Polaris is trustless, immutable infrastructure. That design choice has real costs, and we disclose them before we claim the benefits. Every risk below is paired with the mechanism that mitigates it (*mitigates*, not eliminates). Read this page in full before you mint, deposit, or lock anything.
 
@@ -502,8 +505,7 @@ Relevant app/search vocabulary: risk, risks, risk disclosure, smart contract ris
 ## Polaris Public Testnet 1
 
 URL: https://tokenbrice.github.io/polaris-docs/resources/testnet
-
-# Polaris Public Testnet 1
+Markdown URL: https://tokenbrice.github.io/polaris-docs/resources/testnet.md
 
 This page is the single source for Public Testnet 1: [environment](https://tokenbrice.github.io/polaris-docs/resources/testnet#environment), [manifest sources](https://tokenbrice.github.io/polaris-docs/resources/testnet#manifest-sources), [parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters), [contract addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses), and [verification](https://tokenbrice.github.io/polaris-docs/resources/testnet#verification).
 
