@@ -64,7 +64,7 @@
       <stop offset="100%" style="stop-color:#D4A830"/>
     </linearGradient>
 
-    <!-- Token icon gradients (for CDPs trinity) -->
+    <!-- Token icon gradients (for branch trinity) -->
     <linearGradient id="fwTokenBg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#1a3a5c"/>
       <stop offset="100%" style="stop-color:#0d1f3c"/>
@@ -123,7 +123,7 @@
     <marker id="arrowPETH" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M2,2 L10,6 L2,10" fill="none" stroke="#9ECBEB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </marker>
-    <!-- Arrow to Node 3 (CDPs & pAssets): cream #E8DCC4 -->
+    <!-- Arrow to Node 3 (Branches & pAssets): cream #E8DCC4 -->
     <marker id="arrowCream" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M2,2 L10,6 L2,10" fill="none" stroke="#E8DCC4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </marker>
@@ -264,7 +264,7 @@
     <text x="26" y="20" font-family="'Inter', Arial, sans-serif" font-size="18" font-weight="400" fill="rgba(158,203,235,0.4)" text-anchor="middle">Ever-rising floor price</text>
   </g>
 
-  <!-- ========== NODE 3: CDPs & pAssets (bottom-right, 4 o'clock) ========== -->
+  <!-- ========== NODE 3: Branches & pAssets (bottom-right, 4 o'clock) ========== -->
   <g transform="translate(920, 580)">
     <!-- Card -->
     <rect x="-140" y="-50" width="280" height="100" rx="20" fill="#0d1f3c" stroke="#E8DCC4" stroke-width="1.5" stroke-opacity="0.12" filter="url(#shadow)"/>
@@ -297,7 +297,7 @@
       </g>
     </g>
     <!-- Main text -->
-    <text x="26" y="-6" font-family="'Inter', Arial, sans-serif" font-size="22" font-weight="500" fill="#E8DCC4" text-anchor="middle" opacity="0.9">CDPs &amp; pAssets</text>
+    <text x="26" y="-6" font-family="'Inter', Arial, sans-serif" font-size="22" font-weight="500" fill="#E8DCC4" text-anchor="middle" opacity="0.9">Branches &amp; pAssets</text>
     <!-- Sub text -->
     <text x="26" y="20" font-family="'Inter', Arial, sans-serif" font-size="18" font-weight="400" fill="rgba(232,220,196,0.4)" text-anchor="middle">pUSD, pGOLD, pCHF</text>
   </g>
@@ -386,12 +386,12 @@
         stroke="#9ECBEB" stroke-width="2" fill="none" opacity="0.7"
         marker-end="url(#arrowPETH)" stroke-linecap="round"/>
 
-  <!-- Arrow 2→3: pETH Minted → CDPs & pAssets (color: cream #E8DCC4) -->
+  <!-- Arrow 2→3: pETH Minted → Branches & pAssets (color: cream #E8DCC4) -->
   <path d="M 1062,395 C 1132,438 1132,510 1062,545"
         stroke="#E8DCC4" stroke-width="2" fill="none" opacity="0.7"
         marker-end="url(#arrowCream)" stroke-linecap="round"/>
 
-  <!-- Arrow 3→4: CDPs & pAssets → Interest & Fees (color: gold #D4A830) -->
+  <!-- Arrow 3→4: Branches & pAssets → Interest & Fees (color: gold #D4A830) -->
   <path d="M 925,632 C 970,690 920,755 842,742"
         stroke="#D4A830" stroke-width="2" fill="none" opacity="0.7"
         marker-end="url(#arrowGold)" stroke-linecap="round"/>

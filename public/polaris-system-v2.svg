@@ -258,8 +258,8 @@
     <text x="50" y="148" font-family="Inter, system-ui, sans-serif" font-size="12" fill="rgba(232,220,196,0.55)" text-anchor="middle" letter-spacing="0.05em">Collateral</text>
   </g>
 
-  <!-- Arrow 3: pETH to CDP/pUSD -->
-  <!-- pETH outer ring ends at x=688, CDP card starts at x=780 -->
+  <!-- Arrow 3: pETH to CDB/pUSD -->
+  <!-- pETH outer ring ends at x=688, CDB card starts at x=780 -->
   <g>
     <line x1="693" y1="175" x2="775" y2="175" stroke="#7BA5C9" stroke-width="2" marker-end="url(#arrowBlue)" opacity="0.85"/>
     <!-- Label pill -->
@@ -267,13 +267,13 @@
     <text x="734" y="158" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#7BA5C9" text-anchor="middle" font-weight="500">deposit</text>
   </g>
 
-  <!-- ==================== STEP 4: CDPs → pUSD ==================== -->
+  <!-- ==================== STEP 4: CDB → pUSD ==================== -->
   <g transform="translate(780, 85)">
     <!-- Card Background -->
     <rect x="0" y="0" width="180" height="200" rx="24" fill="#0d1f3c" stroke="rgba(232,220,196,0.12)" stroke-width="1" filter="url(#shadow)"/>
     <rect x="4" y="4" width="172" height="192" rx="22" fill="none" stroke="rgba(232,220,196,0.03)" stroke-width="1"/>
 
-    <!-- CDPs Container -->
+    <!-- CDB Container -->
     <g transform="translate(90, 70)">
       <!-- Container outline -->
       <rect x="-70" y="-40" width="140" height="90" rx="10" fill="#122a4d" stroke="rgba(232,220,196,0.08)" stroke-width="1"/>
@@ -318,12 +318,12 @@
     </g>
 
     <!-- Title -->
-    <text x="90" y="162" font-family="'Cormorant Garamond', Georgia, serif" font-size="16" font-weight="500" fill="#E8DCC4" text-anchor="middle">CDPs</text>
+    <text x="90" y="162" font-family="'Cormorant Garamond', Georgia, serif" font-size="16" font-weight="500" fill="#E8DCC4" text-anchor="middle">CDB</text>
     <text x="90" y="182" font-family="Inter, system-ui, sans-serif" font-size="11" fill="rgba(232,220,196,0.55)" text-anchor="middle" letter-spacing="0.03em">Borrow pUSD</text>
   </g>
 
-  <!-- Arrow 4: CDP to pUSD/Yield -->
-  <!-- CDP card ends at x=960, pUSD outer ring (r=62) starts at x=1038 -->
+  <!-- Arrow 4: CDB to pUSD/Yield -->
+  <!-- CDB card ends at x=960, pUSD outer ring (r=62) starts at x=1038 -->
   <g>
     <line x1="965" y1="175" x2="1033" y2="175" stroke="#E8DCC4" stroke-width="2" marker-end="url(#arrowCream)" opacity="0.85"/>
     <!-- Label pill -->

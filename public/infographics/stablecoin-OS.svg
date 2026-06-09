@@ -186,7 +186,7 @@
     <text x="50" y="148" font-family="Inter, system-ui, sans-serif" font-size="12" fill="rgba(232,220,196,0.55)" text-anchor="middle" letter-spacing="0.05em">Collateral</text>
   </g>
 
-  <!-- ==================== FORK from pETH to 3 CDPs ==================== -->
+  <!-- ==================== FORK from pETH to 3 branches ==================== -->
 
   <!-- Fork arm: up to Row 1 (pUSD, y=140) -->
   <line x1="693" y1="340" x2="775" y2="140" stroke="#7BA5C9" stroke-width="2" marker-end="url(#arrowBlue)" opacity="0.7"/>
@@ -203,7 +203,7 @@
   <rect x="709" y="438" width="50" height="18" rx="9" fill="#0d1f3c" stroke="rgba(123,165,201,0.3)" stroke-width="1"/>
   <text x="734" y="451" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#7BA5C9" text-anchor="middle" font-weight="500">deposit</text>
 
-  <!-- ==================== ROW 1: CDPs → pUSD (centered at y=140) ==================== -->
+  <!-- ==================== ROW 1: CDB → pUSD (centered at y=140) ==================== -->
   <g transform="translate(780, 50)">
     <rect x="0" y="0" width="180" height="190" rx="24" fill="#0d1f3c" stroke="rgba(232,220,196,0.12)" stroke-width="1" filter="url(#shadow)"/>
     <rect x="4" y="4" width="172" height="182" rx="22" fill="none" stroke="rgba(232,220,196,0.03)" stroke-width="1"/>
@@ -238,11 +238,11 @@
       <rect x="18" y="45" width="34" height="14" rx="7" fill="rgba(232,220,196,0.1)"/>
       <text x="35" y="55" font-family="Inter, system-ui, sans-serif" font-size="9" fill="#E8DCC4" text-anchor="middle" font-weight="500">pUSD</text>
     </g>
-    <text x="90" y="152" font-family="'Cormorant Garamond', Georgia, serif" font-size="16" font-weight="500" fill="#E8DCC4" text-anchor="middle">CDPs</text>
+    <text x="90" y="152" font-family="'Cormorant Garamond', Georgia, serif" font-size="16" font-weight="500" fill="#E8DCC4" text-anchor="middle">CDB</text>
     <text x="90" y="172" font-family="Inter, system-ui, sans-serif" font-size="11" fill="rgba(232,220,196,0.55)" text-anchor="middle" letter-spacing="0.03em">Borrow pUSD</text>
   </g>
 
-  <!-- Arrow: CDPs → pUSD -->
+  <!-- Arrow: CDB → pUSD -->
   <g>
     <line x1="965" y1="140" x2="1033" y2="140" stroke="#E8DCC4" stroke-width="2" marker-end="url(#arrowCream)" opacity="0.85"/>
     <rect x="983" y="110" width="32" height="18" rx="9" fill="#0d1f3c" stroke="rgba(232,220,196,0.25)" stroke-width="1"/>
@@ -261,7 +261,7 @@
     <text x="50" y="125" font-family="'Cormorant Garamond', Georgia, serif" font-size="18" font-weight="600" fill="#E8DCC4" text-anchor="middle">pUSD</text>
   </g>
 
-  <!-- ==================== ROW 2: CDPs → pGOLD (centered at y=340) ==================== -->
+  <!-- ==================== ROW 2: CDB → pGOLD (centered at y=340) ==================== -->
   <g transform="translate(780, 250)">
     <rect x="0" y="0" width="180" height="190" rx="24" fill="#0d1f3c" stroke="rgba(212,168,48,0.12)" stroke-width="1" filter="url(#shadow)"/>
     <rect x="4" y="4" width="172" height="182" rx="22" fill="none" stroke="rgba(212,168,48,0.03)" stroke-width="1"/>
@@ -296,11 +296,11 @@
       <rect x="14" y="45" width="44" height="14" rx="7" fill="rgba(212,168,48,0.1)"/>
       <text x="36" y="55" font-family="Inter, system-ui, sans-serif" font-size="9" fill="#D4A830" text-anchor="middle" font-weight="500">pGOLD</text>
     </g>
-    <text x="90" y="152" font-family="'Cormorant Garamond', Georgia, serif" font-size="16" font-weight="500" fill="#E8DCC4" text-anchor="middle">CDPs</text>
+    <text x="90" y="152" font-family="'Cormorant Garamond', Georgia, serif" font-size="16" font-weight="500" fill="#E8DCC4" text-anchor="middle">CDB</text>
     <text x="90" y="172" font-family="Inter, system-ui, sans-serif" font-size="11" fill="rgba(232,220,196,0.55)" text-anchor="middle" letter-spacing="0.03em">Borrow pGOLD</text>
   </g>
 
-  <!-- Arrow: CDPs → pGOLD -->
+  <!-- Arrow: CDB → pGOLD -->
   <g>
     <line x1="965" y1="340" x2="1033" y2="340" stroke="#D4A830" stroke-width="2" marker-end="url(#arrowGold)" opacity="0.85"/>
     <rect x="983" y="310" width="32" height="18" rx="9" fill="#0d1f3c" stroke="rgba(212,168,48,0.25)" stroke-width="1"/>
@@ -327,7 +327,7 @@
     <text x="50" y="125" font-family="'Cormorant Garamond', Georgia, serif" font-size="18" font-weight="600" fill="#E8DCC4" text-anchor="middle">pGOLD</text>
   </g>
 
-  <!-- ==================== ROW 3: CDPs → pCHF (centered at y=540) ==================== -->
+  <!-- ==================== ROW 3: CDB → pCHF (centered at y=540) ==================== -->
   <g transform="translate(780, 450)">
     <rect x="0" y="0" width="180" height="190" rx="24" fill="#0d1f3c" stroke="rgba(217,179,179,0.12)" stroke-width="1" filter="url(#shadow)"/>
     <rect x="4" y="4" width="172" height="182" rx="22" fill="none" stroke="rgba(217,179,179,0.03)" stroke-width="1"/>
@@ -362,11 +362,11 @@
       <rect x="18" y="45" width="34" height="14" rx="7" fill="rgba(217,179,179,0.1)"/>
       <text x="35" y="55" font-family="Inter, system-ui, sans-serif" font-size="9" fill="#D9B3B3" text-anchor="middle" font-weight="500">pCHF</text>
     </g>
-    <text x="90" y="152" font-family="'Cormorant Garamond', Georgia, serif" font-size="16" font-weight="500" fill="#E8DCC4" text-anchor="middle">CDPs</text>
+    <text x="90" y="152" font-family="'Cormorant Garamond', Georgia, serif" font-size="16" font-weight="500" fill="#E8DCC4" text-anchor="middle">CDB</text>
     <text x="90" y="172" font-family="Inter, system-ui, sans-serif" font-size="11" fill="rgba(232,220,196,0.55)" text-anchor="middle" letter-spacing="0.03em">Borrow pCHF</text>
   </g>
 
-  <!-- Arrow: CDPs → pCHF -->
+  <!-- Arrow: CDB → pCHF -->
   <g>
     <line x1="965" y1="540" x2="1033" y2="540" stroke="#D9B3B3" stroke-width="2" marker-end="url(#arrowRose)" opacity="0.85"/>
     <rect x="983" y="510" width="32" height="18" rx="9" fill="#0d1f3c" stroke="rgba(217,179,179,0.25)" stroke-width="1"/>

@@ -211,7 +211,7 @@
     <text x="0" y="130" font-family="Inter, system-ui, sans-serif" font-size="11" fill="rgba(232,220,196,0.55)" text-anchor="middle" letter-spacing="0.05em">Collateral</text>
   </g>
 
-  <!-- Arrow 3: pETH to CDPs -->
+  <!-- Arrow 3: pETH to CDB -->
   <!-- pETH ends ~y=640, STEP 4 label at y=698 -->
   <g>
     <line x1="200" y1="645" x2="200" y2="670" stroke="#7BA5C9" stroke-width="2" opacity="0.85"/>
@@ -220,7 +220,7 @@
     <text x="237" y="664" font-family="Inter, system-ui, sans-serif" font-size="9" fill="#7BA5C9" text-anchor="middle" font-weight="500">deposit</text>
   </g>
 
-  <!-- ==================== STEP 4: CDPs ==================== -->
+  <!-- ==================== STEP 4: CDB ==================== -->
   <g transform="translate(120, 710)">
     <!-- Step Label -->
     <text x="80" y="-12" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#E8DCC4" text-anchor="middle" letter-spacing="0.15em">STEP 4</text>
@@ -228,7 +228,7 @@
     <rect x="0" y="0" width="160" height="170" rx="20" fill="#0d1f3c" stroke="rgba(232,220,196,0.12)" stroke-width="1" filter="url(#shadow)"/>
     <rect x="3" y="3" width="154" height="164" rx="18" fill="none" stroke="rgba(232,220,196,0.03)" stroke-width="1"/>
 
-    <!-- CDPs Container -->
+    <!-- CDB Container -->
     <g transform="translate(80, 60)">
       <rect x="-55" y="-32" width="110" height="75" rx="8" fill="#122a4d" stroke="rgba(232,220,196,0.08)" stroke-width="1"/>
 
@@ -272,12 +272,12 @@
     </g>
 
     <!-- Title -->
-    <text x="80" y="130" font-family="'Cormorant Garamond', Georgia, serif" font-size="14" font-weight="500" fill="#E8DCC4" text-anchor="middle">CDPs</text>
+    <text x="80" y="130" font-family="'Cormorant Garamond', Georgia, serif" font-size="14" font-weight="500" fill="#E8DCC4" text-anchor="middle">CDB</text>
     <text x="80" y="150" font-family="Inter, system-ui, sans-serif" font-size="10" fill="rgba(232,220,196,0.55)" text-anchor="middle" letter-spacing="0.03em">Borrow pUSD</text>
   </g>
 
-  <!-- Arrow 4: CDPs to pUSD -->
-  <!-- CDPs ends y=880, OUTCOME label at y=945 -->
+  <!-- Arrow 4: CDB to pUSD -->
+  <!-- CDB ends y=880, OUTCOME label at y=945 -->
   <g>
     <line x1="200" y1="885" x2="200" y2="918" stroke="#E8DCC4" stroke-width="2" opacity="0.85"/>
     <polygon points="200,928 194,916 206,916" fill="#E8DCC4" opacity="0.85"/>
