@@ -1237,14 +1237,14 @@ Flow eligibility is not automatic. Operators should prepare product details, ver
 
 ## Flow lifecycle
 
-Stage | What happens | Status
+Stage | What happens
 
-Application | Operator submits product, contracts, requested Flow, and risk details | Template pending
-Review | Stewards check eligibility, security posture, and bounds | Process pending
-Vote | vePOLAR votes on whitelist admission and settings | Voting details pending
-Activation | Recipient is added through the official execution path | Contract path pending
-Distribution | Formula allocates revenue by holdings, weights, and active parameters | Events pending
-Monitoring | Holdings, distributions, and risks are tracked | Reporting pending
+Application | Operator submits product, contracts, requested Flow, and risk details
+Review | Stewards check eligibility, security posture, and bounds
+Vote | vePOLAR votes on whitelist admission and settings
+Activation | Recipient is added through the official execution path
+Distribution | Formula allocates revenue by holdings, weights, and active parameters
+Monitoring | Holdings, distributions, and risks are tracked
 
 ## Flows vs emissions
 
