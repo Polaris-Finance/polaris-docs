@@ -23,7 +23,7 @@ Image: Polaris Dashboard ("Your Polaris") showing Stability Pool and staking APR
 - Use Public Testnet 1 at [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io).
 - Connect to Sepolia, chain ID `11155111`, and hold Sepolia ETH for gas.
 - Claim test WETH from the on-Dashboard faucet: pay `0.1` Sepolia ETH, receive `10` WETH. One claim per address every 4 hours, subject to a daily cap.
-- Confirm the frontend, network, and wallet prompts against [Safety & Verification](https://tokenbrice.github.io/polaris-docs/resources/safety-verification). Use test assets only — see [Public Testnet 1 Artifacts](https://tokenbrice.github.io/polaris-docs/resources/testnet).
+- Confirm the frontend, network, and wallet prompts against [Verification](https://tokenbrice.github.io/polaris-docs/resources/testnet#verification). Use test assets only — see [Public Testnet 1 Artifacts](https://tokenbrice.github.io/polaris-docs/resources/testnet).
 
 ## Steps/checks
 
