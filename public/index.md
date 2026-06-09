@@ -16,10 +16,10 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 Polaris sustains a yield layer for all of DeFi to seize, centered on **pETH**, a tailor-made collateral for Polaris CDPs that also has a life of its own.
 
-- **pETH** with the bonding curve, its self-scaling liquidity source ensuring strong constant liquidity
-- **pUSD**, **pGOLD** and other **pAssets** use it as collateral to back their stablecoin
-- A tranching layer splitting **pETH** into **fpETH** for protected yield exposure, and **vpETH** for maximal upside with no downside protection
-- The protocol is immutable at its core, and stewarded by the **POLAR** lockers
+- **pETH**, backed by the bonding curve, a foundational yield primitive with strong constant liquidity
+- **pUSD**, **pGOLD** and other **pAssets** use **pETH** as collateral
+- **pETH** can be splitted, creating **fpETH** for protected yield exposure and **vpETH** for maximal upside with no downside protection
+- The protocol is immutable at its core stewarded by **vePOLAR**
 
 Polaris is a trustless and immutable infrastructure for minting synthetic assets (**pAssets**) backed entirely by onchain collateral and yield. It provides competitive risk-adjusted alternative yield sources for both ETH and stablecoins. Flows enable any third-party protocol to build on top of Polaris assets by apportioning yield flows based on contract token ownership.
 
