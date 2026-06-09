@@ -44,7 +44,7 @@ const phases = [
   }
 ]
 
-function Tooltip({ title, desc, link }) {
+function Tooltip({ title, desc }) {
   return (
     <div className="pl-tooltip">
       <div className="pl-tooltip-title">{title}</div>
