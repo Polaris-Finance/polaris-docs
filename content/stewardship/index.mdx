@@ -16,7 +16,7 @@ Polaris's answer is neither a fully immutable protocol with no adjustable parame
 The mechanisms that define Polaris **cannot be changed by anyone**: not the team, not vePOLAR, not a vote. They are enforced by immutable contracts:
 
 - The [bonding curve](/peth) backing pETH
-- CDP logic and [trove](/minting/managing-your-trove) accounting
+- Branch logic and [trove](/minting/managing-your-trove) accounting
 - [Liquidations](/redemptions-liquidations/liquidations)
 - [Redemptions](/redemptions-liquidations)
 - The [Stability Pool](/yield)
@@ -29,8 +29,8 @@ Stewardship operates at the edges: StablecoinOS onboarding, permitted parameter 
 
 | Domain | Power | Constraint |
 |---|---|---|
-| **pAsset licensing** | Approve a team or instance to deploy a new pAsset on Polaris infrastructure | Standardized eligibility and launch requirements |
-| **CDP parameters** | Adjust permitted fee and distribution splits for a pAsset instance | Hardcoded min/max bounds |
+| **pAsset licensing** | Approve a team or branch to deploy a new pAsset on Polaris infrastructure | Standardized eligibility and launch requirements |
+| **Branch parameters** | Adjust permitted fee and distribution splits for a pAsset branch | Hardcoded min/max bounds |
 | **Conversion parameters** | Tune pETH-to-POLAR conversion settings (rebate, half-life, spike sensitivity) | Rebate bounded 0–100%; other bounds pending |
 | **StablecoinOS onboarding** | Whitelist eligible participants into Flow revenue sharing | Must build on pETH/pAssets and meet published requirements |
 | **Primary interest split** | Set how primary interest is split between the Stability Pool and POLAR stakers (remainder to the ecosystem fund) | Stability Pool and stakers each floored at 25% (hardcoded) |
@@ -53,7 +53,7 @@ Polaris stewardship does **not**:
 
 ## Operator prerequisites
 
-Teams seeking onboarding, a pAsset instance, Flow participation, or another stewarded action should expect to provide:
+Teams seeking onboarding, a pAsset branch, Flow participation, or another stewarded action should expect to provide:
 
 - Clear contract addresses once deployed and verified.
 - A concise description of the product, risk surface, and user flow.
@@ -92,7 +92,7 @@ Polaris follows a simple ordering: solve a problem at the lowest tier that can s
 
 ## Bounded blast radius
 
-Stewards hold real power, so they can make real mistakes, but the immutable core caps the damage. A weak pAsset affects that instance, not the bonding curve or liquidation engine. A poor split can be moved back inside the same hardcoded bounds.
+Stewards hold real power, so they can make real mistakes, but the immutable core caps the damage. A weak pAsset affects that branch, not the bonding curve or liquidation engine. A poor split can be moved back inside the same hardcoded bounds.
 
 ## How this compares to DAO governance
 

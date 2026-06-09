@@ -14,7 +14,7 @@ Most readers arrive **pre-mainnet** (Public Testnet 1 is live on Sepolia; mainne
 
 ## Product Purpose
 
-Documentation that makes a genuinely hard system **understandable and usable**: Polaris, the **pETH-powered yield layer for all of DeFi** (a self-scaling, counterparty-free stablecoin operating system). It explains how the three engines (pAssets / CDP, pETH / bonding curve, POLAR / conversion) work, how to use them, and the trade-offs each one makes.
+Documentation that makes a genuinely hard system **understandable and usable**: Polaris, the **pETH-powered yield layer for all of DeFi** (a self-scaling, counterparty-free stablecoin operating system). It explains how the three engines (pAssets / branches and CDPs, pETH / bonding curve, POLAR / conversion) work, how to use them, and the trade-offs each one makes.
 
 Success is **comprehension**: a technically-literate newcomer leaves able to explain what Polaris does, why it is architected to stay trustless at scale, and what a given action will do to their position — without having to read the contracts. It is a reference tool first; the brand expression serves that comprehension, never competes with it.
 
@@ -39,7 +39,7 @@ This must NOT look or feel like any of:
 
 ## Design Principles
 
-1. **Familiar thing first.** Introduce every concept by anchoring it to something the reader already knows (a CDP, a bonding curve, a stablecoin they've used), then show how Polaris differs. Comprehension is the product.
+1. **Familiar thing first.** Introduce every concept by anchoring it to something the reader already knows (an individual CDP, a bonding curve, a stablecoin they've used), then show how Polaris differs. Comprehension is the product.
 2. **Honest by construction.** Show trade-offs, name what the system does *not* do, and put risk and caveats at the point of decision. When a parameter isn't final, say so plainly. Trust is earned by candor, not asserted.
 3. **Readability outranks decoration.** On dense technical content, when brand expression and legibility conflict, legibility wins. Effects must clarify (a diagram, a depth meter, a status badge), never just impress.
 4. **Expert confidence, not hype.** Authority comes from precision and plain language. No buzzwords, no urgency theater, no manufactured excitement — the architecture is the argument.

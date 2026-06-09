@@ -9,13 +9,13 @@ description: A one-page map of the Polaris system, with every key term defined b
 
 <SystemOverviewFigure caption={null} />
 
-*Key takeaway: one collateral primitive feeds the whole system; pETH creates collateral, CDPs mint pAssets, and POLAR conversion raises the pETH floor.*
+*Key takeaway: one collateral primitive feeds the whole system; pETH creates collateral, branches mint pAssets, and POLAR conversion raises the pETH floor.*
 
 The diagram traces four steps and an outcome:
 
 1. **Swap.** ETH enters the **bonding curve** and is issued as **pETH**; the curve captures volatility.
-2. **Collateral.** pETH is deposited as the sole collateral for **CDPs**.
-3. **Borrow.** A CDP mints **pUSD** (or another pAsset) against that pETH, for scalable onchain yield.
+2. **Collateral.** pETH is deposited as the sole collateral for pAsset **branches**.
+3. **Borrow.** A user opens a **CDP** in a branch to mint **pUSD** (or another pAsset) against that pETH, for scalable onchain yield.
 4. **Stewardship.** Burning pETH in a conversion auction mints **POLAR**, raising the pETH floor price and releasing ETH.
 
 This page is the system map. Each term is defined briefly and links to its full treatment.
@@ -23,7 +23,7 @@ This page is the system map. Each term is defined briefly and links to its full 
 ## The assets
 
 <DefinitionCard term="pAsset" token="passet">
-A synthetic debt asset minted from a Polaris CDP (pUSD, pGOLD, pCHF, …). Each is overcollateralized by pETH and counterparty-free. See [The pAsset Catalog](/minting/passet-catalog).
+A synthetic debt asset minted from a Polaris branch through user CDPs (pUSD, pGOLD, pCHF, …). Each is overcollateralized by pETH and counterparty-free. See [The pAsset Catalog](/minting/passet-catalog).
 </DefinitionCard>
 
 <DefinitionCard term="pUSD" token="pusd">
@@ -31,7 +31,7 @@ The flagship pAsset, pegged to the US dollar, backed by pETH collateral. See [Mi
 </DefinitionCard>
 
 <DefinitionCard term="pETH" token="peth">
-ETH deposited into a two-way [bonding curve](/peth). It is not CDP-minted debt; it is the <em>only</em> collateral Polaris accepts, has a contract-defined floor, and is yield-bearing.
+ETH deposited into a two-way [bonding curve](/peth). It is not debt minted from a CDP; it is the <em>only</em> collateral Polaris accepts, has a contract-defined floor, and is yield-bearing.
 </DefinitionCard>
 
 <DefinitionCard term="POLAR" token="polar">
@@ -40,16 +40,20 @@ The protocol's stewardship token. After a fixed distribution at launch, new POLA
 
 ## Minting & positions
 
+<DefinitionCard term="CDB / Branch" token="default">
+Collateralized Debt Branch: the aggregate protocol branch for one pAsset. A branch contains that pAsset's minting and redemption logic, debt accounting, risk parameters, Stability Pool, and all user CDPs. See [The pAsset Catalog](/minting/passet-catalog).
+</DefinitionCard>
+
 <DefinitionCard term="CDP" token="default">
-Collateralized Debt Position: the mechanism behind minting. You post collateral and mint the pAsset directly from the protocol, not by borrowing another user's funds. See [Minting pAssets](/minting).
+Collateralized Debt Position: your individual borrowing position inside a branch. You post pETH collateral and mint the pAsset directly from the protocol, not by borrowing another user's funds. Each CDP has its own collateral, debt, and loan-to-value (LTV). See [Minting pAssets](/minting).
 </DefinitionCard>
 
 <DefinitionCard term="Trove" token="default">
-Your individual borrowing position in a Polaris CDP. Each trove is isolated, with its own collateral, debt, and loan-to-value (LTV). See [Managing Your Trove](/minting/managing-your-trove).
+The Polaris app term for an individual CDP. Each trove is isolated, with its own collateral, debt, and loan-to-value (LTV). See [Managing Your Trove](/minting/managing-your-trove).
 </DefinitionCard>
 
 <DefinitionCard term="StablecoinOS" token="default">
-Polaris is a <em>factory</em> of CDP instances, each issuing a different pAsset but all sharing the same pETH collateral and bonding curve.
+Polaris is a <em>factory</em> of pAsset branches, each issuing a different pAsset but all sharing the same pETH collateral and bonding curve.
 </DefinitionCard>
 
 ## Keeping the peg
@@ -101,7 +105,7 @@ A stewardship role steers <em>quantitative parameters</em>, with safety-critical
 <NextSteps
   steps={[
     { href: '/launch-status', title: 'Launch Status', description: 'Official app and network status, plus the shortest path from "I have ETH" to using Polaris.' },
-    { href: '/minting', title: 'Minting pAssets', description: 'How the CDP works from first principles.' },
+    { href: '/minting', title: 'Minting pAssets', description: 'How branches and individual CDPs work from first principles.' },
     { href: '/why-polaris', title: 'Why Polaris?', description: 'The stablecoin trilemma and how Polaris resolves it.' }
   ]}
 />

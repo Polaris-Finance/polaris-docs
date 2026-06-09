@@ -11,7 +11,7 @@ Polaris is trustless, immutable infrastructure. That design choice has real cost
 
 ## Smart-contract risk
 
-Polaris lives entirely onchain. Its bonding curve, CDPs, Stability Pool, and conversion auctions are smart contracts, and any smart contract can contain bugs.
+Polaris lives entirely onchain. Its bonding curve, branch contracts, CDP accounting, Stability Pool, and conversion auctions are smart contracts, and any smart contract can contain bugs.
 
 **Mitigation.** The intended core is immutable and admin-key-free, removing upgrade and governance-key attack surface but raising the stakes on getting the code right. Final audit reports are not published in these docs yet; until reports appear on [Audits & Security](/resources/audits-security), treat the protocol as unaudited. Immutability cuts both ways: it cannot be tampered with, and it cannot be patched. Residual risk is never zero.
 

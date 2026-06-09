@@ -15,7 +15,7 @@ These labels match the current testnet app and route users to the glossary entry
 |---|---|---|
 | Advanced | [Advanced](#a) | [Advanced app tools](/using-app/advanced) |
 | APR | [APR](#a) | [Earn](/using-app/earn) |
-| Borrow / CDP | [CDP](#c), [Trove](#t) | [Borrow](/using-app/borrow) |
+| Borrow / CDP | [CDP](#c), [Trove](#t), [CDB / Branch](#c) | [Borrow](/using-app/borrow) |
 | Earn / SP | [Stability Pool](#s), [SP](#s) | [Earn](/using-app/earn) |
 | Floor Carry | [Floor Carry](#f) | [Split](/using-app/split) |
 | fpETH / vpETH | [fpETH](#f), [vpETH](#v) | [Split](/using-app/split) |
@@ -47,8 +47,11 @@ The two-way curve that mints and burns [pETH](/peth), giving it a contract-nativ
 
 ## C
 
+**CDB (Collateralized Debt Branch)**
+The aggregate protocol branch for one pAsset. A branch contains that pAsset's minting and redemption logic, debt accounting, risk parameters, Stability Pool, and all user [CDPs](#c). See [Core Concepts](/core-concepts).
+
 **CDP (Collateralized Debt Position)**
-The mechanism behind minting: post collateral, mint a pAsset directly from the protocol rather than borrowing another user's funds. Each position is an isolated [trove](#t). See [Minting pAssets](/minting).
+Your individual borrowing position inside a [branch](#c): post pETH collateral, mint a pAsset directly from the protocol, and owe that debt back. In the Polaris app and these docs, an individual CDP is also called a [trove](#t). See [Minting pAssets](/minting).
 
 **Conversion auction**
 The mechanism that burns [pETH](/peth) to mint new [POLAR](/polar). See [Conversion Auctions](/polar/conversion-auctions).
@@ -113,7 +116,7 @@ An onchain feed used to price ETH collateral. Peg awareness uses minting and red
 ## P
 
 **pAsset**
-A Polaris synthetic debt asset minted from a CDP — pUSD, pGOLD, pCHF, and beyond. Each is overcollateralized by pETH and counterparty-free. pETH itself is the collateral token, not CDP-minted pAsset debt. See [The pAsset Catalog](/minting/passet-catalog).
+A Polaris synthetic debt asset minted from a branch through user CDPs — pUSD, pGOLD, pCHF, and beyond. Each is overcollateralized by pETH and counterparty-free. pETH itself is the collateral token, not CDP-minted pAsset debt. See [The pAsset Catalog](/minting/passet-catalog).
 
 **pBigMac**
 A novelty pAsset demonstrating the "mint anything" thesis: if a price feed exists, Polaris can mint a pAsset that tracks it.
@@ -140,7 +143,7 @@ The protocol's stewardship token and outward-facing growth lever. After the init
 The current app surface for staking POLAR and claiming routed rewards where exposed. It is distinct from forthcoming [vePOLAR](#v) locking.
 
 **PSM (Peg Stability Module)**
-The contract/module that handles pAsset minting and redemption mechanics for a pAsset instance. Use PSM or redemption actions only after checking the pAsset, fee, output amount, and contract address.
+The contract/module that handles pAsset minting and redemption mechanics for a pAsset branch. Use PSM or redemption actions only after checking the pAsset, fee, output amount, and contract address.
 
 **pUSD**
 The flagship pAsset, designed to track the US dollar and be backed by pETH collateral. See [Minting pAssets](/minting).
@@ -174,7 +177,7 @@ The pricing model for [conversion auctions](/polar/conversion-auctions): the con
 A reserve of pAssets that absorbs the debt of [liquidated](/redemptions-liquidations/liquidations) troves and is the protocol's primary venue for earning yield. See [The Stability Pool](/yield).
 
 **StablecoinOS**
-The CDP-factory layer: many distinct pAssets, each issued by its own CDP instance, all sharing one pETH collateral and bonding curve. See [Core Concepts](/core-concepts).
+The branch factory: many distinct pAsset branches, each issuing its own pAsset, all sharing one pETH collateral and bonding curve. See [Core Concepts](/core-concepts).
 
 **Stewardship**
 The bounded role stewards play: tuning *quantitative parameters within the bounds the contracts define*. The immutable core cannot be changed; stewards steward, they do not govern. See [Stewardship, not Governance](/stewardship).
@@ -185,7 +188,7 @@ The bounded role stewards play: tuning *quantitative parameters within the bound
 The system-wide reserve-to-debt health metric for a pAsset. Dropping below the configured threshold triggers [Recovery Mode](/redemptions-liquidations/recovery-mode).
 
 **Trove**
-An individual borrowing position in a Polaris CDP. Each trove is isolated, with its own collateral, debt, and [LTV](#l). Polaris uses *trove*, never "vault" or "position". See [Minting pAssets](/minting).
+The Polaris app term for an individual [CDP](#c). Each trove is isolated, with its own collateral, debt, and [LTV](#l). Polaris uses *trove*, never "vault". See [Minting pAssets](/minting).
 
 ## V
 

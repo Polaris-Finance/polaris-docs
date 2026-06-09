@@ -1,33 +1,34 @@
 ---
 title: Minting Polaris pAssets
-description: How the Polaris CDP model mints pAssets directly from the protocol against pETH collateral, with autonomous market-aware interest rates.
+description: How Polaris branches let user CDPs mint pAssets directly from the protocol against pETH collateral, with autonomous market-aware interest rates.
 ---
 
 # Minting Polaris pAssets
 
-## The CDP model
+## Branches and CDPs
 
-Polaris issues pAssets through a **Collateralized Debt Position (CDP)**. From the outside it looks like borrowing against collateral, but underneath it differs from a money market like Aave.
+Polaris issues each pAsset through a **Collateralized Debt Branch (CDB)**. A branch is the aggregate protocol layer for one pAsset; each borrower opens an individual **Collateralized Debt Position (CDP)** inside that branch. From the outside it looks like borrowing against collateral, but underneath it differs from a money market like Aave.
 
 - A **money market** matches lenders and borrowers through a shared pool. You borrow funds another user supplied; an interest rate floats with pool utilization.
 - A **CDP** lets each borrower **mint** the pAsset directly from the protocol. You aren't borrowing anyone's deposit; you're your own mini central bank: post collateral ⇒ mint a pAsset ⇒ owe that debt back.
 
-Each position is isolated in a **[trove](/minting/managing-your-trove)** with its own collateral, debt, and loan-to-value (LTV). Users of a given pAsset share only (1) the pAsset and its peg state, and (2) system-wide parameters like the [Total Collateralization Ratio and Recovery Mode](/redemptions-liquidations/recovery-mode). That isolation bounds the blast radius: each pAsset keeps its own debt accounting, so trouble in one cannot reach the troves or collateral of another.
+Each CDP is isolated in a **[trove](/minting/managing-your-trove)** with its own collateral, debt, and loan-to-value (LTV). Users of a given pAsset share only (1) the branch's pAsset and peg state, and (2) branch-wide parameters like the [Total Collateralization Ratio and Recovery Mode](/redemptions-liquidations/recovery-mode). That isolation bounds the blast radius: each branch keeps its own debt accounting, so trouble in one cannot reach the troves or collateral of another.
 
 ## Borrower terminology
 
 | Term you may see | Docs term | Meaning |
 |---|---|---|
 | **Borrow** | User action | The app tab/action for taking on debt. |
-| **CDP** | Mechanism | The collateralized debt contract model for a pAsset instance. |
-| **Trove** | Position | Your individual pAsset borrowing position: collateral, debt, and LTV. |
+| **CDB / Branch** | Aggregate | The pAsset-level protocol branch: token, minting/redemption logic, accounting, parameters, Stability Pool, and all user CDPs. |
+| **CDP** | Position | Your individual pAsset borrowing position: collateral, debt, and LTV. |
+| **Trove** | App/docs term | The Polaris name for an individual CDP. |
 | **Loan / Reserve Loan** | Separate product | A WETH loan against fpETH floor-value collateral, not a pAsset trove. |
 
 When these docs say **trove**, they mean a pAsset debt position. When the app says **Reserve Loan**, read [pETH Split: fpETH and vpETH](/peth/split) instead; reserve loans use fpETH, not pETH trove collateral.
 
 ### Strengths and trade-offs
 
-The CDP model is ~8 years proven, its strengths and weaknesses well understood; Polaris's design amplifies the former and dampens the latter.
+The CDP model is ~8 years proven, its strengths and weaknesses well understood; Polaris applies it through pAsset branches, amplifying the former and dampening the latter.
 
 | Strengths | Trade-offs |
 |---|---|
@@ -47,7 +48,7 @@ Polaris does not accept wstETH or other staked-ETH tokens: they would be externa
 
 ### Autonomous, market-aware interest rates
 
-Setting CDP interest rates is where most designs struggle: Maker still uses governance-set rates (spiky, unpredictable); Liquity v1 had none (sustained supply pressure as T-bill rates rose); Liquity v2 pushes rate-setting onto users.
+Setting branch interest rates is where most designs struggle: Maker still uses governance-set rates (spiky, unpredictable); Liquity v1 had none (sustained supply pressure as T-bill rates rose); Liquity v2 pushes rate-setting onto users.
 
 Polaris sets rates **autonomously, without a direct market-price feed for the pAsset**, by reading signals already inside the system:
 
