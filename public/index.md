@@ -17,7 +17,7 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 Polaris sustains a yield layer for all of DeFi to seize, centered on **pETH**, a tailor-made collateral for Polaris CDPs that also has a life of its own.
 
 - **pETH**, backed by the bonding curve, a foundational yield primitive with strong constant liquidity
-- **pUSD**, **pGOLD** and other **pAssets** use **pETH** as collateral
+- **pUSD**, **pGOLD** and other Polaris immutable stablecoins use **pETH** as collateral
 - **pETH** can be splitted, creating **fpETH** for protected yield exposure and **vpETH** for maximal upside with no downside protection
 - The protocol is immutable at its core stewarded by **vePOLAR**
 
