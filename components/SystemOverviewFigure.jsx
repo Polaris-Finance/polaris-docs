@@ -1,9 +1,13 @@
 import { pathWithBase } from '../app/site-config.mjs'
 
-export function SystemOverviewFigure() {
+const DEFAULT_CAPTION =
+  'One collateral (pETH), one CDP factory for pAssets, one floor-raising burn for POLAR.'
+
+export function SystemOverviewFigure({ caption = DEFAULT_CAPTION }) {
   return (
     <figure className="pl-system-overview">
       <img
+        className="pl-system-overview__horizontal"
         src={pathWithBase('/polaris-system-v2.svg')}
         alt="Polaris system overview: ETH swaps into pETH on the bonding curve, pETH collateralizes CDPs that mint pUSD, and burning pETH for POLAR raises the floor and releases ETH"
         width={1200}
@@ -11,10 +15,16 @@ export function SystemOverviewFigure() {
         loading="lazy"
         decoding="async"
       />
-      <figcaption>
-        Polaris has one collateral primitive, pETH, one CDP factory for pAssets, and one conversion
-        path that burns pETH to mint POLAR while raising the floor.
-      </figcaption>
+      <img
+        className="pl-system-overview__vertical"
+        src={pathWithBase('/polaris-system-v2-vertical.svg')}
+        alt="Polaris system overview: ETH swaps into pETH on the bonding curve, pETH collateralizes CDPs that mint pUSD, and burning pETH for POLAR raises the floor and releases ETH"
+        width={400}
+        height={1450}
+        loading="lazy"
+        decoding="async"
+      />
+      {caption ? <figcaption>{caption}</figcaption> : null}
     </figure>
   )
 }
