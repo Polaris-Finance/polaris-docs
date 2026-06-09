@@ -22,6 +22,7 @@ const PLACEHOLDER = 'Search the docs…'
 const MAX_PAGES = 8
 const MAX_SUBRESULTS = 5
 const SEARCH_OPTIONS = { excerptLength: 18 }
+const MAX_FACETS = 8
 const RECENT_KEY = 'polaris-docs:recent-searches'
 const MAX_RECENT = 5
 
@@ -60,6 +61,8 @@ function loadPagefind() {
     pagefindPromise = (async () => {
       const pf = await import(/* webpackIgnore: true */ pathWithBase('/_pagefind/pagefind.js'))
       await pf.options({ baseUrl: '/' })
+      // Warm the filter index so search responses include section facet counts.
+      await pf.filters()
       return pf
     })()
   }
@@ -171,6 +174,7 @@ export function PolarisSearch() {
         .filter(([, count]) => count > 0)
         .map(([value, count]) => ({ value, count }))
         .sort((a, b) => b.count - a.count)
+        .slice(0, MAX_FACETS)
 
       setPages(nextPages)
       setFacets(nextFacets)
@@ -220,7 +224,10 @@ export function PolarisSearch() {
   // with the rendered rows below, which use the same source arrays in order).
   const navItems =
     status === 'ready'
-      ? pages.flatMap((p) => p.subResults.map((s) => ({ url: s.url })))
+      ? pages.flatMap((p) => [
+          { url: p.url },
+          ...p.subResults.filter((s) => s.url !== p.url).map((s) => ({ url: s.url }))
+        ])
       : status === 'idle'
         ? [...recent.map((q) => ({ query: q })), ...START_HERE.map((s) => ({ url: s.url }))]
         : status === 'empty'
@@ -301,21 +308,29 @@ export function PolarisSearch() {
     setSection((current) => (current === value ? null : value))
   }
 
-  const resultCount = pages.reduce((n, p) => n + p.subResults.length, 0)
   const activeId = active >= 0 ? `${id}-i-${active}` : undefined
 
   // Pre-indexed view models so each row knows its keyboard index without any
   // render-time counter mutation. Indices match navItems order exactly.
   const recentRows = recent.map((q, i) => ({ q, index: i }))
   const startRows = START_HERE.map((s, i) => ({ ...s, index: recent.length + i }))
-  const pageStarts = pages.map((_, i) =>
-    pages.slice(0, i).reduce((n, p) => n + p.subResults.length, 0)
-  )
-  const readyGroups = pages.map((page, i) => ({
+  // Each page is a clickable header (to the page top) followed by its matched
+  // section rows. The page-root sub-result is dropped: its excerpt is just the
+  // down-weighted synonym block, and the header already links to the top.
+  const readyModels = pages.map((page) => ({
     page,
-    rows: page.subResults.map((sub, k) => ({ ...sub, index: pageStarts[i] + k }))
+    rows: page.subResults.filter((s) => s.url !== page.url)
+  }))
+  const modelOffsets = readyModels.map((_, i) =>
+    readyModels.slice(0, i).reduce((n, m) => n + 1 + m.rows.length, 0)
+  )
+  const readyGroups = readyModels.map((m, i) => ({
+    page: m.page,
+    headIndex: modelOffsets[i],
+    rows: m.rows.map((sub, k) => ({ ...sub, index: modelOffsets[i] + 1 + k }))
   }))
   const recoveryRows = RECOVERY.map((r, i) => ({ ...r, index: i }))
+  const resultCount = readyGroups.reduce((n, g) => n + 1 + g.rows.length, 0)
 
   return (
     <div ref={containerRef} className="nextra-search pl-search">
@@ -441,9 +456,21 @@ export function PolarisSearch() {
             )}
 
             {status === 'ready' &&
-              readyGroups.map(({ page, rows }) => (
+              readyGroups.map(({ page, headIndex, rows }) => (
                 <div key={page.url} className="pl-search-group" role="presentation">
-                  <div className="pl-search-group-head">
+                  <a
+                    id={`${id}-i-${headIndex}`}
+                    href={hrefWithBase(page.url)}
+                    role="option"
+                    aria-selected={active === headIndex}
+                    data-active={active === headIndex ? '' : undefined}
+                    className="pl-search-group-head pl-search-group-head--link"
+                    onMouseMove={() => setActive(headIndex)}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      onItem({ url: page.url })
+                    }}
+                  >
                     {page.section && (
                       <span className="pl-search-eyebrow" data-kind={page.kind}>
                         <span className="pl-search-dot" aria-hidden="true" />
@@ -451,7 +478,7 @@ export function PolarisSearch() {
                       </span>
                     )}
                     <span className="pl-search-page-title">{page.title}</span>
-                  </div>
+                  </a>
                   {rows.map((row) => (
                     <ResultRow
                       key={row.url}
