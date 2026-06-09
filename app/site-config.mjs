@@ -46,6 +46,12 @@ export function pathWithBase(pathname = '/') {
   return `${BASE_PATH}${path}`
 }
 
+export function markdownPathForRoute(pathname = '/') {
+  const path = pathname.startsWith('/') ? pathname : `/${pathname}`
+  if (path === '/') return '/index.md'
+  return `${path.replace(/\/$/, '')}.md`
+}
+
 export function isExternalHref(href) {
   return typeof href === 'string' && /^https?:\/\//.test(href)
 }

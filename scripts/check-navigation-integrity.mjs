@@ -28,6 +28,11 @@ function routeForFile(fullPath) {
   return `/${route}`
 }
 
+function markdownPathForRoute(route) {
+  if (route === '/') return 'index.md'
+  return `${route.replace(/^\//, '').replace(/\/$/, '')}.md`
+}
+
 function metaPathForFile(fullPath) {
   return path.join(path.dirname(fullPath), '_meta.js')
 }
@@ -105,6 +110,24 @@ if (llmsIndex) {
   const indexedRoutes = new Set((llmsIndex.pages ?? []).map((page) => page.route))
   for (const route of routes) {
     if (!indexedRoutes.has(route)) failures.push(`public/llms-index.json is missing route ${route}`)
+  }
+
+  for (const page of llmsIndex.pages ?? []) {
+    const markdownUrl = page.markdownUrl
+    if (typeof markdownUrl !== 'string') {
+      failures.push(`public/llms-index.json route ${page.route} is missing markdownUrl`)
+      continue
+    }
+
+    const expectedPath = new URL(absoluteUrl(`/${markdownPathForRoute(page.route)}`)).pathname
+    if (new URL(markdownUrl).pathname !== expectedPath) {
+      failures.push(`public/llms-index.json markdownUrl mismatch for ${page.route}`)
+    }
+
+    const markdownFile = path.join(publicDir, markdownPathForRoute(page.route))
+    if (!existsSync(markdownFile)) {
+      failures.push(`public/${markdownPathForRoute(page.route)} is missing`)
+    }
   }
 }
 

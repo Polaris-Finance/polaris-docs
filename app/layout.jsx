@@ -8,6 +8,7 @@ import { JsonLd } from './JsonLd'
 import { buildGlobalJsonLd, metadataBase } from './seo.mjs'
 import {
   absoluteUrl,
+  markdownPathForRoute,
   OG_IMAGE_ALT,
   OG_IMAGE_HEIGHT,
   OG_IMAGE_PATH,
@@ -54,8 +55,13 @@ export const metadata = {
     canonical: pathWithBase('/'),
     types: {
       'text/markdown': [
+        { url: pathWithBase(markdownPathForRoute('/')), title: 'Markdown: Polaris Documentation' },
         { url: pathWithBase('/llms.txt'), title: 'llms.txt' },
         { url: pathWithBase('/llms-full.txt'), title: 'llms-full.txt' }
+      ],
+      'application/json': [
+        { url: pathWithBase('/llms-index.json'), title: 'LLM docs index' },
+        { url: pathWithBase('/polaris-testnet-manifest.json'), title: 'Polaris testnet manifest' }
       ]
     }
   },

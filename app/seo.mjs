@@ -4,6 +4,7 @@ import {
   OG_IMAGE_HEIGHT,
   OG_IMAGE_PATH,
   OG_IMAGE_WIDTH,
+  markdownPathForRoute,
   ORGANIZATION_NAME,
   pathWithBase,
   SEARCH_URL_TEMPLATE,
@@ -189,8 +190,16 @@ export function buildPageMetadata(metadata, path) {
       canonical: pathWithBase(path),
       types: {
         'text/markdown': [
+          { url: pathWithBase(markdownPathForRoute(path)), title: `Markdown: ${title}` },
           { url: pathWithBase('/llms.txt'), title: 'llms.txt' },
           { url: pathWithBase('/llms-full.txt'), title: 'llms-full.txt' }
+        ],
+        'application/json': [
+          { url: pathWithBase('/llms-index.json'), title: 'LLM docs index' },
+          {
+            url: pathWithBase('/polaris-testnet-manifest.json'),
+            title: 'Polaris testnet manifest'
+          }
         ]
       }
     },

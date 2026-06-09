@@ -183,7 +183,38 @@ const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://w
   )
   .join('\n')}\n</urlset>\n`
 
-const robots = `User-agent: *\nAllow: /\n\nSitemap: ${absoluteUrl('/sitemap.xml')}\n`
+const robots = `# Polaris docs are public documentation. Allow search, retrieval, and AI assistant crawlers to fetch the canonical docs and LLM artifacts.
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Claude-SearchBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: *
+Allow: /
+
+Sitemap: ${absoluteUrl('/sitemap.xml')}
+`
 
 const failures = [checkOrWrite('sitemap.xml', sitemap), checkOrWrite('robots.txt', robots)].filter(
   Boolean
