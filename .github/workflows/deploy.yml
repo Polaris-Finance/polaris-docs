@@ -81,6 +81,7 @@ jobs:
         uses: actions/upload-pages-artifact@v5
         with:
           path: ./out
+          include-hidden-files: true
 
   production-audit:
     name: Production dependency audit
