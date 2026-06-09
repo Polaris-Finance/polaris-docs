@@ -882,7 +882,7 @@ Next steps:
 - [Liquidations](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations): Understand what happens if your LTV crosses the maximum.
 - [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield): Earn yield by depositing pAssets.
 
-Relevant app/search vocabulary: Borrow, Manage Trove, borrow, mint, open trove, repay, close trove, pUSD, pGOLD, LTV, loan-to-value, official app.
+Relevant app/search vocabulary: Borrow, Manage Trove, borrow, mint, open trove, repay, close trove, pUSD, pGOLD, LTV, loan-to-value, official app, trove, manage trove, borrower trove.
 
 ---
 
@@ -944,7 +944,7 @@ Next steps:
 - [The Bonding Curve](https://tokenbrice.github.io/polaris-docs/peth): Acquire pETH, the only collateral Polaris accepts.
 - [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield): Earn yield by depositing the pAssets you mint.
 
-Relevant app/search vocabulary: Borrow, Manage Trove, borrow, mint, open trove, repay, close trove, pUSD, pGOLD, LTV, loan-to-value, official app.
+Relevant app/search vocabulary: Borrow, Manage Trove, borrow, mint, open trove, repay, close trove, pUSD, pGOLD, LTV, loan-to-value, official app, trove, manage trove, borrower trove.
 
 ---
 
@@ -1092,7 +1092,7 @@ Next steps:
 [The Bonding Curve: Polaris' Secret Weapon](https://polarisfinance.io/blog/bonding-curve/)
 How a single mechanism enables pETH's rising floor, contract-native liquidity, and protocol-wide value capture.
 
-Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor price.
+Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor price, pETH bonding curve, bonding curve, pETH floor.
 
 ---
 
@@ -1158,7 +1158,7 @@ The relevant invariants stay unchanged and unbroken | The floor depends on reser
 
 > Your risk in pETH is decided at entry: the spread between your entry price and the floor (the floor ratio), plus execution and technical risk. Under the intended curve invariant, normal protocol activity moves the floor up, not down.
 
-Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor price.
+Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor price, pETH bonding curve, bonding curve, pETH floor.
 
 ---
 
@@ -1230,7 +1230,7 @@ Floor carry is not a fixed APR. It depends on actual floor growth from protocol 
 - [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow) for reserve loans.
 - [Dashboard](https://tokenbrice.github.io/polaris-docs/using-app) for live token prices; the floor and market price show on the Split tab.
 
-Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor price.
+Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor price, pETH bonding curve, bonding curve, pETH floor.
 
 ---
 
@@ -1282,7 +1282,7 @@ Next steps:
 - [Conversion Auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions): How spike-and-decay pricing, rebates, and floor growth work.
 - [Stewardship](https://tokenbrice.github.io/polaris-docs/stewardship): Bounded parameter control and future vePOLAR.
 
-Relevant app/search vocabulary: POLAR, convert, lock, vePOLAR, burn pETH, conversion auction.
+Relevant app/search vocabulary: POLAR, convert, lock, vePOLAR, burn pETH, conversion auction, POLAR token, POLAR staking, POLAR tokenomics.
 
 ---
 
@@ -1451,7 +1451,7 @@ The **Polar Council** is a planned treasury-funded program for onboarding and ec
 
 **[Go deeper →](https://polarisfinance.io/blog/)**
 
-Relevant app/search vocabulary: POLAR, convert, lock, vePOLAR, burn pETH, conversion auction.
+Relevant app/search vocabulary: POLAR, convert, lock, vePOLAR, burn pETH, conversion auction, POLAR token, POLAR staking, POLAR tokenomics.
 
 ---
 
@@ -1968,12 +1968,11 @@ Field | Status
 POLAR contract address | Pending
 vePOLAR contract address | Pending
 Network | Public Testnet 1: Sepolia; production: Ethereum mainnet after launch
-Lock duration choices | Pending
-Vote-power formula and decay | Pending
-Increase/extend | Pending
-Withdraw | Pending
-Delegation | Pending
-Yield claim path | Pending
+Lock duration choices | 1 week to 4 years
+Vote-power formula and decay | Linear decay
+Increase/extend | Enabled
+Withdraw | Only at lock expiry
+Delegation | Enabled
 
 ## Yield for lockers
 
