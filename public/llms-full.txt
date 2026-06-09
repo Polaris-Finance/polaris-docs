@@ -1868,10 +1868,10 @@ If a whitelisted contract holds 20% of the whitelisted pETH supply, it receives 
 
 ## Flow families
 
-Flow | Recipients | Funded by | Status
+Flow | Recipients | Funded by
 
-pETH Flow | Eligible pETH-holding contracts | Bonding-curve and conversion-related revenue | Pending
-pAsset Flow | Eligible pAsset-holding contracts | Borrower interest or other pAsset revenue after required Stability Pool allocation | Pending
+pETH Flow | Eligible pETH-holding contracts | Bonding-curve and conversion-related revenue
+pAsset Flow | Eligible pAsset-holding contracts | Borrower interest or other pAsset revenue after required Stability Pool allocation
 
 Each Flow has its own whitelist, observed asset, recipient rules, and parameter bounds. Final contracts will define which assets, recipients, and revenue sources go live.
 
