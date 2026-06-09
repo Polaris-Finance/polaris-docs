@@ -44,8 +44,11 @@ for (const relativePath of [
   'public/sitemap.xml',
   'public/robots.txt',
   'public/llms.txt',
+  'public/.well-known/llms.txt',
   'public/llms-full.txt',
-  'public/llms-index.json'
+  'public/.well-known/llms-full.txt',
+  'public/llms-index.json',
+  'public/polaris-testnet-manifest.json'
 ]) {
   const text = readIfExists(relativePath)
   if (!text) {

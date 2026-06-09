@@ -252,6 +252,78 @@ function assertLlmsIndex(text) {
       continue
     }
     assertOutReferenceExists('out/llms-index.json', page.url)
+
+    if (typeof page.markdownUrl !== 'string' || !page.markdownUrl.startsWith(SITE_BASE_URL)) {
+      failures.push(
+        `out/llms-index.json markdown URL does not match SITE_URL/BASE_PATH: ${page.markdownUrl}`
+      )
+      continue
+    }
+    assertOutReferenceExists('out/llms-index.json', page.markdownUrl)
+  }
+
+  const sections = parsed.artifacts?.sections ?? []
+  if (!Array.isArray(sections) || !sections.length) {
+    failures.push('out/llms-index.json has no section artifact entries')
+  }
+
+  for (const section of sections) {
+    if (typeof section.url !== 'string' || !section.url.startsWith(SITE_BASE_URL)) {
+      failures.push(
+        `out/llms-index.json section URL does not match SITE_URL/BASE_PATH: ${section.url}`
+      )
+      continue
+    }
+    assertOutReferenceExists('out/llms-index.json', section.url)
+  }
+
+  for (const [key, value] of Object.entries(parsed.artifacts ?? {})) {
+    if (key === 'sections') continue
+    if (typeof value !== 'string') continue
+    if (!value.startsWith(SITE_BASE_URL)) {
+      failures.push(`out/llms-index.json artifact URL does not match SITE_URL/BASE_PATH: ${value}`)
+      continue
+    }
+    assertOutReferenceExists('out/llms-index.json', value)
+  }
+}
+
+function assertProtocolManifest(text) {
+  let parsed
+  try {
+    parsed = JSON.parse(text)
+  } catch (error) {
+    failures.push(`out/polaris-testnet-manifest.json is invalid JSON: ${error.message}`)
+    return
+  }
+
+  if (parsed.site !== absoluteUrl('/')) {
+    failures.push(
+      `out/polaris-testnet-manifest.json site mismatch: expected ${absoluteUrl('/')}, found ${parsed.site}`
+    )
+  }
+
+  if (parsed.environment?.chainId !== 11155111) {
+    failures.push('out/polaris-testnet-manifest.json has unexpected testnet chain ID')
+  }
+
+  if (!Array.isArray(parsed.contracts?.entries) || parsed.contracts.entries.length === 0) {
+    failures.push('out/polaris-testnet-manifest.json has no contract entries')
+  } else {
+    for (const contract of parsed.contracts.entries) {
+      if (!/^0x[a-f0-9]{40}$/.test(contract.address ?? '')) {
+        failures.push(
+          `out/polaris-testnet-manifest.json has invalid contract address: ${contract.address}`
+        )
+      }
+      if (contract.explorerUrl)
+        assertOutReferenceExists('out/polaris-testnet-manifest.json', contract.explorerUrl)
+    }
+  }
+
+  for (const value of [parsed.source?.url, parsed.source?.markdownUrl]) {
+    if (typeof value === 'string')
+      assertOutReferenceExists('out/polaris-testnet-manifest.json', value)
   }
 }
 
@@ -304,19 +376,28 @@ for (const file of htmlFiles) assertHtmlFile(file)
 const sitemap = readOut('sitemap.xml')
 const robots = readOut('robots.txt')
 const llms = readOut('llms.txt')
+const wellKnownLlms = readOut('.well-known/llms.txt')
 const llmsFull = readOut('llms-full.txt')
+const wellKnownLlmsFull = readOut('.well-known/llms-full.txt')
 const llmsIndex = readOut('llms-index.json')
+const protocolManifest = readOut('polaris-testnet-manifest.json')
 
 assertGeneratedTextArtifact('sitemap.xml', sitemap)
 assertGeneratedTextArtifact('robots.txt', robots)
 assertGeneratedTextArtifact('llms.txt', llms)
+assertGeneratedTextArtifact('.well-known/llms.txt', wellKnownLlms)
 assertGeneratedTextArtifact('llms-full.txt', llmsFull)
+assertGeneratedTextArtifact('.well-known/llms-full.txt', wellKnownLlmsFull)
 assertGeneratedTextArtifact('llms-index.json', llmsIndex)
+assertGeneratedTextArtifact('polaris-testnet-manifest.json', protocolManifest)
 assertSitemap(sitemap)
 assertRobots(robots)
 assertLlms('llms.txt', llms)
+assertLlms('.well-known/llms.txt', wellKnownLlms)
 assertLlms('llms-full.txt', llmsFull)
+assertLlms('.well-known/llms-full.txt', wellKnownLlmsFull)
 assertLlmsIndex(llmsIndex)
+assertProtocolManifest(protocolManifest)
 assertLlmsSections()
 assertCnameMode()
 

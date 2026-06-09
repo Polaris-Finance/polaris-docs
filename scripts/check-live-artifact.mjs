@@ -138,6 +138,11 @@ const expectedSitemapLine = `Sitemap: ${expectedBaseUrl}/sitemap.xml`
 if (!robots.body.includes(expectedSitemapLine)) {
   failures.push(`${robotsUrl} does not include ${expectedSitemapLine}`)
 }
+for (const agent of ['OAI-SearchBot', 'ChatGPT-User', 'GPTBot', 'ClaudeBot', 'PerplexityBot']) {
+  if (!robots.body.includes(`User-agent: ${agent}`)) {
+    failures.push(`${robotsUrl} does not explicitly mention ${agent}`)
+  }
+}
 
 const sitemapUrl = siteUrl('/sitemap.xml')
 const sitemap = await fetchText(sitemapUrl, {
@@ -158,8 +163,13 @@ if (!llms.body.includes(expectedBaseUrl)) {
   failures.push(`${llmsUrl} does not include ${expectedBaseUrl}`)
 }
 
+await fetchText(siteUrl('/.well-known/llms.txt'), { status: 200, mime: ['text/plain'] })
+await fetchText(siteUrl('/llms-full.txt'), { status: 200, mime: ['text/plain'] })
+await fetchText(siteUrl('/.well-known/llms-full.txt'), { status: 200, mime: ['text/plain'] })
+
 const llmsIndexUrl = siteUrl('/llms-index.json')
 const llmsIndex = await fetchText(llmsIndexUrl, { status: 200, mime: ['application/json'] })
+let firstMarkdownUrl = ''
 try {
   const parsed = JSON.parse(llmsIndex.body)
   if (parsed.site !== `${expectedBaseUrl}/`) {
@@ -170,14 +180,44 @@ try {
   if (!Array.isArray(parsed.pages) || parsed.pages.length === 0) {
     failures.push(`${llmsIndexUrl} has no pages`)
   } else {
+    firstMarkdownUrl = parsed.pages[0]?.markdownUrl ?? ''
     for (const page of parsed.pages) {
       if (typeof page.url !== 'string' || !page.url.startsWith(expectedBaseUrl)) {
         failures.push(`${llmsIndexUrl} contains out-of-base page URL: ${page.url}`)
+      }
+      if (typeof page.markdownUrl !== 'string' || !page.markdownUrl.startsWith(expectedBaseUrl)) {
+        failures.push(`${llmsIndexUrl} contains out-of-base markdown URL: ${page.markdownUrl}`)
       }
     }
   }
 } catch (error) {
   failures.push(`${llmsIndexUrl} is invalid JSON: ${error.message}`)
+}
+
+if (firstMarkdownUrl) {
+  await fetchText(firstMarkdownUrl.replace(expectedBaseUrl, baseUrl), {
+    status: 200,
+    mime: ['text/markdown', 'text/plain', 'application/octet-stream']
+  })
+}
+
+const manifestUrl = siteUrl('/polaris-testnet-manifest.json')
+const manifest = await fetchText(manifestUrl, { status: 200, mime: ['application/json'] })
+try {
+  const parsed = JSON.parse(manifest.body)
+  if (parsed.site !== `${expectedBaseUrl}/`) {
+    failures.push(
+      `${manifestUrl} site mismatch: expected ${expectedBaseUrl}/, found ${parsed.site}`
+    )
+  }
+  if (parsed.environment?.chainId !== 11155111) {
+    failures.push(`${manifestUrl} has unexpected testnet chain ID`)
+  }
+  if (!Array.isArray(parsed.contracts?.entries) || parsed.contracts.entries.length === 0) {
+    failures.push(`${manifestUrl} has no contract entries`)
+  }
+} catch (error) {
+  failures.push(`${manifestUrl} is invalid JSON: ${error.message}`)
 }
 
 for (const resource of pickResources(home.body)) {
