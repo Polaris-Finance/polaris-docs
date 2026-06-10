@@ -120,7 +120,7 @@ export function LaunchTimeline() {
                     {phase.name}
                     {phase.isNow && <span className="pl-badge">NOW</span>}
                   </span>
-                  <Tooltip title={phase.name} desc={phase.desc} link={phase.link} />
+                  <Tooltip title={phase.name} desc={phase.desc} />
                 </span>
                 <span className="pl-date">{phase.date}</span>
               </span>

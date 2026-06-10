@@ -483,7 +483,11 @@ export function PolarisSearch() {
             setSection(null)
             setOpen(true)
           }}
-          onFocus={() => setOpen(true)}
+          onFocus={() => {
+            setOpen(true)
+            // Warm the index so the first keystroke doesn't pay the load cost.
+            loadPagefind().catch(() => {})
+          }}
           onKeyDown={onKeyDown}
         />
         {query && (

@@ -20,7 +20,7 @@ export function NextSteps({ steps = [] }) {
               <span className="pl-next-step-desc">{step.description}</span>
             ) : null}
             <span className="pl-next-step-arrow" aria-hidden="true">
-              -&gt;
+              →
             </span>
           </a>
         ))}

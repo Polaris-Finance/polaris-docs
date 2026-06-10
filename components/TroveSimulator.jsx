@@ -70,7 +70,7 @@ export function TroveSimulator({ minCollateralRatio = 1.5 }) {
         </div>
       </div>
 
-      <div className="pl-trove-results">
+      <div className="pl-trove-results" aria-live="polite">
         <div className="pl-trove-metric">
           <span className="pl-trove-metric-label">LTV</span>
           <span className="pl-trove-metric-value" data-health={results.health}>

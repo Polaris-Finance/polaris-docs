@@ -100,6 +100,7 @@ export function BondingCurveExplorer() {
             max="7"
             step="0.05"
             value={supplyExp}
+            aria-valuetext={`${Math.round(supply).toLocaleString('en-US')} pETH`}
             onChange={(event) => setSupplyExp(Number(event.target.value))}
           />
           <span className="pl-curve-value">{Math.round(supply).toLocaleString('en-US')} pETH</span>
@@ -114,6 +115,7 @@ export function BondingCurveExplorer() {
             max="20"
             step="0.5"
             value={tradePct}
+            aria-valuetext={tradePct === 0 ? 'No trade' : `${tradeLabel} of supply`}
             onChange={(event) => setTradePct(Number(event.target.value))}
           />
           <span className="pl-curve-value">{tradeLabel}</span>
@@ -129,6 +131,7 @@ export function BondingCurveExplorer() {
             max="99"
             step="1"
             value={floorPct}
+            aria-valuetext={`Floor at ${floorPct}% of supply`}
             onChange={(event) => setFloorPct(Number(event.target.value))}
           />
           <span className="pl-curve-value">{floorPct}%</span>
@@ -193,7 +196,7 @@ export function BondingCurveExplorer() {
             y1={viz.marketY}
             x2={viz.marketX}
             y2={viz.marketY}
-            stroke="rgba(216,201,164,0.4)"
+            stroke="var(--pl-curve-accent-40)"
             strokeWidth="1"
             strokeDasharray="3 3"
           />
@@ -202,7 +205,7 @@ export function BondingCurveExplorer() {
             y1={viz.marketY}
             x2={viz.marketX}
             y2={viz.baseY}
-            stroke="rgba(216,201,164,0.25)"
+            stroke="var(--pl-curve-accent-25)"
             strokeWidth="1"
             strokeDasharray="3 3"
           />
@@ -215,7 +218,7 @@ export function BondingCurveExplorer() {
                 y1={viz.marketY}
                 x2={viz.tradeX}
                 y2={viz.tradeY}
-                stroke="rgba(216,201,164,0.6)"
+                stroke="var(--pl-curve-accent-60)"
                 strokeWidth="1.5"
                 strokeDasharray="2 2"
               />
@@ -224,7 +227,7 @@ export function BondingCurveExplorer() {
                 cy={viz.tradeY}
                 r="4"
                 fill="none"
-                stroke="#d8c9a4"
+                stroke="var(--pl-curve-accent)"
                 strokeWidth="2"
               />
             </>
@@ -235,21 +238,21 @@ export function BondingCurveExplorer() {
             cy={viz.floorY}
             r="4"
             fill="#7ba5c9"
-            stroke="#0a1628"
+            stroke="var(--pl-curve-dot-stroke)"
             strokeWidth="1.5"
           />
           <circle
             cx={viz.marketX}
             cy={viz.marketY}
             r="5"
-            fill="#d8c9a4"
-            stroke="#0a1628"
+            fill="var(--pl-curve-accent)"
+            stroke="var(--pl-curve-dot-stroke)"
             strokeWidth="2"
           />
         </svg>
       </div>
 
-      <div className="pl-curve-output">
+      <div className="pl-curve-output" aria-live="polite">
         <div className="pl-curve-metric">
           <span className="pl-curve-metric-label">Spot price</span>
           <span className="pl-curve-metric-value">{results.price} ETH</span>

@@ -38,9 +38,6 @@ body {
 }
 
 /* Editorial serif headings, matching the landing site */
-.nextra-content h1,
-.nextra-content h2,
-.nextra-content h3,
 article h1,
 article h2,
 article h3 {
@@ -55,17 +52,6 @@ article h1 {
 /* Dark mode — the canonical Polaris surface */
 .dark body {
   background-color: var(--polaris-navy-darkest);
-}
-
-/* Token name accents usable inline via <span className="t-pusd"> etc. */
-.t-pusd {
-  color: var(--polaris-pusd);
-}
-.t-peth {
-  color: var(--polaris-peth);
-}
-.t-polar {
-  color: var(--polaris-polar);
 }
 
 /* Sidebar auto-sizes to its longest label ("Deposit to the Stability Pool").
@@ -660,6 +646,18 @@ html:not(.dark) .x\:focus-visible\:nextra-focus:focus-visible {
   }
 }
 
+.pl-timeline-list {
+  display: none;
+  gap: 0.65rem;
+  margin: 1rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.pl-timeline-list li {
+  max-width: none;
+  padding-left: 0.15rem;
+}
+
 @media (max-width: 1023px) {
   .pl-voyage {
     overflow-x: visible;
@@ -763,18 +761,6 @@ html:not(.dark) .x\:focus-visible\:nextra-focus:focus-visible {
   .pl-timeline-list {
     display: grid;
   }
-}
-
-.pl-timeline-list {
-  display: none;
-  gap: 0.65rem;
-  margin: 1rem 0 0;
-  padding-left: 1.25rem;
-}
-
-.pl-timeline-list li {
-  max-width: none;
-  padding-left: 0.15rem;
 }
 
 .pl-timeline-list li span:first-child {
@@ -980,7 +966,6 @@ article img[src*='/infographics/'] {
 }
 
 article figcaption,
-article .pl-figure-caption,
 .pl-timeline-caption {
   max-width: 72ch;
   margin-top: 0.55rem;
@@ -990,7 +975,6 @@ article .pl-figure-caption,
 }
 
 .dark article figcaption,
-.dark article .pl-figure-caption,
 .dark .pl-timeline-caption {
   color: rgba(232, 220, 196, 0.74);
 }
@@ -1688,63 +1672,6 @@ article button[title*='Copy'] {
   }
 }
 
-/* ── Stewardship Flow formula ───────────────────────────────────────────── */
-
-.pl-flow-formula {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.55rem 0.7rem;
-  max-width: 100%;
-  margin: 1.35rem 0;
-  color: var(--polaris-navy);
-  font-family: var(--font-serif-stack);
-  font-size: 1.22rem;
-  line-height: 1.35;
-}
-
-:is(.dark) .pl-flow-formula {
-  color: var(--polaris-star);
-}
-
-.pl-flow-term,
-.pl-flow-equals {
-  font-weight: 600;
-}
-
-.pl-flow-fraction {
-  display: inline-grid;
-  grid-template-rows: auto 1px auto;
-  min-width: min(100%, 23rem);
-  max-width: 100%;
-  text-align: center;
-}
-
-.pl-flow-num,
-.pl-flow-den {
-  padding: 0.18rem 0.5rem;
-  overflow-wrap: anywhere;
-}
-
-.pl-flow-bar {
-  display: block;
-  height: 1px;
-  background: currentColor;
-  opacity: 0.72;
-}
-
-@media (max-width: 520px) {
-  .pl-flow-formula {
-    align-items: flex-start;
-    font-size: 1rem;
-  }
-
-  .pl-flow-fraction {
-    flex-basis: 100%;
-    min-width: 0;
-  }
-}
-
 /* ── BlogPostCard ────────────────────────────────────────────────────────── */
 
 .pl-blog-card {
@@ -2211,6 +2138,9 @@ article button[title*='Copy'] {
 }
 
 .pl-status-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px; /* WCAG 2.5.8 minimum target size */
   margin-left: auto;
   font-weight: 600;
   color: #2c5f8a;
@@ -2231,37 +2161,6 @@ article button[title*='Copy'] {
   color: #c6d8ea;
 }
 
-.pl-status-dismiss {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  border-radius: 4px;
-  border: none;
-  background: transparent;
-  color: #5a6a7a;
-  cursor: pointer;
-  transition:
-    background 0.15s ease,
-    color 0.15s ease;
-  margin-left: 0.25rem;
-  padding: 0;
-}
-
-.pl-status-dismiss:hover {
-  background: rgba(44, 74, 110, 0.1);
-  color: #1a2e42;
-}
-
-.dark .pl-status-dismiss {
-  color: #8a9aaa;
-}
-
-.dark .pl-status-dismiss:hover {
-  background: rgba(123, 165, 201, 0.15);
-  color: #ece3cf;
-}
 /* Exclude image links and already-marked internals */
 article a[href^='http']:has(img)::after,
 article a.pl-blog-card::after,
@@ -2417,27 +2316,6 @@ article [class*='overflow-x-auto']:has(table)::after {
   border-inline-start-color: #d8c9a4;
 }
 
-/* ── Token-colored table rows ────────────────────────────────────────────── */
-
-.pl-row-peth td:first-child,
-.pl-row-peth th:first-child {
-  border-left: 3px solid #7ba5c9;
-}
-
-.pl-row-polar td:first-child,
-.pl-row-polar th:first-child {
-  border-left: 3px solid #9b8fcf;
-}
-
-.pl-row-pusd td:first-child,
-.pl-row-pusd th:first-child {
-  border-left: 3px solid #c4b896;
-}
-
-.pl-row-passet td:first-child,
-.pl-row-passet th:first-child {
-  border-left: 3px solid #b1934f;
-}
 @media (max-width: 767px) {
   /* Collapse the "Copy page" button to just its icon so the page title
      reclaims the horizontal space. The label is a bare text node beside the
@@ -2506,6 +2384,22 @@ article [class*='overflow-x-auto']:has(table)::after {
   visibility: visible;
 }
 
+/* Right-anchor the last node's tooltip so it cannot push scrollWidth past the
+   viewport on ~1024-1090px screens (it sits near the right page edge). */
+@media (min-width: 1024px) {
+  .pl-n5 .pl-tooltip {
+    left: auto;
+    right: 0;
+    transform: none;
+  }
+
+  .pl-n5 .pl-tooltip::after {
+    left: auto;
+    right: 14px;
+    transform: none;
+  }
+}
+
 .pl-tooltip::after {
   content: '';
   position: absolute;
@@ -2522,20 +2416,6 @@ article [class*='overflow-x-auto']:has(table)::after {
   font-size: 0.8rem;
   color: #ece3cf;
   margin-bottom: 0.15rem;
-}
-
-.pl-tooltip-link {
-  display: inline-block;
-  margin-top: 0.35rem;
-  color: #7ba5c9;
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.15s ease;
-}
-
-.pl-tooltip-link:hover {
-  color: #abccea;
-  text-decoration: underline;
 }
 
 /* Mobile: tooltip below */
@@ -2559,6 +2439,14 @@ article [class*='overflow-x-auto']:has(table)::after {
 /* ── Bonding Curve Explorer ──────────────────────────────────────────────── */
 
 .pl-curve-explorer {
+  /* Marker palette: the gold accent must read on the light (cream) card, so
+     light mode uses the brand's dark gold; dark mode keeps the cream accent.
+     The dot stroke matches the card surface to create the cutout effect. */
+  --pl-curve-accent: #866d37;
+  --pl-curve-accent-60: rgba(134, 109, 55, 0.6);
+  --pl-curve-accent-40: rgba(134, 109, 55, 0.45);
+  --pl-curve-accent-25: rgba(134, 109, 55, 0.3);
+  --pl-curve-dot-stroke: #faf7f0;
   margin: 1.5rem 0;
   padding: 1.25rem;
   border-radius: 12px;
@@ -2567,6 +2455,11 @@ article [class*='overflow-x-auto']:has(table)::after {
 }
 
 .dark .pl-curve-explorer {
+  --pl-curve-accent: #d8c9a4;
+  --pl-curve-accent-60: rgba(216, 201, 164, 0.6);
+  --pl-curve-accent-40: rgba(216, 201, 164, 0.4);
+  --pl-curve-accent-25: rgba(216, 201, 164, 0.25);
+  --pl-curve-dot-stroke: #0a1628;
   border-color: rgba(123, 165, 201, 0.15);
   background: rgba(10, 22, 40, 0.4);
 }
