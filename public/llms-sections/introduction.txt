@@ -36,7 +36,7 @@ Image: Polaris system overview: ETH swaps into pETH on the bonding curve, pETH c
 
 ## The three engines
 
-Polaris has three engines:
+Three tokens work in harmony to sustain Polaris.
 
 Engine | What it is | Why it matters
 

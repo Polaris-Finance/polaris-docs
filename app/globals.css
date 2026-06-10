@@ -631,6 +631,17 @@ html:not(.dark) .x\:focus-visible\:nextra-focus:focus-visible {
   height: auto;
 }
 
+.pl-token-harmony {
+  max-width: 62rem;
+  margin: 1.15rem 0 1.75rem;
+}
+
+.pl-token-harmony img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 /* Mobile gets the tall vertical diagram; desktop keeps the wide one. */
 .pl-system-overview img.pl-system-overview__vertical {
   display: none;
@@ -2797,6 +2808,7 @@ article [class*='overflow-x-auto']:has(table)::after {
   article img,
   article svg,
   .pl-system-overview,
+  .pl-token-harmony,
   .pl-voyage,
   .pl-curve-explorer,
   .pl-trove-sim {

@@ -10,6 +10,7 @@ import { LaunchTimeline } from './components/LaunchTimeline'
 import { NextSteps } from './components/NextSteps'
 import { PageStatusBanner } from './components/PageStatusBanner'
 import { SystemOverviewFigure } from './components/SystemOverviewFigure'
+import { TokenHarmonyFigure } from './components/TokenHarmonyFigure'
 import { TroveSimulator } from './components/TroveSimulator'
 
 const themeComponents = getThemeComponents()
@@ -149,6 +150,7 @@ export function useMDXComponents(components) {
     NextSteps,
     PageStatusBanner,
     SystemOverviewFigure,
+    TokenHarmonyFigure,
     TroveSimulator,
     ...components
   }

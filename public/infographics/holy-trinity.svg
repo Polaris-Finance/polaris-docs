@@ -1,0 +1,274 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 195 1300 650" fill="none">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&amp;family=Inter:wght@400;500;600&amp;display=swap');
+      .title { font-family: 'Cormorant Garamond', Georgia, serif; fill: #E8DCC4; }
+      .kicker { font-family: 'Inter', Arial, sans-serif; fill: rgba(232,220,196,0.5); }
+      .token-name { font-family: 'Cormorant Garamond', Georgia, serif; fill: #E8DCC4; }
+      .role { font-family: 'Inter', Arial, sans-serif; fill: rgba(232,220,196,0.45); }
+      .flow-label { font-family: 'Inter', Arial, sans-serif; }
+      .flow-micro { font-family: 'Inter', Arial, sans-serif; fill: rgba(232,220,196,0.62); }
+    </style>
+
+    <!-- Background -->
+    <radialGradient id="bgGradient" cx="50%" cy="48%" r="65%">
+      <stop offset="0%" style="stop-color:#0d1f3c"/>
+      <stop offset="100%" style="stop-color:#050a14"/>
+    </radialGradient>
+
+    <!-- Filters -->
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Token circle backgrounds -->
+    <radialGradient id="pethCircleBg" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#0f2a4a"/>
+      <stop offset="100%" style="stop-color:#0d1f3c"/>
+    </radialGradient>
+    <radialGradient id="polarCircleBg" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#15244c"/>
+      <stop offset="100%" style="stop-color:#0d1f3c"/>
+    </radialGradient>
+    <radialGradient id="passetsCircleBg" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#1a2f48"/>
+      <stop offset="100%" style="stop-color:#0d1f3c"/>
+    </radialGradient>
+    <linearGradient id="miniBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a3a5c"/>
+      <stop offset="100%" style="stop-color:#0d1f3c"/>
+    </linearGradient>
+
+    <!-- pETH diamond -->
+    <linearGradient id="pethAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#9ECBEB"/>
+      <stop offset="100%" style="stop-color:#7BA5C9"/>
+    </linearGradient>
+    <linearGradient id="pethDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6B95B9"/>
+      <stop offset="100%" style="stop-color:#5A84A8"/>
+    </linearGradient>
+
+    <!-- Token fill gradients -->
+    <linearGradient id="pusdGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F5F0E6"/>
+      <stop offset="100%" style="stop-color:#E8DCC4"/>
+    </linearGradient>
+    <linearGradient id="pgoldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F5D76E"/>
+      <stop offset="100%" style="stop-color:#D4A830"/>
+    </linearGradient>
+    <linearGradient id="pgoldDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#C49A2A"/>
+      <stop offset="100%" style="stop-color:#A67C1A"/>
+    </linearGradient>
+    <linearGradient id="pchfGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F2E0E0"/>
+      <stop offset="100%" style="stop-color:#D9B3B3"/>
+    </linearGradient>
+
+    <!-- POLAR star (purple, 88-unit space) -->
+    <radialGradient id="polarGlowR" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(43.53 43.53) rotate(90) scale(33.9)">
+      <stop stop-color="#9B8FCF" stop-opacity="0.32"/>
+      <stop offset="1" stop-color="#9B8FCF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="polarLeft" x1="0" y1="43.5285" x2="43.5285" y2="43.5285" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9B8FCF" stop-opacity="0"/>
+      <stop offset="0.464207" stop-color="#B8A8DF"/>
+    </linearGradient>
+    <linearGradient id="polarRight" x1="87.0571" y1="43.5285" x2="43.5287" y2="43.5285" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9B8FCF" stop-opacity="0"/>
+      <stop offset="0.464207" stop-color="#B8A8DF"/>
+    </linearGradient>
+    <linearGradient id="polarTop" x1="43.5288" y1="0" x2="43.5288" y2="43.5284" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9B8FCF" stop-opacity="0"/>
+      <stop offset="0.464207" stop-color="#B8A8DF"/>
+    </linearGradient>
+    <linearGradient id="polarBottom" x1="43.5288" y1="87.0564" x2="43.5288" y2="43.5279" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9B8FCF" stop-opacity="0"/>
+      <stop offset="0.464207" stop-color="#B8A8DF"/>
+    </linearGradient>
+
+    <!-- Polaris emblem star (cream, 88-unit space) -->
+    <radialGradient id="embGlowR" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(43.53 43.53) rotate(90) scale(33.9)">
+      <stop stop-color="#E8DCC4" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#E8DCC4" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="embLeft" x1="0" y1="43.5285" x2="43.5285" y2="43.5285" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E8DCC4" stop-opacity="0"/>
+      <stop offset="0.464207" stop-color="#E8DCC4"/>
+    </linearGradient>
+    <linearGradient id="embRight" x1="87.0571" y1="43.5285" x2="43.5287" y2="43.5285" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E8DCC4" stop-opacity="0"/>
+      <stop offset="0.464207" stop-color="#E8DCC4"/>
+    </linearGradient>
+    <linearGradient id="embTop" x1="43.5288" y1="0" x2="43.5288" y2="43.5284" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E8DCC4" stop-opacity="0"/>
+      <stop offset="0.464207" stop-color="#E8DCC4"/>
+    </linearGradient>
+    <linearGradient id="embBottom" x1="43.5288" y1="87.0564" x2="43.5288" y2="43.5279" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E8DCC4" stop-opacity="0"/>
+      <stop offset="0.464207" stop-color="#E8DCC4"/>
+    </linearGradient>
+
+    <!-- Arrow stroke gradients (source token -> destination token) -->
+    <linearGradient id="burnStroke" x1="341" y1="560" x2="564" y2="372" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#7BA5C9"/>
+      <stop offset="100%" stop-color="#9B8FCF"/>
+    </linearGradient>
+    <linearGradient id="stewardStroke" x1="739" y1="365" x2="965" y2="557" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#B8A8DF"/>
+      <stop offset="100%" stop-color="#E8DCC4"/>
+    </linearGradient>
+    <linearGradient id="earnStroke" x1="932" y1="584" x2="718" y2="402" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#E8DCC4"/>
+      <stop offset="100%" stop-color="#9B8FCF"/>
+    </linearGradient>
+    <linearGradient id="collatStroke" x1="387" y1="616" x2="913" y2="616" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#7BA5C9"/>
+      <stop offset="100%" stop-color="#E8DCC4"/>
+    </linearGradient>
+    <linearGradient id="redeemStroke" x1="913" y1="664" x2="387" y2="664" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#E8DCC4"/>
+      <stop offset="100%" stop-color="#7BA5C9"/>
+    </linearGradient>
+
+    <!-- Chevron arrow markers -->
+    <marker id="arrowPurple" markerWidth="14" markerHeight="14" refX="11" refY="7" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M2.5,2.5 L11,7 L2.5,11.5" fill="none" stroke="#9B8FCF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="arrowCream" markerWidth="14" markerHeight="14" refX="11" refY="7" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M2.5,2.5 L11,7 L2.5,11.5" fill="none" stroke="#E8DCC4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="14" markerHeight="14" refX="11" refY="7" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M2.5,2.5 L11,7 L2.5,11.5" fill="none" stroke="#7BA5C9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- ======================== BACKGROUND ======================== -->
+  <rect y="195" width="1300" height="650" fill="url(#bgGradient)"/>
+
+  <!-- Starfield -->
+  <g>
+    <circle cx="245" cy="288" r="1" fill="#E8DCC4" opacity="0.22"/>
+    <circle cx="1085" cy="210" r="1.2" fill="#E8DCC4" opacity="0.25"/>
+    <circle cx="70" cy="460" r="1.4" fill="#9ECBEB" opacity="0.3"/>
+    <circle cx="1235" cy="455" r="1.1" fill="#E8DCC4" opacity="0.22"/>
+    <circle cx="150" cy="775" r="1.2" fill="#E8DCC4" opacity="0.2"/>
+    <circle cx="435" cy="242" r="1" fill="#9ECBEB" opacity="0.2"/>
+    <circle cx="880" cy="255" r="1" fill="#E8DCC4" opacity="0.2"/>
+    <circle cx="1160" cy="782" r="1.3" fill="#E8DCC4" opacity="0.25"/>
+    <!-- Two tiny four-point sparkles -->
+    <path d="M0,-5 L1.2,-1.2 L5,0 L1.2,1.2 L0,5 L-1.2,1.2 L-5,0 L-1.2,-1.2 Z" transform="translate(120,265)" fill="#E8DCC4" opacity="0.35"/>
+    <path d="M0,-5 L1.2,-1.2 L5,0 L1.2,1.2 L0,5 L-1.2,1.2 L-5,0 L-1.2,-1.2 Z" transform="translate(1195,258) scale(1.2)" fill="#9ECBEB" opacity="0.35"/>
+  </g>
+
+  <!-- Ghost triangle connecting the three nodes -->
+  <path d="M650,340 L295,640 L1005,640 Z" fill="#E8DCC4" fill-opacity="0.02"/>
+
+
+  <!-- ======================== FLOW ARROWS ======================== -->
+
+  <!-- BURN: pETH -> POLAR -->
+  <path d="M341,560 Q349.5,545.2 358.8,531.3" stroke="url(#burnStroke)" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+  <path d="M532.7,384.7 Q547.9,377.8 564,372" stroke="url(#burnStroke)" stroke-width="2.5" stroke-linecap="round" opacity="0.9" marker-end="url(#arrowPurple)"/>
+  <g transform="translate(435.3,445.5) rotate(-40)">
+    <text x="0" y="8" class="flow-label" font-size="24" font-weight="600" letter-spacing="0.15em" fill="#B8A8DF" text-anchor="middle">BURN TO MINT</text>
+  </g>
+
+  <!-- STEWARD: POLAR -> pAssets (outer arc) -->
+  <path d="M739,365 Q770.2,374 798,387.1" stroke="url(#stewardStroke)" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+  <path d="M933.6,502.3 Q951,527.6 965,557" stroke="url(#stewardStroke)" stroke-width="2.5" stroke-linecap="round" opacity="0.9" marker-end="url(#arrowCream)"/>
+  <g transform="translate(873.5,435.5) rotate(40)">
+    <text x="0" y="8" class="flow-label" font-size="24" font-weight="600" letter-spacing="0.15em" fill="#E8DCC4" text-anchor="middle">STEWARD</text>
+  </g>
+
+  <!-- EARN: pAssets -> POLAR (inner arc) -->
+  <path d="M932,584 Q898.7,558.2 866.1,531.5" stroke="url(#earnStroke)" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+  <path d="M780.5,458.7 Q748.9,430.8 718,402" stroke="url(#earnStroke)" stroke-width="2.5" stroke-linecap="round" opacity="0.9" marker-end="url(#arrowPurple)"/>
+  <g transform="translate(823,495.5) rotate(40)">
+    <text x="0" y="8" class="flow-label" font-size="24" font-weight="600" letter-spacing="0.15em" fill="#B8A8DF" text-anchor="middle">EARN</text>
+  </g>
+
+  <!-- COLLATERALIZE / MINT: pETH -> pAssets (upper line) -->
+  <line x1="387" y1="616" x2="598" y2="616" stroke="url(#collatStroke)" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+  <line x1="702" y1="616" x2="913" y2="616" stroke="url(#collatStroke)" stroke-width="2.5" stroke-linecap="round" opacity="0.9" marker-end="url(#arrowCream)"/>
+  <text x="650" y="624" class="flow-label" font-size="24" font-weight="600" letter-spacing="0.15em" fill="#E8DCC4" text-anchor="middle">BACK</text>
+
+  <!-- REDEEM: pAssets -> pETH (lower line) -->
+  <line x1="913" y1="664" x2="752" y2="664" stroke="url(#redeemStroke)" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+  <line x1="548" y1="664" x2="387" y2="664" stroke="url(#redeemStroke)" stroke-width="2.5" stroke-linecap="round" opacity="0.9" marker-end="url(#arrowBlue)"/>
+  <text x="650" y="672" class="flow-label" font-size="24" font-weight="600" letter-spacing="0.15em" fill="#9ECBEB" text-anchor="middle">REDEEM FOR</text>
+
+  <!-- ======================== POLAR NODE (apex) ======================== -->
+  <g transform="translate(650, 340)">
+    <circle cx="0" cy="0" r="80" fill="none" stroke="#9B8FCF" stroke-width="0.5" opacity="0.12"/>
+    <circle cx="0" cy="0" r="72" fill="none" stroke="#9B8FCF" stroke-width="1" opacity="0.22"/>
+    <circle cx="0" cy="0" r="64" fill="url(#polarCircleBg)" stroke="#9B8FCF" stroke-width="2" filter="url(#shadow)"/>
+    <g transform="scale(0.92) translate(-43.53, -43.53)">
+      <path d="M43.1475 77.0483C61.8707 77.0483 77.0489 61.8701 77.0489 43.1469C77.0489 24.4237 61.8707 9.24548 43.1475 9.24548C24.4243 9.24548 9.24609 24.4237 9.24609 43.1469C9.24609 61.8701 24.4243 77.0483 43.1475 77.0483Z" fill="url(#polarGlowR)"/>
+      <path d="M0 43.5285L36.2737 39.5989L43.5284 43.5285L36.2737 47.4582L0 43.5285Z" fill="url(#polarLeft)"/>
+      <path d="M87.0571 43.5285L50.7834 39.5989L43.5287 43.5285L50.7834 47.4582L87.0571 43.5285Z" fill="url(#polarRight)"/>
+      <path d="M43.5288 0L47.4585 36.2737L43.5288 43.5284L39.5992 36.2737L43.5288 0Z" fill="url(#polarTop)"/>
+      <path d="M43.5288 87.0564L47.4585 50.7827L43.5288 43.5279L39.5992 50.7827L43.5288 87.0564Z" fill="url(#polarBottom)"/>
+      <circle cx="43.5281" cy="43.5281" r="4.35" fill="#B8A8DF"/>
+    </g>
+    <text x="0" y="106" class="token-name" font-size="30" font-weight="600" text-anchor="middle">POLAR</text>
+    <text x="0" y="134" class="role" font-size="18" font-weight="400" letter-spacing="0.12em" text-anchor="middle">THE STEWARDSHIP</text>
+  </g>
+
+  <!-- ======================== pETH NODE (base left) ======================== -->
+  <g transform="translate(295, 640)">
+    <circle cx="0" cy="0" r="72" fill="none" stroke="#7BA5C9" stroke-width="1" opacity="0.18"/>
+    <circle cx="0" cy="0" r="64" fill="url(#pethCircleBg)" stroke="#7BA5C9" stroke-width="2" filter="url(#shadow)"/>
+    <!-- Small Polaris star above diamond -->
+    <g transform="translate(0, -36) scale(2.2)">
+      <polygon points="0,-3.4 0.8,-0.9 3.5,-0.9 1.3,0.8 2.2,3.4 0,1.6 -2.2,3.4 -1.3,0.8 -3.5,-0.9 -0.8,-0.9" fill="#7BA5C9" fill-opacity="0.7"/>
+    </g>
+    <!-- ETH diamond -->
+    <g transform="translate(0, 10)">
+      <polygon points="0,-24 17,0 0,9 -17,0" fill="url(#pethAccent)" opacity="0.95"/>
+      <polygon points="0,9 17,0 0,26 -17,0" fill="url(#pethDark)" opacity="0.9"/>
+      <polygon points="0,-24 8,-4 0,-7 -8,-4" fill="#9ECBEB" opacity="0.3"/>
+    </g>
+    <text x="0" y="106" class="token-name" font-size="30" font-weight="600" text-anchor="middle">pETH</text>
+    <text x="0" y="134" class="role" font-size="18" font-weight="400" letter-spacing="0.12em" text-anchor="middle">THE COLLATERAL</text>
+  </g>
+
+  <!-- ======================== pASSETS NODE (base right) ======================== -->
+  <g transform="translate(1005, 640)">
+    <circle cx="0" cy="0" r="72" fill="none" stroke="#E8DCC4" stroke-width="1" opacity="0.18"/>
+    <circle cx="0" cy="0" r="64" fill="url(#passetsCircleBg)" stroke="#E8DCC4" stroke-width="2" filter="url(#shadow)"/>
+    <!-- pGOLD mini -->
+    <g transform="translate(-21, 14)">
+      <circle cx="0" cy="0" r="18" fill="url(#miniBg)" stroke="#D4A830" stroke-width="1.25" stroke-opacity="0.5"/>
+      <g transform="translate(0, 2) scale(0.8)">
+        <polygon points="-11,2 11,2 11,8 -11,8" fill="url(#pgoldDark)"/>
+        <polygon points="-11,2 -8,-2 12,-2 11,2" fill="url(#pgoldGradient)"/>
+        <polygon points="11,2 12,-2 12,4 11,8" fill="#A67C1A" fill-opacity="0.7"/>
+        <polygon points="-7,-4 7,-4 7,2 -7,2" fill="url(#pgoldDark)"/>
+        <polygon points="-7,-4 -4,-8 10,-8 7,-4" fill="url(#pgoldGradient)"/>
+        <polygon points="7,-4 10,-8 10,-2 7,2" fill="#A67C1A" fill-opacity="0.7"/>
+      </g>
+    </g>
+    <!-- pCHF mini -->
+    <g transform="translate(21, 14)">
+      <circle cx="0" cy="0" r="18" fill="url(#miniBg)" stroke="#D9B3B3" stroke-width="1.25" stroke-opacity="0.5"/>
+      <text x="0" y="8" font-family="'Cormorant Garamond', Georgia, serif" font-size="22" font-weight="500" fill="url(#pchfGradient)" text-anchor="middle">&#x20A3;</text>
+    </g>
+    <!-- pUSD mini (drawn last, on top) -->
+    <g transform="translate(0, -19)">
+      <circle cx="0" cy="0" r="18" fill="url(#miniBg)" stroke="#E8DCC4" stroke-width="1.25" stroke-opacity="0.5"/>
+      <text x="0" y="9" font-family="'Cormorant Garamond', Georgia, serif" font-size="24" font-weight="500" fill="url(#pusdGradient)" text-anchor="middle">$</text>
+    </g>
+    <text x="0" y="106" class="token-name" font-size="30" font-weight="600" text-anchor="middle">pAssets</text>
+    <text x="0" y="134" class="role" font-size="18" font-weight="400" letter-spacing="0.12em" text-anchor="middle">THE STABLECOINS</text>
+  </g>
+</svg>
