@@ -19,6 +19,7 @@ import {
   SITE_TITLE,
   SITE_TITLE_TEMPLATE
 } from './site-config.mjs'
+import 'katex/dist/katex.min.css'
 import 'nextra-theme-docs/style.css'
 import './globals.css'
 

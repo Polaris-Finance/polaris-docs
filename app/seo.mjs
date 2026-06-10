@@ -256,9 +256,14 @@ export function buildGlobalJsonLd() {
       alternateName: 'Polaris',
       description: SITE_DESCRIPTION,
       url: 'https://polarisfinance.io',
-      // Add official X / GitHub / Discord profile URLs here once confirmed, so answer
-      // engines can disambiguate Polaris Finance from other projects named Polaris.
-      sameAs: ['https://polarisfinance.io'],
+      // Official profiles, so answer engines can disambiguate Polaris Finance
+      // from other projects named Polaris.
+      sameAs: [
+        'https://polarisfinance.io',
+        'https://x.com/polarisfinance_',
+        'https://t.me/polaris_ann',
+        'https://github.com/Polaris-Finance'
+      ],
       knowsAbout: ['pETH', 'pAssets', 'pUSD', 'POLAR', 'CDP stablecoin', 'bonding curve'],
       logo: {
         '@type': 'ImageObject',
