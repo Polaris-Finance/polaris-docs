@@ -27,6 +27,21 @@ if (missingFiles.length) {
   exitWith(`Pagefind index is incomplete: missing ${missingFiles.join(', ')}.`)
 }
 
+// PolarisSearch imports only pagefind.js (which loads its worker, wasm, and
+// shards itself); the stock Pagefind UI bundles are dead deploy weight.
+const unusedUiBundles = [
+  'pagefind-ui.js',
+  'pagefind-ui.css',
+  'pagefind-modular-ui.js',
+  'pagefind-modular-ui.css',
+  'pagefind-component-ui.js',
+  'pagefind-component-ui.css',
+  'pagefind-highlight.js'
+]
+for (const file of unusedUiBundles) {
+  rmSync(path.join(sourceDir, file), { force: true })
+}
+
 rmSync(targetDir, { recursive: true, force: true })
 mkdirSync(path.dirname(targetDir), { recursive: true })
 cpSync(sourceDir, targetDir, { recursive: true })

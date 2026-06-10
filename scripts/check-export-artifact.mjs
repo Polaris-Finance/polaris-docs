@@ -412,6 +412,19 @@ for (const requiredAsset of [
   }
 }
 
+// Image weight budget: an unoptimized 432 KB screenshot once shipped twice;
+// keep raster assets lean (re-export as JPEG/WebP like the other screenshots).
+const imageBudgetBytes = 150 * 1024
+for (const file of walk(outDir)) {
+  if (!/\.(png|jpe?g|gif|webp|avif)$/i.test(file)) continue
+  const size = statSync(file).size
+  if (size > imageBudgetBytes) {
+    failures.push(
+      `out/${relativeOut(file)} is ${Math.round(size / 1024)} KB; image budget is ${imageBudgetBytes / 1024} KB`
+    )
+  }
+}
+
 const faqHtml = readOut('resources/faq.html')
 if (faqHtml && !faqHtml.includes('"@type":"FAQPage"')) {
   failures.push('out/resources/faq.html is missing FAQPage structured data')

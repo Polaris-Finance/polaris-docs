@@ -1,5 +1,6 @@
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
 import path from 'node:path'
+import GithubSlugger from 'github-slugger'
 import { BASE_PATH, SITE_URL } from '../app/site-config.mjs'
 
 const root = process.cwd()
@@ -74,29 +75,23 @@ function routeForMdx(file) {
   return `/${withoutExt}`
 }
 
-function slugify(value) {
+function headingText(value) {
   return value
     .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
     .replace(/`([^`]+)`/g, '$1')
     .replace(/<[^>]+>/g, '')
-    .replace(/&amp;/g, 'and')
-    .replace(/&/g, 'and')
-    .toLowerCase()
-    .trim()
-    .replace(/['"]/g, '')
-    .replace(/[^a-z0-9\s-]/g, '')
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-')
+    .replace(/&amp;/g, '&')
 }
 
 for (const file of mdxFiles) {
   const route = routeForMdx(file)
   routes.set(route, file)
   const anchors = new Set()
+  const slugger = new GithubSlugger()
   const text = readFileSync(file, 'utf8')
   for (const line of text.split('\n')) {
     const match = /^(#{1,6})\s+(.+)$/.exec(line)
-    if (match) anchors.add(slugify(match[2]))
+    if (match) anchors.add(slugger.slug(headingText(match[2])))
   }
   anchorsByRoute.set(route, anchors)
 }
@@ -104,6 +99,8 @@ for (const file of mdxFiles) {
 const markdownOrHtmlLinkPattern =
   /!?\[[^\]]*]\(([^)\s]+)(?:\s+"[^"]*")?\)|\b(?:href|src)=["']([^"']+)["']/g
 const jsxPropLinkPattern = /\b(?:url|image|appUrl|appHref|ctaUrl|ctaHref)=["']([^"']+)["']/g
+// Object-syntax hrefs, e.g. <NextSteps steps={[{ href: '/minting' }]}>
+const jsxObjectHrefPattern = /\bhref:\s*['"]([^'"]+)['"]/g
 const rawUrlPattern = /\bhttps?:\/\/[^\s"'<>),\]]+/g
 const links = []
 
@@ -131,6 +128,9 @@ for (const file of sourceFiles) {
     pushLink(file, match[1] || match[2], seen)
   }
   while ((match = jsxPropLinkPattern.exec(text))) {
+    pushLink(file, match[1], seen)
+  }
+  while ((match = jsxObjectHrefPattern.exec(text))) {
     pushLink(file, match[1], seen)
   }
   if (file.startsWith(publicDir)) {
