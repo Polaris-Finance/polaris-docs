@@ -40,20 +40,20 @@ The app vocabulary matters:
 - **POLAR Staking** is the current staking surface where a deployment exposes stake, unstake, and claim actions for routed rewards.
 - **[vePOLAR](https://tokenbrice.github.io/polaris-docs/stewardship/vepolar)** is the forthcoming vote-escrow layer. Locking POLAR for a period is intended to return vePOLAR, which grants stewardship rights and a yield path.
 
-vePOLAR lock durations, vote-power decay, unlock rules, proposal rules, and the final yield split are pending. Do not treat current POLAR Staking as a substitute for vePOLAR voting rights.
+vePOLAR proposal rules and the final yield split are pending; the committed lock design (durations, decay, delegation) lives on [vePOLAR](https://tokenbrice.github.io/polaris-docs/stewardship/vepolar#lock-status). Do not treat current POLAR Staking as a substitute for vePOLAR voting rights.
 
 ## Where the yield comes from
 
-POLAR's value accrual runs on hard-asset protocol revenue, buffered and routed by the **[Fee Router](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router)** (pETH) and, separately, by the protocol's interest router (pAsset). It reaches three destinations:
+POLAR's value accrual runs on hard-asset protocol revenue, buffered and routed by the **[Fee Router](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router)** (pETH) and, separately, by the protocol's interest router (pAsset). It reaches these destinations:
 
-Destination | What they receive
+Destination | Routed by | What they receive
 
-**Troves** | pETH yield from the Fee Router, credited pro-rata to recorded debt
-**POLAR stakers** | A stewarded share of protocol interest, in pAsset terms where the staking surface is live
-**vePOLAR lockers** | Forthcoming stewardship and yield path after audited locking deployment
-**Flow recipients** | Revenue-sharing for whitelisted contracts via [Flows](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router) (forthcoming)
+**Troves** | Fee Router (pETH) | pETH yield, credited pro-rata to recorded debt
+**POLAR stakers** | Interest router (pAsset) | A stewarded share of protocol interest where the staking surface is live
+**vePOLAR lockers** | Pending deployment | Forthcoming stewardship and yield path after audited locking deployment
+**Flow recipients** | Fee Router, via [Flows](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router) | Revenue-sharing for whitelisted contracts (forthcoming)
 
-Inputs are protocol revenue, not emitted POLAR. The Fee Router handles pETH rewards; the interest router handles pAsset-denominated splits. Exact destination splits, production staking terms, and vePOLAR locking terms are pending.
+Inputs are protocol revenue, not emitted POLAR. Exact destination splits, production staking terms, and vePOLAR locking terms are pending.
 
 ## What POLAR does *not* have
 
@@ -67,6 +67,11 @@ The structure deliberately omits the usual extraction surfaces:
 ## The Polar Council
 
 The **Polar Council** is a planned treasury-funded program for onboarding and ecosystem contributors, comparable in spirit to veAERO's Flight School. Initially team-managed; its allocation, operating framework, eligibility, and reporting requirements are pending publication.
+
+Next steps:
+- [Conversion Auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions): The spike-and-decay mechanism behind every POLAR mint.
+- [vePOLAR Locking](https://tokenbrice.github.io/polaris-docs/stewardship/vepolar): The committed lock design and forthcoming stewardship rights.
+- [Fee Router & Flows](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router): How the revenue in the table above is buffered and routed.
 
 ---
 

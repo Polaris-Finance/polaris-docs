@@ -21,7 +21,7 @@ Zap bundles several on-chain steps into one guided transaction. Pick a strategy:
 - **pUSD Stable Yield:** market-buys pUSD with your WETH and deposits it into the pUSD Stability Pool in a single transaction, earning SP yield from borrower interest plus liquidation gains.
 - **Floor Carry:** converts ETH into fpETH and borrows ETH against it — a non-liquidatable, loopable ETH-yield position.
 
-You stay the position owner with full self-custody, slippage is bounded by your slippage setting, and a simulation confirms the expected result before you sign. A zap is an execution shortcut — it doesn't change the economics of the underlying steps, and you can always exit or manage the resulting position from Earn or Borrow.
+You stay the position owner with full self-custody, slippage is bounded by your setting, and a simulation confirms the expected result before you sign. A zap is an execution shortcut — it doesn't change the economics of the underlying steps, and you can always exit or manage the resulting position from Earn or Borrow.
 
 Image: Polaris Zap tab showing the pUSD Stable Yield route from WETH through pUSD into the Stability Pool
 

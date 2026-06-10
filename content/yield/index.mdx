@@ -46,12 +46,8 @@ Raw Stability Pool mechanics leave depositors holding pETH after liquidations. W
 The Stability Pool is the protocol's *intended* first-loss layer. Key risks:
 
 - **pETH price exposure.** Liquidation gains arrive as pETH, which is volatile against ETH. A large liquidation event that converts your full deposit to pETH, followed by a pETH price drop, can leave you worse off in ETH terms.
-- **Extreme drawdown.** If a large fraction of all troves are liquidated simultaneously (e.g., a flash crash before the liquidation engine processes them), the pool may not fully cover all debt. In that case the protocol falls back to redistribution — redistributing remaining collateral and debt across surviving troves — and the pool is partially or fully depleted.
+- **Extreme drawdown.** If a large fraction of all troves are liquidated simultaneously (e.g., a flash crash before the liquidation engine processes them), the pool may not fully cover all debt. In that case the protocol falls back to redistribution — redistributing remaining collateral and debt across surviving troves — and the pool is partially or fully depleted. A crashing trove can even fall below 100% collateralization before processing; the pool then absorbs more debt than the collateral it receives is worth, and that underwater loss is shared proportionally by all depositors.
 - **Smart-contract risk.** The pool is a smart contract; a bug can affect any depositor. Mitigated by audits, never zero.
-
-In a severe or flash crash, a trove can fall below 100% collateralization before being liquidated. In that case the pool absorbs more debt than the collateral it receives is worth. That underwater liquidation loss is shared proportionally by all depositors.
-
-Your liquidation gains are also denominated in pETH, which is [volatile against ETH](/peth/floor-price). The wrapper vaults above mitigate that exposure, but at the base layer you accept pETH.
 
 ## How to deposit
 

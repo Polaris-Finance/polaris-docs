@@ -54,7 +54,7 @@ Cream | `#F5F0E6` | Secondary light surfaces | Pair with dark navy text; do not 
 
 ### Token colors
 
-Each core asset has a signature color.
+Signature colors are published for the assets below. Tokens not listed (such as pGOLD) have no published signature color yet.
 
 Swatch | Token | Hex | Accessible use
 

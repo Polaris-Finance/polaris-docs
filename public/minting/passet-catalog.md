@@ -54,6 +54,11 @@ Shared collateral lets teams add a new pAsset without bootstrapping a fresh coll
 
 Image: StablecoinOS as a factory: ETH enters one shared bonding curve to mint pETH, which collateralizes multiple independent branches that each mint a different pAsset — pUSD, pGOLD, pCHF — over the same pETH collateral base
 
+Next steps:
+- [Open a Trove](https://tokenbrice.github.io/polaris-docs/minting/open-a-trove): Mint your first pAsset against pETH collateral, step by step.
+- [pETH & the Bonding Curve](https://tokenbrice.github.io/polaris-docs/peth): The collateral primitive every branch shares.
+- [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status): Which pAssets are testnet-active today.
+
 ---
 
 [pGOLD: Finishing What DigixDAO Started](https://polarisfinance.io/blog/pGOLD-finishing-what-digixdao-started/)

@@ -49,11 +49,11 @@ Collateralized Debt Position: your individual borrowing position inside a branch
 </DefinitionCard>
 
 <DefinitionCard term="Trove" token="default">
-The Polaris app term for an individual CDP. Each trove is isolated, with its own collateral, debt, and loan-to-value (LTV). See [Managing Your Trove](/minting/managing-your-trove).
+The Polaris app term for an individual CDP — the same position, by another name. See [Managing Your Trove](/minting/managing-your-trove).
 </DefinitionCard>
 
 <DefinitionCard term="StablecoinOS" token="default">
-Polaris is a <em>factory</em> of pAsset branches, each issuing a different pAsset but all sharing the same pETH collateral and bonding curve.
+Polaris's factory layer: each branch issues a different pAsset, all sharing the same pETH collateral and bonding curve. See [StablecoinOS: an open catalog](/minting/passet-catalog#stablecoinos-an-open-catalog).
 </DefinitionCard>
 
 ## Keeping the peg
@@ -77,7 +77,7 @@ If a trove's LTV exceeds the maximum, it is liquidated, and the [Stability Pool]
 </DefinitionCard>
 
 <DefinitionCard term="Recovery Mode" token="default">
-A protocol-wide protective state entered when the system-wide reserve-backing-to-debt ratio (the [TCR](/resources)) falls below a fixed threshold. See [Recovery Mode](/redemptions-liquidations/recovery-mode).
+A protocol-wide protective state entered when the system-wide reserve-to-debt ratio (the [TCR, Total Collateralization Ratio](/resources#t)) falls below a fixed threshold. See [Recovery Mode](/redemptions-liquidations/recovery-mode).
 </DefinitionCard>
 
 <DefinitionCard term="Floor price / floor ratio" token="peth">
@@ -95,7 +95,7 @@ The mechanism that mints POLAR by burning pETH. See [Conversion Auctions](/polar
 </DefinitionCard>
 
 <DefinitionCard term="Fee Router" token="default">
-Receives pETH from conversions and bonding-curve swap fees, then buffers and distributes it as yield to troves, pro-rata to their debt. See [The Fee Router](/stewardship/fee-router).
+Buffers protocol revenue in pETH and distributes it to troves (pro-rata to debt), POLAR stakers, and Flow recipients. Swap fees are first burned at the floor — raising it — and the released ETH is recycled into pETH. See [The Fee Router](/stewardship/fee-router).
 </DefinitionCard>
 
 <DefinitionCard term="Stewardship" token="default">

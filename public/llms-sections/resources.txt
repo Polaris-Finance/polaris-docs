@@ -19,6 +19,8 @@ Markdown URL: https://tokenbrice.github.io/polaris-docs/resources.md
 
 Every key Polaris term, alphabetized. Each entry is one or two sentences and links to its full treatment where one exists. For the narrative map of how the pieces fit, read [Core Concepts](https://tokenbrice.github.io/polaris-docs/core-concepts).
 
+Also in Resources: [Public Testnet 1](https://tokenbrice.github.io/polaris-docs/resources/testnet) · [Audits & Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security) · [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure) · [FAQ](https://tokenbrice.github.io/polaris-docs/resources/faq) · [Brand Assets](https://tokenbrice.github.io/polaris-docs/resources/brand-assets)
+
 ## Live app terms
 
 These labels match the current testnet app and route users to the glossary entry plus the matching guide page.
@@ -29,7 +31,7 @@ Advanced | [Advanced](https://tokenbrice.github.io/polaris-docs/resources#a) | [
 APR | [APR](https://tokenbrice.github.io/polaris-docs/resources#a) | [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn)
 Borrow / CDP | [CDP](https://tokenbrice.github.io/polaris-docs/resources#c), [Trove](https://tokenbrice.github.io/polaris-docs/resources#t), [CDB / Branch](https://tokenbrice.github.io/polaris-docs/resources#c) | [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow)
 Earn / SP | [Stability Pool](https://tokenbrice.github.io/polaris-docs/resources#s), [SP](https://tokenbrice.github.io/polaris-docs/resources#s) | [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn)
-Floor Carry | [Floor Carry](https://tokenbrice.github.io/polaris-docs/resources#f) | [Split](https://tokenbrice.github.io/polaris-docs/using-app/split)
+Floor Carry | [Floor Carry](https://tokenbrice.github.io/polaris-docs/resources#f) | [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap)
 fpETH / vpETH | [fpETH](https://tokenbrice.github.io/polaris-docs/resources#f), [vpETH](https://tokenbrice.github.io/polaris-docs/resources#v) | [Split](https://tokenbrice.github.io/polaris-docs/using-app/split)
 Guide | [Guide](https://tokenbrice.github.io/polaris-docs/resources#g) | [Polaris App](https://tokenbrice.github.io/polaris-docs/using-app)
 LTV | [LTV](https://tokenbrice.github.io/polaris-docs/resources#l) | [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove)
@@ -218,7 +220,7 @@ Wrapped ETH, the ERC-20 form of ETH used by app contracts and testnet flows. On 
 ## Z
 
 **Zap**
-An app flow that bundles multiple steps, such as WETH -> pUSD or pGOLD -> Stability Pool deposit. A zap is an execution shortcut, not a risk reducer; check approvals, simulation, slippage, quote freshness, and first-loss risk. See [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap).
+An app flow that bundles multiple steps, such as WETH -> pUSD -> Stability Pool deposit. A zap is an execution shortcut, not a risk reducer; check approvals, simulation, slippage, quote freshness, and first-loss risk. See [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap).
 
 ---
 
@@ -234,6 +236,14 @@ URL: https://tokenbrice.github.io/polaris-docs/resources/audits-security
 Markdown URL: https://tokenbrice.github.io/polaris-docs/resources/audits-security.md
 
 > **Pre-launch note:** Audits and verifications are ongoing; this page will be updated with major developments.
+
+## Current status
+
+Item | Status
+
+Audit reports | **None published yet.** Until reports appear on this page, treat the protocol as unaudited.
+Bug bounty | **Not live.** No bounty program exists yet; treat any page or message claiming otherwise as fake.
+Vulnerability disclosure | **No dedicated channel yet.** This page will list the official contact when one is live.
 
 ## The security model
 
@@ -295,7 +305,7 @@ Cream | `#F5F0E6` | Secondary light surfaces | Pair with dark navy text; do not 
 
 ### Token colors
 
-Each core asset has a signature color.
+Signature colors are published for the assets below. Tokens not listed (such as pGOLD) have no published signature color yet.
 
 Swatch | Token | Hex | Accessible use
 
@@ -349,7 +359,7 @@ Polaris is a pETH-powered stablecoin operating system. ETH becomes pETH through 
 
 ### What is live now?
 
-The current phase is owned by [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status). As of June 2026, Polaris is in Public Testnet 1 on Sepolia (`11155111`), and production/mainnet use is not live.
+The current phase is owned by [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status). Polaris is in Public Testnet 1 on Sepolia (`11155111`), and production/mainnet use is not live.
 
 ### Which app should I use?
 
@@ -395,11 +405,11 @@ Yes. Polaris involves smart-contract risk, collateral price risk, liquidation ri
 
 ### What is LTV?
 
-LTV is loan-to-value: your trove's debt divided by its collateral value. Lower LTV is safer. Protocol parameters may also show the inverse ratio, ICR or MCR; for example, 150% ICR equals 66.7% LTV. See the [Glossary](https://tokenbrice.github.io/polaris-docs/resources) and [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove).
+LTV is loan-to-value: your trove's debt divided by its collateral value. Lower LTV is safer. Protocol parameters may also show the inverse ratio, ICR or MCR; for example, the current 115% MCR equals roughly an 87% max LTV, and a trove at 150% ICR sits at 66.7% LTV. See the [Glossary](https://tokenbrice.github.io/polaris-docs/resources) and [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove).
 
-### What is TCR or Emergency Mode?
+### What is TCR or Recovery Mode?
 
-TCR is the system-level reserve-to-debt health metric for a pAsset. If it drops below the configured threshold, Recovery Mode tightens risk-increasing borrower actions. See [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode) and [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters).
+TCR is the system-level reserve-to-debt health metric for a pAsset. If it drops below the configured threshold, Recovery Mode (called Emergency Mode in the contracts) tightens risk-increasing borrower actions. See [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode) and [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters).
 
 ## Security
 
@@ -461,6 +471,12 @@ If your [trove](https://tokenbrice.github.io/polaris-docs/minting)'s loan-to-val
 
 **Mitigation.** Liquidation logic is transparent and auditable onchain, with no discretionary calls. You control your LTV: post more collateral, or repay debt, to stay clear of the threshold. pETH's rising floor and yield-bearing nature dampen, but do not remove, the volatility that causes liquidations. Monitor your trove actively, especially in volatile markets.
 
+## Redemption risk (borrowers)
+
+When a pAsset trades below peg, [redemptions](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations) exchange it for pETH collateral drawn **pro-rata from all troves in the branch, regardless of LTV**. Part of your collateral can be taken even if your trove is conservatively collateralized: a low LTV protects against liquidation, not against redemption.
+
+**Mitigation.** A redeemed trove sheds debt at face value one-for-one with the collateral taken, so your net position value is preserved up to the redemption fee, and pro-rata spreading means no single trove is singled out. Redemption is also the mechanism defending the peg you rely on as a borrower. If you want less redemption exposure, the lever is less debt, not more collateral.
+
 ## Stability Pool first-loss risk (depositors)
 
 Depositing pAssets into the [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield) is the primary way to earn yield, but the Pool is the system's **first-loss buffer**. When a trove is liquidated, your deposited pAssets are burned to cancel its debt, and you receive the liquidated pETH collateral in exchange.
@@ -469,7 +485,7 @@ Depositing pAssets into the [Stability Pool](https://tokenbrice.github.io/polari
 
 ## Recovery Mode
 
-When the system-wide reserve backing relative to total debt (the [reserve-to-debt ratio, shown as the TCR](https://tokenbrice.github.io/polaris-docs/resources)) drops below a threshold, the protocol enters [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode), a defensive state with tighter requirements.
+When the system-wide reserve backing relative to total debt (the [reserve-to-debt ratio, shown as the TCR](https://tokenbrice.github.io/polaris-docs/resources#t)) drops below a threshold, the protocol enters [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode), a defensive state with tighter requirements.
 
 **Mitigation.** Recovery Mode is a feature, not a failure: it raises the bar for the whole system to rebuild collateralization quickly. Borrowers bear the cost: in Recovery Mode you cannot withdraw collateral or take on more debt unless you stay below the stricter recovery max LTV and do not increase your LTV (pure collateral top-ups and repayments stay allowed). Liquidation eligibility itself does not change; it stays at the normal max LTV in every mode. Keep your LTV comfortably below the maximum so a stress event does not box in your ability to act.
 
@@ -512,7 +528,7 @@ Markdown URL: https://tokenbrice.github.io/polaris-docs/resources/testnet.md
 
 This page is the single source for Public Testnet 1: [environment](https://tokenbrice.github.io/polaris-docs/resources/testnet#environment), [manifest sources](https://tokenbrice.github.io/polaris-docs/resources/testnet#manifest-sources), [parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters), [contract addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses), and [verification](https://tokenbrice.github.io/polaris-docs/resources/testnet#verification).
 
-Everything below is Public Testnet 1 on Sepolia, last verified June 8, 2026. Sepolia values are replaceable artifacts with no monetary value, no production redemption, and no mainnet claim — do not infer production constants or addresses from them. Production values are not published unless this page and Launch Status say they are.
+Everything below is Public Testnet 1 on Sepolia, last verified on the date in the banner above. Sepolia values are replaceable artifacts with no monetary value, no production redemption, and no mainnet claim — do not infer production constants or addresses from them. Production values are not published unless this page and Launch Status say they are.
 
 ## Environment
 
@@ -530,7 +546,7 @@ Active pAssets | pUSD and pGOLD
 
 ## Manifest sources
 
-Protocol artifact source and commit are not public in these docs during Public Testnet 1. The relative paths below identify the internal Sepolia manifests behind the address and parameter tables on this page; external readers should treat those tables as the public source until a repository URL and commit are published.
+The protocol repository and commit are not yet public. The paths below identify the internal Sepolia manifests behind the address and parameter tables on this page; treat the tables themselves as the public source until a repository URL and commit are published.
 
 Manifest | What it covers | Internal protocol path
 
@@ -552,7 +568,20 @@ Parameter | Public Testnet 1 value | Source
 Bonding curve alpha | `193218996973422650` | Core manifest
 Bonding curve beta | `150000000000000000` (15%) | Core manifest
 
+### Testnet faucet
+
+Parameter | Public Testnet 1 value | Source
+
+Claim cost | `0.1` Sepolia ETH | Faucet contract
+Claim payout | `10` WETH (mock reserve token) | Faucet contract
+Claim cooldown | One claim per address every 4 hours | Faucet contract
+Daily cap | Global daily limit; the faucet pauses when reached | Faucet contract
+
+Task pages link here for faucet values; the contract can change them without a docs redeploy, so confirm against the app before claiming.
+
 ### pAsset branch parameters
+
+**Emergency Mode** in the rows below is the contracts' internal name for what these docs call [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode).
 
 Parameter | pUSD | pGOLD | Source
 

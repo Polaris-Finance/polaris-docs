@@ -32,12 +32,12 @@ Polaris descends from the line of immutable, counterparty-free CDP stablecoins, 
 
 ![Polaris lineage: SAI in 2017, LUSD in 2021, BOLD and Liquity V2 public code and testnet in 2024 with mainnet in 2025, and pUSD in 2026](/infographics/polaris-lineage.svg)
 
-*The counterparty-free CDP lineage, 2017 to present. The BOLD/Liquity V2 milestone spans 2024 public code/testnet work and 2025 mainnet launch.*
+*The counterparty-free CDP lineage, 2017 to present.*
 
 In text, the lineage reads:
 
 1. **2017 — SAI:** the first CDP stablecoin, single-collateral. It later upgraded to DAI and then drifted toward centralized backing.
-2. **2021 — LUSD:** immutable and decentralized, but capital-inefficient, with long over-peg periods; exact percentages depend on the dataset, date range, and sampling cadence.
+2. **2021 — LUSD:** immutable and decentralized, but capital-inefficient, with long over-peg periods.
 3. **2024/2025 — BOLD (Liquity V2):** 2024 public code/testnet work followed by Liquity's May 2025 mainnet launch — a refined CDP mechanism from the original Liquity developers, still trustless, still yield-constrained.
 4. **2026 — pUSD:** the next chapter. A bonding-curve collateral design that solves the overpeg problem and unlocks onchain-scaling yield without adding a counterparty.
 
@@ -49,7 +49,7 @@ Polaris is designed so the main dependencies are immutable code and Ethereum:
 - **Immutable core.** The bonding curve, branch and CDP logic, liquidations, redemptions, and the Stability Pool are intended to be fixed in audited deployment code. No admin key can add a custodial PSM, external-collateral module, or freeze function under pressure.
 - **Counterparty-free by construction.** pUSD sits in the same counterparty-free lineage as LUSD and BOLD — but adds yield that *scales* with DeFi volume rather than capping growth at what a counterparty can deliver.
 
-Polaris turns onchain activity into yield through its bonding curve, and extends the model to other assets through [StablecoinOS](/core-concepts).
+Polaris turns onchain activity into yield through its bonding curve, and extends the model to other assets through [StablecoinOS](/minting/passet-catalog#stablecoinos-an-open-catalog).
 
 <NextSteps
   steps={[

@@ -46,9 +46,9 @@ Collateralized Debt Branch: the aggregate protocol branch for one pAsset. A bran
 
 Collateralized Debt Position: your individual borrowing position inside a branch. You post pETH collateral and mint the pAsset directly from the protocol, not by borrowing another user's funds. Each CDP has its own collateral, debt, and loan-to-value (LTV). See [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting).
 
-The Polaris app term for an individual CDP. Each trove is isolated, with its own collateral, debt, and loan-to-value (LTV). See [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove).
+The Polaris app term for an individual CDP — the same position, by another name. See [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove).
 
-Polaris is a *factory* of pAsset branches, each issuing a different pAsset but all sharing the same pETH collateral and bonding curve.
+Polaris's factory layer: each branch issues a different pAsset, all sharing the same pETH collateral and bonding curve. See [StablecoinOS: an open catalog](https://tokenbrice.github.io/polaris-docs/minting/passet-catalog#stablecoinos-an-open-catalog).
 
 ## Keeping the peg
 
@@ -62,7 +62,7 @@ Redemption and minting volume serve as onchain proxy signals for the peg, lettin
 
 If a trove's LTV exceeds the maximum, it is liquidated, and the [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield) absorbs the debt — or, if the pool is too small, the debt and collateral redistribute to other troves. See [Liquidations](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations).
 
-A protocol-wide protective state entered when the system-wide reserve-backing-to-debt ratio (the [TCR](https://tokenbrice.github.io/polaris-docs/resources)) falls below a fixed threshold. See [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode).
+A protocol-wide protective state entered when the system-wide reserve-to-debt ratio (the [TCR, Total Collateralization Ratio](https://tokenbrice.github.io/polaris-docs/resources#t)) falls below a fixed threshold. See [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode).
 
 The mathematically enforced minimum price of pETH (in ETH), and that floor as a percentage of market price (your maximum drawdown). See [The Floor Price](https://tokenbrice.github.io/polaris-docs/peth/floor-price).
 
@@ -72,7 +72,7 @@ A reserve of pAssets that processes liquidations and is the primary venue for ea
 
 The mechanism that mints POLAR by burning pETH. See [Conversion Auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions).
 
-Receives pETH from conversions and bonding-curve swap fees, then buffers and distributes it as yield to troves, pro-rata to their debt. See [The Fee Router](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router).
+Buffers protocol revenue in pETH and distributes it to troves (pro-rata to debt), POLAR stakers, and Flow recipients. Swap fees are first burned at the floor — raising it — and the released ETH is recycled into pETH. See [The Fee Router](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router).
 
 A stewardship role steers *quantitative parameters*, with safety-critical bounds hardcoded in the contracts and the remaining bounds set at audited deployment. It does not govern the immutable core. See [Stewardship, not Governance](https://tokenbrice.github.io/polaris-docs/stewardship).
 
@@ -168,11 +168,11 @@ Your **loan-to-value (LTV)** is the recorded value of your debt divided by the v
 
 Collateral value comes from the protocol's collateral pricing path. Debt value is what you owe in that pAsset's reference unit, including accrued interest; it is not the temporary market price at which you might buy the pAsset on a DEX. A trove holding pETH worth \$15,000 against 10,000 pUSD of debt has an LTV of 66.7%. Lower is safer.
 
-Some protocol materials and parameters use **ICR** or **MCR**, the inverse collateral ratio:
+Some protocol materials and parameters use **ICR** (individual collateral ratio — your trove's current ratio, the reciprocal of LTV) and **MCR** (minimum collateral ratio — the liquidation threshold):
 
 > ICR = collateral value ÷ debt face value
 
-That means 150% ICR is the same position as 66.7% LTV. A maximum LTV is the inverse of a minimum collateral ratio. Two rules matter:
+That means 150% ICR is the same position as 66.7% LTV, and a maximum LTV is the reciprocal of the MCR. Two rules matter:
 
 - Above the **maximum LTV**, the trove can be [liquidated](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations).
 - [Redemptions](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations) draw collateral from every open trove collectively, pro-rata to its recorded collateral and regardless of LTV. Lower LTV protects against liquidation, not redemption.
@@ -181,7 +181,7 @@ Your LTV moves on its own as ETH's price moves — you need not touch the trove 
 
 ## Trove Health Simulator
 
-The simulator below defaults to the current Public Testnet 1 MCR of 115%, equivalent to about 87.0% max LTV, not the Emergency Mode action MCR of 150%. Always verify the live value on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters) and in the app before signing.
+The simulator below defaults to the current Public Testnet 1 MCR of 115%, equivalent to about 87.0% max LTV — not the stricter [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode) action MCR (called "Emergency Mode" in the contracts). Always verify the live values on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters) and in the app before signing.
 
 Minting more or withdrawing collateral raises your LTV. Cross the maximum and your trove is liquidated automatically: your collateral covers the debt plus a liquidation penalty, with no margin call, and only the surplus is returned for you to claim. Redemptions can also reach your position while it is still solvent — there is no LTV exemption — shrinking your collateral and pETH exposure proportionally without your consent. See the Risk Disclosure.
 
@@ -250,7 +250,7 @@ Markdown URL: https://tokenbrice.github.io/polaris-docs/minting/open-a-trove.md
 
 A **trove** is your individual CDP: its own collateral, debt, and loan-to-value (LTV). Opening one is how you mint a pAsset: **connect wallet ⇒ acquire pETH ⇒ deposit pETH as collateral ⇒ choose and mint a pAsset ⇒ confirm ⇒ monitor your LTV**. This page walks each step; for the concepts behind it, see [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting) and [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove).
 
-App anchor: **Borrow** tab -> pAsset trove flow. If the app says CDP, it is referring to the same individual pAsset debt position this page calls a trove.
+App anchor: [**Borrow** tab](https://tokenbrice.github.io/polaris-docs/using-app/borrow) -> pAsset trove flow. If the app says CDP, it is referring to the same individual pAsset debt position this page calls a trove.
 
 For the full **Borrow / CDB / CDP / trove / reserve loan** vocabulary — including why a reserve loan is not a pAsset trove — see [Borrower terminology](https://tokenbrice.github.io/polaris-docs/minting#borrower-terminology).
 
@@ -351,6 +351,11 @@ Shared collateral lets teams add a new pAsset without bootstrapping a fresh coll
 
 Image: StablecoinOS as a factory: ETH enters one shared bonding curve to mint pETH, which collateralizes multiple independent branches that each mint a different pAsset — pUSD, pGOLD, pCHF — over the same pETH collateral base
 
+Next steps:
+- [Open a Trove](https://tokenbrice.github.io/polaris-docs/minting/open-a-trove): Mint your first pAsset against pETH collateral, step by step.
+- [pETH & the Bonding Curve](https://tokenbrice.github.io/polaris-docs/peth): The collateral primitive every branch shares.
+- [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status): Which pAssets are testnet-active today.
+
 ---
 
 [pGOLD: Finishing What DigixDAO Started](https://polarisfinance.io/blog/pGOLD-finishing-what-digixdao-started/)
@@ -372,7 +377,7 @@ A two-way bonding curve lets you swap like a regular AMM pool, with one key diff
 - Demand rises, tokens are minted, price increases.
 - Tokens are burned/sold, price decreases.
 
-Buying adds ETH to the reserve and **mints** pETH. Selling withdraws from the reserve and **burns** pETH. The result is contract-native liquidity with no external liquidity provider, subject to Ethereum liveness, available gas, MEV, slippage, and the bonding-curve contracts working as designed. You have used bonding curves without knowing it: every AMM is one (Uniswap, Curve), and Pump.fun is a well-known example.
+Buying adds ETH to the reserve and **mints** pETH. Selling withdraws from the reserve and **burns** pETH. The result is contract-native liquidity with no external liquidity provider, subject to the execution caveats in the [Risk overview](https://tokenbrice.github.io/polaris-docs/peth#risk-overview) below. You have used the price-curve idea without knowing it: AMMs like Uniswap and Curve run on one (though their liquidity comes from LPs), and Pump.fun is the closest mint/burn example.
 
 Two things make pETH's curve different from Pump.fun's:
 
@@ -390,6 +395,10 @@ Image: pETH bonding curve: ETH deposits mint pETH along a power-law curve with a
 ### The maths
 
 The curve follows the formula:
+
+$$
+P = \alpha \cdot Q^{\beta}
+$$
 
 - **α**: a scaling parameter of little importance.
 - **Q**: the supply of pETH.
@@ -465,7 +474,7 @@ The floor is not a promise or a target defended by a treasury. It is a direct co
 
 Two mechanisms push the floor up under the intended curve invariants. Normal protocol actions are not designed to push it down:
 
-- **Swap fees feed the burn.** Every swap on the [bonding curve](https://tokenbrice.github.io/polaris-docs/peth) charges a pETH fee that accrues to the protocol's Fee Router. The Fee Router periodically floor-sells and burns accumulated pETH, reducing supply against an unchanged-or-growing ETH reserve and raising the floor.
+- **Swap fees feed the burn.** Every swap on the [bonding curve](https://tokenbrice.github.io/polaris-docs/peth) charges a pETH fee that accrues to the protocol's [Fee Router](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router). Accumulated fee pETH is periodically **burned at the floor price**: supply falls while the reserve releases only the floor value of what was burned, so the floor rises. The released ETH is swapped back into pETH and funds the pETH yield flows.
 - **Conversion auctions.** Minting POLAR requires [burning pETH](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions), which again reduces supply and lifts the floor.
 
 The result is a staircase under normal operation: pETH's market price fluctuates above the floor, while the floor itself steps upward over time.
@@ -511,6 +520,11 @@ The relevant invariants stay unchanged and unbroken | The floor depends on reser
 
 > Your risk in pETH is decided at entry: the spread between your entry price and the floor (the floor ratio), plus execution and technical risk. Under the intended curve invariant, normal protocol activity moves the floor up, not down.
 
+Next steps:
+- [Split: fpETH & vpETH](https://tokenbrice.github.io/polaris-docs/peth/split): Separate the floor-backed claim from the premium upside.
+- [Conversion Auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions): The pETH burn that ratchets the floor and mints POLAR.
+- [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure): What the floor does and does not protect you from.
+
 Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor price, pETH bonding curve, bonding curve, pETH floor.
 
 ---
@@ -542,6 +556,15 @@ pETH value = floor value + premium above floor
 ```
 
 fpETH isolates the floor-value side. vpETH isolates the remaining premium side. If pETH trades close to its floor, vpETH can become worth very little. If pETH trades far above its floor, vpETH carries most of that premium exposure.
+
+For intuition, with pETH at a market price of 1.00 ETH:
+
+Floor price | [Floor ratio](https://tokenbrice.github.io/polaris-docs/peth/floor-price) | fpETH claim (floor leg) | vpETH exposure (premium leg)
+
+0.60 ETH | 60% | ≈ 0.60 ETH | ≈ 0.40 ETH
+0.90 ETH | 90% | ≈ 0.90 ETH | ≈ 0.10 ETH
+
+The arithmetic is indicative: each leg trades on its own market, so realized prices can deviate from the decomposition.
 
 ## Split and merge
 
@@ -595,7 +618,7 @@ POLAR is Polaris's stewardship token and outward-facing growth lever. After the 
 
 App anchors: **Earn** for current POLAR Staking where exposed, and **Advanced** or a conversion panel for pETH -> POLAR conversion actions.
 
-> **Status distinction:** The app may expose **POLAR Staking** as a current stake/unstake/claim surface on testnet. **vePOLAR locking** is separate and forthcoming: lock durations, vote-power decay, voting rules, and production addresses are pending. Do not use a conversion, staking, or locking interface unless [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) and [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses) point to it.
+> **Status distinction:** The app may expose **POLAR Staking** as a current stake/unstake/claim surface on testnet. **vePOLAR locking** is separate and forthcoming — see [POLAR Staking vs vePOLAR](https://tokenbrice.github.io/polaris-docs/polar/tokenomics#polar-staking-vs-vepolar) for what is committed and what is pending. Do not use a conversion, staking, or locking interface unless [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) and [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses) point to it.
 
 ## Why a third token
 
@@ -661,8 +684,6 @@ Image: Spike-and-decay conversion pricing: the conversion price decays continuou
 > **Note:**
 > The spike is computed against **POLAR supply, not pETH supply**. This steers conversions toward small, frequent operations: a whale converting a large amount in one go faces rapidly diminishing returns as each increment spikes the price against them. The mechanism self-regulates toward steady, incremental minting.
 
-In practice, conversions will mostly be executed by arbitrage bots and MEV searchers. The dynamics are tuned for fast, competitive execution.
-
 > *Exact decay and spike parameters are finalized closer to launch, set through stewardship. The converter rebate is bounded between 0% and 100%; final decay and spike bounds are pending.*
 
 ## What burning pETH does
@@ -683,7 +704,7 @@ Before released ETH becomes system yield, a slice can return to the converter. T
 Rebate | Effect
 
 **0%** | Maximum yield to the system; conversions cost the most. Sensible when POLAR's market cap exceeds pETH's.
-**100%** | Zero system yield; conversions are cheapest (effective cost set by the [floor ratio](https://tokenbrice.github.io/polaris-docs/peth/floor-price)). An emergency lever to drive volume when the floor is stalling.
+**100%** | Zero system yield; conversions are cheapest — the rebate returns the burned pETH's floor value, so the converter's net cost is only the premium above floor (at a 60% [floor ratio](https://tokenbrice.github.io/polaris-docs/peth/floor-price), roughly 40% of the pETH's market value). An emergency lever to drive volume when the floor is stalling.
 **In between** | The usual operating range, shifting with market conditions.
 
 Stewards watch the **POLAR / pETH market-cap ratio**: when POLAR's is larger, a lower rebate is easier to defend; when it flips, higher rebates may support conversion volume.
@@ -768,20 +789,20 @@ The app vocabulary matters:
 - **POLAR Staking** is the current staking surface where a deployment exposes stake, unstake, and claim actions for routed rewards.
 - **[vePOLAR](https://tokenbrice.github.io/polaris-docs/stewardship/vepolar)** is the forthcoming vote-escrow layer. Locking POLAR for a period is intended to return vePOLAR, which grants stewardship rights and a yield path.
 
-vePOLAR lock durations, vote-power decay, unlock rules, proposal rules, and the final yield split are pending. Do not treat current POLAR Staking as a substitute for vePOLAR voting rights.
+vePOLAR proposal rules and the final yield split are pending; the committed lock design (durations, decay, delegation) lives on [vePOLAR](https://tokenbrice.github.io/polaris-docs/stewardship/vepolar#lock-status). Do not treat current POLAR Staking as a substitute for vePOLAR voting rights.
 
 ## Where the yield comes from
 
-POLAR's value accrual runs on hard-asset protocol revenue, buffered and routed by the **[Fee Router](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router)** (pETH) and, separately, by the protocol's interest router (pAsset). It reaches three destinations:
+POLAR's value accrual runs on hard-asset protocol revenue, buffered and routed by the **[Fee Router](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router)** (pETH) and, separately, by the protocol's interest router (pAsset). It reaches these destinations:
 
-Destination | What they receive
+Destination | Routed by | What they receive
 
-**Troves** | pETH yield from the Fee Router, credited pro-rata to recorded debt
-**POLAR stakers** | A stewarded share of protocol interest, in pAsset terms where the staking surface is live
-**vePOLAR lockers** | Forthcoming stewardship and yield path after audited locking deployment
-**Flow recipients** | Revenue-sharing for whitelisted contracts via [Flows](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router) (forthcoming)
+**Troves** | Fee Router (pETH) | pETH yield, credited pro-rata to recorded debt
+**POLAR stakers** | Interest router (pAsset) | A stewarded share of protocol interest where the staking surface is live
+**vePOLAR lockers** | Pending deployment | Forthcoming stewardship and yield path after audited locking deployment
+**Flow recipients** | Fee Router, via [Flows](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router) | Revenue-sharing for whitelisted contracts (forthcoming)
 
-Inputs are protocol revenue, not emitted POLAR. The Fee Router handles pETH rewards; the interest router handles pAsset-denominated splits. Exact destination splits, production staking terms, and vePOLAR locking terms are pending.
+Inputs are protocol revenue, not emitted POLAR. Exact destination splits, production staking terms, and vePOLAR locking terms are pending.
 
 ## What POLAR does *not* have
 
@@ -795,6 +816,11 @@ The structure deliberately omits the usual extraction surfaces:
 ## The Polar Council
 
 The **Polar Council** is a planned treasury-funded program for onboarding and ecosystem contributors, comparable in spirit to veAERO's Flight School. Initially team-managed; its allocation, operating framework, eligibility, and reporting requirements are pending publication.
+
+Next steps:
+- [Conversion Auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions): The spike-and-decay mechanism behind every POLAR mint.
+- [vePOLAR Locking](https://tokenbrice.github.io/polaris-docs/stewardship/vepolar): The committed lock design and forthcoming stewardship rights.
+- [Fee Router & Flows](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router): How the revenue in the table above is buffered and routed.
 
 ---
 
@@ -873,14 +899,14 @@ Redemptions are visible onchain transactions. Searchers can compete for the same
 
 Assume pUSD trades at \$0.98, the redemption fee quote is 0.5%, and gas/slippage are ignored. A redeemer buys 10,000 pUSD for \$9,800 and redeems it for \$10,000 of pETH minus the 0.5% fee, or about \$9,950 of pETH. The gross spread is about \$150 before gas, slippage, MEV, and price movement.
 
-Now the borrower side. A 4,000 pUSD redemption reduces total system debt by 4,000 pUSD and removes roughly \$4,000 of pETH from the pool. Both reductions are shared across every open trove in proportion to recorded collateral.
+Now the borrower side of the same redemption. The 10,000 pUSD redeemed reduces total system debt by 10,000 pUSD and removes roughly \$10,000 of pETH from the pool. Both reductions are shared across every open trove in proportion to recorded collateral.
 
-For intuition, here is the proportional share for one trove holding a fifth of the system's collateral, so it absorbs a fifth of the redemption (800 pUSD of debt and about \$800 of pETH):
+For intuition, here is the proportional share for one trove holding a fifth of the system's collateral, so it absorbs a fifth of the redemption (2,000 pUSD of debt and about \$2,000 of pETH):
 
 Step | Collateral value | Debt | LTV
 
 Before redemption | \$18,000 | 12,000 pUSD | 66.7%
-After absorbing its pro-rata share | About \$17,200 | 11,200 pUSD | About 65.1%
+After absorbing its pro-rata share | About \$16,000 | 10,000 pUSD | 62.5%
 
 The borrower did not repay voluntarily; the market did it through the redemption path. The trove is slightly safer by LTV, but smaller and less exposed to pETH.
 
@@ -888,7 +914,6 @@ The borrower did not repay voluntarily; the market did it through the redemption
 
 1. Track your **LTV** with enough buffer for price moves, interest accrual, and redemption impact.
 2. Treat a below-peg pAsset as a live signal that redemptions may shrink your position.
-3. Use [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove) for borrower levers and [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure) for the full risk model.
 
 ---
 
@@ -896,6 +921,8 @@ The borrower did not repay voluntarily; the market did it through the redemption
 
 - [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove) for borrower levers.
 - [Liquidations](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations) for the forced-close path.
+- [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode) for the system-wide defensive state.
+- [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure) for the full risk model.
 - [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters) for current redemption values.
 
 [CDPs Mint Dollars. Polaris Mints Anything](https://polarisfinance.io/blog/polaris-mints-anything/)
@@ -920,7 +947,7 @@ Unlike a [redemption](https://tokenbrice.github.io/polaris-docs/redemptions-liqu
 
 Liquidation runs in two tiers.
 
-1. **The Stability Pool absorbs it first.** The [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield) holds a reserve of the pAsset. When a trove is liquidated, the pool burns pAsset equal to the trove's debt and receives its pETH collateral in return. Because liquidated troves are typically seized while still *overcollateralized* but past the LTV liquidation line, the pool usually receives more value in pETH than the pAsset it burns. That surplus is the depositors' compensation.
+1. **The Stability Pool absorbs it first.** The [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield) holds a reserve of the pAsset. When a trove is liquidated, the pool burns pAsset equal to the trove's debt and receives pETH collateral covering the debt plus the liquidation penalty (any surplus goes back to the borrower — see below). Because liquidated troves are typically seized while still *overcollateralized* but past the LTV liquidation line, the pool usually receives more value in pETH than the pAsset it burns. That surplus is the depositors' compensation.
 
 2. **Redistribution is the fallback.** If the Stability Pool is empty or too small to cover the debt, the trove's debt *and* collateral spread across the remaining troves on that pAsset, in proportion to their size. Other borrowers take on a slice of debt and a matching slice of pETH. The system stays solvent either way.
 
@@ -1007,7 +1034,7 @@ Your action | Normal Mode | Recovery Mode
 **Withdraw collateral / mint more debt** | Allowed if LTV stays below the maximum | Allowed only if the resulting LTV stays below the stricter recovery maximum and does not increase your LTV
 **Liquidation eligibility** | LTV above the maximum | LTV above the maximum (unchanged)
 
-The principle: actions that strengthen backing stay open; actions that thin backing face a higher bar. Current trigger and action values are published on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters).
+The principle: actions that strengthen backing stay open; actions that thin backing face a higher bar. In practice, a collateral withdrawal or new mint on its own always raises LTV, so in Recovery Mode it goes through only as part of a combined adjustment that offsets it — adding collateral or repaying debt in the same transaction. Current trigger and action values are published on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters).
 
 ## Worked example: Recovery Mode
 
@@ -1040,7 +1067,7 @@ Governance risk is structural: unlimited scope, undefined boundaries, and misali
 
 Polaris's answer is neither a fully immutable protocol with no adjustable parameters nor an unbounded DAO. It is a third path: an immutable core plus a clearly scoped layer where human judgment is necessary. We call it **stewardship** rather than governance because the difference is structural, not cosmetic.
 
-> **Current status:** Stewardship is not live yet. POLAR and vePOLAR contract addresses, lock terms, proposal thresholds, voting periods, execution delays, and final numeric parameter bounds await audited deployment. These docs describe the intended scope and lifecycle without inventing launch parameters.
+> **Current status:** Stewardship is not live yet. POLAR and [vePOLAR](https://tokenbrice.github.io/polaris-docs/stewardship/vepolar) contract addresses, proposal thresholds, voting periods, execution delays, and final numeric parameter bounds await audited deployment. These docs describe the intended scope and lifecycle without inventing launch parameters.
 
 ## The core is immutable
 
@@ -1056,7 +1083,7 @@ The base protocol does not need to be relearned after each vote, because the cor
 
 ## What stewardship controls
 
-Stewardship operates at the edges: StablecoinOS onboarding, permitted parameter dials, the POLAR stewardship layer, fee and interest splits, Flow participation, and treasury programs. Safety-critical adjustable values ship with hardcoded limits; the remaining numeric bounds are set at audited deployment.
+Stewardship operates at the edges: StablecoinOS onboarding, permitted parameter dials, the POLAR stewardship layer, fee and interest splits, [Flow](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router) participation, and treasury programs. Safety-critical adjustable values ship with hardcoded limits; the remaining numeric bounds are set at audited deployment.
 
 Domain | Power | Constraint
 
@@ -1140,6 +1167,11 @@ The lesson Polaris draws: bound the scope first. Less can be captured, overpaid 
 
 Stewardship is not a promise to behave well; it is a structure with a bounded surface. The core is immutable. Each lever is bounded, auditable, and reversible where the underlying contract permits. Team influence is diluted through the [conversion mechanism](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions) as new POLAR enters circulation.
 
+Next steps:
+- [vePOLAR Locking](https://tokenbrice.github.io/polaris-docs/stewardship/vepolar): The vote-escrow layer: committed lock design, stewardship rights, and what is still pending.
+- [Fee Router & Flows](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router): How protocol revenue is buffered, routed, and shared with whitelisted contracts.
+- [POLAR Tokenomics](https://tokenbrice.github.io/polaris-docs/polar/tokenomics): Issuance by conversion, staking vs vePOLAR, and yield destinations side by side.
+
 ---
 
 [Stewardship, not Governance](https://polarisfinance.io/blog/stewardship-not-governance/)
@@ -1167,9 +1199,11 @@ The Fee Router receives protocol revenue, buffers it, and sends it to the config
 
 Source | What enters
 
-[Conversion auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions) | Released ETH after any converter rebate, routed back into pETH yield paths
-Bonding-curve swap fees | Fees from ETH/pETH activity, routed according to the final contract design
+[Conversion auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions) | pETH purchased with the released ETH, after any [converter rebate](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions#the-converter-rebate)
+Bonding-curve swap fees | pETH fees from ETH ⇄ pETH activity
 Other protocol revenue | Any additional source listed in the contract reference and yield docs
+
+Swap fees take one extra step before distribution: accumulated fee pETH is **burned at the floor price**, which lifts the [floor](https://tokenbrice.github.io/polaris-docs/peth/floor-price) and releases reserve ETH; that ETH is swapped back into pETH and distributed with the rest. The burn is the floor-raising mechanism — what reaches the destinations below is the repurchased pETH, not the burned fees.
 
 For the full source matrix, see [Yield Sources](https://tokenbrice.github.io/polaris-docs/yield/yield-sources).
 
@@ -1272,7 +1306,7 @@ Markdown URL: https://tokenbrice.github.io/polaris-docs/stewardship/vepolar.md
 
 **vePOLAR is vote-escrowed POLAR.** Lock [POLAR](https://tokenbrice.github.io/polaris-docs/polar) to receive stewardship rights for bounded parameters and edge decisions.
 
-> **Current status:** vePOLAR is not the same as current **POLAR Staking**. The app may expose stake/unstake/claim actions for POLAR rewards on testnet, while the vePOLAR locking interface, contract address, lock durations, vote-power decay, unlock rules, proposal thresholds, and final yield split are pending. Do not lock POLAR through an unofficial interface.
+> **Current status:** vePOLAR is not the same as current **POLAR Staking**. The app may expose stake/unstake/claim actions for POLAR rewards on testnet, while the vePOLAR locking interface, contract address, proposal thresholds, and final yield split are pending. The lock design itself (durations, decay, delegation) is committed — see [Lock status](https://tokenbrice.github.io/polaris-docs/stewardship/vepolar#lock-status). Do not lock POLAR through an unofficial interface.
 
 ## What vePOLAR does
 
@@ -1280,36 +1314,26 @@ Markdown URL: https://tokenbrice.github.io/polaris-docs/stewardship/vepolar.md
 lock POLAR -> receive vePOLAR -> steward bounded parameters + receive routed yield
 ```
 
-vePOLAR holders are **stewards, not governors**. They steer quantitative parameters within hardcoded ranges and vote on permitted onboarding decisions. The bonding curve, branch logic, liquidations, redemptions, and Stability Pool mechanics are outside vote scope.
-
-vePOLAR holders can participate in decisions to:
-
-- License new pAssets onto Polaris infrastructure.
-- Onboard eligible participants into StablecoinOS and [Flow](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router) revenue sharing.
-- Set bounded interest splits and branch parameters.
-- Tune [conversion](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions) parameters within their hardcoded range.
-- Vote on treasury programs once the framework is published.
-
-Each action is bounded, auditable, and limited to the surfaces in [Stewardship, not Governance](https://tokenbrice.github.io/polaris-docs/stewardship).
+vePOLAR holders are **stewards, not governors**. They steer quantitative parameters within hardcoded ranges and vote on permitted onboarding decisions — pAsset licensing, StablecoinOS and [Flow](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router) onboarding, bounded splits and branch parameters, [conversion](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions) tuning, and treasury programs once the framework is published. The full enumeration of powers and constraints lives in [Stewardship, not Governance](https://tokenbrice.github.io/polaris-docs/stewardship); the bonding curve, branch logic, liquidations, redemptions, and Stability Pool mechanics are outside vote scope.
 
 ## POLAR Staking is separate
 
 POLAR Staking is a staking/rewards surface: stake POLAR, unstake where allowed, and claim routed rewards. It does not by itself create vote-escrowed vePOLAR, lock-duration voting power, or stewardship rights.
 
-vePOLAR is the future locking layer. Once live, this page will list the official lock contract, durations, vote-power formula, unlock rules, delegation, proposal thresholds, and yield claim path.
+vePOLAR is the future locking layer. The committed lock design is in [Lock status](https://tokenbrice.github.io/polaris-docs/stewardship/vepolar#lock-status) below; once live, this page will add the official lock contract, proposal thresholds, and yield claim path.
 
 ## What vePOLAR does not do
 
-vePOLAR cannot upgrade core contracts; change pETH, branch or CDP mechanics, liquidation, redemption, or Stability Pool mechanics; create gauges or bribe markets; direct POLAR emissions; mint POLAR outside the [conversion auction](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions); or move any parameter outside its immutable min/max range.
+vePOLAR cannot touch the immutable core: no contract upgrades, no gauges or bribe markets, no POLAR minting outside the [conversion auction](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions), no parameter moved outside its immutable min/max range. The full no-list is on [Stewardship, not Governance](https://tokenbrice.github.io/polaris-docs/stewardship).
 
 ## Lock status
 
-The final lock design is pending. When vePOLAR is deployed, this page will list:
+The lock design is committed; the audited deployment, contract addresses, and production terms are pending:
 
-Field | Status
+Field | Committed design
 
-POLAR contract address | Pending
-vePOLAR contract address | Pending
+POLAR contract address | Pending deployment
+vePOLAR contract address | Pending deployment
 Network | Public Testnet 1: Sepolia; production: Ethereum mainnet after launch
 Lock duration choices | 1 week to 4 years
 Vote-power formula and decay | Linear decay
@@ -1328,8 +1352,7 @@ The exact split, buffering, and claim mechanics are pending final deployment. Th
 Before locking POLAR, verify:
 
 - The official app URL.
-- POLAR and vePOLAR addresses against [Contracts and Addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses).
-- Verified source and ABI against [Contracts and Addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses).
+- POLAR and vePOLAR addresses, verified source, and ABI against [Contracts and Addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses).
 - Lock duration, voting power, unlock, and withdrawal rules.
 - The final yield split and claim path.
 - The audit status of the locking and stewardship contracts.
@@ -1339,6 +1362,11 @@ Locking is an illiquid commitment by design. Do not lock through any contract or
 ## The Polar Council
 
 The **Polar Council** is a treasury-funded program to cultivate aligned, active stewards. See [The Polar Council](https://tokenbrice.github.io/polaris-docs/polar/tokenomics#the-polar-council) for its scope and pending terms.
+
+Next steps:
+- [Stewardship, not Governance](https://tokenbrice.github.io/polaris-docs/stewardship): The full enumeration of what stewards can and cannot touch.
+- [POLAR Tokenomics](https://tokenbrice.github.io/polaris-docs/polar/tokenomics): Staking vs vePOLAR, issuance, and yield destinations side by side.
+- [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet): Verify any lock contract against the canonical address list.
 
 ---
 
@@ -1374,12 +1402,12 @@ Polaris descends from the line of immutable, counterparty-free CDP stablecoins, 
 
 Image: Polaris lineage: SAI in 2017, LUSD in 2021, BOLD and Liquity V2 public code and testnet in 2024 with mainnet in 2025, and pUSD in 2026
 
-*The counterparty-free CDP lineage, 2017 to present. The BOLD/Liquity V2 milestone spans 2024 public code/testnet work and 2025 mainnet launch.*
+*The counterparty-free CDP lineage, 2017 to present.*
 
 In text, the lineage reads:
 
 1. **2017 — SAI:** the first CDP stablecoin, single-collateral. It later upgraded to DAI and then drifted toward centralized backing.
-2. **2021 — LUSD:** immutable and decentralized, but capital-inefficient, with long over-peg periods; exact percentages depend on the dataset, date range, and sampling cadence.
+2. **2021 — LUSD:** immutable and decentralized, but capital-inefficient, with long over-peg periods.
 3. **2024/2025 — BOLD (Liquity V2):** 2024 public code/testnet work followed by Liquity's May 2025 mainnet launch — a refined CDP mechanism from the original Liquity developers, still trustless, still yield-constrained.
 4. **2026 — pUSD:** the next chapter. A bonding-curve collateral design that solves the overpeg problem and unlocks onchain-scaling yield without adding a counterparty.
 
@@ -1391,7 +1419,7 @@ Polaris is designed so the main dependencies are immutable code and Ethereum:
 - **Immutable core.** The bonding curve, branch and CDP logic, liquidations, redemptions, and the Stability Pool are intended to be fixed in audited deployment code. No admin key can add a custodial PSM, external-collateral module, or freeze function under pressure.
 - **Counterparty-free by construction.** pUSD sits in the same counterparty-free lineage as LUSD and BOLD — but adds yield that *scales* with DeFi volume rather than capping growth at what a counterparty can deliver.
 
-Polaris turns onchain activity into yield through its bonding curve, and extends the model to other assets through [StablecoinOS](https://tokenbrice.github.io/polaris-docs/core-concepts).
+Polaris turns onchain activity into yield through its bonding curve, and extends the model to other assets through [StablecoinOS](https://tokenbrice.github.io/polaris-docs/minting/passet-catalog#stablecoinos-an-open-catalog).
 
 Next steps:
 - [Core Concepts](https://tokenbrice.github.io/polaris-docs/core-concepts): A one-page map of every key term in the Polaris system.
@@ -1446,12 +1474,8 @@ Raw Stability Pool mechanics leave depositors holding pETH after liquidations. W
 The Stability Pool is the protocol's *intended* first-loss layer. Key risks:
 
 - **pETH price exposure.** Liquidation gains arrive as pETH, which is volatile against ETH. A large liquidation event that converts your full deposit to pETH, followed by a pETH price drop, can leave you worse off in ETH terms.
-- **Extreme drawdown.** If a large fraction of all troves are liquidated simultaneously (e.g., a flash crash before the liquidation engine processes them), the pool may not fully cover all debt. In that case the protocol falls back to redistribution — redistributing remaining collateral and debt across surviving troves — and the pool is partially or fully depleted.
+- **Extreme drawdown.** If a large fraction of all troves are liquidated simultaneously (e.g., a flash crash before the liquidation engine processes them), the pool may not fully cover all debt. In that case the protocol falls back to redistribution — redistributing remaining collateral and debt across surviving troves — and the pool is partially or fully depleted. A crashing trove can even fall below 100% collateralization before processing; the pool then absorbs more debt than the collateral it receives is worth, and that underwater loss is shared proportionally by all depositors.
 - **Smart-contract risk.** The pool is a smart contract; a bug can affect any depositor. Mitigated by audits, never zero.
-
-In a severe or flash crash, a trove can fall below 100% collateralization before being liquidated. In that case the pool absorbs more debt than the collateral it receives is worth. That underwater liquidation loss is shared proportionally by all depositors.
-
-Your liquidation gains are also denominated in pETH, which is [volatile against ETH](https://tokenbrice.github.io/polaris-docs/peth/floor-price). The wrapper vaults above mitigate that exposure, but at the base layer you accept pETH.
 
 ## How to deposit
 
@@ -1499,8 +1523,8 @@ Source | Where it originates | Flows to
 
 **Borrower interest** | Interest [trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove) owners pay on minted pAssets | Primarily [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield) depositors, with stewarded splits where configured
 **Liquidation gains** | The penalty on liquidated troves, paid in discounted pETH | Stability Pool depositors
-**Bonding curve swap fees** | Fees on every ETH ⇄ pETH swap, buffered by the Fee Router and later floor-sold and burned to raise the [floor price](https://tokenbrice.github.io/polaris-docs/peth/floor-price) | pETH holders / troves
-**Conversion gains** | ETH released when pETH is burned to mint POLAR in a [conversion auction](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions) | pETH holders / troves
+**Bonding curve swap fees** | Fees on every ETH ⇄ pETH swap, buffered by the Fee Router and later burned at the [floor price](https://tokenbrice.github.io/polaris-docs/peth/floor-price) | The pETH floor (via the burn); the released ETH is recycled into pETH and distributed to troves
+**Conversion gains** | ETH released when pETH is burned to mint POLAR in a [conversion auction](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions) | pETH troves, pro-rata to recorded debt
 
 The first two drive [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield) yield and are the primary venue for pAsset holders. The bonding curve and conversion components make **pETH used as trove collateral yield-bearing** — the yield accrues to troves and to pETH's rising floor, not to a passive token balance — which is why using pETH as collateral can lower a borrower's net effective cost.
 

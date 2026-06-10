@@ -40,7 +40,7 @@ Your action | Normal Mode | Recovery Mode
 **Withdraw collateral / mint more debt** | Allowed if LTV stays below the maximum | Allowed only if the resulting LTV stays below the stricter recovery maximum and does not increase your LTV
 **Liquidation eligibility** | LTV above the maximum | LTV above the maximum (unchanged)
 
-The principle: actions that strengthen backing stay open; actions that thin backing face a higher bar. Current trigger and action values are published on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters).
+The principle: actions that strengthen backing stay open; actions that thin backing face a higher bar. In practice, a collateral withdrawal or new mint on its own always raises LTV, so in Recovery Mode it goes through only as part of a combined adjustment that offsets it — adding collateral or repaying debt in the same transaction. Current trigger and action values are published on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters).
 
 ## Worked example: Recovery Mode
 

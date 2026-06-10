@@ -62,5 +62,6 @@ Stability Pool deposits are first-loss capital during liquidations. vpETH stakin
 - Use [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap) or [Split](https://tokenbrice.github.io/polaris-docs/using-app/split) to acquire deposit assets.
 - Use [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap) for a bundled swap-plus-deposit.
 - Use the [Dashboard](https://tokenbrice.github.io/polaris-docs/using-app) to monitor deposits and rewards.
+- Use [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting) if a deposit, claim, or stake action stays disabled.
 
 Relevant app/search vocabulary: Earn, earn, yield, APR, Stability Pool, deposit, claim rewards.

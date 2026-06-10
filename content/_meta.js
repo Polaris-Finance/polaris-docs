@@ -1,4 +1,8 @@
 export default {
+  '-- start': {
+    type: 'separator',
+    title: 'Get started'
+  },
   index: 'Introduction',
   'launch-status': 'Launch Status',
   quickstart: 'Public Testnet Quickstart',
@@ -14,7 +18,7 @@ export default {
   peth: 'pETH & Bonding Curve',
   yield: 'Earning Yield',
   'redemptions-liquidations': 'Redemptions & Liquidations',
-  polar: 'POLAR & Staking',
+  polar: 'POLAR',
   stewardship: 'Stewardship',
   '-- reference': {
     type: 'separator',

@@ -393,8 +393,8 @@
       "title": "Polaris Audits & Security",
       "description": "Polaris security model, audit-report status, bug-bounty status, and disclosure guidance. Pre-launch reports and bounty details are not published yet.",
       "keywords": [],
-      "updated": null,
-      "lastVerified": null
+      "updated": "2026-06-10",
+      "lastVerified": "2026-06-10"
     },
     {
       "route": "/resources/brand-assets",
@@ -603,7 +603,7 @@
       "url": "https://tokenbrice.github.io/polaris-docs/using-app/split",
       "markdownUrl": "https://tokenbrice.github.io/polaris-docs/using-app/split.md",
       "section": "Using the App",
-      "title": "Split",
+      "title": "Split in the Polaris App",
       "description": "How to split pETH into fpETH and vpETH, merge them back, and avoid common execution mistakes.",
       "keywords": [
         "Swap",

@@ -14,7 +14,7 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 **vePOLAR is vote-escrowed POLAR.** Lock [POLAR](https://tokenbrice.github.io/polaris-docs/polar) to receive stewardship rights for bounded parameters and edge decisions.
 
-> **Current status:** vePOLAR is not the same as current **POLAR Staking**. The app may expose stake/unstake/claim actions for POLAR rewards on testnet, while the vePOLAR locking interface, contract address, lock durations, vote-power decay, unlock rules, proposal thresholds, and final yield split are pending. Do not lock POLAR through an unofficial interface.
+> **Current status:** vePOLAR is not the same as current **POLAR Staking**. The app may expose stake/unstake/claim actions for POLAR rewards on testnet, while the vePOLAR locking interface, contract address, proposal thresholds, and final yield split are pending. The lock design itself (durations, decay, delegation) is committed — see [Lock status](https://tokenbrice.github.io/polaris-docs/stewardship/vepolar#lock-status). Do not lock POLAR through an unofficial interface.
 
 ## What vePOLAR does
 
@@ -22,36 +22,26 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 lock POLAR -> receive vePOLAR -> steward bounded parameters + receive routed yield
 ```
 
-vePOLAR holders are **stewards, not governors**. They steer quantitative parameters within hardcoded ranges and vote on permitted onboarding decisions. The bonding curve, branch logic, liquidations, redemptions, and Stability Pool mechanics are outside vote scope.
-
-vePOLAR holders can participate in decisions to:
-
-- License new pAssets onto Polaris infrastructure.
-- Onboard eligible participants into StablecoinOS and [Flow](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router) revenue sharing.
-- Set bounded interest splits and branch parameters.
-- Tune [conversion](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions) parameters within their hardcoded range.
-- Vote on treasury programs once the framework is published.
-
-Each action is bounded, auditable, and limited to the surfaces in [Stewardship, not Governance](https://tokenbrice.github.io/polaris-docs/stewardship).
+vePOLAR holders are **stewards, not governors**. They steer quantitative parameters within hardcoded ranges and vote on permitted onboarding decisions — pAsset licensing, StablecoinOS and [Flow](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router) onboarding, bounded splits and branch parameters, [conversion](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions) tuning, and treasury programs once the framework is published. The full enumeration of powers and constraints lives in [Stewardship, not Governance](https://tokenbrice.github.io/polaris-docs/stewardship); the bonding curve, branch logic, liquidations, redemptions, and Stability Pool mechanics are outside vote scope.
 
 ## POLAR Staking is separate
 
 POLAR Staking is a staking/rewards surface: stake POLAR, unstake where allowed, and claim routed rewards. It does not by itself create vote-escrowed vePOLAR, lock-duration voting power, or stewardship rights.
 
-vePOLAR is the future locking layer. Once live, this page will list the official lock contract, durations, vote-power formula, unlock rules, delegation, proposal thresholds, and yield claim path.
+vePOLAR is the future locking layer. The committed lock design is in [Lock status](https://tokenbrice.github.io/polaris-docs/stewardship/vepolar#lock-status) below; once live, this page will add the official lock contract, proposal thresholds, and yield claim path.
 
 ## What vePOLAR does not do
 
-vePOLAR cannot upgrade core contracts; change pETH, branch or CDP mechanics, liquidation, redemption, or Stability Pool mechanics; create gauges or bribe markets; direct POLAR emissions; mint POLAR outside the [conversion auction](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions); or move any parameter outside its immutable min/max range.
+vePOLAR cannot touch the immutable core: no contract upgrades, no gauges or bribe markets, no POLAR minting outside the [conversion auction](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions), no parameter moved outside its immutable min/max range. The full no-list is on [Stewardship, not Governance](https://tokenbrice.github.io/polaris-docs/stewardship).
 
 ## Lock status
 
-The final lock design is pending. When vePOLAR is deployed, this page will list:
+The lock design is committed; the audited deployment, contract addresses, and production terms are pending:
 
-Field | Status
+Field | Committed design
 
-POLAR contract address | Pending
-vePOLAR contract address | Pending
+POLAR contract address | Pending deployment
+vePOLAR contract address | Pending deployment
 Network | Public Testnet 1: Sepolia; production: Ethereum mainnet after launch
 Lock duration choices | 1 week to 4 years
 Vote-power formula and decay | Linear decay
@@ -70,8 +60,7 @@ The exact split, buffering, and claim mechanics are pending final deployment. Th
 Before locking POLAR, verify:
 
 - The official app URL.
-- POLAR and vePOLAR addresses against [Contracts and Addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses).
-- Verified source and ABI against [Contracts and Addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses).
+- POLAR and vePOLAR addresses, verified source, and ABI against [Contracts and Addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses).
 - Lock duration, voting power, unlock, and withdrawal rules.
 - The final yield split and claim path.
 - The audit status of the locking and stewardship contracts.
@@ -81,3 +70,8 @@ Locking is an illiquid commitment by design. Do not lock through any contract or
 ## The Polar Council
 
 The **Polar Council** is a treasury-funded program to cultivate aligned, active stewards. See [The Polar Council](https://tokenbrice.github.io/polaris-docs/polar/tokenomics#the-polar-council) for its scope and pending terms.
+
+Next steps:
+- [Stewardship, not Governance](https://tokenbrice.github.io/polaris-docs/stewardship): The full enumeration of what stewards can and cannot touch.
+- [POLAR Tokenomics](https://tokenbrice.github.io/polaris-docs/polar/tokenomics): Staking vs vePOLAR, issuance, and yield destinations side by side.
+- [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet): Verify any lock contract against the canonical address list.

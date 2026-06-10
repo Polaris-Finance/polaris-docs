@@ -14,6 +14,8 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 Every key Polaris term, alphabetized. Each entry is one or two sentences and links to its full treatment where one exists. For the narrative map of how the pieces fit, read [Core Concepts](https://tokenbrice.github.io/polaris-docs/core-concepts).
 
+Also in Resources: [Public Testnet 1](https://tokenbrice.github.io/polaris-docs/resources/testnet) · [Audits & Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security) · [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure) · [FAQ](https://tokenbrice.github.io/polaris-docs/resources/faq) · [Brand Assets](https://tokenbrice.github.io/polaris-docs/resources/brand-assets)
+
 ## Live app terms
 
 These labels match the current testnet app and route users to the glossary entry plus the matching guide page.
@@ -24,7 +26,7 @@ Advanced | [Advanced](https://tokenbrice.github.io/polaris-docs/resources#a) | [
 APR | [APR](https://tokenbrice.github.io/polaris-docs/resources#a) | [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn)
 Borrow / CDP | [CDP](https://tokenbrice.github.io/polaris-docs/resources#c), [Trove](https://tokenbrice.github.io/polaris-docs/resources#t), [CDB / Branch](https://tokenbrice.github.io/polaris-docs/resources#c) | [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow)
 Earn / SP | [Stability Pool](https://tokenbrice.github.io/polaris-docs/resources#s), [SP](https://tokenbrice.github.io/polaris-docs/resources#s) | [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn)
-Floor Carry | [Floor Carry](https://tokenbrice.github.io/polaris-docs/resources#f) | [Split](https://tokenbrice.github.io/polaris-docs/using-app/split)
+Floor Carry | [Floor Carry](https://tokenbrice.github.io/polaris-docs/resources#f) | [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap)
 fpETH / vpETH | [fpETH](https://tokenbrice.github.io/polaris-docs/resources#f), [vpETH](https://tokenbrice.github.io/polaris-docs/resources#v) | [Split](https://tokenbrice.github.io/polaris-docs/using-app/split)
 Guide | [Guide](https://tokenbrice.github.io/polaris-docs/resources#g) | [Polaris App](https://tokenbrice.github.io/polaris-docs/using-app)
 LTV | [LTV](https://tokenbrice.github.io/polaris-docs/resources#l) | [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove)
@@ -213,7 +215,7 @@ Wrapped ETH, the ERC-20 form of ETH used by app contracts and testnet flows. On 
 ## Z
 
 **Zap**
-An app flow that bundles multiple steps, such as WETH -> pUSD or pGOLD -> Stability Pool deposit. A zap is an execution shortcut, not a risk reducer; check approvals, simulation, slippage, quote freshness, and first-loss risk. See [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap).
+An app flow that bundles multiple steps, such as WETH -> pUSD -> Stability Pool deposit. A zap is an execution shortcut, not a risk reducer; check approvals, simulation, slippage, quote freshness, and first-loss risk. See [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap).
 
 ---
 

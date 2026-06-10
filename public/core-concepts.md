@@ -41,9 +41,9 @@ Collateralized Debt Branch: the aggregate protocol branch for one pAsset. A bran
 
 Collateralized Debt Position: your individual borrowing position inside a branch. You post pETH collateral and mint the pAsset directly from the protocol, not by borrowing another user's funds. Each CDP has its own collateral, debt, and loan-to-value (LTV). See [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting).
 
-The Polaris app term for an individual CDP. Each trove is isolated, with its own collateral, debt, and loan-to-value (LTV). See [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove).
+The Polaris app term for an individual CDP — the same position, by another name. See [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove).
 
-Polaris is a *factory* of pAsset branches, each issuing a different pAsset but all sharing the same pETH collateral and bonding curve.
+Polaris's factory layer: each branch issues a different pAsset, all sharing the same pETH collateral and bonding curve. See [StablecoinOS: an open catalog](https://tokenbrice.github.io/polaris-docs/minting/passet-catalog#stablecoinos-an-open-catalog).
 
 ## Keeping the peg
 
@@ -57,7 +57,7 @@ Redemption and minting volume serve as onchain proxy signals for the peg, lettin
 
 If a trove's LTV exceeds the maximum, it is liquidated, and the [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield) absorbs the debt — or, if the pool is too small, the debt and collateral redistribute to other troves. See [Liquidations](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations).
 
-A protocol-wide protective state entered when the system-wide reserve-backing-to-debt ratio (the [TCR](https://tokenbrice.github.io/polaris-docs/resources)) falls below a fixed threshold. See [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode).
+A protocol-wide protective state entered when the system-wide reserve-to-debt ratio (the [TCR, Total Collateralization Ratio](https://tokenbrice.github.io/polaris-docs/resources#t)) falls below a fixed threshold. See [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode).
 
 The mathematically enforced minimum price of pETH (in ETH), and that floor as a percentage of market price (your maximum drawdown). See [The Floor Price](https://tokenbrice.github.io/polaris-docs/peth/floor-price).
 
@@ -67,7 +67,7 @@ A reserve of pAssets that processes liquidations and is the primary venue for ea
 
 The mechanism that mints POLAR by burning pETH. See [Conversion Auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions).
 
-Receives pETH from conversions and bonding-curve swap fees, then buffers and distributes it as yield to troves, pro-rata to their debt. See [The Fee Router](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router).
+Buffers protocol revenue in pETH and distributes it to troves (pro-rata to debt), POLAR stakers, and Flow recipients. Swap fees are first burned at the floor — raising it — and the released ETH is recycled into pETH. See [The Fee Router](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router).
 
 A stewardship role steers *quantitative parameters*, with safety-critical bounds hardcoded in the contracts and the remaining bounds set at audited deployment. It does not govern the immutable core. See [Stewardship, not Governance](https://tokenbrice.github.io/polaris-docs/stewardship).
 

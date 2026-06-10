@@ -28,6 +28,15 @@ pETH value = floor value + premium above floor
 
 fpETH isolates the floor-value side. vpETH isolates the remaining premium side. If pETH trades close to its floor, vpETH can become worth very little. If pETH trades far above its floor, vpETH carries most of that premium exposure.
 
+For intuition, with pETH at a market price of 1.00 ETH:
+
+| Floor price | [Floor ratio](/peth/floor-price) | fpETH claim (floor leg) | vpETH exposure (premium leg) |
+|---|---:|---:|---:|
+| 0.60 ETH | 60% | ≈ 0.60 ETH | ≈ 0.40 ETH |
+| 0.90 ETH | 90% | ≈ 0.90 ETH | ≈ 0.10 ETH |
+
+The arithmetic is indicative: each leg trades on its own market, so realized prices can deviate from the decomposition.
+
 ## Split and merge
 
 **Split** deposits pETH into the splitter contract and mints equal amounts of fpETH and vpETH to your wallet.

@@ -16,7 +16,7 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 ## What it does
 
-The Dashboard ("Your Polaris") is your starting point and onboarding hub. It shows current Stability Pool and staking APRs, a three-step path to your first position (connect a wallet → claim test WETH from the faucet → earn pUSD), an fpETH long-term-yield shortcut, and a live price ticker for pETH, pUSD, pGOLD, and POLAR. The **Activity** panel logs what you do this session (local only). For position detail use [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow) and [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn); for protocol-wide charts open **Analytics**, a separate tab.
+The Dashboard ("Your Polaris") is your starting point: live Stability Pool and staking APRs, a price ticker, and a three-step path to your first position. Position detail lives in [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow) and [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn); protocol-wide charts in **Analytics**, a separate tab.
 
 Image: Polaris Dashboard ("Your Polaris") showing Stability Pool and staking APR cards, the connect-faucet-earn onboarding steps, and the token price ticker
 
@@ -26,24 +26,22 @@ Image: Polaris Dashboard ("Your Polaris") showing Stability Pool and staking APR
 
 - Use Public Testnet 1 at [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io).
 - Connect to Sepolia, chain ID `11155111`, and hold Sepolia ETH for gas.
-- Claim test WETH from the on-Dashboard faucet: pay `0.1` Sepolia ETH, receive `10` WETH. One claim per address every 4 hours, subject to a daily cap.
+- Claim test WETH from the Dashboard faucet — [current rate, cooldown, and cap](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters).
 - Confirm the frontend, network, and wallet prompts against [Verification](https://tokenbrice.github.io/polaris-docs/resources/testnet#verification). Use test assets only — see [Public Testnet 1 Artifacts](https://tokenbrice.github.io/polaris-docs/resources/testnet).
 
 ## Steps/checks
 
-1. Connect your wallet on Sepolia (STEP 1).
-2. Claim test WETH from the faucet (STEP 2).
+1. Connect your wallet on Sepolia.
+2. Claim test WETH from the faucet.
 3. Review the APR cards for the pUSD and pGOLD Stability Pools and POLAR staking.
-4. Start a first position from STEP 3 (earn pUSD) or the fpETH yield card, or move to an action tab.
+4. Start a first position from the third onboarding step (earn pUSD) or the fpETH yield card, or move to an action tab.
 5. Watch the **Activity** panel for this session's transactions, and the ticker for live prices.
 6. Open **Analytics** for protocol-wide charts, then return to the relevant action tab for a fresh quote.
-
-The Dashboard is current when the connected wallet, Sepolia network, APRs, and prices match what you expect.
 
 ## Common failures
 
 - Wallet is on the wrong chain.
-- Faucet claim is blocked by the per-address cooldown or the daily cap.
+- Faucet claim is blocked by the per-address cooldown, the daily cap, or a paused faucet.
 - APR or price values change because protocol state moved; refresh before acting.
 - A position is not reflected because it belongs to another wallet.
 
@@ -56,5 +54,7 @@ Dashboard values are state reads, not final transaction terms. Use the action ta
 - Use [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap) to buy pETH on the bonding curve.
 - Use [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow) to open and manage debt positions.
 - Use [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn) to supply a Stability Pool or stake POLAR or vpETH.
-- See the in-app **Guide** for a by-token map of what to do.
+- Use [Split](https://tokenbrice.github.io/polaris-docs/using-app/split) to split pETH into fpETH and vpETH, and [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap) for one-transaction strategy bundles.
+- Use [Advanced](https://tokenbrice.github.io/polaris-docs/using-app/advanced) for the mint/redeem (PSM) and conversion surfaces.
+- See the in-app **Guide** for a goal-based map of what to do.
 - Use [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting) if wallet state, quotes, or balances look wrong.

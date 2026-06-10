@@ -7,7 +7,7 @@ description: Fix common Polaris app issues on Public Testnet 1 — wrong network
 
 <PageStatusBanner lastUpdated="June 8, 2026" />
 
-Use this page when the app, wallet, quote, balance, or transaction does not behave as expected.
+Use this page when the app, wallet, quote, balance, or transaction does not behave as expected. For conceptual questions rather than broken flows, see the [FAQ](/resources/faq).
 
 Start from the known-good setup: Public Testnet 1 at [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io), Sepolia chain ID `11155111`, test assets only.
 
@@ -41,7 +41,7 @@ Start from the known-good setup: Public Testnet 1 at [app.testnet.polarisfinance
 
 **Likely cause:** The wallet lacks test assets or gas.
 
-**Fix:** Follow [Public Testnet Quickstart](/quickstart), then refresh balances.
+**Fix:** Follow [Public Testnet Quickstart](/quickstart) for WETH, pETH, and pAssets; POLAR comes from [conversion](/using-app/advanced). Then refresh balances.
 
 **When not to proceed:** Do not bridge or send real mainnet funds to testnet contracts.
 
@@ -130,3 +130,11 @@ Start from the known-good setup: Public Testnet 1 at [app.testnet.polarisfinance
 **When not to proceed:** Do not repeatedly submit the same action without checking whether the first transaction changed balances, allowances, or positions.
 
 **Related reference:** [Dashboard](/using-app)
+
+<NextSteps
+  steps={[
+    { href: '/resources/faq', title: 'FAQ', description: 'Conceptual questions the symptom list above does not cover.' },
+    { href: '/quickstart', title: 'Public Testnet Quickstart', description: 'Reset to the known-good setup and retry from a clean path.' },
+    { href: '/launch-status', title: 'Launch Status', description: 'Confirm the official app URL and network before retrying.' }
+  ]}
+/>

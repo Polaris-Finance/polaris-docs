@@ -56,5 +56,6 @@ Swaps can lose value through slippage, price movement, stale quotes, and gas. pE
 - Use [Split](https://tokenbrice.github.io/polaris-docs/using-app/split) to convert pETH into fpETH and vpETH.
 - Use [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow) to mint pUSD or pGOLD against pETH.
 - Use [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap) if you want the app to bundle a swap with a deposit.
+- Use [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting) for stale quotes and reverted swaps.
 
 Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor price.

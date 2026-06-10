@@ -24,7 +24,7 @@ Polaris is a pETH-powered stablecoin operating system. ETH becomes pETH through 
 
 ### What is live now?
 
-The current phase is owned by [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status). As of June 2026, Polaris is in Public Testnet 1 on Sepolia (`11155111`), and production/mainnet use is not live.
+The current phase is owned by [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status). Polaris is in Public Testnet 1 on Sepolia (`11155111`), and production/mainnet use is not live.
 
 ### Which app should I use?
 
@@ -70,11 +70,11 @@ Yes. Polaris involves smart-contract risk, collateral price risk, liquidation ri
 
 ### What is LTV?
 
-LTV is loan-to-value: your trove's debt divided by its collateral value. Lower LTV is safer. Protocol parameters may also show the inverse ratio, ICR or MCR; for example, 150% ICR equals 66.7% LTV. See the [Glossary](https://tokenbrice.github.io/polaris-docs/resources) and [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove).
+LTV is loan-to-value: your trove's debt divided by its collateral value. Lower LTV is safer. Protocol parameters may also show the inverse ratio, ICR or MCR; for example, the current 115% MCR equals roughly an 87% max LTV, and a trove at 150% ICR sits at 66.7% LTV. See the [Glossary](https://tokenbrice.github.io/polaris-docs/resources) and [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove).
 
-### What is TCR or Emergency Mode?
+### What is TCR or Recovery Mode?
 
-TCR is the system-level reserve-to-debt health metric for a pAsset. If it drops below the configured threshold, Recovery Mode tightens risk-increasing borrower actions. See [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode) and [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters).
+TCR is the system-level reserve-to-debt health metric for a pAsset. If it drops below the configured threshold, Recovery Mode (called Emergency Mode in the contracts) tightens risk-increasing borrower actions. See [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode) and [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters).
 
 ## Security
 

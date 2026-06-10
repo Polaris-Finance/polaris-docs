@@ -63,5 +63,6 @@ Borrowing pUSD or pGOLD creates liquidation and redemption exposure; a low LTV p
 - Use [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap) to acquire pETH collateral, or [Split](https://tokenbrice.github.io/polaris-docs/using-app/split) to get fpETH for an ETH loan.
 - Use [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn) to deposit a minted pAsset into its Stability Pool.
 - See the in-app **Guide** for borrow-based strategies such as Floor Carry and collateral-only CDPs.
+- Use [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting) if an action is disabled, reverts, or the quote looks wrong.
 
 Relevant app/search vocabulary: Borrow, Manage Trove, borrow, mint, open trove, repay, close trove, pUSD, pGOLD, LTV, loan-to-value, official app.

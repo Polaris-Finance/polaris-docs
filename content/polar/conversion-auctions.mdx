@@ -26,8 +26,6 @@ The result is a natural rhythm: the price decays until an arbitrageur sees it dr
 > **Note:**
 > The spike is computed against **POLAR supply, not pETH supply**. This steers conversions toward small, frequent operations: a whale converting a large amount in one go faces rapidly diminishing returns as each increment spikes the price against them. The mechanism self-regulates toward steady, incremental minting.
 
-In practice, conversions will mostly be executed by arbitrage bots and MEV searchers. The dynamics are tuned for fast, competitive execution.
-
 > *Exact decay and spike parameters are finalized closer to launch, set through stewardship. The converter rebate is bounded between 0% and 100%; final decay and spike bounds are pending.*
 
 ## What burning pETH does
@@ -48,7 +46,7 @@ Before released ETH becomes system yield, a slice can return to the converter. T
 | Rebate | Effect |
 |---|---|
 | **0%** | Maximum yield to the system; conversions cost the most. Sensible when POLAR's market cap exceeds pETH's. |
-| **100%** | Zero system yield; conversions are cheapest (effective cost set by the [floor ratio](/peth/floor-price)). An emergency lever to drive volume when the floor is stalling. |
+| **100%** | Zero system yield; conversions are cheapest — the rebate returns the burned pETH's floor value, so the converter's net cost is only the premium above floor (at a 60% [floor ratio](/peth/floor-price), roughly 40% of the pETH's market value). An emergency lever to drive volume when the floor is stalling. |
 | **In between** | The usual operating range, shifting with market conditions. |
 
 Stewards watch the **POLAR / pETH market-cap ratio**: when POLAR's is larger, a lower rebate is easier to defend; when it flips, higher rebates may support conversion volume.

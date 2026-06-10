@@ -16,7 +16,7 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 This page is the single source for Public Testnet 1: [environment](https://tokenbrice.github.io/polaris-docs/resources/testnet#environment), [manifest sources](https://tokenbrice.github.io/polaris-docs/resources/testnet#manifest-sources), [parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters), [contract addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses), and [verification](https://tokenbrice.github.io/polaris-docs/resources/testnet#verification).
 
-Everything below is Public Testnet 1 on Sepolia, last verified June 8, 2026. Sepolia values are replaceable artifacts with no monetary value, no production redemption, and no mainnet claim — do not infer production constants or addresses from them. Production values are not published unless this page and Launch Status say they are.
+Everything below is Public Testnet 1 on Sepolia, last verified on the date in the banner above. Sepolia values are replaceable artifacts with no monetary value, no production redemption, and no mainnet claim — do not infer production constants or addresses from them. Production values are not published unless this page and Launch Status say they are.
 
 ## Environment
 
@@ -34,7 +34,7 @@ Active pAssets | pUSD and pGOLD
 
 ## Manifest sources
 
-Protocol artifact source and commit are not public in these docs during Public Testnet 1. The relative paths below identify the internal Sepolia manifests behind the address and parameter tables on this page; external readers should treat those tables as the public source until a repository URL and commit are published.
+The protocol repository and commit are not yet public. The paths below identify the internal Sepolia manifests behind the address and parameter tables on this page; treat the tables themselves as the public source until a repository URL and commit are published.
 
 Manifest | What it covers | Internal protocol path
 
@@ -56,7 +56,20 @@ Parameter | Public Testnet 1 value | Source
 Bonding curve alpha | `193218996973422650` | Core manifest
 Bonding curve beta | `150000000000000000` (15%) | Core manifest
 
+### Testnet faucet
+
+Parameter | Public Testnet 1 value | Source
+
+Claim cost | `0.1` Sepolia ETH | Faucet contract
+Claim payout | `10` WETH (mock reserve token) | Faucet contract
+Claim cooldown | One claim per address every 4 hours | Faucet contract
+Daily cap | Global daily limit; the faucet pauses when reached | Faucet contract
+
+Task pages link here for faucet values; the contract can change them without a docs redeploy, so confirm against the app before claiming.
+
 ### pAsset branch parameters
+
+**Emergency Mode** in the rows below is the contracts' internal name for what these docs call [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode).
 
 Parameter | pUSD | pGOLD | Source
 

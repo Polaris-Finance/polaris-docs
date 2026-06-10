@@ -6,6 +6,8 @@
 Canonical URL: https://tokenbrice.github.io/polaris-docs/resources/audits-security
 Markdown URL: https://tokenbrice.github.io/polaris-docs/resources/audits-security.md
 Section: Resources
+Updated: 2026-06-10
+Last verified: 2026-06-10
 
 Documentation index: https://tokenbrice.github.io/polaris-docs/llms.txt
 Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.txt
@@ -13,6 +15,14 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 ---
 
 > **Pre-launch note:** Audits and verifications are ongoing; this page will be updated with major developments.
+
+## Current status
+
+Item | Status
+
+Audit reports | **None published yet.** Until reports appear on this page, treat the protocol as unaudited.
+Bug bounty | **Not live.** No bounty program exists yet; treat any page or message claiming otherwise as fake.
+Vulnerability disclosure | **No dedicated channel yet.** This page will list the official contact when one is live.
 
 ## The security model
 

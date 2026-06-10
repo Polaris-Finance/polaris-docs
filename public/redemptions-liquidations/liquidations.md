@@ -24,7 +24,7 @@ Unlike a [redemption](https://tokenbrice.github.io/polaris-docs/redemptions-liqu
 
 Liquidation runs in two tiers.
 
-1. **The Stability Pool absorbs it first.** The [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield) holds a reserve of the pAsset. When a trove is liquidated, the pool burns pAsset equal to the trove's debt and receives its pETH collateral in return. Because liquidated troves are typically seized while still *overcollateralized* but past the LTV liquidation line, the pool usually receives more value in pETH than the pAsset it burns. That surplus is the depositors' compensation.
+1. **The Stability Pool absorbs it first.** The [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield) holds a reserve of the pAsset. When a trove is liquidated, the pool burns pAsset equal to the trove's debt and receives pETH collateral covering the debt plus the liquidation penalty (any surplus goes back to the borrower — see below). Because liquidated troves are typically seized while still *overcollateralized* but past the LTV liquidation line, the pool usually receives more value in pETH than the pAsset it burns. That surplus is the depositors' compensation.
 
 2. **Redistribution is the fallback.** If the Stability Pool is empty or too small to cover the debt, the trove's debt *and* collateral spread across the remaining troves on that pAsset, in proportion to their size. Other borrowers take on a slice of debt and a matching slice of pETH. The system stays solvent either way.
 

@@ -9,7 +9,7 @@ Governance risk is structural: unlimited scope, undefined boundaries, and misali
 
 Polaris's answer is neither a fully immutable protocol with no adjustable parameters nor an unbounded DAO. It is a third path: an immutable core plus a clearly scoped layer where human judgment is necessary. We call it **stewardship** rather than governance because the difference is structural, not cosmetic.
 
-> **Current status:** Stewardship is not live yet. POLAR and vePOLAR contract addresses, lock terms, proposal thresholds, voting periods, execution delays, and final numeric parameter bounds await audited deployment. These docs describe the intended scope and lifecycle without inventing launch parameters.
+> **Current status:** Stewardship is not live yet. POLAR and [vePOLAR](/stewardship/vepolar) contract addresses, proposal thresholds, voting periods, execution delays, and final numeric parameter bounds await audited deployment. These docs describe the intended scope and lifecycle without inventing launch parameters.
 
 ## The core is immutable
 
@@ -25,7 +25,7 @@ The base protocol does not need to be relearned after each vote, because the cor
 
 ## What stewardship controls
 
-Stewardship operates at the edges: StablecoinOS onboarding, permitted parameter dials, the POLAR stewardship layer, fee and interest splits, Flow participation, and treasury programs. Safety-critical adjustable values ship with hardcoded limits; the remaining numeric bounds are set at audited deployment.
+Stewardship operates at the edges: StablecoinOS onboarding, permitted parameter dials, the POLAR stewardship layer, fee and interest splits, [Flow](/stewardship/fee-router) participation, and treasury programs. Safety-critical adjustable values ship with hardcoded limits; the remaining numeric bounds are set at audited deployment.
 
 | Domain | Power | Constraint |
 |---|---|---|
@@ -108,6 +108,14 @@ The lesson Polaris draws: bound the scope first. Less can be captured, overpaid 
 ## Structure over trust
 
 Stewardship is not a promise to behave well; it is a structure with a bounded surface. The core is immutable. Each lever is bounded, auditable, and reversible where the underlying contract permits. Team influence is diluted through the [conversion mechanism](/polar/conversion-auctions) as new POLAR enters circulation.
+
+<NextSteps
+  steps={[
+    { href: '/stewardship/vepolar', title: 'vePOLAR Locking', description: 'The vote-escrow layer: committed lock design, stewardship rights, and what is still pending.' },
+    { href: '/stewardship/fee-router', title: 'Fee Router & Flows', description: 'How protocol revenue is buffered, routed, and shared with whitelisted contracts.' },
+    { href: '/polar/tokenomics', title: 'POLAR Tokenomics', description: 'Issuance by conversion, staking vs vePOLAR, and yield destinations side by side.' }
+  ]}
+/>
 
 ---
 

@@ -11,11 +11,15 @@ description: How to use the Polaris Advanced tab for PSM mint/redeem, pETH-to-PO
 
 Advanced holds expert, permissionless operations aimed at arbitrageurs and keepers — deeper mechanism knowledge is assumed. It has three modules:
 
-- **Peg Stability Module (PSM):** mint or redeem pUSD or pGOLD against pETH at the oracle price, in unlimited size. Mint sends pETH in for the pAsset at peg; redeem sends the pAsset in for pETH at peg. This is the arbitrage that anchors each peg.
+- **Peg Stability Module (PSM):** mint or redeem pUSD or pGOLD against pETH at the oracle price, in unlimited size. Mint sends pETH in for the pAsset; redeem sends the pAsset in for pETH. This arbitrage anchors each peg.
 - **Convert pETH → POLAR:** a one-way auction. pETH is burned (raising the bonding-curve floor) and POLAR is minted at the decaying auction price. There is no reverse direction; in practice this is run by MEV/arbitrage bots.
-- **Testnet ETH Faucet:** pay `0.1` Sepolia ETH, receive `10` WETH. One claim per address every 4 hours, subject to a daily cap.
+- **Testnet ETH Faucet:** claim test WETH for Sepolia ETH — [current rate, cooldown, and cap](/resources/testnet#parameters).
 
 Most users never need this tab — the guided tabs cover normal flows.
+
+![Polaris Advanced tab ("Expert operations") with the PSM Mint and Redeem panels for pUSD and pGOLD](/screenshots/advanced.jpg)
+
+*Advanced holds the PSM mint/redeem panels, the pETH → POLAR conversion, and the testnet faucet.*
 
 ## Before you start
 
@@ -39,7 +43,7 @@ The action worked when the intended balance changed and no unexpected allowance 
 - Market price is on peg (or below the auction price), so the round-trip is unprofitable.
 - Approval was signed but the action transaction was not.
 - Wrong pAsset or direction selected in the PSM.
-- Faucet claim is blocked by the per-address cooldown or daily cap.
+- Faucet claim is blocked by the per-address cooldown, the daily cap, or a paused faucet.
 - Wallet warning indicates an unexpected contract or permission.
 
 ## Risks/links

@@ -20,11 +20,11 @@ Your **loan-to-value (LTV)** is the recorded value of your debt divided by the v
 
 Collateral value comes from the protocol's collateral pricing path. Debt value is what you owe in that pAsset's reference unit, including accrued interest; it is not the temporary market price at which you might buy the pAsset on a DEX. A trove holding pETH worth \$15,000 against 10,000 pUSD of debt has an LTV of 66.7%. Lower is safer.
 
-Some protocol materials and parameters use **ICR** or **MCR**, the inverse collateral ratio:
+Some protocol materials and parameters use **ICR** (individual collateral ratio — your trove's current ratio, the reciprocal of LTV) and **MCR** (minimum collateral ratio — the liquidation threshold):
 
 > ICR = collateral value ÷ debt face value
 
-That means 150% ICR is the same position as 66.7% LTV. A maximum LTV is the inverse of a minimum collateral ratio. Two rules matter:
+That means 150% ICR is the same position as 66.7% LTV, and a maximum LTV is the reciprocal of the MCR. Two rules matter:
 
 - Above the **maximum LTV**, the trove can be [liquidated](/redemptions-liquidations/liquidations).
 - [Redemptions](/redemptions-liquidations) draw collateral from every open trove collectively, pro-rata to its recorded collateral and regardless of LTV. Lower LTV protects against liquidation, not redemption.
@@ -33,7 +33,7 @@ Your LTV moves on its own as ETH's price moves — you need not touch the trove 
 
 ## Trove Health Simulator
 
-The simulator below defaults to the current Public Testnet 1 MCR of 115%, equivalent to about 87.0% max LTV, not the Emergency Mode action MCR of 150%. Always verify the live value on [Parameters](/resources/testnet#parameters) and in the app before signing.
+The simulator below defaults to the current Public Testnet 1 MCR of 115%, equivalent to about 87.0% max LTV — not the stricter [Recovery Mode](/redemptions-liquidations/recovery-mode) action MCR (called "Emergency Mode" in the contracts). Always verify the live values on [Parameters](/resources/testnet#parameters) and in the app before signing.
 
 <TroveSimulator minCollateralRatio={1.15} />
 

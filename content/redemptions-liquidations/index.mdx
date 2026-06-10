@@ -69,14 +69,14 @@ Redemptions are visible onchain transactions. Searchers can compete for the same
 
 Assume pUSD trades at \$0.98, the redemption fee quote is 0.5%, and gas/slippage are ignored. A redeemer buys 10,000 pUSD for \$9,800 and redeems it for \$10,000 of pETH minus the 0.5% fee, or about \$9,950 of pETH. The gross spread is about \$150 before gas, slippage, MEV, and price movement.
 
-Now the borrower side. A 4,000 pUSD redemption reduces total system debt by 4,000 pUSD and removes roughly \$4,000 of pETH from the pool. Both reductions are shared across every open trove in proportion to recorded collateral.
+Now the borrower side of the same redemption. The 10,000 pUSD redeemed reduces total system debt by 10,000 pUSD and removes roughly \$10,000 of pETH from the pool. Both reductions are shared across every open trove in proportion to recorded collateral.
 
-For intuition, here is the proportional share for one trove holding a fifth of the system's collateral, so it absorbs a fifth of the redemption (800 pUSD of debt and about \$800 of pETH):
+For intuition, here is the proportional share for one trove holding a fifth of the system's collateral, so it absorbs a fifth of the redemption (2,000 pUSD of debt and about \$2,000 of pETH):
 
 | Step | Collateral value | Debt | LTV |
 |---|---:|---:|---:|
 | Before redemption | \$18,000 | 12,000 pUSD | 66.7% |
-| After absorbing its pro-rata share | About \$17,200 | 11,200 pUSD | About 65.1% |
+| After absorbing its pro-rata share | About \$16,000 | 10,000 pUSD | 62.5% |
 
 The borrower did not repay voluntarily; the market did it through the redemption path. The trove is slightly safer by LTV, but smaller and less exposed to pETH.
 
@@ -84,7 +84,6 @@ The borrower did not repay voluntarily; the market did it through the redemption
 
 1. Track your **LTV** with enough buffer for price moves, interest accrual, and redemption impact.
 2. Treat a below-peg pAsset as a live signal that redemptions may shrink your position.
-3. Use [Managing Your Trove](/minting/managing-your-trove) for borrower levers and [Risk Disclosure](/resources/risk-disclosure) for the full risk model.
 
 ---
 
@@ -92,6 +91,8 @@ The borrower did not repay voluntarily; the market did it through the redemption
 
 - [Managing Your Trove](/minting/managing-your-trove) for borrower levers.
 - [Liquidations](/redemptions-liquidations/liquidations) for the forced-close path.
+- [Recovery Mode](/redemptions-liquidations/recovery-mode) for the system-wide defensive state.
+- [Risk Disclosure](/resources/risk-disclosure) for the full risk model.
 - [Parameters](/resources/testnet#parameters) for current redemption values.
 
 <BlogPostCard

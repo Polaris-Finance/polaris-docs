@@ -27,9 +27,11 @@ The Fee Router receives protocol revenue, buffers it, and sends it to the config
 
 Source | What enters
 
-[Conversion auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions) | Released ETH after any converter rebate, routed back into pETH yield paths
-Bonding-curve swap fees | Fees from ETH/pETH activity, routed according to the final contract design
+[Conversion auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions) | pETH purchased with the released ETH, after any [converter rebate](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions#the-converter-rebate)
+Bonding-curve swap fees | pETH fees from ETH ⇄ pETH activity
 Other protocol revenue | Any additional source listed in the contract reference and yield docs
+
+Swap fees take one extra step before distribution: accumulated fee pETH is **burned at the floor price**, which lifts the [floor](https://tokenbrice.github.io/polaris-docs/peth/floor-price) and releases reserve ETH; that ETH is swapped back into pETH and distributed with the rest. The burn is the floor-raising mechanism — what reaches the destinations below is the repurchased pETH, not the burned fees.
 
 For the full source matrix, see [Yield Sources](https://tokenbrice.github.io/polaris-docs/yield/yield-sources).
 

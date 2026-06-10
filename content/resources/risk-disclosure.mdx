@@ -47,6 +47,12 @@ If your [trove](/minting)'s loan-to-value (LTV) rises above the maximum, the tro
 **Mitigation.** Liquidation logic is transparent and auditable onchain, with no discretionary calls. You control your LTV: post more collateral, or repay debt, to stay clear of the threshold. pETH's rising floor and yield-bearing nature dampen, but do not remove, the volatility that causes liquidations. Monitor your trove actively, especially in volatile markets.
 
 
+## Redemption risk (borrowers)
+
+When a pAsset trades below peg, [redemptions](/redemptions-liquidations) exchange it for pETH collateral drawn **pro-rata from all troves in the branch, regardless of LTV**. Part of your collateral can be taken even if your trove is conservatively collateralized: a low LTV protects against liquidation, not against redemption.
+
+**Mitigation.** A redeemed trove sheds debt at face value one-for-one with the collateral taken, so your net position value is preserved up to the redemption fee, and pro-rata spreading means no single trove is singled out. Redemption is also the mechanism defending the peg you rely on as a borrower. If you want less redemption exposure, the lever is less debt, not more collateral.
+
 ## Stability Pool first-loss risk (depositors)
 
 Depositing pAssets into the [Stability Pool](/yield) is the primary way to earn yield, but the Pool is the system's **first-loss buffer**. When a trove is liquidated, your deposited pAssets are burned to cancel its debt, and you receive the liquidated pETH collateral in exchange.
@@ -55,7 +61,7 @@ Depositing pAssets into the [Stability Pool](/yield) is the primary way to earn 
 
 ## Recovery Mode
 
-When the system-wide reserve backing relative to total debt (the [reserve-to-debt ratio, shown as the TCR](/resources)) drops below a threshold, the protocol enters [Recovery Mode](/redemptions-liquidations/recovery-mode), a defensive state with tighter requirements.
+When the system-wide reserve backing relative to total debt (the [reserve-to-debt ratio, shown as the TCR](/resources#t)) drops below a threshold, the protocol enters [Recovery Mode](/redemptions-liquidations/recovery-mode), a defensive state with tighter requirements.
 
 **Mitigation.** Recovery Mode is a feature, not a failure: it raises the bar for the whole system to rebuild collateralization quickly. Borrowers bear the cost: in Recovery Mode you cannot withdraw collateral or take on more debt unless you stay below the stricter recovery max LTV and do not increase your LTV (pure collateral top-ups and repayments stay allowed). Liquidation eligibility itself does not change; it stays at the normal max LTV in every mode. Keep your LTV comfortably below the maximum so a stress event does not box in your ability to act.
 

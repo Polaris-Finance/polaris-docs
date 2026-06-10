@@ -14,7 +14,7 @@ A two-way bonding curve lets you swap like a regular AMM pool, with one key diff
 - Demand rises, tokens are minted, price increases.
 - Tokens are burned/sold, price decreases.
 
-Buying adds ETH to the reserve and **mints** pETH. Selling withdraws from the reserve and **burns** pETH. The result is contract-native liquidity with no external liquidity provider, subject to Ethereum liveness, available gas, MEV, slippage, and the bonding-curve contracts working as designed. You have used bonding curves without knowing it: every AMM is one (Uniswap, Curve), and Pump.fun is a well-known example.
+Buying adds ETH to the reserve and **mints** pETH. Selling withdraws from the reserve and **burns** pETH. The result is contract-native liquidity with no external liquidity provider, subject to the execution caveats in the [Risk overview](#risk-overview) below. You have used the price-curve idea without knowing it: AMMs like Uniswap and Curve run on one (though their liquidity comes from LPs), and Pump.fun is the closest mint/burn example.
 
 Two things make pETH's curve different from Pump.fun's:
 
@@ -32,6 +32,10 @@ pETH's curve is **two-way** (ETH ⇒ pETH and pETH ⇒ ETH) and gives pETH a pri
 ### The maths
 
 The curve follows the formula:
+
+$$
+P = \alpha \cdot Q^{\beta}
+$$
 
 - **α**: a scaling parameter of little importance.
 - **Q**: the supply of pETH.

@@ -43,7 +43,7 @@
 - [Advanced Tools in the Polaris App](https://tokenbrice.github.io/polaris-docs/using-app/advanced.md): How to use the Polaris Advanced tab for PSM mint/redeem, pETH-to-POLAR conversion, and the testnet faucet. Canonical: https://tokenbrice.github.io/polaris-docs/using-app/advanced
 - [Borrow in the Polaris App](https://tokenbrice.github.io/polaris-docs/using-app/borrow.md): How to open and manage Polaris debt positions from the app Borrow tab. Canonical: https://tokenbrice.github.io/polaris-docs/using-app/borrow
 - [Earn in the Polaris App](https://tokenbrice.github.io/polaris-docs/using-app/earn.md): How to supply a Stability Pool, stake POLAR or vpETH, and claim rewards in the Polaris app. Canonical: https://tokenbrice.github.io/polaris-docs/using-app/earn
-- [Split](https://tokenbrice.github.io/polaris-docs/using-app/split.md): How to split pETH into fpETH and vpETH, merge them back, and avoid common execution mistakes. Canonical: https://tokenbrice.github.io/polaris-docs/using-app/split
+- [Split in the Polaris App](https://tokenbrice.github.io/polaris-docs/using-app/split.md): How to split pETH into fpETH and vpETH, merge them back, and avoid common execution mistakes. Canonical: https://tokenbrice.github.io/polaris-docs/using-app/split
 - [Swap in the Polaris App](https://tokenbrice.github.io/polaris-docs/using-app/swap.md): How to buy and sell pETH on the bonding curve with quote, approval, and slippage checks. Canonical: https://tokenbrice.github.io/polaris-docs/using-app/swap
 - [Zap in the Polaris App](https://tokenbrice.github.io/polaris-docs/using-app/zap.md): How to use Polaris Zap strategies and recover safely when one bundled step fails. Canonical: https://tokenbrice.github.io/polaris-docs/using-app/zap
 

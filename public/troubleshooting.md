@@ -14,7 +14,7 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 ---
 
-Use this page when the app, wallet, quote, balance, or transaction does not behave as expected.
+Use this page when the app, wallet, quote, balance, or transaction does not behave as expected. For conceptual questions rather than broken flows, see the [FAQ](https://tokenbrice.github.io/polaris-docs/resources/faq).
 
 Start from the known-good setup: Public Testnet 1 at [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io), Sepolia chain ID `11155111`, test assets only.
 
@@ -48,7 +48,7 @@ Start from the known-good setup: Public Testnet 1 at [app.testnet.polarisfinance
 
 **Likely cause:** The wallet lacks test assets or gas.
 
-**Fix:** Follow [Public Testnet Quickstart](https://tokenbrice.github.io/polaris-docs/quickstart), then refresh balances.
+**Fix:** Follow [Public Testnet Quickstart](https://tokenbrice.github.io/polaris-docs/quickstart) for WETH, pETH, and pAssets; POLAR comes from [conversion](https://tokenbrice.github.io/polaris-docs/using-app/advanced). Then refresh balances.
 
 **When not to proceed:** Do not bridge or send real mainnet funds to testnet contracts.
 
@@ -137,5 +137,10 @@ Start from the known-good setup: Public Testnet 1 at [app.testnet.polarisfinance
 **When not to proceed:** Do not repeatedly submit the same action without checking whether the first transaction changed balances, allowances, or positions.
 
 **Related reference:** [Dashboard](https://tokenbrice.github.io/polaris-docs/using-app)
+
+Next steps:
+- [FAQ](https://tokenbrice.github.io/polaris-docs/resources/faq): Conceptual questions the symptom list above does not cover.
+- [Public Testnet Quickstart](https://tokenbrice.github.io/polaris-docs/quickstart): Reset to the known-good setup and retry from a clean path.
+- [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status): Confirm the official app URL and network before retrying.
 
 Relevant app/search vocabulary: quickstart, troubleshooting, wrong network, Sepolia, faucet, approval, stale quote, failed transaction.

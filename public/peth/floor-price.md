@@ -22,7 +22,7 @@ The floor is not a promise or a target defended by a treasury. It is a direct co
 
 Two mechanisms push the floor up under the intended curve invariants. Normal protocol actions are not designed to push it down:
 
-- **Swap fees feed the burn.** Every swap on the [bonding curve](https://tokenbrice.github.io/polaris-docs/peth) charges a pETH fee that accrues to the protocol's Fee Router. The Fee Router periodically floor-sells and burns accumulated pETH, reducing supply against an unchanged-or-growing ETH reserve and raising the floor.
+- **Swap fees feed the burn.** Every swap on the [bonding curve](https://tokenbrice.github.io/polaris-docs/peth) charges a pETH fee that accrues to the protocol's [Fee Router](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router). Accumulated fee pETH is periodically **burned at the floor price**: supply falls while the reserve releases only the floor value of what was burned, so the floor rises. The released ETH is swapped back into pETH and funds the pETH yield flows.
 - **Conversion auctions.** Minting POLAR requires [burning pETH](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions), which again reduces supply and lifts the floor.
 
 The result is a staircase under normal operation: pETH's market price fluctuates above the floor, while the floor itself steps upward over time.
@@ -67,5 +67,10 @@ Slippage and MEV are tolerated or bounded | The quoted curve price and realized 
 The relevant invariants stay unchanged and unbroken | The floor depends on reserves, supply accounting, and burn/mint rules
 
 > Your risk in pETH is decided at entry: the spread between your entry price and the floor (the floor ratio), plus execution and technical risk. Under the intended curve invariant, normal protocol activity moves the floor up, not down.
+
+Next steps:
+- [Split: fpETH & vpETH](https://tokenbrice.github.io/polaris-docs/peth/split): Separate the floor-backed claim from the premium upside.
+- [Conversion Auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions): The pETH burn that ratchets the floor and mints POLAR.
+- [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure): What the floor does and does not protect you from.
 
 Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor price, pETH bonding curve, bonding curve, pETH floor.

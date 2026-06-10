@@ -24,7 +24,7 @@ Use this page for the shortest safe path from a wallet to a first Polaris testne
 - A wallet you can connect to Sepolia.
 - Sepolia ETH for gas.
 - The official Public Testnet 1 app URL: [https://app.testnet.polarisfinance.io/](https://app.testnet.polarisfinance.io/).
-- Test WETH from the app faucet: pay `0.1` Sepolia ETH, receive `10` WETH.
+- Test WETH from the app faucet (see step 4).
 
 Do not send mainnet ETH, mainnet WETH, or production assets to testnet contracts.
 
@@ -33,7 +33,7 @@ Do not send mainnet ETH, mainnet WETH, or production assets to testnet contracts
 1. Open [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io/).
 2. Connect your wallet on Sepolia, chain ID `11155111`.
 3. Get Sepolia ETH for gas from a Sepolia faucet if needed.
-4. Claim test WETH from the on-Dashboard faucet (pay `0.1` Sepolia ETH, receive `10` WETH).
+4. Claim test WETH from the faucet on the Dashboard — currently pay `0.1` Sepolia ETH, receive `10` WETH ([current rate and limits](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters)).
 5. Use [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap) to buy pETH on the bonding curve.
 6. Use [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow) to mint pUSD or pGOLD against pETH.
 7. Optionally use [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn) or [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap) to deposit a pAsset into the Stability Pool.
