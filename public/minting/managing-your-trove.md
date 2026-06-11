@@ -43,7 +43,7 @@ Minting more or withdrawing collateral raises your LTV. Cross the maximum and yo
 
 ## Values to check
 
-Current MCR, max LTV equivalents, Recovery Mode, fee, decay, minimum-debt, and dust values live on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters). Before changing a trove, check the live app quote and the parameter page for the pAsset you are managing.
+Current MCR, max LTV equivalents, Recovery Mode, fee, and decay values live on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters). Before changing a trove, check the live app quote and the parameter page for the pAsset you are managing.
 
 ## Add collateral
 
@@ -70,6 +70,14 @@ Period | Interest estimate | New debt
 90 days | 10,000 × 8% × 90 / 365 = 197.26 pUSD | 10,197.26 pUSD
 
 If your collateral value stays flat at \$15,000, the 30-day estimate moves your LTV from 66.7% to about 67.1%. The contract may accrue continuously and the rate may change, so use the app's recorded debt for precise decisions.
+
+## Drift from system activity
+
+ETH's price and interest accrual are not the only background forces. System-level [minting and redemptions](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations) move every open trove in the branch: each mint adds collateral and debt to all troves pro-rata, each redemption removes both, and pETH yield from the [Fee Router](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router) credits collateral pro-rata to debt. These changes accrue to your position continuously and are folded into its recorded balances the next time you touch the trove; the position the app shows includes them.
+
+## Transfer the trove
+
+Each trove is an ERC-721 NFT ("Polaris CDP Position"), and whoever holds that NFT controls the position. Transferring it hands over the collateral, the debt, and every lever on this page in one transaction. Standard NFT approvals apply — audit operator approvals as you would for any valuable NFT, and never send a trove to an address you do not control or trust.
 
 ## Close the trove
 
