@@ -90,6 +90,26 @@
           "name": "Primary interest split (Stability Pool / POLAR staking / ecosystem)",
           "value": "75% / 25% / 0%",
           "source": "Deploy script"
+        },
+        {
+          "name": "Liquidation penalty, Stability Pool path",
+          "value": "5%",
+          "source": "Deploy script"
+        },
+        {
+          "name": "Liquidation penalty, redistribution path (MCR − 100%)",
+          "value": "15%",
+          "source": "Derived in contract"
+        },
+        {
+          "name": "Liquidation gas compensation, fixed deposit at trove open",
+          "value": "0.0375 pETH",
+          "source": "Deploy script"
+        },
+        {
+          "name": "Liquidation gas compensation, variable",
+          "value": "0.5% of SP-portion collateral, capped at 2 pETH",
+          "source": "Hardcoded"
         }
       ],
       "pGOLD": [
@@ -142,6 +162,26 @@
           "name": "Primary interest split (Stability Pool / POLAR staking / ecosystem)",
           "value": "75% / 25% / 0%",
           "source": "Deploy script"
+        },
+        {
+          "name": "Liquidation penalty, Stability Pool path",
+          "value": "5%",
+          "source": "Deploy script"
+        },
+        {
+          "name": "Liquidation penalty, redistribution path (MCR − 100%)",
+          "value": "15%",
+          "source": "Derived in contract"
+        },
+        {
+          "name": "Liquidation gas compensation, fixed deposit at trove open",
+          "value": "0.0375 pETH",
+          "source": "Deploy script"
+        },
+        {
+          "name": "Liquidation gas compensation, variable",
+          "value": "Same",
+          "source": "Hardcoded"
         }
       ]
     }

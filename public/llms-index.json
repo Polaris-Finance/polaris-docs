@@ -93,8 +93,8 @@
         "contracts",
         "audits"
       ],
-      "updated": "2026-06-08",
-      "lastVerified": "2026-06-08"
+      "updated": "2026-06-11",
+      "lastVerified": "2026-06-11"
     },
     {
       "route": "/minting",
@@ -477,8 +477,8 @@
         "APR",
         "Reserve Loan"
       ],
-      "updated": "2026-06-08",
-      "lastVerified": "2026-06-08"
+      "updated": "2026-06-11",
+      "lastVerified": "2026-06-11"
     },
     {
       "route": "/stewardship",
@@ -530,8 +530,8 @@
         "stale quote",
         "failed transaction"
       ],
-      "updated": "2026-06-08",
-      "lastVerified": "2026-06-08"
+      "updated": "2026-06-11",
+      "lastVerified": "2026-06-11"
     },
     {
       "route": "/using-app",
@@ -552,8 +552,8 @@
       "title": "Advanced Tools in the Polaris App",
       "description": "How to use the Polaris Advanced tab for PSM mint/redeem, pETH-to-POLAR conversion, and the testnet faucet.",
       "keywords": [],
-      "updated": "2026-06-09",
-      "lastVerified": "2026-06-09"
+      "updated": "2026-06-11",
+      "lastVerified": "2026-06-11"
     },
     {
       "route": "/using-app/borrow",
@@ -576,8 +576,8 @@
         "loan-to-value",
         "official app"
       ],
-      "updated": "2026-06-09",
-      "lastVerified": "2026-06-09"
+      "updated": "2026-06-11",
+      "lastVerified": "2026-06-11"
     },
     {
       "route": "/using-app/earn",

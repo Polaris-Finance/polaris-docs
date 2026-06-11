@@ -28,7 +28,7 @@ This documentation covers how the system works, how to use the app, and which ri
 
 ## Launch timeline
 
-Image: Polaris launch timeline. Early Research in 2024. Team Formation in June 2025. Public Testnet 1 on Sepolia in March 2026, the current phase. Mainnet, forthcoming.
+Image: Polaris launch timeline. Early Research, 2024. Team Formation, June 2025. Private Testnet 1, March 2026. Public Testnet 1, May 2026, the current phase. Mainnet, Forthcoming. Polaris is currently in Public Testnet 1 on Sepolia; mainnet remains forthcoming.
 
 Image: Polaris system overview: ETH swaps into pETH on the bonding curve, pETH collateralizes pAsset branches that mint pUSD, and burning pETH for POLAR raises the floor and releases ETH.
 
@@ -287,6 +287,10 @@ Image: Polaris Borrow tab with pUSD, pGOLD, and ETH sub-tabs, a collateral field
 6. Confirm the updated collateral, debt, and LTV.
 
 A borrow or management action worked when the position reflects the expected collateral, debt, and LTV.
+
+## Try your numbers
+
+The simulator uses the current Public Testnet 1 MCR of 115% (about 87.0% max LTV); verify live values on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters) and in the app before signing. See [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove) for how LTV drifts after you open.
 
 ## Common failures
 
@@ -620,7 +624,7 @@ Start from the known-good setup: Public Testnet 1 at [app.testnet.polarisfinance
 
 **Likely cause:** Position health, collateral, debt amount, Recovery Mode, allowance, or price movement blocks the action.
 
-**Fix:** Refresh position data, reduce risk, check collateral and debt amounts, and retry from the Borrow tab.
+**Fix:** Refresh position data, reduce risk, check collateral and debt amounts, and retry from the Borrow tab. The [Trove Health Simulator](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove?coll=10&debt=22000&price=2600#trove-health-simulator) opens preloaded with an at-risk position you can adjust to match yours.
 
 **When not to proceed:** Do not borrow if you do not understand the displayed liquidation exposure.
 
@@ -887,7 +891,7 @@ Each trove is an ERC-721 NFT ("Polaris CDP Position"), and whoever holds that NF
 Closing is the reverse of opening (**repay debt ⇒ withdraw collateral**):
 
 1. **Repay the full debt.** Burn enough pAsset to clear the recorded debt, including accrued interest. You must hold (or re-acquire) the pAsset.
-2. **Withdraw collateral.** With the debt at zero, withdraw your pETH. The trove is closed.
+2. **Withdraw collateral.** With the debt at zero, withdraw your pETH — including the fixed gas-compensation deposit taken at open. The trove is closed.
 
 If you do not hold enough pAsset to repay (for example, you sold it), buy it back on the market first.
 
@@ -942,7 +946,7 @@ Deposit ETH into the [bonding curve](https://tokenbrice.github.io/polaris-docs/p
 
 ### Deposit pETH as collateral
 
-Choose how much pETH to lock in the trove. This collateral stays in the trove until you withdraw it.
+Choose how much pETH to lock in the trove. This collateral stays in the trove until you withdraw it. Opening also takes a small fixed pETH deposit on top of your collateral as liquidation gas compensation — returned in full when you close the trove, paid to the liquidator only if the trove is liquidated. Its current size lives on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters).
 
 ### Choose pAsset and amount
 
@@ -2822,6 +2826,10 @@ Redemption alpha | `1e18` | `1e18` | Deploy script
 Mint minute decay factor | `998076443575628800` | `998076443575628800` | Deploy script
 Redemption minute decay factor | `998076443575628800` | `998076443575628800` | Deploy script
 Primary interest split (Stability Pool / POLAR staking / ecosystem) | 75% / 25% / 0% | 75% / 25% / 0% | Deploy script
+Liquidation penalty, Stability Pool path | 5% | 5% | Deploy script
+Liquidation penalty, redistribution path (MCR − 100%) | 15% | 15% | Derived in contract
+Liquidation gas compensation, fixed deposit at trove open | 0.0375 pETH | 0.0375 pETH | Deploy script
+Liquidation gas compensation, variable | 0.5% of SP-portion collateral, capped at 2 pETH | Same | Hardcoded
 
 The app may display the inverse borrower metric, **max LTV**. Public Testnet 1's 115% MCR is about 87.0% max LTV; the 150% Emergency Mode action MCR is about 66.7% max LTV.
 
