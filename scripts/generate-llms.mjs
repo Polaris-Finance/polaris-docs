@@ -9,6 +9,14 @@ import {
   writeFileSync
 } from 'node:fs'
 import path from 'node:path'
+import {
+  LAUNCH_CHAIN_ID,
+  LAUNCH_EXPLORER_URL,
+  LAUNCH_NETWORK,
+  LAUNCH_PHASE,
+  timelineCaption,
+  timelineSummary
+} from '../app/launch-state.mjs'
 import { absoluteUrl, markdownPathForRoute } from '../app/site-config.mjs'
 
 const root = process.cwd()
@@ -119,10 +127,7 @@ function stripJsxTags(value) {
   return value
     .replace(/<BlogPostCard\s+([\s\S]*?)\/>/g, (_match, props) => renderBlogPostCard(props))
     .replace(/<NextSteps\s+([\s\S]*?)\/>/g, (_match, props) => renderNextSteps(props))
-    .replace(
-      /<LaunchTimeline\s*\/>/g,
-      'Image: Polaris launch timeline. Early Research in 2024. Team Formation in June 2025. Public Testnet 1 on Sepolia in March 2026, the current phase. Mainnet, forthcoming.'
-    )
+    .replace(/<LaunchTimeline\s*\/>/g, `Image: ${timelineSummary()} ${timelineCaption()}`)
     .replace(
       /<SystemOverviewFigure\s*\/>/g,
       'Image: Polaris system overview: ETH swaps into pETH on the bonding curve, pETH collateralizes pAsset branches that mint pUSD, and burning pETH for POLAR raises the floor and releases ETH.'
@@ -440,8 +445,7 @@ function contractEntries(rows, group) {
         group,
         name: stripInlineMarkdown(row.Contract ?? ''),
         address,
-        explorerUrl:
-          firstMarkdownUrl(rawAddress) ?? `https://sepolia.etherscan.io/address/${address}`
+        explorerUrl: firstMarkdownUrl(rawAddress) ?? `${LAUNCH_EXPLORER_URL}/address/${address}`
       }
     })
     .filter(Boolean)
@@ -467,7 +471,7 @@ function buildProtocolManifest(pages) {
 
   const sharedCoreParameters = sharedCoreRows.map((row) => ({
     name: stripInlineMarkdown(row.Parameter ?? ''),
-    value: stripInlineMarkdown(row['Public Testnet 1 value'] ?? ''),
+    value: stripInlineMarkdown(row[`${LAUNCH_PHASE} value`] ?? ''),
     source: stripInlineMarkdown(row.Source ?? '')
   }))
 
@@ -520,19 +524,19 @@ function buildProtocolManifest(pages) {
       activePassets: environment['Active pAssets'] ?? ''
     },
     warnings: [
-      'Public Testnet 1 values are Sepolia testnet artifacts.',
+      `${LAUNCH_PHASE} values are ${LAUNCH_NETWORK} testnet artifacts.`,
       'Testnet assets have no monetary value, no production redemption, and no mainnet claim.',
       'Do not infer production constants, addresses, audit status, or launch status from testnet values.',
-      'Use Launch Status and Public Testnet 1 as the canonical sources before signing transactions.'
+      `Use Launch Status and ${LAUNCH_PHASE} as the canonical sources before signing transactions.`
     ],
     parameters: {
       sharedCore: sharedCoreParameters,
       pAssets: pAssetParameters
     },
     contracts: {
-      network: 'Sepolia',
-      chainId: 11155111,
-      explorer: 'https://sepolia.etherscan.io',
+      network: LAUNCH_NETWORK,
+      chainId: LAUNCH_CHAIN_ID,
+      explorer: LAUNCH_EXPLORER_URL,
       entries: contracts
     },
     production
@@ -604,8 +608,8 @@ const header = `# Polaris Documentation
 ## Agent Guidance
 
 - Start with [Launch Status](${absoluteUrl('/launch-status')}) for what is live, supported, or production-final.
-- Treat [Public Testnet 1](${absoluteUrl('/resources/testnet')}) as the source of truth for Sepolia network, parameter, and contract-address values.
-- Public Testnet 1 assets are Sepolia test assets with no monetary value, no production redemption, and no mainnet claim.
+- Treat [${LAUNCH_PHASE}](${absoluteUrl('/resources/testnet')}) as the source of truth for ${LAUNCH_NETWORK} network, parameter, and contract-address values.
+- ${LAUNCH_PHASE} assets are ${LAUNCH_NETWORK} test assets with no monetary value, no production redemption, and no mainnet claim.
 - Do not infer production addresses, production constants, audit status, or launch status from testnet values.
 - Prefer the Markdown URLs in this file for retrieval, and cite the canonical URL shown beside each page.
 `
@@ -645,7 +649,7 @@ const machineReadableBody = [
   `- [JSON docs index](${absoluteUrl('/llms-index.json')}): Routes, canonical URLs, Markdown URLs, sections, keywords, and freshness metadata.`,
   `- [Polaris testnet manifest](${absoluteUrl(
     '/polaris-testnet-manifest.json'
-  )}): Machine-readable Public Testnet 1 environment, parameters, contracts, and warnings.`,
+  )}): Machine-readable ${LAUNCH_PHASE} environment, parameters, contracts, and warnings.`,
   `- [Well-known llms.txt mirror](${absoluteUrl(
     '/.well-known/llms.txt'
   )}): Alternate discovery path for the docs index.`,

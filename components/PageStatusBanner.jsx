@@ -1,6 +1,7 @@
+import { LAUNCH_NETWORK, LAUNCH_PHASE } from '../app/launch-state.mjs'
 import { pathWithBase } from '../app/site-config.mjs'
 
-export function PageStatusBanner({ lastUpdated, network = 'Sepolia', phase = 'Public Testnet 1' }) {
+export function PageStatusBanner({ lastUpdated, network = LAUNCH_NETWORK, phase = LAUNCH_PHASE }) {
   return (
     // Indexed-page chrome: keep it out of Pagefind so it never becomes a result
     // excerpt (it otherwise leads every page's snippet with testnet/status text).

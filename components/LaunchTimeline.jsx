@@ -1,48 +1,7 @@
+import { TIMELINE_PHASES, timelineCaption, timelineSummary } from '../app/launch-state.mjs'
 import { pathWithBase } from '../app/site-config.mjs'
 
-const phases = [
-  {
-    name: 'Early Research',
-    date: '2024',
-    labelPos: 'above',
-    style: 'spark',
-    desc: 'Initial exploration of bonding curve mechanics and counterparty-free stablecoin design.',
-    link: null
-  },
-  {
-    name: 'Team Formation',
-    date: 'June 2025',
-    labelPos: 'below',
-    style: 'spark',
-    desc: 'Core team assembled around the Polaris protocol vision.',
-    link: null
-  },
-  {
-    name: 'Private Testnet 1',
-    date: 'Private · March 2026',
-    labelPos: 'above',
-    style: 'spark',
-    desc: 'Closed testnet for internal validation and security review.',
-    link: '/resources/testnet'
-  },
-  {
-    name: 'Public Testnet 1',
-    date: 'Public · May 2026',
-    labelPos: 'below',
-    style: 'polaris',
-    isNow: true,
-    desc: 'Public testnet on Sepolia. Open for community testing and feedback.',
-    link: '/resources/testnet'
-  },
-  {
-    name: 'Mainnet',
-    date: 'Forthcoming',
-    labelPos: 'above',
-    style: 'distant',
-    desc: 'Production deployment on Ethereum mainnet.',
-    link: '/launch-status'
-  }
-]
+const phases = TIMELINE_PHASES
 
 function Tooltip({ title, desc }) {
   return (
@@ -56,11 +15,7 @@ function Tooltip({ title, desc }) {
 export function LaunchTimeline() {
   return (
     <figure className="pl-voyage" aria-labelledby="launch-timeline-caption">
-      <div
-        className="pl-chart"
-        role="img"
-        aria-label="Polaris launch timeline. Early Research in 2024. Team Formation in June 2025. Private Testnet 1, March 2026. Public Testnet 1, May 2026, the current phase. Mainnet, forthcoming."
-      >
+      <div className="pl-chart" role="img" aria-label={timelineSummary()}>
         <svg className="pl-route" viewBox="0 0 1000 168" preserveAspectRatio="none">
           <defs>
             <linearGradient id="pl-grad-l" x1="0" y1="0" x2="1" y2="0">
@@ -129,7 +84,7 @@ export function LaunchTimeline() {
         })}
       </div>
       <figcaption id="launch-timeline-caption" className="pl-timeline-caption">
-        Polaris is currently in Public Testnet 1 on Sepolia; mainnet remains forthcoming.
+        {timelineCaption()}
       </figcaption>
       <ol className="pl-timeline-list">
         {phases.map((phase) => (

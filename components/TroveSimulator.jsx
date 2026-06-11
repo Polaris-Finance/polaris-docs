@@ -1,11 +1,39 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 
 export function TroveSimulator({ minCollateralRatio = 1.5 }) {
   const [collateral, setCollateral] = useState(10)
   const [debt, setDebt] = useState(5000)
   const [ethPrice, setEthPrice] = useState(3000)
+  const touched = useRef(false)
+
+  // Preconfigured links (?coll=&debt=&price=) reproduce a position, so docs
+  // pages and support threads can point at a concrete simulator state.
+  useEffect(() => {
+    const search = new URLSearchParams(window.location.search)
+    const read = (key, set) => {
+      const value = Number(search.get(key))
+      if (search.has(key) && Number.isFinite(value) && value >= 0) set(value)
+    }
+    read('coll', setCollateral)
+    read('debt', setDebt)
+    read('price', setEthPrice)
+  }, [])
+
+  useEffect(() => {
+    if (!touched.current) return
+    const url = new URL(window.location.href)
+    url.searchParams.set('coll', String(collateral))
+    url.searchParams.set('debt', String(debt))
+    url.searchParams.set('price', String(ethPrice))
+    window.history.replaceState(null, '', url)
+  }, [collateral, debt, ethPrice])
+
+  const setFromInput = (set) => (event) => {
+    touched.current = true
+    set(Number(event.target.value))
+  }
 
   const results = useMemo(() => {
     const collateralValue = collateral * ethPrice
@@ -41,7 +69,7 @@ export function TroveSimulator({ minCollateralRatio = 1.5 }) {
             min="0"
             step="0.1"
             value={collateral}
-            onChange={(event) => setCollateral(Number(event.target.value))}
+            onChange={setFromInput(setCollateral)}
           />
         </div>
 
@@ -53,7 +81,7 @@ export function TroveSimulator({ minCollateralRatio = 1.5 }) {
             min="0"
             step="100"
             value={debt}
-            onChange={(event) => setDebt(Number(event.target.value))}
+            onChange={setFromInput(setDebt)}
           />
         </div>
 
@@ -65,7 +93,7 @@ export function TroveSimulator({ minCollateralRatio = 1.5 }) {
             min="1"
             step="100"
             value={ethPrice}
-            onChange={(event) => setEthPrice(Number(event.target.value))}
+            onChange={setFromInput(setEthPrice)}
           />
         </div>
       </div>

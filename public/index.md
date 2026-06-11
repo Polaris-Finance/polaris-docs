@@ -27,7 +27,7 @@ This documentation covers how the system works, how to use the app, and which ri
 
 ## Launch timeline
 
-Image: Polaris launch timeline. Early Research in 2024. Team Formation in June 2025. Public Testnet 1 on Sepolia in March 2026, the current phase. Mainnet, forthcoming.
+Image: Polaris launch timeline. Early Research, 2024. Team Formation, June 2025. Private Testnet 1, March 2026. Public Testnet 1, May 2026, the current phase. Mainnet, Forthcoming. Polaris is currently in Public Testnet 1 on Sepolia; mainnet remains forthcoming.
 
 Image: Polaris system overview: ETH swaps into pETH on the bonding curve, pETH collateralizes pAsset branches that mint pUSD, and burning pETH for POLAR raises the floor and releases ETH.
 

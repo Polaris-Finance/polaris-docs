@@ -1,5 +1,6 @@
 import { readdirSync, readFileSync, statSync } from 'node:fs'
 import path from 'node:path'
+import { LAUNCH_PHASE } from '../app/launch-state.mjs'
 
 const root = process.cwd()
 const scanRoots = ['content', 'app', 'README.md'].map((entry) => path.join(root, entry))
@@ -148,6 +149,20 @@ for (const file of files) {
     if (!isMdx && /HTML comments|GitHub-style/.test(rule.message)) continue
     if (rule.pattern.test(text)) {
       failures.push(`${rel}: ${rule.message}`)
+    }
+  }
+
+  // Every public-testnet phase mention must match the canonical phase in
+  // app/launch-state.mjs (the module itself keeps prior phases as timeline
+  // history, so it is exempt). On a phase bump this lists every file that
+  // still claims the old phase so each one gets a conscious update.
+  if (rel !== path.join('app', 'launch-state.mjs')) {
+    for (const match of text.matchAll(/\bpublic testnet \d+\b/gi)) {
+      if (match[0].toLowerCase() !== LAUNCH_PHASE.toLowerCase()) {
+        failures.push(
+          `${rel}: stale launch phase "${match[0]}" (current phase is "${LAUNCH_PHASE}" per app/launch-state.mjs)`
+        )
+      }
     }
   }
 }
