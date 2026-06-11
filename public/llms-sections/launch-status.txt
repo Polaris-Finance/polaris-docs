@@ -29,6 +29,7 @@ Official testnet app | [https://app.testnet.polarisfinance.io/](https://app.test
 Testnet-active pAssets | pUSD and pGOLD
 Illustrative or future pAssets | pCHF, pBigMac, and other catalog examples
 Production network | Ethereum mainnet, chain ID `1`, forthcoming
+[Bonding-curve bootstrap](https://tokenbrice.github.io/polaris-docs/peth#how-the-production-curve-launches) | Not used in Public Testnet 1; intended to initialize the production curve at launch. Terms and dates not announced
 
 ## What this means
 

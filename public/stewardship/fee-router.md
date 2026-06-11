@@ -29,9 +29,10 @@ Source | What enters
 
 [Conversion auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions) | pETH purchased with the released ETH, after any [converter rebate](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions#the-converter-rebate)
 Bonding-curve swap fees | pETH fees from ETH ⇄ pETH activity
-Other protocol revenue | Any additional source listed in the contract reference and yield docs
 
-Swap fees take one extra step before distribution: accumulated fee pETH is **burned at the floor price**, which lifts the [floor](https://tokenbrice.github.io/polaris-docs/peth/floor-price) and releases reserve ETH; that ETH is swapped back into pETH and distributed with the rest. The burn is the floor-raising mechanism — what reaches the destinations below is the repurchased pETH, not the burned fees.
+These are the only two sources wired into the router today; borrower interest follows a separate pAsset-denominated path (see [Yield Sources](https://tokenbrice.github.io/polaris-docs/yield/yield-sources)).
+
+Swap fees take one extra step before distribution: accumulated fee pETH is **burned at the floor price**, which lifts the [floor](https://tokenbrice.github.io/polaris-docs/peth/floor-price) and releases reserve ETH; that ETH is swapped back into pETH and distributed with the rest. The burn is the floor-raising mechanism — what reaches the destinations below is the repurchased pETH, not the burned fees. Anyone can trigger the burn-and-repurchase step; sending buffered pETH onward to a destination is a stewardship action.
 
 For the full source matrix, see [Yield Sources](https://tokenbrice.github.io/polaris-docs/yield/yield-sources).
 
@@ -39,9 +40,10 @@ For the full source matrix, see [Yield Sources](https://tokenbrice.github.io/pol
 
 Destination | What they receive
 
-Troves | pETH yield credited through the relevant accounting path
-POLAR stakers | A stewarded share of protocol revenue where staking is live
-Flow recipients | Revenue-sharing distributions for whitelisted contracts
+Troves | pETH yield credited pro-rata to recorded debt
+Flow recipients | Revenue-sharing distributions for whitelisted contracts (forthcoming)
+
+POLAR stakers are not paid by the Fee Router: their share comes from **borrower interest** through the separate interest router. See [POLAR Tokenomics](https://tokenbrice.github.io/polaris-docs/polar/tokenomics#where-the-yield-comes-from).
 
 The Fee Router buffers incoming value before distribution. Buffering smooths bursty conversions and swap fees into steadier accounting periods.
 

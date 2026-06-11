@@ -20,10 +20,10 @@ Polaris yield comes from onchain protocol activity: borrowing, liquidations, swa
 
 Source | Where it originates | Flows to
 
-**Borrower interest** | Interest [trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove) owners pay on minted pAssets | Primarily [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield) depositors, with stewarded splits where configured
+**Borrower interest** | Interest [trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove) owners pay on minted pAssets | Split by the interest router between [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield) depositors (currently the largest share), POLAR stakers, and an ecosystem remainder — stewarded above hardcoded floors
 **Liquidation gains** | The penalty on liquidated troves, paid in discounted pETH | Stability Pool depositors
 **Bonding curve swap fees** | Fees on every ETH ⇄ pETH swap, buffered by the Fee Router and later burned at the [floor price](https://tokenbrice.github.io/polaris-docs/peth/floor-price) | The pETH floor (via the burn); the released ETH is recycled into pETH and distributed to troves
-**Conversion gains** | ETH released when pETH is burned to mint POLAR in a [conversion auction](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions) | pETH troves, pro-rata to recorded debt
+**Conversion gains** | ETH released when pETH is burned to mint POLAR in a [conversion auction](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions) | The Fee Router, which recycles it into pETH and streams it to troves pro-rata to recorded debt
 
 The first two drive [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield) yield and are the primary venue for pAsset holders. The bonding curve and conversion components make **pETH used as trove collateral yield-bearing** — the yield accrues to troves and to pETH's rising floor, not to a passive token balance — which is why using pETH as collateral can lower a borrower's net effective cost.
 

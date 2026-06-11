@@ -67,7 +67,7 @@ A reserve of pAssets that processes liquidations and is the primary venue for ea
 
 The mechanism that mints POLAR by burning pETH. See [Conversion Auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions).
 
-Buffers protocol revenue in pETH and distributes it to troves (pro-rata to debt), POLAR stakers, and Flow recipients. Swap fees are first burned at the floor — raising it — and the released ETH is recycled into pETH. See [The Fee Router](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router).
+Buffers protocol revenue in pETH and streams it to troves pro-rata to debt (Flow recipients forthcoming); POLAR stakers are paid separately from borrower interest. Swap fees are first burned at the floor — raising it — and the released ETH is recycled into pETH. See [The Fee Router](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router).
 
 A stewardship role steers *quantitative parameters*, with safety-critical bounds hardcoded in the contracts and the remaining bounds set at audited deployment. It does not govern the immutable core. See [Stewardship, not Governance](https://tokenbrice.github.io/polaris-docs/stewardship).
 

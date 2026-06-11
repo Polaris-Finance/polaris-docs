@@ -72,7 +72,7 @@ A reserve of pAssets that processes liquidations and is the primary venue for ea
 
 The mechanism that mints POLAR by burning pETH. See [Conversion Auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions).
 
-Buffers protocol revenue in pETH and distributes it to troves (pro-rata to debt), POLAR stakers, and Flow recipients. Swap fees are first burned at the floor — raising it — and the released ETH is recycled into pETH. See [The Fee Router](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router).
+Buffers protocol revenue in pETH and streams it to troves pro-rata to debt (Flow recipients forthcoming); POLAR stakers are paid separately from borrower interest. Swap fees are first burned at the floor — raising it — and the released ETH is recycled into pETH. See [The Fee Router](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router).
 
 A stewardship role steers *quantitative parameters*, with safety-critical bounds hardcoded in the contracts and the remaining bounds set at audited deployment. It does not govern the immutable core. See [Stewardship, not Governance](https://tokenbrice.github.io/polaris-docs/stewardship).
 
@@ -187,7 +187,7 @@ Minting more or withdrawing collateral raises your LTV. Cross the maximum and yo
 
 ## Values to check
 
-Current MCR, max LTV equivalents, Recovery Mode, fee, decay, minimum-debt, and dust values live on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters). Before changing a trove, check the live app quote and the parameter page for the pAsset you are managing.
+Current MCR, max LTV equivalents, Recovery Mode, fee, and decay values live on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters). Before changing a trove, check the live app quote and the parameter page for the pAsset you are managing.
 
 ## Add collateral
 
@@ -214,6 +214,14 @@ Period | Interest estimate | New debt
 90 days | 10,000 × 8% × 90 / 365 = 197.26 pUSD | 10,197.26 pUSD
 
 If your collateral value stays flat at \$15,000, the 30-day estimate moves your LTV from 66.7% to about 67.1%. The contract may accrue continuously and the rate may change, so use the app's recorded debt for precise decisions.
+
+## Drift from system activity
+
+ETH's price and interest accrual are not the only background forces. System-level [minting and redemptions](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations) move every open trove in the branch: each mint adds collateral and debt to all troves pro-rata, each redemption removes both, and pETH yield from the [Fee Router](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router) credits collateral pro-rata to debt. These changes accrue to your position continuously and are folded into its recorded balances the next time you touch the trove; the position the app shows includes them.
+
+## Transfer the trove
+
+Each trove is an ERC-721 NFT ("Polaris CDP Position"), and whoever holds that NFT controls the position. Transferring it hands over the collateral, the debt, and every lever on this page in one transaction. Standard NFT approvals apply — audit operator approvals as you would for any valuable NFT, and never send a trove to an address you do not control or trust.
 
 ## Close the trove
 
@@ -339,6 +347,8 @@ Image: pGOLD versus centralized gold tokens (XAUT/PAXG): pGOLD is backed by onch
 
 pGOLD inherits ETH-collateral and smart-contract risk where XAUT/PAXG inherit custodial and issuer risk. What pGOLD removes is the permissioned issuer layer.
 
+pGOLD's collateral pricing composes two oracle feeds with the bonding curve: pETH is valued in gold terms as ETH/USD × the curve's pETH price ÷ gold/USD. A failure of either feed affects pGOLD pricing; see [Oracle risk](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure#oracle-risk).
+
 Image: Borrowing pGOLD is not shorting gold: deposit pETH and borrow pGOLD, then your strategy sets the exposure — hold or LP the gold pair for gold-neutral exposure, or sell pGOLD for pETH (or loop) to take short-gold exposure
 
 *Minting pGOLD against pETH is a borrowing action; whether you end up long pETH, gold-neutral, or short gold depends on what you do with the pGOLD.*
@@ -407,6 +417,10 @@ $$
 As supply `Q` increases, the price of pETH in ETH increases. **β** sets how tightly pETH tracks ETH: a large β decouples pETH and makes it more volatile; a small β couples them closely. Current values live on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters).
 
 The Public Testnet 1 beta is testnet-only. The production beta remains pending; verify [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters) before using any numeric value.
+
+### How the production curve launches
+
+Production launch is designed to initialize the curve through a dedicated **bootstrap** contract: a time-boxed, whitelisted deposit window with a minimum and maximum ETH raise. Depositors receive pETH when the raise initializes the curve and its starting floor — a portion claimable immediately, the rest vesting over a set period, with a penalized early-exit (rage-quit) option. Public Testnet 1 skipped this phase; its curve was initialized directly. Bootstrap terms and dates are pending on [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status).
 
 ## Interactive explorer
 
@@ -835,7 +849,7 @@ Relevant app/search vocabulary: POLAR, convert, lock, vePOLAR, burn pETH, conver
 URL: https://tokenbrice.github.io/polaris-docs/redemptions-liquidations
 Markdown URL: https://tokenbrice.github.io/polaris-docs/redemptions-liquidations.md
 
-> **Actionability:** Redemptions are testnet-actionable only on Sepolia using test assets and current manifests. Production redemptions are not mainnet-actionable until [Polaris Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) publishes the official app, production addresses, final fee formula, dust rules, and audit status.
+> **Actionability:** Redemptions are testnet-actionable only on Sepolia using test assets and current manifests. Production redemptions are not mainnet-actionable until [Polaris Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) publishes the official app, production addresses, final fee formula, and audit status.
 
 ## What a redemption is
 
@@ -847,7 +861,7 @@ This puts an arbitrage floor under the pAsset's market price.
 
 ## Parameters
 
-Redemption fees, decay factors, dust rules, and current network values live on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters). This page explains the mechanism; the parameter page owns the numbers.
+Redemption fees, decay factors, and current network values live on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters). This page explains the mechanism; the parameter page owns the numbers.
 
 ## How it restores the peg
 
@@ -881,6 +895,8 @@ Image: Interest rate and peg stability: above peg, minting volume rises and the 
 
 Current fee floors, decay factors, and fill constraints live on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters). The user-facing rule is simple: the redeemer receives the redeemed amount's reference value in pETH **minus** the fee and execution costs. If the fee, gas, pETH slippage, MEV risk, or price movement exceed the below-peg spread, the redemption is unprofitable.
 
+Two contract-level details refine that rule. The fee is not paid out to anyone: the collateral it represents stays in the branch, accruing pro-rata to the remaining troves. And if the branch's [reserve-to-debt ratio (TCR)](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode) is below 100%, the post-fee proceeds are scaled down by that ratio — redeeming against a thinly backed branch returns proportionally less pETH.
+
 The app should show a pre-confirmation quote once the interface is live. Treat examples here as arithmetic only.
 
 ### Borrower impact
@@ -888,6 +904,8 @@ The app should show a pre-confirmation quote once the interface is live. Treat e
 A redemption targets the whole pAsset system, not a specific trove. It reduces debt and pETH collateral across **all** open troves for that pAsset, pro-rata to each trove's recorded collateral. There is no LTV queue, no "riskiest trove first," and no health metric that exempts a trove.
 
 Being redeemed against is not a liquidation penalty: your debt is repaid at face value with your own collateral, so net equity is broadly unchanged before fees and rounding. The cost is control. Your trove becomes smaller, your pETH exposure falls, and future pETH-linked yield potential falls with it.
+
+One edge case: because both reductions are shared pro-rata to collateral, a trove holding a lot of collateral relative to its debt can shed more debt than it owes. Debt floors at zero — the protocol mints the overshoot to the trove owner as pAsset the next time the trove is touched.
 
 Lower LTV protects against **liquidation**, not redemption. It can still matter after a redemption, because the remaining LTV often improves but the position is smaller.
 
@@ -956,11 +974,11 @@ Path | Trigger | Absorbs debt | Receives collateral
 **Stability Pool** | Pool has sufficient pAsset | Pool burns its pAsset | Depositors, pro-rata
 **Redistribution** | Pool empty / insufficient | Other troves take it on | Other troves, pro-rata
 
-**Collateral surplus.** When the Stability Pool absorbs a liquidation, the trove surrenders only what covers its debt, a liquidation penalty, and gas compensation for the liquidator. Any collateral beyond that goes to the **Collateral Surplus Pool**, where the former borrower can claim it. (Collateral spread through the redistribution fallback is not returned this way.)
+**Collateral surplus.** When the Stability Pool absorbs a liquidation, the trove surrenders only what covers its debt, a liquidation penalty, and gas compensation for the liquidator. Any collateral beyond that goes to the **Collateral Surplus Pool**, where the former borrower can claim it. The claim is an explicit transaction — the surplus is not pushed back automatically, and it waits in the pool until claimed. (Collateral spread through the redistribution fallback is not returned this way.)
 
 ## Values to check
 
-Current MCR, Recovery Mode, fee, dust, and liquidation values live on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters). This page explains the closeout path; the parameter page owns the numbers.
+Current MCR, Recovery Mode, fee, and liquidation values live on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters). This page explains the closeout path; the parameter page owns the numbers.
 
 Before acting, check:
 
@@ -1201,9 +1219,10 @@ Source | What enters
 
 [Conversion auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions) | pETH purchased with the released ETH, after any [converter rebate](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions#the-converter-rebate)
 Bonding-curve swap fees | pETH fees from ETH ⇄ pETH activity
-Other protocol revenue | Any additional source listed in the contract reference and yield docs
 
-Swap fees take one extra step before distribution: accumulated fee pETH is **burned at the floor price**, which lifts the [floor](https://tokenbrice.github.io/polaris-docs/peth/floor-price) and releases reserve ETH; that ETH is swapped back into pETH and distributed with the rest. The burn is the floor-raising mechanism — what reaches the destinations below is the repurchased pETH, not the burned fees.
+These are the only two sources wired into the router today; borrower interest follows a separate pAsset-denominated path (see [Yield Sources](https://tokenbrice.github.io/polaris-docs/yield/yield-sources)).
+
+Swap fees take one extra step before distribution: accumulated fee pETH is **burned at the floor price**, which lifts the [floor](https://tokenbrice.github.io/polaris-docs/peth/floor-price) and releases reserve ETH; that ETH is swapped back into pETH and distributed with the rest. The burn is the floor-raising mechanism — what reaches the destinations below is the repurchased pETH, not the burned fees. Anyone can trigger the burn-and-repurchase step; sending buffered pETH onward to a destination is a stewardship action.
 
 For the full source matrix, see [Yield Sources](https://tokenbrice.github.io/polaris-docs/yield/yield-sources).
 
@@ -1211,9 +1230,10 @@ For the full source matrix, see [Yield Sources](https://tokenbrice.github.io/pol
 
 Destination | What they receive
 
-Troves | pETH yield credited through the relevant accounting path
-POLAR stakers | A stewarded share of protocol revenue where staking is live
-Flow recipients | Revenue-sharing distributions for whitelisted contracts
+Troves | pETH yield credited pro-rata to recorded debt
+Flow recipients | Revenue-sharing distributions for whitelisted contracts (forthcoming)
+
+POLAR stakers are not paid by the Fee Router: their share comes from **borrower interest** through the separate interest router. See [POLAR Tokenomics](https://tokenbrice.github.io/polaris-docs/polar/tokenomics#where-the-yield-comes-from).
 
 The Fee Router buffers incoming value before distribution. Buffering smooths bursty conversions and swap fees into steadier accounting periods.
 
@@ -1521,10 +1541,10 @@ Polaris yield comes from onchain protocol activity: borrowing, liquidations, swa
 
 Source | Where it originates | Flows to
 
-**Borrower interest** | Interest [trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove) owners pay on minted pAssets | Primarily [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield) depositors, with stewarded splits where configured
+**Borrower interest** | Interest [trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove) owners pay on minted pAssets | Split by the interest router between [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield) depositors (currently the largest share), POLAR stakers, and an ecosystem remainder — stewarded above hardcoded floors
 **Liquidation gains** | The penalty on liquidated troves, paid in discounted pETH | Stability Pool depositors
 **Bonding curve swap fees** | Fees on every ETH ⇄ pETH swap, buffered by the Fee Router and later burned at the [floor price](https://tokenbrice.github.io/polaris-docs/peth/floor-price) | The pETH floor (via the burn); the released ETH is recycled into pETH and distributed to troves
-**Conversion gains** | ETH released when pETH is burned to mint POLAR in a [conversion auction](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions) | pETH troves, pro-rata to recorded debt
+**Conversion gains** | ETH released when pETH is burned to mint POLAR in a [conversion auction](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions) | The Fee Router, which recycles it into pETH and streams it to troves pro-rata to recorded debt
 
 The first two drive [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield) yield and are the primary venue for pAsset holders. The bonding curve and conversion components make **pETH used as trove collateral yield-bearing** — the yield accrues to troves and to pETH's rising floor, not to a passive token balance — which is why using pETH as collateral can lower a borrower's net effective cost.
 

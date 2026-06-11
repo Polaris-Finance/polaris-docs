@@ -73,7 +73,7 @@ Markdown URL: https://tokenbrice.github.io/polaris-docs/using-app/advanced.md
 
 Advanced holds expert, permissionless operations aimed at arbitrageurs and keepers — deeper mechanism knowledge is assumed. It has three modules:
 
-- **Peg Stability Module (PSM):** mint or redeem pUSD or pGOLD against pETH at the oracle price, in unlimited size. Mint sends pETH in for the pAsset; redeem sends the pAsset in for pETH. This arbitrage anchors each peg.
+- **Peg Stability Module (PSM):** mint or redeem pUSD or pGOLD against pETH at the oracle price, in unlimited size. Mint sends pETH in for the pAsset; redeem sends the pAsset in for pETH. This arbitrage anchors each peg. If the branch's reserve-to-debt ratio is below 100%, redemption proceeds are scaled down by that ratio — check the quote.
 - **Convert pETH → POLAR:** a one-way auction. pETH is burned (raising the bonding-curve floor) and POLAR is minted at the decaying auction price. There is no reverse direction; in practice this is run by MEV/arbitrage bots.
 - **Testnet ETH Faucet:** claim test WETH for Sepolia ETH — [current rate, cooldown, and cap](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters).
 

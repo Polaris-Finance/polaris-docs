@@ -52,6 +52,10 @@ As supply `Q` increases, the price of pETH in ETH increases. **β** sets how tig
 
 The Public Testnet 1 beta is testnet-only. The production beta remains pending; verify [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters) before using any numeric value.
 
+### How the production curve launches
+
+Production launch is designed to initialize the curve through a dedicated **bootstrap** contract: a time-boxed, whitelisted deposit window with a minimum and maximum ETH raise. Depositors receive pETH when the raise initializes the curve and its starting floor — a portion claimable immediately, the rest vesting over a set period, with a penalized early-exit (rage-quit) option. Public Testnet 1 skipped this phase; its curve was initialized directly. Bootstrap terms and dates are pending on [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status).
+
 ## Interactive explorer
 
 ## pETH beyond CDPs
