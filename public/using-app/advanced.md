@@ -6,8 +6,8 @@
 Canonical URL: https://tokenbrice.github.io/polaris-docs/using-app/advanced
 Markdown URL: https://tokenbrice.github.io/polaris-docs/using-app/advanced.md
 Section: Using the App
-Updated: 2026-06-09
-Last verified: 2026-06-09
+Updated: 2026-06-11
+Last verified: 2026-06-11
 
 Documentation index: https://tokenbrice.github.io/polaris-docs/llms.txt
 Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.txt

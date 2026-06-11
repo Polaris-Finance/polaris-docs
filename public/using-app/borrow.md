@@ -6,8 +6,8 @@
 Canonical URL: https://tokenbrice.github.io/polaris-docs/using-app/borrow
 Markdown URL: https://tokenbrice.github.io/polaris-docs/using-app/borrow.md
 Section: Using the App
-Updated: 2026-06-09
-Last verified: 2026-06-09
+Updated: 2026-06-11
+Last verified: 2026-06-11
 
 Documentation index: https://tokenbrice.github.io/polaris-docs/llms.txt
 Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.txt
@@ -44,6 +44,10 @@ Image: Polaris Borrow tab with pUSD, pGOLD, and ETH sub-tabs, a collateral field
 6. Confirm the updated collateral, debt, and LTV.
 
 A borrow or management action worked when the position reflects the expected collateral, debt, and LTV.
+
+## Try your numbers
+
+The simulator uses the current Public Testnet 1 MCR of 115% (about 87.0% max LTV); verify live values on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters) and in the app before signing. See [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove) for how LTV drifts after you open.
 
 ## Common failures
 

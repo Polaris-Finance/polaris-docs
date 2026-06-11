@@ -5,7 +5,7 @@ description: Public Testnet 1 network, manifest sources, parameters, and Sepolia
 
 # Polaris Public Testnet 1
 
-<PageStatusBanner lastUpdated="June 8, 2026" />
+<PageStatusBanner lastUpdated="June 11, 2026" />
 
 This page is the single source for Public Testnet 1: [environment](#environment), [manifest sources](#manifest-sources), [parameters](#parameters), [contract addresses](#contracts-and-addresses), and [verification](#verification).
 
@@ -78,6 +78,10 @@ Task pages link here for faucet values; the contract can change them without a d
 | Mint minute decay factor | `998076443575628800` | `998076443575628800` | Deploy script |
 | Redemption minute decay factor | `998076443575628800` | `998076443575628800` | Deploy script |
 | Primary interest split (Stability Pool / POLAR staking / ecosystem) | 75% / 25% / 0% | 75% / 25% / 0% | Deploy script |
+| Liquidation penalty, Stability Pool path | 5% | 5% | Deploy script |
+| Liquidation penalty, redistribution path (MCR − 100%) | 15% | 15% | Derived in contract |
+| Liquidation gas compensation, fixed deposit at trove open | 0.0375 pETH | 0.0375 pETH | Deploy script |
+| Liquidation gas compensation, variable | 0.5% of SP-portion collateral, capped at 2 pETH | Same | Hardcoded |
 
 The app may display the inverse borrower metric, **max LTV**. Public Testnet 1's 115% MCR is about 87.0% max LTV; the 150% Emergency Mode action MCR is about 66.7% max LTV.
 

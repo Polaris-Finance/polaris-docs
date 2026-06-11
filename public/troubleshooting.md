@@ -6,8 +6,8 @@
 Canonical URL: https://tokenbrice.github.io/polaris-docs/troubleshooting
 Markdown URL: https://tokenbrice.github.io/polaris-docs/troubleshooting.md
 Section: Troubleshooting
-Updated: 2026-06-08
-Last verified: 2026-06-08
+Updated: 2026-06-11
+Last verified: 2026-06-11
 
 Documentation index: https://tokenbrice.github.io/polaris-docs/llms.txt
 Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.txt
@@ -96,7 +96,7 @@ Start from the known-good setup: Public Testnet 1 at [app.testnet.polarisfinance
 
 **Likely cause:** Position health, collateral, debt amount, Recovery Mode, allowance, or price movement blocks the action.
 
-**Fix:** Refresh position data, reduce risk, check collateral and debt amounts, and retry from the Borrow tab.
+**Fix:** Refresh position data, reduce risk, check collateral and debt amounts, and retry from the Borrow tab. The [Trove Health Simulator](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove?coll=10&debt=22000&price=2600#trove-health-simulator) opens preloaded with an at-risk position you can adjust to match yours.
 
 **When not to proceed:** Do not borrow if you do not understand the displayed liquidation exposure.
 
