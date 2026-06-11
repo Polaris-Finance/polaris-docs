@@ -85,7 +85,7 @@ Each trove is an ERC-721 NFT ("Polaris CDP Position"), and whoever holds that NF
 Closing is the reverse of opening (**repay debt ⇒ withdraw collateral**):
 
 1. **Repay the full debt.** Burn enough pAsset to clear the recorded debt, including accrued interest. You must hold (or re-acquire) the pAsset.
-2. **Withdraw collateral.** With the debt at zero, withdraw your pETH. The trove is closed.
+2. **Withdraw collateral.** With the debt at zero, withdraw your pETH — including the fixed gas-compensation deposit taken at open. The trove is closed.
 
 If you do not hold enough pAsset to repay (for example, you sold it), buy it back on the market first.
 

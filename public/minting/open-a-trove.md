@@ -39,7 +39,7 @@ Deposit ETH into the [bonding curve](https://tokenbrice.github.io/polaris-docs/p
 
 ### Deposit pETH as collateral
 
-Choose how much pETH to lock in the trove. This collateral stays in the trove until you withdraw it.
+Choose how much pETH to lock in the trove. This collateral stays in the trove until you withdraw it. Opening also takes a small fixed pETH deposit on top of your collateral as liquidation gas compensation — returned in full when you close the trove, paid to the liquidator only if the trove is liquidated. Its current size lives on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters).
 
 ### Choose pAsset and amount
 
