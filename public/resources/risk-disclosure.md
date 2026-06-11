@@ -34,7 +34,7 @@ The only collateral is [pETH](https://tokenbrice.github.io/polaris-docs/peth), w
 
 Pricing pETH collateral for liquidation requires an ETH price feed. A stale, manipulated, or failed oracle could misprice collateral and trigger wrong liquidations, or fail to trigger correct ones.
 
-**Mitigation.** Peg awareness uses redemption and minting volume as internal signals for each pAsset (see [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting)). The oracle dependency is confined to pricing ETH collateral. Current testnet and production address status lives on [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses).
+**Mitigation.** Peg awareness uses redemption and minting volume as internal signals for each pAsset (see [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting)). The oracle dependency is confined to pricing ETH collateral, plus the reference-asset feed for non-USD pAssets (pGOLD composes ETH/USD and gold/USD feeds with the curve price, so either feed failing affects its pricing). Each external price is read through a **Medianiser** holding up to three oracle feeds: three valid answers take the median, one or two take the highest-priority live feed, and none falls back to the last good price — which can go stale in a sustained outage. Stewardship can replace a failed feed immediately; replacing a live feed sits behind a timelock. Current testnet and production address status lives on [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses).
 
 ## Peg and depeg risk
 

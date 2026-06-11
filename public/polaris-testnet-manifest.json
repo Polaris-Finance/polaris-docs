@@ -85,6 +85,11 @@
           "name": "Redemption minute decay factor",
           "value": "998076443575628800",
           "source": "Deploy script"
+        },
+        {
+          "name": "Primary interest split (Stability Pool / POLAR staking / ecosystem)",
+          "value": "75% / 25% / 0%",
+          "source": "Deploy script"
         }
       ],
       "pGOLD": [
@@ -131,6 +136,11 @@
         {
           "name": "Redemption minute decay factor",
           "value": "998076443575628800",
+          "source": "Deploy script"
+        },
+        {
+          "name": "Primary interest split (Stability Pool / POLAR staking / ecosystem)",
+          "value": "75% / 25% / 0%",
           "source": "Deploy script"
         }
       ]

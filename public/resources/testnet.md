@@ -82,6 +82,7 @@ Mint alpha | `1e18` | `1e18` | Deploy script
 Redemption alpha | `1e18` | `1e18` | Deploy script
 Mint minute decay factor | `998076443575628800` | `998076443575628800` | Deploy script
 Redemption minute decay factor | `998076443575628800` | `998076443575628800` | Deploy script
+Primary interest split (Stability Pool / POLAR staking / ecosystem) | 75% / 25% / 0% | 75% / 25% / 0% | Deploy script
 
 The app may display the inverse borrower metric, **max LTV**. Public Testnet 1's 115% MCR is about 87.0% max LTV; the 150% Emergency Mode action MCR is about 66.7% max LTV.
 
