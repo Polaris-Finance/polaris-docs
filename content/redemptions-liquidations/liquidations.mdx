@@ -26,11 +26,11 @@ Liquidation runs in two tiers.
 | **Stability Pool** | Pool has sufficient pAsset | Pool burns its pAsset | Depositors, pro-rata |
 | **Redistribution** | Pool empty / insufficient | Other troves take it on | Other troves, pro-rata |
 
-**Collateral surplus.** When the Stability Pool absorbs a liquidation, the trove surrenders only what covers its debt, a liquidation penalty, and gas compensation for the liquidator. Any collateral beyond that goes to the **Collateral Surplus Pool**, where the former borrower can claim it. (Collateral spread through the redistribution fallback is not returned this way.)
+**Collateral surplus.** When the Stability Pool absorbs a liquidation, the trove surrenders only what covers its debt, a liquidation penalty, and gas compensation for the liquidator. Any collateral beyond that goes to the **Collateral Surplus Pool**, where the former borrower can claim it. The claim is an explicit transaction — the surplus is not pushed back automatically, and it waits in the pool until claimed. (Collateral spread through the redistribution fallback is not returned this way.)
 
 ## Values to check
 
-Current MCR, Recovery Mode, fee, dust, and liquidation values live on [Parameters](/resources/testnet#parameters). This page explains the closeout path; the parameter page owns the numbers.
+Current MCR, Recovery Mode, fee, and liquidation values live on [Parameters](/resources/testnet#parameters). This page explains the closeout path; the parameter page owns the numbers.
 
 Before acting, check:
 

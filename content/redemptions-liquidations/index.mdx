@@ -5,7 +5,7 @@ description: A redemption swaps a below-peg pAsset for its pETH collateral at fa
 
 # pAsset Redemptions
 
-> **Actionability:** Redemptions are testnet-actionable only on Sepolia using test assets and current manifests. Production redemptions are not mainnet-actionable until [Polaris Launch Status](/launch-status) publishes the official app, production addresses, final fee formula, dust rules, and audit status.
+> **Actionability:** Redemptions are testnet-actionable only on Sepolia using test assets and current manifests. Production redemptions are not mainnet-actionable until [Polaris Launch Status](/launch-status) publishes the official app, production addresses, final fee formula, and audit status.
 
 ## What a redemption is
 
@@ -17,7 +17,7 @@ This puts an arbitrage floor under the pAsset's market price.
 
 ## Parameters
 
-Redemption fees, decay factors, dust rules, and current network values live on [Parameters](/resources/testnet#parameters). This page explains the mechanism; the parameter page owns the numbers.
+Redemption fees, decay factors, and current network values live on [Parameters](/resources/testnet#parameters). This page explains the mechanism; the parameter page owns the numbers.
 
 ## How it restores the peg
 
@@ -51,6 +51,8 @@ Their volumes also serve as the protocol's peg signal: a spike in redemptions re
 
 Current fee floors, decay factors, and fill constraints live on [Parameters](/resources/testnet#parameters). The user-facing rule is simple: the redeemer receives the redeemed amount's reference value in pETH **minus** the fee and execution costs. If the fee, gas, pETH slippage, MEV risk, or price movement exceed the below-peg spread, the redemption is unprofitable.
 
+Two contract-level details refine that rule. The fee is not paid out to anyone: the collateral it represents stays in the branch, accruing pro-rata to the remaining troves. And if the branch's [reserve-to-debt ratio (TCR)](/redemptions-liquidations/recovery-mode) is below 100%, the post-fee proceeds are scaled down by that ratio — redeeming against a thinly backed branch returns proportionally less pETH.
+
 The app should show a pre-confirmation quote once the interface is live. Treat examples here as arithmetic only.
 
 ### Borrower impact
@@ -58,6 +60,8 @@ The app should show a pre-confirmation quote once the interface is live. Treat e
 A redemption targets the whole pAsset system, not a specific trove. It reduces debt and pETH collateral across **all** open troves for that pAsset, pro-rata to each trove's recorded collateral. There is no LTV queue, no "riskiest trove first," and no health metric that exempts a trove.
 
 Being redeemed against is not a liquidation penalty: your debt is repaid at face value with your own collateral, so net equity is broadly unchanged before fees and rounding. The cost is control. Your trove becomes smaller, your pETH exposure falls, and future pETH-linked yield potential falls with it.
+
+One edge case: because both reductions are shared pro-rata to collateral, a trove holding a lot of collateral relative to its debt can shed more debt than it owes. Debt floors at zero — the protocol mints the overshoot to the trove owner as pAsset the next time the trove is touched.
 
 Lower LTV protects against **liquidation**, not redemption. It can still matter after a redemption, because the remaining LTV often improves but the position is smaller.
 
