@@ -40,12 +40,12 @@ const searchVocabulary = [
     match: /^\/using-app\/borrow$|^\/minting\/(open-a-trove|managing-your-trove)$/,
     terms: [
       'Borrow',
-      'Manage Trove',
+      'Manage Borrow Position',
       'borrow',
-      'mint',
-      'open trove',
+      'issue',
+      'open borrow position',
       'repay',
-      'close trove',
+      'close borrow position',
       'pUSD',
       'pGOLD',
       'LTV',
@@ -55,8 +55,19 @@ const searchVocabulary = [
   },
   {
     match: /^\/minting\/(open-a-trove|managing-your-trove)$/,
-    terms: ['trove', 'open trove', 'manage trove', 'borrower trove'],
-    priorityTerms: ['trove', 'open trove', 'manage trove', 'borrow', 'CDP']
+    terms: [
+      'borrow position',
+      'open borrow position',
+      'manage borrow position',
+      'pAsset debt position'
+    ],
+    priorityTerms: [
+      'borrow position',
+      'open borrow position',
+      'manage borrow position',
+      'borrow',
+      'CDP'
+    ]
   },
   {
     match: /^\/using-app\/(earn|zap)$|^\/yield(\/.*)?$/,

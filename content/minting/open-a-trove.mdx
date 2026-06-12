@@ -1,71 +1,47 @@
 ---
-title: Open a Polaris Trove
-description: Step-by-step guide to opening a Polaris trove — deposit pETH, mint a pAsset, and pick a safe buffer to stay clear of liquidation and redemption.
+title: Open a Borrow Position
+description: How to open a Polaris borrow position from the app Borrow tab — deposit pETH, issue a pAsset, and review LTV before signing.
 ---
 
-# Open a Polaris Trove
+# Open a Borrow Position
 
-import { Steps } from 'nextra/components'
+Use the **Borrow** tab to issue pUSD or pGOLD against pETH collateral. The app shows the position preview before you sign: collateral, issued amount, loan-to-value (LTV), projected liquidation price, estimated monthly cost, and effective rate.
 
+![Polaris Borrow tab with pUSD, pGOLD, and ETH sub-tabs, a collateral field, LTV slider, effective rate, and a projected-position panel](/screenshots/borrow.jpg)
 
-A **trove** is your individual CDP: its own collateral, debt, and loan-to-value (LTV). Opening one is how you mint a pAsset: **connect wallet ⇒ acquire pETH ⇒ deposit pETH as collateral ⇒ choose and mint a pAsset ⇒ confirm ⇒ monitor your LTV**. This page walks each step; for the concepts behind it, see [Minting pAssets](/minting) and [Managing Your Trove](/minting/managing-your-trove).
+*Borrow opens and manages pAsset debt positions. Review the projected-position panel before signing.*
 
-<Callout variant="info" title="Where this appears in the app">
-App anchor: [**Borrow** tab](/using-app/borrow) -> pAsset trove flow. If the app says CDP, it is referring to the same individual pAsset debt position this page calls a trove.
+## Read the screen
+
+<Callout variant="info" title="Collateral">
+For pUSD and pGOLD, the collateral is pETH. If you need pETH first, use [Swap](/using-app/swap) to buy it on the bonding curve.
 </Callout>
 
-For the full **Borrow / CDB / CDP / trove / reserve loan** vocabulary — including why a reserve loan is not a pAsset trove — see [Borrower terminology](/minting#borrower-terminology).
+<Callout variant="info" title="Borrow amount">
+Choose the pAsset sub-tab, enter collateral, then use the LTV slider or amount field to set how much pUSD or pGOLD to issue.
+</Callout>
 
-## Before you start
+<Callout variant="warning" title="LTV">
+LTV is the main risk signal. Keep enough room below the maximum to absorb ETH price moves, interest accrual, gas delays, and redemption impact.
+</Callout>
 
-- A wallet with the right asset for the environment: **Sepolia ETH** for Public Testnet 1 or **ETH on Ethereum mainnet** after production launch.
-- A target pAsset in mind — see [the catalog](/minting/passet-catalog).
+<Callout variant="info" title="Preview">
+Before signing, compare the projected liquidation price, estimated monthly cost, effective rate, and resulting LTV with the position you intended to open.
+</Callout>
 
+## Open the position
 
-## Parameters
-
-Current testnet parameters and production-finality status live on [Parameters](/resources/testnet#parameters). Use the app quote and live contract state before signing.
-
-## Steps
-
-<Steps>
-
-### Connect your wallet
-
-Open the Polaris app and connect.
-
-### Acquire pETH
-
-Deposit ETH into the [bonding curve](/peth) to receive pETH. pETH is the *only* collateral Polaris accepts. If you already hold pETH, skip this step.
-
-### Deposit pETH as collateral
-
-Choose how much pETH to lock in the trove. This collateral stays in the trove until you withdraw it. Opening also takes a small fixed pETH deposit on top of your collateral as liquidation gas compensation — returned in full when you close the trove, paid to the liquidator only if the trove is liquidated. Its current size lives on [Parameters](/resources/testnet#parameters).
-
-### Choose pAsset and amount
-
-Pick the pAsset (pUSD, pGOLD, …) and the amount of debt to take on. The app shows the resulting **loan-to-value (LTV)** — your debt value divided by your collateral value — before you confirm.
-
-### Confirm
-
-Sign the transaction. The minted pAsset arrives in your wallet; the debt is recorded against your trove.
-
-### Monitor your LTV
-
-Your LTV moves with the price of ETH and with any changes you make. Watch it from the trove dashboard and adjust before it nears the maximum. See [Managing Your Trove](/minting/managing-your-trove).
-
-</Steps>
-
-## Choose an LTV buffer
-
-Your LTV is the number that determines liquidation risk. Keep enough room below the maximum to absorb ETH price moves, interest accrual, gas delays, and redemption impact.
-
-Redemptions are different from liquidations: lower LTV does not exempt your trove from proportional redemptions, but it can keep the smaller post-redemption position away from the liquidation line. See [Managing Your Trove](/minting/managing-your-trove) for buffer strategy and examples.
+1. Open [Borrow](/using-app/borrow).
+2. Select **pUSD** or **pGOLD**.
+3. Enter pETH collateral and the amount to issue.
+4. Review the projected position.
+5. Approve pETH if prompted, then sign the borrow transaction.
+6. Return to the Dashboard or Borrow tab and confirm the position appears with the expected collateral, debt, and LTV.
 
 <NextSteps
   steps={[
-    { href: '/minting/managing-your-trove', title: 'Managing Your Trove', description: 'Adjust, monitor, and close your trove safely.' },
-    { href: '/peth', title: 'The Bonding Curve', description: 'Acquire pETH, the only collateral Polaris accepts.' },
-    { href: '/yield', title: 'Stability Pool', description: 'Earn yield by depositing the pAssets you mint.' }
+    { href: '/using-app/borrow', title: 'Borrow App Guide', description: 'Understand the Borrow tab and how to manage an existing position.' },
+    { href: '/minting/managing-your-trove', title: 'Manage a Borrow Position', description: 'Adjust, monitor, and close a position safely.' },
+    { href: '/yield', title: 'Stability Pool', description: 'Earn yield by depositing the pAssets you issue.' }
   ]}
 />

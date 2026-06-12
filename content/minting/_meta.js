@@ -1,6 +1,6 @@
 export default {
-  index: 'Minting pAssets',
-  'open-a-trove': 'Open a Trove',
-  'managing-your-trove': 'Managing Your Trove',
+  index: 'Issuing pAssets',
+  'open-a-trove': 'Open a Borrow Position',
+  'managing-your-trove': 'Manage a Borrow Position',
   'passet-catalog': 'pAsset Catalog'
 }

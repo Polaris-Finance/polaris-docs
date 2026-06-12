@@ -1,72 +1,61 @@
 ---
-title: Minting Polaris pAssets
-description: How Polaris branches let user CDPs mint pAssets directly from the protocol against pETH collateral, with autonomous market-aware interest rates.
+title: Issuing Polaris pAssets
+description: How Polaris users issue pAssets directly from the protocol against pETH collateral, and what to check before opening or managing a position.
 ---
 
-# Minting Polaris pAssets
+# Issuing Polaris pAssets
 
-## Branches and CDPs
+Polaris lets users issue **pUSD**, **pGOLD**, and other pAssets directly from the protocol. You deposit **pETH** as collateral, choose the pAsset and amount you want to issue, and manage the position around its loan-to-value (LTV).
 
-Polaris issues each pAsset through a **Collateralized Debt Branch (CDB)**. A branch is the aggregate protocol layer for one pAsset; each borrower opens an individual **Collateralized Debt Position (CDP)** inside that branch. From the outside it looks like borrowing against collateral, but underneath it differs from a money market like Aave.
+Unlike a money market, Polaris is not matching you with a lender. The protocol issues the pAsset when you open the position, records the debt against your pETH collateral, and lets you repay later to close or reduce that debt.
 
-- A **money market** matches lenders and borrowers through a shared pool. You borrow funds another user supplied; an interest rate floats with pool utilization.
-- A **CDP** lets each borrower **mint** the pAsset directly from the protocol. You aren't borrowing anyone's deposit; you're your own mini central bank: post collateral ⇒ mint a pAsset ⇒ owe that debt back.
+## Before you issue
 
-Each CDP is isolated in a **[trove](/minting/managing-your-trove)** with its own collateral, debt, and loan-to-value (LTV). Users of a given pAsset share only (1) the branch's pAsset and peg state, and (2) branch-wide parameters like the [Total Collateralization Ratio and Recovery Mode](/redemptions-liquidations/recovery-mode). That isolation bounds the blast radius: each branch keeps its own debt accounting, so trouble in one cannot reach the troves or collateral of another.
+- **Collateral:** pETH is the only collateral accepted for pAsset positions. You can acquire it through the [bonding curve](/peth) before opening a position.
+- **pAsset:** Public Testnet 1 supports pUSD and pGOLD. Future pAssets are listed in the [pAsset Catalog](/minting/passet-catalog) only when their status is clear.
+- **LTV:** The app shows your projected LTV before you sign. Higher LTV gives you less room before liquidation.
+- **Liquidation price:** Your position depends on ETH and pETH collateral value. If collateral value falls far enough, the position can be liquidated automatically.
+- **Interest:** Borrow interest accrues to your debt over time, raising LTV if you do nothing.
+- **Redemptions:** Redemptions can reduce collateral and debt across open positions even while they remain solvent.
 
-## Borrower terminology
+## How issuing works
 
-| Term you may see | Docs term | Meaning |
-|---|---|---|
-| **Borrow** | User action | The app tab/action for taking on debt. |
-| **CDB / Branch** | Aggregate | The pAsset-level protocol branch: token, minting/redemption logic, accounting, parameters, Stability Pool, and all user CDPs. |
-| **CDP** | Position | Your individual pAsset borrowing position: collateral, debt, and LTV. |
-| **Trove** | App/docs term | The Polaris name for an individual CDP. |
-| **Loan / Reserve Loan** | Separate product | A WETH loan against fpETH floor-value collateral, not a pAsset trove. |
+1. Deposit ETH into the bonding curve to receive pETH, or use pETH you already hold.
+2. Deposit pETH as collateral in the app's **Borrow** flow.
+3. Choose the pAsset and amount to issue.
+4. Review LTV, liquidation buffer, interest, fees, and expected wallet changes.
+5. Sign the transaction. The issued pAsset arrives in your wallet, and the debt is recorded against your position.
 
-When these docs say **trove**, they mean a pAsset debt position. When the app says **Reserve Loan**, read [pETH Split: fpETH and vpETH](/peth/split) instead; reserve loans use fpETH, not pETH trove collateral.
+## What changes after opening
 
-### Strengths and trade-offs
+Your position is not static. Several values can move after you issue a pAsset:
 
-The CDP model is ~8 years proven, its strengths and weaknesses well understood; Polaris applies it through pAsset branches, amplifying the former and dampening the latter.
+- **ETH and pETH pricing** can move your liquidation price and LTV.
+- **Interest accrual** increases the debt you owe.
+- **pETH yield credited to positions** can increase collateral value over time, partly offsetting borrow costs.
+- **System activity** can update recorded balances as issuance, redemptions, liquidations, and Stability Pool flows settle through the protocol.
 
-| Strengths | Trade-offs |
-|---|---|
-| **Trustless** — logic fully enforced onchain, no intermediaries | **Liquidation risk** — collateral below threshold can be [liquidated](/redemptions-liquidations/liquidations) |
-| **Transparent** — ratios and liquidation logic auditable onchain | **Volatility** — sharp collateral drops can trigger liquidations |
-| **Optionality** — unlock liquidity without selling your assets | **Smart-contract risk** — mitigated by audits, never zero |
-| **Debt-asset agnostic** — the minted asset can be anything | **Capital inefficiency** — overcollateralization leaves capital idle |
+Use [Manage a Borrow Position](/minting/managing-your-trove) for the operational details: adding collateral, issuing more, repaying debt, closing the position, and keeping enough LTV buffer.
 
-## What Polaris does differently
+## Risk checks
 
-### Collateral is pETH, and only pETH
+Before signing, check:
 
-Polaris does not accept wstETH or other staked-ETH tokens: they would be external dependencies that cap scaling. It accepts only **[pETH](/peth)**, ETH deposited into the bonding curve. This dampens the CDP model's capital-inefficiency weakness, because pETH is:
+- The selected pAsset and amount.
+- The pETH collateral amount.
+- The projected LTV and liquidation price.
+- The current minimum collateral ratio, max LTV equivalent, and Recovery Mode status on [Parameters](/resources/testnet#parameters).
+- The borrow interest rate and any fees.
+- Whether you will still hold enough pAsset later to repay or close.
 
-1. an ETH proxy with a contract-defined floor, and
-2. **yield-bearing** — collateral pETH also earns from other parts of the system (e.g. ETH released by conversions).
+Do not treat low LTV as protection from every protocol action. A larger buffer helps you avoid liquidation, but redemptions can still affect open positions. See [Redemptions](/redemptions-liquidations) and [Liquidations](/redemptions-liquidations/liquidations).
 
-### Autonomous, market-aware interest rates
+## Ready to issue
 
-Setting branch interest rates is where most designs struggle: Maker still uses governance-set rates (spiky, unpredictable); Liquity v1 had none (sustained supply pressure as T-bill rates rose); Liquity v2 pushes rate-setting onto users.
-
-Polaris sets rates **autonomously, without a direct market-price feed for the pAsset**, by reading signals already inside the system:
-
-- **Redemptions are profitable when pUSD < \$1** ⇒ a spike in redemption volume signals a downward depeg ⇒ raise the rate.
-- **Minting is profitable when pUSD > \$1** ⇒ a spike in minting volume signals an upward depeg ⇒ lower the rate.
-
-This gives the protocol an internal peg-pressure signal, not a substitute for every oracle in the system. Collateral valuation, non-dollar pAsset reference units, stale-price checks, and liquidation math still depend on the final audited pricing paths for those assets. See [Redemptions](/redemptions-liquidations) for the mechanism behind the peg-pressure signal.
-
-## Ready to mint
-
-Minting a pAsset means opening a trove. See **[Open a Trove](/minting/open-a-trove)** for the steps, and **[The pAsset Catalog](/minting/passet-catalog)** for what you can mint.
-
----
-
-<BlogPostCard
-  url="https://polarisfinance.io/blog/polaris-mints-anything/"
-  title="CDPs Mint Dollars. Polaris Mints Anything"
-  description="From Maker to Liquity, CDP models shaped DeFi lending. Polaris takes the blueprint further with pETH, self-adjusting rates, and a factory for stablecoins pegged to anything."
-  readingTime={10}
-  image="https://polarisfinance.io/blog/polaris-mints-anything-cover.png"
+<NextSteps
+  steps={[
+    { href: '/minting/open-a-trove', title: 'Open a Borrow Position', description: 'Issue your first pAsset against pETH collateral from the app.' },
+    { href: '/minting/managing-your-trove', title: 'Manage a Borrow Position', description: 'Monitor LTV, interest, redemptions, and repayment.' },
+    { href: '/minting/passet-catalog', title: 'pAsset Catalog', description: 'See which pAssets are testnet-active and which are future examples.' }
+  ]}
 />

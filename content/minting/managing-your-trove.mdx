@@ -1,15 +1,15 @@
 ---
 title: Managing a Polaris Trove
-description: Manage a Polaris trove around its loan-to-value (LTV) — add collateral, mint or repay debt, track interest, and close out cleanly.
+description: Manage a Polaris trove around its loan-to-value (LTV) — add collateral, issue or repay debt, track interest, and close out cleanly.
 ---
 
 # Managing a Polaris Trove
 
 
-A trove is a living CDP. After you [open it](/minting/open-a-trove), you can adjust it freely: add collateral, mint more, repay debt, or close it. The app-facing health metric is **loan-to-value (LTV)**.
+A trove is a living pAsset debt position. After you [open it](/minting/open-a-trove), you can adjust it freely: add collateral, issue more, repay debt, or close it. The app-facing health metric is **loan-to-value (LTV)**.
 
 <Callout variant="info">
-<strong>Scope:</strong> this page covers individual pAsset CDPs/troves (shown under <strong>Borrow</strong>), not branches or reserve loans. For the full vocabulary, see [Borrower terminology](/minting#borrower-terminology).
+<strong>Scope:</strong> this page covers individual pAsset positions shown under <strong>Borrow</strong>, not reserve loans against fpETH. For definitions, see the [Glossary](/resources).
 </Callout>
 
 ## Loan-to-value (LTV)
@@ -39,7 +39,7 @@ The simulator below defaults to the current Public Testnet 1 MCR of 115%, equiva
 
 
 <Callout variant="danger" title="Warning">
-Minting more or withdrawing collateral raises your LTV. Cross the maximum and your trove is <a href="/redemptions-liquidations/liquidations">liquidated</a> automatically: your collateral covers the debt plus a liquidation penalty, with no margin call, and only the surplus is returned for you to claim. <a href="/redemptions-liquidations">Redemptions</a> can also reach your position while it is still solvent — there is no LTV exemption — shrinking your collateral and pETH exposure proportionally without your consent. See the <a href="/resources/risk-disclosure">Risk Disclosure</a>.
+Issuing more or withdrawing collateral raises your LTV. Cross the maximum and your trove is <a href="/redemptions-liquidations/liquidations">liquidated</a> automatically: your collateral covers the debt plus a liquidation penalty, with no margin call, and only the surplus is returned for you to claim. <a href="/redemptions-liquidations">Redemptions</a> can also reach your position while it is still solvent — there is no LTV exemption — shrinking your collateral and pETH exposure proportionally without your consent. See the <a href="/resources/risk-disclosure">Risk Disclosure</a>.
 </Callout>
 
 ## Values to check
@@ -50,16 +50,16 @@ Current MCR, max LTV equivalents, Recovery Mode, fee, and decay values live on [
 
 Deposit more pETH into the trove to **lower your LTV** without changing your debt. This is the simplest way to step back from a liquidation threshold during a drawdown. (Need pETH? Mint it on the [bonding curve](/peth).)
 
-## Mint more / repay debt
+## Issue more / repay debt
 
-- **Mint more.** If your LTV has room, mint more pAsset against the same collateral. This *raises* your LTV, so leave a buffer.
+- **Issue more.** If your LTV has room, issue more pAsset against the same collateral. This *raises* your LTV, so leave a buffer.
 - **Repay debt.** Burn pAsset back into the trove to reduce your debt and *lower* your LTV. Repaying is the other lever for recovering a thinning position, and it frees headroom to withdraw collateral.
 
 ## Monitor interest accrual
 
-Borrowers pay an [autonomous, market-aware interest rate](/minting) that accrues continuously against your trove. Interest adds to your debt over time, so your LTV drifts *up* even if ETH holds flat and you do nothing. Check your accrued debt periodically and repay or top up so accrual does not quietly walk you toward a threshold.
+Borrowers pay interest that accrues continuously against the trove. Interest adds to your debt over time, so your LTV drifts *up* even if ETH holds flat and you do nothing. Check your accrued debt periodically and repay or top up so accrual does not quietly walk you toward a threshold.
 
-Collateral pETH also *earns* yield while it sits in the trove, partly offsetting the interest cost; see [Minting pAssets](/minting) for how the effective rate is composed.
+Collateral pETH also *earns* yield while it sits in the trove, partly offsetting the interest cost; see [Issuing pAssets](/minting) for the high-level position flow.
 
 ### Worked example: interest accrual
 
@@ -74,7 +74,7 @@ If your collateral value stays flat at \$15,000, the 30-day estimate moves your 
 
 ## Drift from system activity
 
-ETH's price and interest accrual are not the only background forces. System-level [minting and redemptions](/redemptions-liquidations) move every open trove in the branch: each mint adds collateral and debt to all troves pro-rata, each redemption removes both, and pETH yield from the [Fee Router](/stewardship/fee-router) credits collateral pro-rata to debt. These changes accrue to your position continuously and are folded into its recorded balances the next time you touch the trove; the position the app shows includes them.
+ETH's price and interest accrual are not the only background forces. System-level [issuance and redemptions](/redemptions-liquidations) move every open trove for that pAsset: each issuance adds collateral and debt to open troves pro-rata, each redemption removes both, and pETH yield from the [Fee Router](/stewardship/fee-router) credits collateral pro-rata to debt. These changes accrue to your position continuously and are folded into its recorded balances the next time you touch the trove; the position the app shows includes them.
 
 ## Transfer the trove
 
