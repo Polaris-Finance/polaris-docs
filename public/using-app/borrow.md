@@ -6,8 +6,8 @@
 Canonical URL: https://tokenbrice.github.io/polaris-docs/using-app/borrow
 Markdown URL: https://tokenbrice.github.io/polaris-docs/using-app/borrow.md
 Section: Using the App
-Updated: 2026-06-11
-Last verified: 2026-06-11
+Updated: 2026-06-12
+Last verified: 2026-06-12
 
 Documentation index: https://tokenbrice.github.io/polaris-docs/llms.txt
 Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.txt
@@ -16,23 +16,16 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 ## What it does
 
-Borrow is where you open and manage Polaris debt positions. It has three sub-tabs:
+Borrow is where you issue Polaris assets and manage existing positions. It has three sub-tabs:
 
-- **pUSD** and **pGOLD:** deposit **pETH** collateral and mint an overcollateralized stablecoin from an individual CDP, called a trove in Polaris. You set collateral and debt with an LTV slider and see a projected liquidation price, estimated monthly cost, and effective rate before signing.
-- **ETH:** a reserve loan — borrow **ETH** against **fpETH** collateral at up to 100% LTV with no liquidation risk, because the fpETH floor only ever rises.
+- **pUSD** and **pGOLD:** deposit **pETH** collateral and mint an overcollateralized asset from your position. You set collateral and debt with an LTV slider and see a projected liquidation price, estimated monthly cost, and effective rate before signing. You can also open collateral-only positions first, then mint later.
+- **ETH:** issue **ETH** against **fpETH** collateral at up to 100% LTV with no liquidation risk, because the fpETH floor only ever rises.
 
-Existing positions are adjusted, repaid, and closed from this same tab once your wallet is connected.
+Once connected, you can manage existing positions from this tab, including adjustments, repayments, and closures.
 
 Image: Polaris Borrow tab with pUSD, pGOLD, and ETH sub-tabs, a collateral field, LTV slider, effective rate, and a projected-position panel
 
 *Borrow opens and manages positions; the projected-position panel previews liquidation price, monthly cost, and LTV before you sign.*
-
-## Before you start
-
-- Start from the [Dashboard](https://tokenbrice.github.io/polaris-docs/using-app) and verify the current app and network first.
-- Hold the collateral (pETH for pUSD/pGOLD, fpETH for the ETH loan) plus Sepolia ETH for gas.
-- For pUSD/pGOLD, understand that the position carries liquidation, redemption, and Recovery Mode exposure. The ETH/fpETH reserve loan is not liquidated.
-- Review [Open a Trove](https://tokenbrice.github.io/polaris-docs/minting/open-a-trove) for the full pAsset minting flow.
 
 ## Steps/checks
 
@@ -40,33 +33,18 @@ Image: Polaris Borrow tab with pUSD, pGOLD, and ETH sub-tabs, a collateral field
 2. Enter collateral and set the debt with the LTV slider (25%, 50%, 75% presets are available).
 3. Review the projected liquidation price, estimated monthly cost, effective rate, and LTV.
 4. Approve the collateral token if prompted, then sign.
-5. To manage an existing position, reopen it in this tab and add collateral, mint more, repay, withdraw collateral, or close — review the new LTV first.
+5. To manage an existing position, reopen it in this tab and add collateral, mint more, repay, withdraw collateral, or close; review the new LTV first.
 6. Confirm the updated collateral, debt, and LTV.
 
-A borrow or management action worked when the position reflects the expected collateral, debt, and LTV.
+An issuance or management action worked when the position reflects the expected collateral, debt, and LTV.
 
-## Try your numbers
-
-The simulator uses the current Public Testnet 1 MCR of 115% (about 87.0% max LTV); verify live values on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters) and in the app before signing. See [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove) for how LTV drifts after you open.
-
-## Common failures
-
-- LTV exceeds the allowed threshold for the position.
-- Debt amount is too small or too large for the current collateral.
-- Recovery Mode blocks a risk-increasing action.
-- Price movement changes projected health before inclusion.
-- Repay amount exceeds your pAsset balance.
-- You are connected with a wallet that does not own the position.
-
-## Risks/links
-
-Borrowing pUSD or pGOLD creates liquidation and redemption exposure; a low LTV protects against liquidation, not against proportional redemptions. The ETH/fpETH reserve loan avoids liquidation but ties up fpETH. Keep protocol explanations in [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting), [Redemptions](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations), [Liquidations](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations), and [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode). Use [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters) for current values and [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure) for risks.
+Positions change over time as prices, rates, redemptions, and rewards update. Review the projected result before each adjustment, especially when minting more pUSD or pGOLD against the same collateral.
 
 ## Next actions
 
-- Use [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap) to acquire pETH collateral, or [Split](https://tokenbrice.github.io/polaris-docs/using-app/split) to get fpETH for an ETH loan.
-- Use [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn) to deposit a minted pAsset into its Stability Pool.
-- See the in-app **Guide** for borrow-based strategies such as Floor Carry and collateral-only CDPs.
+- Use [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap) to acquire pETH collateral, or [Split](https://tokenbrice.github.io/polaris-docs/using-app/split) to get fpETH for an ETH position.
+- Use [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn) to deposit a minted pAsset into its Earn Vault.
+- See the in-app **Guide** for issuance strategies such as Floor Carry and collateral-only positions.
 - Use [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting) if an action is disabled, reverts, or the quote looks wrong.
 
-Relevant app/search vocabulary: Borrow, Manage Trove, borrow, mint, open trove, repay, close trove, pUSD, pGOLD, LTV, loan-to-value, official app.
+Relevant app/search vocabulary: Borrow, Manage Borrow Position, borrow, issue, open borrow position, repay, close borrow position, pUSD, pGOLD, LTV, loan-to-value, official app.

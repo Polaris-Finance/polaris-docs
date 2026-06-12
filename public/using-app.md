@@ -6,8 +6,8 @@
 Canonical URL: https://tokenbrice.github.io/polaris-docs/using-app
 Markdown URL: https://tokenbrice.github.io/polaris-docs/using-app.md
 Section: Using the App
-Updated: 2026-06-09
-Last verified: 2026-06-09
+Updated: 2026-06-12
+Last verified: 2026-06-12
 
 Documentation index: https://tokenbrice.github.io/polaris-docs/llms.txt
 Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.txt
@@ -16,9 +16,9 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 ## What it does
 
-The Dashboard ("Your Polaris") is your starting point: live Stability Pool and staking APRs, a price ticker, and a three-step path to your first position. Position detail lives in [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow) and [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn); protocol-wide charts in **Analytics**, a separate tab.
+The Dashboard ("Your Polaris") is your starting point: live Earn Vault and staking APRs, a price ticker, and a three-step path to your first position. Position detail lives in [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow) and [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn); protocol-wide charts live in Analytics, a separate tab.
 
-Image: Polaris Dashboard ("Your Polaris") showing Stability Pool and staking APR cards, the connect-faucet-earn onboarding steps, and the token price ticker
+Image: Polaris Dashboard ("Your Polaris") showing Earn Vault and staking APR cards, the connect-faucet-earn onboarding steps, and the token price ticker
 
 *The Dashboard is the onboarding and overview screen, not a detailed positions table.*
 
@@ -26,35 +26,25 @@ Image: Polaris Dashboard ("Your Polaris") showing Stability Pool and staking APR
 
 - Use Public Testnet 1 at [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io).
 - Connect to Sepolia, chain ID `11155111`, and hold Sepolia ETH for gas.
-- Claim test WETH from the Dashboard faucet — [current rate, cooldown, and cap](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters).
-- Confirm the frontend, network, and wallet prompts against [Verification](https://tokenbrice.github.io/polaris-docs/resources/testnet#verification). Use test assets only — see [Public Testnet 1 Artifacts](https://tokenbrice.github.io/polaris-docs/resources/testnet).
+- Claim test WETH from the Dashboard faucet.
+- Confirm the frontend, network, and wallet prompts against [Verification](https://tokenbrice.github.io/polaris-docs/resources/testnet#verification). Use test assets only.
 
 ## Steps/checks
 
 1. Connect your wallet on Sepolia.
 2. Claim test WETH from the faucet.
-3. Review the APR cards for the pUSD and pGOLD Stability Pools and POLAR staking.
+3. Review the APR cards for the pUSD and pGOLD Earn Vaults, POLAR staking, and vpETH staking.
 4. Start a first position from the third onboarding step (earn pUSD) or the fpETH yield card, or move to an action tab.
 5. Watch the **Activity** panel for this session's transactions, and the ticker for live prices.
-6. Open **Analytics** for protocol-wide charts, then return to the relevant action tab for a fresh quote.
-
-## Common failures
-
-- Wallet is on the wrong chain.
-- Faucet claim is blocked by the per-address cooldown, the daily cap, or a paused faucet.
-- APR or price values change because protocol state moved; refresh before acting.
-- A position is not reflected because it belongs to another wallet.
-
-## Risks/links
-
-Dashboard values are state reads, not final transaction terms. Use the action tab quote before signing. The Activity panel is local and session-only. For canonical status, risks, and addresses, use [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status), [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure), and [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses).
+6. Open Analytics for protocol-wide charts, then return to the relevant action tab for a fresh quote.
 
 ## Next actions
 
 - Use [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap) to buy pETH on the bonding curve.
-- Use [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow) to open and manage debt positions.
-- Use [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn) to supply a Stability Pool or stake POLAR or vpETH.
-- Use [Split](https://tokenbrice.github.io/polaris-docs/using-app/split) to split pETH into fpETH and vpETH, and [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap) for one-transaction strategy bundles.
+- Use [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow) to issue assets and manage debt positions.
+- Use [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn) to deposit into an Earn Vault or stake POLAR or vpETH.
+- Use [Split](https://tokenbrice.github.io/polaris-docs/using-app/split) to split pETH into fpETH and vpETH.
+- Use [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap) for one-transaction strategy bundles.
 - Use [Advanced](https://tokenbrice.github.io/polaris-docs/using-app/advanced) for the mint/redeem (PSM) and conversion surfaces.
 - See the in-app **Guide** for a goal-based map of what to do.
 - Use [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting) if wallet state, quotes, or balances look wrong.

@@ -43,8 +43,8 @@
       "url": "https://tokenbrice.github.io/polaris-docs/",
       "markdownUrl": "https://tokenbrice.github.io/polaris-docs/index.md",
       "section": "Introduction",
-      "title": "Polaris Finance Documentation",
-      "description": "Polaris is the pETH-powered yield layer for all of DeFi, minting pAssets backed entirely by onchain collateral and yield. No T-bills. No CEXs. No compromises.",
+      "title": "Polaris",
+      "description": "Polaris is a DeFi yield layer built around pETH, a yield-bearing collateral asset purposefully designed to back Polaris stablecoins and other synthetic assets.",
       "keywords": [
         "app",
         "official app",
@@ -54,8 +54,8 @@
         "pETH",
         "pAssets"
       ],
-      "updated": "2026-06-08",
-      "lastVerified": "2026-06-08"
+      "updated": "2026-06-12",
+      "lastVerified": "2026-06-12"
     },
     {
       "route": "/core-concepts",
@@ -101,8 +101,8 @@
       "url": "https://tokenbrice.github.io/polaris-docs/minting",
       "markdownUrl": "https://tokenbrice.github.io/polaris-docs/minting.md",
       "section": "Understand Polaris",
-      "title": "Minting Polaris pAssets",
-      "description": "How Polaris branches let user CDPs mint pAssets directly from the protocol against pETH collateral, with autonomous market-aware interest rates.",
+      "title": "Issuing Polaris pAssets",
+      "description": "How Polaris users issue pAssets directly from the protocol against pETH collateral, and what to check before opening or managing a position.",
       "keywords": [],
       "updated": null,
       "lastVerified": null
@@ -113,23 +113,23 @@
       "markdownUrl": "https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove.md",
       "section": "Understand Polaris",
       "title": "Managing a Polaris Trove",
-      "description": "Manage a Polaris trove around its loan-to-value (LTV) — add collateral, mint or repay debt, track interest, and close out cleanly.",
+      "description": "Manage a Polaris trove around its loan-to-value (LTV) — add collateral, issue or repay debt, track interest, and close out cleanly.",
       "keywords": [
         "Borrow",
-        "Manage Trove",
+        "Manage Borrow Position",
         "borrow",
-        "mint",
-        "open trove",
+        "issue",
+        "open borrow position",
         "repay",
-        "close trove",
+        "close borrow position",
         "pUSD",
         "pGOLD",
         "LTV",
         "loan-to-value",
         "official app",
-        "trove",
-        "manage trove",
-        "borrower trove"
+        "borrow position",
+        "manage borrow position",
+        "pAsset debt position"
       ],
       "updated": null,
       "lastVerified": null
@@ -139,24 +139,24 @@
       "url": "https://tokenbrice.github.io/polaris-docs/minting/open-a-trove",
       "markdownUrl": "https://tokenbrice.github.io/polaris-docs/minting/open-a-trove.md",
       "section": "Understand Polaris",
-      "title": "Open a Polaris Trove",
-      "description": "Step-by-step guide to opening a Polaris trove — deposit pETH, mint a pAsset, and pick a safe buffer to stay clear of liquidation and redemption.",
+      "title": "Open a Borrow Position",
+      "description": "How to open a Polaris borrow position from the app Borrow tab — deposit pETH, issue a pAsset, and review LTV before signing.",
       "keywords": [
         "Borrow",
-        "Manage Trove",
+        "Manage Borrow Position",
         "borrow",
-        "mint",
-        "open trove",
+        "issue",
+        "open borrow position",
         "repay",
-        "close trove",
+        "close borrow position",
         "pUSD",
         "pGOLD",
         "LTV",
         "loan-to-value",
         "official app",
-        "trove",
-        "manage trove",
-        "borrower trove"
+        "borrow position",
+        "manage borrow position",
+        "pAsset debt position"
       ],
       "updated": null,
       "lastVerified": null
@@ -167,7 +167,7 @@
       "markdownUrl": "https://tokenbrice.github.io/polaris-docs/minting/passet-catalog.md",
       "section": "Understand Polaris",
       "title": "Polaris Asset Catalog",
-      "description": "The pAsset debt tokens Polaris can mint (pUSD, pGOLD, pCHF, pBigMac), how pETH differs as collateral, and how StablecoinOS can add new assets.",
+      "description": "The pAsset debt tokens Polaris can issue (pUSD, pGOLD, pCHF, pBigMac), how pETH differs as collateral, and how StablecoinOS can add new assets.",
       "keywords": [],
       "updated": null,
       "lastVerified": null
@@ -541,8 +541,8 @@
       "title": "Dashboard",
       "description": "How to read the Polaris app Dashboard and start your first testnet action.",
       "keywords": [],
-      "updated": "2026-06-09",
-      "lastVerified": "2026-06-09"
+      "updated": "2026-06-12",
+      "lastVerified": "2026-06-12"
     },
     {
       "route": "/using-app/advanced",
@@ -552,8 +552,8 @@
       "title": "Advanced Tools in the Polaris App",
       "description": "How to use the Polaris Advanced tab for PSM mint/redeem, pETH-to-POLAR conversion, and the testnet faucet.",
       "keywords": [],
-      "updated": "2026-06-11",
-      "lastVerified": "2026-06-11"
+      "updated": "2026-06-12",
+      "lastVerified": "2026-06-12"
     },
     {
       "route": "/using-app/borrow",
@@ -564,20 +564,20 @@
       "description": "How to open and manage Polaris debt positions from the app Borrow tab.",
       "keywords": [
         "Borrow",
-        "Manage Trove",
+        "Manage Borrow Position",
         "borrow",
-        "mint",
-        "open trove",
+        "issue",
+        "open borrow position",
         "repay",
-        "close trove",
+        "close borrow position",
         "pUSD",
         "pGOLD",
         "LTV",
         "loan-to-value",
         "official app"
       ],
-      "updated": "2026-06-11",
-      "lastVerified": "2026-06-11"
+      "updated": "2026-06-12",
+      "lastVerified": "2026-06-12"
     },
     {
       "route": "/using-app/earn",
@@ -585,7 +585,7 @@
       "markdownUrl": "https://tokenbrice.github.io/polaris-docs/using-app/earn.md",
       "section": "Using the App",
       "title": "Earn in the Polaris App",
-      "description": "How to supply a Stability Pool, stake POLAR or vpETH, and claim rewards in the Polaris app.",
+      "description": "How to use Earn Vaults, stake POLAR or vpETH, and claim rewards in the Polaris app.",
       "keywords": [
         "Earn",
         "earn",
@@ -595,8 +595,8 @@
         "deposit",
         "claim rewards"
       ],
-      "updated": "2026-06-09",
-      "lastVerified": "2026-06-09"
+      "updated": "2026-06-12",
+      "lastVerified": "2026-06-12"
     },
     {
       "route": "/using-app/split",
@@ -614,8 +614,8 @@
         "pETH",
         "floor price"
       ],
-      "updated": "2026-06-09",
-      "lastVerified": "2026-06-09"
+      "updated": "2026-06-12",
+      "lastVerified": "2026-06-12"
     },
     {
       "route": "/using-app/swap",
@@ -633,8 +633,8 @@
         "pETH",
         "floor price"
       ],
-      "updated": "2026-06-09",
-      "lastVerified": "2026-06-09"
+      "updated": "2026-06-12",
+      "lastVerified": "2026-06-12"
     },
     {
       "route": "/using-app/zap",
@@ -652,8 +652,8 @@
         "deposit",
         "claim rewards"
       ],
-      "updated": "2026-06-09",
-      "lastVerified": "2026-06-09"
+      "updated": "2026-06-12",
+      "lastVerified": "2026-06-12"
     },
     {
       "route": "/why-polaris",
@@ -661,7 +661,7 @@
       "markdownUrl": "https://tokenbrice.github.io/polaris-docs/why-polaris.md",
       "section": "Understand Polaris",
       "title": "Why Polaris Finance",
-      "description": "The stablecoin trilemma, the degradation pattern, and how Polaris is architected so that trustlessness and scale stop being mutually exclusive.",
+      "description": "Why DeFi needs an immutable, counterparty-free yield layer instead of yield rented from tradfi, custodians, multisigs, and opaque intermediaries.",
       "keywords": [],
       "updated": null,
       "lastVerified": null

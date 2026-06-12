@@ -6,8 +6,8 @@
 Canonical URL: https://tokenbrice.github.io/polaris-docs/using-app/swap
 Markdown URL: https://tokenbrice.github.io/polaris-docs/using-app/swap.md
 Section: Using the App
-Updated: 2026-06-09
-Last verified: 2026-06-09
+Updated: 2026-06-12
+Last verified: 2026-06-12
 
 Documentation index: https://tokenbrice.github.io/polaris-docs/llms.txt
 Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.txt
@@ -16,17 +16,11 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 ## What it does
 
-Swap is the bonding-curve interface for pETH. Sell ETH (WETH) to **buy** pETH, or sell pETH back for ETH — the route is always `WETH → bonding curve → pETH`. Each mint locks ETH into the curve's reserve at the current marginal price, and pETH carries a hard, ever-rising price floor. To get fpETH or vpETH use [Split](https://tokenbrice.github.io/polaris-docs/using-app/split); to mint pUSD or pGOLD use [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow).
+Swap is the bonding-curve interface for pETH. Sell ETH (WETH) to **buy** pETH, or sell pETH back for ETH. The route is always `WETH → bonding curve → pETH`. Each mint locks ETH into the curve's reserve at the current price, and pETH carries a hard, ever-rising price floor. To get fpETH or vpETH use [Split](https://tokenbrice.github.io/polaris-docs/using-app/split); to mint pUSD or pGOLD use [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow).
 
 Image: Polaris Swap tab showing the Sell/Buy direction, the WETH to pETH bonding-curve route, the quote, and slippage controls
 
 *Swap routes WETH through the bonding curve to pETH; refresh and review the quote before signing.*
-
-## Before you start
-
-- Start from the [Dashboard](https://tokenbrice.github.io/polaris-docs/using-app) and verify the current app and network first.
-- Hold WETH (claim it from the faucet) and enough Sepolia ETH for gas.
-- Read the direction, output, minimum received, price impact, and approval target before signing.
 
 ## Steps/checks
 
@@ -39,22 +33,11 @@ Image: Polaris Swap tab showing the Sell/Buy direction, the WETH to pETH bonding
 
 The swap worked when the transaction lands and the output token balance updates.
 
-## Common failures
-
-- Quote expired before the transaction landed.
-- Slippage limit was too tight.
-- Input balance or allowance was too low.
-- Gas was too low or Sepolia was congested.
-- Wallet is connected to the wrong account or network.
-
-## Risks/links
-
-Swaps can lose value through slippage, price movement, stale quotes, and gas. pETH mechanics are explained in [pETH](https://tokenbrice.github.io/polaris-docs/peth) and [pETH Floor Price](https://tokenbrice.github.io/polaris-docs/peth/floor-price). Use [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure) for risk details.
-
 ## Next actions
 
 - Use [Split](https://tokenbrice.github.io/polaris-docs/using-app/split) to convert pETH into fpETH and vpETH.
 - Use [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow) to mint pUSD or pGOLD against pETH.
+- Use [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn) after you have a deposit or staking asset.
 - Use [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap) if you want the app to bundle a swap with a deposit.
 - Use [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting) for stale quotes and reverted swaps.
 

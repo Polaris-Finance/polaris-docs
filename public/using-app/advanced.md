@@ -6,8 +6,8 @@
 Canonical URL: https://tokenbrice.github.io/polaris-docs/using-app/advanced
 Markdown URL: https://tokenbrice.github.io/polaris-docs/using-app/advanced.md
 Section: Using the App
-Updated: 2026-06-11
-Last verified: 2026-06-11
+Updated: 2026-06-12
+Last verified: 2026-06-12
 
 Documentation index: https://tokenbrice.github.io/polaris-docs/llms.txt
 Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.txt
@@ -16,24 +16,15 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 ## What it does
 
-Advanced holds expert, permissionless operations aimed at arbitrageurs and keepers — deeper mechanism knowledge is assumed. It has three modules:
+The Advanced section gives direct access to a few core Polaris mechanisms for arbitrageurs and keepers. These tools are fully permissionless and offer more flexibility, but they assume some familiarity with how the protocol works.
 
-- **Peg Stability Module (PSM):** mint or redeem pUSD or pGOLD against pETH at the oracle price, in unlimited size. Mint sends pETH in for the pAsset; redeem sends the pAsset in for pETH. This arbitrage anchors each peg. If the branch's reserve-to-debt ratio is below 100%, redemption proceeds are scaled down by that ratio — check the quote.
-- **Convert pETH → POLAR:** a one-way auction. pETH is burned (raising the bonding-curve floor) and POLAR is minted at the decaying auction price. There is no reverse direction; in practice this is run by MEV/arbitrage bots.
-- **Testnet ETH Faucet:** claim test WETH for Sepolia ETH — [current rate, cooldown, and cap](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters).
+It currently includes:
 
-Most users never need this tab — the guided tabs cover normal flows.
+- **Peg Stability Module (PSM):** mint or redeem pUSD and pGOLD against pETH at the oracle price, with no size limits. Minting exchanges pETH for the selected asset, while redemption swaps the asset back into pETH. This arbitrage helps maintain each peg.
+- **Convert pETH → POLAR:** exchange pETH for newly minted POLAR through a one-way auction. Converted pETH is permanently burned, increasing the bonding curve floor, while the auction price gradually decays until conversion occurs. In this case, there is no reverse direction.
+- **Testnet ETH Faucet:** claim test WETH using Sepolia ETH, subject to the current rate, cooldown period, and faucet limits.
 
 Image: Polaris Advanced tab ("Expert operations") with the PSM Mint and Redeem panels for pUSD and pGOLD
-
-*Advanced holds the PSM mint/redeem panels, the pETH → POLAR conversion, and the testnet faucet.*
-
-## Before you start
-
-- Start from the [Dashboard](https://tokenbrice.github.io/polaris-docs/using-app) and verify the current app and network first.
-- Prefer the guided tabs ([Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow), [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn), [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap), [Split](https://tokenbrice.github.io/polaris-docs/using-app/split), [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap)) when they support your action.
-- For PSM and conversion, understand that profit only exists when the market price is off the peg or auction price; otherwise the round-trip loses fees.
-- Verify the contract, token, spender, and amount before signing. Keep [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses) open.
 
 ## Steps/checks
 
@@ -44,18 +35,6 @@ Image: Polaris Advanced tab ("Expert operations") with the PSM Mint and Redeem p
 5. Confirm the resulting balance and that no unexpected allowance remains.
 
 The action worked when the intended balance changed and no unexpected allowance or position remains.
-
-## Common failures
-
-- Market price is on peg (or below the auction price), so the round-trip is unprofitable.
-- Approval was signed but the action transaction was not.
-- Wrong pAsset or direction selected in the PSM.
-- Faucet claim is blocked by the per-address cooldown, the daily cap, or a paused faucet.
-- Wallet warning indicates an unexpected contract or permission.
-
-## Risks/links
-
-Advanced operations assume you understand the mechanism. PSM and conversion are permissionless but unforgiving of mistakes. Use [Redemptions](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations), [pAsset Catalog](https://tokenbrice.github.io/polaris-docs/minting/passet-catalog), [Conversion Auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions), [POLAR Tokenomics](https://tokenbrice.github.io/polaris-docs/polar/tokenomics), and [Public Testnet 1 Artifacts](https://tokenbrice.github.io/polaris-docs/resources/testnet) as the canonical references.
 
 ## Next actions
 

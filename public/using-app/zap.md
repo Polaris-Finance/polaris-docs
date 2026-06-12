@@ -6,8 +6,8 @@
 Canonical URL: https://tokenbrice.github.io/polaris-docs/using-app/zap
 Markdown URL: https://tokenbrice.github.io/polaris-docs/using-app/zap.md
 Section: Using the App
-Updated: 2026-06-09
-Last verified: 2026-06-09
+Updated: 2026-06-12
+Last verified: 2026-06-12
 
 Documentation index: https://tokenbrice.github.io/polaris-docs/llms.txt
 Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.txt
@@ -16,23 +16,20 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 ## What it does
 
-Zap bundles several on-chain steps into one guided transaction. Pick a strategy:
+Zap combines multiple on-chain actions into a single transaction, making it easier to enter common Polaris strategies.
 
-- **pUSD Stable Yield:** market-buys pUSD with your WETH and deposits it into the pUSD Stability Pool in a single transaction, earning SP yield from borrower interest plus liquidation gains.
-- **Floor Carry:** converts ETH into fpETH and borrows ETH against it — a non-liquidatable, loopable ETH-yield position.
+The current strategies are:
 
-You stay the position owner with full self-custody, slippage is bounded by your setting, and a simulation confirms the expected result before you sign. A zap is an execution shortcut — it doesn't change the economics of the underlying steps, and you can always exit or manage the resulting position from Earn or Borrow.
+- **pUSD Stable Yield:** uses your WETH to acquire pUSD and deposit it into the pUSD Earn Vault in one step, earning yield from issuer interest and liquidation gains.
+- **Floor Carry:** converts ETH into fpETH and issues ETH against it, creating a non-liquidatable position that can be looped to increase exposure.
 
-Image: Polaris Zap tab showing the pUSD Stable Yield route from WETH through pUSD into the Stability Pool
+Additional strategies will become available over time.
 
-*The pUSD Stable Yield zap market-buys pUSD with WETH and deposits it into the Stability Pool in one transaction.*
+A zap only simplifies execution. The underlying economics remain exactly the same, and positions can always be managed manually afterward.
 
-## Before you start
+Image: Polaris Zap tab showing the pUSD Stable Yield route from WETH through pUSD into the Earn Vault
 
-- Start from the [Dashboard](https://tokenbrice.github.io/polaris-docs/using-app) and verify the current app and network first.
-- Hold the input asset (WETH or ETH) and Sepolia ETH for gas.
-- Read the full route before signing.
-- Be prepared to finish manually through Swap, Earn, or Borrow if a bundled step fails.
+*You keep full self-custody throughout the process.*
 
 ## Steps/checks
 
@@ -44,18 +41,6 @@ Image: Polaris Zap tab showing the pUSD Stable Yield route from WETH through pUS
 6. Confirm the final position on the Dashboard, Earn, or Borrow tab.
 
 The zap worked when the final target position appears, not merely when the first approval succeeds.
-
-## Common failures
-
-- One leg became stale before inclusion.
-- Slippage or liquidity changed.
-- Approval succeeded but the bundled action failed.
-- Gas estimate was too low for the full route.
-- The wallet now holds an intermediate asset instead of the final position.
-
-## Risks/links
-
-A zap combines swap, approval, and deposit or borrow risks. If a zap stops midway, inspect balances before retrying. Use [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap), [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn), [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow), [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield), and [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting) for manual fallback.
 
 ## Next actions
 
