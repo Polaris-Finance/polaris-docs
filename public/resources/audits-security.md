@@ -5,7 +5,7 @@
 
 Canonical URL: https://tokenbrice.github.io/polaris-docs/resources/audits-security
 Markdown URL: https://tokenbrice.github.io/polaris-docs/resources/audits-security.md
-Section: Resources
+Section: Reference
 Updated: 2026-06-10
 Last verified: 2026-06-10
 
@@ -28,9 +28,9 @@ Vulnerability disclosure | **No dedicated channel yet.** This page will list the
 
 Polaris's intended security model rests as much on what it *cannot* do as on what it can:
 
-- **Immutability.** The core contracts are intended to be non-upgradeable after deployment. This removes upgrade-key and proxy-admin attack surface, raising the stakes on getting the code right: immutability cuts both ways — it cannot be tampered with, and it cannot be patched.
+- **Immutability.** The core contracts are intended to be non-upgradeable after deployment. This removes upgrade-key and proxy-admin attack surface, raising the stakes on getting the code right: immutability cuts both ways - it cannot be tampered with, and it cannot be patched.
 - **No admin keys.** The design has no freeze, blacklist, or pause functions for anyone, including the team. No privileged key is intended to move user funds.
-- **Bounded stewardship.** Stewards adjust only quantitative parameters — many of them bounded by hardcoded ranges (for example interest-rate maxima, fee-split floors, and the mint/redemption decay factors) — and cannot reach the core logic. See [Stewardship, not Governance](https://tokenbrice.github.io/polaris-docs/stewardship).
-- **Narrow oracle dependency.** Peg awareness uses internal redemption and minting volume rather than a pAsset price oracle. Collateral pricing still requires an ETH price feed; the provider, feed address, and network details are not published until launch.
+- **Bounded stewardship.** Stewards adjust only quantitative parameters - many of them bounded by hardcoded ranges (for example interest-rate maxima, fee-split floors, and the mint/redemption decay factors) - and cannot reach the core logic. See [Stewardship, not Governance](https://tokenbrice.github.io/polaris-docs/stewardship).
+- **Narrow oracle dependency.** Peg awareness uses internal redemption and issuing volume rather than a pAsset price oracle. Collateral pricing still requires an ETH price feed; the provider, feed address, and network details are not published until launch.
 
 For the full accounting of what can still go wrong, read the [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure).

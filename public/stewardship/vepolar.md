@@ -14,7 +14,7 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 **vePOLAR is vote-escrowed POLAR.** Lock [POLAR](https://tokenbrice.github.io/polaris-docs/polar) to receive stewardship rights for bounded parameters and edge decisions.
 
-> **Current status:** vePOLAR is not the same as current **POLAR Staking**. The app may expose stake/unstake/claim actions for POLAR rewards on testnet, while the vePOLAR locking interface, contract address, proposal thresholds, and final yield split are pending. The lock design itself (durations, decay, delegation) is committed — see [Lock status](https://tokenbrice.github.io/polaris-docs/stewardship/vepolar#lock-status). Do not lock POLAR through an unofficial interface.
+> **Current status:** vePOLAR is not the same as current **POLAR Staking**. The app may expose stake/unstake/claim actions for POLAR rewards on testnet, while the vePOLAR locking interface, contract address, proposal thresholds, and final yield split are pending. The lock design itself (durations, decay, delegation) is committed - see [Lock status](https://tokenbrice.github.io/polaris-docs/stewardship/vepolar#lock-status). Do not lock POLAR through an unofficial interface.
 
 ## What vePOLAR does
 
@@ -22,7 +22,7 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 lock POLAR -> receive vePOLAR -> steward bounded parameters + receive routed yield
 ```
 
-vePOLAR holders are **stewards, not governors**. They steer quantitative parameters within hardcoded ranges and vote on permitted onboarding decisions — pAsset licensing, StablecoinOS and [Flow](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router) onboarding, bounded splits and branch parameters, [conversion](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions) tuning, and treasury programs once the framework is published. The full enumeration of powers and constraints lives in [Stewardship, not Governance](https://tokenbrice.github.io/polaris-docs/stewardship); the bonding curve, branch logic, liquidations, redemptions, and Stability Pool mechanics are outside vote scope.
+vePOLAR holders are **stewards, not governors**. They steer quantitative parameters within hardcoded ranges and vote on permitted onboarding decisions - pAsset licensing, StablecoinOS and [Flow](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router) onboarding, bounded splits and branch parameters, [conversion](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions) tuning, and treasury programs once the framework is published. The full enumeration of powers and constraints lives in [Stewardship, not Governance](https://tokenbrice.github.io/polaris-docs/stewardship); the bonding curve, branch logic, liquidations, redemptions, and Earn Vault mechanics are outside vote scope.
 
 ## POLAR Staking is separate
 
@@ -32,7 +32,7 @@ vePOLAR is the future locking layer. The committed lock design is in [Lock statu
 
 ## What vePOLAR does not do
 
-vePOLAR cannot touch the immutable core: no contract upgrades, no gauges or bribe markets, no POLAR minting outside the [conversion auction](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions), no parameter moved outside its immutable min/max range. The full no-list is on [Stewardship, not Governance](https://tokenbrice.github.io/polaris-docs/stewardship).
+vePOLAR cannot touch the immutable core: no contract upgrades, no gauges or bribe markets, no POLAR issuing outside the [conversion auction](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions), no parameter moved outside its immutable min/max range. The full no-list is on [Stewardship, not Governance](https://tokenbrice.github.io/polaris-docs/stewardship).
 
 ## Lock status
 
@@ -51,7 +51,7 @@ Delegation | Enabled
 
 ## Yield for lockers
 
-vePOLAR is intended to be more than influence alone. Lockers are expected to be one destination of distributed protocol yield, while current POLAR Staking is the app surface that can receive routed staking rewards where the deployment exposes it. The pETH the [Fee Router](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router) distributes to troves is a separate stream.
+vePOLAR is intended to be more than influence alone. Lockers are expected to be one destination of distributed protocol yield, while current POLAR Staking is the app surface that can receive routed staking rewards where the deployment exposes it. The pETH the [Fee Router](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router) distributes to positions is a separate stream.
 
 The exact split, buffering, and claim mechanics are pending final deployment. This is protocol revenue, not POLAR emissions.
 

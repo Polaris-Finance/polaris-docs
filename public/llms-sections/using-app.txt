@@ -1,6 +1,6 @@
 # Polaris Documentation
 
-> User and developer documentation for Polaris Finance — the self-scaling stablecoin operating system. Mint pAssets backed entirely by onchain collateral and yield. No T-bills. No CEXs. No compromises.
+> User and developer documentation for Polaris, the pETH-powered yield layer for DeFi. Issue pAssets backed entirely by onchain collateral and yield. No T-bills. No CEXs. No compromises.
 
 ## Agent Guidance
 
@@ -10,47 +10,26 @@
 - Do not infer production addresses, production constants, audit status, or launch status from testnet values.
 - Prefer the Markdown URLs in this file for retrieval, and cite the canonical URL shown beside each page.
 
-# Using the App
+# Use Polaris
 
 ## Dashboard
 
 URL: https://tokenbrice.github.io/polaris-docs/using-app
 Markdown URL: https://tokenbrice.github.io/polaris-docs/using-app.md
 
-## What it does
+The Dashboard is your starting point in Polaris. It shows your balances, active positions, Earn Vault opportunities, staking rewards, recent activity, and the testnet faucet.
 
-The Dashboard ("Your Polaris") is your starting point: live Earn Vault and staking APRs, a price ticker, and a three-step path to your first position. Position detail lives in [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow) and [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn); protocol-wide charts live in Analytics, a separate tab.
+Use it to:
+
+- Connect your wallet.
+- Claim test WETH on Sepolia.
+- Check your pETH, pAsset, POLAR, fpETH, and vpETH balances.
+- Review Earn Vault and staking opportunities.
+- Confirm recent transactions and position changes.
 
 Image: Polaris Dashboard ("Your Polaris") showing Earn Vault and staking APR cards, the connect-faucet-earn onboarding steps, and the token price ticker
 
-*The Dashboard is the onboarding and overview screen, not a detailed positions table.*
-
-## Before you start
-
-- Use Public Testnet 1 at [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io).
-- Connect to Sepolia, chain ID `11155111`, and hold Sepolia ETH for gas.
-- Claim test WETH from the Dashboard faucet.
-- Confirm the frontend, network, and wallet prompts against [Verification](https://tokenbrice.github.io/polaris-docs/resources/testnet#verification). Use test assets only.
-
-## Steps/checks
-
-1. Connect your wallet on Sepolia.
-2. Claim test WETH from the faucet.
-3. Review the APR cards for the pUSD and pGOLD Earn Vaults, POLAR staking, and vpETH staking.
-4. Start a first position from the third onboarding step (earn pUSD) or the fpETH yield card, or move to an action tab.
-5. Watch the **Activity** panel for this session's transactions, and the ticker for live prices.
-6. Open Analytics for protocol-wide charts, then return to the relevant action tab for a fresh quote.
-
-## Next actions
-
-- Use [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap) to buy pETH on the bonding curve.
-- Use [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow) to issue assets and manage debt positions.
-- Use [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn) to deposit into an Earn Vault or stake POLAR or vpETH.
-- Use [Split](https://tokenbrice.github.io/polaris-docs/using-app/split) to split pETH into fpETH and vpETH.
-- Use [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap) for one-transaction strategy bundles.
-- Use [Advanced](https://tokenbrice.github.io/polaris-docs/using-app/advanced) for the mint/redeem (PSM) and conversion surfaces.
-- See the in-app **Guide** for a goal-based map of what to do.
-- Use [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting) if wallet state, quotes, or balances look wrong.
+The Dashboard is an overview screen. To take action, use [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap), [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow), [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn), [Split](https://tokenbrice.github.io/polaris-docs/using-app/split), [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap), or [Advanced](https://tokenbrice.github.io/polaris-docs/using-app/advanced).
 
 ---
 
@@ -59,33 +38,25 @@ Image: Polaris Dashboard ("Your Polaris") showing Earn Vault and staking APR car
 URL: https://tokenbrice.github.io/polaris-docs/using-app/advanced
 Markdown URL: https://tokenbrice.github.io/polaris-docs/using-app/advanced.md
 
-## What it does
-
 The Advanced section gives direct access to a few core Polaris mechanisms for arbitrageurs and keepers. These tools are fully permissionless and offer more flexibility, but they assume some familiarity with how the protocol works.
 
 It currently includes:
 
-- **Peg Stability Module (PSM):** mint or redeem pUSD and pGOLD against pETH at the oracle price, with no size limits. Minting exchanges pETH for the selected asset, while redemption swaps the asset back into pETH. This arbitrage helps maintain each peg.
-- **Convert pETH → POLAR:** exchange pETH for newly minted POLAR through a one-way auction. Converted pETH is permanently burned, increasing the bonding curve floor, while the auction price gradually decays until conversion occurs. In this case, there is no reverse direction.
+- **Peg Stability Module (PSM):** issue or redeem pUSD and pGOLD against pETH at the oracle price, with no size limits. Issuing exchanges pETH for the selected asset, while redemption swaps the asset back into pETH. This arbitrage helps maintain each peg.
+- **Convert pETH → POLAR:** exchange pETH for newly created POLAR through a one-way auction. Converted pETH is permanently burned, increasing the bonding curve floor, while the auction price gradually decays until conversion occurs. In this case, there is no reverse direction.
 - **Testnet ETH Faucet:** claim test WETH using Sepolia ETH, subject to the current rate, cooldown period, and faucet limits.
 
 Image: Polaris Advanced tab ("Expert operations") with the PSM Mint and Redeem panels for pUSD and pGOLD
 
-## Steps/checks
+## Basic Flow
 
 1. Pick the module: PSM mint/redeem, pETH → POLAR conversion, or faucet.
-2. For PSM, choose pUSD or pGOLD and the direction (mint or redeem); review the output and fee at the oracle price.
+2. For PSM, choose pUSD or pGOLD and the direction; review the output and fee at the oracle price.
 3. For conversion, review the current auction price against the market POLAR price before converting.
 4. Approve the input token if required, then sign.
 5. Confirm the resulting balance and that no unexpected allowance remains.
 
-The action worked when the intended balance changed and no unexpected allowance or position remains.
-
-## Next actions
-
-- Return to the [Dashboard](https://tokenbrice.github.io/polaris-docs/using-app) to confirm state.
-- Use the guided [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow), [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn), [Split](https://tokenbrice.github.io/polaris-docs/using-app/split), or [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap) page when possible.
-- Use [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting) before retrying a failed transaction.
+Use the guided [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow), [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn), [Split](https://tokenbrice.github.io/polaris-docs/using-app/split), or [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap) page when possible. Use [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting) before retrying a failed transaction.
 
 ---
 
@@ -94,40 +65,38 @@ The action worked when the intended balance changed and no unexpected allowance 
 URL: https://tokenbrice.github.io/polaris-docs/using-app/borrow
 Markdown URL: https://tokenbrice.github.io/polaris-docs/using-app/borrow.md
 
-## What it does
+Borrow is where you issue pAssets against pETH or borrow ETH against fpETH.
 
-Borrow is where you issue Polaris assets and manage existing positions. It has three sub-tabs:
-
-- **pUSD** and **pGOLD:** deposit **pETH** collateral and mint an overcollateralized asset from your position. You set collateral and debt with an LTV slider and see a projected liquidation price, estimated monthly cost, and effective rate before signing. You can also open collateral-only positions first, then mint later.
-- **ETH:** issue **ETH** against **fpETH** collateral at up to 100% LTV with no liquidation risk, because the fpETH floor only ever rises.
+- **pUSD and pGOLD:** deposit pETH collateral and issue overcollateralized assets against your position.
+- **ETH:** borrow ETH against fpETH at up to 100% LTV with no liquidation risk, as the fpETH floor only ever rises.
 
 Once connected, you can manage existing positions from this tab, including adjustments, repayments, and closures.
 
 Image: Polaris Borrow tab with pUSD, pGOLD, and ETH sub-tabs, a collateral field, LTV slider, effective rate, and a projected-position panel
 
-*Borrow opens and manages positions; the projected-position panel previews liquidation price, monthly cost, and LTV before you sign.*
-
-## Steps/checks
+## Basic Flow
 
 1. Choose the sub-tab: pUSD, pGOLD, or ETH.
-2. Enter collateral and set the debt with the LTV slider (25%, 50%, 75% presets are available).
-3. Review the projected liquidation price, estimated monthly cost, effective rate, and LTV.
-4. Approve the collateral token if prompted, then sign.
-5. To manage an existing position, reopen it in this tab and add collateral, mint more, repay, withdraw collateral, or close; review the new LTV first.
-6. Confirm the updated collateral, debt, and LTV.
+2. Enter collateral and the amount you want to borrow.
+3. Review LTV, liquidation price, expected cost, and incentives.
+4. Approve the collateral token if needed.
+5. Sign the transaction.
+6. Confirm the updated position in the Dashboard or Borrow tab.
 
-An issuance or management action worked when the position reflects the expected collateral, debt, and LTV.
+## How Your Position Changes Over Time
 
-Positions change over time as prices, rates, redemptions, and rewards update. Review the projected result before each adjustment, especially when minting more pUSD or pGOLD against the same collateral.
+Your position is affected by more than the amount you borrow.
 
-## Next actions
+- Your pETH collateral has exposure to ETH through the bonding curve.
+- Your position can receive pETH incentives based on your issued debt.
+- Your position can be redeemed against when pAssets trade below their peg.
+- Your liquidation price changes as collateral value, debt, and interest move.
 
-- Use [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap) to acquire pETH collateral, or [Split](https://tokenbrice.github.io/polaris-docs/using-app/split) to get fpETH for an ETH position.
-- Use [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn) to deposit a minted pAsset into its Earn Vault.
-- See the in-app **Guide** for issuance strategies such as Floor Carry and collateral-only positions.
-- Use [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting) if an action is disabled, reverts, or the quote looks wrong.
+Borrowing is not just a one-time transaction. Monitor your position and keep a clear buffer below the maximum LTV.
 
-Relevant app/search vocabulary: Borrow, Manage Borrow Position, borrow, issue, open borrow position, repay, close borrow position, pUSD, pGOLD, LTV, loan-to-value, official app.
+For disabled actions or reverted transactions, see [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting). For position risk, see [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure).
+
+Relevant app/search vocabulary: Borrow, Manage Borrow Position, borrow, trove, troves, open trove, manage trove, collateralized debt position, CDP, issue, open borrow position, repay, close borrow position, pUSD, pGOLD, LTV, loan-to-value, official app.
 
 ---
 
@@ -136,36 +105,30 @@ Relevant app/search vocabulary: Borrow, Manage Borrow Position, borrow, issue, o
 URL: https://tokenbrice.github.io/polaris-docs/using-app/earn
 Markdown URL: https://tokenbrice.github.io/polaris-docs/using-app/earn.md
 
-## What it does
+Earn is where you deposit assets into Polaris yield opportunities.
 
-Earn groups Polaris's yield positions across four sub-tabs:
+Current opportunities include:
 
-- **pUSD** and **pGOLD** Earn Vaults: deposit the pAsset to backstop liquidations; earn pAsset interest plus pETH liquidation gains.
-- **POLAR** staking: earn a share of issuer interest paid in pUSD and pGOLD, plus governance voting power.
-- **vpETH** staking: gain exposure to the volatile component of pETH beyond its floor value, and participate in pETH rewards distribution.
+- pUSD Earn Vaults, where deposits earn from borrower interest and liquidation gains.
+- pGOLD Earn Vaults, where deposits earn from borrower interest and liquidation gains.
+- POLAR staking, where stakers receive protocol value based on their voting power.
+- vpETH rewards, where holders gain exposure to the volatile component of pETH beyond its floor value and participate in pETH rewards distribution.
 
-Each sub-tab shows its current APR, a deposit/withdraw (or stake/unstake) control, and an option to claim pending rewards in the same transaction.
+Earn Vault deposits act as the first line of defense during liquidations. In exchange, depositors receive yield from protocol activity.
 
 Image: Polaris Earn tab with pUSD, pGOLD, POLAR, and vpETH sub-tabs, an APR, a deposit/withdraw toggle, and a claim-pending option
 
-## Steps/checks
+## Basic Flow
 
 1. Select the sub-tab and review its APR, your current deposit, and pending gains.
 2. Choose deposit/withdraw (or stake/unstake).
-3. Leave "Also claim pending …" checked to claim rewards in the same transaction, or uncheck it.
+3. Choose whether to claim pending rewards in the same transaction.
 4. Approve the token if required, then sign.
 5. Confirm your deposit, balance, and claimable gains updated.
 
-The action worked when the Earn card and wallet balances reflect the transaction.
+For disabled deposits, claims, or staking actions, see [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting). For first-loss risk, see [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure).
 
-## Next actions
-
-- Use [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap) or [Split](https://tokenbrice.github.io/polaris-docs/using-app/split) to acquire deposit assets.
-- Use [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap) for a bundled swap-plus-deposit.
-- Use the [Dashboard](https://tokenbrice.github.io/polaris-docs/using-app) to monitor deposits and rewards.
-- Use [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting) if a deposit, claim, or stake action stays disabled.
-
-Relevant app/search vocabulary: Earn, earn, yield, APR, Stability Pool, deposit, claim rewards.
+Relevant app/search vocabulary: Earn, earn, yield, APR, Earn Vault, deposit, claim rewards.
 
 ---
 
@@ -173,8 +136,6 @@ Relevant app/search vocabulary: Earn, earn, yield, APR, Stability Pool, deposit,
 
 URL: https://tokenbrice.github.io/polaris-docs/using-app/split
 Markdown URL: https://tokenbrice.github.io/polaris-docs/using-app/split.md
-
-## What it does
 
 **pETH** combines two distinct sources of value: a steadily growing floor (**fpETH**) and a volatile component above that floor (**vpETH**).
 
@@ -184,9 +145,7 @@ The process is fully reversible and does not rely on any external dependencies: 
 
 Image: Polaris Split tab with a Split/Merge toggle, fpETH and vpETH outputs, live floor and market prices, and a price simulator
 
-*Split and Merge change your pETH exposure; the "What if…" simulator shows how each leg responds to price moves.*
-
-## Steps/checks
+## Basic Flow
 
 1. Choose Split or Merge.
 2. Enter the amount and review the expected fpETH + vpETH (or pETH) output.
@@ -196,12 +155,7 @@ Image: Polaris Split tab with a Split/Merge toggle, fpETH and vpETH outputs, liv
 
 A split worked when pETH decreases and fpETH plus vpETH each increase by the same amount. A merge worked when equal fpETH and vpETH decrease and pETH increases.
 
-## Next actions
-
-- Use [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow) (the ETH sub-tab) to issue ETH against fpETH.
-- Use [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn) to stake vpETH for a pETH yield stream.
-- Merge in this tab to recombine the legs into pETH.
-- Use [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting) if a split or merge reverts.
+For failed split or merge transactions, see [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting).
 
 Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor price.
 
@@ -212,32 +166,24 @@ Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor pri
 URL: https://tokenbrice.github.io/polaris-docs/using-app/swap
 Markdown URL: https://tokenbrice.github.io/polaris-docs/using-app/swap.md
 
-## What it does
+Swap lets you exchange test WETH for pETH through the Polaris bonding curve.
 
-Swap is the bonding-curve interface for pETH. Sell ETH (WETH) to **buy** pETH, or sell pETH back for ETH. The route is always `WETH → bonding curve → pETH`. Each mint locks ETH into the curve's reserve at the current price, and pETH carries a hard, ever-rising price floor. To get fpETH or vpETH use [Split](https://tokenbrice.github.io/polaris-docs/using-app/split); to mint pUSD or pGOLD use [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow).
+pETH is the core collateral asset in Polaris. Once you hold pETH, you can use it to issue pAssets, split it into fpETH and vpETH, or participate in other protocol strategies.
 
 Image: Polaris Swap tab showing the Sell/Buy direction, the WETH to pETH bonding-curve route, the quote, and slippage controls
 
-*Swap routes WETH through the bonding curve to pETH; refresh and review the quote before signing.*
+Before signing, check the quoted price, expected output, and slippage settings.
 
-## Steps/checks
+## Basic Flow
 
 1. Choose the direction: buy pETH with WETH, or sell pETH for WETH.
 2. Enter the amount and review the quote and route.
-3. Check minimum received, price impact, fees, and slippage.
-4. Approve the input token only if the spender matches the app flow.
+3. Check minimum received, fees, and slippage.
+4. Approve the input token if prompted.
 5. Sign the swap transaction.
-6. Confirm the pETH (or WETH) balance updates in the wallet.
+6. Confirm your pETH or WETH balance updates.
 
-The swap worked when the transaction lands and the output token balance updates.
-
-## Next actions
-
-- Use [Split](https://tokenbrice.github.io/polaris-docs/using-app/split) to convert pETH into fpETH and vpETH.
-- Use [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow) to mint pUSD or pGOLD against pETH.
-- Use [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn) after you have a deposit or staking asset.
-- Use [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap) if you want the app to bundle a swap with a deposit.
-- Use [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting) for stale quotes and reverted swaps.
+For stale quotes or reverted swaps, see [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting).
 
 Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor price.
 
@@ -247,8 +193,6 @@ Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor pri
 
 URL: https://tokenbrice.github.io/polaris-docs/using-app/zap
 Markdown URL: https://tokenbrice.github.io/polaris-docs/using-app/zap.md
-
-## What it does
 
 Zap combines multiple on-chain actions into a single transaction, making it easier to enter common Polaris strategies.
 
@@ -263,9 +207,9 @@ A zap only simplifies execution. The underlying economics remain exactly the sam
 
 Image: Polaris Zap tab showing the pUSD Stable Yield route from WETH through pUSD into the Earn Vault
 
-*You keep full self-custody throughout the process.*
+You keep full self-custody throughout the process. Before signing, a simulation shows the expected result and slippage is set by your settings.
 
-## Steps/checks
+## Basic Flow
 
 1. Choose the strategy.
 2. Enter the input amount.
@@ -274,12 +218,6 @@ Image: Polaris Zap tab showing the pUSD Stable Yield route from WETH through pUS
 5. Sign approvals only for expected spenders, then sign the zap.
 6. Confirm the final position on the Dashboard, Earn, or Borrow tab.
 
-The zap worked when the final target position appears, not merely when the first approval succeeds.
+For stale quotes, failed simulations, or partial setup after approval, see [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting).
 
-## Next actions
-
-- Use the [Dashboard](https://tokenbrice.github.io/polaris-docs/using-app) to confirm the final state.
-- Use [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap) if you received an intermediate token.
-- Use [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn) or [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow) to complete or manage the position manually.
-
-Relevant app/search vocabulary: Earn, earn, yield, APR, Stability Pool, deposit, claim rewards.
+Relevant app/search vocabulary: Earn, earn, yield, APR, Earn Vault, deposit, claim rewards.

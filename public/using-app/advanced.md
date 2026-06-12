@@ -5,7 +5,7 @@
 
 Canonical URL: https://tokenbrice.github.io/polaris-docs/using-app/advanced
 Markdown URL: https://tokenbrice.github.io/polaris-docs/using-app/advanced.md
-Section: Using the App
+Section: Use Polaris
 Updated: 2026-06-12
 Last verified: 2026-06-12
 
@@ -14,30 +14,22 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 ---
 
-## What it does
-
 The Advanced section gives direct access to a few core Polaris mechanisms for arbitrageurs and keepers. These tools are fully permissionless and offer more flexibility, but they assume some familiarity with how the protocol works.
 
 It currently includes:
 
-- **Peg Stability Module (PSM):** mint or redeem pUSD and pGOLD against pETH at the oracle price, with no size limits. Minting exchanges pETH for the selected asset, while redemption swaps the asset back into pETH. This arbitrage helps maintain each peg.
-- **Convert pETH → POLAR:** exchange pETH for newly minted POLAR through a one-way auction. Converted pETH is permanently burned, increasing the bonding curve floor, while the auction price gradually decays until conversion occurs. In this case, there is no reverse direction.
+- **Peg Stability Module (PSM):** issue or redeem pUSD and pGOLD against pETH at the oracle price, with no size limits. Issuing exchanges pETH for the selected asset, while redemption swaps the asset back into pETH. This arbitrage helps maintain each peg.
+- **Convert pETH → POLAR:** exchange pETH for newly created POLAR through a one-way auction. Converted pETH is permanently burned, increasing the bonding curve floor, while the auction price gradually decays until conversion occurs. In this case, there is no reverse direction.
 - **Testnet ETH Faucet:** claim test WETH using Sepolia ETH, subject to the current rate, cooldown period, and faucet limits.
 
 Image: Polaris Advanced tab ("Expert operations") with the PSM Mint and Redeem panels for pUSD and pGOLD
 
-## Steps/checks
+## Basic Flow
 
 1. Pick the module: PSM mint/redeem, pETH → POLAR conversion, or faucet.
-2. For PSM, choose pUSD or pGOLD and the direction (mint or redeem); review the output and fee at the oracle price.
+2. For PSM, choose pUSD or pGOLD and the direction; review the output and fee at the oracle price.
 3. For conversion, review the current auction price against the market POLAR price before converting.
 4. Approve the input token if required, then sign.
 5. Confirm the resulting balance and that no unexpected allowance remains.
 
-The action worked when the intended balance changed and no unexpected allowance or position remains.
-
-## Next actions
-
-- Return to the [Dashboard](https://tokenbrice.github.io/polaris-docs/using-app) to confirm state.
-- Use the guided [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow), [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn), [Split](https://tokenbrice.github.io/polaris-docs/using-app/split), or [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap) page when possible.
-- Use [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting) before retrying a failed transaction.
+Use the guided [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow), [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn), [Split](https://tokenbrice.github.io/polaris-docs/using-app/split), or [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap) page when possible. Use [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting) before retrying a failed transaction.

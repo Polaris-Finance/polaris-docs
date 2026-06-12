@@ -5,7 +5,7 @@
 
 Canonical URL: https://tokenbrice.github.io/polaris-docs/using-app/split
 Markdown URL: https://tokenbrice.github.io/polaris-docs/using-app/split.md
-Section: Using the App
+Section: Use Polaris
 Updated: 2026-06-12
 Last verified: 2026-06-12
 
@@ -13,8 +13,6 @@ Documentation index: https://tokenbrice.github.io/polaris-docs/llms.txt
 Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.txt
 
 ---
-
-## What it does
 
 **pETH** combines two distinct sources of value: a steadily growing floor (**fpETH**) and a volatile component above that floor (**vpETH**).
 
@@ -24,9 +22,7 @@ The process is fully reversible and does not rely on any external dependencies: 
 
 Image: Polaris Split tab with a Split/Merge toggle, fpETH and vpETH outputs, live floor and market prices, and a price simulator
 
-*Split and Merge change your pETH exposure; the "What if…" simulator shows how each leg responds to price moves.*
-
-## Steps/checks
+## Basic Flow
 
 1. Choose Split or Merge.
 2. Enter the amount and review the expected fpETH + vpETH (or pETH) output.
@@ -36,11 +32,6 @@ Image: Polaris Split tab with a Split/Merge toggle, fpETH and vpETH outputs, liv
 
 A split worked when pETH decreases and fpETH plus vpETH each increase by the same amount. A merge worked when equal fpETH and vpETH decrease and pETH increases.
 
-## Next actions
-
-- Use [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow) (the ETH sub-tab) to issue ETH against fpETH.
-- Use [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn) to stake vpETH for a pETH yield stream.
-- Merge in this tab to recombine the legs into pETH.
-- Use [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting) if a split or merge reverts.
+For failed split or merge transactions, see [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting).
 
 Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor price.

@@ -14,7 +14,7 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 ## The Total Collateralization Ratio
 
-The **Total Collateralization Ratio (TCR)** is the system-wide health metric for a pAsset. It is not a simple market-value-of-collateral over debt figure: it measures the bonding-curve reserve backing all the pETH collateral — the collateral scaled by the curve's reserve-backing fraction and valued at the reserve (redemption) price — divided by total pAsset debt outstanding.
+The **Total Collateralization Ratio (TCR)** is the system-wide health metric for a pAsset. It is not a simple market-value-of-collateral over debt figure: it measures the bonding-curve reserve backing all the pETH collateral - the collateral scaled by the curve's reserve-backing fraction and valued at the reserve (redemption) price - divided by total pAsset debt outstanding.
 
 $$
 \text{TCR} = \frac{\text{Reserve backing the collateral} \times \text{reserve price}}{\text{Total debt}}
@@ -32,32 +32,32 @@ Recovery Mode thresholds and current per-pAsset values live on [Parameters](http
 
 ## How behavior changes
 
-Recovery Mode does **not** change which troves are liquidatable. In every mode, a trove is liquidatable only once its LTV exceeds the normal maximum. What tightens is the set of borrower actions allowed while the state is active.
+Recovery Mode does **not** change which positions are liquidatable. In every mode, a position is liquidatable only once its LTV exceeds the normal maximum. What tightens is the set of borrower actions allowed while the state is active.
 
 Your action | Normal Mode | Recovery Mode
 
 **Add collateral / repay debt** | Allowed | Allowed
-**Withdraw collateral / mint more debt** | Allowed if LTV stays below the maximum | Allowed only if the resulting LTV stays below the stricter recovery maximum and does not increase your LTV
+**Withdraw collateral / issue more debt** | Allowed if LTV stays below the maximum | Allowed only if the resulting LTV stays below the stricter recovery maximum and does not increase your LTV
 **Liquidation eligibility** | LTV above the maximum | LTV above the maximum (unchanged)
 
-The principle: actions that strengthen backing stay open; actions that thin backing face a higher bar. In practice, a collateral withdrawal or new mint on its own always raises LTV, so in Recovery Mode it goes through only as part of a combined adjustment that offsets it — adding collateral or repaying debt in the same transaction. Current trigger and action values are published on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters).
+The principle: actions that strengthen backing stay open; actions that thin backing face a higher bar. In practice, a collateral withdrawal or new issuance on its own always raises LTV, so in Recovery Mode it goes through only as part of a combined adjustment that offsets it - adding collateral or repaying debt in the same transaction. Current trigger and action values are published on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters).
 
 ## Worked example: Recovery Mode
 
 The trigger is the system's reserve-backing-to-debt ratio, so plain collateral value divided by debt is only a rough proxy. Treat the example as shape, not exact arithmetic.
 
-Suppose the protective state is active for pUSD. A trove below the normal max LTV is **not** liquidated by Recovery Mode, but it may lose freedom to withdraw collateral or mint more debt. Those actions must clear the stricter recovery max LTV and cannot raise the trove's LTV. Adding collateral and repaying debt are always allowed.
+Suppose the protective state is active for pUSD. A position below the normal max LTV is **not** liquidated by Recovery Mode, but it may lose freedom to withdraw collateral or issue more debt. Those actions must clear the stricter recovery max LTV and cannot raise the position's LTV. Adding collateral and repaying debt are always allowed.
 
-The borrower's defense is the same as always: add collateral, repay debt, or both. For example, a trove with \$13,000 of collateral and 10,000 pUSD of debt is at 76.9% LTV; repaying 2,000 pUSD moves it to 8,000 / \$13,000, or 61.5% LTV, before fees and price movement — and lower LTV also widens your room to act while the system is stressed.
+The borrower's defense is the same as always: add collateral, repay debt, or both. For example, a position with \$13,000 of collateral and 10,000 pUSD of debt is at 76.9% LTV; repaying 2,000 pUSD moves it to 8,000 / \$13,000, or 61.5% LTV, before fees and price movement - and lower LTV also widens your room to act while the system is stressed.
 
-## How to make your trove safe
+## How to make your position safe
 
-If the system is in or near Recovery Mode, the move is the same one that always protects a trove: lower your **LTV**.
+If the system is in or near Recovery Mode, the move is the same one that always protects a position: lower your **LTV**.
 
 1. **Add pETH collateral.** More collateral against the same debt lowers your LTV directly.
 2. **Repay debt.** Burning pAsset to reduce what you owe lowers your LTV from the other side.
 3. **Do both early.** Build the buffer before stress arrives, not while actions are already restricted.
 
-See [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove) for the mechanics, and [Liquidations](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations) for what happens to a trove that exceeds the max LTV.
+See [Managing Your Position](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove) for the mechanics, and [Liquidations](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations) for what happens to a position that exceeds the max LTV.
 
 > **Warning:** Recovery Mode is most likely during volatile conditions when adding collateral is hardest. The reliable defense is a buffer maintained in calm markets. See the [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure).

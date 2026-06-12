@@ -1,6 +1,6 @@
 # Polaris Documentation
 
-> User and developer documentation for Polaris Finance — the self-scaling stablecoin operating system. Mint pAssets backed entirely by onchain collateral and yield. No T-bills. No CEXs. No compromises.
+> User and developer documentation for Polaris, the pETH-powered yield layer for DeFi. Issue pAssets backed entirely by onchain collateral and yield. No T-bills. No CEXs. No compromises.
 
 ## Agent Guidance
 
@@ -19,11 +19,11 @@
 - [Well-known full bundle mirror](https://tokenbrice.github.io/polaris-docs/.well-known/llms-full.txt): Alternate discovery path for the full Markdown bundle.
 - [Introduction section bundle](https://tokenbrice.github.io/polaris-docs/llms-sections/introduction.txt): Focused Markdown bundle for this documentation section.
 - [Launch Status section bundle](https://tokenbrice.github.io/polaris-docs/llms-sections/launch-status.txt): Focused Markdown bundle for this documentation section.
-- [Quickstart section bundle](https://tokenbrice.github.io/polaris-docs/llms-sections/quickstart.txt): Focused Markdown bundle for this documentation section.
-- [Using the App section bundle](https://tokenbrice.github.io/polaris-docs/llms-sections/using-app.txt): Focused Markdown bundle for this documentation section.
+- [Public Testnet Quickstart section bundle](https://tokenbrice.github.io/polaris-docs/llms-sections/quickstart.txt): Focused Markdown bundle for this documentation section.
+- [Use Polaris section bundle](https://tokenbrice.github.io/polaris-docs/llms-sections/using-app.txt): Focused Markdown bundle for this documentation section.
 - [Troubleshooting section bundle](https://tokenbrice.github.io/polaris-docs/llms-sections/troubleshooting.txt): Focused Markdown bundle for this documentation section.
 - [Understand Polaris section bundle](https://tokenbrice.github.io/polaris-docs/llms-sections/understand-polaris.txt): Focused Markdown bundle for this documentation section.
-- [Resources section bundle](https://tokenbrice.github.io/polaris-docs/llms-sections/resources.txt): Focused Markdown bundle for this documentation section.
+- [Reference section bundle](https://tokenbrice.github.io/polaris-docs/llms-sections/resources.txt): Focused Markdown bundle for this documentation section.
 
 ## Introduction
 
@@ -33,11 +33,11 @@
 
 - [Polaris Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status.md): Current Polaris phase, official app URL, supported network, production status, and what is safe to use today. Canonical: https://tokenbrice.github.io/polaris-docs/launch-status
 
-## Quickstart
+## Public Testnet Quickstart
 
 - [Public Testnet Quickstart](https://tokenbrice.github.io/polaris-docs/quickstart.md): The fastest safe path to try Polaris on Public Testnet 1 with Sepolia test assets. Canonical: https://tokenbrice.github.io/polaris-docs/quickstart
 
-## Using the App
+## Use Polaris
 
 - [Dashboard](https://tokenbrice.github.io/polaris-docs/using-app.md): How to read the Polaris app Dashboard and start your first testnet action. Canonical: https://tokenbrice.github.io/polaris-docs/using-app
 - [Advanced Tools in the Polaris App](https://tokenbrice.github.io/polaris-docs/using-app/advanced.md): How to use the Polaris Advanced tab for PSM mint/redeem, pETH-to-POLAR conversion, and the testnet faucet. Canonical: https://tokenbrice.github.io/polaris-docs/using-app/advanced
@@ -49,36 +49,35 @@
 
 ## Troubleshooting
 
-- [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting.md): Fix common Polaris app issues on Public Testnet 1 — wrong network, missing Sepolia ETH, failed approvals, stale quotes, and reverted transactions. Canonical: https://tokenbrice.github.io/polaris-docs/troubleshooting
+- [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting.md): Fix common Polaris app issues on Public Testnet 1. Canonical: https://tokenbrice.github.io/polaris-docs/troubleshooting
 
 ## Understand Polaris
 
-- [Polaris Core Concepts](https://tokenbrice.github.io/polaris-docs/core-concepts.md): A one-page map of the Polaris system, with every key term defined briefly and linked to its full explanation. Canonical: https://tokenbrice.github.io/polaris-docs/core-concepts
-- [Issuing Polaris pAssets](https://tokenbrice.github.io/polaris-docs/minting.md): How Polaris users issue pAssets directly from the protocol against pETH collateral, and what to check before opening or managing a position. Canonical: https://tokenbrice.github.io/polaris-docs/minting
-- [Managing a Polaris Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove.md): Manage a Polaris trove around its loan-to-value (LTV) — add collateral, issue or repay debt, track interest, and close out cleanly. Canonical: https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove
-- [Open a Borrow Position](https://tokenbrice.github.io/polaris-docs/minting/open-a-trove.md): How to open a Polaris borrow position from the app Borrow tab — deposit pETH, issue a pAsset, and review LTV before signing. Canonical: https://tokenbrice.github.io/polaris-docs/minting/open-a-trove
+- [Issuing pAssets](https://tokenbrice.github.io/polaris-docs/minting.md): How Polaris users issue pAssets directly from the protocol against pETH collateral. Canonical: https://tokenbrice.github.io/polaris-docs/minting
+- [Manage a Position](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove.md): Manage a Polaris position around loan-to-value, redemptions, interest, and repayment. Canonical: https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove
+- [Open a Position](https://tokenbrice.github.io/polaris-docs/minting/open-a-trove.md): How to open a Polaris borrow position from the app Borrow tab. Canonical: https://tokenbrice.github.io/polaris-docs/minting/open-a-trove
 - [Polaris Asset Catalog](https://tokenbrice.github.io/polaris-docs/minting/passet-catalog.md): The pAsset debt tokens Polaris can issue (pUSD, pGOLD, pCHF, pBigMac), how pETH differs as collateral, and how StablecoinOS can add new assets. Canonical: https://tokenbrice.github.io/polaris-docs/minting/passet-catalog
 - [pETH Bonding Curve](https://tokenbrice.github.io/polaris-docs/peth.md): How one two-way bonding curve gives pETH contract-native liquidity, a rising floor price, and protocol-wide value capture, with no liquidity providers required. Canonical: https://tokenbrice.github.io/polaris-docs/peth
 - [pETH Floor Price](https://tokenbrice.github.io/polaris-docs/peth/floor-price.md): pETH's floor price is a mathematically enforced minimum under the bonding-curve invariants. What it is, why it rises, and how the floor ratio frames downside. Canonical: https://tokenbrice.github.io/polaris-docs/peth/floor-price
 - [pETH Split: fpETH and vpETH](https://tokenbrice.github.io/polaris-docs/peth/split.md): How pETH splits into fpETH and vpETH, what each leg represents, how merging works, and how reserve loans use fpETH. Canonical: https://tokenbrice.github.io/polaris-docs/peth/split
-- [POLAR Token, Staking, and Conversion](https://tokenbrice.github.io/polaris-docs/polar.md): Why POLAR exists, how it is minted only by burning pETH, why its dilution is productive, and how staking and conversion fit together. Canonical: https://tokenbrice.github.io/polaris-docs/polar
-- [POLAR Conversion Auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions.md): The conversion auction bridges pETH and POLAR — a spike-and-decay auction where burning pETH mints POLAR, raises the floor price, and releases ETH yield. Canonical: https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions
+- [POLAR Token, Staking, and Conversion](https://tokenbrice.github.io/polaris-docs/polar.md): Why POLAR exists, how conversion works, why dilution can be productive, and how staking and stewardship fit together. Canonical: https://tokenbrice.github.io/polaris-docs/polar
+- [POLAR Conversion Auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions.md): The conversion auction bridges pETH and POLAR by burning pETH, creating POLAR, raising the floor price, and releasing ETH yield. Canonical: https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions
 - [POLAR Tokenomics](https://tokenbrice.github.io/polaris-docs/polar/tokenomics.md): How POLAR works: issuance by burning pETH, current staking, future vePOLAR, yield routes, and pending distribution terms. Canonical: https://tokenbrice.github.io/polaris-docs/polar/tokenomics
 - [pAsset Redemptions](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations.md): A redemption swaps a below-peg pAsset for its pETH collateral at face value minus a fee. How the arbitrage restores peg, and what it means for borrowers. Canonical: https://tokenbrice.github.io/polaris-docs/redemptions-liquidations
-- [Polaris Liquidations](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations.md): A trove above its maximum LTV is liquidated to keep the pAsset backed. The Stability Pool absorbs the debt, or it redistributes to troves. Canonical: https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations
+- [Polaris Liquidations](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations.md): A position above its maximum LTV is liquidated to keep the pAsset backed. The Earn Vault absorbs the debt, or it redistributes to positions. Canonical: https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations
 - [Polaris Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode.md): Recovery Mode is the protective state Polaris enters when system reserve backing runs thin relative to total debt. How it works, and how to stay safe. Canonical: https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode
 - [Polaris Stewardship, not Governance](https://tokenbrice.github.io/polaris-docs/stewardship.md): Polaris keeps its core immutable and lets vePOLAR steward only bounded parameters, onboarding decisions, and edge processes that cannot be automated. Canonical: https://tokenbrice.github.io/polaris-docs/stewardship
 - [Fee Router & Flows](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router.md): Polaris revenue routing: the Fee Router buffers protocol yield, while Flows share protocol revenue with contracts building on Polaris. Canonical: https://tokenbrice.github.io/polaris-docs/stewardship/fee-router
 - [vePOLAR Locking and Stewardship](https://tokenbrice.github.io/polaris-docs/stewardship/vepolar.md): vePOLAR is vote-escrowed POLAR. Lock POLAR to receive stewardship rights and a share of protocol yield without touching the immutable core. Canonical: https://tokenbrice.github.io/polaris-docs/stewardship/vepolar
-- [Why Polaris Finance](https://tokenbrice.github.io/polaris-docs/why-polaris.md): Why DeFi needs an immutable, counterparty-free yield layer instead of yield rented from tradfi, custodians, multisigs, and opaque intermediaries. Canonical: https://tokenbrice.github.io/polaris-docs/why-polaris
-- [Polaris Stability Pool](https://tokenbrice.github.io/polaris-docs/yield.md): The Stability Pool is a reserve of pAssets that backstops liquidations and is the primary venue for earning yield on Polaris. Canonical: https://tokenbrice.github.io/polaris-docs/yield
-- [Polaris Yield Sources](https://tokenbrice.github.io/polaris-docs/yield/yield-sources.md): Every source of pAsset yield on Polaris is onchain, internal to the protocol, and scales with activity — yield that is owned, not rented. Canonical: https://tokenbrice.github.io/polaris-docs/yield/yield-sources
+- [Why Polaris](https://tokenbrice.github.io/polaris-docs/why-polaris.md): Why DeFi needs immutable, counterparty-free, yield-bearing money and collateral. Canonical: https://tokenbrice.github.io/polaris-docs/why-polaris
+- [Polaris Earn Vaults](https://tokenbrice.github.io/polaris-docs/yield.md): Earn Vaults let pAsset holders earn from borrower interest and liquidation gains. Canonical: https://tokenbrice.github.io/polaris-docs/yield
+- [Polaris Yield Sources](https://tokenbrice.github.io/polaris-docs/yield/yield-sources.md): Every source of pAsset yield on Polaris is onchain, internal to the protocol, and scales with activity. Canonical: https://tokenbrice.github.io/polaris-docs/yield/yield-sources
 
-## Resources
+## Reference
 
-- [Polaris Glossary](https://tokenbrice.github.io/polaris-docs/resources.md): Every Polaris term defined in one or two sentences, alphabetized and linked to its full explanation. The fast way to look anything up. Canonical: https://tokenbrice.github.io/polaris-docs/resources
+- [Polaris Glossary](https://tokenbrice.github.io/polaris-docs/resources.md): Short definitions for Polaris terms, user-facing labels, and technical aliases. Canonical: https://tokenbrice.github.io/polaris-docs/resources
 - [Polaris Audits & Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security.md): Polaris security model, audit-report status, bug-bounty status, and disclosure guidance. Pre-launch reports and bounty details are not published yet. Canonical: https://tokenbrice.github.io/polaris-docs/resources/audits-security
 - [Polaris Brand Assets](https://tokenbrice.github.io/polaris-docs/resources/brand-assets.md): Polaris logos, the Celestial Night Sky palette, and typography, with usage do's and don'ts. Dark mode is the canonical surface. Canonical: https://tokenbrice.github.io/polaris-docs/resources/brand-assets
-- [Polaris Finance FAQ](https://tokenbrice.github.io/polaris-docs/resources/faq.md): Short answers to common Polaris questions, with links to canonical pages for status, contracts, parameters, risks, and app actions. Canonical: https://tokenbrice.github.io/polaris-docs/resources/faq
+- [Polaris FAQ](https://tokenbrice.github.io/polaris-docs/resources/faq.md): Short answers to common Polaris questions, with links to canonical pages for status, contracts, parameters, risks, and app actions. Canonical: https://tokenbrice.github.io/polaris-docs/resources/faq
 - [Polaris Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure.md): A comprehensive catalog of the risks of using Polaris, each paired with the mechanism that mitigates it, without implying any risk is eliminated. Canonical: https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure
 - [Polaris Public Testnet 1](https://tokenbrice.github.io/polaris-docs/resources/testnet.md): Public Testnet 1 network, manifest sources, parameters, and Sepolia contract addresses, with verification rules and production-finality status. Canonical: https://tokenbrice.github.io/polaris-docs/resources/testnet

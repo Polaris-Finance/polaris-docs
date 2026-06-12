@@ -46,7 +46,7 @@ The arithmetic is indicative: each leg trades on its own market, so realized pri
 
 ## Split and merge
 
-**Split** deposits pETH into the splitter contract and mints equal amounts of fpETH and vpETH to your wallet.
+**Split** deposits pETH into the splitter contract and sends equal amounts of fpETH and vpETH to your wallet.
 
 **Merge** burns equal amounts of fpETH and vpETH and releases the matching pETH from the splitter.
 
@@ -69,7 +69,7 @@ That design reduces price-liquidation risk from pETH premium swings, but it does
 - You still need WETH to repay and unlock fpETH.
 - Smart-contract, approval, oracle, gas, and chain-liveness risks remain.
 
-Reserve loans are separate from pAsset troves. A trove mints pUSD, pGOLD, or another pAsset against pETH collateral. A reserve loan borrows WETH against fpETH.
+Reserve loans are separate from pAsset positions. A position issues pUSD, pGOLD, or another pAsset against pETH collateral. A reserve loan borrows WETH against fpETH.
 
 ## Floor carry
 

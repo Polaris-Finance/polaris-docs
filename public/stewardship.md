@@ -23,10 +23,10 @@ Polaris's answer is neither a fully immutable protocol with no adjustable parame
 The mechanisms that define Polaris **cannot be changed by anyone**: not the team, not vePOLAR, not a vote. They are enforced by immutable contracts:
 
 - The [bonding curve](https://tokenbrice.github.io/polaris-docs/peth) backing pETH
-- Branch logic and [trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove) accounting
+- pAsset market logic and [position](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove) accounting
 - [Liquidations](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations)
 - [Redemptions](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations)
-- The [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield)
+- The [Earn Vault](https://tokenbrice.github.io/polaris-docs/yield)
 
 The base protocol does not need to be relearned after each vote, because the core logic is out of reach by design.
 
@@ -36,15 +36,15 @@ Stewardship operates at the edges: StablecoinOS onboarding, permitted parameter 
 
 Domain | Power | Constraint
 
-**pAsset licensing** | Approve a team or branch to deploy a new pAsset on Polaris infrastructure | Standardized eligibility and launch requirements
-**Branch parameters** | Adjust permitted fee and distribution splits for a pAsset branch | Hardcoded min/max bounds
+**pAsset licensing** | Approve a team or pAsset market to deploy a new pAsset on Polaris infrastructure | Standardized eligibility and launch requirements
+**pAsset market parameters** | Adjust permitted fee and distribution splits for a pAsset market | Hardcoded min/max bounds
 **Conversion parameters** | Tune pETH-to-POLAR conversion settings (rebate, half-life, spike sensitivity) | Rebate bounded 0–100%; other bounds pending
 **StablecoinOS onboarding** | Whitelist eligible participants into Flow revenue sharing | Must build on pETH/pAssets and meet published requirements
-**Primary interest split** | Set how primary interest is split between the Stability Pool and POLAR stakers (remainder to the ecosystem fund) | Stability Pool and stakers each floored at 25% (hardcoded)
+**Primary interest split** | Set how primary interest is split between the Earn Vault and POLAR stakers (remainder to the ecosystem fund) | Earn Vault and stakers each floored at 25% (hardcoded)
 **Flow weights** | Set whitelisted recipient weights and related edge parameters | Hardcoded limits; no gauges, bribes, or emissions
 **Treasury programs** | Operate programs such as the Polar Council | Initially team-managed until a framework is published
 
-A stewardship vote can bring a new pAsset or Flow participant into the system, or move an approved parameter within its range. It cannot alter the bonding curve, redemption mechanism, liquidation logic, Stability Pool mechanics, or core contract immutability.
+A stewardship vote can bring a new pAsset or Flow participant into the system, or move an approved parameter within its range. It cannot alter the bonding curve, redemption mechanism, liquidation logic, Earn Vault mechanics, or core contract immutability.
 
 ## What stewardship does not do
 
@@ -54,13 +54,13 @@ Polaris stewardship does **not**:
 - Add admin keys, pause powers, freeze powers, or blacklists.
 - Create POLAR emissions gauges.
 - Route bribes or vote-buying markets through the protocol.
-- Mint POLAR outside the pETH conversion mechanism.
+- Create POLAR outside the pETH conversion mechanism.
 - Set safety-critical parameters (such as interest-rate maxima, interest-split floors, and fee or rebate ceilings) outside their hardcoded bounds.
-- Change a user's trove, Stability Pool deposit, pETH balance, or lock by discretion.
+- Change a user's position, Earn Vault deposit, pETH balance, or lock by discretion.
 
 ## Operator prerequisites
 
-Teams seeking onboarding, a pAsset branch, Flow participation, or another stewarded action should expect to provide:
+Teams seeking onboarding, a pAsset market, Flow participation, or another stewarded action should expect to provide:
 
 - Clear contract addresses once deployed and verified.
 - A concise description of the product, risk surface, and user flow.
@@ -99,7 +99,7 @@ Polaris follows a simple ordering: solve a problem at the lowest tier that can s
 
 ## Bounded blast radius
 
-Stewards hold real power, so they can make real mistakes, but the immutable core caps the damage. A weak pAsset affects that branch, not the bonding curve or liquidation engine. A poor split can be moved back inside the same hardcoded bounds.
+Stewards hold real power, so they can make real mistakes, but the immutable core caps the damage. A weak pAsset affects that market, not the bonding curve or liquidation engine. A poor split can be moved back inside the same hardcoded bounds.
 
 ## How this compares to DAO governance
 
@@ -120,8 +120,3 @@ Next steps:
 - [vePOLAR Locking](https://tokenbrice.github.io/polaris-docs/stewardship/vepolar): The vote-escrow layer: committed lock design, stewardship rights, and what is still pending.
 - [Fee Router & Flows](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router): How protocol revenue is buffered, routed, and shared with whitelisted contracts.
 - [POLAR Tokenomics](https://tokenbrice.github.io/polaris-docs/polar/tokenomics): Issuance by conversion, staking vs vePOLAR, and yield destinations side by side.
-
----
-
-[Stewardship, not Governance](https://polarisfinance.io/blog/stewardship-not-governance/)
-Governance fails because of structure, not people. Here's how stewardship fixes the structure.

@@ -87,12 +87,12 @@
           "source": "Deploy script"
         },
         {
-          "name": "Primary interest split (Stability Pool / POLAR staking / ecosystem)",
+          "name": "Primary interest split (Earn Vault / POLAR staking / ecosystem)",
           "value": "75% / 25% / 0%",
           "source": "Deploy script"
         },
         {
-          "name": "Liquidation penalty, Stability Pool path",
+          "name": "Liquidation penalty, Earn Vault path",
           "value": "5%",
           "source": "Deploy script"
         },
@@ -102,7 +102,7 @@
           "source": "Derived in contract"
         },
         {
-          "name": "Liquidation gas compensation, fixed deposit at trove open",
+          "name": "Liquidation gas compensation, fixed deposit at position open",
           "value": "0.0375 pETH",
           "source": "Deploy script"
         },
@@ -159,12 +159,12 @@
           "source": "Deploy script"
         },
         {
-          "name": "Primary interest split (Stability Pool / POLAR staking / ecosystem)",
+          "name": "Primary interest split (Earn Vault / POLAR staking / ecosystem)",
           "value": "75% / 25% / 0%",
           "source": "Deploy script"
         },
         {
-          "name": "Liquidation penalty, Stability Pool path",
+          "name": "Liquidation penalty, Earn Vault path",
           "value": "5%",
           "source": "Deploy script"
         },
@@ -174,7 +174,7 @@
           "source": "Derived in contract"
         },
         {
-          "name": "Liquidation gas compensation, fixed deposit at trove open",
+          "name": "Liquidation gas compensation, fixed deposit at position open",
           "value": "0.0375 pETH",
           "source": "Deploy script"
         },
@@ -265,7 +265,7 @@
       },
       {
         "group": "pusd-branch",
-        "name": "Stability Pool",
+        "name": "Earn Vault",
         "address": "0x8da97da1f6ab14d144a4966360e19ca5f2b5aece",
         "explorerUrl": "https://sepolia.etherscan.io/address/0x8da97da1f6ab14d144a4966360e19ca5f2b5aece"
       },
@@ -325,7 +325,7 @@
       },
       {
         "group": "pgold-branch",
-        "name": "Stability Pool",
+        "name": "Earn Vault",
         "address": "0x3308842b03248838c83205100a0a33d716dc37d6",
         "explorerUrl": "https://sepolia.etherscan.io/address/0x3308842b03248838c83205100a0a33d716dc37d6"
       },

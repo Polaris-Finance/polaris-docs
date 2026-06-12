@@ -18,10 +18,10 @@ The bonding curve is the foundation of Polaris. From this one primitive come pET
 
 A two-way bonding curve lets you swap like a regular AMM pool, with one key difference: **it needs no liquidity providers.** Instead, it enforces a mathematical relationship between a token's price and its supply:
 
-- Demand rises, tokens are minted, price increases.
-- Tokens are burned/sold, price decreases.
+- Demand rises, tokens are created, price increases.
+- Tokens are burned or sold, price decreases.
 
-Buying adds ETH to the reserve and **mints** pETH. Selling withdraws from the reserve and **burns** pETH. The result is contract-native liquidity with no external liquidity provider, subject to the execution caveats in the [Risk overview](https://tokenbrice.github.io/polaris-docs/peth#risk-overview) below. You have used the price-curve idea without knowing it: AMMs like Uniswap and Curve run on one (though their liquidity comes from LPs), and Pump.fun is the closest mint/burn example.
+Buying adds ETH to the reserve and creates pETH. Selling withdraws from the reserve and burns pETH. The result is contract-native liquidity with no external liquidity provider, subject to the execution caveats in the [Risk overview](https://tokenbrice.github.io/polaris-docs/peth#risk-overview) below. You have used the price-curve idea without knowing it: AMMs like Uniswap and Curve run on one, though their liquidity comes from LPs.
 
 Two things make pETH's curve different from Pump.fun's:
 
@@ -32,7 +32,7 @@ Two things make pETH's curve different from Pump.fun's:
 
 pETH's curve is **two-way** (ETH ⇒ pETH and pETH ⇒ ETH) and gives pETH a price floor measured in ETH under the curve assumptions. The full floor and floor-ratio explanation lives on [pETH Floor Price](https://tokenbrice.github.io/polaris-docs/peth/floor-price).
 
-Image: pETH bonding curve: ETH deposits mint pETH along a power-law curve with a rising floor price
+Image: pETH bonding curve: ETH deposits create pETH along a power-law curve with a rising floor price
 
 *Key takeaway: the curve is both the issuance path and the reserve-backed exit path; fees and conversion burns are designed to lift the floor.*
 
@@ -54,17 +54,17 @@ The Public Testnet 1 beta is testnet-only. The production beta remains pending; 
 
 ### How the production curve launches
 
-Production launch is designed to initialize the curve through a dedicated **bootstrap** contract: a time-boxed, whitelisted deposit window with a minimum and maximum ETH raise. Depositors receive pETH when the raise initializes the curve and its starting floor — a portion claimable immediately, the rest vesting over a set period, with a penalized early-exit (rage-quit) option. Public Testnet 1 skipped this phase; its curve was initialized directly. Bootstrap terms and dates are pending on [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status).
+Production launch is designed to initialize the curve through a dedicated **bootstrap** contract: a time-boxed, whitelisted deposit window with a minimum and maximum ETH raise. Depositors receive pETH when the raise initializes the curve and its starting floor - a portion claimable immediately, the rest vesting over a set period, with a penalized early-exit (rage-quit) option. Public Testnet 1 skipped this phase; its curve was initialized directly. Bootstrap terms and dates are pending on [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status).
 
 ## Interactive explorer
 
-## pETH beyond CDPs
+## pETH Beyond Positions
 
-pETH is tailor-made collateral for Polaris pAsset branches and user CDPs, but it has a life of its own.
+pETH is tailor-made collateral for Polaris pAsset markets and user positions, but it has a life of its own.
 
 ### Reserve loans and Split
 
-You can [split pETH](https://tokenbrice.github.io/polaris-docs/peth/split) into **fpETH** (the floor leg) and **vpETH** (the premium leg). fpETH can collateralize **reserve loans** — WETH borrowed against floor-value, sized to the floor price so premium swings don't liquidate the position. See [pETH Split](https://tokenbrice.github.io/polaris-docs/peth/split) for the full mechanism, risks, and merge path.
+You can [split pETH](https://tokenbrice.github.io/polaris-docs/peth/split) into **fpETH** (the floor leg) and **vpETH** (the premium leg). fpETH can collateralize **reserve loans** - WETH borrowed against floor-value, sized to the floor price so premium swings don't liquidate the position. See [pETH Split](https://tokenbrice.github.io/polaris-docs/peth/split) for the full mechanism, risks, and merge path.
 
 ### DeFi composability
 
@@ -95,12 +95,7 @@ The curve design removes liquidity-provider withdrawal risk. That does not make 
 
 Next steps:
 - [The Floor Price](https://tokenbrice.github.io/polaris-docs/peth/floor-price): Understand the mathematically enforced minimum price of pETH.
-- [Open a Trove](https://tokenbrice.github.io/polaris-docs/minting/open-a-trove): Use pETH as collateral to mint your first pAsset.
-- [Core Concepts](https://tokenbrice.github.io/polaris-docs/core-concepts): The one-page map of the entire Polaris system.
-
----
-
-[The Bonding Curve: Polaris' Secret Weapon](https://polarisfinance.io/blog/bonding-curve/)
-How a single mechanism enables pETH's rising floor, contract-native liquidity, and protocol-wide value capture.
+- [Open a Position](https://tokenbrice.github.io/polaris-docs/minting/open-a-trove): Use pETH as collateral to issue your first pAsset.
+- [Why Polaris](https://tokenbrice.github.io/polaris-docs/why-polaris): The design choices behind pETH, pAssets, and POLAR.
 
 Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor price, pETH bonding curve, bonding curve, pETH floor.

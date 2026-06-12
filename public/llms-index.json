@@ -16,11 +16,11 @@
         "url": "https://tokenbrice.github.io/polaris-docs/llms-sections/launch-status.txt"
       },
       {
-        "title": "Quickstart",
+        "title": "Public Testnet Quickstart",
         "url": "https://tokenbrice.github.io/polaris-docs/llms-sections/quickstart.txt"
       },
       {
-        "title": "Using the App",
+        "title": "Use Polaris",
         "url": "https://tokenbrice.github.io/polaris-docs/llms-sections/using-app.txt"
       },
       {
@@ -32,7 +32,7 @@
         "url": "https://tokenbrice.github.io/polaris-docs/llms-sections/understand-polaris.txt"
       },
       {
-        "title": "Resources",
+        "title": "Reference",
         "url": "https://tokenbrice.github.io/polaris-docs/llms-sections/resources.txt"
       }
     ]
@@ -56,17 +56,6 @@
       ],
       "updated": "2026-06-12",
       "lastVerified": "2026-06-12"
-    },
-    {
-      "route": "/core-concepts",
-      "url": "https://tokenbrice.github.io/polaris-docs/core-concepts",
-      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/core-concepts.md",
-      "section": "Understand Polaris",
-      "title": "Polaris Core Concepts",
-      "description": "A one-page map of the Polaris system, with every key term defined briefly and linked to its full explanation.",
-      "keywords": [],
-      "updated": null,
-      "lastVerified": null
     },
     {
       "route": "/launch-status",
@@ -101,8 +90,8 @@
       "url": "https://tokenbrice.github.io/polaris-docs/minting",
       "markdownUrl": "https://tokenbrice.github.io/polaris-docs/minting.md",
       "section": "Understand Polaris",
-      "title": "Issuing Polaris pAssets",
-      "description": "How Polaris users issue pAssets directly from the protocol against pETH collateral, and what to check before opening or managing a position.",
+      "title": "Issuing pAssets",
+      "description": "How Polaris users issue pAssets directly from the protocol against pETH collateral.",
       "keywords": [],
       "updated": null,
       "lastVerified": null
@@ -112,12 +101,18 @@
       "url": "https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove",
       "markdownUrl": "https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove.md",
       "section": "Understand Polaris",
-      "title": "Managing a Polaris Trove",
-      "description": "Manage a Polaris trove around its loan-to-value (LTV) — add collateral, issue or repay debt, track interest, and close out cleanly.",
+      "title": "Manage a Position",
+      "description": "Manage a Polaris position around loan-to-value, redemptions, interest, and repayment.",
       "keywords": [
         "Borrow",
         "Manage Borrow Position",
         "borrow",
+        "trove",
+        "troves",
+        "open trove",
+        "manage trove",
+        "collateralized debt position",
+        "CDP",
         "issue",
         "open borrow position",
         "repay",
@@ -139,12 +134,18 @@
       "url": "https://tokenbrice.github.io/polaris-docs/minting/open-a-trove",
       "markdownUrl": "https://tokenbrice.github.io/polaris-docs/minting/open-a-trove.md",
       "section": "Understand Polaris",
-      "title": "Open a Borrow Position",
-      "description": "How to open a Polaris borrow position from the app Borrow tab — deposit pETH, issue a pAsset, and review LTV before signing.",
+      "title": "Open a Position",
+      "description": "How to open a Polaris borrow position from the app Borrow tab.",
       "keywords": [
         "Borrow",
         "Manage Borrow Position",
         "borrow",
+        "trove",
+        "troves",
+        "open trove",
+        "manage trove",
+        "collateralized debt position",
+        "CDP",
         "issue",
         "open borrow position",
         "repay",
@@ -244,7 +245,7 @@
       "markdownUrl": "https://tokenbrice.github.io/polaris-docs/polar.md",
       "section": "Understand Polaris",
       "title": "POLAR Token, Staking, and Conversion",
-      "description": "Why POLAR exists, how it is minted only by burning pETH, why its dilution is productive, and how staking and conversion fit together.",
+      "description": "Why POLAR exists, how conversion works, why dilution can be productive, and how staking and stewardship fit together.",
       "keywords": [
         "POLAR",
         "convert",
@@ -265,7 +266,7 @@
       "markdownUrl": "https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions.md",
       "section": "Understand Polaris",
       "title": "POLAR Conversion Auctions",
-      "description": "The conversion auction bridges pETH and POLAR — a spike-and-decay auction where burning pETH mints POLAR, raises the floor price, and releases ETH yield.",
+      "description": "The conversion auction bridges pETH and POLAR by burning pETH, creating POLAR, raising the floor price, and releasing ETH yield.",
       "keywords": [
         "POLAR",
         "convert",
@@ -302,7 +303,7 @@
       "route": "/quickstart",
       "url": "https://tokenbrice.github.io/polaris-docs/quickstart",
       "markdownUrl": "https://tokenbrice.github.io/polaris-docs/quickstart.md",
-      "section": "Quickstart",
+      "section": "Public Testnet Quickstart",
       "title": "Public Testnet Quickstart",
       "description": "The fastest safe path to try Polaris on Public Testnet 1 with Sepolia test assets.",
       "keywords": [
@@ -315,8 +316,8 @@
         "stale quote",
         "failed transaction"
       ],
-      "updated": "2026-06-09",
-      "lastVerified": "2026-06-09"
+      "updated": "2026-06-12",
+      "lastVerified": "2026-06-12"
     },
     {
       "route": "/redemptions-liquidations",
@@ -335,7 +336,7 @@
       "markdownUrl": "https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations.md",
       "section": "Understand Polaris",
       "title": "Polaris Liquidations",
-      "description": "A trove above its maximum LTV is liquidated to keep the pAsset backed. The Stability Pool absorbs the debt, or it redistributes to troves.",
+      "description": "A position above its maximum LTV is liquidated to keep the pAsset backed. The Earn Vault absorbs the debt, or it redistributes to positions.",
       "keywords": [
         "liquidation",
         "liquidations",
@@ -361,9 +362,9 @@
       "route": "/resources",
       "url": "https://tokenbrice.github.io/polaris-docs/resources",
       "markdownUrl": "https://tokenbrice.github.io/polaris-docs/resources.md",
-      "section": "Resources",
+      "section": "Reference",
       "title": "Polaris Glossary",
-      "description": "Every Polaris term defined in one or two sentences, alphabetized and linked to its full explanation. The fast way to look anything up.",
+      "description": "Short definitions for Polaris terms, user-facing labels, and technical aliases.",
       "keywords": [
         "app",
         "official app",
@@ -389,7 +390,7 @@
       "route": "/resources/audits-security",
       "url": "https://tokenbrice.github.io/polaris-docs/resources/audits-security",
       "markdownUrl": "https://tokenbrice.github.io/polaris-docs/resources/audits-security.md",
-      "section": "Resources",
+      "section": "Reference",
       "title": "Polaris Audits & Security",
       "description": "Polaris security model, audit-report status, bug-bounty status, and disclosure guidance. Pre-launch reports and bounty details are not published yet.",
       "keywords": [],
@@ -400,7 +401,7 @@
       "route": "/resources/brand-assets",
       "url": "https://tokenbrice.github.io/polaris-docs/resources/brand-assets",
       "markdownUrl": "https://tokenbrice.github.io/polaris-docs/resources/brand-assets.md",
-      "section": "Resources",
+      "section": "Reference",
       "title": "Polaris Brand Assets",
       "description": "Polaris logos, the Celestial Night Sky palette, and typography, with usage do's and don'ts. Dark mode is the canonical surface.",
       "keywords": [],
@@ -411,8 +412,8 @@
       "route": "/resources/faq",
       "url": "https://tokenbrice.github.io/polaris-docs/resources/faq",
       "markdownUrl": "https://tokenbrice.github.io/polaris-docs/resources/faq.md",
-      "section": "Resources",
-      "title": "Polaris Finance FAQ",
+      "section": "Reference",
+      "title": "Polaris FAQ",
       "description": "Short answers to common Polaris questions, with links to canonical pages for status, contracts, parameters, risks, and app actions.",
       "keywords": [
         "app",
@@ -439,7 +440,7 @@
       "route": "/resources/risk-disclosure",
       "url": "https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure",
       "markdownUrl": "https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure.md",
-      "section": "Resources",
+      "section": "Reference",
       "title": "Polaris Risk Disclosure",
       "description": "A comprehensive catalog of the risks of using Polaris, each paired with the mechanism that mitigates it, without implying any risk is eliminated.",
       "keywords": [
@@ -456,7 +457,7 @@
       "route": "/resources/testnet",
       "url": "https://tokenbrice.github.io/polaris-docs/resources/testnet",
       "markdownUrl": "https://tokenbrice.github.io/polaris-docs/resources/testnet.md",
-      "section": "Resources",
+      "section": "Reference",
       "title": "Polaris Public Testnet 1",
       "description": "Public Testnet 1 network, manifest sources, parameters, and Sepolia contract addresses, with verification rules and production-finality status.",
       "keywords": [
@@ -519,7 +520,7 @@
       "markdownUrl": "https://tokenbrice.github.io/polaris-docs/troubleshooting.md",
       "section": "Troubleshooting",
       "title": "Troubleshooting",
-      "description": "Fix common Polaris app issues on Public Testnet 1 — wrong network, missing Sepolia ETH, failed approvals, stale quotes, and reverted transactions.",
+      "description": "Fix common Polaris app issues on Public Testnet 1.",
       "keywords": [
         "quickstart",
         "troubleshooting",
@@ -530,14 +531,14 @@
         "stale quote",
         "failed transaction"
       ],
-      "updated": "2026-06-11",
-      "lastVerified": "2026-06-11"
+      "updated": "2026-06-12",
+      "lastVerified": "2026-06-12"
     },
     {
       "route": "/using-app",
       "url": "https://tokenbrice.github.io/polaris-docs/using-app",
       "markdownUrl": "https://tokenbrice.github.io/polaris-docs/using-app.md",
-      "section": "Using the App",
+      "section": "Use Polaris",
       "title": "Dashboard",
       "description": "How to read the Polaris app Dashboard and start your first testnet action.",
       "keywords": [],
@@ -548,7 +549,7 @@
       "route": "/using-app/advanced",
       "url": "https://tokenbrice.github.io/polaris-docs/using-app/advanced",
       "markdownUrl": "https://tokenbrice.github.io/polaris-docs/using-app/advanced.md",
-      "section": "Using the App",
+      "section": "Use Polaris",
       "title": "Advanced Tools in the Polaris App",
       "description": "How to use the Polaris Advanced tab for PSM mint/redeem, pETH-to-POLAR conversion, and the testnet faucet.",
       "keywords": [],
@@ -559,13 +560,19 @@
       "route": "/using-app/borrow",
       "url": "https://tokenbrice.github.io/polaris-docs/using-app/borrow",
       "markdownUrl": "https://tokenbrice.github.io/polaris-docs/using-app/borrow.md",
-      "section": "Using the App",
+      "section": "Use Polaris",
       "title": "Borrow in the Polaris App",
       "description": "How to open and manage Polaris debt positions from the app Borrow tab.",
       "keywords": [
         "Borrow",
         "Manage Borrow Position",
         "borrow",
+        "trove",
+        "troves",
+        "open trove",
+        "manage trove",
+        "collateralized debt position",
+        "CDP",
         "issue",
         "open borrow position",
         "repay",
@@ -583,7 +590,7 @@
       "route": "/using-app/earn",
       "url": "https://tokenbrice.github.io/polaris-docs/using-app/earn",
       "markdownUrl": "https://tokenbrice.github.io/polaris-docs/using-app/earn.md",
-      "section": "Using the App",
+      "section": "Use Polaris",
       "title": "Earn in the Polaris App",
       "description": "How to use Earn Vaults, stake POLAR or vpETH, and claim rewards in the Polaris app.",
       "keywords": [
@@ -591,7 +598,7 @@
         "earn",
         "yield",
         "APR",
-        "Stability Pool",
+        "Earn Vault",
         "deposit",
         "claim rewards"
       ],
@@ -602,7 +609,7 @@
       "route": "/using-app/split",
       "url": "https://tokenbrice.github.io/polaris-docs/using-app/split",
       "markdownUrl": "https://tokenbrice.github.io/polaris-docs/using-app/split.md",
-      "section": "Using the App",
+      "section": "Use Polaris",
       "title": "Split in the Polaris App",
       "description": "How to split pETH into fpETH and vpETH, merge them back, and avoid common execution mistakes.",
       "keywords": [
@@ -621,7 +628,7 @@
       "route": "/using-app/swap",
       "url": "https://tokenbrice.github.io/polaris-docs/using-app/swap",
       "markdownUrl": "https://tokenbrice.github.io/polaris-docs/using-app/swap.md",
-      "section": "Using the App",
+      "section": "Use Polaris",
       "title": "Swap in the Polaris App",
       "description": "How to buy and sell pETH on the bonding curve with quote, approval, and slippage checks.",
       "keywords": [
@@ -640,7 +647,7 @@
       "route": "/using-app/zap",
       "url": "https://tokenbrice.github.io/polaris-docs/using-app/zap",
       "markdownUrl": "https://tokenbrice.github.io/polaris-docs/using-app/zap.md",
-      "section": "Using the App",
+      "section": "Use Polaris",
       "title": "Zap in the Polaris App",
       "description": "How to use Polaris Zap strategies and recover safely when one bundled step fails.",
       "keywords": [
@@ -648,7 +655,7 @@
         "earn",
         "yield",
         "APR",
-        "Stability Pool",
+        "Earn Vault",
         "deposit",
         "claim rewards"
       ],
@@ -660,8 +667,8 @@
       "url": "https://tokenbrice.github.io/polaris-docs/why-polaris",
       "markdownUrl": "https://tokenbrice.github.io/polaris-docs/why-polaris.md",
       "section": "Understand Polaris",
-      "title": "Why Polaris Finance",
-      "description": "Why DeFi needs an immutable, counterparty-free yield layer instead of yield rented from tradfi, custodians, multisigs, and opaque intermediaries.",
+      "title": "Why Polaris",
+      "description": "Why DeFi needs immutable, counterparty-free, yield-bearing money and collateral.",
       "keywords": [],
       "updated": null,
       "lastVerified": null
@@ -671,14 +678,14 @@
       "url": "https://tokenbrice.github.io/polaris-docs/yield",
       "markdownUrl": "https://tokenbrice.github.io/polaris-docs/yield.md",
       "section": "Understand Polaris",
-      "title": "Polaris Stability Pool",
-      "description": "The Stability Pool is a reserve of pAssets that backstops liquidations and is the primary venue for earning yield on Polaris.",
+      "title": "Polaris Earn Vaults",
+      "description": "Earn Vaults let pAsset holders earn from borrower interest and liquidation gains.",
       "keywords": [
         "Earn",
         "earn",
         "yield",
         "APR",
-        "Stability Pool",
+        "Earn Vault",
         "deposit",
         "claim rewards"
       ],
@@ -691,13 +698,13 @@
       "markdownUrl": "https://tokenbrice.github.io/polaris-docs/yield/yield-sources.md",
       "section": "Understand Polaris",
       "title": "Polaris Yield Sources",
-      "description": "Every source of pAsset yield on Polaris is onchain, internal to the protocol, and scales with activity — yield that is owned, not rented.",
+      "description": "Every source of pAsset yield on Polaris is onchain, internal to the protocol, and scales with activity.",
       "keywords": [
         "Earn",
         "earn",
         "yield",
         "APR",
-        "Stability Pool",
+        "Earn Vault",
         "deposit",
         "claim rewards"
       ],

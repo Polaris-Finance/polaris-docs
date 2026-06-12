@@ -16,20 +16,20 @@ This page consolidates POLAR's economics. Each piece has its own page; here they
 
 > **Current status:** POLAR's total supply, distribution schedule, and vesting terms are pending and will be published at launch. This page describes the *structure* of POLAR's economics, fixed by design, not the final numbers, which are forthcoming. Treat any figure not stated here as not yet finalized.
 
-## Issuance: minted only by burning pETH
+## Issuance: created only by burning pETH
 
-After the initial distribution, new POLAR is intended to be mintable only by burning pETH in a [conversion auction](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions). There is no planned team mint function or calendar-based inflation schedule.
+After the initial distribution, new POLAR is intended to enter circulation only by burning pETH in a [conversion auction](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions). There is no planned team creation function or calendar-based inflation schedule.
 
 - Every POLAR that enters circulation after launch is intended to require someone to burn pETH.
 - Conversion runs as a continuous, permissionless [spike-and-decay auction](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions), so issuance tracks real arbitrage activity, not a fixed emission curve. Most conversions are executed by arbitrage bots and MEV searchers.
 
-Each conversion burns pETH, releases ETH from the bonding-curve reserve as yield, and mints POLAR. See [pETH Floor Price](https://tokenbrice.github.io/polaris-docs/peth/floor-price) for the floor mechanics.
+Each conversion burns pETH, releases ETH from the bonding-curve reserve as yield, and creates POLAR. See [pETH Floor Price](https://tokenbrice.github.io/polaris-docs/peth/floor-price) for the floor mechanics.
 
 ## A bounded, productive dilution
 
 Every conversion dilutes existing POLAR holders, but the dilution is bounded and buys a concrete improvement:
 
-- **Bounded.** [Spike-and-decay pricing](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions) makes large or rapid minting throttle itself, so issuance tracks arbitrage demand. Final parameter bounds are pending.
+- **Bounded.** [Spike-and-decay pricing](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions) makes large or rapid issuing throttle itself, so issuance tracks arbitrage demand. Final parameter bounds are pending.
 - **Productive.** Each unit of dilution corresponds to burned pETH and released ETH yield, unlike emissions disconnected from protocol activity.
 - **Progressive for the team.** The founding team's outsized early share is diluted by the same mechanism: the faster Polaris grows, the more attractive conversions become, and the more that initial share shrinks. The dilution is enforced by code, not pledged in a forum.
 
@@ -48,7 +48,7 @@ POLAR's value accrual runs on hard-asset protocol revenue, buffered and routed b
 
 Destination | Routed by | What they receive
 
-**Troves** | Fee Router (pETH) | pETH yield, credited pro-rata to recorded debt
+**Positions** | Fee Router (pETH) | pETH yield, credited proportionally to recorded debt
 **POLAR stakers** | Interest router (pAsset) | A stewarded share of protocol interest where the staking surface is live
 **vePOLAR lockers** | Pending deployment | Forthcoming stewardship and yield path after audited locking deployment
 **Flow recipients** | Fee Router, via [Flows](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router) | Revenue-sharing for whitelisted contracts (forthcoming)
@@ -62,14 +62,14 @@ The structure deliberately omits the usual extraction surfaces:
 - **No gauges.** Stewardship cannot create POLAR emissions gauges.
 - **No bribes.** No vote-buying markets are routed through the protocol.
 - **No emissions.** Ecosystem incentives flow through [Flows](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router) as hard-asset revenue sharing, funded by protocol revenue, not token emissions.
-- **No planned mint outside conversion.** Final deployment is intended to mint POLAR only through pETH conversion.
+- **No planned creation outside conversion.** Final deployment is intended to create POLAR only through pETH conversion.
 
 ## The Polar Council
 
 The **Polar Council** is a planned treasury-funded program for onboarding and ecosystem contributors, comparable in spirit to veAERO's Flight School. Initially team-managed; its allocation, operating framework, eligibility, and reporting requirements are pending publication.
 
 Next steps:
-- [Conversion Auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions): The spike-and-decay mechanism behind every POLAR mint.
+- [Conversion Auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions): The spike-and-decay mechanism behind POLAR conversion.
 - [vePOLAR Locking](https://tokenbrice.github.io/polaris-docs/stewardship/vepolar): The committed lock design and forthcoming stewardship rights.
 - [Fee Router & Flows](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router): How the revenue in the table above is buffered and routed.
 

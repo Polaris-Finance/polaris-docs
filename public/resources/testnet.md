@@ -5,7 +5,7 @@
 
 Canonical URL: https://tokenbrice.github.io/polaris-docs/resources/testnet
 Markdown URL: https://tokenbrice.github.io/polaris-docs/resources/testnet.md
-Section: Resources
+Section: Reference
 Updated: 2026-06-11
 Last verified: 2026-06-11
 
@@ -16,7 +16,7 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 This page is the single source for Public Testnet 1: [environment](https://tokenbrice.github.io/polaris-docs/resources/testnet#environment), [manifest sources](https://tokenbrice.github.io/polaris-docs/resources/testnet#manifest-sources), [parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters), [contract addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses), and [verification](https://tokenbrice.github.io/polaris-docs/resources/testnet#verification).
 
-Everything below is Public Testnet 1 on Sepolia, last verified on the date in the banner above. Sepolia values are replaceable artifacts with no monetary value, no production redemption, and no mainnet claim — do not infer production constants or addresses from them. Production values are not published unless this page and Launch Status say they are.
+Everything below is Public Testnet 1 on Sepolia, last verified on the date in the banner above. Sepolia values are replaceable artifacts with no monetary value, no production redemption, and no mainnet claim - do not infer production constants or addresses from them. Production values are not published unless this page and Launch Status say they are.
 
 ## Environment
 
@@ -39,8 +39,8 @@ The protocol repository and commit are not yet public. The paths below identify 
 Manifest | What it covers | Internal protocol path
 
 Core manifest | Reserve token, pETH/bonding curve, POLAR/share system, staking, fee router, reserve loans, stewardship, splitter, vpToken | `deployments/sepolia/deployment-manifest.core.ts`
-pUSD manifest | pUSD token, CDP manager, Stability Pool, PSM, price feed, medianiser, interest controller, read helper | `deployments/sepolia/deployment-manifest.pusd.ts`
-pGOLD manifest | pGOLD token, CDP manager, Stability Pool, PSM, price feed, ETH/USD and XAU/USD medianisers, interest controller, read helper | `deployments/sepolia/deployment-manifest.pgold.ts`
+pUSD manifest | pUSD token, CDP manager, Earn Vault, PSM, price feed, medianiser, interest controller, read helper | `deployments/sepolia/deployment-manifest.pusd.ts`
+pGOLD manifest | pGOLD token, CDP manager, Earn Vault, PSM, price feed, ETH/USD and XAU/USD medianisers, interest controller, read helper | `deployments/sepolia/deployment-manifest.pgold.ts`
 Deploy script defaults | Fee floors, fee alpha values, decay factors, initial rates, and deployment constants not all written into the manifests | `script/DeployPolaris.s.sol`
 
 Treat these as testnet artifacts: useful for testing, indexer scaffolding, and UI verification, but not public provenance or production-canonical.
@@ -82,10 +82,10 @@ Mint alpha | `1e18` | `1e18` | Deploy script
 Redemption alpha | `1e18` | `1e18` | Deploy script
 Mint minute decay factor | `998076443575628800` | `998076443575628800` | Deploy script
 Redemption minute decay factor | `998076443575628800` | `998076443575628800` | Deploy script
-Primary interest split (Stability Pool / POLAR staking / ecosystem) | 75% / 25% / 0% | 75% / 25% / 0% | Deploy script
-Liquidation penalty, Stability Pool path | 5% | 5% | Deploy script
+Primary interest split (Earn Vault / POLAR staking / ecosystem) | 75% / 25% / 0% | 75% / 25% / 0% | Deploy script
+Liquidation penalty, Earn Vault path | 5% | 5% | Deploy script
 Liquidation penalty, redistribution path (MCR − 100%) | 15% | 15% | Derived in contract
-Liquidation gas compensation, fixed deposit at trove open | 0.0375 pETH | 0.0375 pETH | Deploy script
+Liquidation gas compensation, fixed deposit at position open | 0.0375 pETH | 0.0375 pETH | Deploy script
 Liquidation gas compensation, variable | 0.5% of SP-portion collateral, capped at 2 pETH | Same | Hardcoded
 
 The app may display the inverse borrower metric, **max LTV**. Public Testnet 1's 115% MCR is about 87.0% max LTV; the 150% Emergency Mode action MCR is about 66.7% max LTV.
@@ -101,7 +101,7 @@ Polaris deploys one shared core plus one branch set per pAsset.
 Layer | What deploys
 
 Shared core | pETH/bonding curve, splitter, POLAR/ShareSystem, Fee Router, stewardship, staking, reserve loans, reserve token
-Per-pAsset branch | pAsset token, CDP manager, CDP NFT, Stability Pool, internal PSM, interest controller, price feeds, read helper
+Per-pAsset market | pAsset token, CDP manager, CDP NFT, Earn Vault, internal PSM, interest controller, price feeds, read helper
 
 ### Shared core
 
@@ -124,7 +124,7 @@ vpToken | [`0xd59019504ea81813632c8f5e8014027b47c82ab1`](https://sepolia.ethersc
 Contract | Sepolia address
 
 pUSD token | [`0xf06a3e9420176351d0341507f91d243014510d5b`](https://sepolia.etherscan.io/address/0xf06a3e9420176351d0341507f91d243014510d5b)
-Stability Pool | [`0x8da97da1f6ab14d144a4966360e19ca5f2b5aece`](https://sepolia.etherscan.io/address/0x8da97da1f6ab14d144a4966360e19ca5f2b5aece)
+Earn Vault | [`0x8da97da1f6ab14d144a4966360e19ca5f2b5aece`](https://sepolia.etherscan.io/address/0x8da97da1f6ab14d144a4966360e19ca5f2b5aece)
 CDP NFT | [`0xace616e3a3b07bfe2424ae48c1b4fb8aed90eea0`](https://sepolia.etherscan.io/address/0xace616e3a3b07bfe2424ae48c1b4fb8aed90eea0)
 ETH/USD medianiser | [`0xbad4c21ea10259280b1980b6c3f8de806b8ec31a`](https://sepolia.etherscan.io/address/0xbad4c21ea10259280b1980b6c3f8de806b8ec31a)
 pUSD testnet price feed | [`0x26998cd15cbfddcb1e8c81fb7dff75886dc90185`](https://sepolia.etherscan.io/address/0x26998cd15cbfddcb1e8c81fb7dff75886dc90185)
@@ -139,7 +139,7 @@ Primary Interest Router | [`0xb5971ee694ca881963533114c1694f5f0c56ac09`](https:/
 Contract | Sepolia address
 
 pGOLD token | [`0x664396097e787956eaf25214049ab58a7d53d2e1`](https://sepolia.etherscan.io/address/0x664396097e787956eaf25214049ab58a7d53d2e1)
-Stability Pool | [`0x3308842b03248838c83205100a0a33d716dc37d6`](https://sepolia.etherscan.io/address/0x3308842b03248838c83205100a0a33d716dc37d6)
+Earn Vault | [`0x3308842b03248838c83205100a0a33d716dc37d6`](https://sepolia.etherscan.io/address/0x3308842b03248838c83205100a0a33d716dc37d6)
 CDP NFT | [`0xb621912e3c7383bb65b4d720ac946aa618ed129b`](https://sepolia.etherscan.io/address/0xb621912e3c7383bb65b4d720ac946aa618ed129b)
 ETH/USD medianiser | [`0xbad4c21ea10259280b1980b6c3f8de806b8ec31a`](https://sepolia.etherscan.io/address/0xbad4c21ea10259280b1980b6c3f8de806b8ec31a)
 XAU/USD medianiser | [`0x8f4256ec2674ed87fdf7e8079ec3933263326fe1`](https://sepolia.etherscan.io/address/0x8f4256ec2674ed87fdf7e8079ec3933263326fe1)

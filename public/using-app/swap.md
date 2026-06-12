@@ -5,7 +5,7 @@
 
 Canonical URL: https://tokenbrice.github.io/polaris-docs/using-app/swap
 Markdown URL: https://tokenbrice.github.io/polaris-docs/using-app/swap.md
-Section: Using the App
+Section: Use Polaris
 Updated: 2026-06-12
 Last verified: 2026-06-12
 
@@ -14,31 +14,23 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 ---
 
-## What it does
+Swap lets you exchange test WETH for pETH through the Polaris bonding curve.
 
-Swap is the bonding-curve interface for pETH. Sell ETH (WETH) to **buy** pETH, or sell pETH back for ETH. The route is always `WETH → bonding curve → pETH`. Each mint locks ETH into the curve's reserve at the current price, and pETH carries a hard, ever-rising price floor. To get fpETH or vpETH use [Split](https://tokenbrice.github.io/polaris-docs/using-app/split); to mint pUSD or pGOLD use [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow).
+pETH is the core collateral asset in Polaris. Once you hold pETH, you can use it to issue pAssets, split it into fpETH and vpETH, or participate in other protocol strategies.
 
 Image: Polaris Swap tab showing the Sell/Buy direction, the WETH to pETH bonding-curve route, the quote, and slippage controls
 
-*Swap routes WETH through the bonding curve to pETH; refresh and review the quote before signing.*
+Before signing, check the quoted price, expected output, and slippage settings.
 
-## Steps/checks
+## Basic Flow
 
 1. Choose the direction: buy pETH with WETH, or sell pETH for WETH.
 2. Enter the amount and review the quote and route.
-3. Check minimum received, price impact, fees, and slippage.
-4. Approve the input token only if the spender matches the app flow.
+3. Check minimum received, fees, and slippage.
+4. Approve the input token if prompted.
 5. Sign the swap transaction.
-6. Confirm the pETH (or WETH) balance updates in the wallet.
+6. Confirm your pETH or WETH balance updates.
 
-The swap worked when the transaction lands and the output token balance updates.
-
-## Next actions
-
-- Use [Split](https://tokenbrice.github.io/polaris-docs/using-app/split) to convert pETH into fpETH and vpETH.
-- Use [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow) to mint pUSD or pGOLD against pETH.
-- Use [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn) after you have a deposit or staking asset.
-- Use [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap) if you want the app to bundle a swap with a deposit.
-- Use [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting) for stale quotes and reverted swaps.
+For stale quotes or reverted swaps, see [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting).
 
 Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor price.

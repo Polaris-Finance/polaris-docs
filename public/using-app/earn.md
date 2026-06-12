@@ -5,7 +5,7 @@
 
 Canonical URL: https://tokenbrice.github.io/polaris-docs/using-app/earn
 Markdown URL: https://tokenbrice.github.io/polaris-docs/using-app/earn.md
-Section: Using the App
+Section: Use Polaris
 Updated: 2026-06-12
 Last verified: 2026-06-12
 
@@ -14,33 +14,27 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 ---
 
-## What it does
+Earn is where you deposit assets into Polaris yield opportunities.
 
-Earn groups Polaris's yield positions across four sub-tabs:
+Current opportunities include:
 
-- **pUSD** and **pGOLD** Earn Vaults: deposit the pAsset to backstop liquidations; earn pAsset interest plus pETH liquidation gains.
-- **POLAR** staking: earn a share of issuer interest paid in pUSD and pGOLD, plus governance voting power.
-- **vpETH** staking: gain exposure to the volatile component of pETH beyond its floor value, and participate in pETH rewards distribution.
+- pUSD Earn Vaults, where deposits earn from borrower interest and liquidation gains.
+- pGOLD Earn Vaults, where deposits earn from borrower interest and liquidation gains.
+- POLAR staking, where stakers receive protocol value based on their voting power.
+- vpETH rewards, where holders gain exposure to the volatile component of pETH beyond its floor value and participate in pETH rewards distribution.
 
-Each sub-tab shows its current APR, a deposit/withdraw (or stake/unstake) control, and an option to claim pending rewards in the same transaction.
+Earn Vault deposits act as the first line of defense during liquidations. In exchange, depositors receive yield from protocol activity.
 
 Image: Polaris Earn tab with pUSD, pGOLD, POLAR, and vpETH sub-tabs, an APR, a deposit/withdraw toggle, and a claim-pending option
 
-## Steps/checks
+## Basic Flow
 
 1. Select the sub-tab and review its APR, your current deposit, and pending gains.
 2. Choose deposit/withdraw (or stake/unstake).
-3. Leave "Also claim pending …" checked to claim rewards in the same transaction, or uncheck it.
+3. Choose whether to claim pending rewards in the same transaction.
 4. Approve the token if required, then sign.
 5. Confirm your deposit, balance, and claimable gains updated.
 
-The action worked when the Earn card and wallet balances reflect the transaction.
+For disabled deposits, claims, or staking actions, see [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting). For first-loss risk, see [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure).
 
-## Next actions
-
-- Use [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap) or [Split](https://tokenbrice.github.io/polaris-docs/using-app/split) to acquire deposit assets.
-- Use [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap) for a bundled swap-plus-deposit.
-- Use the [Dashboard](https://tokenbrice.github.io/polaris-docs/using-app) to monitor deposits and rewards.
-- Use [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting) if a deposit, claim, or stake action stays disabled.
-
-Relevant app/search vocabulary: Earn, earn, yield, APR, Stability Pool, deposit, claim rewards.
+Relevant app/search vocabulary: Earn, earn, yield, APR, Earn Vault, deposit, claim rewards.

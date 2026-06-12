@@ -5,7 +5,7 @@
 
 Canonical URL: https://tokenbrice.github.io/polaris-docs/using-app/zap
 Markdown URL: https://tokenbrice.github.io/polaris-docs/using-app/zap.md
-Section: Using the App
+Section: Use Polaris
 Updated: 2026-06-12
 Last verified: 2026-06-12
 
@@ -13,8 +13,6 @@ Documentation index: https://tokenbrice.github.io/polaris-docs/llms.txt
 Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.txt
 
 ---
-
-## What it does
 
 Zap combines multiple on-chain actions into a single transaction, making it easier to enter common Polaris strategies.
 
@@ -29,9 +27,9 @@ A zap only simplifies execution. The underlying economics remain exactly the sam
 
 Image: Polaris Zap tab showing the pUSD Stable Yield route from WETH through pUSD into the Earn Vault
 
-*You keep full self-custody throughout the process.*
+You keep full self-custody throughout the process. Before signing, a simulation shows the expected result and slippage is set by your settings.
 
-## Steps/checks
+## Basic Flow
 
 1. Choose the strategy.
 2. Enter the input amount.
@@ -40,12 +38,6 @@ Image: Polaris Zap tab showing the pUSD Stable Yield route from WETH through pUS
 5. Sign approvals only for expected spenders, then sign the zap.
 6. Confirm the final position on the Dashboard, Earn, or Borrow tab.
 
-The zap worked when the final target position appears, not merely when the first approval succeeds.
+For stale quotes, failed simulations, or partial setup after approval, see [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting).
 
-## Next actions
-
-- Use the [Dashboard](https://tokenbrice.github.io/polaris-docs/using-app) to confirm the final state.
-- Use [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap) if you received an intermediate token.
-- Use [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn) or [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow) to complete or manage the position manually.
-
-Relevant app/search vocabulary: Earn, earn, yield, APR, Stability Pool, deposit, claim rewards.
+Relevant app/search vocabulary: Earn, earn, yield, APR, Earn Vault, deposit, claim rewards.

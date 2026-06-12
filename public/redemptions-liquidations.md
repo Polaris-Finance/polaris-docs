@@ -18,7 +18,7 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 A **redemption** exchanges a pAsset for the **[pETH](https://tokenbrice.github.io/polaris-docs/peth)** collateral backing it at the pAsset's protocol reference value, minus a fee. It pays when the pAsset trades *below* peg by more than the fee, gas, slippage, and execution risk.
 
-If pUSD slips to \$0.98, a redeemer can buy pUSD cheaply, redeem it for about \$1 of pETH minus the fee, and sell or hold the pETH. The pETH comes from the collateral of troves carrying that pUSD debt, and their debt shrinks by the pUSD redeemed. No counterparty agrees to the trade; the protocol enforces it.
+If pUSD slips to \$0.98, a redeemer can buy pUSD cheaply, redeem it for about \$1 of pETH minus the fee, and sell or hold the pETH. The pETH comes from the collateral of positions carrying that pUSD debt, and their debt shrinks by the pUSD redeemed. No counterparty agrees to the trade; the protocol enforces it.
 
 This puts an arbitrage floor under the pAsset's market price.
 
@@ -37,20 +37,20 @@ A below-peg pAsset is a standing arbitrage. Walk the loop:
 
 Each pass buys pUSD on the open market, applying **upward price pressure**. Arbitrageurs keep going until pUSD is back at peg and the trade stops paying. Self-interest restores the peg, not intervention.
 
-> **Note:** Redemptions handle the *below*-peg case. The *above*-peg case is handled by the inverse mechanism, **minting**, where arbitrageurs add pETH to troves to mint pAssets when the pAsset trades over peg. See [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting).
+> **Note:** Redemptions handle the *below*-peg case. The *above*-peg case is handled by the inverse mechanism, **issuing**, where arbitrageurs add pETH to positions to issue pAssets when the pAsset trades over peg. See [Issuing pAssets](https://tokenbrice.github.io/polaris-docs/minting).
 
 The two mechanisms are mirror images:
 
-Mechanism | Direction | Arbitrageur does | Effect on troves
+Mechanism | Direction | Arbitrageur does | Effect on positions
 
 **Redemption** | pAsset < peg | Burns pAsset (repays debt) ⇒ takes pETH | Debt and collateral both shrink
-**Minting** | pAsset > peg | Adds pETH ⇒ mints pAsset | Debt and collateral both grow
+**Issuing** | pAsset > peg | Adds pETH ⇒ issues pAsset | Debt and collateral both grow
 
-Their volumes also serve as the protocol's peg signal: a spike in redemptions reads as a downward depeg, a spike in mintings as an upward one. That is how Polaris sets [autonomous interest rates](https://tokenbrice.github.io/polaris-docs/minting) without a direct pUSD market-price feed.
+Their volumes also serve as the protocol's peg signal: a spike in redemptions reads as a downward depeg, and a spike in issuance reads as an upward one. That is how Polaris sets [autonomous interest rates](https://tokenbrice.github.io/polaris-docs/minting) without a direct pUSD market-price feed.
 
-Image: Interest rate and peg stability: above peg, minting volume rises and the interest rate falls to expand supply; below peg, redemption volume rises and the interest rate climbs to contract supply — each loop pushing the price back toward peg
+Image: Interest rate and peg stability: above peg, issuing volume rises and the interest rate falls to expand supply; below peg, redemption volume rises and the interest rate climbs to contract supply - each loop pushing the price back toward peg
 
-*Redemption and minting volume are the onchain peg signal; the loops above show the mechanism's direction, not exact arithmetic.*
+*Redemption and issuance volume are the onchain peg signal; the loops above show the mechanism's direction, not exact arithmetic.*
 
 ## Mechanics in detail
 
@@ -58,17 +58,17 @@ Image: Interest rate and peg stability: above peg, minting volume rises and the 
 
 Current fee floors, decay factors, and fill constraints live on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters). The user-facing rule is simple: the redeemer receives the redeemed amount's reference value in pETH **minus** the fee and execution costs. If the fee, gas, pETH slippage, MEV risk, or price movement exceed the below-peg spread, the redemption is unprofitable.
 
-Two contract-level details refine that rule. The fee is not paid out to anyone: the collateral it represents stays in the branch, accruing pro-rata to the remaining troves. And if the branch's [reserve-to-debt ratio (TCR)](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode) is below 100%, the post-fee proceeds are scaled down by that ratio — redeeming against a thinly backed branch returns proportionally less pETH.
+Two contract-level details refine that rule. The fee is not paid out to anyone: the collateral it represents stays in the branch, accruing proportionally to the remaining positions. And if the branch's [reserve-to-debt ratio (TCR)](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode) is below 100%, the post-fee proceeds are scaled down by that ratio - redeeming against a thinly backed branch returns proportionally less pETH.
 
 The app should show a pre-confirmation quote once the interface is live. Treat examples here as arithmetic only.
 
 ### Borrower impact
 
-A redemption targets the whole pAsset system, not a specific trove. It reduces debt and pETH collateral across **all** open troves for that pAsset, pro-rata to each trove's recorded collateral. There is no LTV queue, no "riskiest trove first," and no health metric that exempts a trove.
+A redemption targets the whole pAsset system, not a specific position. It reduces debt and pETH collateral across **all** open positions for that pAsset, proportionally to each position's recorded collateral. There is no LTV queue, no "riskiest position first," and no health metric that exempts a position.
 
-Being redeemed against is not a liquidation penalty: your debt is repaid at face value with your own collateral, so net equity is broadly unchanged before fees and rounding. The cost is control. Your trove becomes smaller, your pETH exposure falls, and future pETH-linked yield potential falls with it.
+Being redeemed against is not a liquidation penalty: your debt is repaid at face value with your own collateral, so net equity is broadly unchanged before fees and rounding. The cost is control. Your position becomes smaller, your pETH exposure falls, and future pETH-linked yield potential falls with it.
 
-One edge case: because both reductions are shared pro-rata to collateral, a trove holding a lot of collateral relative to its debt can shed more debt than it owes. Debt floors at zero — the protocol mints the overshoot to the trove owner as pAsset the next time the trove is touched.
+One edge case: because both reductions are shared based on collateral, a position holding a lot of collateral relative to its debt can shed more debt than it owes. Debt floors at zero, and the protocol sends the overshoot to the position owner as pAsset the next time the position is touched.
 
 Lower LTV protects against **liquidation**, not redemption. It can still matter after a redemption, because the remaining LTV often improves but the position is smaller.
 
@@ -80,16 +80,16 @@ Redemptions are visible onchain transactions. Searchers can compete for the same
 
 Assume pUSD trades at \$0.98, the redemption fee quote is 0.5%, and gas/slippage are ignored. A redeemer buys 10,000 pUSD for \$9,800 and redeems it for \$10,000 of pETH minus the 0.5% fee, or about \$9,950 of pETH. The gross spread is about \$150 before gas, slippage, MEV, and price movement.
 
-Now the borrower side of the same redemption. The 10,000 pUSD redeemed reduces total system debt by 10,000 pUSD and removes roughly \$10,000 of pETH from the pool. Both reductions are shared across every open trove in proportion to recorded collateral.
+Now the borrower side of the same redemption. The 10,000 pUSD redeemed reduces total system debt by 10,000 pUSD and removes roughly \$10,000 of pETH from the pool. Both reductions are shared across every open position in proportion to recorded collateral.
 
-For intuition, here is the proportional share for one trove holding a fifth of the system's collateral, so it absorbs a fifth of the redemption (2,000 pUSD of debt and about \$2,000 of pETH):
+For intuition, here is the proportional share for one position holding a fifth of the system's collateral, so it absorbs a fifth of the redemption (2,000 pUSD of debt and about \$2,000 of pETH):
 
 Step | Collateral value | Debt | LTV
 
 Before redemption | \$18,000 | 12,000 pUSD | 66.7%
-After absorbing its pro-rata share | About \$16,000 | 10,000 pUSD | 62.5%
+After absorbing its share | About \$16,000 | 10,000 pUSD | 62.5%
 
-The borrower did not repay voluntarily; the market did it through the redemption path. The trove is slightly safer by LTV, but smaller and less exposed to pETH.
+The borrower did not repay voluntarily; the market did it through the redemption path. The position is slightly safer by LTV, but smaller and less exposed to pETH.
 
 ## Before you act
 
@@ -100,11 +100,8 @@ The borrower did not repay voluntarily; the market did it through the redemption
 
 ## Next actions
 
-- [Managing Your Trove](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove) for borrower levers.
+- [Managing Your Position](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove) for borrower levers.
 - [Liquidations](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations) for the forced-close path.
 - [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode) for the system-wide defensive state.
 - [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure) for the full risk model.
 - [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters) for current redemption values.
-
-[CDPs Mint Dollars. Polaris Mints Anything](https://polarisfinance.io/blog/polaris-mints-anything/)
-From Maker to Liquity, CDP models shaped DeFi lending. Polaris takes the blueprint further with pETH, self-adjusting rates, and a factory for stablecoins pegged to anything.

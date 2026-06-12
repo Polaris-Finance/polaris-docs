@@ -14,9 +14,7 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 ---
 
-This page owns current status: what is live, what is testnet-only, what is not live, and which app URL is official.
-
-## Current phase
+## Current Phase
 
 Item | Status
 
@@ -24,18 +22,16 @@ Public phase | **Public Testnet 1**
 Testnet network | **Sepolia**, chain ID `11155111`
 Official testnet app | [https://app.testnet.polarisfinance.io/](https://app.testnet.polarisfinance.io/)
 Testnet-active pAssets | pUSD and pGOLD
-Illustrative or future pAssets | pCHF, pBigMac, and other catalog examples
-Production network | Ethereum mainnet, chain ID `1`, forthcoming
-[Bonding-curve bootstrap](https://tokenbrice.github.io/polaris-docs/peth#how-the-production-curve-launches) | Not used in Public Testnet 1; intended to initialize the production curve at launch. Terms and dates not announced
+Production network | Ethereum mainnet, forthcoming
 
-## What this means
+## What This Means
 
-- You can try Polaris on Public Testnet 1 with Sepolia test assets only.
-- Testnet assets have no monetary value, no production redemption, and no mainnet claim.
-- Do not use a production app, production address, audit claim, bounty link, or mainnet workflow unless this page says it is live.
-- Current Sepolia artifacts can change after redeploys.
+- Polaris is currently available on Public Testnet 1 using Sepolia test assets only.
+- Testnet assets have no monetary value, redemption rights, or claim on future mainnet assets.
+- Do not rely on production infrastructure, audits, bounty programs, or mainnet workflows unless explicitly marked as live.
+- Sepolia deployments may change as testing progresses.
 
-## Where each exact fact lives
+## Canonical References
 
 Need | Canonical page
 
@@ -46,7 +42,7 @@ Numeric protocol parameters | [Parameters](https://tokenbrice.github.io/polaris-
 Risk taxonomy | [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure)
 Audit and disclosure status | [Audits & Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security)
 
-## Start here
+## Start Here
 
 If you want to use the app now, follow [Public Testnet Quickstart](https://tokenbrice.github.io/polaris-docs/quickstart). If anything in your wallet prompt conflicts with this page, stop and verify before signing.
 

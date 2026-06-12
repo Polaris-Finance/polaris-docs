@@ -21,7 +21,7 @@ This page covers two related systems:
 
 ## Fee Router
 
-The Fee Router receives protocol revenue, buffers it, and sends it to the configured recipient path. It moves existing assets only; it does not mint POLAR or create emissions.
+The Fee Router receives protocol revenue, buffers it, and sends it to the configured recipient path. It moves existing assets only; it does not create POLAR or emissions.
 
 ### Inputs
 
@@ -32,7 +32,7 @@ Bonding-curve swap fees | pETH fees from ETH ⇄ pETH activity
 
 These are the only two sources wired into the router today; borrower interest follows a separate pAsset-denominated path (see [Yield Sources](https://tokenbrice.github.io/polaris-docs/yield/yield-sources)).
 
-Swap fees take one extra step before distribution: accumulated fee pETH is **burned at the floor price**, which lifts the [floor](https://tokenbrice.github.io/polaris-docs/peth/floor-price) and releases reserve ETH; that ETH is swapped back into pETH and distributed with the rest. The burn is the floor-raising mechanism — what reaches the destinations below is the repurchased pETH, not the burned fees. Anyone can trigger the burn-and-repurchase step; sending buffered pETH onward to a destination is a stewardship action.
+Swap fees take one extra step before distribution: accumulated fee pETH is **burned at the floor price**, which lifts the [floor](https://tokenbrice.github.io/polaris-docs/peth/floor-price) and releases reserve ETH; that ETH is swapped back into pETH and distributed with the rest. The burn is the floor-raising mechanism - what reaches the destinations below is the repurchased pETH, not the burned fees. Anyone can trigger the burn-and-repurchase step; sending buffered pETH onward to a destination is a stewardship action.
 
 For the full source matrix, see [Yield Sources](https://tokenbrice.github.io/polaris-docs/yield/yield-sources).
 
@@ -40,7 +40,7 @@ For the full source matrix, see [Yield Sources](https://tokenbrice.github.io/pol
 
 Destination | What they receive
 
-Troves | pETH yield credited pro-rata to recorded debt
+Positions | pETH yield credited proportionally to recorded debt
 Flow recipients | Revenue-sharing distributions for whitelisted contracts (forthcoming)
 
 POLAR stakers are not paid by the Fee Router: their share comes from **borrower interest** through the separate interest router. See [POLAR Tokenomics](https://tokenbrice.github.io/polaris-docs/polar/tokenomics#where-the-yield-comes-from).
@@ -79,7 +79,7 @@ If a whitelisted contract holds 20% of the whitelisted pETH supply, it receives 
 Flow | Recipients | Funded by
 
 pETH Flow | Eligible pETH-holding contracts | Bonding-curve and conversion-related revenue
-pAsset Flow | Eligible pAsset-holding contracts | Borrower interest or other pAsset revenue after required Stability Pool allocation
+pAsset Flow | Eligible pAsset-holding contracts | Borrower interest or other pAsset revenue after required Earn Vault allocation
 
 Each Flow has its own whitelist, observed asset, recipient rules, and parameter bounds. Final contracts will define which assets, recipients, and revenue sources go live.
 
@@ -121,8 +121,3 @@ The only intended path for new POLAR after inception is [pETH conversion](https:
 - [Yield Sources](https://tokenbrice.github.io/polaris-docs/yield/yield-sources) for where revenue originates.
 - [POLAR Tokenomics](https://tokenbrice.github.io/polaris-docs/polar/tokenomics) for staking, vePOLAR, and pending economics.
 - [Stewardship](https://tokenbrice.github.io/polaris-docs/stewardship) for the bounded decision model.
-
----
-
-[Sustaining the Ecosystem: pETH & pUSD Flows](https://polarisfinance.io/blog/polaris-flows/)
-How Polaris replaces emission-style incentives with an autonomous, hard-asset distribution system to sustain the pETH and pAssets ecosystems.

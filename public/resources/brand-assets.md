@@ -5,7 +5,7 @@
 
 Canonical URL: https://tokenbrice.github.io/polaris-docs/resources/brand-assets
 Markdown URL: https://tokenbrice.github.io/polaris-docs/resources/brand-assets.md
-Section: Resources
+Section: Reference
 
 Documentation index: https://tokenbrice.github.io/polaris-docs/llms.txt
 Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.txt
@@ -30,7 +30,7 @@ Favicon (SVG) | `/favicon.svg` | Scalable browser favicon
 Favicon (PNG / ICO) | `/favicon.png`, `/favicon.ico` | Raster favicons for legacy contexts
 Apple touch icon | `/apple-touch-icon.png` | iOS home-screen icon
 
-## Palette — Celestial Night Sky
+## Palette - Celestial Night Sky
 
 ### Navy backgrounds
 
@@ -82,7 +82,7 @@ Body | **Inter** | Sans-serif. Clean and legible at every size.
 
 **Don't**
 
-- Don't use **pure white (`#FFFFFF`)** for text — too harsh against the navy. Use Star or Star bright.
+- Don't use **pure white (`#FFFFFF`)** for text - too harsh against the navy. Use Star or Star bright.
 - Don't recolor the logos or the token colors.
 - Don't stretch, rotate, or add effects to the marks.
 - Don't place the logo on a busy or low-contrast background.

@@ -5,20 +5,20 @@
 
 Canonical URL: https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure
 Markdown URL: https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure.md
-Section: Resources
+Section: Reference
 
 Documentation index: https://tokenbrice.github.io/polaris-docs/llms.txt
 Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.txt
 
 ---
 
-Polaris is trustless, immutable infrastructure. That design choice has real costs, and we disclose them before we claim the benefits. Every risk below is paired with the mechanism that mitigates it (*mitigates*, not eliminates). Read this page in full before you mint, deposit, or lock anything.
+Polaris is trustless, immutable infrastructure. That design choice has real costs, and we disclose them before we claim the benefits. Every risk below is paired with the mechanism that mitigates it (*mitigates*, not eliminates). Read this page in full before you issue, deposit, or lock anything.
 
 > **Note:** Nothing here is financial advice. Polaris is currently in the phase shown on [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status). Testnet assets have no monetary value, and production use is not live unless Launch Status says it is. Trustlessness means the protocol will not, and cannot, step in to make you whole.
 
 ## Smart-contract risk
 
-Polaris lives entirely onchain. Its bonding curve, branch contracts, CDP accounting, Stability Pool, and conversion auctions are smart contracts, and any smart contract can contain bugs.
+Polaris lives entirely onchain. Its bonding curve, pAsset markets, position accounting, Earn Vaults, and conversion auctions are smart contracts, and any smart contract can contain bugs.
 
 **Mitigation.** The intended core is immutable and admin-key-free, removing upgrade and governance-key attack surface but raising the stakes on getting the code right. Final audit reports are not published in these docs yet; until reports appear on [Audits & Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security), treat the protocol as unaudited. Immutability cuts both ways: it cannot be tampered with, and it cannot be patched. Residual risk is never zero.
 
@@ -34,7 +34,7 @@ The only collateral is [pETH](https://tokenbrice.github.io/polaris-docs/peth), w
 
 Pricing pETH collateral for liquidation requires an ETH price feed. A stale, manipulated, or failed oracle could misprice collateral and trigger wrong liquidations, or fail to trigger correct ones.
 
-**Mitigation.** Peg awareness uses redemption and minting volume as internal signals for each pAsset (see [Minting pAssets](https://tokenbrice.github.io/polaris-docs/minting)). The oracle dependency is confined to pricing ETH collateral, plus the reference-asset feed for non-USD pAssets (pGOLD composes ETH/USD and gold/USD feeds with the curve price, so either feed failing affects its pricing). Each external price is read through a **Medianiser** holding up to three oracle feeds: three valid answers take the median, one or two take the highest-priority live feed, and none falls back to the last good price — which can go stale in a sustained outage. Stewardship can replace a failed feed immediately; replacing a live feed sits behind a timelock. Current testnet and production address status lives on [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses).
+**Mitigation.** Peg awareness uses redemption and issuance volume as internal signals for each pAsset (see [Issuing pAssets](https://tokenbrice.github.io/polaris-docs/minting)). The oracle dependency is confined to pricing ETH collateral, plus the reference-asset feed for non-USD pAssets. pGOLD composes ETH/USD and gold/USD feeds with the curve price, so either feed failing affects its pricing. Each external price is read through a **Medianiser** holding up to three oracle feeds: three valid answers take the median, one or two take the highest-priority live feed, and none falls back to the last good price, which can go stale in a sustained outage. Stewardship can replace a failed feed immediately; replacing a live feed sits behind a timelock. Current testnet and production address status lives on [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses).
 
 ## Peg and depeg risk
 
@@ -43,31 +43,31 @@ A pAsset can trade away from its peg, below it in a panic or above it in a deman
 **Mitigation.** Two opposing arbitrage mechanisms defend the peg structurally:
 
 - **[Redemptions](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations)** make it profitable to buy the pAsset below peg and redeem it for collateral, pushing the price up toward \$1.
-- **Minting** makes it profitable to mint and sell the pAsset above peg, pushing the price back down.
+- **Issuance** makes it profitable to issue and sell the pAsset above peg, pushing the price back down.
 
 Because both pay arbitrageurs the moment the peg slips, they activate without anyone's permission. pUSD is a counterparty-free stablecoin in the same trust-minimized family as LUSD and BOLD, so the peg is not propped up by a redeemable offchain reserve; it is held by onchain incentives.
 
 ## Liquidation risk (borrowers)
 
-If your [trove](https://tokenbrice.github.io/polaris-docs/minting)'s loan-to-value (LTV) rises above the maximum, the trove is [liquidated](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations): you lose your collateral to cover the debt. Protocol parameters may publish the inverse threshold as a minimum collateral ratio (MCR).
+If your [position](https://tokenbrice.github.io/polaris-docs/minting)'s loan-to-value (LTV) rises above the maximum, the position is [liquidated](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations): you lose collateral to cover the debt. Protocol parameters may publish the inverse threshold as a minimum collateral ratio (MCR).
 
-**Mitigation.** Liquidation logic is transparent and auditable onchain, with no discretionary calls. You control your LTV: post more collateral, or repay debt, to stay clear of the threshold. pETH's rising floor and yield-bearing nature dampen, but do not remove, the volatility that causes liquidations. Monitor your trove actively, especially in volatile markets.
+**Mitigation.** Liquidation logic is transparent and auditable onchain, with no discretionary calls. You control your LTV: post more collateral, or repay debt, to stay clear of the threshold. pETH's rising floor and yield-bearing nature dampen, but do not remove, the volatility that causes liquidations. Monitor your position actively, especially in volatile markets.
 
 ## Redemption risk (borrowers)
 
-When a pAsset trades below peg, [redemptions](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations) exchange it for pETH collateral drawn **pro-rata from all troves in the branch, regardless of LTV**. Part of your collateral can be taken even if your trove is conservatively collateralized: a low LTV protects against liquidation, not against redemption.
+When a pAsset trades below peg, [redemptions](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations) exchange it for pETH collateral drawn from all positions in the pAsset market, based on their share of recorded collateral and regardless of LTV. Part of your collateral can be taken even if your position is conservatively collateralized: a low LTV protects against liquidation, not against redemption.
 
-**Mitigation.** A redeemed trove sheds debt at face value one-for-one with the collateral taken, so your net position value is preserved up to the redemption fee, and pro-rata spreading means no single trove is singled out. Redemption is also the mechanism defending the peg you rely on as a borrower. If you want less redemption exposure, the lever is less debt, not more collateral.
+**Mitigation.** A redeemed position sheds debt at face value one-for-one with the collateral taken, so net position value is preserved up to the redemption fee, and proportional spreading means no single position is singled out. Redemption is also the mechanism defending the peg you rely on as a borrower. If you want less redemption exposure, the lever is less debt, not more collateral.
 
-## Stability Pool first-loss risk (depositors)
+## Earn Vault first-loss risk (depositors)
 
-Depositing pAssets into the [Stability Pool](https://tokenbrice.github.io/polaris-docs/yield) is the primary way to earn yield, but the Pool is the system's **first-loss buffer**. When a trove is liquidated, your deposited pAssets are burned to cancel its debt, and you receive the liquidated pETH collateral in exchange.
+Depositing pAssets into an [Earn Vault](https://tokenbrice.github.io/polaris-docs/yield) is the primary way to earn pAsset yield, but the vault is the system's **first-loss buffer**. When a position is liquidated, deposited pAssets can be burned to cancel its debt, and depositors receive the liquidated pETH collateral in exchange.
 
-**Mitigation.** Liquidations are designed to occur while the trove is still overcollateralized, so depositors typically receive collateral worth *more* than the pAssets they gave up, and that surplus is the source of the Pool's yield. The risk is the opposite case: a liquidation processed below the value of the burned deposit, or a sharp collapse in the received collateral's value. You take on liquidation-processing risk in exchange for yield; size your deposit accordingly.
+**Mitigation.** Liquidations are designed to occur while the position is still overcollateralized, so depositors typically receive collateral worth *more* than the pAssets they gave up, and that surplus is the source of Earn Vault yield. The risk is the opposite case: a liquidation processed below the value of the burned deposit, or a sharp collapse in the received collateral's value. You take on liquidation-processing risk in exchange for yield; size your deposit accordingly.
 
 ## Recovery Mode
 
-When the system-wide reserve backing relative to total debt (the [reserve-to-debt ratio, shown as the TCR](https://tokenbrice.github.io/polaris-docs/resources#t)) drops below a threshold, the protocol enters [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode), a defensive state with tighter requirements.
+When the system-wide reserve backing relative to total debt (the reserve-to-debt ratio, shown as TCR) drops below a threshold, the protocol enters [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode), a defensive state with tighter requirements.
 
 **Mitigation.** Recovery Mode is a feature, not a failure: it raises the bar for the whole system to rebuild collateralization quickly. Borrowers bear the cost: in Recovery Mode you cannot withdraw collateral or take on more debt unless you stay below the stricter recovery max LTV and do not increase your LTV (pure collateral top-ups and repayments stay allowed). Liquidation eligibility itself does not change; it stays at the normal max LTV in every mode. Keep your LTV comfortably below the maximum so a stress event does not box in your ability to act.
 
