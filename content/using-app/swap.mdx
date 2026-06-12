@@ -5,21 +5,15 @@ description: How to buy and sell pETH on the bonding curve with quote, approval,
 
 # Swap
 
-<PageStatusBanner lastUpdated="June 9, 2026" />
+<PageStatusBanner lastUpdated="June 12, 2026" />
 
 ## What it does
 
-Swap is the bonding-curve interface for pETH. Sell ETH (WETH) to **buy** pETH, or sell pETH back for ETH — the route is always `WETH → bonding curve → pETH`. Each mint locks ETH into the curve's reserve at the current marginal price, and pETH carries a hard, ever-rising price floor. To get fpETH or vpETH use [Split](/using-app/split); to mint pUSD or pGOLD use [Borrow](/using-app/borrow).
+Swap is the bonding-curve interface for pETH. Sell ETH (WETH) to **buy** pETH, or sell pETH back for ETH. The route is always `WETH → bonding curve → pETH`. Each mint locks ETH into the curve's reserve at the current price, and pETH carries a hard, ever-rising price floor. To get fpETH or vpETH use [Split](/using-app/split); to mint pUSD or pGOLD use [Borrow](/using-app/borrow).
 
 ![Polaris Swap tab showing the Sell/Buy direction, the WETH to pETH bonding-curve route, the quote, and slippage controls](/screenshots/swap.jpg)
 
 *Swap routes WETH through the bonding curve to pETH; refresh and review the quote before signing.*
-
-## Before you start
-
-- Start from the [Dashboard](/using-app) and verify the current app and network first.
-- Hold WETH (claim it from the faucet) and enough Sepolia ETH for gas.
-- Read the direction, output, minimum received, price impact, and approval target before signing.
 
 ## Steps/checks
 
@@ -32,21 +26,10 @@ Swap is the bonding-curve interface for pETH. Sell ETH (WETH) to **buy** pETH, o
 
 The swap worked when the transaction lands and the output token balance updates.
 
-## Common failures
-
-- Quote expired before the transaction landed.
-- Slippage limit was too tight.
-- Input balance or allowance was too low.
-- Gas was too low or Sepolia was congested.
-- Wallet is connected to the wrong account or network.
-
-## Risks/links
-
-Swaps can lose value through slippage, price movement, stale quotes, and gas. pETH mechanics are explained in [pETH](/peth) and [pETH Floor Price](/peth/floor-price). Use [Risk Disclosure](/resources/risk-disclosure) for risk details.
-
 ## Next actions
 
 - Use [Split](/using-app/split) to convert pETH into fpETH and vpETH.
 - Use [Borrow](/using-app/borrow) to mint pUSD or pGOLD against pETH.
+- Use [Earn](/using-app/earn) after you have a deposit or staking asset.
 - Use [Zap](/using-app/zap) if you want the app to bundle a swap with a deposit.
 - Use [Troubleshooting](/troubleshooting) for stale quotes and reverted swaps.
