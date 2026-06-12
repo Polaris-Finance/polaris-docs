@@ -80,17 +80,6 @@ function propValue(props, name) {
   return match?.[2]?.trim() ?? ''
 }
 
-function renderBlogPostCard(props) {
-  const title = propValue(props, 'title')
-  const description = propValue(props, 'description')
-  const url = propValue(props, 'url')
-
-  if (!title && !description) return ''
-
-  const heading = url ? `[${title || 'Related article'}](${url})` : title
-  return [heading, description].filter(Boolean).join('\n')
-}
-
 function renderImageAlt(props) {
   const alt = propValue(props, 'alt') || propValue(props, 'aria-label') || propValue(props, 'title')
   return alt ? `Image: ${alt}` : ''
@@ -125,12 +114,11 @@ function renderNextSteps(props) {
 
 function stripJsxTags(value) {
   return value
-    .replace(/<BlogPostCard\s+([\s\S]*?)\/>/g, (_match, props) => renderBlogPostCard(props))
     .replace(/<NextSteps\s+([\s\S]*?)\/>/g, (_match, props) => renderNextSteps(props))
     .replace(/<LaunchTimeline\s*\/>/g, `Image: ${timelineSummary()} ${timelineCaption()}`)
     .replace(
       /<SystemOverviewFigure\s*\/>/g,
-      'Image: Polaris system overview: ETH swaps into pETH on the bonding curve, pETH collateralizes pAsset branches that mint pUSD, and burning pETH for POLAR raises the floor and releases ETH.'
+      'Image: Polaris system overview: ETH swaps into pETH on the bonding curve, pETH collateralizes pAsset markets that issue pUSD, and burning pETH for POLAR raises the floor and releases ETH.'
     )
     .replace(
       /<TimedExplainers\s*\/>/g,
@@ -547,11 +535,11 @@ function buildProtocolManifest(pages) {
 const sectionTitles = {
   introduction: 'Introduction',
   'launch-status': 'Launch Status',
-  quickstart: 'Quickstart',
-  'using-app': 'Using the App',
+  quickstart: 'Public Testnet Quickstart',
+  'using-app': 'Use Polaris',
   troubleshooting: 'Troubleshooting',
   'understand-polaris': 'Understand Polaris',
-  resources: 'Resources'
+  resources: 'Reference'
 }
 const sectionOrder = Object.keys(sectionTitles)
 
@@ -563,7 +551,7 @@ function sectionForRoute(route) {
   if (/^\/using-app(?:\/|$)/.test(route)) return 'using-app'
   if (/^\/resources(?:\/|$)/.test(route)) return 'resources'
   if (
-    /^\/(?:why-polaris|core-concepts|peth|minting|yield|redemptions-liquidations|polar|stewardship)(?:\/|$)/.test(
+    /^\/(?:why-polaris|peth|minting|yield|redemptions-liquidations|polar|stewardship)(?:\/|$)/.test(
       route
     )
   ) {
@@ -603,7 +591,7 @@ const orderedSections = [
 
 const header = `# Polaris Documentation
 
-> User and developer documentation for Polaris Finance — the self-scaling stablecoin operating system. Mint pAssets backed entirely by onchain collateral and yield. No T-bills. No CEXs. No compromises.
+> User and developer documentation for Polaris, the pETH-powered yield layer for DeFi. Issue pAssets backed entirely by onchain collateral and yield. No T-bills. No CEXs. No compromises.
 
 ## Agent Guidance
 

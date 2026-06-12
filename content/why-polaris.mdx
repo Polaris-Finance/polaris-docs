@@ -1,89 +1,79 @@
 ---
-title: Why Polaris Finance
-description: Why DeFi needs an immutable, counterparty-free yield layer instead of yield rented from tradfi, custodians, multisigs, and opaque intermediaries.
+title: Why Polaris
+description: Why DeFi needs immutable, counterparty-free, yield-bearing money and collateral.
 ---
 
-# Why Polaris Finance
+# Why Polaris
 
-DeFi should not end as a thin interface over the same institutions it was built to route around. Yet the market has drifted in that direction: more tokenized T-bills, more custodial yield, more proxy contracts, more multisigs, and more black-box counterparties sitting between users and the assets they think they own.
+DeFi was built to remove unnecessary trust. Over time, much of the ecosystem has drifted back toward the same dependencies it set out to escape: custodians, centralized exchanges, multisigs, upgradeable contracts, offchain collateral, and black-box yield.
 
-Polaris exists to move yield back onchain.
+The result is a financial system that looks onchain from the outside, but often depends on centralized promises underneath.
 
-## The wrong direction
+Polaris takes a different path.
 
-DeFi has become increasingly centralized and tethered to traditional finance for yield. The two dominant sources are:
+Polaris is built around immutable, counterparty-free, yield-bearing money and collateral. Its core asset, pETH, is backed by ETH and designed to support decentralized currencies and synthetic assets without relying on T-bills, custodians, or offchain intermediaries.
 
-1. **RWAs and T-bills for stablecoins.** Tokenized offchain assets import banking, custody, issuer, blacklist, jurisdiction, and redemption risk.
-2. **ETH staking for ETH assets.** Liquid staking gives useful base yield, but it has also centralized around a small set of staking providers, node operators, and restaking-style dependencies.
+## The Problem
 
-These are useful products, but they should not be accepted as the final state of DeFi. They make yield depend on institutions, legal structures, privileged operators, or offchain promises. That dependency may look efficient in calm markets, but it reintroduces the same risks DeFi was supposed to make optional: frozen assets, opaque balance sheets, socialized losses, discretionary governance, and changing rules after users have committed capital.
+The current state of DeFi has centralized around two dominant yield sources:
 
-The extra yield does not compensate users for all of those risks. It often hides them.
+- RWA and T-bill yield for stablecoins.
+- ETH staking yield for ETH-denominated assets.
 
-## What DeFi still needs
+Both can be useful, but they should not be accepted as the end state of DeFi.
 
-The internet needs a financial base layer that is hard to capture.
+Offchain yield introduces new risks: centralized intermediaries, legal claims, redemption constraints, opaque agreements, and freeze or seizure exposure. Users take these risks, but are not always compensated for them.
 
-It needs money and yield that can move between humans, companies, agents, protocols, and nation states without depending on a bank account, custodian, issuer, or committee that can be pressured into changing the rules. It needs infrastructure that can serve users across borders without assuming that every user, jurisdiction, and counterparty will remain politically convenient forever.
+## The Polaris Thesis
 
-That base layer cannot be built from assets that can be frozen, confiscated, blacklisted, upgraded into a different risk profile, or made dependent on offchain redemption. It has to be:
+The internet needs financial infrastructure that can be used by people, institutions, autonomous agents, and future digital economies without relying on trusted counterparties.
 
-- **Immutable at the core,** so users can rely on the rules they entered under.
-- **Counterparty-free,** so yield does not depend on a custodian, issuer, exchange, bank, or market maker.
-- **Onchain by default,** so value accrues from transparent protocol activity rather than hidden balance sheets.
-- **Productive,** so users do not have to choose between sovereignty and useful yield.
+That requires money and collateral that are:
 
-Polaris is built for that version of DeFi.
+- Immutable at the core.
+- Backed by onchain assets.
+- Resistant to capture.
+- Productive without offchain yield dependencies.
+- Useful across DeFi without permission.
 
-## The Polaris answer
+Polaris is designed to make this possible.
 
-Polaris turns onchain financial activity into a yield layer.
+## What Polaris Enables
 
-Its core asset, [pETH](/peth), is created through a bonding curve. Activity on that curve builds reserves, raises the floor, and creates yield-bearing collateral that can support new onchain assets. From there, Polaris extends into [pAssets](/minting/passet-catalog): synthetic assets backed by pETH, with borrower interest, Stability Pool flows, conversion gains, and curve activity feeding the system instead of an offchain desk.
+Polaris turns ETH into pETH, a yield-bearing reserve asset with a natively growing floor. pETH can then back pAssets such as pUSD and pGOLD, creating decentralized currencies and synthetic assets that scale with protocol activity.
 
-The point is not simply to create another stablecoin. The point is to create a base layer where collateral, synthetic money, and yield are generated by immutable onchain mechanisms rather than imported from centralized intermediaries.
+Instead of importing yield from centralized counterparties, Polaris routes value from its own mechanisms back into the system.
 
-## Design choices
+Users can:
 
-Polaris makes a few deliberate tradeoffs to keep the core useful without reintroducing offchain dependency.
+- Hold pETH as productive collateral.
+- Issue pAssets against pETH.
+- Deposit pAssets into Earn Vaults.
+- Split pETH into floor and volatility components.
+- Participate in POLAR stewardship.
+
+## Design Choices
 
 | Choice | Why it exists | What it enables |
 |---|---|---|
-| **One collateral primitive: pETH** | A single reserve asset keeps risk accounting legible instead of fragmenting collateral across many tokens. | Every pAsset branch shares the same collateral base and yield engine. |
+| **pETH as common collateral** | Gives all pAssets a shared reserve foundation | Easier risk accounting across pAsset markets |
 | **Two-way bonding curve** | The curve gives pETH contract-native liquidity without depending on external liquidity providers. | ETH can enter and exit through transparent onchain rules while fees and burns can raise the pETH floor. |
-| **pAssets as branch debt** | Each pAsset gets its own branch, parameters, Stability Pool, and redemption path instead of sharing one pooled debt bucket. | Polaris can support multiple synthetic assets while isolating branch-level risk. |
-| **Minting and redemptions as peg signals** | Peg pressure is visible in protocol actions, so rates can react to onchain demand instead of discretionary committees. | pAssets get autonomous incentives around both sides of the peg. |
-| **POLAR outside the immutable core** | Growth and stewardship should not be required for the base protocol to function. | POLAR can coordinate outward-facing incentives while pETH, pAssets, liquidations, and redemptions keep operating independently. |
-| **Bounded stewardship** | Parameters need tuning, but users need confidence that the core cannot be rewritten underneath them. | Stewardship can adjust quantitative settings inside predefined limits without becoming unbounded governance. |
+| **pAssets backed by pETH** | Allows synthetic assets without custodians or offchain collateral | pUSD, pGOLD, and future pAssets can share the same reserve base |
+| **Earn Vaults** | Turn liquidation and borrower activity into yield opportunities | pAsset holders can earn while helping backstop the system |
+| **POLAR stewardship** | Allows bounded parameter control without mutable core logic | Long-term coordination without rewriting the base protocol |
+| **pETH split** | Separates floor exposure from upside exposure | Users can choose different risk and return profiles |
+| **Redemptions** | Give pAssets an onchain peg defense mechanism | Below-peg pressure can be corrected without offchain redemption promises |
 
-## Why it matters
+## The End Goal
 
-If DeFi's main yield sources remain T-bills and staking wrappers, then DeFi becomes a distribution layer for other people's balance sheets. That is not enough for a global financial system, and it is especially not enough for a future where autonomous agents, cross-border communities, and ordinary users need assets that cannot be politically switched off.
+Polaris exists to help DeFi become more sovereign, more useful, and less dependent on the centralized financial system.
 
-Polaris is a bet that the next yield layer should be native to crypto's strongest properties:
-
-- transparent execution,
-- immutable rules,
-- self-custody,
-- permissionless access,
-- and economic activity that compounds inside the system itself.
-
-That is the vision: not DeFi as a wrapper around tradfi yield, but DeFi as its own yield-bearing monetary foundation.
+The goal is not just another stablecoin. The goal is a decentralized yield layer for onchain money, synthetic assets, and future internet-native financial systems.
 
 <NextSteps
   steps={[
-    { href: '/peth', title: 'pETH Bonding Curve', description: 'How the shared collateral primitive, curve, and floor price work.' },
-    { href: '/launch-status', title: 'Launch Status', description: 'Official app and network status, plus the shortest path from "I have ETH" to using Polaris.' },
-    { href: '/minting', title: 'Minting pAssets', description: 'How branches and individual CDPs work from first principles.' }
+    { href: '/peth', title: 'pETH', description: 'How the shared collateral primitive, bonding curve, and floor price work.' },
+    { href: '/minting', title: 'Issuing pAssets', description: 'How pUSD and pGOLD positions work.' },
+    { href: '/yield', title: 'Earn Vaults', description: 'How pAsset deposits earn from protocol activity.' }
   ]}
-/>
-
----
-
-<BlogPostCard
-  url="https://polarisfinance.io/blog/why-polaris/"
-  title="Why Polaris?"
-  description="Why DeFi needs an immutable onchain yield layer instead of yield rented from custodians, issuers, and offchain intermediaries."
-  readingTime={6}
-  image="https://polarisfinance.io/polaris-og.png"
 />

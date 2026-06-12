@@ -28,7 +28,7 @@ pGOLD and the incumbent gold tokens both give gold-price exposure, but they are 
 | Collateral | pETH, fully onchain | Physical gold in custody |
 | Redemption | Permissionless, no protocol-level minimum published yet | Issuer-gated; account requirements and redemption minimums depend on the issuer's current terms |
 | KYC | None | Required to redeem |
-| Physical custody | None — nothing to store or insure | Vaulted bullion, with custody risk |
+| Physical custody | None - nothing to store or insure | Vaulted bullion, with custody risk |
 | Counterparty | Polaris protocol only | Tether / Paxos as issuer |
 
 ![pGOLD versus centralized gold tokens (XAUT/PAXG): pGOLD is backed by onchain pETH with permissionless, KYC-free access and Polaris as the only counterparty, while XAUT/PAXG are backed by vaulted bullion with issuer-gated, KYC-required redemption and custody risk](/infographics/pgold-vs-centralized-gold.svg)
@@ -37,7 +37,7 @@ pGOLD inherits ETH-collateral and smart-contract risk where XAUT/PAXG inherit cu
 
 pGOLD's collateral pricing composes two oracle feeds with the bonding curve: pETH is valued in gold terms as ETH/USD × the curve's pETH price ÷ gold/USD. A failure of either feed affects pGOLD pricing; see [Oracle risk](/resources/risk-disclosure#oracle-risk).
 
-![Borrowing pGOLD is not shorting gold: deposit pETH and borrow pGOLD, then your strategy sets the exposure — hold or LP the gold pair for gold-neutral exposure, or sell pGOLD for pETH (or loop) to take short-gold exposure](/infographics/pgold-borrowing-not-shorting.svg)
+![Borrowing pGOLD is not shorting gold: deposit pETH and borrow pGOLD, then your strategy sets the exposure - hold or LP the gold pair for gold-neutral exposure, or sell pGOLD for pETH (or loop) to take short-gold exposure](/infographics/pgold-borrowing-not-shorting.svg)
 
 *Issuing pGOLD against pETH is a borrowing action; whether you end up long pETH, gold-neutral, or short gold depends on what you do with the pGOLD.*
 
@@ -47,22 +47,12 @@ Polaris is **debt-asset agnostic**: it can issue a synthetic pegged to any asset
 
 Shared collateral lets teams add a new pAsset without bootstrapping a fresh collateral base. Each pAsset still has its own debt accounting, so stress in one pAsset does not directly liquidate another pAsset's borrow positions.
 
-![StablecoinOS as a factory: ETH enters one shared bonding curve to create pETH, which collateralizes multiple independent pAsset markets — pUSD, pGOLD, pCHF — over the same pETH collateral base](/infographics/stablecoin-OS.svg)
+![StablecoinOS as a factory: ETH enters one shared bonding curve to create pETH, which collateralizes multiple independent pAsset markets - pUSD, pGOLD, pCHF - over the same pETH collateral base](/infographics/stablecoin-OS.svg)
 
 <NextSteps
   steps={[
-    { href: '/minting/open-a-trove', title: 'Open a Borrow Position', description: 'Issue your first pAsset against pETH collateral, step by step.' },
-    { href: '/peth', title: 'pETH & the Bonding Curve', description: 'The collateral primitive every branch shares.' },
+    { href: '/minting/open-a-trove', title: 'Open a Position', description: 'Issue your first pAsset against pETH collateral, step by step.' },
+    { href: '/peth', title: 'pETH & the Bonding Curve', description: 'The collateral primitive every pAsset market shares.' },
     { href: '/launch-status', title: 'Launch Status', description: 'Which pAssets are testnet-active today.' }
   ]}
-/>
-
----
-
-<BlogPostCard
-  url="https://polarisfinance.io/blog/pGOLD-finishing-what-digixdao-started/"
-  title="pGOLD: Finishing What DigixDAO Started"
-  description="How pGOLD breaks the XAUT/PAXG duopoly without touching a single gold bar."
-  readingTime={7}
-  image="https://polarisfinance.io/blog/pgold-finishing-what-digixdao-started-cover.png"
 />

@@ -1,36 +1,36 @@
 ---
 title: POLAR Conversion Auctions
-description: The conversion auction bridges pETH and POLAR — a spike-and-decay auction where burning pETH mints POLAR, raises the floor price, and releases ETH yield.
+description: The conversion auction bridges pETH and POLAR by burning pETH, creating POLAR, raising the floor price, and releasing ETH yield.
 ---
 
 import { Steps } from 'nextra/components'
 
 # POLAR Conversion Auctions
 
-Conversion auctions let converters **burn pETH to mint new POLAR**. This page covers the auction mechanics; POLAR's broader economics live on [POLAR Tokenomics](/polar/tokenomics).
+Conversion auctions let converters burn pETH to receive new POLAR. This page covers the auction mechanics; POLAR's broader economics live on [POLAR Tokenomics](/polar/tokenomics).
 
-![The conversion mechanism: a converter burns pETH, which mints new POLAR, lifts the pETH floor price, and releases ETH from the bonding-curve reserve; the released ETH splits into a converter rebate and pETH forwarded to the Fee Router](/infographics/conversion-flow.svg)
+![The conversion mechanism: a converter burns pETH, receives new POLAR, lifts the pETH floor price, and releases ETH from the bonding-curve reserve; the released ETH splits into a converter rebate and pETH forwarded to the Fee Router](/infographics/conversion-flow.svg)
 
 ## Spike-and-decay pricing
 
 Conversion runs as a **continuous, permissionless auction**. Anyone can convert pETH to POLAR at any moment; whether it is *profitable* depends on the conversion price versus POLAR's market price. The price follows a **spike-and-decay** model:
 
-1. The conversion price **continuously decays**. The longer nobody converts, the cheaper the offered price — and the more attractive conversion gets.
-2. When a conversion happens, the price **spikes upward**, proportional to the fraction of POLAR supply just inflated. Minting 1% of supply spikes the price far more than minting 0.01%.
+1. The conversion price **continuously decays**. The longer nobody converts, the cheaper the offered price - and the more attractive conversion gets.
+2. When a conversion happens, the price **spikes upward**, proportional to the fraction of POLAR supply just inflated. Issuing 1% of supply spikes the price far more than issuing 0.01%.
 3. After the spike, decay resumes until the next conversion.
 
-The result is a natural rhythm: the price decays until an arbitrageur sees it drift below POLAR's market price, converts to capture the spread, and spikes it back up — closing the opportunity until decay reopens it.
+The result is a natural rhythm: the price decays until an arbitrageur sees it drift below POLAR's market price, converts to capture the spread, and spikes it back up - closing the opportunity until decay reopens it.
 
-![Spike-and-decay conversion pricing: the conversion price decays continuously until it drops below POLAR's market price, opening an arbitrage window; each conversion spikes the price up by an amount proportional to the fraction of POLAR supply minted, then decay resumes](/infographics/spike-and-decay.svg)
+![Spike-and-decay conversion pricing: the conversion price decays continuously until it drops below POLAR's market price, opening an arbitrage window; each conversion spikes the price up by an amount proportional to the fraction of POLAR supply created, then decay resumes](/infographics/spike-and-decay.svg)
 
 > **Note:**
-> The spike is computed against **POLAR supply, not pETH supply**. This steers conversions toward small, frequent operations: a whale converting a large amount in one go faces rapidly diminishing returns as each increment spikes the price against them. The mechanism self-regulates toward steady, incremental minting.
+> The spike is computed against **POLAR supply, not pETH supply**. This steers conversions toward small, frequent operations: a whale converting a large amount in one go faces rapidly diminishing returns as each increment spikes the price against them. The mechanism self-regulates toward steady, incremental issuing.
 
 > *Exact decay and spike parameters are finalized closer to launch, set through stewardship. The converter rebate is bounded between 0% and 100%; final decay and spike bounds are pending.*
 
 ## What burning pETH does
 
-Burning pETH through a conversion has two effects beyond minting POLAR:
+Burning pETH through a conversion has two effects beyond issuing POLAR:
 
 - **ETH is released from the bonding curve reserve.** The ETH backing the burned pETH is freed as conversion gain.
 - **The [floor price](/peth/floor-price) can rise under the curve assumptions.** Reducing supply while preserving reserve backing lifts the modeled floor. Conversions are one-way: POLAR cannot be converted back to pETH.
@@ -46,7 +46,7 @@ Before released ETH becomes system yield, a slice can return to the converter. T
 | Rebate | Effect |
 |---|---|
 | **0%** | Maximum yield to the system; conversions cost the most. Sensible when POLAR's market cap exceeds pETH's. |
-| **100%** | Zero system yield; conversions are cheapest — the rebate returns the burned pETH's floor value, so the converter's net cost is only the premium above floor (at a 60% [floor ratio](/peth/floor-price), roughly 40% of the pETH's market value). An emergency lever to drive volume when the floor is stalling. |
+| **100%** | Zero system yield; conversions are cheapest - the rebate returns the burned pETH's floor value, so the converter's net cost is only the premium above floor (at a 60% [floor ratio](/peth/floor-price), roughly 40% of the pETH's market value). An emergency lever to drive volume when the floor is stalling. |
 | **In between** | The usual operating range, shifting with market conditions. |
 
 Stewards watch the **POLAR / pETH market-cap ratio**: when POLAR's is larger, a lower rebate is easier to defend; when it flips, higher rebates may support conversion volume.
@@ -54,7 +54,7 @@ Stewards watch the **POLAR / pETH market-cap ratio**: when POLAR's is larger, a 
 > **Note:**
 > The total ETH released from the curve is **unaffected** by the rebate in the model. The floor-price impact is the same however the ETH is split afterward, assuming the contracts and curve math execute as designed. The rebate reshapes the *distribution* of value, not the underlying collateral dynamics.
 
-After the rebate, the remaining ETH is swapped into pETH and forwarded to the **[Fee Router](/stewardship/fee-router)**, which buffers it and distributes the yield to pETH troves, pro-rata to their recorded debt.
+After the rebate, the remaining ETH is swapped into pETH and forwarded to the **[Fee Router](/stewardship/fee-router)**, which buffers it and distributes the yield to pETH positions, proportionally to their recorded debt.
 
 ## What conversion does *not* do
 
@@ -79,7 +79,7 @@ The conversion price decays continuously and spikes upward each time someone con
 
 ### Read the quote
 
-Enter a pETH amount. The panel previews the **POLAR you will receive**, the **ETH rebate** at the current [rebate](#the-converter-rebate) setting, and the resulting **price spike**. Because the spike scales with the fraction of POLAR supply minted, larger amounts price progressively worse; favor smaller increments.
+Enter a pETH amount. The panel previews the **POLAR you will receive**, the **ETH rebate** at the current [rebate](#the-converter-rebate) setting, and the resulting **price spike**. Because the spike scales with the fraction of POLAR supply created, larger amounts price progressively worse; favor smaller increments.
 
 ### Decide
 
@@ -87,18 +87,10 @@ Convert only while the previewed POLAR (plus rebate) beats acquiring POLAR on th
 
 ### Burn pETH ⇒ receive POLAR
 
-Confirm the transaction. Your pETH is **permanently burned**, you receive newly minted POLAR, and any ETH rebate goes to your wallet.
+Confirm the transaction. Your pETH is **permanently burned**, you receive POLAR, and any ETH rebate goes to your wallet.
 
 ### Stake, future-lock, or hold
 
 Stake POLAR where the current app exposes POLAR Staking, wait for [vePOLAR](/stewardship/vepolar) locking once audited deployment publishes it, or hold it.
 
 </Steps>
-
-<BlogPostCard
-  url="https://polarisfinance.io/blog/burn-pETH-mint-POLAR/"
-  title="Burn pETH, Mint POLAR: The Conversion Mechanism"
-  description="How a single primitive connects Polaris' three engines, and why every conversion strengthens the protocol."
-  readingTime={11}
-  image="https://polarisfinance.io/blog/burn-peth-mint-polar-cover.png"
-/>

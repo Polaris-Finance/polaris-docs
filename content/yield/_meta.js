@@ -1,4 +1,4 @@
 export default {
-  index: 'Stability Pool',
+  index: 'Earn Vaults',
   'yield-sources': 'Yield Sources'
 }

@@ -1,8 +1,8 @@
 # Polaris Documentation
 
-User documentation for [Polaris Finance](https://polarisfinance.io) — the self-scaling stablecoin operating system. Built with [Nextra 4](https://nextra.site) (Next.js App Router), statically exported and deployed to GitHub Pages at **tokenbrice.github.io/polaris-docs**.
+User documentation for [Polaris](https://polarisfinance.io) - the self-scaling stablecoin operating system. Built with [Nextra 4](https://nextra.site) (Next.js App Router), statically exported and deployed to GitHub Pages at **tokenbrice.github.io/polaris-docs**.
 
-Content lives as MDX in [`content/`](./content); the sidebar is driven by `_meta.js` files. No SaaS backend — the docs are fully git-native.
+Content lives as MDX in [`content/`](./content); the sidebar is driven by `_meta.js` files. No SaaS backend - the docs are fully git-native.
 
 ## Develop
 
@@ -59,7 +59,7 @@ npm run local:push-gate:strict-node          # fail unless the shell matches .nv
 
 ## Important build constraints
 
-Two non-obvious requirements — do not "fix" these without testing:
+Two non-obvious requirements - do not "fix" these without testing:
 
 1. **`zod` is pinned to `4.1.12`** via `overrides` in `package.json`. Nextra 4.6.1's `<Layout>` validates props with a schema where a _missing_ (vs present-but-undefined) `children` key is rejected by zod 4.4.x, breaking every page at static-export prerender time. 4.1.12 tolerates it.
 2. **The build uses `next build --webpack`.** Next 16 defaults `build` to Turbopack, which mis-compiles Nextra's React Server Components and fails the prerender. Dev mode (Turbopack) is fine.
@@ -68,12 +68,12 @@ Other notes:
 
 - `app/not-found.jsx` is required for the optional catch-all route under `output: 'export'`.
 - The Pagefind `postbuild` writes to `out/_pagefind/` for the exported site and syncs a git-ignored copy to `public/_pagefind/` so Nextra search also works in `next dev`.
-- MDX gotchas in this config: do **not** use GitHub-style `> [!NOTE]` callouts or `<!-- -->` HTML comments — use `> **Note:**` blockquotes and `{/* ... */}` comments.
+- MDX gotchas in this config: do **not** use GitHub-style `> [!NOTE]` callouts or `<!-- -->` HTML comments - use `> **Note:**` blockquotes and `{/* ... */}` comments.
 - Public GitHub edit/feedback links are intentionally disabled until the repository remote, default branch, and issue routing are live. Re-enable `projectLink`, `docsRepositoryBase`, `editLink`, and `feedback` in `app/layout.jsx` only after the links resolve.
 
 ## Authoring
 
-- Follow the Polaris voice & spelling conventions (onchain, DeFi, pUSD/pETH lowercase `p`, logical arrow `⇒`, **trove** not vault, T-bills). See the content guide in the `polaris-content` repo.
+- Follow the Polaris voice and spelling conventions: Polaris, onchain, DeFi, pUSD/pETH lowercase `p`, pAsset, Earn Vault, position, and T-bills.
 - Each concept page ends with a **Go deeper →** link to the matching essay on the [Polaris blog](https://polarisfinance.io/blog/).
 - Add a page: create `content/<section>/<page>.mdx` and register its title/order in the section's `_meta.js`.
 

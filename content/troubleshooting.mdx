@@ -1,140 +1,75 @@
 ---
 title: Troubleshooting
-description: Fix common Polaris app issues on Public Testnet 1 — wrong network, missing Sepolia ETH, failed approvals, stale quotes, and reverted transactions.
+description: Fix common Polaris app issues on Public Testnet 1.
 ---
 
 # Troubleshooting
 
-<PageStatusBanner lastUpdated="June 11, 2026" />
+<PageStatusBanner lastUpdated="June 12, 2026" />
 
-Use this page when the app, wallet, quote, balance, or transaction does not behave as expected. For conceptual questions rather than broken flows, see the [FAQ](/resources/faq).
+Use this page when a wallet action, quote, balance, faucet claim, or transaction does not behave as expected.
 
-Start from the known-good setup: Public Testnet 1 at [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io), Sepolia chain ID `11155111`, test assets only.
+## Wrong Network
 
-## Wrong network
+Confirm your wallet is connected to Sepolia, chain ID `11155111`.
 
-**Symptom:** The app asks you to switch networks, actions are disabled, or wallet prompts mention another chain.
+## Wrong Frontend
 
-**Likely cause:** Wallet is not connected to Sepolia.
+Use only the official Public Testnet 1 app:
 
-**Fix:** Switch the wallet network to Sepolia, chain ID `11155111`, then refresh the app.
+[https://app.testnet.polarisfinance.io/](https://app.testnet.polarisfinance.io/)
 
-**When not to proceed:** Do not sign if the wallet prompt shows mainnet or an unexpected chain.
+## Faucet Claim Fails
 
-**Related reference:** [Public Testnet 1 Artifacts](/resources/testnet)
+The faucet may fail if:
 
-## Wrong frontend
+- You do not have enough Sepolia ETH.
+- Your address is still in cooldown.
+- The daily faucet cap has been reached.
+- The faucet is paused.
 
-**Symptom:** The app looks unfamiliar, links differ, or wallet prompts do not match the expected action.
+## Balance Missing
 
-**Likely cause:** You are on the wrong frontend or a phishing copy.
+Check that:
 
-**Fix:** Use [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io) for Public Testnet 1 and verify links from the docs.
+- You are connected with the same wallet.
+- The transaction confirmed.
+- You are viewing the correct asset and network.
+- The app has refreshed after confirmation.
 
-**When not to proceed:** Do not connect or sign from an unverified URL.
+## Approval Succeeded But Action Failed
 
-**Related reference:** [Launch Status](/launch-status)
+Approvals and actions are separate transactions. If approval succeeded, return to the action tab and submit the transaction again after checking the new quote.
 
-## Faucet or test-token shortage
+## Quote Changed
 
-**Symptom:** You cannot start because WETH, pETH, pAssets, POLAR, or Sepolia ETH are missing.
+Quotes can change when protocol state moves. Refresh the quote before signing.
 
-**Likely cause:** The wallet lacks test assets or gas.
+## Borrow Action Fails
 
-**Fix:** Follow [Public Testnet Quickstart](/quickstart) for WETH, pETH, and pAssets; POLAR comes from [conversion](/using-app/advanced). Then refresh balances.
+Common causes:
 
-**When not to proceed:** Do not bridge or send real mainnet funds to testnet contracts.
+- LTV is too high.
+- Minimum debt or collateral requirements are not met.
+- The position would become unsafe after the action.
+- Recovery rules restrict the action.
 
-**Related reference:** [Public Testnet 1 Artifacts](/resources/testnet)
+## Earn Action Fails
 
-## Missing balance
+Common causes:
 
-**Symptom:** The app shows a balance but the wallet does not, or the wallet shows a token the app does not.
+- Insufficient pAsset balance.
+- Approval has not been completed.
+- The selected Earn Vault is unavailable.
 
-**Likely cause:** Token is hidden in the wallet, the wrong account is connected, or the app state is stale.
+## Split Or Merge Fails
 
-**Fix:** Confirm the connected account, refresh the app, and import the token using the canonical address if needed.
+Common causes:
 
-**When not to proceed:** Do not import token addresses from chat links or search results.
+- Insufficient pETH, fpETH, or vpETH balance.
+- Approval has not been completed.
+- The transaction quote expired.
 
-**Related reference:** [Contracts & Addresses](/resources/testnet#contracts-and-addresses)
+## Transaction Pending Or Reverted
 
-## Approval succeeded, action still fails
-
-**Symptom:** Wallet shows an approval transaction succeeded, but the app still asks for approval or the main action fails.
-
-**Likely cause:** Approval was for the wrong spender, wrong token, insufficient amount, or a different account.
-
-**Fix:** Check spender, token, wallet account, and allowance. Then retry only from the correct action tab.
-
-**When not to proceed:** Do not grant unlimited approvals to an unexpected spender.
-
-**Related reference:** [Advanced](/using-app/advanced)
-
-## Stale quote or changed output
-
-**Symptom:** Swap or Zap output changes, minimum received differs, or the transaction reverts.
-
-**Likely cause:** Price, liquidity, route, gas, or slippage changed before inclusion.
-
-**Fix:** Refresh the quote, review the route again, and use a slippage setting you understand.
-
-**When not to proceed:** Do not sign if the wallet prompt no longer matches the app quote.
-
-**Related reference:** [Swap](/using-app/swap), [Zap](/using-app/zap)
-
-## Borrow action disabled or reverted
-
-**Symptom:** Borrow, repay, adjust, or close cannot be submitted.
-
-**Likely cause:** Position health, collateral, debt amount, Recovery Mode, allowance, or price movement blocks the action.
-
-**Fix:** Refresh position data, reduce risk, check collateral and debt amounts, and retry from the Borrow tab. The [Trove Health Simulator](/minting/managing-your-trove?coll=10&debt=22000&price=2600#trove-health-simulator) opens preloaded with an at-risk position you can adjust to match yours.
-
-**When not to proceed:** Do not borrow if you do not understand the displayed liquidation exposure.
-
-**Related reference:** [Borrow](/using-app/borrow), [Recovery Mode](/redemptions-liquidations/recovery-mode), [Risk Disclosure](/resources/risk-disclosure)
-
-## Earn action unavailable
-
-**Symptom:** Deposit, withdraw, claim, stake, or unstake is disabled.
-
-**Likely cause:** No eligible balance, no claimable amount, current deployment limits, or wallet/network mismatch.
-
-**Fix:** Confirm the selected Earn surface, wallet account, balances, and network.
-
-**When not to proceed:** Do not treat APR estimates as guaranteed returns.
-
-**Related reference:** [Earn](/using-app/earn), [Yield](/yield)
-
-## Split or merge fails
-
-**Symptom:** Split or Merge reverts, or Merge allows less than expected.
-
-**Likely cause:** You lack pETH for Split or equal fpETH and vpETH balances for Merge.
-
-**Fix:** Check both token balances and merge only up to the smaller leg balance.
-
-**When not to proceed:** Do not hold only one leg unless you understand the changed exposure.
-
-**Related reference:** [Split](/using-app/split), [pETH Split](/peth/split)
-
-## Transaction pending, out of gas, or reverted
-
-**Symptom:** Wallet shows pending for a long time, or the transaction fails after submission.
-
-**Likely cause:** Sepolia congestion, low gas, state changed, or transaction simulation missed a revert.
-
-**Fix:** Wait for the pending transaction to settle, then refresh app state before retrying.
-
-**When not to proceed:** Do not repeatedly submit the same action without checking whether the first transaction changed balances, allowances, or positions.
-
-**Related reference:** [Dashboard](/using-app)
-
-<NextSteps
-  steps={[
-    { href: '/resources/faq', title: 'FAQ', description: 'Conceptual questions the symptom list above does not cover.' },
-    { href: '/quickstart', title: 'Public Testnet Quickstart', description: 'Reset to the known-good setup and retry from a clean path.' },
-    { href: '/launch-status', title: 'Launch Status', description: 'Confirm the official app URL and network before retrying.' }
-  ]}
-/>
+Check gas settings, wallet status, and the transaction on Sepolia Etherscan. If the transaction reverted, refresh the app and get a new quote before retrying.

@@ -7,8 +7,6 @@ description: How to use Polaris Zap strategies and recover safely when one bundl
 
 <PageStatusBanner lastUpdated="June 12, 2026" />
 
-## What it does
-
 Zap combines multiple on-chain actions into a single transaction, making it easier to enter common Polaris strategies.
 
 The current strategies are:
@@ -22,9 +20,9 @@ A zap only simplifies execution. The underlying economics remain exactly the sam
 
 ![Polaris Zap tab showing the pUSD Stable Yield route from WETH through pUSD into the Earn Vault](/screenshots/zap.jpg)
 
-*You keep full self-custody throughout the process.*
+You keep full self-custody throughout the process. Before signing, a simulation shows the expected result and slippage is set by your settings.
 
-## Steps/checks
+## Basic Flow
 
 1. Choose the strategy.
 2. Enter the input amount.
@@ -33,10 +31,4 @@ A zap only simplifies execution. The underlying economics remain exactly the sam
 5. Sign approvals only for expected spenders, then sign the zap.
 6. Confirm the final position on the Dashboard, Earn, or Borrow tab.
 
-The zap worked when the final target position appears, not merely when the first approval succeeds.
-
-## Next actions
-
-- Use the [Dashboard](/using-app) to confirm the final state.
-- Use [Swap](/using-app/swap) if you received an intermediate token.
-- Use [Earn](/using-app/earn) or [Borrow](/using-app/borrow) to complete or manage the position manually.
+For stale quotes, failed simulations, or partial setup after approval, see [Troubleshooting](/troubleshooting).

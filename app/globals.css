@@ -54,7 +54,7 @@ article h1 {
   background-color: var(--polaris-navy-darkest);
 }
 
-/* Sidebar auto-sizes to its longest label ("Deposit to the Stability Pool").
+/* Sidebar auto-sizes to its longest label ("Deposit to the Earn Vault").
    Content-width is kept at 94rem so the article area stays wide. */
 :root {
   --nextra-content-width: 94rem !important;
@@ -69,7 +69,7 @@ article h1 {
 
 /* Let the widened sidebar's nav labels use the full column width: trim the
    per-level indent and link padding so long items (e.g. "Deposit to the
-   Stability Pool", "Participate in a Conversion") stay on one line. */
+   Earn Vault", "Participate in a Conversion") stay on one line. */
 .nextra-sidebar [class~='x:ms-3'] {
   margin-inline-start: 0.375rem;
 }
@@ -1719,86 +1719,6 @@ article button[title*='Copy'] {
   }
 }
 
-/* ── BlogPostCard ────────────────────────────────────────────────────────── */
-
-.pl-blog-card {
-  display: block;
-  border-radius: 10px;
-  overflow: hidden;
-  border: 1px solid rgba(44, 74, 110, 0.2);
-  background: rgba(63, 127, 168, 0.04);
-  text-decoration: none !important;
-  color: inherit !important;
-  margin: 1.5rem 0;
-  transition:
-    border-color 0.18s,
-    box-shadow 0.18s;
-}
-.pl-blog-card:hover {
-  border-color: rgba(44, 74, 110, 0.4);
-  box-shadow: 0 4px 16px rgba(44, 74, 110, 0.08);
-}
-.dark .pl-blog-card {
-  border-color: rgba(123, 165, 201, 0.15);
-  background: rgba(10, 22, 40, 0.6);
-}
-.dark .pl-blog-card:hover {
-  border-color: rgba(123, 165, 201, 0.35);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-.pl-blog-card-image {
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-}
-.pl-blog-card-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.3s ease;
-  border-radius: 0;
-  box-shadow: none !important;
-}
-.pl-blog-card:hover .pl-blog-card-image img {
-  transform: scale(1.02);
-}
-
-.pl-blog-card-body {
-  padding: 0.9rem 1.2rem 1.1rem;
-}
-.pl-blog-card-meta {
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #3f5a78;
-  margin-bottom: 0.4rem;
-}
-.dark .pl-blog-card-meta {
-  color: var(--polaris-peth);
-}
-.pl-blog-card-title {
-  font-family: var(--font-serif-stack);
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--polaris-navy);
-  margin-bottom: 0.35rem;
-  line-height: 1.35;
-}
-.dark .pl-blog-card-title {
-  color: var(--polaris-star);
-}
-.pl-blog-card-desc {
-  font-size: 0.82rem;
-  color: #4a5868;
-  line-height: 1.6;
-  max-width: none;
-}
-.dark .pl-blog-card-desc {
-  color: rgba(245, 240, 230, 0.52);
-}
-
 /* ═══════════════════════════════════════════════════════════════════════════
    Polaris Docs — Enhanced UX Components CSS
    Added as part of the Full Enhancement plan.
@@ -2210,7 +2130,6 @@ article button[title*='Copy'] {
 
 /* Exclude image links and already-marked internals */
 article a[href^='http']:has(img)::after,
-article a.pl-blog-card::after,
 article a.pl-next-step-card::after {
   display: none !important;
 }
@@ -2633,7 +2552,7 @@ article [class*='overflow-x-auto']:has(table)::after {
   border-color: rgba(123, 165, 201, 0.12);
 }
 
-/* ── Trove Simulator ─────────────────────────────────────────────────────── */
+/* ── Position Simulator ──────────────────────────────────────────────────── */
 
 .pl-trove-sim {
   margin: 1.5rem 0;

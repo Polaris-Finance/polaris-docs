@@ -2,7 +2,6 @@ import { Children, cloneElement, createElement, isValidElement } from 'react'
 import { useMDXComponents as getThemeComponents } from 'nextra-theme-docs'
 import { Image } from 'nextra/components'
 import { hrefWithBase, isExternalHref } from './app/site-config.mjs'
-import { BlogPostCard } from './components/BlogPostCard'
 import { BondingCurveExplorer } from './components/BondingCurveExplorer'
 import { Callout } from './components/Callout'
 import { DefinitionCard } from './components/DefinitionCard'
@@ -11,7 +10,7 @@ import { NextSteps } from './components/NextSteps'
 import { PageStatusBanner } from './components/PageStatusBanner'
 import { SystemOverviewFigure } from './components/SystemOverviewFigure'
 import { TokenHarmonyFigure } from './components/TokenHarmonyFigure'
-import { TroveSimulator } from './components/TroveSimulator'
+import { PositionSimulator } from './components/TroveSimulator'
 
 const themeComponents = getThemeComponents()
 const ThemeTable = themeComponents.table ?? 'table'
@@ -142,7 +141,6 @@ export function useMDXComponents(components) {
     a: MdxAnchor,
     table: AccessibleTable,
     th: TableHeader,
-    BlogPostCard,
     BondingCurveExplorer,
     Callout,
     DefinitionCard,
@@ -151,7 +149,7 @@ export function useMDXComponents(components) {
     PageStatusBanner,
     SystemOverviewFigure,
     TokenHarmonyFigure,
-    TroveSimulator,
+    PositionSimulator,
     ...components
   }
 }

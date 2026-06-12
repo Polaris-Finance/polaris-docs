@@ -9,19 +9,23 @@ description: Polaris is a DeFi yield layer built around pETH, a yield-bearing co
 
 Polaris is a DeFi yield layer built around **pETH**, a yield-bearing collateral asset purposefully designed to back Polaris stablecoins and other synthetic assets.
 
-ETH enters the system through the Polaris bonding curve and becomes pETH. pETH then serves as the shared collateral base for **pUSD**, **pGOLD**, and future Polaris synthetic assets (**pAssets**). Protocol activity, including minting, redemptions, liquidations, Stability Pool flows, and POLAR conversion, routes value through the same system instead of depending on custodians, centralized exchanges, or offchain collateral.
+ETH enters the system through the Polaris bonding curve, pETH becomes the core reserve asset, and protocol activity routes value back into the system. This creates a foundation for onchain money and synthetic assets that does not depend on T-bills, centralized exchanges, custodians, or offchain black-box agreements.
 
-Polaris is trustless, immutable infrastructure for minting pAssets backed entirely by onchain collateral and yield — competitive risk-adjusted yield for both ETH and stablecoins. [Flows](/stewardship/fee-router) let third-party protocols earn a share of Polaris revenue by building on its assets.
+At the center of Polaris are three simple pieces:
 
-This documentation covers how the system works, how to use the app, and which risks to check before signing. For current network, contract, and actionability status, start with [Launch Status](/launch-status) — or jump straight to the [Public Testnet Quickstart](/quickstart).
+- **pETH**, the ETH-backed reserve and collateral asset.
+- **pAssets**, decentralized currencies and synthetic assets backed by pETH.
+- **POLAR**, the stewardship token that aligns long-term incentives.
 
-## Launch timeline
+Polaris is currently in Public Testnet 1 on Sepolia. Start with the quickstart if you want to try the app, or continue below for the high-level system view.
+
+## Launch Timeline
 
 <LaunchTimeline />
 
 <SystemOverviewFigure />
 
-## The three engines
+## The Three Engines
 
 Three tokens work in harmony to sustain Polaris.
 
@@ -36,7 +40,7 @@ Three tokens work in harmony to sustain Polaris.
 <NextSteps
   steps={[
     { href: '/quickstart', title: 'Public Testnet Quickstart', description: 'The shortest safe path from a wallet to a first Polaris testnet action.' },
-    { href: '/core-concepts', title: 'Core Concepts', description: 'A one-page map of every key term in the Polaris system.' },
+    { href: '/using-app', title: 'App Guide', description: 'A compact map of the Dashboard, Swap, Borrow, Earn, Split, Zap, and Advanced tabs.' },
     { href: '/why-polaris', title: 'Why Polaris?', description: 'The design choices behind Polaris and why they matter.' }
   ]}
 />

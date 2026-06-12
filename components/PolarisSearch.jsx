@@ -29,21 +29,20 @@ const MAX_RECENT = 5
 
 // Curated entry points for the queryless state, in the protocol's reading order.
 const START_HERE = [
-  { title: 'Public Testnet Quickstart', url: '/quickstart', section: 'Get started', kind: 'guide' },
+  { title: 'Public Testnet Quickstart', url: '/quickstart', section: 'Start Here', kind: 'guide' },
   { title: 'Why Polaris', url: '/why-polaris', section: 'Understand Polaris', kind: 'concept' },
-  { title: 'Core Concepts', url: '/core-concepts', section: 'Understand Polaris', kind: 'concept' },
   {
-    title: 'Open a Trove',
+    title: 'Open a Position',
     url: '/minting/open-a-trove',
-    section: 'Minting & Troves',
+    section: 'pAssets',
     kind: 'concept'
   }
 ]
 
 // Recovery links for a no-results query.
 const RECOVERY = [
-  { title: 'FAQ', url: '/resources/faq', section: 'Resources', kind: 'reference' },
-  { title: 'Troubleshooting', url: '/troubleshooting', section: 'Get started', kind: 'guide' },
+  { title: 'FAQ', url: '/resources/faq', section: 'Reference', kind: 'reference' },
+  { title: 'Troubleshooting', url: '/troubleshooting', section: 'Reference', kind: 'guide' },
   {
     title: 'Browse the full docs (llms.txt)',
     url: '/llms.txt',
@@ -60,10 +59,10 @@ const QUERY_ALIASES = new Map([
   ['staking', 'POLAR staking'],
   ['stake', 'POLAR staking'],
   ['stake polar', 'POLAR staking'],
-  ['borrow', 'trove'],
-  ['borrowing', 'trove'],
-  ['loan', 'trove'],
-  ['loans', 'trove'],
+  ['borrow', 'position'],
+  ['borrowing', 'position'],
+  ['loan', 'position'],
+  ['loans', 'position'],
   ['pet', 'pETH'],
   ['p eth', 'pETH'],
   ['polr', 'POLAR'],
@@ -75,6 +74,7 @@ const DIRECT_ROUTE_BOOSTS = [
   { query: 'polar', routes: ['/polar', '/polar/tokenomics'] },
   { query: 'peth', routes: ['/peth'] },
   { query: 'liquidation', routes: ['/redemptions-liquidations/liquidations'] },
+  { query: 'position', routes: ['/minting/open-a-trove', '/minting/managing-your-trove'] },
   { query: 'trove', routes: ['/minting/open-a-trove', '/minting/managing-your-trove'] },
   { query: 'risk', routes: ['/resources/risk-disclosure'] }
 ]
@@ -104,7 +104,7 @@ function cleanUrl(url) {
 function cleanExcerpt(excerpt) {
   return excerpt
     ?.replace(/\s+/g, ' ')
-    .replace(/^(?:[.;,:–—-]\s*)+/, '')
+    .replace(/^(?:[-.;,:–—]\s*)+/, '')
     .trim()
 }
 

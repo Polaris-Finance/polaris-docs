@@ -1,6 +1,6 @@
 ---
 title: Polaris Yield Sources
-description: Every source of pAsset yield on Polaris is onchain, internal to the protocol, and scales with activity — yield that is owned, not rented.
+description: Every source of pAsset yield on Polaris is onchain, internal to the protocol, and scales with activity.
 ---
 
 # Polaris Yield Sources
@@ -13,21 +13,21 @@ Polaris yield comes from onchain protocol activity: borrowing, liquidations, swa
 
 | Source | Where it originates | Flows to |
 |---|---|---|
-| **Borrower interest** | Interest [trove](/minting/managing-your-trove) owners pay on minted pAssets | Split by the interest router between [Stability Pool](/yield) depositors (currently the largest share), POLAR stakers, and an ecosystem remainder — stewarded above hardcoded floors |
-| **Liquidation gains** | The penalty on liquidated troves, paid in discounted pETH | Stability Pool depositors |
-| **Bonding curve swap fees** | Fees on every ETH ⇄ pETH swap, buffered by the Fee Router and later burned at the [floor price](/peth/floor-price) | The pETH floor (via the burn); the released ETH is recycled into pETH and distributed to troves |
-| **Conversion gains** | ETH released when pETH is burned to mint POLAR in a [conversion auction](/polar/conversion-auctions) | The Fee Router, which recycles it into pETH and streams it to troves pro-rata to recorded debt |
+| **Borrower interest** | Interest paid by positions that issued pAssets | Split by the interest router between [Earn Vault](/yield) depositors, POLAR stakers, and an ecosystem remainder |
+| **Liquidation gains** | Penalties on liquidated positions, paid in discounted pETH | Earn Vault depositors |
+| **Bonding curve swap fees** | Fees on every ETH to pETH or pETH to ETH swap | The pETH floor and positions that receive routed pETH rewards |
+| **Conversion gains** | ETH released when pETH is burned to create POLAR in a [conversion auction](/polar/conversion-auctions) | The Fee Router, which recycles it into pETH and streams it to positions based on recorded debt |
 
-The first two drive [Stability Pool](/yield) yield and are the primary venue for pAsset holders. The bonding curve and conversion components make **pETH used as trove collateral yield-bearing** — the yield accrues to troves and to pETH's rising floor, not to a passive token balance — which is why using pETH as collateral can lower a borrower's net effective cost.
+The first two drive [Earn Vault](/yield) yield and are the primary venue for pAsset holders. The bonding curve and conversion components make **pETH used as collateral yield-bearing**: yield accrues to positions and to pETH's rising floor, not to a passive token balance.
 
 ## Why this is "self-scaling"
 
 These sources depend on protocol **activity**:
 
-- More troves opened ⇒ more borrower interest.
-- More volatility ⇒ more liquidation gains.
-- More trading ⇒ more bonding curve swap fees.
-- More POLAR minted ⇒ more conversion gains.
+- More positions opened means more borrower interest.
+- More volatility can mean more liquidation gains.
+- More trading means more bonding curve swap fees.
+- More POLAR created through conversion means more conversion gains.
 
 Yield scales with pAsset supply and protocol use, but realized returns still depend on activity, rates, liquidations, contract execution, and market conditions.
 
@@ -42,13 +42,3 @@ Conversion proceeds and swap fees go through the **[Fee Router](/stewardship/fee
 ## Parameters
 
 Use [Parameters](/resources/testnet#parameters) for current yield-related values. This page owns the source model, not numeric tables.
-
----
-
-<BlogPostCard
-  url="https://polarisfinance.io/blog/pusd-no-counterparty/"
-  title="pUSD: No Counterparty, No Ceiling"
-  description="How pUSD delivers counterparty-free yield that scales with protocol adoption — and the ecosystem taking shape around it."
-  readingTime={8}
-  image="https://polarisfinance.io/blog/pusd-no-counterparty-cover.png"
-/>

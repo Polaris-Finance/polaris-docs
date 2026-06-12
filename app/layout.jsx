@@ -152,7 +152,7 @@ const footer = (
       <span style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: '1.05rem' }}>
         The pETH-powered yield layer for all of DeFi
       </span>
-      <span style={{ opacity: 0.9 }}>© {new Date().getFullYear()} Polaris Finance</span>
+      <span style={{ opacity: 0.9 }}>© {new Date().getFullYear()} Polaris</span>
       <a
         href={pathWithBase('/llms.txt')}
         style={{ opacity: 0.7, fontSize: '0.85rem', color: 'inherit' }}

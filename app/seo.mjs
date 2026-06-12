@@ -256,7 +256,7 @@ export function buildGlobalJsonLd() {
       alternateName: 'Polaris',
       description: SITE_DESCRIPTION,
       url: 'https://polarisfinance.io',
-      // Official profiles, so answer engines can disambiguate Polaris Finance
+      // Official profiles, so answer engines can disambiguate Polaris
       // from other projects named Polaris.
       sameAs: [
         'https://polarisfinance.io',
@@ -264,7 +264,7 @@ export function buildGlobalJsonLd() {
         'https://t.me/polaris_ann',
         'https://github.com/Polaris-Finance'
       ],
-      knowsAbout: ['pETH', 'pAssets', 'pUSD', 'POLAR', 'CDP stablecoin', 'bonding curve'],
+      knowsAbout: ['pETH', 'pAssets', 'pUSD', 'POLAR', 'pAsset issuance', 'bonding curve'],
       logo: {
         '@type': 'ImageObject',
         url: absoluteUrl('/favicon.png'),

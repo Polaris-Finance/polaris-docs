@@ -42,6 +42,12 @@ const searchVocabulary = [
       'Borrow',
       'Manage Borrow Position',
       'borrow',
+      'trove',
+      'troves',
+      'open trove',
+      'manage trove',
+      'collateralized debt position',
+      'CDP',
       'issue',
       'open borrow position',
       'repay',
@@ -59,19 +65,26 @@ const searchVocabulary = [
       'borrow position',
       'open borrow position',
       'manage borrow position',
-      'pAsset debt position'
+      'pAsset debt position',
+      'trove',
+      'troves',
+      'open trove',
+      'manage trove'
     ],
     priorityTerms: [
       'borrow position',
       'open borrow position',
       'manage borrow position',
       'borrow',
-      'CDP'
+      'collateral position',
+      'trove',
+      'open trove',
+      'manage trove'
     ]
   },
   {
     match: /^\/using-app\/(earn|zap)$|^\/yield(\/.*)?$/,
-    terms: ['Earn', 'earn', 'yield', 'APR', 'Stability Pool', 'deposit', 'claim rewards']
+    terms: ['Earn', 'earn', 'yield', 'APR', 'Earn Vault', 'deposit', 'claim rewards']
   },
   {
     match: /^\/using-app\/(swap|split)$|^\/peth(\/.*)?$/,

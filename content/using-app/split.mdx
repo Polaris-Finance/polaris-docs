@@ -7,8 +7,6 @@ description: How to split pETH into fpETH and vpETH, merge them back, and avoid 
 
 <PageStatusBanner lastUpdated="June 12, 2026" />
 
-## What it does
-
 **pETH** combines two distinct sources of value: a steadily growing floor (**fpETH**) and a volatile component above that floor (**vpETH**).
 
 Split converts pETH into matching fpETH and vpETH at a fixed **1:1:1** ratio. This creates two assets with distinct risk and return profiles while preserving a path back to pETH.
@@ -17,9 +15,7 @@ The process is fully reversible and does not rely on any external dependencies: 
 
 ![Polaris Split tab with a Split/Merge toggle, fpETH and vpETH outputs, live floor and market prices, and a price simulator](/screenshots/split.jpg)
 
-*Split and Merge change your pETH exposure; the "What if…" simulator shows how each leg responds to price moves.*
-
-## Steps/checks
+## Basic Flow
 
 1. Choose Split or Merge.
 2. Enter the amount and review the expected fpETH + vpETH (or pETH) output.
@@ -29,9 +25,4 @@ The process is fully reversible and does not rely on any external dependencies: 
 
 A split worked when pETH decreases and fpETH plus vpETH each increase by the same amount. A merge worked when equal fpETH and vpETH decrease and pETH increases.
 
-## Next actions
-
-- Use [Borrow](/using-app/borrow) (the ETH sub-tab) to issue ETH against fpETH.
-- Use [Earn](/using-app/earn) to stake vpETH for a pETH yield stream.
-- Merge in this tab to recombine the legs into pETH.
-- Use [Troubleshooting](/troubleshooting) if a split or merge reverts.
+For failed split or merge transactions, see [Troubleshooting](/troubleshooting).

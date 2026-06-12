@@ -1,81 +1,67 @@
 ---
-title: Polaris Stability Pool
-description: The Stability Pool is a reserve of pAssets that backstops liquidations and is the primary venue for earning yield on Polaris.
+title: Polaris Earn Vaults
+description: Earn Vaults let pAsset holders earn from borrower interest and liquidation gains.
 ---
 
-# Polaris Stability Pool
+# Polaris Earn Vaults
 
 import { Steps } from 'nextra/components'
 
+Earn Vaults are the main pAsset yield venue in Polaris. Depositors provide pAssets that help process liquidations and, in return, earn from borrower interest and liquidation gains.
 
 <Callout variant="warning" title="Read before depositing">
-The Stability Pool is a **first-loss pool**. When a trove is liquidated, the pool burns pAssets to cover the debt and receives pETH collateral in return. Your deposit can be partially consumed and replaced by pETH. This is the mechanism, not an edge case.
+Earn Vaults are first-loss backstops. When a position is liquidated, deposited pAssets can be burned to cover debt and replaced by pETH collateral. This is the mechanism, not an edge case.
 </Callout>
 
-## What the Stability Pool does
+## Why Use It
 
-The Stability Pool keeps Polaris solvent. It holds pAsset deposits that are used to absorb liquidated trove debt. In exchange, depositors receive the pETH collateral seized from liquidated troves, usually at a discount to market price. This creates an alignment of incentives: depositors profit from liquidations, which keeps the system healthy.
+- Earn pAsset-denominated interest from borrowers.
+- Receive pETH liquidation gains when liquidations are processed.
+- Put idle pAssets to work without opening a borrow position.
+- Help keep pAssets backed during stress.
 
-![How the Stability Pool fits the system: ETH enters the bonding curve as pETH, which collateralizes the pUSD branch and its user CDPs; pUSD deposited in the Stability Pool absorbs liquidated debt and earns discounted pETH plus a share of borrower interest](/infographics/stability-pool.svg)
+![How Earn Vaults fit the system: ETH enters the bonding curve as pETH, pETH backs pAsset positions, and pAssets deposited in Earn Vaults absorb liquidated debt and earn discounted pETH plus borrower interest](/infographics/stability-pool.svg)
 
-## Where the yield comes from
+## How Yield Works
 
 Depositors earn from two streams:
 
-1. **Borrower interest.** A share of the pAsset-denominated interest paid by all troves borrowing that pAsset routes to the pool. This is the steady-state base yield.
-2. **Liquidation gains.** When a trove is liquidated, the pool absorbs its debt (burning depositors' pAssets) and receives its pETH collateral. The collateral value at the moment of liquidation typically exceeds the absorbed debt, so the net position improves — but the composition shifts from pAssets to pETH.
+1. **Borrower interest.** A share of the interest paid by positions that issued that pAsset.
+2. **Liquidation gains.** When a position is liquidated, the vault can absorb debt and receive pETH collateral. The collateral value is usually higher than the absorbed debt, but realized gains depend on execution and market movement.
 
-The interest share is the steady base; liquidation gains spike when markets are turbulent. Together they make the Stability Pool the protocol's primary yield venue for pAssets. Current split values live on [Parameters](/resources/testnet#parameters).
+Current split values live on [Parameters](/resources/testnet#parameters).
 
-## First-loss mechanics
+## Basic Flow
 
-When a liquidation occurs:
-
-- The pool burns enough pAssets to match the trove's debt.
-- The pool receives the trove's pETH collateral.
-- Every depositor's pAsset balance shrinks proportionally; every depositor's pETH balance grows proportionally.
-
-**Before depositing:** your share can be drawn down at any time when any trove carrying that pAsset's debt crosses the liquidation line. The pool does not protect individuals from this; it distributes it equally. The risk is priced into the liquidation discount — on average, the pETH you receive is worth more than the pAssets you gave up — but realized gain depends on ETH price movement between the liquidation and when you exit.
-
-## Wrapper vaults
-
-Raw Stability Pool mechanics leave depositors holding pETH after liquidations. Wrapper vaults are an anticipated abstraction above the raw pool, but they are not a live product and details are not published.
-
-## Risk
-
-The Stability Pool is the protocol's *intended* first-loss layer. Key risks:
-
-- **pETH price exposure.** Liquidation gains arrive as pETH, which is volatile against ETH. A large liquidation event that converts your full deposit to pETH, followed by a pETH price drop, can leave you worse off in ETH terms.
-- **Extreme drawdown.** If a large fraction of all troves are liquidated simultaneously (e.g., a flash crash before the liquidation engine processes them), the pool may not fully cover all debt. In that case the protocol falls back to redistribution — redistributing remaining collateral and debt across surviving troves — and the pool is partially or fully depleted. A crashing trove can even fall below 100% collateralization before processing; the pool then absorbs more debt than the collateral it receives is worth, and that underwater loss is shared proportionally by all depositors.
-- **Smart-contract risk.** The pool is a smart contract; a bug can affect any depositor. Mitigated by audits, never zero.
-
-## How to deposit
-
-You need a pAsset to deposit, usually **pUSD** ([mint some](/minting/open-a-trove) if you hold none), plus ETH for gas. Re-read the pre-deposit warning before signing.
+You need a pAsset to deposit, usually pUSD or pGOLD, plus ETH for gas.
 
 <Steps>
 
-### Open the pool
+### Open Earn
 
-Open the Polaris app and go to the **Stability Pool** for your pAsset (e.g. the pUSD pool).
+Open the Polaris app and go to **Earn**.
 
-### Enter a deposit amount
+### Choose a vault
 
-Enter the amount of pUSD to deposit.
+Select the pUSD or pGOLD Earn Vault.
 
-### Approve the spend
+### Enter an amount
 
-**Approve** the pUSD spend, if prompted (a one-time token approval).
+Enter the deposit amount and review expected wallet changes.
 
-### Confirm the deposit
+### Approve and deposit
 
-Confirm the **deposit** transaction in your wallet.
+Approve the pAsset if prompted, then sign the deposit transaction.
 
 </Steps>
 
-## Related docs
+## What To Watch
+
+- Your pAsset deposit can be partially consumed during liquidations.
+- Liquidation gains arrive as pETH, which has price risk.
+- APR is an estimate, not a guarantee.
+- Extreme market moves can create losses even when the mechanism works as intended.
 
 - [Yield Sources](/yield/yield-sources) for every yield stream on Polaris.
-- [Liquidations](/redemptions-liquidations/liquidations) for how troves are closed and the pool is triggered.
-- [Zap](/using-app/zap) for the bundled WETH → pool flow.
+- [Liquidations](/redemptions-liquidations/liquidations) for how positions are closed and the vault is triggered.
 - [Risk Disclosure](/resources/risk-disclosure) before treating yield as principal-safe.

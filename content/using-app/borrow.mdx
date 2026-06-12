@@ -7,35 +7,33 @@ description: How to open and manage Polaris debt positions from the app Borrow t
 
 <PageStatusBanner lastUpdated="June 12, 2026" />
 
-## What it does
+Borrow is where you issue pAssets against pETH or borrow ETH against fpETH.
 
-Borrow is where you issue Polaris assets and manage existing positions. It has three sub-tabs:
-
-- **pUSD** and **pGOLD:** deposit **pETH** collateral and mint an overcollateralized asset from your position. You set collateral and debt with an LTV slider and see a projected liquidation price, estimated monthly cost, and effective rate before signing. You can also open collateral-only positions first, then mint later.
-- **ETH:** issue **ETH** against **fpETH** collateral at up to 100% LTV with no liquidation risk, because the fpETH floor only ever rises.
+- **pUSD and pGOLD:** deposit pETH collateral and issue overcollateralized assets against your position.
+- **ETH:** borrow ETH against fpETH at up to 100% LTV with no liquidation risk, as the fpETH floor only ever rises.
 
 Once connected, you can manage existing positions from this tab, including adjustments, repayments, and closures.
 
 ![Polaris Borrow tab with pUSD, pGOLD, and ETH sub-tabs, a collateral field, LTV slider, effective rate, and a projected-position panel](/screenshots/borrow.jpg)
 
-*Borrow opens and manages positions; the projected-position panel previews liquidation price, monthly cost, and LTV before you sign.*
-
-## Steps/checks
+## Basic Flow
 
 1. Choose the sub-tab: pUSD, pGOLD, or ETH.
-2. Enter collateral and set the debt with the LTV slider (25%, 50%, 75% presets are available).
-3. Review the projected liquidation price, estimated monthly cost, effective rate, and LTV.
-4. Approve the collateral token if prompted, then sign.
-5. To manage an existing position, reopen it in this tab and add collateral, mint more, repay, withdraw collateral, or close; review the new LTV first.
-6. Confirm the updated collateral, debt, and LTV.
+2. Enter collateral and the amount you want to borrow.
+3. Review LTV, liquidation price, expected cost, and incentives.
+4. Approve the collateral token if needed.
+5. Sign the transaction.
+6. Confirm the updated position in the Dashboard or Borrow tab.
 
-An issuance or management action worked when the position reflects the expected collateral, debt, and LTV.
+## How Your Position Changes Over Time
 
-Positions change over time as prices, rates, redemptions, and rewards update. Review the projected result before each adjustment, especially when minting more pUSD or pGOLD against the same collateral.
+Your position is affected by more than the amount you borrow.
 
-## Next actions
+- Your pETH collateral has exposure to ETH through the bonding curve.
+- Your position can receive pETH incentives based on your issued debt.
+- Your position can be redeemed against when pAssets trade below their peg.
+- Your liquidation price changes as collateral value, debt, and interest move.
 
-- Use [Swap](/using-app/swap) to acquire pETH collateral, or [Split](/using-app/split) to get fpETH for an ETH position.
-- Use [Earn](/using-app/earn) to deposit a minted pAsset into its Earn Vault.
-- See the in-app **Guide** for issuance strategies such as Floor Carry and collateral-only positions.
-- Use [Troubleshooting](/troubleshooting) if an action is disabled, reverts, or the quote looks wrong.
+Borrowing is not just a one-time transaction. Monitor your position and keep a clear buffer below the maximum LTV.
+
+For disabled actions or reverted transactions, see [Troubleshooting](/troubleshooting). For position risk, see [Risk Disclosure](/resources/risk-disclosure).

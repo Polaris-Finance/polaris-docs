@@ -5,31 +5,20 @@ description: The fastest safe path to try Polaris on Public Testnet 1 with Sepol
 
 # Public Testnet Quickstart
 
-<PageStatusBanner lastUpdated="June 9, 2026" />
+<PageStatusBanner lastUpdated="June 12, 2026" />
 
-Use this page for the shortest safe path from a wallet to a first Polaris testnet action. It covers Public Testnet 1 only.
+Use this page to try Polaris on Public Testnet 1.
 
-## Before you start
-
-- A wallet you can connect to Sepolia.
-- Sepolia ETH for gas.
-- The official Public Testnet 1 app URL: [https://app.testnet.polarisfinance.io/](https://app.testnet.polarisfinance.io/).
-- Test WETH from the app faucet (see step 4).
-
-Do not send mainnet ETH, mainnet WETH, or production assets to testnet contracts.
-
-## Steps
-
-1. Open [app.testnet.polarisfinance.io](https://app.testnet.polarisfinance.io/).
+1. Open [https://app.testnet.polarisfinance.io/](https://app.testnet.polarisfinance.io/).
 2. Connect your wallet on Sepolia, chain ID `11155111`.
 3. Get Sepolia ETH for gas from a Sepolia faucet if needed.
-4. Claim test WETH from the faucet on the Dashboard — currently pay `0.1` Sepolia ETH, receive `10` WETH ([current rate and limits](/resources/testnet#parameters)).
+4. Claim test WETH from the Dashboard faucet.
 5. Use [Swap](/using-app/swap) to buy pETH on the bonding curve.
-6. Use [Borrow](/using-app/borrow) to mint pUSD or pGOLD against pETH.
-7. Optionally use [Earn](/using-app/earn) or [Zap](/using-app/zap) to deposit a pAsset into the Stability Pool.
-8. Return to the [Dashboard](/using-app) and confirm your positions and rewards.
+6. Use [Borrow](/using-app/borrow) to issue pUSD or pGOLD against pETH.
+7. Use [Earn](/using-app/earn) to deposit pAssets into an Earn Vault.
+8. Return to the [Dashboard](/using-app) to confirm your positions and rewards.
 
-## Success checks
+## Success Checks
 
 | Check | Expected result |
 |---|---|
@@ -37,11 +26,7 @@ Do not send mainnet ETH, mainnet WETH, or production assets to testnet contracts
 | Frontend | URL is exactly `https://app.testnet.polarisfinance.io/` |
 | Assets | Balances are testnet assets only |
 | pETH | pETH balance updates after swap |
-| Borrow | pUSD or pGOLD position appears after minting |
-| Earn | Stability Pool deposit appears after deposit or zap |
+| Borrow | pUSD or pGOLD position appears after issuing |
+| Earn | Earn Vault deposit appears after deposit or zap |
 
-## Next actions
-
-- [Troubleshooting](/troubleshooting) if balances, quotes, approvals, or transactions fail.
-- [Parameters](/resources/testnet#parameters) for current testnet values.
-- [Risk Disclosure](/resources/risk-disclosure) before treating any testnet behavior as production guidance.
+For failed transactions, missing balances, faucet limits, or wrong-network issues, see [Troubleshooting](/troubleshooting).

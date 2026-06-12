@@ -53,7 +53,7 @@ export function BondingCurveExplorer() {
     const innerHeight = height - 2 * padding
 
     // Window ends at the current supply (the market point sits at the top-right,
-    // like the reference infographic) — a buy extends it to the new supply.
+    // like the reference infographic) - a buy extends it to the new supply.
     const maxQuantity = Math.max(supply, results.newSupply)
     const maxPrice = priceAt(maxQuantity)
 
@@ -81,7 +81,7 @@ export function BondingCurveExplorer() {
   }, [supply, floorPct, results.newSupply, results.newPrice])
 
   const tradeLabel =
-    tradePct > 0 ? `Buy ${tradePct}%` : tradePct < 0 ? `Sell ${Math.abs(tradePct)}%` : '—'
+    tradePct > 0 ? `Buy ${tradePct}%` : tradePct < 0 ? `Sell ${Math.abs(tradePct)}%` : '-'
   const tradeNote =
     tradePct === 0 ? 'no trade' : `≈ ${Math.round(results.ethNotional).toLocaleString('en-US')} ETH`
   const impactSign = results.priceImpact >= 0 ? '+' : ''

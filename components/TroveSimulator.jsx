@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react'
 
-export function TroveSimulator({ minCollateralRatio = 1.5 }) {
+export function PositionSimulator({ minCollateralRatio = 1.5 }) {
   const [collateral, setCollateral] = useState(10)
   const [debt, setDebt] = useState(5000)
   const [ethPrice, setEthPrice] = useState(3000)
@@ -58,7 +58,7 @@ export function TroveSimulator({ minCollateralRatio = 1.5 }) {
 
   return (
     <div className="pl-trove-sim">
-      <div className="pl-trove-header">Trove Health Simulator</div>
+      <div className="pl-trove-header">Position Health Simulator</div>
 
       <div className="pl-trove-grid">
         <div className="pl-trove-field">

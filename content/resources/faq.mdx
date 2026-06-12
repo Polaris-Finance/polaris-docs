@@ -1,9 +1,9 @@
 ---
-title: Polaris Finance FAQ
+title: Polaris FAQ
 description: Short answers to common Polaris questions, with links to canonical pages for status, contracts, parameters, risks, and app actions.
 ---
 
-# Polaris Finance FAQ
+# Polaris FAQ
 
 <PageStatusBanner lastUpdated="June 8, 2026" />
 
@@ -13,7 +13,7 @@ FAQ answers are intentionally short. Follow the linked canonical page when you n
 
 ### What is Polaris?
 
-Polaris is a pETH-powered stablecoin operating system. ETH becomes pETH through a bonding curve, pETH collateralizes pAssets such as pUSD and pGOLD, and protocol activity routes yield through onchain mechanisms. Start with [Core Concepts](/core-concepts).
+Polaris is a DeFi yield layer built around pETH. ETH becomes pETH through a bonding curve, pETH collateralizes pAssets such as pUSD and pGOLD, and protocol activity routes yield through onchain mechanisms. Start with [Why Polaris](/why-polaris).
 
 ### What is live now?
 
@@ -29,9 +29,9 @@ Use only the app listed on [Launch Status](/launch-status). For Public Testnet 1
 
 Open the official testnet app, connect Sepolia, use test assets only, swap into pETH, then try Borrow, Earn, Split, Zap, or Advanced as needed. The step-by-step path is [Public Testnet Quickstart](/quickstart).
 
-### Why does the app show Borrow if docs say mint?
+### Why does the app show Borrow?
 
-The app says Borrow because the user action creates debt. You open an individual CDP, called a trove in Polaris: deposit pETH collateral and mint a pAsset directly from the protocol. See [Borrow](/using-app/borrow) and [Minting pAssets](/minting).
+The app says Borrow because the user action creates debt. You deposit pETH collateral and issue a pAsset directly from the protocol. See [Borrow](/using-app/borrow) and [Issuing pAssets](/minting).
 
 ### What should I do if a quote or transaction fails?
 
@@ -59,11 +59,11 @@ At minimum, verify frontend URL, network, chain ID, address, token, spender, amo
 
 ### Can I lose funds?
 
-Yes. Polaris involves smart-contract risk, collateral price risk, liquidation risk, Stability Pool first-loss risk, MEV risk, oracle risk, and frontend/phishing risk. Read [Risk Disclosure](/resources/risk-disclosure).
+Yes. Polaris involves smart-contract risk, collateral price risk, liquidation risk, Earn Vault first-loss risk, MEV risk, oracle risk, and frontend/phishing risk. Read [Risk Disclosure](/resources/risk-disclosure).
 
 ### What is LTV?
 
-LTV is loan-to-value: your trove's debt divided by its collateral value. Lower LTV is safer. Protocol parameters may also show the inverse ratio, ICR or MCR; for example, the current 115% MCR equals roughly an 87% max LTV, and a trove at 150% ICR sits at 66.7% LTV. See the [Glossary](/resources) and [Managing Your Trove](/minting/managing-your-trove).
+LTV is loan-to-value: position debt divided by collateral value. Lower LTV is safer. Protocol parameters may also show the inverse ratio, ICR or MCR. For example, the current 115% MCR equals roughly an 87% max LTV, and a position at 150% ICR sits at 66.7% LTV. See the [Glossary](/resources) and [Manage a Position](/minting/managing-your-trove).
 
 ### What is TCR or Recovery Mode?
 

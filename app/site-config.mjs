@@ -26,14 +26,14 @@ export const SITE_BASE_URL = `${SITE_URL}${BASE_PATH}`
 
 export const SITE_NAME = 'Polaris Docs'
 export const SITE_TITLE = 'Polaris Documentation'
-export const SITE_TITLE_TEMPLATE = '%s — Polaris Docs'
+export const SITE_TITLE_TEMPLATE = '%s - Polaris Docs'
 export const SITE_DESCRIPTION =
-  'User documentation for Polaris Finance — the pETH-powered yield layer for all of DeFi. Mint pAssets backed entirely by onchain collateral and yield.'
+  'User documentation for Polaris, the pETH-powered yield layer for DeFi. Issue pAssets backed entirely by onchain collateral and yield.'
 
-export const ORGANIZATION_NAME = 'Polaris Finance'
+export const ORGANIZATION_NAME = 'Polaris'
 export const OG_IMAGE_PATH = '/og-image.png'
 export const OG_IMAGE_ALT =
-  'Polaris Finance documentation for pETH, pAssets, minting, yield, and stewardship.'
+  'Polaris documentation for pETH, pAssets, issuing, yield, and stewardship.'
 export const OG_IMAGE_WIDTH = 1200
 export const OG_IMAGE_HEIGHT = 630
 

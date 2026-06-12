@@ -347,18 +347,18 @@ test('search opens, returns useful results, and fits its surface', async ({ page
 
   const results = page.locator('.nextra-search-results')
   await expect(results).toBeVisible()
-  await expect(results).toContainText(/trove/i)
+  await expect(results).toContainText(/position/i)
   await expect(results).toContainText(/open|managing/i)
   await expect(results.locator('.pl-search-count')).toContainText(/Top \d+ of \d+|\d+ shown/)
   await expect(input).toHaveAttribute('aria-autocomplete', 'list')
   await expect(input).toHaveAttribute('aria-expanded', 'true')
   await expect(input).toHaveAttribute('aria-controls', /.+-listbox$/)
 
-  const mintingChip = results.getByRole('button', { name: /Minting & Troves/i })
+  const mintingChip = results.getByRole('button', { name: /pAssets/i })
   await expect(mintingChip).toBeVisible()
   await mintingChip.click()
   await expect(mintingChip).toHaveAttribute('aria-pressed', 'true')
-  await expect(results.locator('.pl-search-count')).toContainText(/in Minting & Troves/)
+  await expect(results.locator('.pl-search-count')).toContainText(/in pAssets/)
   await results.getByRole('button', { name: /^All$/ }).click()
 
   const inputBox = await input.boundingBox()

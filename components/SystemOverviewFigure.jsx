@@ -9,7 +9,7 @@ export function SystemOverviewFigure({ caption = DEFAULT_CAPTION }) {
       <img
         className="pl-system-overview__horizontal"
         src={pathWithBase('/polaris-system-v2.svg')}
-        alt="Polaris system overview: ETH swaps into pETH on the bonding curve, pETH collateralizes pAsset branches that mint pUSD, and burning pETH for POLAR raises the floor and releases ETH"
+        alt="Polaris system overview: ETH swaps into pETH on the bonding curve, pETH collateralizes pAsset branches that issue pUSD, and burning pETH for POLAR raises the floor and releases ETH"
         width={1200}
         height={540}
         loading="lazy"
@@ -18,7 +18,7 @@ export function SystemOverviewFigure({ caption = DEFAULT_CAPTION }) {
       <img
         className="pl-system-overview__vertical"
         src={pathWithBase('/polaris-system-v2-vertical.svg')}
-        alt="Polaris system overview: ETH swaps into pETH on the bonding curve, pETH collateralizes pAsset branches that mint pUSD, and burning pETH for POLAR raises the floor and releases ETH"
+        alt="Polaris system overview: ETH swaps into pETH on the bonding curve, pETH collateralizes pAsset branches that issue pUSD, and burning pETH for POLAR raises the floor and releases ETH"
         width={400}
         height={1450}
         loading="lazy"
