@@ -1,18 +1,15 @@
 ---
-title: Polaris Finance Documentation
-description: Polaris is the pETH-powered yield layer for all of DeFi, minting pAssets backed entirely by onchain collateral and yield. No T-bills. No CEXs. No compromises.
+title: Polaris
+description: Polaris is a DeFi yield layer built around pETH, a yield-bearing collateral asset purposefully designed to back Polaris stablecoins and other synthetic assets.
 ---
 
-# Polaris Finance Documentation
+# Polaris
 
-<PageStatusBanner lastUpdated="June 8, 2026" />
+<PageStatusBanner lastUpdated="June 12, 2026" />
 
-Polaris is a yield layer for DeFi built around **pETH** — purpose-built collateral for Polaris branches and CDPs that is also a yield-bearing asset in its own right.
+Polaris is a DeFi yield layer built around **pETH**, a yield-bearing collateral asset purposefully designed to back Polaris stablecoins and other synthetic assets.
 
-- **pETH**, backed by the bonding curve: a foundational yield primitive with strong constant liquidity
-- **pUSD**, **pGOLD**, and other Polaris immutable stablecoins (**pAssets**) use **pETH** as collateral
-- **pETH** can be split into **fpETH** for protected yield exposure and **vpETH** for maximal upside with no downside protection
-- The core protocol is immutable; bounded parameters will be stewarded by **vePOLAR** (forthcoming)
+ETH enters the system through the Polaris bonding curve and becomes pETH. pETH then serves as the shared collateral base for **pUSD**, **pGOLD**, and future Polaris synthetic assets (**pAssets**). Protocol activity, including minting, redemptions, liquidations, Stability Pool flows, and POLAR conversion, routes value through the same system instead of depending on custodians, centralized exchanges, or offchain collateral.
 
 Polaris is trustless, immutable infrastructure for minting pAssets backed entirely by onchain collateral and yield — competitive risk-adjusted yield for both ETH and stablecoins. [Flows](/stewardship/fee-router) let third-party protocols earn a share of Polaris revenue by building on its assets.
 
@@ -32,14 +29,14 @@ Three tokens work in harmony to sustain Polaris.
 
 | Engine | What it is | Why it matters |
 |---|---|---|
-| **1.&nbsp;pETH** | ETH deposited into a two-way **bonding curve**, with a contract-defined floor under stated assumptions | A capital-efficient, yield-bearing collateral with a contract-defined exit path |
-| **2.&nbsp;pAssets** | Synthetic pegged (USD, Gold, etc.) assets minted against collateral, through pAsset branches and user CDPs | Counterparty-free stables that scale with onchain activity |
-| **3.&nbsp;POLAR** | The stewardship token, minted only by burning pETH in a **conversion auction** | Aligns long-term incentives and steers the protocol within hardcoded bounds |
+| **pETH** | A yield-bearing reserve asset backed by ETH and powered by the Polaris bonding curve | Provides capital-efficient, yield-bearing collateral with a natively growing floor value |
+| **pAssets** | Decentralized currencies and synthetic assets backed by pETH | Enable scalable onchain money without custodians or external counterparties |
+| **POLAR** | The stewardship token that governs key protocol parameters and captures protocol value | Aligns long-term incentives while keeping the protocol decentralized |
 
 <NextSteps
   steps={[
     { href: '/quickstart', title: 'Public Testnet Quickstart', description: 'The shortest safe path from a wallet to a first Polaris testnet action.' },
     { href: '/core-concepts', title: 'Core Concepts', description: 'A one-page map of every key term in the Polaris system.' },
-    { href: '/why-polaris', title: 'Why Polaris?', description: 'The stablecoin trilemma and how Polaris resolves it.' }
+    { href: '/why-polaris', title: 'Why Polaris?', description: 'The design choices behind Polaris and why they matter.' }
   ]}
 />

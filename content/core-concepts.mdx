@@ -7,15 +7,11 @@ description: A one-page map of the Polaris system, with every key term defined b
 
 ## The shape of the system
 
-<SystemOverviewFigure caption={null} />
-
-*Key takeaway: one collateral primitive feeds the whole system; pETH creates collateral, branches mint pAssets, and POLAR conversion raises the pETH floor.*
-
-The diagram traces four steps and an outcome:
+Polaris has one collateral primitive, one family of pAssets, and one stewardship token.
 
 1. **Swap.** ETH enters the **bonding curve** and is issued as **pETH**; the curve captures volatility.
 2. **Collateral.** pETH is deposited as the sole collateral for pAsset **branches**.
-3. **Borrow.** A user opens a **CDP** in a branch to mint **pUSD** (or another pAsset) against that pETH, for scalable onchain yield.
+3. **Borrow.** A user opens a **CDP** in a branch to mint **pUSD** or another pAsset against that pETH.
 4. **Stewardship.** Burning pETH in a conversion auction mints **POLAR**, raising the pETH floor price and releasing ETH.
 
 This page is the system map. Each term is defined briefly and links to its full treatment.
@@ -23,7 +19,7 @@ This page is the system map. Each term is defined briefly and links to its full 
 ## The assets
 
 <DefinitionCard term="pAsset" token="passet">
-A synthetic debt asset minted from a Polaris branch through user CDPs (pUSD, pGOLD, pCHF, …). Each is overcollateralized by pETH and counterparty-free. See [The pAsset Catalog](/minting/passet-catalog).
+A synthetic debt asset minted from a Polaris branch through user CDPs (pUSD, pGOLD, pCHF, ...). Each is overcollateralized by pETH and counterparty-free. See [The pAsset Catalog](/minting/passet-catalog).
 </DefinitionCard>
 
 <DefinitionCard term="pUSD" token="pusd">
@@ -49,7 +45,7 @@ Collateralized Debt Position: your individual borrowing position inside a branch
 </DefinitionCard>
 
 <DefinitionCard term="Trove" token="default">
-The Polaris app term for an individual CDP — the same position, by another name. See [Managing Your Trove](/minting/managing-your-trove).
+The Polaris app term for an individual CDP - the same position, by another name. See [Managing Your Trove](/minting/managing-your-trove).
 </DefinitionCard>
 
 <DefinitionCard term="StablecoinOS" token="default">
@@ -73,7 +69,7 @@ Redemption and minting volume serve as onchain proxy signals for the peg, lettin
 ## Risk states
 
 <DefinitionCard term="Liquidation" token="default">
-If a trove's LTV exceeds the maximum, it is liquidated, and the [Stability Pool](/yield) absorbs the debt — or, if the pool is too small, the debt and collateral redistribute to other troves. See [Liquidations](/redemptions-liquidations/liquidations).
+If a trove's LTV exceeds the maximum, it is liquidated, and the [Stability Pool](/yield) absorbs the debt - or, if the pool is too small, the debt and collateral redistribute to other troves. See [Liquidations](/redemptions-liquidations/liquidations).
 </DefinitionCard>
 
 <DefinitionCard term="Recovery Mode" token="default">
@@ -95,7 +91,7 @@ The mechanism that mints POLAR by burning pETH. See [Conversion Auctions](/polar
 </DefinitionCard>
 
 <DefinitionCard term="Fee Router" token="default">
-Buffers protocol revenue in pETH and streams it to troves pro-rata to debt (Flow recipients forthcoming); POLAR stakers are paid separately from borrower interest. Swap fees are first burned at the floor — raising it — and the released ETH is recycled into pETH. See [The Fee Router](/stewardship/fee-router).
+Buffers protocol revenue in pETH and streams it to troves pro-rata to debt (Flow recipients forthcoming); POLAR stakers are paid separately from borrower interest. Swap fees are first burned at the floor - raising it - and the released ETH is recycled into pETH. See [The Fee Router](/stewardship/fee-router).
 </DefinitionCard>
 
 <DefinitionCard term="Stewardship" token="default">
@@ -106,6 +102,6 @@ A stewardship role steers <em>quantitative parameters</em>, with safety-critical
   steps={[
     { href: '/launch-status', title: 'Launch Status', description: 'Official app and network status, plus the shortest path from "I have ETH" to using Polaris.' },
     { href: '/minting', title: 'Minting pAssets', description: 'How branches and individual CDPs work from first principles.' },
-    { href: '/why-polaris', title: 'Why Polaris?', description: 'The stablecoin trilemma and how Polaris resolves it.' }
+    { href: '/why-polaris', title: 'Why Polaris?', description: 'The design choices behind Polaris and why they matter.' }
   ]}
 />

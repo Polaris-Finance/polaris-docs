@@ -1,7 +1,7 @@
 import { pathWithBase } from '../app/site-config.mjs'
 
 const DEFAULT_CAPTION =
-  'One collateral (pETH), one CDB factory for pAssets, one floor-raising burn for POLAR.'
+  'ETH enters the system, pETH becomes collateral, and protocol activity drives yield back through the system.'
 
 export function SystemOverviewFigure({ caption = DEFAULT_CAPTION }) {
   return (

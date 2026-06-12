@@ -33,15 +33,15 @@ export function LaunchTimeline() {
             className="pl-route-glow"
             pathLength="100"
             vectorEffect="non-scaling-stroke"
-            d="M100 84 L700 84"
+            d="M70 84 L455 84"
           />
           <path
             className="pl-route-line"
             pathLength="100"
             vectorEffect="non-scaling-stroke"
-            d="M100 84 L700 84"
+            d="M70 84 L455 84"
           />
-          <path className="pl-route-ahead" vectorEffect="non-scaling-stroke" d="M700 84 L886 84" />
+          <path className="pl-route-ahead" vectorEffect="non-scaling-stroke" d="M455 84 L950 84" />
         </svg>
 
         {phases.map((phase, i) => {

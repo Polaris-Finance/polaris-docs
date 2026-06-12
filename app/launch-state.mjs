@@ -38,12 +38,44 @@ export const TIMELINE_PHASES = [
     link: '/resources/testnet'
   },
   {
-    name: 'Mainnet',
-    date: 'Forthcoming',
+    name: 'Audits',
+    date: 'Planned',
     labelPos: 'above',
+    style: 'distant',
+    desc: 'Independent security reviews before production deployment.',
+    link: '/launch-status'
+  },
+  {
+    name: 'Mainnet Launch',
+    date: 'Forthcoming',
+    labelPos: 'below',
     style: 'distant',
     desc: 'Production deployment on Ethereum mainnet.',
     link: '/launch-status'
+  },
+  {
+    name: 'pAsset Expansion',
+    date: 'Planned',
+    labelPos: 'above',
+    style: 'distant',
+    desc: 'Additional synthetic asset markets beyond the initial pAssets.',
+    link: '/minting/passet-catalog'
+  },
+  {
+    name: 'Integrations',
+    date: 'Planned',
+    labelPos: 'below',
+    style: 'distant',
+    desc: 'Partner, protocol, and B2B integrations built around Polaris assets and yield flows.',
+    link: '/stewardship/fee-router'
+  },
+  {
+    name: 'Future Products',
+    date: 'Exploring',
+    labelPos: 'above',
+    style: 'distant',
+    desc: 'New product surfaces that build on pETH, pAssets, and Polaris yield infrastructure.',
+    link: null
   }
 ]
 
@@ -65,5 +97,5 @@ export function timelineSummary() {
 }
 
 export function timelineCaption() {
-  return `Polaris is currently in ${LAUNCH_PHASE} on ${LAUNCH_NETWORK}; mainnet remains forthcoming.`
+  return `Polaris is currently in ${LAUNCH_PHASE} on ${LAUNCH_NETWORK}. The roadmap continues through audits, mainnet launch, pAsset expansion, integrations, and future products.`
 }

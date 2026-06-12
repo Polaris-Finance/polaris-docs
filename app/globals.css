@@ -99,7 +99,7 @@ html:not(.dark) .x\:focus-visible\:nextra-focus:focus-visible {
   position: relative;
   width: 100%;
   height: 168px;
-  min-width: 700px;
+  min-width: 0;
   max-width: 860px;
 }
 
@@ -160,23 +160,39 @@ html:not(.dark) .x\:focus-visible\:nextra-focus:focus-visible {
 }
 
 .pl-n1 {
-  left: 10%;
+  left: 7%;
 }
 
 .pl-n2 {
-  left: 30%;
+  left: 20%;
 }
 
 .pl-n3 {
-  left: 50%;
+  left: 33%;
 }
 
 .pl-n4 {
-  left: 70%;
+  left: 45.5%;
 }
 
 .pl-n5 {
+  left: 57%;
+}
+
+.pl-n6 {
+  left: 68.5%;
+}
+
+.pl-n7 {
+  left: 80%;
+}
+
+.pl-n8 {
   left: 90%;
+}
+
+.pl-n9 {
+  left: 97%;
 }
 
 .pl-star {
@@ -512,6 +528,26 @@ html:not(.dark) .x\:focus-visible\:nextra-focus:focus-visible {
   animation-delay: 1.85s;
 }
 
+.pl-n6 .pl-name,
+.pl-n6 .pl-date {
+  animation-delay: 2.05s;
+}
+
+.pl-n7 .pl-name,
+.pl-n7 .pl-date {
+  animation-delay: 2.25s;
+}
+
+.pl-n8 .pl-name,
+.pl-n8 .pl-date {
+  animation-delay: 2.45s;
+}
+
+.pl-n9 .pl-name,
+.pl-n9 .pl-date {
+  animation-delay: 2.65s;
+}
+
 @keyframes pl-draw {
   from {
     stroke-dashoffset: 100;
@@ -770,7 +806,7 @@ html:not(.dark) .x\:focus-visible\:nextra-focus:focus-visible {
   }
 
   .pl-timeline-list {
-    display: grid;
+    display: none;
   }
 }
 
@@ -2398,13 +2434,15 @@ article [class*='overflow-x-auto']:has(table)::after {
 /* Right-anchor the last node's tooltip so it cannot push scrollWidth past the
    viewport on ~1024-1090px screens (it sits near the right page edge). */
 @media (min-width: 1024px) {
-  .pl-n5 .pl-tooltip {
+  .pl-n8 .pl-tooltip,
+  .pl-n9 .pl-tooltip {
     left: auto;
     right: 0;
     transform: none;
   }
 
-  .pl-n5 .pl-tooltip::after {
+  .pl-n8 .pl-tooltip::after,
+  .pl-n9 .pl-tooltip::after {
     left: auto;
     right: 14px;
     transform: none;
