@@ -10,7 +10,7 @@
   },
   "scripts": {
     "predev": "node scripts/sync-pagefind.mjs --if-exists",
-    "dev": "next dev",
+    "dev": "node scripts/dev.mjs",
     "dev:search": "npm run build && npm run dev",
     "generate": "node scripts/generate-sitemap.mjs && node scripts/generate-llms.mjs",
     "clean:export": "node scripts/clean-export.mjs",
