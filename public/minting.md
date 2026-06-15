@@ -44,4 +44,4 @@ For current LTV thresholds and fees, see [Parameters](https://tokenbrice.github.
 Next steps:
 - [Open a Position](https://tokenbrice.github.io/polaris-docs/minting/open-a-trove): Issue your first pAsset against pETH collateral from the app.
 - [Manage a Position](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove): Monitor LTV, interest, redemptions, and repayment.
-- [pAsset Catalog](https://tokenbrice.github.io/polaris-docs/minting/passet-catalog): See which pAssets are testnet-active and which are future examples.
+- [pAssets Overview](https://tokenbrice.github.io/polaris-docs/minting/passet-catalog): What pAssets are and which ones are live today.

@@ -97,6 +97,17 @@
       "lastVerified": null
     },
     {
+      "route": "/minting/launch-a-passet",
+      "url": "https://tokenbrice.github.io/polaris-docs/minting/launch-a-passet",
+      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/minting/launch-a-passet.md",
+      "section": "Understand Polaris",
+      "title": "Launch a pAsset",
+      "description": "How external teams can launch a new pAsset on Polaris's shared pETH collateral base, and the requirements to qualify.",
+      "keywords": [],
+      "updated": null,
+      "lastVerified": null
+    },
+    {
       "route": "/minting/managing-your-trove",
       "url": "https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove",
       "markdownUrl": "https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove.md",
@@ -167,8 +178,30 @@
       "url": "https://tokenbrice.github.io/polaris-docs/minting/passet-catalog",
       "markdownUrl": "https://tokenbrice.github.io/polaris-docs/minting/passet-catalog.md",
       "section": "Understand Polaris",
-      "title": "Polaris Asset Catalog",
-      "description": "The pAsset debt tokens Polaris can issue (pUSD, pGOLD, pCHF, pBigMac), how pETH differs as collateral, and how StablecoinOS can add new assets.",
+      "title": "pAssets Overview",
+      "description": "What pAssets are, how they differ from pETH, which ones are live today, and how new pAsset markets get added.",
+      "keywords": [],
+      "updated": null,
+      "lastVerified": null
+    },
+    {
+      "route": "/minting/pgold",
+      "url": "https://tokenbrice.github.io/polaris-docs/minting/pgold",
+      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/minting/pgold.md",
+      "section": "Understand Polaris",
+      "title": "pGOLD",
+      "description": "Decentralized gold exposure backed by pETH. How pGOLD compares to XAUT and PAXG, the exposure you actually get, and how to express any gold view.",
+      "keywords": [],
+      "updated": null,
+      "lastVerified": null
+    },
+    {
+      "route": "/minting/pusd",
+      "url": "https://tokenbrice.github.io/polaris-docs/minting/pusd",
+      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/minting/pusd.md",
+      "section": "Understand Polaris",
+      "title": "pUSD",
+      "description": "Polaris's flagship dollar-pegged pAsset. What pUSD is, why hold it, and how it is created, kept on peg, and put to work.",
       "keywords": [],
       "updated": null,
       "lastVerified": null

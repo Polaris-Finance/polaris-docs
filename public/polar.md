@@ -27,7 +27,7 @@ So why add a third token? Because functioning and scaling differ. The design spl
 Function | Handled by | Examples
 
 **Inward-facing** - sustain the core | pETH + pAssets | interest rates, floor growth, Earn Vault incentivization, liquidations
-**Outward-facing** - grow the ecosystem | POLAR | external DEX liquidity, Flow onboarding, [StablecoinOS](https://tokenbrice.github.io/polaris-docs/minting/passet-catalog#stablecoinos-an-open-catalog) coordination
+**Outward-facing** - grow the ecosystem | POLAR | external DEX liquidity, Flow onboarding, [StablecoinOS](https://tokenbrice.github.io/polaris-docs/minting/launch-a-passet#stablecoinos-an-open-catalog) coordination
 
 POLAR is deliberately separated from the core so the core's sustainability never depends on it. If POLAR incentives dried up tomorrow, pUSD could still be issued, the bonding curve would still function, and Earn Vaults would still pay yield. The base protocol does not need POLAR to survive, but it scales far better with it.
 
