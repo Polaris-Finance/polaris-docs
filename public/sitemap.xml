@@ -20,12 +20,13 @@
   </url>
   <url>
     <loc>https://tokenbrice.github.io/polaris-docs/minting/interest-rates</loc>
+    <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tokenbrice.github.io/polaris-docs/minting/launch-a-passet</loc>
-    <lastmod>2026-06-15</lastmod>
+    <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -49,13 +50,13 @@
   </url>
   <url>
     <loc>https://tokenbrice.github.io/polaris-docs/minting/pgold</loc>
-    <lastmod>2026-06-15</lastmod>
+    <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tokenbrice.github.io/polaris-docs/minting/pusd</loc>
-    <lastmod>2026-06-15</lastmod>
+    <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -235,6 +236,7 @@
   </url>
   <url>
     <loc>https://tokenbrice.github.io/polaris-docs/yield/strategies</loc>
+    <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
