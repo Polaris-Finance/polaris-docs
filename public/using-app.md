@@ -14,16 +14,19 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 ---
 
-The Dashboard is your starting point in Polaris. It shows your balances, active positions, Earn Vault opportunities, staking rewards, recent activity, and the testnet faucet.
+The Dashboard is your starting point in Polaris.
+
+It shows your balances, active positions, Earn Vault opportunities, recent activity, and the testnet faucet.
 
 Use it to:
-
 - Connect your wallet.
 - Claim test WETH on Sepolia.
 - Check your pETH, pAsset, POLAR, fpETH, and vpETH balances.
-- Review Earn Vault and staking opportunities.
+- Review Earn Vault opportunities.
 - Confirm recent transactions and position changes.
 
-Image: Polaris Dashboard ("Your Polaris") showing Earn Vault and staking APR cards, the connect-faucet-earn onboarding steps, and the token price ticker
+Image: Polaris Dashboard showing balances, Earn Vault opportunities, onboarding steps, recent activity, and token prices
 
-The Dashboard is an overview screen. To take action, use [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap), [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow), [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn), [Split](https://tokenbrice.github.io/polaris-docs/using-app/split), [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap), or [Advanced](https://tokenbrice.github.io/polaris-docs/using-app/advanced).
+The Dashboard is an overview screen.
+
+To take action, use [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap), [Issue](https://tokenbrice.github.io/polaris-docs/using-app/issue), [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn), [Split](https://tokenbrice.github.io/polaris-docs/using-app/split), [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap), or [Advanced](https://tokenbrice.github.io/polaris-docs/using-app/advanced).

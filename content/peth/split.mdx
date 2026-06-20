@@ -1,78 +1,80 @@
 ---
 title: "pETH Split: fpETH and vpETH"
-description: How pETH splits into fpETH and vpETH, what each leg represents, how merging works, and how reserve loans use fpETH.
+description: "How pETH splits into fpETH and vpETH, what each token represents, how merging works, and how reserve loans use fpETH."
 ---
 
 # pETH Split: fpETH and vpETH
 
-The **Split** mechanism separates pETH into two matching tokens:
+pETH combines two sources of value: its floor value and its premium above the floor.
 
+The Split mechanism separates those two components:
+```text
+1 pETH = 1 fpETH + 1 vpETH
 ```
-1 pETH -> 1 fpETH + 1 vpETH
-```
 
-Splitting does not create extra value. It separates the pETH position into a **floor leg** and a **premium leg** so users can hold, trade, merge, or borrow against the part of pETH they actually want.
+Splitting does not create extra value. It separates one pETH token into two interconnected tokens, so users can hold, trade, merge, or borrow against the part of pETH they want.
 
-## The two legs
+## The Two Legs
 
-| Token | Meaning | Main use |
-|---|---|---|
-| **fpETH** | Floor-price pETH. It tracks the pETH floor-value claim under the splitter and bonding-curve assumptions. | Hold floor carry, redeem for WETH through the splitter, or use as collateral in reserve loans. |
-| **vpETH** | Volatility-premium pETH. It represents exposure to pETH's market value above the floor. | Hold or trade the premium/upside leg after separating out the floor claim. |
+| Token | What it represents | Main use |
+| --- | --- | --- |
+| fpETH | The floor-value component of pETH | Passive ETH yield, reserve loan collateral, looping within DeFi |
+| vpETH | The premium above the floor | Hold or trade the upside and volatility component of pETH |
 
 Think of pETH as:
-
-```
 pETH value = floor value + premium above floor
-```
+fpETH isolates the floor-value side. vpETH isolates the remaining premium.
 
-fpETH isolates the floor-value side. vpETH isolates the remaining premium side. If pETH trades close to its floor, vpETH can become worth very little. If pETH trades far above its floor, vpETH carries most of that premium exposure.
+If pETH trades close to its floor, vpETH may be worth very little. If pETH trades far above its floor, vpETH carries most of that premium exposure.
 
-For intuition, with pETH at a market price of 1.00 ETH:
+## Example
+If pETH trades at 1.00 ETH:
 
-| Floor price | [Floor ratio](/peth/floor-price) | fpETH claim (floor leg) | vpETH exposure (premium leg) |
-|---|---:|---:|---:|
-| 0.60 ETH | 60% | ≈ 0.60 ETH | ≈ 0.40 ETH |
-| 0.90 ETH | 90% | ≈ 0.90 ETH | ≈ 0.10 ETH |
+| Floor price | Floor ratio | fpETH claim (floor leg) | vpETH exposure (premium leg) |
+| --- | --- | --- | --- |
+| 0.60 ETH | 60% | ~0.60 ETH | ~0.40 ETH |
+| 0.90 ETH | 90% | ~0.90 ETH | ~0.10 ETH |
 
-The arithmetic is indicative: each leg trades on its own market, so realized prices can deviate from the decomposition.
+This is only a simple decomposition. fpETH and vpETH can each trade on their own markets, so realized prices may differ.
 
-## Split and merge
+## Split And Merge
+Splitting deposits pETH into the splitter contract and sends equal amounts of fpETH and vpETH to your wallet.
 
-**Split** deposits pETH into the splitter contract and sends equal amounts of fpETH and vpETH to your wallet.
+Merging burns equal amounts of fpETH and vpETH and releases the matching pETH.
 
-**Merge** burns equal amounts of fpETH and vpETH and releases the matching pETH from the splitter.
+You need both legs in equal amounts to merge back into pETH. If you sell or deposit one leg, you must reacquire it before merging.
 
-You need both legs in equal amounts to merge back into pETH. If you sold or deposited one leg, you must reacquire it before merging.
+## fpETH Redemption
+fpETH can be redeemed through the splitter for WETH based on the current pETH floor price.
 
-## fpETH redemption
+That redemption path is why fpETH represents the floor leg and is enforced by the splitter and bonding curve mechanics while the relevant contract invariants hold.
 
-fpETH can be redeemed through the splitter for WETH at the current pETH floor-price value under the contract assumptions. That redemption is the reason fpETH is the **floor leg**.
+## Reserve Loans
+Reserve loans use fpETH as collateral.
 
-This is not an offchain guarantee. It depends on the splitter, bonding curve, reserve accounting, Ethereum liveness, gas availability, and the relevant invariants holding.
+The borrowable WETH amount is based on the fpETH amount and the current pETH floor price, not on pETH's market premium.
 
-## Reserve loans
+This reduces liquidation risk from pETH premium swings, because the loan is sized against the floor-value component rather than the volatile premium.
 
-Reserve loans use **fpETH** as collateral, and each loan is recorded onchain as an NFT. The borrowable WETH amount is based on the fpETH amount and current pETH floor price, not on pETH's market premium.
+Reserve loans are separate from pAsset positions:
 
-That design reduces price-liquidation risk from pETH premium swings, but it does not make the position risk-free:
+## Non-Staking ETH Yield
+fpETH is designed to give users ETH-denominated yield without relying on staking.
 
-- Debt can accrue according to the reserve-loan fee model.
-- Closing or adjusting can be affected by floor-price changes before inclusion.
-- You still need WETH to repay and unlock fpETH.
-- Smart-contract, approval, oracle, gas, and chain-liveness risks remain.
+Its value is tied to the pETH floor. When Polaris activity raises the floor, the fpETH redemption value rises with it.
 
-Reserve loans are separate from pAsset positions. A position issues pUSD, pGOLD, or another pAsset against pETH collateral. A reserve loan borrows WETH against fpETH.
+That makes fpETH a new kind of ETH yield asset: not staking yield, not lending yield, and not offchain yield. It is yield from protocol activity increasing the floor of pETH.
 
-## Floor carry
+Because fpETH represents the floor-value component of pETH, it is structurally the lower-risk side of the split. It does not need pETH to trade higher in the market. It only needs the pETH floor to keep rising.
 
-**Floor carry** is the return a fpETH holder may realize as the pETH floor rises. If the floor price increases while you hold fpETH, the floor-value redemption claim increases under the contract assumptions.
+fpETH is not risk-free. It still depends on the splitter, bonding curve, Ethereum execution, and smart-contract correctness. But within the Polaris system, it is designed to be the most conservative way to earn from pETH floor growth.
 
-Floor carry is not a fixed APR. It depends on actual floor growth from protocol activity, execution costs, market pricing of fpETH, and whether the redemption path is available when you use it.
+## Related App Tabs
+- Split: split pETH into fpETH and vpETH, or merge both legs back into pETH.
+- Issue: create pAssets and access reserve-loan actions if supported in the app.
+- Dashboard: view live token prices, balances, and position state.
 
-
-## Related app tabs
-
-- [Split](/using-app/split) for splitting and merging.
-- [Borrow](/using-app/borrow) for reserve loans.
-- [Dashboard](/using-app) for live token prices; the floor and market price show on the Split tab.
+## Next Steps
+- [pETH Floor Price](/peth/floor-price): Understand the floor that backs fpETH.
+- [Open a Position](/minting/open-a-trove): Use pETH to create pAssets.
+- [Risk Disclosure](/resources/risk-disclosure): Understand the risks around pETH, fpETH, vpETH, and reserve loans.

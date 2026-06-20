@@ -1,6 +1,6 @@
 ---
-title: Polaris FAQ
-description: Short answers to common Polaris questions, with links to canonical pages for status, contracts, parameters, risks, and app actions.
+title: "Polaris FAQ"
+description: "Short answers to common Polaris questions, with links to canonical pages for status, contracts, parameters, risks, and app actions."
 ---
 
 # Polaris FAQ
@@ -13,39 +13,57 @@ FAQ answers are intentionally short. Follow the linked canonical page when you n
 
 ### What is Polaris?
 
-Polaris is a DeFi yield layer built around pETH. ETH becomes pETH through a bonding curve, pETH collateralizes pAssets such as pUSD and pGOLD, and protocol activity routes yield through onchain mechanisms. Start with [Why Polaris](/why-polaris).
+Polaris is a DeFi yield layer built around pETH. ETH becomes pETH through a bonding curve, pETH collateralizes pAssets such as pUSD and pGOLD, and protocol activity routes yield through onchain mechanisms.
+
+Start with [Why Polaris](/why-polaris).
 
 ### What is live now?
 
-The current phase is owned by [Launch Status](/launch-status). Polaris is in Public Testnet 1 on Sepolia (`11155111`), and production/mainnet use is not live.
+The current phase is owned by [Launch Status](/launch-status).
+
+Polaris is in Public Testnet 1 on Sepolia, chain ID `11155111`. Production and mainnet deployments are not live.
 
 ### Which app should I use?
 
-Use only the app listed on [Launch Status](/launch-status). For Public Testnet 1, follow [Public Testnet Quickstart](/quickstart).
+Use only the app listed on [Launch Status](/launch-status).
 
-## Using the app
+For Public Testnet 1, follow [Public Testnet Quickstart](/quickstart).
+
+## Using The App
 
 ### How do I get started on testnet?
 
-Open the official testnet app, connect Sepolia, use test assets only, swap into pETH, then try Borrow, Earn, Split, Zap, or Advanced as needed. The step-by-step path is [Public Testnet Quickstart](/quickstart).
+Open the official testnet app, connect Sepolia, use test assets only, swap into pETH, then try Issue, Earn, Split, Zap, or Advanced as needed.
 
-### Why does the app show Borrow?
+The step-by-step path is [Public Testnet Quickstart](/quickstart).
 
-The app says Borrow because the user action creates debt. You deposit pETH collateral and issue a pAsset directly from the protocol. See [Borrow](/using-app/borrow) and [Issuing pAssets](/minting).
+### Why does the app say Issue?
+
+Issue is where users create pAssets against pETH collateral.
+
+You deposit pETH, create a pAsset such as pUSD or pGOLD, and manage the resulting position over time.
+
+See [Issue](/using-app/issue) and [Issuing pAssets](/minting).
 
 ### What should I do if a quote or transaction fails?
 
-Use [Troubleshooting](/troubleshooting). Most failures come from wrong network, stale quotes, insufficient allowance, insufficient gas, Recovery Mode restrictions, or changed state before inclusion.
+Use [Troubleshooting](/troubleshooting).
 
-## Contracts, parameters, and safety
+Most failures come from wrong network, stale quotes, insufficient allowance, insufficient gas, Recovery Mode restrictions, or changed state before inclusion.
+
+## Contracts, Parameters, And Safety
 
 ### Where are contract addresses?
 
-[Contracts & Addresses](/resources/testnet#contracts-and-addresses) is the address owner. Public Testnet 1 addresses are Sepolia artifacts; production addresses are not published until Launch Status says production is live.
+[Contracts And Addresses](/resources/testnet#contracts-and-addresses) owns addresses.
+
+Public Testnet 1 addresses are Sepolia artifacts. Production addresses are not published until Launch Status says production is live.
 
 ### Where are current parameters?
 
-[Parameters](/resources/testnet#parameters) owns numeric values. Task pages link there instead of repeating tables.
+[Parameters](/resources/testnet#parameters) owns numeric values.
+
+Task pages link there instead of repeating parameter tables.
 
 ### Where are testnet manifests?
 
@@ -59,22 +77,36 @@ At minimum, verify frontend URL, network, chain ID, address, token, spender, amo
 
 ### Can I lose funds?
 
-Yes. Polaris involves smart-contract risk, collateral price risk, liquidation risk, Earn Vault first-loss risk, MEV risk, oracle risk, and frontend/phishing risk. Read [Risk Disclosure](/resources/risk-disclosure).
+Yes. Polaris involves smart-contract risk, collateral price risk, liquidation risk, Earn Vault first-loss risk, MEV risk, oracle risk, and frontend/phishing risk.
+
+Read [Risk Disclosure](/resources/risk-disclosure).
 
 ### What is LTV?
 
-LTV is loan-to-value: position debt divided by collateral value. Lower LTV is safer. Protocol parameters may also show the inverse ratio, ICR or MCR. For example, the current 115% MCR equals roughly an 87% max LTV, and a position at 150% ICR sits at 66.7% LTV. See the [Glossary](/resources) and [Manage a Position](/minting/managing-your-trove).
+LTV is loan-to-value: position debt divided by collateral value. Lower LTV is safer.
 
-### What is TCR or Recovery Mode?
+Protocol parameters may also show the inverse ratio, ICR or MCR. For example, a 115% MCR equals about 87% max LTV, and a position at 150% ICR sits at 66.7% LTV.
 
-TCR is the system-level reserve-to-debt health metric for a pAsset. If it drops below the configured threshold, Recovery Mode (called Emergency Mode in the contracts) tightens risk-increasing borrower actions. See [Recovery Mode](/redemptions-liquidations/recovery-mode) and [Parameters](/resources/testnet#parameters).
+See the [Glossary](/resources) and [Manage a Position](/minting/managing-your-trove).
+
+### What is Recovery Mode?
+
+Recovery Mode is the protective state a pAsset market enters when system backing becomes thin relative to total debt.
+
+It restricts risk-increasing actions but does not automatically liquidate healthy positions.
+
+See [Recovery Mode](/redemptions-liquidations/recovery-mode) and [Parameters](/resources/testnet#parameters).
 
 ## Security
 
 ### Is Polaris audited?
 
-Audit status is owned by [Audits & Security](/resources/audits-security). Until final reports are linked there, do not rely on audit claims found elsewhere.
+Audit status is owned by [Audits And Security](/resources/audits-security).
+
+Until final reports are linked there, do not rely on audit claims found elsewhere.
 
 ### Is there a bug bounty?
 
-Bug-bounty and disclosure status are owned by [Audits & Security](/resources/audits-security). Do not send exploit details to private forms, DMs, or third-party pages unless the official security page links them.
+Bug-bounty and disclosure status are owned by [Audits And Security](/resources/audits-security).
+
+Do not send exploit details to private forms, direct messages, or third-party pages unless the official security page links them.

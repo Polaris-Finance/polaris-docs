@@ -1,59 +1,48 @@
 ---
-title: Polaris Earn Vaults
-description: Earn Vaults let pAsset holders earn from borrower interest and liquidation gains.
+title: "Polaris Earn Vaults"
+description: "Earn Vaults let pAsset holders earn from issuer interest and liquidation gains."
 ---
 
 # Polaris Earn Vaults
 
-import { Steps } from 'nextra/components'
+Earn Vaults are the main pAsset yield venue in Polaris.
 
-Earn Vaults are the main pAsset yield venue in Polaris. Depositors provide pAssets that help process liquidations and, in return, earn from borrower interest and liquidation gains.
+Depositors provide pAssets that help process liquidations. In return, they can earn from issuer interest and liquidation gains.
 
-<Callout variant="warning" title="Read before depositing">
-Earn Vaults are first-loss backstops. When a position is liquidated, deposited pAssets can be burned to cover debt and replaced by pETH collateral. This is the mechanism, not an edge case.
-</Callout>
+Earn Vaults are first-loss backstops. When a position is liquidated, deposited pAssets can be burned to cover debt and replaced by pETH collateral.
 
 ## Why Use It
 
-- Earn pAsset-denominated interest from borrowers.
+- Earn pAsset-denominated interest from issuers.
 - Receive pETH liquidation gains when liquidations are processed.
-- Put idle pAssets to work without opening a borrow position.
+- Put idle pAssets to work without opening a position.
 - Help keep pAssets backed during stress.
 
-![How Earn Vaults fit the system: ETH enters the bonding curve as pETH, pETH backs pAsset positions, and pAssets deposited in Earn Vaults absorb liquidated debt and earn discounted pETH plus borrower interest](/infographics/stability-pool.svg)
+![ETH enters the bonding curve as pETH, pETH backs pAsset positions, and pAssets deposited in Earn Vaults absorb liquidated debt and earn discounted pETH plus issuer interest](/infographics/stability-pool.svg)
 
 ## How Yield Works
 
-Depositors earn from two streams:
+Depositors earn from two streams.
 
-1. **Borrower interest.** A share of the interest paid by positions that issued that pAsset.
-2. **Liquidation gains.** When a position is liquidated, the vault can absorb debt and receive pETH collateral. The collateral value is usually higher than the absorbed debt, but realized gains depend on execution and market movement.
+Issuer interest:
+A share of the interest paid by positions that issued that pAsset.
 
-Current split values live on [Parameters](/resources/testnet#parameters).
+Liquidation gains:
+When a position is liquidated, the vault can absorb debt and receive pETH collateral. The collateral value is usually higher than the absorbed debt, but realized gains depend on execution and market movement.
+
+Current split values live in [Parameters](/resources/testnet#parameters).
 
 ## Basic Flow
 
 You need a pAsset to deposit, usually pUSD or pGOLD, plus ETH for gas.
 
-<Steps>
-
-### Open Earn
-
-Open the Polaris app and go to **Earn**.
-
-### Choose a vault
-
-Select the pUSD or pGOLD Earn Vault.
-
-### Enter an amount
-
-Enter the deposit amount and review expected wallet changes.
-
-### Approve and deposit
-
-Approve the pAsset if prompted, then sign the deposit transaction.
-
-</Steps>
+1. Open Earn in the Polaris app.
+2. Choose the pUSD or pGOLD Earn Vault.
+3. Enter the deposit amount.
+4. Review expected wallet changes.
+5. Approve the pAsset if prompted.
+6. Sign the deposit transaction.
+7. Confirm the Earn Vault deposit appears in the app.
 
 ## What To Watch
 
@@ -61,7 +50,10 @@ Approve the pAsset if prompted, then sign the deposit transaction.
 - Liquidation gains arrive as pETH, which has price risk.
 - APR is an estimate, not a guarantee.
 - Extreme market moves can create losses even when the mechanism works as intended.
+- Earn Vault yield depends on issuer interest, liquidation activity, execution, and market conditions.
 
-- [Yield Sources](/yield/yield-sources) for every yield stream on Polaris.
-- [Liquidations](/redemptions-liquidations/liquidations) for how positions are closed and the vault is triggered.
-- [Risk Disclosure](/resources/risk-disclosure) before treating yield as principal-safe.
+## Next Steps
+
+- [Yield Sources](/yield/yield-sources): Understand every yield stream on Polaris.
+- [Liquidations](/redemptions-liquidations/liquidations): Understand how positions are closed and the vault is triggered.
+- [Risk Disclosure](/resources/risk-disclosure): Understand why yield is not principal-safe.

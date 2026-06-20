@@ -1,39 +1,32 @@
 ---
-title: Open a Position
-description: How to open a Polaris borrow position from the app Borrow tab.
+title: "Open a Position"
+description: "How to open a Polaris position from the app Issue tab."
 ---
 
 # Open a Position
 
-Use Borrow to issue pUSD or pGOLD against pETH.
+Open the Issue tab to create USDp or GOLDp against pETH collateral.
+Opening a position lets you unlock liquidity from pETH while keeping exposure to the collateral that powers Polaris.
 
-![Polaris Borrow tab with pUSD, pGOLD, and ETH sub-tabs, a collateral field, LTV slider, effective rate, and a projected-position panel](/screenshots/borrow.jpg)
+![Polaris Issue tab with pUSD, pGOLD, and ETH sub-tabs, a collateral field, LTV slider, effective rate, and a projected-position panel](/screenshots/borrow.jpg)
 
 ## Basic Flow
-
-1. Open the [Borrow](/using-app/borrow) tab.
-2. Choose pUSD or pGOLD.
+1. Open the Issue tab.
+2. Choose USDp or GOLDp.
 3. Enter how much pETH you want to deposit.
 4. Choose how much you want to issue.
 5. Review LTV, liquidation price, expected cost, and incentives.
 6. Approve pETH if required.
 7. Sign the transaction.
-8. Confirm the position appears in the Borrow tab.
-
+8. Confirm the position appears in the Issue tab.
 ## What To Watch
-
 - Lower LTV gives you more room before liquidation.
 - Higher LTV gives you more capital efficiency but less safety.
 - Your position can receive pETH incentives based on issued debt.
-- Your position can be redeemed against when the issued asset trades below peg.
+- New issuance and redemptions can change your position when pAssets trade away from peg.
 - You can add collateral, repay debt, or close the position later.
-
 For failed transactions or disabled actions, see [Troubleshooting](/troubleshooting).
-
-<NextSteps
-  steps={[
-    { href: '/using-app/borrow', title: 'Borrow App Guide', description: 'Understand the Borrow tab and how to manage an existing position.' },
-    { href: '/minting/managing-your-trove', title: 'Manage a Position', description: 'Adjust, monitor, and close a position.' },
-    { href: '/yield', title: 'Earn Vaults', description: 'Earn yield by depositing pAssets.' }
-  ]}
-/>
+## Next Steps
+- [Issue App Guide](/using-app/issue): Understand the Issue tab and how to manage an existing position.
+- [Manage a Position](/minting/managing-your-trove): Adjust, monitor, and close a position.
+- [Earn Vaults](/yield): Earn yield by depositing pAssets.

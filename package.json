@@ -13,6 +13,7 @@
     "dev": "node scripts/dev.mjs",
     "dev:search": "npm run build && npm run dev",
     "generate": "node scripts/generate-sitemap.mjs && node scripts/generate-llms.mjs",
+    "export:gdocs": "python3 scripts/export-gdocs-review.py",
     "clean:export": "node scripts/clean-export.mjs",
     "prebuild": "node scripts/clean-export.mjs && node scripts/generate-sitemap.mjs && node scripts/generate-llms.mjs",
     "build": "next build --webpack",

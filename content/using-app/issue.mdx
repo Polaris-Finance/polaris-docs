@@ -1,0 +1,45 @@
+---
+title: "Issue In The Polaris App"
+description: "How to open and manage Polaris positions from the app Issue tab."
+---
+
+# Issue In The Polaris App
+
+<PageStatusBanner lastUpdated="June 12, 2026" />
+
+Issue is where you create pAssets against pETH or borrow ETH against fpETH.
+
+pUSD and pGOLD:
+Deposit pETH collateral and create overcollateralized assets against your position.
+
+ETH:
+Borrow ETH against fpETH at up to 100% LTV with no liquidation risk, as the fpETH floor only ever rises.
+
+Once connected, you can manage existing positions from this tab, including adjustments, repayments, and closures.
+
+![Polaris Issue tab with pUSD, pGOLD, and ETH sub-tabs, a collateral field, LTV slider, effective rate, and a projected-position panel](/screenshots/borrow.jpg)
+
+## Basic Flow
+
+1. Choose the sub-tab: pUSD, pGOLD, or ETH.
+2. Enter collateral and the amount you want to create or borrow.
+3. Review LTV, liquidation price, expected cost, and incentives.
+4. Approve the collateral token if needed.
+5. Sign the transaction.
+6. Confirm the updated position in the Dashboard or Issue tab.
+
+## How Your Position Changes Over Time
+
+Your position is affected by more than the amount you create or borrow.
+
+- Your pETH collateral has exposure to ETH through the bonding curve.
+- Your position can receive pETH incentives based on your issued debt.
+- New issuance can increase the size of open positions by adding debt and collateral.
+- Redemptions can reduce collateral and debt across open positions when pAssets trade below peg.
+- Your liquidation price changes as collateral value, debt, and interest move.
+
+Creating pAssets is not just a one-time transaction. Monitor your position and keep a clear buffer below the maximum LTV.
+
+For disabled actions or reverted transactions, see [Troubleshooting](/troubleshooting).
+
+For position risk, see [Risk Disclosure](/resources/risk-disclosure).

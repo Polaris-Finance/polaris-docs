@@ -20,39 +20,57 @@ FAQ answers are intentionally short. Follow the linked canonical page when you n
 
 ### What is Polaris?
 
-Polaris is a DeFi yield layer built around pETH. ETH becomes pETH through a bonding curve, pETH collateralizes pAssets such as pUSD and pGOLD, and protocol activity routes yield through onchain mechanisms. Start with [Why Polaris](https://tokenbrice.github.io/polaris-docs/why-polaris).
+Polaris is a DeFi yield layer built around pETH. ETH becomes pETH through a bonding curve, pETH collateralizes pAssets such as pUSD and pGOLD, and protocol activity routes yield through onchain mechanisms.
+
+Start with [Why Polaris](https://tokenbrice.github.io/polaris-docs/why-polaris).
 
 ### What is live now?
 
-The current phase is owned by [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status). Polaris is in Public Testnet 1 on Sepolia (`11155111`), and production/mainnet use is not live.
+The current phase is owned by [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status).
+
+Polaris is in Public Testnet 1 on Sepolia, chain ID `11155111`. Production and mainnet deployments are not live.
 
 ### Which app should I use?
 
-Use only the app listed on [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status). For Public Testnet 1, follow [Public Testnet Quickstart](https://tokenbrice.github.io/polaris-docs/quickstart).
+Use only the app listed on [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status).
 
-## Using the app
+For Public Testnet 1, follow [Public Testnet Quickstart](https://tokenbrice.github.io/polaris-docs/quickstart).
+
+## Using The App
 
 ### How do I get started on testnet?
 
-Open the official testnet app, connect Sepolia, use test assets only, swap into pETH, then try Borrow, Earn, Split, Zap, or Advanced as needed. The step-by-step path is [Public Testnet Quickstart](https://tokenbrice.github.io/polaris-docs/quickstart).
+Open the official testnet app, connect Sepolia, use test assets only, swap into pETH, then try Issue, Earn, Split, Zap, or Advanced as needed.
 
-### Why does the app show Borrow?
+The step-by-step path is [Public Testnet Quickstart](https://tokenbrice.github.io/polaris-docs/quickstart).
 
-The app says Borrow because the user action creates debt. You deposit pETH collateral and issue a pAsset directly from the protocol. See [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow) and [Issuing pAssets](https://tokenbrice.github.io/polaris-docs/minting).
+### Why does the app say Issue?
+
+Issue is where users create pAssets against pETH collateral.
+
+You deposit pETH, create a pAsset such as pUSD or pGOLD, and manage the resulting position over time.
+
+See [Issue](https://tokenbrice.github.io/polaris-docs/using-app/issue) and [Issuing pAssets](https://tokenbrice.github.io/polaris-docs/minting).
 
 ### What should I do if a quote or transaction fails?
 
-Use [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting). Most failures come from wrong network, stale quotes, insufficient allowance, insufficient gas, Recovery Mode restrictions, or changed state before inclusion.
+Use [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting).
 
-## Contracts, parameters, and safety
+Most failures come from wrong network, stale quotes, insufficient allowance, insufficient gas, Recovery Mode restrictions, or changed state before inclusion.
+
+## Contracts, Parameters, And Safety
 
 ### Where are contract addresses?
 
-[Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses) is the address owner. Public Testnet 1 addresses are Sepolia artifacts; production addresses are not published until Launch Status says production is live.
+[Contracts And Addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses) owns addresses.
+
+Public Testnet 1 addresses are Sepolia artifacts. Production addresses are not published until Launch Status says production is live.
 
 ### Where are current parameters?
 
-[Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters) owns numeric values. Task pages link there instead of repeating tables.
+[Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters) owns numeric values.
+
+Task pages link there instead of repeating parameter tables.
 
 ### Where are testnet manifests?
 
@@ -66,24 +84,38 @@ At minimum, verify frontend URL, network, chain ID, address, token, spender, amo
 
 ### Can I lose funds?
 
-Yes. Polaris involves smart-contract risk, collateral price risk, liquidation risk, Earn Vault first-loss risk, MEV risk, oracle risk, and frontend/phishing risk. Read [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure).
+Yes. Polaris involves smart-contract risk, collateral price risk, liquidation risk, Earn Vault first-loss risk, MEV risk, oracle risk, and frontend/phishing risk.
+
+Read [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure).
 
 ### What is LTV?
 
-LTV is loan-to-value: position debt divided by collateral value. Lower LTV is safer. Protocol parameters may also show the inverse ratio, ICR or MCR. For example, the current 115% MCR equals roughly an 87% max LTV, and a position at 150% ICR sits at 66.7% LTV. See the [Glossary](https://tokenbrice.github.io/polaris-docs/resources) and [Manage a Position](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove).
+LTV is loan-to-value: position debt divided by collateral value. Lower LTV is safer.
 
-### What is TCR or Recovery Mode?
+Protocol parameters may also show the inverse ratio, ICR or MCR. For example, a 115% MCR equals about 87% max LTV, and a position at 150% ICR sits at 66.7% LTV.
 
-TCR is the system-level reserve-to-debt health metric for a pAsset. If it drops below the configured threshold, Recovery Mode (called Emergency Mode in the contracts) tightens risk-increasing borrower actions. See [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode) and [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters).
+See the [Glossary](https://tokenbrice.github.io/polaris-docs/resources) and [Manage a Position](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove).
+
+### What is Recovery Mode?
+
+Recovery Mode is the protective state a pAsset market enters when system backing becomes thin relative to total debt.
+
+It restricts risk-increasing actions but does not automatically liquidate healthy positions.
+
+See [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode) and [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters).
 
 ## Security
 
 ### Is Polaris audited?
 
-Audit status is owned by [Audits & Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security). Until final reports are linked there, do not rely on audit claims found elsewhere.
+Audit status is owned by [Audits And Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security).
+
+Until final reports are linked there, do not rely on audit claims found elsewhere.
 
 ### Is there a bug bounty?
 
-Bug-bounty and disclosure status are owned by [Audits & Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security). Do not send exploit details to private forms, DMs, or third-party pages unless the official security page links them.
+Bug-bounty and disclosure status are owned by [Audits And Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security).
 
-Relevant app/search vocabulary: app, official app, testnet, Sepolia, WETH, WETH faucet, Zap, Split, Swap, Borrow, Earn, Guide, Advanced, Analytics, APR, Reserve Loan.
+Do not send exploit details to private forms, direct messages, or third-party pages unless the official security page links them.
+
+Relevant app/search vocabulary: app, official app, testnet, Sepolia, WETH, WETH faucet, Zap, Split, Swap, Issue, Earn, Guide, Advanced, Analytics, APR, Reserve Loan.

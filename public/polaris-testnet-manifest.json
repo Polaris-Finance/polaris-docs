@@ -57,7 +57,7 @@
           "source": "Manifest"
         },
         {
-          "name": "Mint fee floor",
+          "name": "Issue fee floor",
           "value": "0.05%",
           "source": "Deploy script"
         },
@@ -67,7 +67,7 @@
           "source": "Deploy script"
         },
         {
-          "name": "Mint alpha",
+          "name": "Issue alpha",
           "value": "1e18",
           "source": "Deploy script"
         },
@@ -77,7 +77,7 @@
           "source": "Deploy script"
         },
         {
-          "name": "Mint minute decay factor",
+          "name": "Issue minute decay factor",
           "value": "998076443575628800",
           "source": "Deploy script"
         },
@@ -129,7 +129,7 @@
           "source": "Manifest"
         },
         {
-          "name": "Mint fee floor",
+          "name": "Issue fee floor",
           "value": "0.05%",
           "source": "Deploy script"
         },
@@ -139,7 +139,7 @@
           "source": "Deploy script"
         },
         {
-          "name": "Mint alpha",
+          "name": "Issue alpha",
           "value": "1e18",
           "source": "Deploy script"
         },
@@ -149,7 +149,7 @@
           "source": "Deploy script"
         },
         {
-          "name": "Mint minute decay factor",
+          "name": "Issue minute decay factor",
           "value": "998076443575628800",
           "source": "Deploy script"
         },

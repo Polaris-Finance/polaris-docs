@@ -13,35 +13,30 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 ---
 
 Polaris lets users issue pAssets directly from the protocol.
-
-To issue pUSD or pGOLD, users deposit pETH as collateral and create an overcollateralized position. The issued asset can then be used across Polaris and the wider DeFi ecosystem.
-
-This is similar in spirit to borrowing from a money market: you provide collateral, receive an asset, and manage your position over time. The difference is that Polaris uses pETH as the reserve asset and routes protocol activity back into the system.
+To issue USDp or GOLDp, users deposit pETH as collateral and create an overcollateralized position. The issued asset can then be used across Polaris and the wider DeFi ecosystem.
+This is similar in spirit to borrowing from a money market: you provide collateral, receive an asset, and manage your position over time. The difference is that pAssets are issued by the protocol against pETH collateral, rather than borrowed from a pool of external lenders.
 
 ## What To Consider Before Issuing
-
 Before issuing pAssets, check:
-
 - Your LTV and liquidation price.
 - How pETH price exposure affects your collateral.
 - How pETH incentives may accrue based on your issued debt.
-- How redemptions can affect your position when pAssets trade below peg.
+- How minting and redemptions can affect your position when pAssets trade above or below peg.
 - Whether the system is in a normal or recovery state.
 
 Issuing pAssets creates an active position. You should monitor it over time.
 
 ## Basic Flow
-
-1. Acquire pETH through [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap) or another supported route.
-2. Open [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow).
-3. Choose pUSD or pGOLD.
+1. Acquire pETH through Swap or another supported route.
+2. Open Issue.
+3. Choose USDp or GOLDp.
 4. Enter pETH collateral and the amount to issue.
 5. Review LTV, liquidation price, expected cost, and incentives.
 6. Approve pETH if needed, then sign.
 
 For current LTV thresholds and fees, see [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters). For the full risk model, see [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure).
 
-Next steps:
+## Next Steps
 - [Open a Position](https://tokenbrice.github.io/polaris-docs/minting/open-a-trove): Issue your first pAsset against pETH collateral from the app.
 - [Manage a Position](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove): Monitor LTV, interest, redemptions, and repayment.
-- [pAssets Overview](https://tokenbrice.github.io/polaris-docs/minting/passet-catalog): What pAssets are and which ones are live today.
+- [Asset Catalog](https://tokenbrice.github.io/polaris-docs/minting/passet-catalog): See which pAssets are testnet-active and which are future examples.

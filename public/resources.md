@@ -12,80 +12,87 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 ---
 
-Use this page when a term in the app, docs, or contracts needs a precise meaning. User-facing pages prefer the simpler public labels below.
+Use this page when a term in the app, docs, or contracts needs a precise meaning.
 
-Also in Reference: [Public Testnet 1](https://tokenbrice.github.io/polaris-docs/resources/testnet) · [Audits & Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security) · [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure) · [FAQ](https://tokenbrice.github.io/polaris-docs/resources/faq) · [Brand Assets](https://tokenbrice.github.io/polaris-docs/resources/brand-assets)
+User-facing pages should prefer the simpler public labels below.
+
+Also in Reference:
+- [Public Testnet 1](https://tokenbrice.github.io/polaris-docs/resources/testnet)
+- [Audits And Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security)
+- [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure)
+- [FAQ](https://tokenbrice.github.io/polaris-docs/resources/faq)
+- [Brand Assets](https://tokenbrice.github.io/polaris-docs/resources/brand-assets)
 
 ## Public Terms
 
-**Advanced**
+Advanced:
 The app area for expert operations: PSM issue/redeem, pETH-to-POLAR conversion, and the testnet faucet. See [Advanced](https://tokenbrice.github.io/polaris-docs/using-app/advanced).
 
-**Borrow**
-The app tab where users issue pAssets against pETH or borrow ETH against fpETH. See [Borrow](https://tokenbrice.github.io/polaris-docs/using-app/borrow).
+Earn Vault:
+A pAsset deposit venue that earns from issuer interest and liquidation gains. Earn Vaults are first-loss backstops, so deposits can be consumed during liquidations. See [Earn Vaults](https://tokenbrice.github.io/polaris-docs/yield).
 
-**Earn Vault**
-A pAsset deposit venue that earns from borrower interest and liquidation gains. Earn Vaults are first-loss backstops, so deposits can be consumed during liquidations. See [Earn Vaults](https://tokenbrice.github.io/polaris-docs/yield).
+fpETH:
+The floor-value token created when pETH is split. It represents pETH floor exposure and can be used for ETH borrowing strategies. See [pETH Split](https://tokenbrice.github.io/polaris-docs/peth/split).
 
-**fpETH**
-The floor-price leg created when pETH is split. It represents pETH floor exposure and can be used for ETH borrowing strategies. See [pETH Split](https://tokenbrice.github.io/polaris-docs/peth/split).
+Interest Rate:
+The cost paid by pAsset issuers. Polaris interest rates are designed to respond to issuance and redemption activity, using those flows as the onchain peg signal.
 
-**LTV**
-Loan-to-value: debt value divided by collateral value. Lower LTV gives more room before liquidation. See [Manage a Position](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove).
+Issue:
+The app tab where users create pAssets against pETH collateral. See [Issue](https://tokenbrice.github.io/polaris-docs/using-app/issue).
 
-**pAsset**
-A Polaris synthetic asset backed by pETH collateral, such as pUSD or pGOLD. See [pAssets Overview](https://tokenbrice.github.io/polaris-docs/minting/passet-catalog).
+LTV:
+Loan-to-value. Position debt divided by collateral value. Lower LTV gives more room before liquidation. See [Manage a Position](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove).
 
-**pETH**
+pAsset:
+A Polaris synthetic asset backed by pETH collateral, such as pUSD or pGOLD.
+
+Peg Defense:
+The paired issuance and redemption mechanisms that help pAssets trade around their reference value. Issuance expands supply above peg. Redemptions contract supply below peg. See [Peg Defense](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations).
+
+pETH:
 The ETH-backed reserve and collateral asset created through the Polaris bonding curve. See [pETH](https://tokenbrice.github.io/polaris-docs/peth).
 
-**pGOLD**
-A pAsset designed to track gold exposure without issuer custody at the protocol layer. See [pGOLD](https://tokenbrice.github.io/polaris-docs/minting/pgold).
+pGOLD:
+A pAsset designed to track gold exposure without issuer custody at the protocol layer.
 
-**POLAR**
-The stewardship token used for long-term protocol coordination and value capture. See [POLAR](https://tokenbrice.github.io/polaris-docs/polar).
+POLAR:
+The stewardship and growth token used for long-term protocol coordination and value capture. See [POLAR](https://tokenbrice.github.io/polaris-docs/polar).
 
-**Position**
-An individual borrow position backed by pETH collateral. Users can add collateral, issue more, repay, withdraw collateral, or close it. See [Issuing pAssets](https://tokenbrice.github.io/polaris-docs/minting).
+Position:
+An individual collateral position backed by pETH. Users can add collateral, issue more, repay, withdraw collateral, or close it. See [Issuing pAssets](https://tokenbrice.github.io/polaris-docs/minting).
 
-**pUSD**
-The flagship Polaris pAsset, designed to track the US dollar and backed by pETH collateral. See [pUSD](https://tokenbrice.github.io/polaris-docs/minting/pusd).
+pUSD:
+The flagship Polaris pAsset, designed to track the US dollar and backed by pETH collateral.
 
-**Redemption**
-Exchanging a below-peg pAsset for pETH collateral at protocol reference value minus a fee. See [Redemptions](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations).
-
-**Split**
+Split:
 The operation that turns pETH into equal amounts of fpETH and vpETH, or merges equal fpETH and vpETH back into pETH. See [Split](https://tokenbrice.github.io/polaris-docs/using-app/split).
 
-**vpETH**
+vpETH:
 The volatility-premium leg created when pETH is split. It represents exposure to pETH value above the floor.
 
-**Zap**
+Zap:
 An app flow that bundles several actions into one transaction. A zap simplifies execution, but it does not change the underlying economics. See [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap).
 
 ## Technical Aliases
 
 These names may appear in contract labels, older materials, or internal implementation details. Public docs should prefer the terms above.
 
-**CDP**
-Legacy and contract-facing label for an individual borrow position. Public docs use **position**.
+CDP:
+Legacy and contract-facing label for an individual collateral position. Public docs use position.
 
-**CDB / branch**
-Legacy and contract-facing label for a pAsset market. Public docs use **pAsset market** or **protocol market**.
+CDB / branch:
+Legacy and contract-facing label for a pAsset market. Public docs use pAsset market or protocol market.
 
-**ICR / MCR**
+ICR / MCR:
 Collateral-ratio terms used in some protocol references. They are the inverse of LTV: collateral value divided by debt value.
 
-**Mint / issuing**
-Contract-facing language for creating a token. Public docs use **issue**, **create**, or **receive** depending on the action.
+Mint / minting:
+Contract-facing language for creating a token. Public docs use issue, create, or receive depending on the action.
 
-**PSM**
+PSM:
 Peg Stability Module. The direct mechanism for issuing or redeeming pAssets against pETH at the oracle price.
 
-**SP / Earn Vault**
-Internal name for the liquidation backstop behind an Earn Vault. Public docs use **Earn Vault**.
+SP:
+Internal name for the liquidation backstop behind an Earn Vault. Public docs use Earn Vault.
 
-**Position**
-Legacy label for an individual borrow position. Public docs use **position**.
-
-Relevant app/search vocabulary: app, official app, testnet, Sepolia, WETH, WETH faucet, Zap, Split, Swap, Borrow, Earn, Guide, Advanced, Analytics, APR, Reserve Loan.
+Relevant app/search vocabulary: app, official app, testnet, Sepolia, WETH, WETH faucet, Zap, Split, Swap, Issue, Earn, Guide, Advanced, Analytics, APR, Reserve Loan.

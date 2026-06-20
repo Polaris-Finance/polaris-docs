@@ -1,28 +1,39 @@
 ---
-title: Advanced Tools in the Polaris App
-description: How to use the Polaris Advanced tab for PSM mint/redeem, pETH-to-POLAR conversion, and the testnet faucet.
+title: "Advanced Tools In The Polaris App"
+description: "How to use the Polaris Advanced tab for PSM issue/redeem, pETH-to-POLAR conversion, and the testnet faucet."
 ---
 
-# Advanced
+# Advanced Tools In The Polaris App
 
 <PageStatusBanner lastUpdated="June 12, 2026" />
 
-The Advanced section gives direct access to a few core Polaris mechanisms for arbitrageurs and keepers. These tools are fully permissionless and offer more flexibility, but they assume some familiarity with how the protocol works.
+The Advanced section gives direct access to a few core Polaris mechanisms for arbitrageurs and keepers.
 
-It currently includes:
+These tools are permissionless and offer more flexibility, but they assume familiarity with how the protocol works.
 
-- **Peg Stability Module (PSM):** issue or redeem pUSD and pGOLD against pETH at the oracle price, with no size limits. Issuing exchanges pETH for the selected asset, while redemption swaps the asset back into pETH. This arbitrage helps maintain each peg.
-- **Convert pETH → POLAR:** exchange pETH for newly created POLAR through a one-way auction. Converted pETH is permanently burned, increasing the bonding curve floor, while the auction price gradually decays until conversion occurs. In this case, there is no reverse direction.
-- **Testnet ETH Faucet:** claim test WETH using Sepolia ETH, subject to the current rate, cooldown period, and faucet limits.
+## Current Modules
 
-![Polaris Advanced tab ("Expert operations") with the PSM Mint and Redeem panels for pUSD and pGOLD](/screenshots/advanced.jpg)
+Peg Stability Module:
+Issue or redeem pUSD and pGOLD against pETH at the oracle price, with no size limits. Issuing exchanges pETH for the selected asset, while redemption swaps the asset back into pETH. This arbitrage helps maintain each peg.
+
+Convert pETH To POLAR:
+Exchange pETH for newly created POLAR through a one-way auction. Converted pETH is permanently burned, increasing the bonding curve floor, while the auction price gradually decays until conversion occurs. There is no reverse direction.
+
+Testnet ETH Faucet:
+Claim test WETH using Sepolia ETH, subject to the current rate, cooldown period, and faucet limits.
+
+![Polaris Advanced tab with expert operations, PSM issue and redeem panels, pETH-to-POLAR conversion, and faucet](/screenshots/advanced.jpg)
 
 ## Basic Flow
 
-1. Pick the module: PSM mint/redeem, pETH → POLAR conversion, or faucet.
-2. For PSM, choose pUSD or pGOLD and the direction; review the output and fee at the oracle price.
-3. For conversion, review the current auction price against the market POLAR price before converting.
-4. Approve the input token if required, then sign.
-5. Confirm the resulting balance and that no unexpected allowance remains.
+1. Pick the module: PSM issue/redeem, pETH-to-POLAR conversion, or faucet.
+2. For PSM, choose pUSD or pGOLD and the direction.
+3. Review the output and fee at the oracle price.
+4. For conversion, review the current auction price against the market POLAR price before converting.
+5. Approve the input token if required.
+6. Sign the transaction.
+7. Confirm the resulting balance and that no unexpected allowance remains.
 
-Use the guided [Borrow](/using-app/borrow), [Earn](/using-app/earn), [Split](/using-app/split), or [Swap](/using-app/swap) page when possible. Use [Troubleshooting](/troubleshooting) before retrying a failed transaction.
+Use guided pages such as [Issue](/using-app/issue), [Earn](/using-app/earn), [Split](/using-app/split), or [Swap](/using-app/swap) when possible.
+
+Use [Troubleshooting](/troubleshooting) before retrying a failed transaction.

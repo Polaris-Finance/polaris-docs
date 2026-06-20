@@ -1,30 +1,53 @@
 ---
-title: Polaris Audits & Security
-description: Polaris security model, audit-report status, bug-bounty status, and disclosure guidance. Pre-launch reports and bounty details are not published yet.
+title: "Polaris Audits And Security"
+description: "Polaris security model, audit-report status, bug-bounty status, and disclosure guidance."
 ---
 
-# Polaris Audits & Security
+# Polaris Audits And Security
 
 <PageStatusBanner lastUpdated="June 10, 2026" />
 
-> **Pre-launch note:** Audits and verifications are ongoing; this page will be updated with major developments.
+Audits and verifications are ongoing. This page will be updated when audit reports, a bug bounty, or an official disclosure channel are live.
 
-## Current status
+## Current Status
 
-| Item | Status |
-|---|---|
-| Audit reports | **None published yet.** Until reports appear on this page, treat the protocol as unaudited. |
-| Bug bounty | **Not live.** No bounty program exists yet; treat any page or message claiming otherwise as fake. |
-| Vulnerability disclosure | **No dedicated channel yet.** This page will list the official contact when one is live. |
+Audit reports:
+None published yet. Until reports appear on this page, treat the protocol as unaudited.
 
-## The security model
+Bug bounty:
+Not live. No bounty program exists yet. Treat any page or message claiming otherwise as fake unless linked here.
 
-Polaris's intended security model rests as much on what it *cannot* do as on what it can:
+Vulnerability disclosure:
+No dedicated channel yet. This page will list the official contact when one is live.
 
-- **Immutability.** The core contracts are intended to be non-upgradeable after deployment. This removes upgrade-key and proxy-admin attack surface, raising the stakes on getting the code right: immutability cuts both ways - it cannot be tampered with, and it cannot be patched.
-- **No admin keys.** The design has no freeze, blacklist, or pause functions for anyone, including the team. No privileged key is intended to move user funds.
-- **Bounded stewardship.** Stewards adjust only quantitative parameters - many of them bounded by hardcoded ranges (for example interest-rate maxima, fee-split floors, and the mint/redemption decay factors) - and cannot reach the core logic. See [Stewardship, not Governance](/stewardship).
-- **Narrow oracle dependency.** Peg awareness uses internal redemption and issuing volume rather than a pAsset price oracle. Collateral pricing still requires an ETH price feed; the provider, feed address, and network details are not published until launch.
+## Security Model
 
-For the full accounting of what can still go wrong, read the [Risk Disclosure](/resources/risk-disclosure).
+Polaris is designed to reduce trusted human control over the core protocol.
 
+## Immutability
+
+The core contracts are intended to be non-upgradeable after deployment.
+
+This removes upgrade-key and proxy-admin attack surface, but it also raises the stakes on getting the code right. Immutability cuts both ways: it cannot be tampered with, and it cannot be patched.
+
+## No Admin Keys
+
+The design has no freeze, blacklist, or pause functions for anyone, including the team.
+
+No privileged key is intended to move user funds.
+
+## Bounded Stewardship
+
+Stewards adjust only quantitative parameters. Many of these parameters are bounded by hardcoded ranges, such as interest-rate maxima, fee-split floors, and issuance/redemption decay factors.
+
+Stewardship cannot rewrite the core logic.
+
+See [Stewardship](/stewardship).
+
+## Narrow Oracle Dependency
+
+Peg awareness uses internal issuance and redemption volume rather than a direct pAsset market-price oracle.
+
+Collateral pricing still requires ETH price feeds, and non-USD pAssets may require additional reference-asset feeds.
+
+For the full accounting of what can still go wrong, read [Risk Disclosure](/resources/risk-disclosure).

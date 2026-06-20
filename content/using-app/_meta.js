@@ -1,7 +1,7 @@
 export default {
   index: 'Dashboard',
   swap: 'Swap',
-  borrow: 'Borrow',
+  issue: 'Issue',
   earn: 'Earn',
   split: 'Split',
   zap: 'Zap',

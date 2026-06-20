@@ -187,14 +187,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tokenbrice.github.io/polaris-docs/using-app/borrow</loc>
+    <loc>https://tokenbrice.github.io/polaris-docs/using-app/earn</loc>
     <lastmod>2026-06-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tokenbrice.github.io/polaris-docs/using-app/earn</loc>
-    <lastmod>2026-06-12</lastmod>
+    <loc>https://tokenbrice.github.io/polaris-docs/using-app/issue</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

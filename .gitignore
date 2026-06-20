@@ -32,6 +32,7 @@ next-env.d.ts
 /agents/
 
 # local tool artifacts
+/review-docs/
 /.playwright/
 /.playwright-cli
 /.playwright-mcp/

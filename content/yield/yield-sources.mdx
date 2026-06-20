@@ -1,44 +1,78 @@
 ---
-title: Polaris Yield Sources
-description: Every source of pAsset yield on Polaris is onchain, internal to the protocol, and scales with activity.
+title: "Polaris Yield Sources"
+description: "Every source of yield on Polaris is onchain, internal to the protocol, and designed to scale with activity."
 ---
 
 # Polaris Yield Sources
 
-Polaris yield comes from onchain protocol activity: borrowing, liquidations, swaps, and conversions. This page lists the sources; [Fee Router & Flows](/stewardship/fee-router) covers routing.
+Polaris yield comes from onchain protocol activity: issuance, liquidations, swaps, and conversions.
 
-> Adoption ⇒ activity ⇒ velocity ⇒ fees ⇒ yield ⇒ more demand.
+This page lists the sources. [Fee Router And Flows](/stewardship/fee-router) covers routing.
 
-## The sources
+Adoption creates activity. Activity creates fees. Fees create yield. Yield creates more demand.
 
-| Source | Where it originates | Flows to |
-|---|---|---|
-| **Borrower interest** | Interest paid by positions that issued pAssets | Split by the interest router between [Earn Vault](/yield) depositors, POLAR stakers, and an ecosystem remainder |
-| **Liquidation gains** | Penalties on liquidated positions, paid in discounted pETH | Earn Vault depositors |
-| **Bonding curve swap fees** | Fees on every ETH to pETH or pETH to ETH swap | The pETH floor and positions that receive routed pETH rewards |
-| **Conversion gains** | ETH released when pETH is burned to create POLAR in a [conversion auction](/polar/conversion-auctions) | The Fee Router, which recycles it into pETH and streams it to positions based on recorded debt |
+## The Sources
 
-The first two drive [Earn Vault](/yield) yield and are the primary venue for pAsset holders. The bonding curve and conversion components make **pETH used as collateral yield-bearing**: yield accrues to positions and to pETH's rising floor, not to a passive token balance.
+Issuer interest:
+Origin: interest paid by positions that issued pAssets.
+Flows to: split by the interest router between Earn Vault depositors, vePOLAR lockers, and other configured destinations.
 
-## Why this is "self-scaling"
+Liquidation gains:
+Origin: penalties and discounted collateral from liquidated positions.
+Flows to: Earn Vault depositors.
 
-These sources depend on protocol **activity**:
+Bonding curve swap fees:
+Origin: fees on ETH to pETH and pETH to ETH swaps.
+Flows to: pETH floor growth and positions that receive routed pETH rewards.
 
-- More positions opened means more borrower interest.
-- More volatility can mean more liquidation gains.
-- More trading means more bonding curve swap fees.
-- More POLAR created through conversion means more conversion gains.
+Conversion gains:
+Origin: ETH released when pETH is burned to create POLAR in a conversion auction.
+Flows to: the Fee Router, which recycles value into pETH and routes it to configured destinations.
 
-Yield scales with pAsset supply and protocol use, but realized returns still depend on activity, rates, liquidations, contract execution, and market conditions.
+## What Each Source Supports
 
-## Owned, not rented
+Earn Vault yield:
+Driven mainly by issuer interest and liquidation gains.
 
-Polaris yield is not subsidized, bridged in, or voted into being. It emerges from protocol use and is captured by the protocol itself.
+pETH yield:
+Driven by bonding curve swap fees, conversion gains, floor growth, and routed pETH rewards.
 
-## How yield is distributed
+vePOLAR value capture:
+Driven by a guaranteed minimum share of issuer interest from deployed pAsset markets, once vePOLAR is live.
 
-Conversion proceeds and swap fees go through the **[Fee Router](/stewardship/fee-router)**. Borrower interest follows separate pAsset-denominated split logic. Current values and pending production status live on [Parameters](/resources/testnet#parameters).
+Flow revenue:
+Driven by protocol revenue shared with approved integrations that create durable demand for Polaris assets.
+
+## Why This Is Self-Scaling
+
+The primary yield sources depend on protocol activity:
+- More pAssets issued can mean more issuer interest.
+- More trading can mean more bonding curve swap fees.
+- More POLAR created through conversion can mean more conversion gains.
+- More integrations can mean more demand for pETH and pAssets.
+
+Liquidations can also create Earn Vault yield, but they exist to protect solvency, not to generate yield for its own sake. They are expected to matter most during market stress, when issuer interest may fall and the system needs backstop liquidity most.
+
+## Owned, Not Rented
+
+Polaris yield is not subsidized, bridged in, or voted into being.
+
+It emerges from protocol use and is captured by the protocol itself.
+
+That makes yield a function of Polaris activity rather than an external incentive budget.
+
+## How Yield Is Distributed
+
+Conversion proceeds and swap fees go through the [Fee Router](/stewardship/fee-router).
+
+Issuer interest follows separate pAsset-denominated split logic.
+
+Earn Vaults, vePOLAR, positions, and approved Flow recipients each receive yield through their configured path.
+
+Current values and pending production status live in [Parameters](/resources/testnet#parameters).
 
 ## Parameters
 
-Use [Parameters](/resources/testnet#parameters) for current yield-related values. This page owns the source model, not numeric tables.
+Use [Parameters](/resources/testnet#parameters) for current yield-related values.
+
+This page owns the source model, not numeric tables.

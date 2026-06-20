@@ -12,50 +12,34 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 ---
 
-After you [open a position](https://tokenbrice.github.io/polaris-docs/minting/open-a-trove), you can adjust it: add collateral, issue more, repay debt, withdraw collateral, or close. The main app-facing health metric is **loan-to-value (LTV)**.
+[After you open a position](https://tokenbrice.github.io/polaris-docs/minting/open-a-trove), you can adjust it: add collateral, issue more, repay debt, withdraw collateral, or close. The main app-facing health metric is loan-to-value (LTV).
 
-## LTV
-
-LTV is the recorded value of your debt divided by the value of your collateral:
-
-> LTV = debt face value ÷ collateral value
-
+LTV
+LTV is calculated by dividing the value of your debt by the value of your collateral:
+LTV = debt face value ÷ collateral value
 Lower LTV is safer. Some protocol references use collateral ratio instead, which is the reciprocal:
-
-> ICR = collateral value ÷ debt face value
-
+ICR = collateral value ÷ debt face value
 That means 150% collateral ratio is the same position as 66.7% LTV. Two rules matter:
-
-- Above the maximum LTV, the position can be [liquidated](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations).
-- [Redemptions](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations) can reduce collateral and debt across open positions when a pAsset trades below peg.
-
-Your LTV can move even if you do nothing, because prices, rates, redemptions, and rewards keep changing.
-
-## Position Health Simulator
-
-The simulator below defaults to the current Public Testnet 1 MCR of 115%, equivalent to about 87.0% max LTV. Always verify live values on [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters) and in the app before signing.
-
+- Above the maximum LTV, the position can be liquidated.
+- New issuance and redemptions can change the balance between collateral and debt across open positions when a pAsset trades away from its peg.
+- Your LTV can move even if you do nothing, because prices, rates, new issuance, redemptions, and rewards keep changing.
 ## Basic Actions
-
-- **Add collateral:** lowers LTV without changing debt.
-- **Issue more:** raises LTV and reduces your safety buffer.
-- **Repay debt:** lowers LTV and frees room to withdraw collateral.
-- **Close:** repay the full debt, then withdraw collateral.
-- **Transfer:** positions are represented by an NFT. Transferring it transfers control of collateral, debt, and management rights.
-
+- Add collateral: lowers LTV without changing debt.
+- Issue more: raises LTV and reduces your safety buffer.
+- Repay debt: lowers LTV and frees room to withdraw collateral.
+- Close: repay the full debt, then withdraw collateral.
+- Transfer: positions are represented by an NFT. Transferring it transfers control of collateral, debt, and management rights.
 ## What To Watch
-
 - Borrow interest increases debt over time.
-- Collateral pETH can receive protocol incentives while it backs debt.
+- Your position can receive pETH incentives based on issued debt.
+- New issuance can add collateral and debt to existing positions, potentially lowering LTV.
 - Redemptions can reduce collateral and debt even while the position is solvent.
 - Withdrawing collateral or issuing more debt raises LTV.
 - Recovery Mode can restrict risk-increasing actions.
-
 For current thresholds, see [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters). For the full risk model, see [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure).
-
-Next steps:
+## Next Steps
 - [Open a Position](https://tokenbrice.github.io/polaris-docs/minting/open-a-trove): Issue your first pAsset against pETH collateral.
 - [Liquidations](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations): Understand what happens if your LTV crosses the maximum.
 - [Earn Vaults](https://tokenbrice.github.io/polaris-docs/yield): Earn yield by depositing pAssets.
 
-Relevant app/search vocabulary: Borrow, Manage Borrow Position, borrow, trove, troves, open trove, manage trove, collateralized debt position, CDP, issue, open borrow position, repay, close borrow position, pUSD, pGOLD, LTV, loan-to-value, official app, borrow position, manage borrow position, pAsset debt position.
+Relevant app/search vocabulary: Issue, Manage Position, borrow, issue, trove, troves, open trove, manage trove, collateralized debt position, CDP, open borrow position, repay, close borrow position, pUSD, pGOLD, LTV, loan-to-value, official app, borrow position, manage borrow position, pAsset debt position.

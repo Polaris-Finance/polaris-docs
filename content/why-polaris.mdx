@@ -1,79 +1,59 @@
 ---
-title: Why Polaris
-description: Why DeFi needs immutable, counterparty-free, yield-bearing money and collateral.
+title: "Why Polaris"
+description: "Why DeFi needs immutable, counterparty-free, yield-bearing money and collateral."
 ---
 
 # Why Polaris
 
-DeFi was built to remove unnecessary trust. Over time, much of the ecosystem has drifted back toward the same dependencies it set out to escape: custodians, centralized exchanges, multisigs, upgradeable contracts, offchain collateral, and black-box yield.
+Blockchains gave the world something new: a shared global state that no single institution controls.
+
+DeFi was meant to build on that foundation. A financial layer that is more open and transparent, where participation depends less on trust and more on verifiable rules.
+
+But over time, much of DeFi has drifted back toward the dependencies it was built to escape: custodians, centralized exchanges, multisigs, upgradeable contracts, offchain collateral, and black-box yield.
 
 The result is a financial system that looks onchain from the outside, but often depends on centralized promises underneath.
 
+Users are asked to trust intermediaries they cannot see, legal agreements they cannot verify, and yield sources they do not control. They inherit new risks, but are rarely compensated for them.
 Polaris takes a different path.
-
-Polaris is built around immutable, counterparty-free, yield-bearing money and collateral. Its core asset, pETH, is backed by ETH and designed to support decentralized currencies and synthetic assets without relying on T-bills, custodians, or offchain intermediaries.
-
+Built around an immutable foundation, pETH is a yield bearing asset backed by native ETH and designed to support decentralized currencies and synthetic assets without introducing external counterparties or offchain dependencies.
 ## The Problem
+DeFi’s yield economy has become increasingly concentrated around two sources: T-bills and RWAs for stablecoins, and ETH staking for ETH-denominated assets.
 
-The current state of DeFi has centralized around two dominant yield sources:
+Both have their place, but this is not the end state we aim for.
+When stablecoin yield depends on RWAs, the system becomes reliant on external institutions to generate and distribute returns. When ETH yield comes primarily from staking, every ETH-denominated asset ends up competing for the same source of return, one that has steadily compressed over time.
+This creates a structural dependency problem that worsens as the system grows. DeFi may become more productive on the surface, but underneath it is more reliant on custodians, offchain agreements, upgrade keys, and opaque
+operational processes.
 
-- RWA and T-bill yield for stablecoins.
-- ETH staking yield for ETH-denominated assets.
+Users often do not see these dependencies. They see an APY, a token balance, and an interface that feels onchain, while the systems supporting that yield often rely on assets that can be frozen or contracts that can be upgraded without their consent.
 
-Both can be useful, but they should not be accepted as the end state of DeFi.
-
-Offchain yield introduces new risks: centralized intermediaries, legal claims, redemption constraints, opaque agreements, and freeze or seizure exposure. Users take these risks, but are not always compensated for them.
+That is not enough for the next era of internet-native finance.
 
 ## The Polaris Thesis
-
-The internet needs financial infrastructure that can be used by people, institutions, autonomous agents, and future digital economies without relying on trusted counterparties.
-
-That requires money and collateral that are:
-
-- Immutable at the core.
-- Backed by onchain assets.
-- Resistant to capture.
-- Productive without offchain yield dependencies.
-- Useful across DeFi without permission.
-
-Polaris is designed to make this possible.
-
-## What Polaris Enables
-
-Polaris turns ETH into pETH, a yield-bearing reserve asset with a natively growing floor. pETH can then back pAssets such as pUSD and pGOLD, creating decentralized currencies and synthetic assets that scale with protocol activity.
-
+The internet needs financial infrastructure that can support both human and machine economies without relying on trusted counterparties.
+That requires permissionless money and collateral that remain sovereign throughout their lifecycle, from the assets that back them to the mechanisms that generate their yield.
+Polaris is designed around that belief.
+The protocol transforms ETH into pETH, a yield-bearing reserve asset with a natively growing floor. pETH can then support the creation of pAssets such as USDp and GOLDp, creating decentralized currencies and synthetic assets that scale with protocol activity.
 Instead of importing yield from centralized counterparties, Polaris routes value from its own mechanisms back into the system.
-
-Users can:
-
-- Hold pETH as productive collateral.
-- Issue pAssets against pETH.
-- Deposit pAssets into Earn Vaults.
-- Split pETH into floor and volatility components.
-- Participate in POLAR stewardship.
-
+Users can hold pETH as productive collateral, issue pAssets against it, deposit pAssets into Earn Vaults, split pETH into floor and volatility components, and participate in stewardship (our variant of what governance should be) via the POLAR token.
 ## Design Choices
 
 | Choice | Why it exists | What it enables |
-|---|---|---|
-| **pETH as common collateral** | Gives all pAssets a shared reserve foundation | Easier risk accounting across pAsset markets |
-| **Two-way bonding curve** | The curve gives pETH contract-native liquidity without depending on external liquidity providers. | ETH can enter and exit through transparent onchain rules while fees and burns can raise the pETH floor. |
-| **pAssets backed by pETH** | Allows synthetic assets without custodians or offchain collateral | pUSD, pGOLD, and future pAssets can share the same reserve base |
-| **Earn Vaults** | Turn liquidation and borrower activity into yield opportunities | pAsset holders can earn while helping backstop the system |
-| **POLAR stewardship** | Allows bounded parameter control without mutable core logic | Long-term coordination without rewriting the base protocol |
-| **pETH split** | Separates floor exposure from upside exposure | Users can choose different risk and return profiles |
-| **Redemptions** | Give pAssets an onchain peg defense mechanism | Below-peg pressure can be corrected without offchain redemption promises |
+| --- | --- | --- |
+| pETH as common collateral | Gives every pAsset market the same ETH-backed reserve foundation | USDp, GOLDp, and future pAssets can scale from the same collateral reserve, making risk easier to understand across the system |
+| Two-way bonding curve | Gives pETH native liquidity without depending on external liquidity providers | ETH can enter and exit through transparent onchain rules while fees and burns can raise the pETH floor. |
+| Earn Vaults | Turn liquidation and borrower activity into yield opportunities | pAsset holders can earn yield while providing an additional layer of resilience to the system. |
+| POLAR stewardship | Allows decision-making within predefined boundaries while keeping the core logic immutable. | Long-term coordination without rewriting the base protocol |
+| pETH split | Separates floor exposure from upside exposure | Users can choose different risk and return profiles |
+| Direct pAsset issuance | Lets users create pAssets directly from the protocol against pETH collateral 1:1 | New pAssets can scale from native demand without relying on leverage or borrowers |
+| Redemptions | Guarantees pAsset peg stability | Below-peg pressure can be corrected without offchain redemption promises |
+| Peg-responsive interest rates | Adjust borrowing costs based on each pAsset’s peg conditions | Helps balance supply and demand while routing value back to Earn Vaults and POLAR stewardship |
 
 ## The End Goal
+Polaris exists to help DeFi become less dependent on the centralized financial system.
+A way to create money that remains decentralized and permissionless, without sacrificing the openness and transparency that blockchains were designed to provide.
+A fully censorship-resistant stablecoin may be the product people notice first, but the larger vision is a decentralized yield layer for onchain money.
 
-Polaris exists to help DeFi become more sovereign, more useful, and less dependent on the centralized financial system.
-
-The goal is not just another stablecoin. The goal is a decentralized yield layer for onchain money, synthetic assets, and future internet-native financial systems.
-
-<NextSteps
-  steps={[
-    { href: '/peth', title: 'pETH', description: 'How the shared collateral primitive, bonding curve, and floor price work.' },
-    { href: '/minting', title: 'Issuing pAssets', description: 'How pUSD and pGOLD positions work.' },
-    { href: '/yield', title: 'Earn Vaults', description: 'How pAsset deposits earn from protocol activity.' }
-  ]}
-/>
+## Next Steps
+- peth: How the shared collateral primitive, bonding curve, and floor price work.
+- minting: How pUSD and pGOLD positions work.
+- yield: How pAsset deposits earn from protocol activity.

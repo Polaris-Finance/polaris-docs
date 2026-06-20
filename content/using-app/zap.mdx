@@ -1,22 +1,25 @@
 ---
-title: Zap in the Polaris App
-description: How to use Polaris Zap strategies and recover safely when one bundled step fails.
+title: "Zap In The Polaris App"
+description: "How to use Polaris Zap strategies and recover safely when one bundled step fails."
 ---
 
-# Zap
+# Zap In The Polaris App
 
 <PageStatusBanner lastUpdated="June 12, 2026" />
 
-Zap combines multiple on-chain actions into a single transaction, making it easier to enter common Polaris strategies.
-
-The current strategies are:
-
-- **pUSD Stable Yield:** uses your WETH to acquire pUSD and deposit it into the pUSD Earn Vault in one step, earning yield from issuer interest and liquidation gains.
-- **Floor Carry:** converts ETH into fpETH and issues ETH against it, creating a non-liquidatable position that can be looped to increase exposure.
-
-Additional strategies will become available over time.
+Zap combines multiple onchain actions into a single transaction, making it easier to enter common Polaris strategies.
 
 A zap only simplifies execution. The underlying economics remain exactly the same, and positions can always be managed manually afterward.
+
+## Current Strategies
+
+pUSD Stable Yield:
+Uses your WETH to buy pUSD and deposit it into the pUSD Earn Vault in one step, earning yield from issuer interest and liquidation gains.
+
+Floor Carry:
+Converts ETH into fpETH and borrows ETH against it, creating a non-liquidatable position that can be looped to increase exposure.
+
+Additional strategies will become available over time.
 
 ![Polaris Zap tab showing the pUSD Stable Yield route from WETH through pUSD into the Earn Vault](/screenshots/zap.jpg)
 
@@ -28,7 +31,8 @@ You keep full self-custody throughout the process. Before signing, a simulation 
 2. Enter the input amount.
 3. Review every route leg, the output estimate, slippage, and the deposit or loan target.
 4. Let the simulation confirm the expected output.
-5. Sign approvals only for expected spenders, then sign the zap.
-6. Confirm the final position on the Dashboard, Earn, or Borrow tab.
+5. Sign approvals only for expected spenders.
+6. Sign the zap.
+7. Confirm the final position on the Dashboard, Earn, or Issue tab.
 
 For stale quotes, failed simulations, or partial setup after approval, see [Troubleshooting](/troubleshooting).

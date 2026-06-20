@@ -1,70 +1,69 @@
 ---
-title: Polaris Liquidations
-description: A position above its maximum LTV is liquidated to keep the pAsset backed. The Earn Vault absorbs the debt, or it redistributes to positions.
+title: "Polaris Liquidations"
+description: "How Polaris liquidates positions above maximum LTV to keep pAssets backed."
 ---
 
 # Polaris Liquidations
 
-## What a liquidation is
+A liquidation closes a position when its LTV rises above the maximum.
 
-A **liquidation** closes a position whose **LTV exceeds the maximum** - the point at which its collateral no longer comfortably covers its debt. The protocol cancels the position's debt and seizes its pETH collateral.
+Liquidations protect protocol solvency and help ensure pAssets remain overcollateralized. Every pAsset is backed by collateral, and positions that cross the maximum LTV must be closed to keep the system healthy.
 
-The purpose is solvency. Every pAsset is a claim on collateral; leaving undercollateralized positions open would leave the pAsset not fully backed. Liquidations are how Polaris is designed to keep backing intact, subject to functioning contracts, live Ethereum execution, available gas, valid pricing data, keeper/executor availability, and audited invariants.
+A liquidation is different from a redemption. Liquidations close unsafe positions to protect solvency. Redemptions are peg-defense actions that can affect solvent positions when a pAsset trades below peg.
 
-Unlike a [redemption](/redemptions-liquidations), a liquidation is not an arbitrage you can opt into at par - it is a forced close triggered by your own LTV crossing a hard line.
+## What Happens
 
-## Where the debt and collateral go
+When a position is liquidated:
+1. The position's debt is cancelled.
+2. Its pETH collateral is seized.
+3. The debt is absorbed by the Earn Vault if possible.
+4. If the Earn Vault cannot absorb it, the remaining debt and collateral are redistributed across other positions.
 
-Liquidation runs in two tiers.
+## Earn Vault First
 
-1. **The Earn Vault absorbs it first.** The [Earn Vault](/yield) holds a reserve of the pAsset. When a position is liquidated, the vault burns pAsset equal to the position's debt and receives pETH collateral covering the debt plus the liquidation penalty (any surplus goes back to the borrower - see below). Because liquidated positions are typically seized while still *overcollateralized* but past the LTV liquidation line, the vault usually receives more value in pETH than the pAsset it burns. That surplus is the depositors' compensation.
+The Earn Vault is the first line of defense.
 
-2. **Redistribution is the fallback.** If the Earn Vault is empty or too small to cover the debt, the position's debt *and* collateral spread across the remaining positions on that pAsset, in proportion to their size. Other borrowers take on a slice of debt and a matching slice of pETH. The system stays solvent either way.
+If the Earn Vault has enough pAsset liquidity, it burns pAssets equal to the liquidated debt and receives the liquidated pETH collateral.
 
-| Path | Trigger | Absorbs debt | Receives collateral |
-|---|---|---|---|
-| **Earn Vault** | Vault has sufficient pAsset | Vault burns its pAsset | Depositors, based on their share |
-| **Redistribution** | Vault empty or insufficient | Other positions take it on | Other positions, based on size |
+Because positions are normally liquidated while still overcollateralized, the Earn Vault can receive more value in pETH than the pAssets it burns. That surplus is part of the yield earned by depositors.
 
-**Collateral surplus.** When the Earn Vault absorbs a liquidation, the position surrenders only what covers its debt, a liquidation penalty, and gas compensation for the liquidator. Any collateral beyond that goes to the **Collateral Surplus Pool**, where the former borrower can claim it. The claim is an explicit transaction - the surplus is not pushed back automatically, and it waits in the pool until claimed. (Collateral spread through the redistribution fallback is not returned this way.)
+## Redistribution Fallback
 
-## Values to check
+If the Earn Vault is empty or too small, liquidation falls back to redistribution.
 
-Current MCR, Recovery Mode, fee, and liquidation values live on [Parameters](/resources/testnet#parameters). This page explains the closeout path; the parameter page owns the numbers.
+In redistribution, the liquidated debt and collateral are spread across the remaining positions for that pAsset. Other positions take on a proportional share of both debt and pETH collateral.
 
-Before acting, check:
+## Position Owner Impact
 
-- The pAsset's max LTV or inverse minimum collateral ratio.
-- Any liquidation penalty, gas compensation, and keeper incentive.
-- Earn Vault coverage and whether redistribution can apply.
-- Oracle freshness and fallback behavior.
+Liquidation is involuntary.
 
-## Worked example: liquidation
+A liquidated position gives up collateral to cover:
+- Debt.
+- Liquidation penalty.
+- Gas compensation or keeper incentive where applicable.
 
-The MCR number below is the current Public Testnet 1 pUSD/pGOLD value as of June 8, 2026. Parameters publish this as a 115% minimum collateral ratio, equivalent to about 87.0% max LTV. A borrower has 10,000 pUSD of debt and pETH collateral valued at \$11,300, so the LTV is about 88.5% - above the current testnet maximum, and liquidatable.
+Any remaining surplus can be claimed by the former borrower where supported by the contracts.
 
-If the Earn Vault is large enough, it burns 10,000 pUSD and receives the position's pETH. The borrower's debt is cleared; collateral covers the debt plus the contract-defined liquidation penalty and gas compensation where available, with any surplus returned for the borrower to claim. Depositors receive pETH proportionally; in a normal overcollateralized liquidation, that pETH should be worth more than the pUSD burned, but the exact gain depends on the penalty, execution timing, pETH price, gas, and slippage.
+The best defense is simple: keep your LTV comfortably below the maximum.
 
-If the Earn Vault is empty or too small, the uncovered portion follows the redistribution path: remaining positions inherit a proportional slice of both the liquidated debt and collateral.
+## What To Watch
 
-## Risks
+- Liquidation can happen quickly during volatile markets.
+- Thin LTV buffers leave little room for price movement.
+- Oracle prices, execution timing, gas, and keeper availability matter.
+- Earn Vault depositors earn by absorbing liquidation risk.
+- If the Earn Vault is insufficient, redistribution can affect other positions.
 
-<Callout variant="danger" title="Warning - For Borrowers">
-Liquidation is involuntary and can happen fast. A liquidated position gives up its collateral to cover the debt plus a liquidation penalty and gas compensation; any surplus is returned to you to claim, but the penalty makes liquidation a real loss to avoid. Keep a <strong>buffer</strong> below max LTV so a sharp move in collateral price does not cross the line. The thinner your margin, the less room you have when volatility hits. See <a href="/minting/managing-your-trove">Managing Your Position</a>.
-</Callout>
+## Recovery Mode
 
-<Callout variant="danger" title="Warning - For Earn Vault Depositors">
-You are the system's first-loss backstop. In a flash crash, positions can be liquidated near - or in extreme cases below - 100% collateralization, and you may receive pETH worth less than the pAsset burned. Over a full cycle the surplus from healthy liquidations compensates for that risk, but it is not riskless yield. See <a href="/yield">The Earn Vault</a> and the <a href="/resources/risk-disclosure">Risk Disclosure</a>.
-</Callout>
+Recovery Mode does not change the liquidation line.
 
-## How liquidation interacts with system health
+A position is liquidatable when its LTV exceeds the normal maximum, in every mode.
 
-A position's LTV is not all that matters. When system-wide backing runs thin, the protocol enters [Recovery Mode](/redemptions-liquidations/recovery-mode), which tightens risk-increasing borrower operations while it lasts. Liquidation eligibility is unchanged: a position is liquidated whenever its LTV exceeds the maximum, in every mode. Recovery Mode is the system-level safeguard complementing the position-level liquidation described here.
+Recovery Mode only restricts borrower actions that would make system backing weaker.
 
-<NextSteps
-  steps={[
-    { href: '/minting/managing-your-trove', title: 'Managing Your Position', description: 'Keep your LTV healthy and avoid liquidation.' },
-    { href: '/yield', title: 'Earn Vaults', description: 'Understand how vaults absorb liquidations.' },
-    { href: '/redemptions-liquidations/recovery-mode', title: 'Recovery Mode', description: 'The system-level safeguard for thin backing.' }
-  ]}
-/>
+## Next Steps
+
+- [Manage a Position](/minting/managing-your-trove): Keep your LTV healthy.
+- [Earn Vaults](/yield): Understand how vaults absorb liquidations.
+- [Recovery Mode](/redemptions-liquidations/recovery-mode): Understand system-wide protective rules.

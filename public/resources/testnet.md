@@ -14,9 +14,13 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 ---
 
-This page is the single source for Public Testnet 1: [environment](https://tokenbrice.github.io/polaris-docs/resources/testnet#environment), [manifest sources](https://tokenbrice.github.io/polaris-docs/resources/testnet#manifest-sources), [parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters), [contract addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses), and [verification](https://tokenbrice.github.io/polaris-docs/resources/testnet#verification).
+This page is the single source for Public Testnet 1: environment, manifest sources, parameters, contract addresses, and verification rules.
 
-Everything below is Public Testnet 1 on Sepolia, last verified on the date in the banner above. Sepolia values are replaceable artifacts with no monetary value, no production redemption, and no mainnet claim - do not infer production constants or addresses from them. Production values are not published unless this page and Launch Status say they are.
+Everything below is Public Testnet 1 on Sepolia.
+
+Sepolia values are replaceable artifacts with no monetary value, no production redemption, and no mainnet claim. Do not infer production constants or addresses from them.
+
+Production values are not published unless this page and Launch Status say they are.
 
 ## Environment
 
@@ -67,7 +71,7 @@ Daily cap | Global daily limit; the faucet pauses when reached | Faucet contract
 
 Task pages link here for faucet values; the contract can change them without a docs redeploy, so confirm against the app before claiming.
 
-### pAsset branch parameters
+### pAsset market parameters
 
 **Emergency Mode** in the rows below is the contracts' internal name for what these docs call [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode).
 
@@ -76,11 +80,11 @@ Parameter | pUSD | pGOLD | Source
 Minimum collateral ratio (MCR) | 115% | 115% | Manifest
 Emergency Mode action MCR | 150% | 150% | Manifest
 Emergency Mode trigger ratio | 110% | 110% | Manifest
-Mint fee floor | 0.05% | 0.05% | Deploy script
+Issue fee floor | 0.05% | 0.05% | Deploy script
 Redemption fee floor | 0.05% | 0.05% | Deploy script
-Mint alpha | `1e18` | `1e18` | Deploy script
+Issue alpha | `1e18` | `1e18` | Deploy script
 Redemption alpha | `1e18` | `1e18` | Deploy script
-Mint minute decay factor | `998076443575628800` | `998076443575628800` | Deploy script
+Issue minute decay factor | `998076443575628800` | `998076443575628800` | Deploy script
 Redemption minute decay factor | `998076443575628800` | `998076443575628800` | Deploy script
 Primary interest split (Earn Vault / POLAR staking / ecosystem) | 75% / 25% / 0% | 75% / 25% / 0% | Deploy script
 Liquidation penalty, Earn Vault path | 5% | 5% | Deploy script
@@ -119,7 +123,7 @@ Testnet POLAR staking | [`0x56a7088cdb41a04eddb9c9b46f27359a6797324b`](https://s
 BondingCurveTokenSplitter | [`0xc880eb4ba6e7f1c60ce4968dc50b24056e67cc00`](https://sepolia.etherscan.io/address/0xc880eb4ba6e7f1c60ce4968dc50b24056e67cc00)
 vpToken | [`0xd59019504ea81813632c8f5e8014027b47c82ab1`](https://sepolia.etherscan.io/address/0xd59019504ea81813632c8f5e8014027b47c82ab1)
 
-### pUSD branch
+### pUSD market
 
 Contract | Sepolia address
 
@@ -134,7 +138,7 @@ Internal PSM | [`0x49cf0fff51fdd7140237e3fc6cd2b4daf6a4ffe5`](https://sepolia.et
 MultiCDPGetter | [`0x5b396a8e4adff7480c0dd2858890f55d5b028149`](https://sepolia.etherscan.io/address/0x5b396a8e4adff7480c0dd2858890f55d5b028149)
 Primary Interest Router | [`0xb5971ee694ca881963533114c1694f5f0c56ac09`](https://sepolia.etherscan.io/address/0xb5971ee694ca881963533114c1694f5f0c56ac09)
 
-### pGOLD branch
+### pGOLD market
 
 Contract | Sepolia address
 
@@ -170,4 +174,4 @@ Need | Page
 Current live/not-live status | [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status)
 Fastest testnet user flow | [Public Testnet Quickstart](https://tokenbrice.github.io/polaris-docs/quickstart)
 
-Relevant app/search vocabulary: app, official app, testnet, Sepolia, WETH, WETH faucet, Zap, Split, Swap, Borrow, Earn, Guide, Advanced, Analytics, APR, Reserve Loan.
+Relevant app/search vocabulary: app, official app, testnet, Sepolia, WETH, WETH faucet, Zap, Split, Swap, Issue, Earn, Guide, Advanced, Analytics, APR, Reserve Loan.

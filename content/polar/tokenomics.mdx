@@ -1,74 +1,105 @@
 ---
-title: POLAR Tokenomics
-description: "How POLAR works: issuance by burning pETH, current staking, future vePOLAR, yield routes, and pending distribution terms."
+title: "POLAR Tokenomics"
+description: "How POLAR economics work across pETH conversion, productive dilution, vePOLAR, yield routes, and pending launch terms."
 ---
 
 # POLAR Tokenomics
 
-This page consolidates POLAR's economics. Each piece has its own page; here they sit side by side. For the reasoning behind the token, read [The POLAR Token](/polar); for the issuance mechanism, [Conversion Auctions](/polar/conversion-auctions).
+This page summarizes POLAR's economic structure.
 
-> **Current status:** POLAR's total supply, distribution schedule, and vesting terms are pending and will be published at launch. This page describes the *structure* of POLAR's economics, fixed by design, not the final numbers, which are forthcoming. Treat any figure not stated here as not yet finalized.
+Final supply, distribution, vesting, vePOLAR deployment details, and production parameters are pending. Treat any number not published in Launch Status, Parameters, or an official tokenomics release as not finalized.
 
-## Issuance: created only by burning pETH
+For the reasoning behind the token, see [POLAR](/polar). For the issuance mechanism, see [Conversion Auctions](/polar/conversion-auctions).
 
-After the initial distribution, new POLAR is intended to enter circulation only by burning pETH in a [conversion auction](/polar/conversion-auctions). There is no planned team creation function or calendar-based inflation schedule.
+## Issuance Structure
 
-- Every POLAR that enters circulation after launch is intended to require someone to burn pETH.
-- Conversion runs as a continuous, permissionless [spike-and-decay auction](/polar/conversion-auctions), so issuance tracks real arbitrage activity, not a fixed emission curve. Most conversions are executed by arbitrage bots and MEV searchers.
+POLAR is expected to have an initial fixed supply minted at launch and allocated across buckets such as treasury, team, investors, advisors, community, and ecosystem programs.
 
-Each conversion burns pETH, releases ETH from the bonding-curve reserve as yield, and creates POLAR. See [pETH Floor Price](/peth/floor-price) for the floor mechanics.
+Those tokens may enter circulation over time through vesting, distributions, incentives, or treasury activity. That is circulating supply release, not new issuance.
 
-## A bounded, productive dilution
+After the initial supply is created, new POLAR is intended to be issued through one primary path: burning pETH in a conversion auction.
 
-Every conversion dilutes existing POLAR holders, but the dilution is bounded and buys a concrete improvement:
+There is no planned calendar-based inflation schedule that creates new POLAR independently of protocol activity.
 
-- **Bounded.** [Spike-and-decay pricing](/polar/conversion-auctions) makes large or rapid issuing throttle itself, so issuance tracks arbitrage demand. Final parameter bounds are pending.
-- **Productive.** Each unit of dilution corresponds to burned pETH and released ETH yield, unlike emissions disconnected from protocol activity.
-- **Progressive for the team.** The founding team's outsized early share is diluted by the same mechanism: the faster Polaris grows, the more attractive conversions become, and the more that initial share shrinks. The dilution is enforced by code, not pledged in a forum.
+This means:
+- New POLAR requires a pETH burn.
+- POLAR issuance tracks conversion activity, not arbitrary emissions.
+- Conversion is continuous, permissionless, and priced through spike-and-decay auctions.
+- Most profitable conversions are expected to be executed by arbitrageurs, keepers, or MEV searchers.
 
-## POLAR Staking vs vePOLAR
+Each conversion burns pETH, creates POLAR, and can release ETH from the bonding curve that is routed back into the system.
 
-The app vocabulary matters:
+## Productive Dilution
 
-- **POLAR Staking** is the current staking surface where a deployment exposes stake, unstake, and claim actions for routed rewards.
-- **[vePOLAR](/stewardship/vepolar)** is the forthcoming vote-escrow layer. Locking POLAR for a period is intended to return vePOLAR, which grants stewardship rights and a yield path.
+Every conversion dilutes existing POLAR holders, but that dilution is designed to buy a concrete improvement.
 
-vePOLAR proposal rules and the final yield split are pending; the committed lock design (durations, decay, delegation) lives on [vePOLAR](/stewardship/vepolar#lock-status). Do not treat current POLAR Staking as a substitute for vePOLAR voting rights.
+POLAR dilution is productive when it is paired with pETH burns, floor growth, released ETH yield, and ecosystem expansion.
 
-## Where the yield comes from
+Productive dilution follows these design principles:
+- Bounded: Spike-and-decay pricing makes rapid or large issuance progressively more expensive.
+- Productive: New POLAR is connected to burned pETH and released ETH yield.
+- Activity-linked: Issuance depends on conversion demand, not a fixed emissions calendar.
+- Team-dilutive: The founding team's early share can be diluted by the same mechanism as everyone else.
 
-POLAR's value accrual runs on hard-asset protocol revenue, buffered and routed by the **[Fee Router](/stewardship/fee-router)** (pETH) and, separately, by the protocol's interest router (pAsset). It reaches these destinations:
+The goal is not to avoid dilution entirely. The goal is to make dilution pay for something valuable to the system.
 
-| Destination | Routed by | What they receive |
-|---|---|---|
-| **Positions** | Fee Router (pETH) | pETH yield, credited proportionally to recorded debt |
-| **POLAR stakers** | Interest router (pAsset) | A stewarded share of protocol interest where the staking surface is live |
-| **vePOLAR lockers** | Pending deployment | Forthcoming stewardship and yield path after audited locking deployment |
-| **Flow recipients** | Fee Router, via [Flows](/stewardship/fee-router) | Revenue-sharing for whitelisted contracts (forthcoming) |
+## vePOLAR Stewardship
 
-Inputs are protocol revenue, not emitted POLAR. Exact destination splits, production staking terms, and vePOLAR locking terms are pending.
+POLAR's long-term coordination role is vePOLAR.
 
-## What POLAR does *not* have
+vePOLAR is the planned vote-escrow layer for Polaris. Users will lock POLAR for up to 4 years to receive stewardship rights and participate in bounded protocol coordination.
 
-The structure deliberately omits the usual extraction surfaces:
+vePOLAR is intended to support:
+- Parameter coordination.
+- Incentive direction.
+- Ecosystem integrations.
+- Long-term stewardship alignment.
+- Future yield routes.
 
-- **No gauges.** Stewardship cannot create POLAR emissions gauges.
-- **No bribes.** No vote-buying markets are routed through the protocol.
-- **No emissions.** Ecosystem incentives flow through [Flows](/stewardship/fee-router) as hard-asset revenue sharing, funded by protocol revenue, not token emissions.
-- **No planned creation outside conversion.** Final deployment is intended to create POLAR only through pETH conversion.
+Current testnet staking surfaces are temporary and should not be treated as part of the final POLAR design or as vePOLAR voting power.
 
-## The Polar Council
+Do not use a conversion, staking, or locking interface unless [Launch Status](/launch-status) and [Contracts And Addresses](/resources/testnet#contracts-and-addresses) list it as live.
 
-The **Polar Council** is a planned treasury-funded program for onboarding and ecosystem contributors, comparable in spirit to veAERO's Flight School. Initially team-managed; its allocation, operating framework, eligibility, and reporting requirements are pending publication.
+## Yield Routes
 
-<NextSteps
-  steps={[
-    { href: '/polar/conversion-auctions', title: 'Conversion Auctions', description: 'The spike-and-decay mechanism behind POLAR conversion.' },
-    { href: '/stewardship/vepolar', title: 'vePOLAR Locking', description: 'The committed lock design and forthcoming stewardship rights.' },
-    { href: '/stewardship/fee-router', title: 'Fee Router & Flows', description: 'How the revenue in the table above is buffered and routed.' }
-  ]}
-/>
+vePOLAR is the primary value capture layer for POLAR. Lockers are intended to receive a guaranteed minimum share of issuer interest from every deployed pAsset market. As more pAssets are created and more debt is issued, this gives vePOLAR direct exposure to protocol revenue across the Polaris system.
 
----
+Positions:
+Routed by the Fee Router. Receive pETH yield credited based on recorded debt.
 
-**[Go deeper →](https://polarisfinance.io/blog/)**
+vePOLAR lockers:
+Receive a guaranteed minimum share of issuer interest from all deployed pAssets, with final routing details pending deployment.
+
+Flow recipients:
+Routed by the Fee Router through Flows. Enables revenue-sharing for whitelisted integrations.
+
+Exact destination splits, vePOLAR terms, Flow parameters, and final routing details are pending.
+
+## What POLAR Does Not Have
+
+POLAR is designed to avoid the usual extractive surfaces.
+- No gauges controlled by open-ended emissions.
+- No protocol-routed bribe markets.
+- No calendar-based inflation.
+- No creation outside pETH conversion after the initial distribution.
+- No unbounded DAO control over the core protocol.
+
+Ecosystem incentives are intended to flow through hard-asset revenue sharing, not permanent POLAR emissions.
+
+## Pending Terms
+
+The following terms are not final until published through official launch materials:
+- Initial total supply.
+- Distribution schedule.
+- Vesting terms.
+- vePOLAR lock durations, decay, delegation, and proposal rules.
+- Flow onboarding process.
+- Polar Council allocation, eligibility, reporting, and operating framework.
+- Final yield routing and destination splits.
+
+Until then, this page describes the intended structure, not final launch numbers.
+
+## Next Steps
+- [Conversion Auctions](/polar/conversion-auctions): The spike-and-decay mechanism behind POLAR conversion.
+- [vePOLAR Locking](/stewardship/vepolar): The planned lock design and stewardship role.
+- [Fee Router And Flows](/stewardship/fee-router): How protocol revenue is buffered and routed.

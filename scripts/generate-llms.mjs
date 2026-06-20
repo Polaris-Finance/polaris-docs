@@ -410,6 +410,14 @@ function tableAfterHeading(source, heading) {
     )
 }
 
+function tableAfterAnyHeading(source, headings) {
+  for (const heading of headings) {
+    const rows = tableAfterHeading(source, heading)
+    if (rows.length) return rows
+  }
+  return []
+}
+
 function firstAddress(value) {
   return /\b0x[a-fA-F0-9]{40}\b/.exec(value)?.[0]?.toLowerCase() ?? null
 }
@@ -453,7 +461,10 @@ function buildProtocolManifest(pages) {
   )
 
   const sharedCoreRows = tableAfterHeading(source, 'Shared core parameters')
-  const pAssetRows = tableAfterHeading(source, 'pAsset branch parameters')
+  const pAssetRows = tableAfterAnyHeading(source, [
+    'pAsset market parameters',
+    'pAsset branch parameters'
+  ])
   const productionRows = tableAfterHeading(source, 'Production addresses')
   const lastVerified = normalizeDate(environment['Last verified'] ?? '') ?? page.lastVerified
 
@@ -479,8 +490,11 @@ function buildProtocolManifest(pages) {
 
   const contracts = [
     ...contractEntries(tableAfterHeading(source, 'Shared core'), 'shared-core'),
-    ...contractEntries(tableAfterHeading(source, 'pUSD branch'), 'pusd-branch'),
-    ...contractEntries(tableAfterHeading(source, 'pGOLD branch'), 'pgold-branch')
+    ...contractEntries(tableAfterAnyHeading(source, ['pUSD market', 'pUSD branch']), 'pusd-branch'),
+    ...contractEntries(
+      tableAfterAnyHeading(source, ['pGOLD market', 'pGOLD branch']),
+      'pgold-branch'
+    )
   ]
 
   const production = productionRows.map((row) => ({
