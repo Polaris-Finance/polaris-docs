@@ -84,7 +84,7 @@ Accessible use: Pair with dark navy text. Do not use as text on white.
 
 ### Token Colors
 
-pUSD:
+USDp:
 Hex: `#E8DCC4`
 Accessible use: Works as text or icon color on navy. Add text labels in charts.
 
@@ -96,7 +96,7 @@ POLAR:
 Hex: `#9B8FCF`
 Accessible use: Works for accent graphics on navy. Pair with visible labels.
 
-Tokens not listed, such as pGOLD, do not yet have a published signature color.
+Tokens not listed, such as GOLDp, do not yet have a published signature color.
 
 Do not rely on color alone. Token charts, route maps, and warnings should pair colors with labels, icons, or text so meaning survives in grayscale, print, and assistive technologies.
 

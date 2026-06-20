@@ -21,7 +21,7 @@ These tools are permissionless and offer more flexibility, but they assume famil
 ## Current Modules
 
 Peg Stability Module:
-Issue or redeem pUSD and pGOLD against pETH at the oracle price, with no size limits. Issuing exchanges pETH for the selected asset, while redemption swaps the asset back into pETH. This arbitrage helps maintain each peg.
+Issue or redeem USDp and GOLDp against pETH at the oracle price, with no size limits. Issuing exchanges pETH for the selected asset, while redemption swaps the asset back into pETH. This arbitrage helps maintain each peg.
 
 Convert pETH To POLAR:
 Exchange pETH for newly created POLAR through a one-way auction. Converted pETH is permanently burned, increasing the bonding curve floor, while the auction price gradually decays until conversion occurs. There is no reverse direction.
@@ -34,7 +34,7 @@ Image: Polaris Advanced tab with expert operations, PSM issue and redeem panels,
 ## Basic Flow
 
 1. Pick the module: PSM issue/redeem, pETH-to-POLAR conversion, or faucet.
-2. For PSM, choose pUSD or pGOLD and the direction.
+2. For PSM, choose USDp or GOLDp and the direction.
 3. Review the output and fee at the oracle price.
 4. For conversion, review the current auction price against the market POLAR price before converting.
 5. Approve the input token if required.

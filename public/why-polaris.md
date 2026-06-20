@@ -62,5 +62,5 @@ A fully censorship-resistant stablecoin may be the product people notice first, 
 
 ## Next Steps
 - peth: How the shared collateral primitive, bonding curve, and floor price work.
-- minting: How pUSD and pGOLD positions work.
+- minting: How USDp and GOLDp positions work.
 - yield: How pAsset deposits earn from protocol activity.

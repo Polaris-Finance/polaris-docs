@@ -6,8 +6,8 @@
 Canonical URL: https://tokenbrice.github.io/polaris-docs/resources/faq
 Markdown URL: https://tokenbrice.github.io/polaris-docs/resources/faq.md
 Section: Reference
-Updated: 2026-06-08
-Last verified: 2026-06-08
+Updated: 2026-06-20
+Last verified: 2026-06-20
 
 Documentation index: https://tokenbrice.github.io/polaris-docs/llms.txt
 Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.txt
@@ -20,7 +20,7 @@ FAQ answers are intentionally short. Follow the linked canonical page when you n
 
 ### What is Polaris?
 
-Polaris is a DeFi yield layer built around pETH. ETH becomes pETH through a bonding curve, pETH collateralizes pAssets such as pUSD and pGOLD, and protocol activity routes yield through onchain mechanisms.
+Polaris is a DeFi yield layer built around pETH. ETH becomes pETH through a bonding curve, pETH collateralizes pAssets such as USDp and GOLDp, and protocol activity routes yield through onchain mechanisms.
 
 Start with [Why Polaris](https://tokenbrice.github.io/polaris-docs/why-polaris).
 
@@ -48,9 +48,15 @@ The step-by-step path is [Public Testnet Quickstart](https://tokenbrice.github.i
 
 Issue is where users create pAssets against pETH collateral.
 
-You deposit pETH, create a pAsset such as pUSD or pGOLD, and manage the resulting position over time.
+You deposit pETH, create a pAsset such as USDp or GOLDp, and manage the resulting position over time.
 
 See [Issue](https://tokenbrice.github.io/polaris-docs/using-app/issue) and [Issuing pAssets](https://tokenbrice.github.io/polaris-docs/minting).
+
+### What interest do I pay on a position?
+
+Two autonomous rates accrue on your debt: a primary rate that responds to issuance and redemption flow, and a secondary rate that rises with how heavily the system is borrowed. Both are capped at 250% APR. The secondary rate is redistributive, so conservatively collateralized positions can come out ahead while high-LTV positions pay more.
+
+See [Interest Rates](https://tokenbrice.github.io/polaris-docs/minting/interest-rates).
 
 ### What should I do if a quote or transaction fails?
 

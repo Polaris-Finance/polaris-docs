@@ -17,15 +17,15 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 Earn is where you deposit assets into Polaris yield opportunities.
 
 Current opportunities include:
-- pUSD Earn Vault, where deposits earn from issuer interest and liquidation gains.
-- pGOLD Earn Vault, where deposits earn from issuer interest and liquidation gains.
+- USDp Earn Vault, where deposits earn from issuer interest and liquidation gains.
+- GOLDp Earn Vault, where deposits earn from issuer interest and liquidation gains.
 - vpETH rewards, where holders gain exposure to the volatile component of pETH beyond its floor value and participate in pETH rewards distribution.
 
 Earn Vault deposits act as the first line of defense during liquidations. In exchange, depositors receive yield from protocol activity.
 
 Current testnet POLAR staking surfaces are temporary and should not be treated as part of the final POLAR design.
 
-Image: Polaris Earn tab with pUSD, pGOLD, and vpETH sub-tabs, APRs, deposit/withdraw actions, and claim-pending options
+Image: Polaris Earn tab with USDp, GOLDp, and vpETH sub-tabs, APRs, deposit/withdraw actions, and claim-pending options
 
 ## Basic Flow
 

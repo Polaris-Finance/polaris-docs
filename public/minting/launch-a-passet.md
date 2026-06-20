@@ -14,17 +14,45 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 Polaris is **debt-asset agnostic**: it can issue a synthetic pegged to any asset with robust reference pricing and risk parameters. External teams can launch new pAsset markets on the same pETH collateral base, without bootstrapping a fresh collateral pool.
 
-> **Current status:** pUSD and pGOLD are the Testnet-active pAssets. New pAsset onboarding runs through stewardship, whose process and parameter bounds are pending audited deployment. See [Stewardship](https://tokenbrice.github.io/polaris-docs/stewardship).
+> **Current status:** USDp and GOLDp are the Testnet-active pAssets. New pAsset onboarding runs through stewardship, whose process and parameter bounds are pending audited deployment. See [Stewardship](https://tokenbrice.github.io/polaris-docs/stewardship).
 
 ## StablecoinOS: an open catalog
 
 StablecoinOS lets new pAssets share the same pETH collateral pool and bonding curve. Shared collateral lets teams add a new pAsset without bootstrapping a fresh collateral base. Each pAsset still has its own debt accounting, so stress in one pAsset does not directly liquidate another pAsset's borrow positions.
 
-Image: StablecoinOS as a factory: ETH enters one shared bonding curve to create pETH, which collateralizes multiple independent pAsset markets - pUSD, pGOLD, pCHF - over the same pETH collateral base
+Image: StablecoinOS as a factory: ETH enters one shared bonding curve to create pETH, which collateralizes multiple independent pAsset markets - USDp, GOLDp, pCHF - over the same pETH collateral base
 
 ## Opt into the yield layer and Flows
 
 A pAsset built on Polaris inherits the protocol's yield plumbing: borrower interest and liquidation gains flow to its Earn Vault, and approved contracts building on the asset can earn a share of protocol revenue through [Flows](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router#flows) - revenue paid in pETH or pAssets instead of token emissions.
+
+## What a pAsset market is, technically
+
+Polaris is not one monolithic system. The pETH bonding curve and its collateral reserve are shared infrastructure, deployed once. Everything specific to a pAsset is a separate market stack, deployed per asset and wired to that shared curve. Launching pCHF, say, means deploying a new stack, not modifying USDp's.
+
+A market stack is self-contained, with its own:
+
+- Price feed for the tracked asset, composed with the pETH collateral price.
+- pAsset token (an ERC-20), mintable only by its own market contracts.
+- Earn Vault, the market's first-loss backstop and yield venue.
+- Position manager and position NFT, tracking debt and collateral.
+- Interest controller, holding the market's primary and secondary rates.
+- Peg stability module, setting mint and redemption fees.
+- Primary-interest router, splitting interest across Earn Vault, vePOLAR, and Flows.
+
+Because each market keeps its own debt accounting, stress in one pAsset cannot directly liquidate positions in another. Markets share only the pETH collateral.
+
+## What you configure
+
+Most of the launch work is choosing parameters, all of which sit inside protocol-enforced bounds:
+
+- Oracle: a robust, manipulation-resistant reference price for the tracked asset, read through a Medianiser. Because collateral is pETH priced in USD, every market also depends on the shared ETH/USD feed. This is the largest technical requirement.
+- Collateral and liquidation: the minimum collateral ratio (maximum LTV), the emergency-mode thresholds, and the liquidation penalty.
+- Interest rates: the primary rate band and its sensitivity, and the secondary-rate curve (minimum, maximum, kink, and slopes). Both rates are hard-capped at 250% APR. See [Interest Rates](https://tokenbrice.github.io/polaris-docs/minting/interest-rates).
+- Fees: the mint and redemption fee floors and their decay parameters.
+- Revenue split: how the market's primary interest divides across the Earn Vault, vePOLAR, and Flows, subject to the 25% floors.
+
+Stewardship reviews and approves these within hardcoded ranges. It cannot grant values outside them.
 
 ## Requirements
 
@@ -38,6 +66,15 @@ Polaris can support a new pAsset where the reference price and risk parameters a
 - **Governance / stewardship** - a clean security posture and a path through the stewardship onboarding process.
 
 These map to the stewardship onboarding criteria. For the full operator prerequisites, the pAsset-licensing scope, and the proposal lifecycle, see [Stewardship](https://tokenbrice.github.io/polaris-docs/stewardship#operator-prerequisites).
+
+## The path to launch
+
+Launching a pAsset is license-gated, not permissionless. The flow is a petition to stewardship:
+
+1. Petition stewardship for a license, presenting a plan for the desired pAsset: the asset to track, its oracle, evidence of demand and a liquidity path, and the proposed parameters (see Requirements above).
+2. Stewardship reviews the plan and grants or denies the license, weighing oracle quality, security posture, and whether the parameters sit within bounds.
+3. Once licensed, the market stack is deployed against the shared bonding curve, stewardship, fee router, and share staking, and authorized through the official execution path.
+4. Go live: issuers open positions against shared pETH, depositors use the new Earn Vault, and the market's interest plugs into the yield layer.
 
 Next steps:
 - [Stewardship](https://tokenbrice.github.io/polaris-docs/stewardship): The bounded onboarding process and operator prerequisites.

@@ -18,7 +18,7 @@
     "testnetValue": "No monetary value, no production redemption, no mainnet claim",
     "testnetGas": "Sepolia ETH",
     "reserveToken": "Mock WETH/reserve token from the app faucet when enabled",
-    "activePassets": "pUSD and pGOLD"
+    "activePassets": "USDp and GOLDp"
   },
   "warnings": [
     "Public Testnet 1 values are Sepolia testnet artifacts.",
@@ -40,7 +40,7 @@
       }
     ],
     "pAssets": {
-      "pUSD": [
+      "USDp": [
         {
           "name": "Minimum collateral ratio (MCR)",
           "value": "115%",
@@ -112,7 +112,7 @@
           "source": "Hardcoded"
         }
       ],
-      "pGOLD": [
+      "GOLDp": [
         {
           "name": "Minimum collateral ratio (MCR)",
           "value": "115%",
@@ -256,132 +256,6 @@
         "name": "vpToken",
         "address": "0xd59019504ea81813632c8f5e8014027b47c82ab1",
         "explorerUrl": "https://sepolia.etherscan.io/address/0xd59019504ea81813632c8f5e8014027b47c82ab1"
-      },
-      {
-        "group": "pusd-branch",
-        "name": "pUSD token",
-        "address": "0xf06a3e9420176351d0341507f91d243014510d5b",
-        "explorerUrl": "https://sepolia.etherscan.io/address/0xf06a3e9420176351d0341507f91d243014510d5b"
-      },
-      {
-        "group": "pusd-branch",
-        "name": "Earn Vault",
-        "address": "0x8da97da1f6ab14d144a4966360e19ca5f2b5aece",
-        "explorerUrl": "https://sepolia.etherscan.io/address/0x8da97da1f6ab14d144a4966360e19ca5f2b5aece"
-      },
-      {
-        "group": "pusd-branch",
-        "name": "CDP NFT",
-        "address": "0xace616e3a3b07bfe2424ae48c1b4fb8aed90eea0",
-        "explorerUrl": "https://sepolia.etherscan.io/address/0xace616e3a3b07bfe2424ae48c1b4fb8aed90eea0"
-      },
-      {
-        "group": "pusd-branch",
-        "name": "ETH/USD medianiser",
-        "address": "0xbad4c21ea10259280b1980b6c3f8de806b8ec31a",
-        "explorerUrl": "https://sepolia.etherscan.io/address/0xbad4c21ea10259280b1980b6c3f8de806b8ec31a"
-      },
-      {
-        "group": "pusd-branch",
-        "name": "pUSD testnet price feed",
-        "address": "0x26998cd15cbfddcb1e8c81fb7dff75886dc90185",
-        "explorerUrl": "https://sepolia.etherscan.io/address/0x26998cd15cbfddcb1e8c81fb7dff75886dc90185"
-      },
-      {
-        "group": "pusd-branch",
-        "name": "CDP Manager",
-        "address": "0x71b5c3b88510206203ec8363c56f908777ad52c8",
-        "explorerUrl": "https://sepolia.etherscan.io/address/0x71b5c3b88510206203ec8363c56f908777ad52c8"
-      },
-      {
-        "group": "pusd-branch",
-        "name": "Interest Controller",
-        "address": "0x0e957229c4fe20e5099206b3b615cf2563200545",
-        "explorerUrl": "https://sepolia.etherscan.io/address/0x0e957229c4fe20e5099206b3b615cf2563200545"
-      },
-      {
-        "group": "pusd-branch",
-        "name": "Internal PSM",
-        "address": "0x49cf0fff51fdd7140237e3fc6cd2b4daf6a4ffe5",
-        "explorerUrl": "https://sepolia.etherscan.io/address/0x49cf0fff51fdd7140237e3fc6cd2b4daf6a4ffe5"
-      },
-      {
-        "group": "pusd-branch",
-        "name": "MultiCDPGetter",
-        "address": "0x5b396a8e4adff7480c0dd2858890f55d5b028149",
-        "explorerUrl": "https://sepolia.etherscan.io/address/0x5b396a8e4adff7480c0dd2858890f55d5b028149"
-      },
-      {
-        "group": "pusd-branch",
-        "name": "Primary Interest Router",
-        "address": "0xb5971ee694ca881963533114c1694f5f0c56ac09",
-        "explorerUrl": "https://sepolia.etherscan.io/address/0xb5971ee694ca881963533114c1694f5f0c56ac09"
-      },
-      {
-        "group": "pgold-branch",
-        "name": "pGOLD token",
-        "address": "0x664396097e787956eaf25214049ab58a7d53d2e1",
-        "explorerUrl": "https://sepolia.etherscan.io/address/0x664396097e787956eaf25214049ab58a7d53d2e1"
-      },
-      {
-        "group": "pgold-branch",
-        "name": "Earn Vault",
-        "address": "0x3308842b03248838c83205100a0a33d716dc37d6",
-        "explorerUrl": "https://sepolia.etherscan.io/address/0x3308842b03248838c83205100a0a33d716dc37d6"
-      },
-      {
-        "group": "pgold-branch",
-        "name": "CDP NFT",
-        "address": "0xb621912e3c7383bb65b4d720ac946aa618ed129b",
-        "explorerUrl": "https://sepolia.etherscan.io/address/0xb621912e3c7383bb65b4d720ac946aa618ed129b"
-      },
-      {
-        "group": "pgold-branch",
-        "name": "ETH/USD medianiser",
-        "address": "0xbad4c21ea10259280b1980b6c3f8de806b8ec31a",
-        "explorerUrl": "https://sepolia.etherscan.io/address/0xbad4c21ea10259280b1980b6c3f8de806b8ec31a"
-      },
-      {
-        "group": "pgold-branch",
-        "name": "XAU/USD medianiser",
-        "address": "0x8f4256ec2674ed87fdf7e8079ec3933263326fe1",
-        "explorerUrl": "https://sepolia.etherscan.io/address/0x8f4256ec2674ed87fdf7e8079ec3933263326fe1"
-      },
-      {
-        "group": "pgold-branch",
-        "name": "pGOLD testnet price feed",
-        "address": "0x8a891736218fb98cabf23b39e4b8f6f2876011f4",
-        "explorerUrl": "https://sepolia.etherscan.io/address/0x8a891736218fb98cabf23b39e4b8f6f2876011f4"
-      },
-      {
-        "group": "pgold-branch",
-        "name": "CDP Manager",
-        "address": "0xf45fb3acf8dbd12673ecb0be1ee376846000c4ed",
-        "explorerUrl": "https://sepolia.etherscan.io/address/0xf45fb3acf8dbd12673ecb0be1ee376846000c4ed"
-      },
-      {
-        "group": "pgold-branch",
-        "name": "Interest Controller",
-        "address": "0xbd415a7ea90f448b3633b76f5c59c84a219b2448",
-        "explorerUrl": "https://sepolia.etherscan.io/address/0xbd415a7ea90f448b3633b76f5c59c84a219b2448"
-      },
-      {
-        "group": "pgold-branch",
-        "name": "Internal PSM",
-        "address": "0x6bcdf4a0d67ce12bf24ba4899a3be55033f90acc",
-        "explorerUrl": "https://sepolia.etherscan.io/address/0x6bcdf4a0d67ce12bf24ba4899a3be55033f90acc"
-      },
-      {
-        "group": "pgold-branch",
-        "name": "MultiCDPGetter",
-        "address": "0xe79538c2d2c2e6b6d31de4456cbabbf2adab4410",
-        "explorerUrl": "https://sepolia.etherscan.io/address/0xe79538c2d2c2e6b6d31de4456cbabbf2adab4410"
-      },
-      {
-        "group": "pgold-branch",
-        "name": "Primary Interest Router",
-        "address": "0xaa9833e7d33003004b0d66685e05bace4058d89c",
-        "explorerUrl": "https://sepolia.etherscan.io/address/0xaa9833e7d33003004b0d66685e05bace4058d89c"
       }
     ]
   },

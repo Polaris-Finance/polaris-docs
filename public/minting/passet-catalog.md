@@ -24,8 +24,8 @@ GOLDp | 1 ounce of gold | Testnet-active | Decentralized gold exposure, backed b
 CHFp | Swiss franc | Illustrative / future | A non-USD fiat peg, demonstrating that the model is debt-asset agnostic across currencies. Not Testnet-active unless Launch Status later lists it.
 BigMacp | The Big Mac Index | Illustrative / future | An example of a non-financial reference asset. Not Testnet-active unless Launch Status later lists it.
 
-## pGOLD vs centralized gold (XAUT/PAXG)
-pGOLD and the incumbent gold tokens both give gold-price exposure, but they are structurally different products.
+## GOLDp vs centralized gold (XAUT/PAXG)
+GOLDp and the incumbent gold tokens both give gold-price exposure, but they are structurally different products.
 
 Property | GOLDp | XAUT / PAXG
 
@@ -35,19 +35,19 @@ KYC | None | Required to redeem
 Physical custody | None - nothing to store or insure | Vaulted bullion, with custody risk
 Counterparty | Polaris protocol only | Tether / Paxos as issuer
 
-Image: pGOLD versus centralized gold tokens (XAUT/PAXG): pGOLD is backed by onchain pETH with permissionless, KYC-free access and Polaris as the only counterparty, while XAUT/PAXG are backed by vaulted bullion with issuer-gated, KYC-required redemption and custody risk
+Image: GOLDp versus centralized gold tokens (XAUT/PAXG): GOLDp is backed by onchain pETH with permissionless, KYC-free access and Polaris as the only counterparty, while XAUT/PAXG are backed by vaulted bullion with issuer-gated, KYC-required redemption and custody risk
 
-pGOLD inherits ETH-collateral and smart-contract risk where XAUT/PAXG inherit custodial and issuer risk. What pGOLD removes is the permissioned issuer layer.
+GOLDp inherits ETH-collateral and smart-contract risk where XAUT/PAXG inherit custodial and issuer risk. What GOLDp removes is the permissioned issuer layer.
 GOLDp's collateral pricing composes two oracle feeds with the bonding curve: pETH is valued in gold terms as ETH/USD × the curve's pETH price ÷ gold/USD. A failure of either feed affects GOLDp pricing; see [Oracle risk](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure#oracle-risk).
 
-Image: Borrowing pGOLD is not shorting gold: deposit pETH and borrow pGOLD, then your strategy sets the exposure - hold or LP the gold pair for gold-neutral exposure, or sell pGOLD for pETH (or loop) to take short-gold exposure
+Image: Borrowing GOLDp is not shorting gold: deposit pETH and borrow GOLDp, then your strategy sets the exposure - hold or LP the gold pair for gold-neutral exposure, or sell GOLDp for pETH (or loop) to take short-gold exposure
 
-Issuing pGOLD against pETH is a borrowing action; whether you end up long pETH, gold-neutral, or short gold depends on what you do with the pGOLD.
+Issuing GOLDp against pETH is a borrowing action; whether you end up long pETH, gold-neutral, or short gold depends on what you do with the GOLDp.
 ## StablecoinOS: an open catalog
 Polaris is debt-asset agnostic: it can issue a synthetic asset pegged to any asset with robust reference pricing and risk parameters. StablecoinOS lets new pAssets share the same pETH collateral pool and bonding curve.
 Shared collateral lets teams add a new pAsset without bootstrapping a fresh collateral base. Each pAsset still has its own debt accounting, so stress in one pAsset does not directly liquidate another pAsset's borrow positions.
 
-Image: StablecoinOS as a factory: ETH enters one shared bonding curve to create pETH, which collateralizes multiple independent pAsset markets - pUSD, pGOLD, pCHF - over the same pETH collateral base
+Image: StablecoinOS as a factory: ETH enters one shared bonding curve to create pETH, which collateralizes multiple independent pAsset markets - USDp, GOLDp, pCHF - over the same pETH collateral base
 
 ## Next Steps
 - [Open a Position](https://tokenbrice.github.io/polaris-docs/minting/open-a-trove): Issue your first pAsset against pETH collateral, step by step.

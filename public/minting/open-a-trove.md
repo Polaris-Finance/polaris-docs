@@ -15,7 +15,7 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 Open the Issue tab to create USDp or GOLDp against pETH collateral.
 Opening a position lets you unlock liquidity from pETH while keeping exposure to the collateral that powers Polaris.
 
-Image: Polaris Issue tab with pUSD, pGOLD, and ETH sub-tabs, a collateral field, LTV slider, effective rate, and a projected-position panel
+Image: Polaris Issue tab with USDp, GOLDp, and ETH sub-tabs, a collateral field, LTV slider, effective rate, and a projected-position panel
 
 ## Basic Flow
 1. Open the Issue tab.

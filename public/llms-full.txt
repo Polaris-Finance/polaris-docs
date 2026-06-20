@@ -95,7 +95,7 @@ Use this page to try Polaris on Public Testnet 1.
 3. Get Sepolia ETH for gas from a Sepolia faucet if needed.
 4. Claim test WETH from the Dashboard faucet.
 5. Use Swap to buy pETH on the bonding curve.
-6. Use Issue to issue pUSD or pGOLD against pETH.
+6. Use Issue to issue USDp or GOLDp against pETH.
 7. Use Earn to deposit pAssets into an Earn Vault.
 8. Return to the Dashboard to confirm your positions and rewards.
 ## Success Checks
@@ -106,7 +106,7 @@ Network | Wallet shows Sepolia, chain ID 11155111
 Frontend | URL is exactly https://app.testnet.polarisfinance.io/
 Assets | Balances are testnet assets only
 pETH | pETH balance updates after swap
-Issue | pUSD or pGOLD position appears after issuing
+Issue | USDp or GOLDp position appears after issuing
 Earn | Earn Vault deposit appears after deposit or zap
 
 For failed transactions, missing balances, faucet limits, or wrong-network issues, see [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting).
@@ -151,7 +151,7 @@ These tools are permissionless and offer more flexibility, but they assume famil
 ## Current Modules
 
 Peg Stability Module:
-Issue or redeem pUSD and pGOLD against pETH at the oracle price, with no size limits. Issuing exchanges pETH for the selected asset, while redemption swaps the asset back into pETH. This arbitrage helps maintain each peg.
+Issue or redeem USDp and GOLDp against pETH at the oracle price, with no size limits. Issuing exchanges pETH for the selected asset, while redemption swaps the asset back into pETH. This arbitrage helps maintain each peg.
 
 Convert pETH To POLAR:
 Exchange pETH for newly created POLAR through a one-way auction. Converted pETH is permanently burned, increasing the bonding curve floor, while the auction price gradually decays until conversion occurs. There is no reverse direction.
@@ -164,7 +164,7 @@ Image: Polaris Advanced tab with expert operations, PSM issue and redeem panels,
 ## Basic Flow
 
 1. Pick the module: PSM issue/redeem, pETH-to-POLAR conversion, or faucet.
-2. For PSM, choose pUSD or pGOLD and the direction.
+2. For PSM, choose USDp or GOLDp and the direction.
 3. Review the output and fee at the oracle price.
 4. For conversion, review the current auction price against the market POLAR price before converting.
 5. Approve the input token if required.
@@ -185,15 +185,15 @@ Markdown URL: https://tokenbrice.github.io/polaris-docs/using-app/earn.md
 Earn is where you deposit assets into Polaris yield opportunities.
 
 Current opportunities include:
-- pUSD Earn Vault, where deposits earn from issuer interest and liquidation gains.
-- pGOLD Earn Vault, where deposits earn from issuer interest and liquidation gains.
+- USDp Earn Vault, where deposits earn from issuer interest and liquidation gains.
+- GOLDp Earn Vault, where deposits earn from issuer interest and liquidation gains.
 - vpETH rewards, where holders gain exposure to the volatile component of pETH beyond its floor value and participate in pETH rewards distribution.
 
 Earn Vault deposits act as the first line of defense during liquidations. In exchange, depositors receive yield from protocol activity.
 
 Current testnet POLAR staking surfaces are temporary and should not be treated as part of the final POLAR design.
 
-Image: Polaris Earn tab with pUSD, pGOLD, and vpETH sub-tabs, APRs, deposit/withdraw actions, and claim-pending options
+Image: Polaris Earn tab with USDp, GOLDp, and vpETH sub-tabs, APRs, deposit/withdraw actions, and claim-pending options
 
 ## Basic Flow
 
@@ -219,7 +219,7 @@ Markdown URL: https://tokenbrice.github.io/polaris-docs/using-app/issue.md
 
 Issue is where you create pAssets against pETH or borrow ETH against fpETH.
 
-pUSD and pGOLD:
+USDp and GOLDp:
 Deposit pETH collateral and create overcollateralized assets against your position.
 
 ETH:
@@ -227,11 +227,11 @@ Borrow ETH against fpETH at up to 100% LTV with no liquidation risk, as the fpET
 
 Once connected, you can manage existing positions from this tab, including adjustments, repayments, and closures.
 
-Image: Polaris Issue tab with pUSD, pGOLD, and ETH sub-tabs, a collateral field, LTV slider, effective rate, and a projected-position panel
+Image: Polaris Issue tab with USDp, GOLDp, and ETH sub-tabs, a collateral field, LTV slider, effective rate, and a projected-position panel
 
 ## Basic Flow
 
-1. Choose the sub-tab: pUSD, pGOLD, or ETH.
+1. Choose the sub-tab: USDp, GOLDp, or ETH.
 2. Enter collateral and the amount you want to create or borrow.
 3. Review LTV, liquidation price, expected cost, and incentives.
 4. Approve the collateral token if needed.
@@ -336,15 +336,15 @@ A zap only simplifies execution. The underlying economics remain exactly the sam
 
 ## Current Strategies
 
-pUSD Stable Yield:
-Uses your WETH to buy pUSD and deposit it into the pUSD Earn Vault in one step, earning yield from issuer interest and liquidation gains.
+USDp Stable Yield:
+Uses your WETH to buy USDp and deposit it into the USDp Earn Vault in one step, earning yield from issuer interest and liquidation gains.
 
 Floor Carry:
 Converts ETH into fpETH and borrows ETH against it, creating a non-liquidatable position that can be looped to increase exposure.
 
 Additional strategies will become available over time.
 
-Image: Polaris Zap tab showing the pUSD Stable Yield route from WETH through pUSD into the Earn Vault
+Image: Polaris Zap tab showing the USDp Stable Yield route from WETH through USDp into the Earn Vault
 
 You keep full self-custody throughout the process. Before signing, a simulation shows the expected result and slippage is set by your settings.
 
@@ -500,6 +500,71 @@ For current LTV thresholds and fees, see [Parameters](https://tokenbrice.github.
 
 ---
 
+## Interest Rates
+
+URL: https://tokenbrice.github.io/polaris-docs/minting/interest-rates
+Markdown URL: https://tokenbrice.github.io/polaris-docs/minting/interest-rates.md
+
+Every open position pays interest on its pAsset debt. Polaris does not set this rate by hand or by vote. Two autonomous rates run side by side: a **primary rate** that leans against peg deviation, and a **secondary rate** that responds to how heavily the system is borrowed. Together they are the protocol's main tool for defending each pAsset's peg without offchain promises.
+
+Your total rate is simply the two added together, accruing continuously on your debt.
+
+## The two rates at a glance
+
+Primary rate | Secondary rate
+
+Driven by | Net issuance vs. redemption flow (the peg signal) | The system's debt-to-reserve ratio
+Updates | On every mint or redemption | Permissionlessly, and on every debt change
+Who pays | Every open position, on its debt | Every open position, on its debt
+Where it goes | Routed out as protocol revenue | Redistributed inside the system, by collateral
+Hard cap | 250% APR | 250% APR
+
+## Primary rate - flow-driven
+
+The protocol treats net issuance and redemption as its onchain peg signal, and the primary rate leans against it:
+
+- **Net redemptions push the rate up.** Redemptions tend to dominate when a pAsset trades below peg. A higher borrow cost discourages new issuance and rewards repayment, contracting supply back toward the peg.
+- **Net minting pulls the rate down.** Issuance tends to dominate when a pAsset trades above peg. A lower borrow cost invites more supply, easing the price back down.
+
+Mechanically, each mint or redeem nudges the rate by the log of the resulting supply change, scaled by a steward-set sensitivity. The rate is an evolving level, not a fresh calculation each block, and it is clamped to a configured minimum and maximum.
+
+**Where primary interest goes.** Primary interest is real protocol revenue, paid in the pAsset on its own path - separate from the [Fee Router](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router), which handles pETH swap and conversion revenue. As it accrues it is distributed three ways:
+
+- **[Earn Vaults](https://tokenbrice.github.io/polaris-docs/yield)** - the first-loss backstop for liquidations. At least 25%.
+- **[vePOLAR](https://tokenbrice.github.io/polaris-docs/stewardship/vepolar)** - lockers' guaranteed minimum share of issuer interest. At least 25%.
+- **[pAsset Flows](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router#flows)** - the remainder funds revenue-sharing for approved contracts building on Polaris.
+
+Stewards can adjust the split, but both 25% floors are enforced in code.
+
+## Secondary rate - collateralization-driven
+
+The secondary rate responds not to flow but to the **debt-to-reserve ratio**: how much pAsset debt the system carries relative to the pETH reserve backing it. It follows a kinked curve - rising gently while the system is comfortably collateralized, then steeply once debt passes a configured kink point. Like the primary rate it is capped at 250% APR.
+
+It can be refreshed by anyone, permissionlessly (for example after a price move), and it also refreshes on every debt change, so it tracks conditions without waiting on a keeper.
+
+**Where secondary interest goes.** Unlike the primary rate, the secondary rate is not extracted as revenue - it stays inside the system. It is charged on every position's debt and credited back to positions in proportion to their **collateral**. In aggregate it nets to zero. The net effect is a redistribution from high-LTV positions to conservatively collateralized ones, and that pull strengthens as the whole system becomes more heavily borrowed. It is, in effect, an internal cost for running hot when the protocol can least afford it.
+
+> **Note:** Because secondary interest is redistributive, a well-collateralized position can come out ahead on it while a position near its maximum LTV pays in.
+
+## What a borrower experiences
+
+Both rates accrue on your debt at once, annualized and continuous. The practical effects:
+
+- Your debt grows over time, so your [LTV](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove) drifts upward even if you take no action.
+- Adding collateral or repaying debt lowers your exposure to both rates; the secondary rate in particular eases as your LTV drops.
+- The combined rate is visible onchain as the sum of the primary and secondary rates.
+
+## Bounds and stewardship
+
+Both rates are hard-capped at **250% APR** in the contracts, and that ceiling cannot be raised by stewards or by vote. Within those bounds stewards tune only quantitative parameters: the primary rate's sensitivity, the secondary rate's curve (minimum, maximum, kink, and slopes), and the primary revenue split (subject to the 25% floors). The rate logic itself cannot be rewritten. See [Audits & Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security) for the full scope of bounded parameters.
+
+Next steps:
+- [Manage a Position](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove): How accruing interest shows up in your LTV and what to watch.
+- [Redemptions & Liquidations](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations): The issuance and redemption flow that drives the primary rate.
+- [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure): How rising rates and redistribution affect position risk.
+
+---
+
 ## Launch a pAsset
 
 URL: https://tokenbrice.github.io/polaris-docs/minting/launch-a-passet
@@ -507,17 +572,45 @@ Markdown URL: https://tokenbrice.github.io/polaris-docs/minting/launch-a-passet.
 
 Polaris is **debt-asset agnostic**: it can issue a synthetic pegged to any asset with robust reference pricing and risk parameters. External teams can launch new pAsset markets on the same pETH collateral base, without bootstrapping a fresh collateral pool.
 
-> **Current status:** pUSD and pGOLD are the Testnet-active pAssets. New pAsset onboarding runs through stewardship, whose process and parameter bounds are pending audited deployment. See [Stewardship](https://tokenbrice.github.io/polaris-docs/stewardship).
+> **Current status:** USDp and GOLDp are the Testnet-active pAssets. New pAsset onboarding runs through stewardship, whose process and parameter bounds are pending audited deployment. See [Stewardship](https://tokenbrice.github.io/polaris-docs/stewardship).
 
 ## StablecoinOS: an open catalog
 
 StablecoinOS lets new pAssets share the same pETH collateral pool and bonding curve. Shared collateral lets teams add a new pAsset without bootstrapping a fresh collateral base. Each pAsset still has its own debt accounting, so stress in one pAsset does not directly liquidate another pAsset's borrow positions.
 
-Image: StablecoinOS as a factory: ETH enters one shared bonding curve to create pETH, which collateralizes multiple independent pAsset markets - pUSD, pGOLD, pCHF - over the same pETH collateral base
+Image: StablecoinOS as a factory: ETH enters one shared bonding curve to create pETH, which collateralizes multiple independent pAsset markets - USDp, GOLDp, pCHF - over the same pETH collateral base
 
 ## Opt into the yield layer and Flows
 
 A pAsset built on Polaris inherits the protocol's yield plumbing: borrower interest and liquidation gains flow to its Earn Vault, and approved contracts building on the asset can earn a share of protocol revenue through [Flows](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router#flows) - revenue paid in pETH or pAssets instead of token emissions.
+
+## What a pAsset market is, technically
+
+Polaris is not one monolithic system. The pETH bonding curve and its collateral reserve are shared infrastructure, deployed once. Everything specific to a pAsset is a separate market stack, deployed per asset and wired to that shared curve. Launching pCHF, say, means deploying a new stack, not modifying USDp's.
+
+A market stack is self-contained, with its own:
+
+- Price feed for the tracked asset, composed with the pETH collateral price.
+- pAsset token (an ERC-20), mintable only by its own market contracts.
+- Earn Vault, the market's first-loss backstop and yield venue.
+- Position manager and position NFT, tracking debt and collateral.
+- Interest controller, holding the market's primary and secondary rates.
+- Peg stability module, setting mint and redemption fees.
+- Primary-interest router, splitting interest across Earn Vault, vePOLAR, and Flows.
+
+Because each market keeps its own debt accounting, stress in one pAsset cannot directly liquidate positions in another. Markets share only the pETH collateral.
+
+## What you configure
+
+Most of the launch work is choosing parameters, all of which sit inside protocol-enforced bounds:
+
+- Oracle: a robust, manipulation-resistant reference price for the tracked asset, read through a Medianiser. Because collateral is pETH priced in USD, every market also depends on the shared ETH/USD feed. This is the largest technical requirement.
+- Collateral and liquidation: the minimum collateral ratio (maximum LTV), the emergency-mode thresholds, and the liquidation penalty.
+- Interest rates: the primary rate band and its sensitivity, and the secondary-rate curve (minimum, maximum, kink, and slopes). Both rates are hard-capped at 250% APR. See [Interest Rates](https://tokenbrice.github.io/polaris-docs/minting/interest-rates).
+- Fees: the mint and redemption fee floors and their decay parameters.
+- Revenue split: how the market's primary interest divides across the Earn Vault, vePOLAR, and Flows, subject to the 25% floors.
+
+Stewardship reviews and approves these within hardcoded ranges. It cannot grant values outside them.
 
 ## Requirements
 
@@ -531,6 +624,15 @@ Polaris can support a new pAsset where the reference price and risk parameters a
 - **Governance / stewardship** - a clean security posture and a path through the stewardship onboarding process.
 
 These map to the stewardship onboarding criteria. For the full operator prerequisites, the pAsset-licensing scope, and the proposal lifecycle, see [Stewardship](https://tokenbrice.github.io/polaris-docs/stewardship#operator-prerequisites).
+
+## The path to launch
+
+Launching a pAsset is license-gated, not permissionless. The flow is a petition to stewardship:
+
+1. Petition stewardship for a license, presenting a plan for the desired pAsset: the asset to track, its oracle, evidence of demand and a liquidity path, and the proposed parameters (see Requirements above).
+2. Stewardship reviews the plan and grants or denies the license, weighing oracle quality, security posture, and whether the parameters sit within bounds.
+3. Once licensed, the market stack is deployed against the shared bonding curve, stewardship, fee router, and share staking, and authorized through the official execution path.
+4. Go live: issuers open positions against shared pETH, depositors use the new Earn Vault, and the market's interest plugs into the yield layer.
 
 Next steps:
 - [Stewardship](https://tokenbrice.github.io/polaris-docs/stewardship): The bounded onboarding process and operator prerequisites.
@@ -586,7 +688,7 @@ Markdown URL: https://tokenbrice.github.io/polaris-docs/minting/open-a-trove.md
 Open the Issue tab to create USDp or GOLDp against pETH collateral.
 Opening a position lets you unlock liquidity from pETH while keeping exposure to the collateral that powers Polaris.
 
-Image: Polaris Issue tab with pUSD, pGOLD, and ETH sub-tabs, a collateral field, LTV slider, effective rate, and a projected-position panel
+Image: Polaris Issue tab with USDp, GOLDp, and ETH sub-tabs, a collateral field, LTV slider, effective rate, and a projected-position panel
 
 ## Basic Flow
 1. Open the Issue tab.
@@ -630,8 +732,8 @@ GOLDp | 1 ounce of gold | Testnet-active | Decentralized gold exposure, backed b
 CHFp | Swiss franc | Illustrative / future | A non-USD fiat peg, demonstrating that the model is debt-asset agnostic across currencies. Not Testnet-active unless Launch Status later lists it.
 BigMacp | The Big Mac Index | Illustrative / future | An example of a non-financial reference asset. Not Testnet-active unless Launch Status later lists it.
 
-## pGOLD vs centralized gold (XAUT/PAXG)
-pGOLD and the incumbent gold tokens both give gold-price exposure, but they are structurally different products.
+## GOLDp vs centralized gold (XAUT/PAXG)
+GOLDp and the incumbent gold tokens both give gold-price exposure, but they are structurally different products.
 
 Property | GOLDp | XAUT / PAXG
 
@@ -641,19 +743,19 @@ KYC | None | Required to redeem
 Physical custody | None - nothing to store or insure | Vaulted bullion, with custody risk
 Counterparty | Polaris protocol only | Tether / Paxos as issuer
 
-Image: pGOLD versus centralized gold tokens (XAUT/PAXG): pGOLD is backed by onchain pETH with permissionless, KYC-free access and Polaris as the only counterparty, while XAUT/PAXG are backed by vaulted bullion with issuer-gated, KYC-required redemption and custody risk
+Image: GOLDp versus centralized gold tokens (XAUT/PAXG): GOLDp is backed by onchain pETH with permissionless, KYC-free access and Polaris as the only counterparty, while XAUT/PAXG are backed by vaulted bullion with issuer-gated, KYC-required redemption and custody risk
 
-pGOLD inherits ETH-collateral and smart-contract risk where XAUT/PAXG inherit custodial and issuer risk. What pGOLD removes is the permissioned issuer layer.
+GOLDp inherits ETH-collateral and smart-contract risk where XAUT/PAXG inherit custodial and issuer risk. What GOLDp removes is the permissioned issuer layer.
 GOLDp's collateral pricing composes two oracle feeds with the bonding curve: pETH is valued in gold terms as ETH/USD × the curve's pETH price ÷ gold/USD. A failure of either feed affects GOLDp pricing; see [Oracle risk](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure#oracle-risk).
 
-Image: Borrowing pGOLD is not shorting gold: deposit pETH and borrow pGOLD, then your strategy sets the exposure - hold or LP the gold pair for gold-neutral exposure, or sell pGOLD for pETH (or loop) to take short-gold exposure
+Image: Borrowing GOLDp is not shorting gold: deposit pETH and borrow GOLDp, then your strategy sets the exposure - hold or LP the gold pair for gold-neutral exposure, or sell GOLDp for pETH (or loop) to take short-gold exposure
 
-Issuing pGOLD against pETH is a borrowing action; whether you end up long pETH, gold-neutral, or short gold depends on what you do with the pGOLD.
+Issuing GOLDp against pETH is a borrowing action; whether you end up long pETH, gold-neutral, or short gold depends on what you do with the GOLDp.
 ## StablecoinOS: an open catalog
 Polaris is debt-asset agnostic: it can issue a synthetic asset pegged to any asset with robust reference pricing and risk parameters. StablecoinOS lets new pAssets share the same pETH collateral pool and bonding curve.
 Shared collateral lets teams add a new pAsset without bootstrapping a fresh collateral base. Each pAsset still has its own debt accounting, so stress in one pAsset does not directly liquidate another pAsset's borrow positions.
 
-Image: StablecoinOS as a factory: ETH enters one shared bonding curve to create pETH, which collateralizes multiple independent pAsset markets - pUSD, pGOLD, pCHF - over the same pETH collateral base
+Image: StablecoinOS as a factory: ETH enters one shared bonding curve to create pETH, which collateralizes multiple independent pAsset markets - USDp, GOLDp, pCHF - over the same pETH collateral base
 
 ## Next Steps
 - [Open a Position](https://tokenbrice.github.io/polaris-docs/minting/open-a-trove): Issue your first pAsset against pETH collateral, step by step.
@@ -662,20 +764,20 @@ Image: StablecoinOS as a factory: ETH enters one shared bonding curve to create 
 
 ---
 
-## pGOLD
+## GOLDp
 
 URL: https://tokenbrice.github.io/polaris-docs/minting/pgold
 Markdown URL: https://tokenbrice.github.io/polaris-docs/minting/pgold.md
 
-pGOLD is a **pAsset that tracks the price of one ounce of gold**, issued against pETH collateral rather than bullion in a vault. It is decentralized gold exposure with no KYC, no size minimums, and no counterparty other than the Polaris protocol itself - no vault in Singapore, just a price feed and pETH collateral.
+GOLDp is a **pAsset that tracks the price of one ounce of gold**, issued against pETH collateral rather than bullion in a vault. It is decentralized gold exposure with no KYC, no size minimums, and no counterparty other than the Polaris protocol itself - no vault in Singapore, just a price feed and pETH collateral.
 
-> **Note:** pGOLD is Testnet-active on Sepolia. See [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) for the current list of live pAssets.
+> **Note:** GOLDp is Testnet-active on Sepolia. See [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) for the current list of live pAssets.
 
-## pGOLD vs centralized gold (XAUT/PAXG)
+## GOLDp vs centralized gold (XAUT/PAXG)
 
-pGOLD and the incumbent gold tokens both give gold-price exposure, but they are structurally different products.
+GOLDp and the incumbent gold tokens both give gold-price exposure, but they are structurally different products.
 
-Property | pGOLD | XAUT / PAXG
+Property | GOLDp | XAUT / PAXG
 
 Collateral | pETH, fully onchain | Physical gold in custody
 Redemption | Permissionless, no protocol-level minimum published yet | Issuer-gated; account requirements and redemption minimums depend on the issuer's current terms
@@ -683,56 +785,56 @@ KYC | None | Required to redeem
 Physical custody | None - nothing to store or insure | Vaulted bullion, with custody risk
 Counterparty | Polaris protocol only | Tether / Paxos as issuer
 
-Image: pGOLD versus centralized gold tokens (XAUT/PAXG): pGOLD is backed by onchain pETH with permissionless, KYC-free access and Polaris as the only counterparty, while XAUT/PAXG are backed by vaulted bullion with issuer-gated, KYC-required redemption and custody risk
+Image: GOLDp versus centralized gold tokens (XAUT/PAXG): GOLDp is backed by onchain pETH with permissionless, KYC-free access and Polaris as the only counterparty, while XAUT/PAXG are backed by vaulted bullion with issuer-gated, KYC-required redemption and custody risk
 
-Under current issuer terms, the two centralized tokens together hold roughly \$5B in market cap, and redemption is gated behind KYC plus fees and minimums - XAUT, for example, charges 0.25% and requires roughly one gold bar (430 XAUT, about \$2.1M) to redeem. pGOLD inherits ETH-collateral and smart-contract risk where XAUT/PAXG inherit custodial and issuer risk. What pGOLD removes is the permissioned issuer layer.
+Under current issuer terms, the two centralized tokens together hold roughly \$5B in market cap, and redemption is gated behind KYC plus fees and minimums - XAUT, for example, charges 0.25% and requires roughly one gold bar (430 XAUT, about \$2.1M) to redeem. GOLDp inherits ETH-collateral and smart-contract risk where XAUT/PAXG inherit custodial and issuer risk. What GOLDp removes is the permissioned issuer layer.
 
-pGOLD's collateral pricing composes two oracle feeds with the bonding curve: pETH is valued in gold terms as ETH/USD × the curve's pETH price ÷ gold/USD. A failure of either feed affects pGOLD pricing; see [Oracle risk](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure#oracle-risk).
+GOLDp's collateral pricing composes two oracle feeds with the bonding curve: pETH is valued in gold terms as ETH/USD × the curve's pETH price ÷ gold/USD. A failure of either feed affects GOLDp pricing; see [Oracle risk](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure#oracle-risk).
 
-## Borrowing pGOLD is not shorting gold
+## Borrowing GOLDp is not shorting gold
 
-Image: Borrowing pGOLD is not shorting gold: deposit pETH and borrow pGOLD, then your strategy sets the exposure - hold or LP the gold pair for gold-neutral exposure, or sell pGOLD for pETH (or loop) to take short-gold exposure
+Image: Borrowing GOLDp is not shorting gold: deposit pETH and borrow GOLDp, then your strategy sets the exposure - hold or LP the gold pair for gold-neutral exposure, or sell GOLDp for pETH (or loop) to take short-gold exposure
 
-Issuing pGOLD against pETH is a borrowing action; whether you end up long pETH, gold-neutral, or short gold depends on what you do with the pGOLD. Borrow 1 pGOLD and hold it and your gold exposure is neutral - you owe 1 pGOLD and hold 1 pGOLD. The position only becomes a short if you sell that pGOLD for a non-gold asset.
+Issuing GOLDp against pETH is a borrowing action; whether you end up long pETH, gold-neutral, or short gold depends on what you do with the GOLDp. Borrow 1 GOLDp and hold it and your gold exposure is neutral - you owe 1 GOLDp and hold 1 GOLDp. The position only becomes a short if you sell that GOLDp for a non-gold asset.
 
-So almost any view on gold can be expressed with pGOLD:
+So almost any view on gold can be expressed with GOLDp:
 
 Your view | How to express it
 
-**Long gold** | Buy pGOLD and LP a gold-correlated pair
-**Short gold, long ETH** | Post pETH, borrow pGOLD, then sell it or loop the position
-**Long gold, short ETH** | Buy pGOLD and deposit it in the [Earn Vault](https://tokenbrice.github.io/polaris-docs/yield)
-**Gold-neutral, long volume** | Borrow pGOLD and LP gold-correlated pairs
+**Long gold** | Buy GOLDp and LP a gold-correlated pair
+**Short gold, long ETH** | Post pETH, borrow GOLDp, then sell it or loop the position
+**Long gold, short ETH** | Buy GOLDp and deposit it in the [Earn Vault](https://tokenbrice.github.io/polaris-docs/yield)
+**Gold-neutral, long volume** | Borrow GOLDp and LP gold-correlated pairs
 
-## Why borrow pGOLD
+## Why borrow GOLDp
 
-Polaris is designed to make borrowing attractive: borrowers pay interest but also receive pETH incentives on their position, so the *effective* rate can run low or even negative when incentives exceed interest. Because gold sees strong holding demand but comparatively little borrow demand, pGOLD is a natural fit for that flexibility. See [Yield Sources](https://tokenbrice.github.io/polaris-docs/yield/yield-sources) and [POLAR Tokenomics](https://tokenbrice.github.io/polaris-docs/polar/tokenomics) for the mechanics.
+Polaris is designed to make borrowing attractive: borrowers pay interest but also receive pETH incentives on their position, so the *effective* rate can run low or even negative when incentives exceed interest. Because gold sees strong holding demand but comparatively little borrow demand, GOLDp is a natural fit for that flexibility. See [Yield Sources](https://tokenbrice.github.io/polaris-docs/yield/yield-sources) and [POLAR Tokenomics](https://tokenbrice.github.io/polaris-docs/polar/tokenomics) for the mechanics.
 
-**[Go deeper →](https://polarisfinance.io/blog/pGOLD-finishing-what-digixdao-started/)**
+**[Go deeper →](https://polarisfinance.io/blog/GOLDp-finishing-what-digixdao-started/)**
 
 Next steps:
-- [Open a Position](https://tokenbrice.github.io/polaris-docs/minting/open-a-trove): Issue pGOLD against pETH collateral, step by step.
-- [Earn Vaults](https://tokenbrice.github.io/polaris-docs/yield): Put pGOLD to work and earn from protocol activity.
-- [Oracle Risk](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure#oracle-risk): How the gold and ETH price feeds affect pGOLD.
+- [Open a Position](https://tokenbrice.github.io/polaris-docs/minting/open-a-trove): Issue GOLDp against pETH collateral, step by step.
+- [Earn Vaults](https://tokenbrice.github.io/polaris-docs/yield): Put GOLDp to work and earn from protocol activity.
+- [Oracle Risk](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure#oracle-risk): How the gold and ETH price feeds affect GOLDp.
 
 ---
 
-## pUSD
+## USDp
 
 URL: https://tokenbrice.github.io/polaris-docs/minting/pusd
 Markdown URL: https://tokenbrice.github.io/polaris-docs/minting/pusd.md
 
-pUSD is Polaris's flagship **pAsset pegged to the US dollar**, issued against pETH collateral. It belongs to a rare class of stablecoins that carry **no counterparty dependency** - the same trust-minimized family as LUSD and BOLD. Its peg is not propped up by an offchain reserve that can be frozen or fail; it is held by onchain incentives.
+USDp is Polaris's flagship **pAsset pegged to the US dollar**, issued against pETH collateral. It belongs to a rare class of stablecoins that carry **no counterparty dependency** - the same trust-minimized family as LUSD and BOLD. Its peg is not propped up by an offchain reserve that can be frozen or fail; it is held by onchain incentives.
 
-> **Note:** pUSD is Testnet-active on Sepolia. See [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) for the current list of live pAssets.
+> **Note:** USDp is Testnet-active on Sepolia. See [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) for the current list of live pAssets.
 
-## Why use pUSD
+## Why use USDp
 
-pUSD's yield is **owned, not rented**. Where most stablecoin yield is borrowed from offchain sources (T-bills, CEX lending, custodial strategies) that can compress or disappear, pUSD earns from the protocol's own activity - borrower interest and liquidation gains - so it scales with adoption rather than external conditions. See [Yield Sources](https://tokenbrice.github.io/polaris-docs/yield/yield-sources#owned-not-rented) for why this is self-scaling.
+USDp's yield is **owned, not rented**. Where most stablecoin yield is borrowed from offchain sources (T-bills, CEX lending, custodial strategies) that can compress or disappear, USDp earns from the protocol's own activity - borrower interest and liquidation gains - so it scales with adoption rather than external conditions. See [Yield Sources](https://tokenbrice.github.io/polaris-docs/yield/yield-sources#owned-not-rented) for why this is self-scaling.
 
-## How pUSD is created
+## How USDp is created
 
-You issue pUSD by depositing pETH collateral and opening a position - the same flow as any pAsset. Arbitrageurs can also issue or redeem pUSD directly against pETH at the oracle price through the Peg Stability Module.
+You issue USDp by depositing pETH collateral and opening a position - the same flow as any pAsset. Arbitrageurs can also issue or redeem USDp directly against pETH at the oracle price through the Peg Stability Module.
 
 - Issue from a position: [Issuing pAssets](https://tokenbrice.github.io/polaris-docs/minting) → [Open a Position](https://tokenbrice.github.io/polaris-docs/minting/open-a-trove).
 - Direct PSM issue/redeem: [Advanced](https://tokenbrice.github.io/polaris-docs/using-app/advanced).
@@ -741,24 +843,24 @@ You issue pUSD by depositing pETH collateral and opening a position - the same f
 
 Two opposing, permissionless arbitrage mechanisms defend the peg without anyone's approval:
 
-- **Below peg**, [redemptions](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations) let anyone swap pUSD for its pETH collateral at face value, buying pUSD off the market until it returns to peg.
-- **Above peg**, issuing new pUSD against pETH expands supply back toward peg.
+- **Below peg**, [redemptions](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations) let anyone swap USDp for its pETH collateral at face value, buying USDp off the market until it returns to peg.
+- **Above peg**, issuing new USDp against pETH expands supply back toward peg.
 
 For the full treatment, see [Redemptions](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations) and the peg section of the [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure).
 
-## Earn with pUSD
+## Earn with USDp
 
-Deposit pUSD into the [Earn Vault](https://tokenbrice.github.io/polaris-docs/yield) to earn borrower interest plus pETH liquidation gains, without opening a borrow position of your own. The vault is a first-loss backstop - read [Earn Vaults](https://tokenbrice.github.io/polaris-docs/yield) before depositing.
+Deposit USDp into the [Earn Vault](https://tokenbrice.github.io/polaris-docs/yield) to earn borrower interest plus pETH liquidation gains, without opening a borrow position of your own. The vault is a first-loss backstop - read [Earn Vaults](https://tokenbrice.github.io/polaris-docs/yield) before depositing.
 
 ## Main risks
 
-pUSD carries collateral, oracle, redemption, and smart-contract risk. Read the [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure) before treating pUSD yield as principal-safe.
+USDp carries collateral, oracle, redemption, and smart-contract risk. Read the [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure) before treating USDp yield as principal-safe.
 
 **[Go deeper →](https://polarisfinance.io/blog/pusd-no-counterparty/)**
 
 Next steps:
-- [Open a Position](https://tokenbrice.github.io/polaris-docs/minting/open-a-trove): Issue pUSD against pETH collateral, step by step.
-- [Earn Vaults](https://tokenbrice.github.io/polaris-docs/yield): Deposit pUSD to earn from protocol activity.
+- [Open a Position](https://tokenbrice.github.io/polaris-docs/minting/open-a-trove): Issue USDp against pETH collateral, step by step.
+- [Earn Vaults](https://tokenbrice.github.io/polaris-docs/yield): Deposit USDp to earn from protocol activity.
 - [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure): The full risk model before you treat yield as principal-safe.
 
 ---
@@ -1298,25 +1400,25 @@ Together, these mechanisms create arbitrage loops that push pAssets back toward 
 
 ## When pAssets Trade Above Peg
 
-If pUSD trades above $1, an arbitrageur can create new pUSD against pETH collateral and sell it into the market.
+If USDp trades above $1, an arbitrageur can create new USDp against pETH collateral and sell it into the market.
 
-That increases pUSD supply and applies downward pressure on price.
+That increases USDp supply and applies downward pressure on price.
 
 In simple terms:
-1. pUSD trades above peg.
-2. An arbitrageur adds pETH collateral and mints pUSD.
-3. The arbitrageur sells pUSD into the market to capture the spread.
+1. USDp trades above peg.
+2. An arbitrageur adds pETH collateral and mints USDp.
+3. The arbitrageur sells USDp into the market to capture the spread.
 4. Supply expands until the arbitrage opportunity closes.
 
 ## When pAssets Trade Below Peg
 
-If pUSD trades below $1, an arbitrageur can buy pUSD cheaply and redeem it for pETH collateral at the protocol reference value, minus fees and execution costs.
+If USDp trades below $1, an arbitrageur can buy USDp cheaply and redeem it for pETH collateral at the protocol reference value, minus fees and execution costs.
 
-That buys pUSD from the market and reduces supply.
+That buys USDp from the market and reduces supply.
 
 In simple terms:
-1. pUSD trades below peg.
-2. An arbitrageur buys discounted pUSD.
+1. USDp trades below peg.
+2. An arbitrageur buys discounted USDp.
 3. The arbitrageur redeems it for pETH collateral.
 4. Supply contracts until the opportunity closes.
 
@@ -1969,7 +2071,7 @@ A fully censorship-resistant stablecoin may be the product people notice first, 
 
 ## Next Steps
 - peth: How the shared collateral primitive, bonding curve, and floor price work.
-- minting: How pUSD and pGOLD positions work.
+- minting: How USDp and GOLDp positions work.
 - yield: How pAsset deposits earn from protocol activity.
 
 ---
@@ -2008,10 +2110,10 @@ Current split values live in [Parameters](https://tokenbrice.github.io/polaris-d
 
 ## Basic Flow
 
-You need a pAsset to deposit, usually pUSD or pGOLD, plus ETH for gas.
+You need a pAsset to deposit, usually USDp or GOLDp, plus ETH for gas.
 
 1. Open Earn in the Polaris app.
-2. Choose the pUSD or pGOLD Earn Vault.
+2. Choose the USDp or GOLDp Earn Vault.
 3. Enter the deposit amount.
 4. Review expected wallet changes.
 5. Approve the pAsset if prompted.
@@ -2031,6 +2133,61 @@ You need a pAsset to deposit, usually pUSD or pGOLD, plus ETH for gas.
 - [Yield Sources](https://tokenbrice.github.io/polaris-docs/yield/yield-sources): Understand every yield stream on Polaris.
 - [Liquidations](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations): Understand how positions are closed and the vault is triggered.
 - [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure): Understand why yield is not principal-safe.
+
+Relevant app/search vocabulary: Earn, earn, yield, APR, Earn Vault, deposit, claim rewards.
+
+---
+
+## Strategies
+
+URL: https://tokenbrice.github.io/polaris-docs/yield/strategies
+Markdown URL: https://tokenbrice.github.io/polaris-docs/yield/strategies.md
+
+Polaris is built from a few composable parts - pETH as collateral, pAsset positions, and Earn Vaults. Those parts combine into several common position shapes. This page describes what is possible, not what you should do. Nothing here is advice, and every shape below carries the risks set out in [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure).
+
+## Hold pETH, no debt
+
+The simplest position is to hold [pETH](https://tokenbrice.github.io/polaris-docs/peth) with nothing issued against it. pETH is a productive reserve asset with a floor designed to rise as protocol activity routes value back into the curve.
+
+- What it gives: exposure to pETH with no debt and no liquidation risk.
+- Main risk: pETH can move against ETH above its floor. There is no peg and no protection beyond the curve floor.
+
+## Issue a pAsset against pETH
+
+Deposit pETH and [issue](https://tokenbrice.github.io/polaris-docs/minting) a pAsset such as USDp or GOLDp. You keep your pETH collateral, and its ETH exposure, while holding a pegged asset you can use elsewhere.
+
+- What it gives: a pegged asset, dollar or gold, drawn against pETH while retaining collateral upside.
+- Main risk: the position has an LTV and a liquidation price, and it accrues [interest](https://tokenbrice.github.io/polaris-docs/minting/interest-rates). Issuance and redemptions can resize it.
+
+## Draw stable value without selling ETH exposure
+
+Because a position lets you issue a USD-pegged pAsset against pETH, you can raise stable liquidity without selling the ETH exposure held in your collateral. Repaying the pAsset later unwinds the position and restores it.
+
+- What it gives: stable liquidity now while keeping collateral exposure for later.
+- Main risk: this is leverage. A falling pETH collateral value raises your LTV toward liquidation, and interest accrues the whole time.
+
+## Earn on idle pAssets
+
+Deposit USDp or GOLDp into an [Earn Vault](https://tokenbrice.github.io/polaris-docs/yield) to earn issuer interest and liquidation gains. The vault is the system's first-loss backstop, so deposits can be consumed during liquidations.
+
+- What it gives: pAsset-denominated yield on otherwise idle pAssets.
+- Main risk: first-loss exposure. A deposit can be partially consumed, and liquidation gains arrive as pETH, which has price risk.
+
+## Split pETH and reserve loans
+
+pETH can be [split](https://tokenbrice.github.io/polaris-docs/peth/split) into fpETH and vpETH, separating floor value from upside. fpETH can then be used in reserve-loan strategies.
+
+- What it gives: finer control over which part of pETH's value you hold or borrow against.
+- Main risk: these are advanced mechanics with their own execution and price risks. Read the linked pages before using them.
+
+## Before acting
+
+These shapes can be combined, and each adds risk as it adds flexibility. None is risk-free, and none is a recommendation. Read [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure) in full, and confirm current thresholds and fees in [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters).
+
+Next steps:
+- [pETH](https://tokenbrice.github.io/polaris-docs/peth): The reserve asset every strategy starts from.
+- [Issuing pAssets](https://tokenbrice.github.io/polaris-docs/minting): How positions are opened and managed.
+- [Earn Vaults](https://tokenbrice.github.io/polaris-docs/yield): The main venue for pAsset yield.
 
 Relevant app/search vocabulary: Earn, earn, yield, APR, Earn Vault, deposit, claim rewards.
 
@@ -2154,7 +2311,7 @@ LTV:
 Loan-to-value. Position debt divided by collateral value. Lower LTV gives more room before liquidation. See [Manage a Position](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove).
 
 pAsset:
-A Polaris synthetic asset backed by pETH collateral, such as pUSD or pGOLD.
+A Polaris synthetic asset backed by pETH collateral, such as USDp or GOLDp.
 
 Peg Defense:
 The paired issuance and redemption mechanisms that help pAssets trade around their reference value. Issuance expands supply above peg. Redemptions contract supply below peg. See [Peg Defense](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations).
@@ -2162,7 +2319,7 @@ The paired issuance and redemption mechanisms that help pAssets trade around the
 pETH:
 The ETH-backed reserve and collateral asset created through the Polaris bonding curve. See [pETH](https://tokenbrice.github.io/polaris-docs/peth).
 
-pGOLD:
+GOLDp:
 A pAsset designed to track gold exposure without issuer custody at the protocol layer.
 
 POLAR:
@@ -2171,7 +2328,7 @@ The stewardship and growth token used for long-term protocol coordination and va
 Position:
 An individual collateral position backed by pETH. Users can add collateral, issue more, repay, withdraw collateral, or close it. See [Issuing pAssets](https://tokenbrice.github.io/polaris-docs/minting).
 
-pUSD:
+USDp:
 The flagship Polaris pAsset, designed to track the US dollar and backed by pETH collateral.
 
 Split:
@@ -2338,7 +2495,7 @@ Accessible use: Pair with dark navy text. Do not use as text on white.
 
 ### Token Colors
 
-pUSD:
+USDp:
 Hex: `#E8DCC4`
 Accessible use: Works as text or icon color on navy. Add text labels in charts.
 
@@ -2350,7 +2507,7 @@ POLAR:
 Hex: `#9B8FCF`
 Accessible use: Works for accent graphics on navy. Pair with visible labels.
 
-Tokens not listed, such as pGOLD, do not yet have a published signature color.
+Tokens not listed, such as GOLDp, do not yet have a published signature color.
 
 Do not rely on color alone. Token charts, route maps, and warnings should pair colors with labels, icons, or text so meaning survives in grayscale, print, and assistive technologies.
 
@@ -2396,7 +2553,7 @@ FAQ answers are intentionally short. Follow the linked canonical page when you n
 
 ### What is Polaris?
 
-Polaris is a DeFi yield layer built around pETH. ETH becomes pETH through a bonding curve, pETH collateralizes pAssets such as pUSD and pGOLD, and protocol activity routes yield through onchain mechanisms.
+Polaris is a DeFi yield layer built around pETH. ETH becomes pETH through a bonding curve, pETH collateralizes pAssets such as USDp and GOLDp, and protocol activity routes yield through onchain mechanisms.
 
 Start with [Why Polaris](https://tokenbrice.github.io/polaris-docs/why-polaris).
 
@@ -2424,9 +2581,15 @@ The step-by-step path is [Public Testnet Quickstart](https://tokenbrice.github.i
 
 Issue is where users create pAssets against pETH collateral.
 
-You deposit pETH, create a pAsset such as pUSD or pGOLD, and manage the resulting position over time.
+You deposit pETH, create a pAsset such as USDp or GOLDp, and manage the resulting position over time.
 
 See [Issue](https://tokenbrice.github.io/polaris-docs/using-app/issue) and [Issuing pAssets](https://tokenbrice.github.io/polaris-docs/minting).
+
+### What interest do I pay on a position?
+
+Two autonomous rates accrue on your debt: a primary rate that responds to issuance and redemption flow, and a secondary rate that rises with how heavily the system is borrowed. Both are capped at 250% APR. The secondary rate is redistributive, so conservatively collateralized positions can come out ahead while high-LTV positions pay more.
+
+See [Interest Rates](https://tokenbrice.github.io/polaris-docs/minting/interest-rates).
 
 ### What should I do if a quote or transaction fails?
 
@@ -2541,7 +2704,7 @@ Pricing pETH collateral for liquidation requires an ETH price feed. A stale, man
 Mitigation:
 Peg awareness uses redemption and issuance volume as internal signals for each pAsset. The oracle dependency is confined to pricing ETH collateral, plus the reference-asset feed for non-USD pAssets.
 
-pGOLD composes ETH/USD and gold/USD feeds with the curve price, so either feed failing affects its pricing.
+GOLDp composes ETH/USD and gold/USD feeds with the curve price, so either feed failing affects its pricing.
 
 External price feeds are read through a Medianiser. Current testnet and production address status lives on [Contracts And Addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses).
 
@@ -2570,6 +2733,15 @@ Liquidation logic is transparent and onchain, with no discretionary calls.
 You control your LTV: add collateral or repay debt to stay clear of the threshold.
 
 pETH's rising floor and yield-bearing nature may dampen, but do not remove, the volatility that causes liquidations. Monitor your position actively, especially in volatile markets.
+
+## Interest Rate Risk
+
+Every open position accrues interest on its debt at two autonomous rates: a primary rate driven by issuance and redemption flow, and a secondary rate driven by how heavily the system is borrowed. Interest raises your debt over time, lifting your LTV toward liquidation even if you take no other action. Both rates can climb, each capped at 250% APR, and the secondary rate can change permissionlessly as conditions move.
+
+Mitigation:
+Both rates are bounded by hardcoded maxima that stewards cannot exceed, and the rate logic cannot be rewritten. The secondary rate is redistributive rather than extractive: it is charged on debt but credited back across positions by collateral, so a conservatively collateralized position can net receive while a high-LTV position pays. Lowering your LTV by adding collateral or repaying debt reduces your exposure to both rates.
+
+See [Interest Rates](https://tokenbrice.github.io/polaris-docs/minting/interest-rates).
 
 ## Issuance And Redemption Exposure
 
@@ -2679,7 +2851,7 @@ Official app | [https://app.testnet.polarisfinance.io/](https://app.testnet.pola
 Testnet value | No monetary value, no production redemption, no mainnet claim
 Testnet gas | Sepolia ETH
 Reserve token | Mock WETH/reserve token from the app faucet when enabled
-Active pAssets | pUSD and pGOLD
+Active pAssets | USDp and GOLDp
 
 ## Manifest sources
 
@@ -2688,8 +2860,8 @@ The protocol repository and commit are not yet public. The paths below identify 
 Manifest | What it covers | Internal protocol path
 
 Core manifest | Reserve token, pETH/bonding curve, POLAR/share system, staking, fee router, reserve loans, stewardship, splitter, vpToken | `deployments/sepolia/deployment-manifest.core.ts`
-pUSD manifest | pUSD token, CDP manager, Earn Vault, PSM, price feed, medianiser, interest controller, read helper | `deployments/sepolia/deployment-manifest.pusd.ts`
-pGOLD manifest | pGOLD token, CDP manager, Earn Vault, PSM, price feed, ETH/USD and XAU/USD medianisers, interest controller, read helper | `deployments/sepolia/deployment-manifest.pgold.ts`
+USDp manifest | USDp token, CDP manager, Earn Vault, PSM, price feed, medianiser, interest controller, read helper | `deployments/sepolia/deployment-manifest.pusd.ts`
+GOLDp manifest | GOLDp token, CDP manager, Earn Vault, PSM, price feed, ETH/USD and XAU/USD medianisers, interest controller, read helper | `deployments/sepolia/deployment-manifest.pgold.ts`
 Deploy script defaults | Fee floors, fee alpha values, decay factors, initial rates, and deployment constants not all written into the manifests | `script/DeployPolaris.s.sol`
 
 Treat these as testnet artifacts: useful for testing, indexer scaffolding, and UI verification, but not public provenance or production-canonical.
@@ -2720,7 +2892,7 @@ Task pages link here for faucet values; the contract can change them without a d
 
 **Emergency Mode** in the rows below is the contracts' internal name for what these docs call [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode).
 
-Parameter | pUSD | pGOLD | Source
+Parameter | USDp | GOLDp | Source
 
 Minimum collateral ratio (MCR) | 115% | 115% | Manifest
 Emergency Mode action MCR | 150% | 150% | Manifest
@@ -2768,31 +2940,31 @@ Testnet POLAR staking | [`0x56a7088cdb41a04eddb9c9b46f27359a6797324b`](https://s
 BondingCurveTokenSplitter | [`0xc880eb4ba6e7f1c60ce4968dc50b24056e67cc00`](https://sepolia.etherscan.io/address/0xc880eb4ba6e7f1c60ce4968dc50b24056e67cc00)
 vpToken | [`0xd59019504ea81813632c8f5e8014027b47c82ab1`](https://sepolia.etherscan.io/address/0xd59019504ea81813632c8f5e8014027b47c82ab1)
 
-### pUSD market
+### USDp market
 
 Contract | Sepolia address
 
-pUSD token | [`0xf06a3e9420176351d0341507f91d243014510d5b`](https://sepolia.etherscan.io/address/0xf06a3e9420176351d0341507f91d243014510d5b)
+USDp token | [`0xf06a3e9420176351d0341507f91d243014510d5b`](https://sepolia.etherscan.io/address/0xf06a3e9420176351d0341507f91d243014510d5b)
 Earn Vault | [`0x8da97da1f6ab14d144a4966360e19ca5f2b5aece`](https://sepolia.etherscan.io/address/0x8da97da1f6ab14d144a4966360e19ca5f2b5aece)
 CDP NFT | [`0xace616e3a3b07bfe2424ae48c1b4fb8aed90eea0`](https://sepolia.etherscan.io/address/0xace616e3a3b07bfe2424ae48c1b4fb8aed90eea0)
 ETH/USD medianiser | [`0xbad4c21ea10259280b1980b6c3f8de806b8ec31a`](https://sepolia.etherscan.io/address/0xbad4c21ea10259280b1980b6c3f8de806b8ec31a)
-pUSD testnet price feed | [`0x26998cd15cbfddcb1e8c81fb7dff75886dc90185`](https://sepolia.etherscan.io/address/0x26998cd15cbfddcb1e8c81fb7dff75886dc90185)
+USDp testnet price feed | [`0x26998cd15cbfddcb1e8c81fb7dff75886dc90185`](https://sepolia.etherscan.io/address/0x26998cd15cbfddcb1e8c81fb7dff75886dc90185)
 CDP Manager | [`0x71b5c3b88510206203ec8363c56f908777ad52c8`](https://sepolia.etherscan.io/address/0x71b5c3b88510206203ec8363c56f908777ad52c8)
 Interest Controller | [`0x0e957229c4fe20e5099206b3b615cf2563200545`](https://sepolia.etherscan.io/address/0x0e957229c4fe20e5099206b3b615cf2563200545)
 Internal PSM | [`0x49cf0fff51fdd7140237e3fc6cd2b4daf6a4ffe5`](https://sepolia.etherscan.io/address/0x49cf0fff51fdd7140237e3fc6cd2b4daf6a4ffe5)
 MultiCDPGetter | [`0x5b396a8e4adff7480c0dd2858890f55d5b028149`](https://sepolia.etherscan.io/address/0x5b396a8e4adff7480c0dd2858890f55d5b028149)
 Primary Interest Router | [`0xb5971ee694ca881963533114c1694f5f0c56ac09`](https://sepolia.etherscan.io/address/0xb5971ee694ca881963533114c1694f5f0c56ac09)
 
-### pGOLD market
+### GOLDp market
 
 Contract | Sepolia address
 
-pGOLD token | [`0x664396097e787956eaf25214049ab58a7d53d2e1`](https://sepolia.etherscan.io/address/0x664396097e787956eaf25214049ab58a7d53d2e1)
+GOLDp token | [`0x664396097e787956eaf25214049ab58a7d53d2e1`](https://sepolia.etherscan.io/address/0x664396097e787956eaf25214049ab58a7d53d2e1)
 Earn Vault | [`0x3308842b03248838c83205100a0a33d716dc37d6`](https://sepolia.etherscan.io/address/0x3308842b03248838c83205100a0a33d716dc37d6)
 CDP NFT | [`0xb621912e3c7383bb65b4d720ac946aa618ed129b`](https://sepolia.etherscan.io/address/0xb621912e3c7383bb65b4d720ac946aa618ed129b)
 ETH/USD medianiser | [`0xbad4c21ea10259280b1980b6c3f8de806b8ec31a`](https://sepolia.etherscan.io/address/0xbad4c21ea10259280b1980b6c3f8de806b8ec31a)
 XAU/USD medianiser | [`0x8f4256ec2674ed87fdf7e8079ec3933263326fe1`](https://sepolia.etherscan.io/address/0x8f4256ec2674ed87fdf7e8079ec3933263326fe1)
-pGOLD testnet price feed | [`0x8a891736218fb98cabf23b39e4b8f6f2876011f4`](https://sepolia.etherscan.io/address/0x8a891736218fb98cabf23b39e4b8f6f2876011f4)
+GOLDp testnet price feed | [`0x8a891736218fb98cabf23b39e4b8f6f2876011f4`](https://sepolia.etherscan.io/address/0x8a891736218fb98cabf23b39e4b8f6f2876011f4)
 CDP Manager | [`0xf45fb3acf8dbd12673ecb0be1ee376846000c4ed`](https://sepolia.etherscan.io/address/0xf45fb3acf8dbd12673ecb0be1ee376846000c4ed)
 Interest Controller | [`0xbd415a7ea90f448b3633b76f5c59c84a219b2448`](https://sepolia.etherscan.io/address/0xbd415a7ea90f448b3633b76f5c59c84a219b2448)
 Internal PSM | [`0x6bcdf4a0d67ce12bf24ba4899a3be55033f90acc`](https://sepolia.etherscan.io/address/0x6bcdf4a0d67ce12bf24ba4899a3be55033f90acc)

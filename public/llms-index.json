@@ -97,6 +97,17 @@
       "lastVerified": null
     },
     {
+      "route": "/minting/interest-rates",
+      "url": "https://tokenbrice.github.io/polaris-docs/minting/interest-rates",
+      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/minting/interest-rates.md",
+      "section": "Understand Polaris",
+      "title": "Interest Rates",
+      "description": "How Polaris prices pAsset debt, covering the flow-driven primary rate and the redistributive secondary rate.",
+      "keywords": [],
+      "updated": null,
+      "lastVerified": null
+    },
+    {
       "route": "/minting/launch-a-passet",
       "url": "https://tokenbrice.github.io/polaris-docs/minting/launch-a-passet",
       "markdownUrl": "https://tokenbrice.github.io/polaris-docs/minting/launch-a-passet.md",
@@ -189,8 +200,8 @@
       "url": "https://tokenbrice.github.io/polaris-docs/minting/pgold",
       "markdownUrl": "https://tokenbrice.github.io/polaris-docs/minting/pgold.md",
       "section": "Understand Polaris",
-      "title": "pGOLD",
-      "description": "Decentralized gold exposure backed by pETH. How pGOLD compares to XAUT and PAXG, the exposure you actually get, and how to express any gold view.",
+      "title": "GOLDp",
+      "description": "Decentralized gold exposure backed by pETH. How GOLDp compares to XAUT and PAXG, the exposure you actually get, and how to express any gold view.",
       "keywords": [],
       "updated": null,
       "lastVerified": null
@@ -200,8 +211,8 @@
       "url": "https://tokenbrice.github.io/polaris-docs/minting/pusd",
       "markdownUrl": "https://tokenbrice.github.io/polaris-docs/minting/pusd.md",
       "section": "Understand Polaris",
-      "title": "pUSD",
-      "description": "Polaris's flagship dollar-pegged pAsset. What pUSD is, why hold it, and how it is created, kept on peg, and put to work.",
+      "title": "USDp",
+      "description": "Polaris's flagship dollar-pegged pAsset. What USDp is, why hold it, and how it is created, kept on peg, and put to work.",
       "keywords": [],
       "updated": null,
       "lastVerified": null
@@ -466,8 +477,8 @@
         "APR",
         "Reserve Loan"
       ],
-      "updated": "2026-06-08",
-      "lastVerified": "2026-06-08"
+      "updated": "2026-06-20",
+      "lastVerified": "2026-06-20"
     },
     {
       "route": "/resources/risk-disclosure",
@@ -713,6 +724,25 @@
       "section": "Understand Polaris",
       "title": "Polaris Earn Vaults",
       "description": "Earn Vaults let pAsset holders earn from issuer interest and liquidation gains.",
+      "keywords": [
+        "Earn",
+        "earn",
+        "yield",
+        "APR",
+        "Earn Vault",
+        "deposit",
+        "claim rewards"
+      ],
+      "updated": null,
+      "lastVerified": null
+    },
+    {
+      "route": "/yield/strategies",
+      "url": "https://tokenbrice.github.io/polaris-docs/yield/strategies",
+      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/yield/strategies.md",
+      "section": "Understand Polaris",
+      "title": "Strategies",
+      "description": "The position shapes Polaris supports, from holding pETH to issuing and hedging pAssets, described without recommendation.",
       "keywords": [
         "Earn",
         "earn",
