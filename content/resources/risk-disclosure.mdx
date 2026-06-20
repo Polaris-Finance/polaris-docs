@@ -43,7 +43,7 @@ Pricing pETH collateral for liquidation requires an ETH price feed. A stale, man
 Mitigation:
 Peg awareness uses redemption and issuance volume as internal signals for each pAsset. The oracle dependency is confined to pricing ETH collateral, plus the reference-asset feed for non-USD pAssets.
 
-pGOLD composes ETH/USD and gold/USD feeds with the curve price, so either feed failing affects its pricing.
+GOLDp composes ETH/USD and gold/USD feeds with the curve price, so either feed failing affects its pricing.
 
 External price feeds are read through a Medianiser. Current testnet and production address status lives on [Contracts And Addresses](/resources/testnet#contracts-and-addresses).
 
@@ -72,6 +72,15 @@ Liquidation logic is transparent and onchain, with no discretionary calls.
 You control your LTV: add collateral or repay debt to stay clear of the threshold.
 
 pETH's rising floor and yield-bearing nature may dampen, but do not remove, the volatility that causes liquidations. Monitor your position actively, especially in volatile markets.
+
+## Interest Rate Risk
+
+Every open position accrues interest on its debt at two autonomous rates: a primary rate driven by issuance and redemption flow, and a secondary rate driven by how heavily the system is borrowed. Interest raises your debt over time, lifting your LTV toward liquidation even if you take no other action. Both rates can climb, each capped at 250% APR, and the secondary rate can change permissionlessly as conditions move.
+
+Mitigation:
+Both rates are bounded by hardcoded maxima that stewards cannot exceed, and the rate logic cannot be rewritten. The secondary rate is redistributive rather than extractive: it is charged on debt but credited back across positions by collateral, so a conservatively collateralized position can net receive while a high-LTV position pays. Lowering your LTV by adding collateral or repaying debt reduces your exposure to both rates.
+
+See [Interest Rates](/minting/interest-rates).
 
 ## Issuance And Redemption Exposure
 
