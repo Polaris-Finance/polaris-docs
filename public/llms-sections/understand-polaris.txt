@@ -59,7 +59,7 @@ Your total rate is simply the two added together, accruing continuously on your 
 
 ## The two rates at a glance
 
-Primary rate | Secondary rate
+Rate property | Primary rate | Secondary rate
 
 Driven by | Net issuance vs. redemption flow (the peg signal) | The system's debt-to-reserve ratio
 Updates | On every mint or redemption | Permissionlessly, and on every debt change
