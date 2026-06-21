@@ -37,6 +37,8 @@ In simple terms:
 3. The arbitrageur redeems it for pETH collateral.
 4. Supply contracts until the opportunity closes.
 
+> **Note:** Redemptions assume the system is fully backed. If the protocol becomes undercollateralized — its reserve-to-debt ratio drops below 100% — the collateral returned on redemption is scaled down in proportion, on top of fees. Confirm the quoted collateral in the app before signing.
+
 ## How Positions Are Affected
 
 Issuance and redemptions are socialized across all open positions for the affected pAsset.

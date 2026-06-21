@@ -61,6 +61,6 @@ A way to create money that remains decentralized and permissionless, without sac
 A fully censorship-resistant stablecoin may be the product people notice first, but the larger vision is a decentralized yield layer for onchain money.
 
 ## Next Steps
-- peth: How the shared collateral primitive, bonding curve, and floor price work.
-- minting: How USDp and GOLDp positions work.
-- yield: How pAsset deposits earn from protocol activity.
+- [pETH](https://tokenbrice.github.io/polaris-docs/peth): How the shared collateral primitive, bonding curve, and floor price work.
+- [pAssets](https://tokenbrice.github.io/polaris-docs/minting): How USDp and GOLDp positions work.
+- [Earn Vaults](https://tokenbrice.github.io/polaris-docs/yield): How pAsset deposits earn from protocol activity.

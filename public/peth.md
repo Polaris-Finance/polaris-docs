@@ -22,11 +22,11 @@ pETH was created to solve this problem directly.
 It is created when ETH enters the Polaris bonding curve and burned when users sell back into the curve. This gives Polaris a shared reserve asset with native liquidity, a rising floor, and value capture built into the collateral itself.
 
 pETH is designed to:
-Enable permissionless 1:1 pAsset issuance against a shared collateral base.
-Scale liquidity as the protocol grows without relying on external liquidity providers.
-Capture value into the collateral asset as Polaris adoption grows.
-Support a rising floor that other Polaris mechanisms can build on.
-Turn ETH into collateral that is productive inside Polaris, without being a liquid staked asset.
+- Enable permissionless 1:1 pAsset issuance against a shared collateral base.
+- Scale liquidity as the protocol grows without relying on external liquidity providers.
+- Capture value into the collateral asset as Polaris adoption grows.
+- Support a rising floor that other Polaris mechanisms can build on.
+- Turn ETH into collateral that is productive inside Polaris, without being a liquid staked asset.
 
 The bonding curve is what makes this possible. Its power-law design lets pETH scale with demand while keeping liquidity native to the protocol.
 
@@ -63,9 +63,9 @@ Users can:
 
 ## Risk Overview
 pETH carries three main risks:
-Technical risk: the bonding curve is smart-contract infrastructure.
-Execution risk: using the curve depends on Ethereum liveness, gas, slippage, and MEV conditions.
-Price risk: pETH can be volatile against ETH above its floor.
+- Technical risk: the bonding curve is smart-contract infrastructure.
+- Execution risk: using the curve depends on Ethereum liveness, gas, slippage, and MEV conditions.
+- Price risk: pETH can be volatile against ETH above its floor.
 
 The bonding curve removes external liquidity-provider withdrawal risk. It does not remove all risk.
 

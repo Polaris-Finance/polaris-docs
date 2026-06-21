@@ -7,12 +7,18 @@ description: "Manage a Polaris position around loan-to-value, redemptions, inter
 
 [After you open a position](/minting/open-a-trove), you can adjust it: add collateral, issue more, repay debt, withdraw collateral, or close. The main app-facing health metric is loan-to-value (LTV).
 
-LTV
+## LTV
+
 LTV is calculated by dividing the value of your debt by the value of your collateral:
+
 LTV = debt face value ÷ collateral value
+
 Lower LTV is safer. Some protocol references use collateral ratio instead, which is the reciprocal:
+
 ICR = collateral value ÷ debt face value
-That means 150% collateral ratio is the same position as 66.7% LTV. Two rules matter:
+
+That means a 150% collateral ratio is the same position as 66.7% LTV. Keep these in mind:
+
 - Above the maximum LTV, the position can be liquidated.
 - New issuance and redemptions can change the balance between collateral and debt across open positions when a pAsset trades away from its peg.
 - Your LTV can move even if you do nothing, because prices, rates, new issuance, redemptions, and rewards keep changing.

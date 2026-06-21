@@ -20,7 +20,7 @@ USDp and GOLDp:
 Deposit pETH collateral and create overcollateralized assets against your position.
 
 ETH:
-Borrow ETH against fpETH at up to 100% LTV with no liquidation risk, as the fpETH floor only ever rises.
+Borrow ETH against fpETH at up to 100% LTV with no liquidation risk, as the fpETH floor only ever rises. A small performance fee accrues on the floor's appreciation, so the loan's debt grows slowly over time.
 
 Once connected, you can manage existing positions from this tab, including adjustments, repayments, and closures.
 

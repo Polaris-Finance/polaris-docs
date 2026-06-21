@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://tokenbrice.github.io/polaris-docs/</loc>
-    <lastmod>2026-06-20</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -32,7 +32,7 @@
   </url>
   <url>
     <loc>https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove</loc>
-    <lastmod>2026-06-20</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -62,7 +62,7 @@
   </url>
   <url>
     <loc>https://tokenbrice.github.io/polaris-docs/peth</loc>
-    <lastmod>2026-06-20</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -104,7 +104,7 @@
   </url>
   <url>
     <loc>https://tokenbrice.github.io/polaris-docs/redemptions-liquidations</loc>
-    <lastmod>2026-06-20</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -200,7 +200,7 @@
   </url>
   <url>
     <loc>https://tokenbrice.github.io/polaris-docs/using-app/issue</loc>
-    <lastmod>2026-06-20</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -218,13 +218,13 @@
   </url>
   <url>
     <loc>https://tokenbrice.github.io/polaris-docs/using-app/zap</loc>
-    <lastmod>2026-06-20</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://tokenbrice.github.io/polaris-docs/why-polaris</loc>
-    <lastmod>2026-06-20</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

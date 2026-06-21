@@ -19,7 +19,7 @@ Polaris is an onchain yield layer built around pETH, a yield-bearing collateral 
 ETH enters the system through the Polaris bonding curve, pETH becomes the core reserve asset, and protocol activity routes yield back into the system. This creates a foundation for onchain money and yield-bearing synthetic assets that do not depend on RWAs, centralized exchanges, custodians, or offchain black-box agreements.
 The Polaris stack is built around three core assets that work together to create collateral, synthetic assets, and long-term stewardship.
 
-AssetEngine | What it is | Why it matters
+Asset | What it is | Why it matters
 
 pETH | A yield-bearing reserve asset backed by ETH within the Polaris bonding curve | Provides capital-efficient, yield-bearing collateral with a natively growing floor value
 pAssets | Decentralized currencies and synthetic assets backed by pETH | Enable scalable onchain money without custodians or external counterparties
@@ -223,7 +223,7 @@ USDp and GOLDp:
 Deposit pETH collateral and create overcollateralized assets against your position.
 
 ETH:
-Borrow ETH against fpETH at up to 100% LTV with no liquidation risk, as the fpETH floor only ever rises.
+Borrow ETH against fpETH at up to 100% LTV with no liquidation risk, as the fpETH floor only ever rises. A small performance fee accrues on the floor's appreciation, so the loan's debt grows slowly over time.
 
 Once connected, you can manage existing positions from this tab, including adjustments, repayments, and closures.
 
@@ -340,7 +340,7 @@ USDp Stable Yield:
 Uses your WETH to buy USDp and deposit it into the USDp Earn Vault in one step, earning yield from issuer interest and liquidation gains.
 
 Floor Carry:
-Converts ETH into fpETH and borrows ETH against it, creating a non-liquidatable position that can be looped to increase exposure.
+Converts ETH into fpETH and borrows ETH against it, creating a non-liquidatable position that can be looped to increase exposure. A small performance fee accrues on the floor's appreciation as the loan runs.
 
 Additional strategies will become available over time.
 
@@ -648,12 +648,18 @@ Markdown URL: https://tokenbrice.github.io/polaris-docs/minting/managing-your-tr
 
 [After you open a position](https://tokenbrice.github.io/polaris-docs/minting/open-a-trove), you can adjust it: add collateral, issue more, repay debt, withdraw collateral, or close. The main app-facing health metric is loan-to-value (LTV).
 
-LTV
+## LTV
+
 LTV is calculated by dividing the value of your debt by the value of your collateral:
+
 LTV = debt face value ÷ collateral value
+
 Lower LTV is safer. Some protocol references use collateral ratio instead, which is the reciprocal:
+
 ICR = collateral value ÷ debt face value
-That means 150% collateral ratio is the same position as 66.7% LTV. Two rules matter:
+
+That means a 150% collateral ratio is the same position as 66.7% LTV. Keep these in mind:
+
 - Above the maximum LTV, the position can be liquidated.
 - New issuance and redemptions can change the balance between collateral and debt across open positions when a pAsset trades away from its peg.
 - Your LTV can move even if you do nothing, because prices, rates, new issuance, redemptions, and rewards keep changing.
@@ -880,11 +886,11 @@ pETH was created to solve this problem directly.
 It is created when ETH enters the Polaris bonding curve and burned when users sell back into the curve. This gives Polaris a shared reserve asset with native liquidity, a rising floor, and value capture built into the collateral itself.
 
 pETH is designed to:
-Enable permissionless 1:1 pAsset issuance against a shared collateral base.
-Scale liquidity as the protocol grows without relying on external liquidity providers.
-Capture value into the collateral asset as Polaris adoption grows.
-Support a rising floor that other Polaris mechanisms can build on.
-Turn ETH into collateral that is productive inside Polaris, without being a liquid staked asset.
+- Enable permissionless 1:1 pAsset issuance against a shared collateral base.
+- Scale liquidity as the protocol grows without relying on external liquidity providers.
+- Capture value into the collateral asset as Polaris adoption grows.
+- Support a rising floor that other Polaris mechanisms can build on.
+- Turn ETH into collateral that is productive inside Polaris, without being a liquid staked asset.
 
 The bonding curve is what makes this possible. Its power-law design lets pETH scale with demand while keeping liquidity native to the protocol.
 
@@ -921,9 +927,9 @@ Users can:
 
 ## Risk Overview
 pETH carries three main risks:
-Technical risk: the bonding curve is smart-contract infrastructure.
-Execution risk: using the curve depends on Ethereum liveness, gas, slippage, and MEV conditions.
-Price risk: pETH can be volatile against ETH above its floor.
+- Technical risk: the bonding curve is smart-contract infrastructure.
+- Execution risk: using the curve depends on Ethereum liveness, gas, slippage, and MEV conditions.
+- Price risk: pETH can be volatile against ETH above its floor.
 
 The bonding curve removes external liquidity-provider withdrawal risk. It does not remove all risk.
 
@@ -1421,6 +1427,8 @@ In simple terms:
 2. An arbitrageur buys discounted USDp.
 3. The arbitrageur redeems it for pETH collateral.
 4. Supply contracts until the opportunity closes.
+
+> **Note:** Redemptions assume the system is fully backed. If the protocol becomes undercollateralized — its reserve-to-debt ratio drops below 100% — the collateral returned on redemption is scaled down in proportion, on top of fees. Confirm the quoted collateral in the app before signing.
 
 ## How Positions Are Affected
 
@@ -2070,9 +2078,9 @@ A way to create money that remains decentralized and permissionless, without sac
 A fully censorship-resistant stablecoin may be the product people notice first, but the larger vision is a decentralized yield layer for onchain money.
 
 ## Next Steps
-- peth: How the shared collateral primitive, bonding curve, and floor price work.
-- minting: How USDp and GOLDp positions work.
-- yield: How pAsset deposits earn from protocol activity.
+- [pETH](https://tokenbrice.github.io/polaris-docs/peth): How the shared collateral primitive, bonding curve, and floor price work.
+- [pAssets](https://tokenbrice.github.io/polaris-docs/minting): How USDp and GOLDp positions work.
+- [Earn Vaults](https://tokenbrice.github.io/polaris-docs/yield): How pAsset deposits earn from protocol activity.
 
 ---
 
