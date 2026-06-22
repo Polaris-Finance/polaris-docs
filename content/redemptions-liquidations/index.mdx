@@ -21,7 +21,7 @@ That increases USDp supply and applies downward pressure on price.
 
 In simple terms:
 1. USDp trades above peg.
-2. An arbitrageur adds pETH collateral and mints USDp.
+2. An arbitrageur adds pETH collateral and issues USDp.
 3. The arbitrageur sells USDp into the market to capture the spread.
 4. Supply expands until the arbitrage opportunity closes.
 
@@ -37,17 +37,17 @@ In simple terms:
 3. The arbitrageur redeems it for pETH collateral.
 4. Supply contracts until the opportunity closes.
 
-> **Note:** Redemptions assume the system is fully backed. If the protocol becomes undercollateralized — its reserve-to-debt ratio drops below 100% — the collateral returned on redemption is scaled down in proportion, on top of fees. Confirm the quoted collateral in the app before signing.
-
 ## How Positions Are Affected
 
 Issuance and redemptions are socialized across all open positions for the affected pAsset.
 
 No position is targeted before another. The protocol does not redeem against the riskiest position first, and a low LTV does not exempt a position from redemption exposure.
 
-New issuance adds collateral and debt across open positions. Redemptions reduce collateral and debt across open positions.
+New issuance can add collateral and debt across open positions. This can increase the size of an issuer's position, including its outstanding debt.
 
-Redemptions are not liquidations. If your position is redeemed against, your debt and collateral can both shrink. Your LTV may improve, but your position becomes smaller and your pETH exposure falls.
+Redemptions can reduce collateral and debt across open positions. If your position is redeemed against, your LTV may improve, but your position becomes smaller and your pETH exposure falls.
+
+Redemptions are not liquidations. They can affect solvent positions because they are a peg-defense mechanism, not a forced closeout.
 
 Issuance and redemption fees also flow to the affected positions. Unlike designs where these fees are routed to a separate stakeholder group, Polaris directs spike-and-decay fees back to the positions impacted by the mechanism.
 
@@ -59,11 +59,14 @@ Above-peg pressure invites issuance.
 
 Below-peg pressure invites redemptions.
 
-Both mechanisms are permissionless and driven by arbitrage. The protocol uses this activity as a peg signal for autonomous interest rates.
+Both mechanisms are permissionless and driven by arbitrage. The protocol also uses this activity as the onchain signal for autonomous interest rates.
+
+See [Interest Rates](/minting/interest-rates).
 
 ## What To Watch
 
 - Fees, gas, slippage, and MEV affect whether arbitrage is profitable.
+- Issuance and redemptions use spike-and-decay fees, so heavy peg-defense activity becomes more expensive as volume increases.
 - Issuance can increase the size of open positions by adding debt and collateral.
 - Redemptions can shrink open positions even when they are solvent.
 - Lower LTV protects against liquidation, not redemption.
@@ -72,6 +75,6 @@ Both mechanisms are permissionless and driven by arbitrage. The protocol uses th
 
 ## Next Steps
 
-- [Manage a Position](/minting/managing-your-trove): Monitor LTV, interest, issuance, redemptions, and repayment.
+- [Manage A Position](/minting/manage-position): Monitor LTV, interest, issuance, redemptions, and repayment.
 - [Liquidations](/redemptions-liquidations/liquidations): Understand the forced-close path.
 - [Recovery Mode](/redemptions-liquidations/recovery-mode): Understand system-wide protective rules.

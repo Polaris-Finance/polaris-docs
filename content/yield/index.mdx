@@ -7,16 +7,18 @@ description: "Earn Vaults let pAsset holders earn from issuer interest and liqui
 
 Earn Vaults are the main pAsset yield venue in Polaris.
 
-Depositors provide pAssets that help process liquidations. In return, they can earn from issuer interest and liquidation gains.
+Depositors provide pAssets that help backstop liquidations. In return, they can earn from issuer interest and liquidation processing.
 
-Earn Vaults are first-loss backstops. When a position is liquidated, deposited pAssets can be burned to cover debt and replaced by pETH collateral.
+Earn Vaults are first-loss backstops. Deposits can be used during liquidations and replaced by pETH collateral.
 
-## Why Use It
+## Why Use Earn Vaults
 
 - Earn pAsset-denominated interest from issuers.
-- Receive pETH liquidation gains when liquidations are processed.
 - Put idle pAssets to work without opening a position.
 - Help keep pAssets backed during stress.
+- Receive liquidation gains when liquidations are processed successfully.
+
+Liquidation gains are a defensive byproduct of the system, not the reason liquidations exist.
 
 ![ETH enters the bonding curve as pETH, pETH backs pAsset positions, and pAssets deposited in Earn Vaults absorb liquidated debt and earn discounted pETH plus issuer interest](/infographics/stability-pool.svg)
 
@@ -27,8 +29,10 @@ Depositors earn from two streams.
 Issuer interest:
 A share of the interest paid by positions that issued that pAsset.
 
-Liquidation gains:
-When a position is liquidated, the vault can absorb debt and receive pETH collateral. The collateral value is usually higher than the absorbed debt, but realized gains depend on execution and market movement.
+Liquidation processing:
+When a position is liquidated, the vault can absorb debt and receive pETH collateral. The outcome depends on the liquidation, execution timing, collateral price, and market conditions.
+
+For the full source model, see [Yield Sources](/yield/yield-sources).
 
 Current split values live in [Parameters](/resources/testnet#parameters).
 

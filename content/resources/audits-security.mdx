@@ -8,46 +8,23 @@ description: "Polaris security model, audit-report status, bug-bounty status, an
 <PageStatusBanner lastUpdated="June 10, 2026" />
 
 Audits and verifications are ongoing. This page will be updated when audit reports, a bug bounty, or an official disclosure channel are live.
-
 ## Current Status
-
-Audit reports:
-None published yet. Until reports appear on this page, treat the protocol as unaudited.
-
-Bug bounty:
-Not live. No bounty program exists yet. Treat any page or message claiming otherwise as fake unless linked here.
-
-Vulnerability disclosure:
-No dedicated channel yet. This page will list the official contact when one is live.
-
+Audit reports: None published yet. Until reports appear on this page, treat the protocol as unaudited.
+Bug bounty: Not live. No bounty program exists yet. Treat any page or message claiming otherwise as fake unless linked here.
+Vulnerability disclosure: No dedicated channel yet. This page will list the official contact when one is live.
 ## Security Model
-
 Polaris is designed to reduce trusted human control over the core protocol.
-
 ## Immutability
-
 The core contracts are intended to be non-upgradeable after deployment.
-
 This removes upgrade-key and proxy-admin attack surface, but it also raises the stakes on getting the code right. Immutability cuts both ways: it cannot be tampered with, and it cannot be patched.
-
 ## No Admin Keys
-
 The design has no freeze, blacklist, or pause functions for anyone, including the team.
-
 No privileged key is intended to move user funds.
-
 ## Bounded Stewardship
-
 Stewards adjust only quantitative parameters. Many of these parameters are bounded by hardcoded ranges, such as interest-rate maxima, fee-split floors, and issuance/redemption decay factors.
-
 Stewardship cannot rewrite the core logic.
-
-See [Stewardship](/stewardship).
-
+See Stewardship (/stewardship).
 ## Narrow Oracle Dependency
-
 Peg awareness uses internal issuance and redemption volume rather than a direct pAsset market-price oracle.
-
 Collateral pricing still requires ETH price feeds, and non-USD pAssets may require additional reference-asset feeds.
-
 For the full accounting of what can still go wrong, read [Risk Disclosure](/resources/risk-disclosure).

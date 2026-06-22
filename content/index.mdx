@@ -5,27 +5,59 @@ description: "Polaris is a DeFi yield layer built around pETH, a yield-bearing c
 
 # Polaris
 
-<PageStatusBanner lastUpdated="June 12, 2026" />
+# Polaris Documentation
 
-Polaris is an onchain yield layer built around pETH, a yield-bearing collateral asset purposefully designed to back Polaris stablecoins and other synthetic assets.
-ETH enters the system through the Polaris bonding curve, pETH becomes the core reserve asset, and protocol activity routes yield back into the system. This creates a foundation for onchain money and yield-bearing synthetic assets that do not depend on RWAs, centralized exchanges, custodians, or offchain black-box agreements.
-The Polaris stack is built around three core assets that work together to create collateral, synthetic assets, and long-term stewardship.
+Polaris is an immutable DeFi protocol for creating pAssets against pETH collateral.
 
-| Asset | What it is | Why it matters |
-| --- | --- | --- |
-| pETH | A yield-bearing reserve asset backed by ETH within the Polaris bonding curve | Provides capital-efficient, yield-bearing collateral with a natively growing floor value |
-| pAssets | Decentralized currencies and synthetic assets backed by pETH | Enable scalable onchain money without custodians or external counterparties |
-| POLAR | The stewardship token that governs key protocol parameters and captures protocol value | Aligns long-term incentives while keeping the protocol decentralized |
+ETH enters through the Polaris bonding curve, pETH becomes the shared collateral asset, and protocol activity routes yield back into the system.
 
-<SystemOverviewFigure />
+Use this page to choose the right path through the docs.
 
-Polaris is currently in Public Testnet 1 on Sepolia. Start with the quickstart if you want to try the app, or continue below for the high-level system view.
+## Try Polaris On Testnet
 
-## Launch Timeline
+Use Public Testnet 1 with Sepolia test assets.
 
-<LaunchTimeline />
+- [Launch Status](/launch-status): Check what is live, supported, and production-final.
+- [Quickstart](/quickstart): The fastest safe path to try Polaris on testnet.
+- [App Guide](/using-app): Understand the Dashboard, Swap, Issue, Earn, Split, Zap, and Advanced tabs.
+- [Troubleshooting](/troubleshooting): Fix common wallet, faucet, quote, and transaction issues.
 
-## Next Steps
-- [Public Testnet Quickstart](/quickstart): The shortest safe path from a wallet to a first Polaris testnet action.
-- [App Guide](/using-app): A compact map of the Dashboard, Swap, Issue, Earn, Split, Zap, and Advanced tabs.
-- [Why Polaris?](/why-polaris): The design choices behind Polaris and why they matter.
+## Understand The Protocol
+
+Learn how pETH, pAssets, peg defense, interest rates, and Earn Vaults fit together.
+
+- [Why Polaris](/why-polaris): The design choices behind Polaris.
+- [pETH](/peth): The ETH-backed collateral asset and bonding curve.
+- [pAssets](/minting/passet-catalog): USDp, GOLDp, and the pAsset model.
+- [Peg Defense](/redemptions-liquidations): How issuance and redemptions help pAssets trade around peg.
+- [Interest Rates](/minting/interest-rates): How Polaris adjusts issuer costs from onchain peg-defense activity.
+- [Earn Vaults](/yield): How pAsset deposits earn from issuer interest and liquidation processing.
+
+## Manage Risk
+
+Understand position risk, liquidations, redemptions, Recovery Mode, and current parameters.
+
+- [Risk Disclosure](/resources/risk-disclosure): The full risk model.
+- [Manage A Position](/minting/manage-position): Monitor LTV, interest, issuance, redemptions, and repayment.
+- [Liquidations](/redemptions-liquidations/liquidations): What happens when a position crosses maximum LTV.
+- [Recovery Mode](/redemptions-liquidations/recovery-mode): How Polaris restricts risk-increasing actions when system backing is thin.
+- [Parameters](/resources/testnet#parameters): Current testnet parameter values.
+
+## POLAR And Stewardship
+
+Understand POLAR, conversion auctions, vePOLAR, and bounded stewardship.
+
+- [POLAR](/polar): Why POLAR exists and how it fits into Polaris.
+- [POLAR Tokenomics](/polar/tokenomics): Issuance, productive dilution, vePOLAR, and yield routes.
+- [Conversion Auctions](/polar/conversion-auctions): How pETH burns create POLAR and raise the pETH floor.
+- [vePOLAR](/stewardship/vepolar): Vote-escrowed POLAR and stewardship rights.
+- [Stewardship](/stewardship): What stewards can and cannot touch.
+
+## Build On Polaris
+
+Launch pAsset markets, apply for Flows, or integrate with Polaris infrastructure.
+
+- [Launch A pAsset](/minting/launch-a-passet): How builders can deploy pAsset markets and align with Polaris.
+- [Fee Router And Flows](/stewardship/fee-router): How protocol revenue is routed and shared with approved integrations.
+- [Public Testnet 1](/resources/testnet): Network, manifests, parameters, and contract addresses.
+- [Audits And Security](/resources/audits-security): Audit status, disclosure guidance, and security model.
