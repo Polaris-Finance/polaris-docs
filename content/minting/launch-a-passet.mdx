@@ -1,78 +1,181 @@
 ---
-title: Launch a pAsset
-description: How external teams can launch a new pAsset on Polaris's shared pETH collateral base, and the requirements to qualify.
+title: "Launch A pAsset"
+description: "How external builders can deploy pAsset markets, align with Polaris through Flows, and build new markets on shared pETH collateral."
 ---
 
-# Launch a pAsset
+# Launch A pAsset
 
-Polaris is **debt-asset agnostic**: it can issue a synthetic pegged to any asset with robust reference pricing and risk parameters. External teams can launch new pAsset markets on the same pETH collateral base, without bootstrapping a fresh collateral pool.
+Polaris is designed as infrastructure for many pAsset markets. Builders and operators can use the open-source Polaris codebase to deploy markets on top of the shared pETH collateral architecture.
 
-> **Current status:** USDp and GOLDp are the Testnet-active pAssets. New pAsset onboarding runs through stewardship, whose process and parameter bounds are pending audited deployment. See [Stewardship](/stewardship).
+These markets can become part of the Polaris yield network by opting into Flows, sharing revenue with vePOLAR, and directing pETH incentives back to their issuers. Because every pAsset is built on pETH, activity in one market can increase pETH demand, trading volume, and yield flows for the broader ecosystem.
 
-## StablecoinOS: an open catalog
+This creates a shared alignment loop: new markets bring demand, pETH activity grows, Polaris routes incentives, issuers earn yield, and vePOLAR gains new revenue sources. Builders that use pETH can share in the success of the wider Polaris ecosystem rather than growing in isolation.
 
-StablecoinOS lets new pAssets share the same pETH collateral pool and bonding curve. Shared collateral lets teams add a new pAsset without bootstrapping a fresh collateral base. Each pAsset still has its own debt accounting, so stress in one pAsset does not directly liquidate another pAsset's borrow positions.
+This page is for builders and operators exploring how to launch a pAsset market and align it with Polaris.
 
-![StablecoinOS as a factory: ETH enters one shared bonding curve to create pETH, which collateralizes multiple independent pAsset markets - USDp, GOLDp, pCHF - over the same pETH collateral base](/infographics/stablecoin-OS.svg)
+## Permissionless Deployment, Aligned Distribution
 
-## Opt into the yield layer and Flows
+Any builder can deploy a pAsset market using the Polaris codebase. The larger opportunity is becoming part of the Polaris distribution and yield network.
 
-A pAsset built on Polaris inherits the protocol's yield plumbing: borrower interest and liquidation gains flow to its Earn Vault, and approved contracts building on the asset can earn a share of protocol revenue through [Flows](/stewardship/fee-router#flows) - revenue paid in pETH or pAssets instead of token emissions.
+pETH Flows are how aligned markets receive pETH incentives. A builder that wants Flow support submits a proposal to vePOLAR stewards explaining the market, expected demand, revenue model, and how the market strengthens Polaris.
 
-## What a pAsset market is, technically
+Stewards can then whitelist the market into pETH Flows if the proposal creates clear value for the ecosystem.
 
-Polaris is not one monolithic system. The pETH bonding curve and its collateral reserve are shared infrastructure, deployed once. Everything specific to a pAsset is a separate market stack, deployed per asset and wired to that shared curve. Launching pCHF, say, means deploying a new stack, not modifying USDp's.
+In practice, this creates two layers:
+- Deployment: builders can launch and operate their own pAsset markets.
+- Alignment: builders can apply for pETH Flow incentives, ecosystem recognition, and broader coordination with Polaris.
 
-A market stack is self-contained, with its own:
+Strong proposals create value in both directions: the new market grows demand for pETH and pAssets, while Polaris helps route incentives and liquidity toward the market.
 
-- Price feed for the tracked asset, composed with the pETH collateral price.
-- pAsset token (an ERC-20), mintable only by its own market contracts.
-- Earn Vault, the market's first-loss backstop and yield venue.
-- Position manager and position NFT, tracking debt and collateral.
-- Interest controller, holding the market's primary and secondary rates.
-- Peg stability module, setting mint and redemption fees.
-- Primary-interest router, splitting interest across Earn Vault, vePOLAR, and Flows.
+## Why Builders Launch pAssets
 
-Because each market keeps its own debt accounting, stress in one pAsset cannot directly liquidate positions in another. Markets share only the pETH collateral.
+A pAsset market can become a new asset business.
 
-## What you configure
+Builders can launch markets around assets with reliable oracle pricing, then build distribution, liquidity, integrations, and user demand around that market.
 
-Most of the launch work is choosing parameters, all of which sit inside protocol-enforced bounds:
+The deployer controls how the market is operated. Beyond hardcoded safety requirements, builders can choose how revenue is routed, how parameters are governed, and how the market integrates with the wider Polaris ecosystem.
 
-- Oracle: a robust, manipulation-resistant reference price for the tracked asset, read through a Medianiser. Because collateral is pETH priced in USD, every market also depends on the shared ETH/USD feed. This is the largest technical requirement.
-- Collateral and liquidation: the minimum collateral ratio (maximum LTV), the emergency-mode thresholds, and the liquidation penalty.
-- Interest rates: the primary rate band and its sensitivity, and the secondary-rate curve (minimum, maximum, kink, and slopes). Both rates are hard-capped at 250% APR. See [Interest Rates](/minting/interest-rates).
-- Fees: the mint and redemption fee floors and their decay parameters.
-- Revenue split: how the market's primary interest divides across the Earn Vault, vePOLAR, and Flows, subject to the 25% floors.
+Some builders may launch their own token and governance around a pAsset market. Others may focus on distribution and ask vePOLAR stewards to govern selected parameters on their behalf.
 
-Stewardship reviews and approves these within hardcoded ranges. It cannot grant values outside them.
+The design is flexible enough to support both models.
 
-## Requirements
+## Shared pETH Collateral
 
-Polaris can support a new pAsset where the reference price and risk parameters are robust. A team launching a market should expect to demonstrate:
+pETH gives new pAsset markets a ready-made collateral foundation.
 
-- **Oracle quality** - a reliable, manipulation-resistant reference price for the tracked asset.
-- **Market demand** - evidence that the pAsset has real users and use cases.
-- **Liquidity path** - a credible route to onchain liquidity for the pAsset.
-- **Risk parameters** - collateral, fee, and liquidation settings that fit within the protocol's bounds.
-- **UI / integration** - a usable interface and the integration work to expose the market.
-- **Governance / stewardship** - a clean security posture and a path through the stewardship onboarding process.
+Builders do not need to bootstrap a separate reserve asset or design a new collateral system from scratch. They can build on the same pETH architecture used by USDp and GOLDp.
 
-These map to the stewardship onboarding criteria. For the full operator prerequisites, the pAsset-licensing scope, and the proposal lifecycle, see [Stewardship](/stewardship#operator-prerequisites).
+Each pAsset market still has its own accounting, reference pricing, parameters, Earn Vault, and risk controls. But the core infrastructure is shared.
 
-## The path to launch
+This gives builders access to:
+- A common pETH collateral base.
+- Existing issuance and redemption mechanics.
+- Earn Vault infrastructure.
+- Peg-responsive interest rates.
+- Revenue routing through Flows.
+- A path to align with vePOLAR.
 
-Launching a pAsset is license-gated, not permissionless. The flow is a petition to stewardship:
+## Reference Pricing
 
-1. Petition stewardship for a license, presenting a plan for the desired pAsset: the asset to track, its oracle, evidence of demand and a liquidity path, and the proposed parameters (see Requirements above).
-2. Stewardship reviews the plan and grants or denies the license, weighing oracle quality, security posture, and whether the parameters sit within bounds.
-3. Once licensed, the market stack is deployed against the shared bonding curve, stewardship, fee router, and share staking, and authorized through the official execution path.
-4. Go live: issuers open positions against shared pETH, depositors use the new Earn Vault, and the market's interest plugs into the yield layer.
+A pAsset can track any asset with a reliable oracle price feed.
 
-<NextSteps
-  steps={[
-    { href: '/stewardship', title: 'Stewardship', description: 'The bounded onboarding process and operator prerequisites.' },
-    { href: '/stewardship/fee-router', title: 'Fee Router & Flows', description: 'How revenue sharing for contracts building on Polaris works.' },
-    { href: '/peth', title: 'pETH & the Bonding Curve', description: 'The shared collateral primitive every pAsset market uses.' }
-  ]}
-/>
+That does not mean every asset is a good candidate.
+
+Builders should be prepared to explain:
+- What the pAsset tracks.
+- Why there is user demand.
+- Which oracle feeds can support it.
+- How pricing can be monitored.
+- Why the reference asset is hard to manipulate.
+- How the market behaves during stress.
+
+Strong reference pricing is the foundation of a credible pAsset market.
+
+## Revenue And Yield Splits
+
+pAsset deployers can build revenue directly into their market.
+
+Each market must route a hardcoded minimum share of primary interest to its Earn Vault. This protects the system by compensating the vault that acts as the first-loss liquidation backstop.
+
+Beyond that safety minimum, the deployer can choose how revenue is allocated.
+
+Possible destinations include:
+- The pAsset issuer or operator.
+- vePOLAR lockers.
+- Ecosystem partners.
+- Integrations.
+- Additional Earn Vault incentives.
+- Other approved Flow destinations.
+
+Sharing primary interest with vePOLAR is not mandatory for every independent market, but it can be one of the strongest ways to align with Polaris and make a compelling case for pETH Flow incentives.
+
+## pETH Flows
+
+pETH Flows route pETH incentives to approved markets and integrations that create durable demand for Polaris assets.
+
+For pAsset markets, this can mean sending pETH incentives to issuers in proportion to their debt, where approved.
+
+Flows are not automatic and must be whitelisted by vePOLAR. Whitelisting can happen before or after deployment. Builders apply by showing how their market grows demand, strengthens the pETH ecosystem, and offers value back to Polaris.
+
+That value could include:
+- A share of primary interest to vePOLAR.
+- Liquidity commitments.
+- Distribution commitments.
+- Integrations.
+- Market maker or keeper support.
+- Another clear value path for the ecosystem.
+
+## Risk Parameters
+
+Each pAsset market needs risk parameters appropriate to the asset.
+
+These may include:
+- Minimum collateral ratio.
+- Recovery Mode threshold.
+- Issuance and redemption fee settings.
+- Peg-steering rate parameters.
+- Safety-rate parameters.
+- Earn Vault minimum allocation.
+- Oracle configuration.
+- Liquidation settings.
+
+Some values are hardcoded or bounded by deployed contracts. Others may be controlled by the pAsset deployer, that market's own governance, or vePOLAR stewardship depending on how the market is launched.
+
+## Liquidity And Integrations
+
+Launching a pAsset is not just a contract deployment.
+
+Users need a path to acquire, use, and exit the asset.
+
+Builders should consider:
+- Initial liquidity.
+- Swap routes.
+- Earn Vault demand.
+- External integrations.
+- Market maker or keeper support.
+- Issuance and redemption arbitrage.
+- Wallet, app, analytics, and indexer support.
+
+Strong pAsset markets combine reliable reference pricing with real distribution.
+
+## Technical Requirements
+
+Builders should expect to provide:
+- Verified contract addresses.
+- Source code and ABIs.
+- Oracle design and feed details.
+- Admin and upgradeability model.
+- Security review or audit status.
+- Integration architecture.
+- Keeper or automation assumptions.
+- Monitoring and incident response plan.
+- Requested Flow terms, if applying for Flows.
+- Proposed revenue split and vePOLAR alignment, if relevant.
+
+The exact launch template is pending. Until then, builders should prepare around these fields.
+
+## Stewardship Process For Flows
+
+Flow onboarding is stewarded because Flow streams direct protocol value.
+
+The expected path is:
+1. Deploy or prepare the pAsset market.
+2. Draft a Flow proposal.
+3. Explain the asset, market, revenue model, and user demand.
+4. Explain how the market benefits Polaris.
+5. Explain what the market offers in return.
+6. Provide technical, oracle, and risk details.
+7. Complete security and integration review.
+8. Submit for vePOLAR stewardship vote.
+9. Execute through the official contract path if approved.
+10. Monitor the market and Flow performance after activation.
+
+A pAsset market is only officially recognized or Flow-approved once [Launch Status](/launch-status), [Fee Router And Flows](/stewardship/fee-router), or the relevant reference pages list it.
+
+## Next Steps
+- [pAssets](/minting/passet-catalog): Understand the current pAsset model.
+- [USDp](/minting/pusd): Review the flagship pAsset market.
+- [GOLDp](/minting/pgold): Review a non-USD pAsset market.
+- [Stewardship](/stewardship): Understand bounded onboarding decisions.
+- [Fee Router And Flows](/stewardship/fee-router): Understand revenue sharing for integrations.
+- [Interest Rates](/minting/interest-rates): Understand rate mechanics for pAsset markets.

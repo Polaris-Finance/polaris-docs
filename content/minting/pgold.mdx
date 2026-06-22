@@ -1,57 +1,100 @@
 ---
-title: GOLDp
-description: Decentralized gold exposure backed by pETH. How GOLDp compares to XAUT and PAXG, the exposure you actually get, and how to express any gold view.
+title: "GOLDp"
+description: "Polaris's gold-tracking pAsset. What GOLDp is, how it differs from centralized gold tokens, and how users can hold, issue, or earn with it."
 ---
 
 # GOLDp
 
-GOLDp is a **pAsset that tracks the price of one ounce of gold**, issued against pETH collateral rather than bullion in a vault. It is decentralized gold exposure with no KYC, no size minimums, and no counterparty other than the Polaris protocol itself - no vault in Singapore, just a price feed and pETH collateral.
+GOLDp is Polaris's gold pAsset.
 
-> **Note:** GOLDp is Testnet-active on Sepolia. See [Launch Status](/launch-status) for the current list of live pAssets.
+It is designed to track the price of one ounce of gold while being backed by pETH collateral instead of physical bullion held by a centralized issuer.
 
-## GOLDp vs centralized gold (XAUT/PAXG)
+GOLDp gives users gold-price exposure through Polaris contracts, without protocol-level custody, KYC-gated redemption, or issuer-controlled bullion access.
 
-GOLDp and the incumbent gold tokens both give gold-price exposure, but they are structurally different products.
+Note: GOLDp is Testnet-active on Sepolia. See [Launch Status](/launch-status) for the current list of live pAssets.
 
-| Property | GOLDp | XAUT / PAXG |
-|---|---|---|
-| Collateral | pETH, fully onchain | Physical gold in custody |
-| Redemption | Permissionless, no protocol-level minimum published yet | Issuer-gated; account requirements and redemption minimums depend on the issuer's current terms |
-| KYC | None | Required to redeem |
-| Physical custody | None - nothing to store or insure | Vaulted bullion, with custody risk |
-| Counterparty | Polaris protocol only | Tether / Paxos as issuer |
+## Why Use GOLDp
 
-![GOLDp versus centralized gold tokens (XAUT/PAXG): GOLDp is backed by onchain pETH with permissionless, KYC-free access and Polaris as the only counterparty, while XAUT/PAXG are backed by vaulted bullion with issuer-gated, KYC-required redemption and custody risk](/infographics/pgold-vs-centralized-gold.svg)
+GOLDp is designed for users who want gold-denominated onchain exposure without relying on a centralized gold-token issuer or taking issuer counterparty risk.
 
-Under current issuer terms, the two centralized tokens together hold roughly \$5B in market cap, and redemption is gated behind KYC plus fees and minimums - XAUT, for example, charges 0.25% and requires roughly one gold bar (430 XAUT, about \$2.1M) to redeem. GOLDp inherits ETH-collateral and smart-contract risk where XAUT/PAXG inherit custodial and issuer risk. What GOLDp removes is the permissioned issuer layer.
+Users can:
+- Create GOLDp against pETH collateral.
+- Hold GOLDp as a decentralized gold asset.
+- Deposit GOLDp into an Earn Vault to earn scalable, protocol-native yield.
+- Use GOLDp across supported Polaris and DeFi integrations.
 
-GOLDp's collateral pricing composes two oracle feeds with the bonding curve: pETH is valued in gold terms as ETH/USD × the curve's pETH price ÷ gold/USD. A failure of either feed affects GOLDp pricing; see [Oracle risk](/resources/risk-disclosure#oracle-risk).
+## How GOLDp Is Created
 
-## Borrowing GOLDp is not shorting gold
+GOLDp is created inside Polaris against pETH collateral.
 
-![Borrowing GOLDp is not shorting gold: deposit pETH and borrow GOLDp, then your strategy sets the exposure - hold or LP the gold pair for gold-neutral exposure, or sell GOLDp for pETH (or loop) to take short-gold exposure](/infographics/pgold-borrowing-not-shorting.svg)
+Users can create GOLDp from the Issue tab by opening a position. GOLDp can also be created through above-peg arbitrage when market conditions make issuance attractive.
 
-Issuing GOLDp against pETH is a borrowing action; whether you end up long pETH, gold-neutral, or short gold depends on what you do with the GOLDp. Borrow 1 GOLDp and hold it and your gold exposure is neutral - you owe 1 GOLDp and hold 1 GOLDp. The position only becomes a short if you sell that GOLDp for a non-gold asset.
+Both paths expand GOLDp supply against pETH collateral.
 
-So almost any view on gold can be expressed with GOLDp:
+See [Issuing pAssets](/minting), [Peg Defense](/redemptions-liquidations), and [Manage A Position](/minting/manage-position).
 
-| Your view | How to express it |
-|---|---|
-| **Long gold** | Buy GOLDp and LP a gold-correlated pair |
-| **Short gold, long ETH** | Post pETH, borrow GOLDp, then sell it or loop the position |
-| **Long gold, short ETH** | Buy GOLDp and deposit it in the [Earn Vault](/yield) |
-| **Gold-neutral, long volume** | Borrow GOLDp and LP gold-correlated pairs |
+## GOLDp Compared With Centralized Gold Tokens
 
-## Why borrow GOLDp
+Centralized gold tokens rely on an issuer, vaulted bullion, redemption terms, custody arrangements, and often KYC-gated redemption.
 
-Polaris is designed to make borrowing attractive: borrowers pay interest but also receive pETH incentives on their position, so the *effective* rate can run low or even negative when incentives exceed interest. Because gold sees strong holding demand but comparatively little borrow demand, GOLDp is a natural fit for that flexibility. See [Yield Sources](/yield/yield-sources) and [POLAR Tokenomics](/polar/tokenomics) for the mechanics.
+GOLDp removes the physical custody and issuer redemption layer at the protocol level.
 
-**[Go deeper →](https://polarisfinance.io/blog/GOLDp-finishing-what-digixdao-started/)**
+Instead, GOLDp is backed by pETH collateral and enforced by Polaris contracts. Users are choosing onchain collateral and oracle-based pricing over issuer custody and bullion redemption.
 
-<NextSteps
-  steps={[
-    { href: '/minting/open-a-trove', title: 'Open a Position', description: 'Issue GOLDp against pETH collateral, step by step.' },
-    { href: '/yield', title: 'Earn Vaults', description: 'Put GOLDp to work and earn from protocol activity.' },
-    { href: '/resources/risk-disclosure#oracle-risk', title: 'Oracle Risk', description: 'How the gold and ETH price feeds affect GOLDp.' }
-  ]}
-/>
+In simple terms:
+- Centralized gold tokens depend on an issuer and vault.
+- GOLDp depends on Polaris contracts, pETH collateral, and gold reference pricing.
+- Centralized gold redemption can involve KYC, fees, minimums, and operational constraints.
+- GOLDp access is permissionless at the protocol level.
+
+## Strategy Note
+
+Issuing GOLDp is not automatically the same as shorting gold.
+
+Your final exposure depends on what you do after creating or acquiring GOLDp.
+
+If you hold GOLDp:
+You have gold-price exposure.
+
+If you issue GOLDp and hold the GOLDp:
+Your GOLDp debt and GOLDp balance can offset each other, while your position remains exposed to pETH collateral.
+
+If you issue GOLDp and sell it for another asset:
+You are taking on short-gold exposure against that asset.
+
+If you LP GOLDp against another gold asset:
+You can retain gold exposure while earning additional yield from LP fees on your gold.
+
+## Peg Support
+
+GOLDp peg support comes from issuance above its gold reference value and redemptions below it.
+
+Those flows expand or contract supply through arbitrage, and Polaris also uses them as the onchain signal for autonomous interest rates.
+
+See [Peg Defense](/redemptions-liquidations) and [Interest Rates](/minting/interest-rates).
+
+## Earn With GOLDp
+
+GOLDp holders can deposit into the GOLDp Earn Vault to earn protocol-native yield from issuer interest and liquidation gains.
+
+The Earn Vault is also the first-loss backstop for GOLDp liquidations, so deposits carry liquidation-processing risk.
+
+See [Earn Vaults](/yield).
+
+## Main Risks
+
+GOLDp reduces issuer and physical custody risk compared with centralized gold tokens, but it still carries protocol risk.
+
+Main risks include smart-contract risk, pETH collateral price risk, liquidation risk for issuers, issuance and redemption exposure for open positions, Earn Vault risk for depositors, oracle risk, MEV, frontend risk, and Ethereum execution risk.
+
+GOLDp also depends on gold reference pricing. If the relevant price feeds fail, become stale, or are manipulated, GOLDp pricing and liquidations can be affected.
+
+Read [Risk Disclosure](/resources/risk-disclosure).
+
+## Next Steps
+
+- [Issue](/using-app/issue): Create GOLDp against pETH collateral.
+- [Earn Vaults](/yield): Deposit GOLDp to earn from protocol activity.
+- [Peg Defense](/redemptions-liquidations): Understand issuance and redemptions.
+- [Interest Rates](/minting/interest-rates): Understand how GOLDp rates respond to peg pressure.
+- [Risk Disclosure](/resources/risk-disclosure): Understand oracle, collateral, and protocol risks.

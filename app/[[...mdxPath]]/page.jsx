@@ -37,7 +37,7 @@ const searchVocabulary = [
     terms: ['official app', 'app URL', 'phishing', 'verify contracts', 'testnet', 'mainnet']
   },
   {
-    match: /^\/using-app\/issue$|^\/minting\/(open-a-trove|managing-your-trove)$/,
+    match: /^\/using-app\/issue$|^\/minting\/(open-a-trove|manage-position)$/,
     terms: [
       'Issue',
       'Manage Position',
@@ -52,15 +52,15 @@ const searchVocabulary = [
       'open borrow position',
       'repay',
       'close borrow position',
-      'pUSD',
-      'pGOLD',
+      'USDp',
+      'GOLDp',
       'LTV',
       'loan-to-value',
       'official app'
     ]
   },
   {
-    match: /^\/minting\/(open-a-trove|managing-your-trove)$/,
+    match: /^\/minting\/(open-a-trove|manage-position)$/,
     terms: [
       'borrow position',
       'open borrow position',

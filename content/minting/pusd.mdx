@@ -1,48 +1,65 @@
 ---
-title: USDp
-description: Polaris's flagship dollar-pegged pAsset. What USDp is, why hold it, and how it is created, kept on peg, and put to work.
+title: "USDp"
+description: "Polaris's flagship dollar-pegged pAsset. What USDp is, why hold it, and how it is created, kept on peg, and put to work."
 ---
 
 # USDp
 
-USDp is Polaris's flagship **pAsset pegged to the US dollar**, issued against pETH collateral. It belongs to a rare class of stablecoins that carry **no counterparty dependency** - the same trust-minimized family as LUSD and BOLD. Its peg is not propped up by an offchain reserve that can be frozen or fail; it is held by onchain incentives.
+USDp is Polaris's flagship dollar pAsset.
 
-> **Note:** USDp is Testnet-active on Sepolia. See [Launch Status](/launch-status) for the current list of live pAssets.
+It is designed to track the US dollar while being backed by pETH collateral instead of bank deposits, T-bills, custodians, or offchain issuers.
 
-## Why use USDp
+USDp belongs to the same trust-minimized stablecoin family as LUSD and BOLD: its peg is supported by onchain incentives, not an offchain issuer.
 
-USDp's yield is **owned, not rented**. Where most stablecoin yield is borrowed from offchain sources (T-bills, CEX lending, custodial strategies) that can compress or disappear, USDp earns from the protocol's own activity - borrower interest and liquidation gains - so it scales with adoption rather than external conditions. See [Yield Sources](/yield/yield-sources#owned-not-rented) for why this is self-scaling.
+Note: USDp is Testnet-active on Sepolia. See [Launch Status](/launch-status) for the current list of live pAssets.
 
-## How USDp is created
+## Why Use USDp
 
-You issue USDp by depositing pETH collateral and opening a position - the same flow as any pAsset. Arbitrageurs can also issue or redeem USDp directly against pETH at the oracle price through the Peg Stability Module.
+USDp is designed for users who want dollar-denominated onchain exposure without relying on a centralized stablecoin issuer or taking issuer counterparty risk.
 
-- Issue from a position: [Issuing pAssets](/minting) → [Open a Position](/minting/open-a-trove).
-- Direct PSM issue/redeem: [Advanced](/using-app/advanced).
+Users can:
+- Create USDp against pETH collateral.
+- Hold USDp as a decentralized dollar asset.
+- Deposit USDp into an Earn Vault to earn scalable, protocol-native yield.
+- Use USDp across supported Polaris and DeFi integrations.
 
-## How the peg is supported
+## How USDp Is Created
 
-Two opposing, permissionless arbitrage mechanisms defend the peg without anyone's approval:
+USDp is created inside Polaris against pETH collateral.
 
-- **Below peg**, [redemptions](/redemptions-liquidations) let anyone swap USDp for its pETH collateral at face value, buying USDp off the market until it returns to peg.
-- **Above peg**, issuing new USDp against pETH expands supply back toward peg.
+Users can create USDp from the Issue tab by opening a position. USDp can also be created through above-peg arbitrage when market conditions make issuance attractive.
 
-For the full treatment, see [Redemptions](/redemptions-liquidations) and the peg section of the [Risk Disclosure](/resources/risk-disclosure).
+Both paths expand USDp supply against pETH collateral.
 
-## Earn with USDp
+See [Issuing pAssets](/minting), [Peg Defense](/redemptions-liquidations), and [Manage A Position](/minting/manage-position).
 
-Deposit USDp into the [Earn Vault](/yield) to earn borrower interest plus pETH liquidation gains, without opening a borrow position of your own. The vault is a first-loss backstop - read [Earn Vaults](/yield) before depositing.
+## Peg Support
 
-## Main risks
+USDp peg support comes from issuance above peg and redemptions below peg.
 
-USDp carries collateral, oracle, redemption, and smart-contract risk. Read the [Risk Disclosure](/resources/risk-disclosure) before treating USDp yield as principal-safe.
+Those flows expand or contract supply through arbitrage, and Polaris also uses them as the onchain signal for autonomous interest rates.
 
-**[Go deeper →](https://polarisfinance.io/blog/pusd-no-counterparty/)**
+See [Peg Defense](/redemptions-liquidations) and [Interest Rates](/minting/interest-rates).
 
-<NextSteps
-  steps={[
-    { href: '/minting/open-a-trove', title: 'Open a Position', description: 'Issue USDp against pETH collateral, step by step.' },
-    { href: '/yield', title: 'Earn Vaults', description: 'Deposit USDp to earn from protocol activity.' },
-    { href: '/resources/risk-disclosure', title: 'Risk Disclosure', description: 'The full risk model before you treat yield as principal-safe.' }
-  ]}
-/>
+## Earn With USDp
+
+USDp holders can deposit into the USDp Earn Vault to earn protocol-native yield from issuer interest and liquidation gains.
+
+The Earn Vault is also the first-loss backstop for USDp liquidations, so deposits carry liquidation-processing risk.
+
+See [Earn Vaults](/yield).
+
+## Main Risks
+
+USDp reduces issuer and offchain counterparty risk compared with centralized stablecoins, but it still carries protocol risk.
+
+Main risks include smart-contract risk, pETH collateral price risk, liquidation risk for issuers, issuance and redemption exposure for open positions, Earn Vault risk for depositors, oracle risk, MEV, frontend risk, and Ethereum execution risk.
+
+Read [Risk Disclosure](/resources/risk-disclosure).
+
+## Next Steps
+
+- [Issue](/using-app/issue): Create USDp against pETH collateral.
+- [Earn Vaults](/yield): Deposit USDp to earn from protocol activity.
+- [Peg Defense](/redemptions-liquidations): Understand issuance and redemptions.
+- [Interest Rates](/minting/interest-rates): Understand how USDp rates respond to peg pressure.

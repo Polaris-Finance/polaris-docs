@@ -1,48 +1,53 @@
 ---
 title: "Polaris Asset Catalog"
-description: "The pAsset debt tokens Polaris can issue (USDp, GOLDp, CHF, BigMacp), how pETH differs as collateral, and how StablecoinOS can add new assets."
+description: "What pAssets are, how they differ from pETH, which markets are active today, and how new pAsset markets can launch."
 ---
 
 # Polaris Asset Catalog
 
-A pAsset is a synthetic debt asset issued directly from the Polaris protocol against pETH collateral. pETH is different: it is the bonding-curve collateral token that backs pAssets, not a debt asset issued from a borrow position.
-Current Public Testnet 1 focus: USDp and GOLDp are Testnet-active on Sepolia. CHFp, BigMacp, and other catalog ideas are illustrative or future until [Launch Status](/launch-status) says otherwise.
-## Polaris assets
+# pAssets
 
-| Asset | Tracks | Current status | Notes |
-| --- | --- | --- | --- |
-| USDp | US dollar | Testnet-active | The flagship pAsset. See Issuing pAssets. |
-| pETH | ETH | Testnet-active collateral | Special. Not issued from a borrow position: it is the collateral itself, produced by the bonding curve. It backs every other pAsset. |
-| GOLDp | 1 ounce of gold | Testnet-active | Decentralized gold exposure, backed by pETH rather than bullion. Public Testnet 1 uses Sepolia testnet price-feed plumbing; see the comparison below. |
-| CHFp | Swiss franc | Illustrative / future | A non-USD fiat peg, demonstrating that the model is debt-asset agnostic across currencies. Not Testnet-active unless Launch Status later lists it. |
-| BigMacp | The Big Mac Index | Illustrative / future | An example of a non-financial reference asset. Not Testnet-active unless Launch Status later lists it. |
+pAssets are synthetic assets created inside Polaris against pETH collateral.
 
-## GOLDp vs centralized gold (XAUT/PAXG)
-GOLDp and the incumbent gold tokens both give gold-price exposure, but they are structurally different products.
+They are designed to give users onchain exposure to currencies, commodities, and other reference assets without relying on custodial reserves or offchain issuers.
 
-| Property | GOLDp | XAUT / PAXG |
-| --- | --- | --- |
-| Collateral | pETH, fully onchain | Physical gold in custody |
-| Redemption | Permissionless, no protocol-level minimum published yet | Issuer-gated; account requirements and redemption minimums depend on the issuer's current terms |
-| KYC | None | Required to redeem |
-| Physical custody | None - nothing to store or insure | Vaulted bullion, with custody risk |
-| Counterparty | Polaris protocol only | Tether / Paxos as issuer |
+## pAssets And pETH
 
-![GOLDp versus centralized gold tokens (XAUT/PAXG): GOLDp is backed by onchain pETH with permissionless, KYC-free access and Polaris as the only counterparty, while XAUT/PAXG are backed by vaulted bullion with issuer-gated, KYC-required redemption and custody risk](/infographics/pgold-vs-centralized-gold.svg)
+pETH is the reserve and collateral asset of Polaris. pAssets are synthetic assets created against that collateral.
 
-GOLDp inherits ETH-collateral and smart-contract risk where XAUT/PAXG inherit custodial and issuer risk. What GOLDp removes is the permissioned issuer layer.
-GOLDp's collateral pricing composes two oracle feeds with the bonding curve: pETH is valued in gold terms as ETH/USD × the curve's pETH price ÷ gold/USD. A failure of either feed affects GOLDp pricing; see [Oracle risk](/resources/risk-disclosure#oracle-risk).
+This gives every pAsset market a shared foundation:
+- All pAssets are backed by pETH.
+- Each market uses the same core infrastructure architecture.
+- Each pAsset market has its own accounting, reference pricing, parameters, Earn Vault, and risk controls.
+- Issuance and redemptions help pAssets track their reference value.
+- Earn Vaults help backstop liquidations and create yield opportunities for pAsset holders.
 
-![Borrowing GOLDp is not shorting gold: deposit pETH and borrow GOLDp, then your strategy sets the exposure - hold or LP the gold pair for gold-neutral exposure, or sell GOLDp for pETH (or loop) to take short-gold exposure](/infographics/pgold-borrowing-not-shorting.svg)
+pETH is not a pAsset. It is the ETH-backed collateral asset that powers the system.
 
-Issuing GOLDp against pETH is a borrowing action; whether you end up long pETH, gold-neutral, or short gold depends on what you do with the GOLDp.
-## StablecoinOS: an open catalog
-Polaris is debt-asset agnostic: it can issue a synthetic asset pegged to any asset with robust reference pricing and risk parameters. StablecoinOS lets new pAssets share the same pETH collateral pool and bonding curve.
-Shared collateral lets teams add a new pAsset without bootstrapping a fresh collateral base. Each pAsset still has its own debt accounting, so stress in one pAsset does not directly liquidate another pAsset's borrow positions.
+## Active pAsset Markets
 
-![StablecoinOS as a factory: ETH enters one shared bonding curve to create pETH, which collateralizes multiple independent pAsset markets - USDp, GOLDp, pCHF - over the same pETH collateral base](/infographics/stablecoin-OS.svg)
+Public Testnet 1 currently supports two pAsset markets.
+
+USDp:
+Tracks the US dollar. USDp is the flagship Polaris stablecoin and the main dollar market.
+
+GOLDp:
+Tracks one ounce of gold. GOLDp provides gold-price exposure backed by pETH collateral rather than vaulted bullion.
+
+For current status, always check [Launch Status](/launch-status).
+
+## Expanding The pAsset Network
+
+Polaris is designed as infrastructure for many pAsset markets. Builders and operators can use the open-source Polaris codebase to deploy their own markets on top of the shared pETH collateral architecture.
+
+These markets can become part of the Polaris yield network by opting into Flows, sharing revenue with vePOLAR, and directing pETH incentives back to their issuers. Because every pAsset is built on pETH, activity in one market can increase pETH demand, trading volume, and yield flows for the broader ecosystem.
+
+This creates a shared alignment loop: new markets bring demand, pETH activity grows, Polaris routes incentives, issuers earn yield, and vePOLAR gains new revenue sources. Builders that use pETH can share in the success of the wider Polaris ecosystem rather than growing in isolation.
+
+For builders interested in launching a market, see [Launch A pAsset](/minting/launch-a-passet).
 
 ## Next Steps
-- [Open a Position](/minting/open-a-trove): Issue your first pAsset against pETH collateral, step by step.
-- [pETH & the Bonding Curve](/peth): The collateral primitive every pAsset market shares.
-- [Launch Status](/launch-status): Which pAssets are testnet-active today.
+- [USDp](/minting/pusd): Understand the flagship Polaris dollar asset.
+- [GOLDp](/minting/pgold): Understand decentralized gold exposure backed by pETH.
+- [Issuing pAssets](/minting): Create pAssets against pETH collateral.
+- [Launch A pAsset](/minting/launch-a-passet): Learn how builders can launch pAsset markets.

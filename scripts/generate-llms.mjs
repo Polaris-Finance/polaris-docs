@@ -118,7 +118,7 @@ function stripJsxTags(value) {
     .replace(/<LaunchTimeline\s*\/>/g, `Image: ${timelineSummary()} ${timelineCaption()}`)
     .replace(
       /<SystemOverviewFigure\s*\/>/g,
-      'Image: Polaris system overview: ETH swaps into pETH on the bonding curve, pETH collateralizes pAsset markets that issue pUSD, and burning pETH for POLAR raises the floor and releases ETH.'
+      'Image: Polaris system overview: ETH swaps into pETH on the bonding curve, pETH collateralizes pAsset markets that issue USDp, and burning pETH for POLAR raises the floor and releases ETH.'
     )
     .replace(
       /<TimedExplainers\s*\/>/g,
@@ -490,9 +490,12 @@ function buildProtocolManifest(pages) {
 
   const contracts = [
     ...contractEntries(tableAfterHeading(source, 'Shared core'), 'shared-core'),
-    ...contractEntries(tableAfterAnyHeading(source, ['pUSD market', 'pUSD branch']), 'pusd-branch'),
     ...contractEntries(
-      tableAfterAnyHeading(source, ['pGOLD market', 'pGOLD branch']),
+      tableAfterAnyHeading(source, ['USDp market', 'pUSD market', 'pUSD branch']),
+      'pusd-branch'
+    ),
+    ...contractEntries(
+      tableAfterAnyHeading(source, ['GOLDp market', 'pGOLD market', 'pGOLD branch']),
       'pgold-branch'
     )
   ]

@@ -264,7 +264,7 @@ export function buildGlobalJsonLd() {
         'https://t.me/polaris_ann',
         'https://github.com/Polaris-Finance'
       ],
-      knowsAbout: ['pETH', 'pAssets', 'pUSD', 'POLAR', 'pAsset issuance', 'bonding curve'],
+      knowsAbout: ['pETH', 'pAssets', 'USDp', 'POLAR', 'pAsset issuance', 'bonding curve'],
       logo: {
         '@type': 'ImageObject',
         url: absoluteUrl('/favicon.png'),

@@ -1,67 +1,164 @@
 ---
-title: "Interest Rates"
-description: "How Polaris prices pAsset debt, covering the flow-driven primary rate and the redistributive secondary rate."
+title: "Polaris Interest Rates"
+description: "How Polaris uses issuance and redemption activity to set autonomous pAsset interest rates."
 ---
 
-# Interest Rates
+# Polaris Interest Rates
 
-Every open position pays interest on its pAsset debt. Polaris does not set this rate by hand or by vote. Two autonomous rates run side by side: a **primary rate** that leans against peg deviation, and a **secondary rate** that responds to how heavily the system is borrowed. Together they are the protocol's main tool for defending each pAsset's peg without offchain promises.
+Polaris uses interest rates to help pAssets trade around peg.
 
-Your total rate is simply the two added together, accruing continuously on your debt.
+The main rate is the peg-steering rate. It adjusts automatically and does not depend on discretionary governance decisions or direct market-price oracles.
 
-## The two rates at a glance
+This reflects a broader design choice throughout Polaris. Whenever a process can be handled by code, it is. When it cannot, incentives are used instead. Stewardship is used where neither approach is enough.
 
-| Rate property | Primary rate | Secondary rate |
-|---|---|---|
-| Driven by | Net issuance vs. redemption flow (the peg signal) | The system's debt-to-reserve ratio |
-| Updates | On every mint or redemption | Permissionlessly, and on every debt change |
-| Who pays | Every open position, on its debt | Every open position, on its debt |
-| Where it goes | Routed out as protocol revenue | Redistributed inside the system, by collateral |
-| Hard cap | 250% APR | 250% APR |
+For interest rates, the automatable signal is pAsset peg-defense activity.
 
-## Primary rate - flow-driven
+Issuance is the above-peg signal.
 
-The protocol treats net issuance and redemption as its onchain peg signal, and the primary rate leans against it:
+Redemptions are the below-peg signal.
 
-- **Net redemptions push the rate up.** Redemptions tend to dominate when a pAsset trades below peg. A higher borrow cost discourages new issuance and rewards repayment, contracting supply back toward the peg.
-- **Net minting pulls the rate down.** Issuance tends to dominate when a pAsset trades above peg. A lower borrow cost invites more supply, easing the price back down.
+The peg-steering rate responds to those flows.
 
-Mechanically, each mint or redeem nudges the rate by the log of the resulting supply change, scaled by a steward-set sensitivity. The rate is an evolving level, not a fresh calculation each block, and it is clamped to a configured minimum and maximum.
+## Why Interest Rates Matter
 
-**Where primary interest goes.** Primary interest is real protocol revenue, paid in the pAsset on its own path - separate from the [Fee Router](/stewardship/fee-router), which handles pETH swap and conversion revenue. As it accrues it is distributed three ways:
+The interest rate is the cost paid by pAsset issuers.
 
-- **[Earn Vaults](/yield)** - the first-loss backstop for liquidations. At least 25%.
-- **[vePOLAR](/stewardship/vepolar)** - lockers' guaranteed minimum share of issuer interest. At least 25%.
-- **[pAsset Flows](/stewardship/fee-router#flows)** - the remainder funds revenue-sharing for approved contracts building on Polaris.
+The peg-steering rate responds to peg conditions rather than serving as a general benchmark for the cost of capital.
 
-Stewards can adjust the split, but both 25% floors are enforced in code.
+When a pAsset trades above peg, the system wants more supply. Issuance becomes attractive, supply expands, and the peg-steering rate moves lower.
 
-## Secondary rate - collateralization-driven
+When a pAsset trades below peg, the system wants less supply. Redemptions become attractive, supply contracts, and the peg-steering rate moves higher.
 
-The secondary rate responds not to flow but to the **debt-to-reserve ratio**: how much pAsset debt the system carries relative to the pETH reserve backing it. It follows a kinked curve - rising gently while the system is comfortably collateralized, then steeply once debt passes a configured kink point. Like the primary rate it is capped at 250% APR.
+In simple terms:
+- Above peg: make issuance cheaper so supply can expand.
+- Below peg: make issuance more expensive so supply can contract.
 
-It can be refreshed by anyone, permissionlessly (for example after a price move), and it also refreshes on every debt change, so it tracks conditions without waiting on a keeper.
+## The Peg Signal
 
-**Where secondary interest goes.** Unlike the primary rate, the secondary rate is not extracted as revenue - it stays inside the system. It is charged on every position's debt and credited back to positions in proportion to their **collateral**. In aggregate it nets to zero. The net effect is a redistribution from high-LTV positions to conservatively collateralized ones, and that pull strengthens as the whole system becomes more heavily borrowed. It is, in effect, an internal cost for running hot when the protocol can least afford it.
+Polaris does not need to ask an oracle whether USDp is trading at $0.99 or $1.01. Instead, it observes how users interact with the protocol.
 
-> **Note:** Because secondary interest is redistributive, a well-collateralized position can come out ahead on it while a position near its maximum LTV pays in.
+Above peg:
+Arbitrageurs issue pAssets and sell them into the market. More issuance indicates stronger demand for that pAsset.
 
-## What a borrower experiences
+Below peg:
+Arbitrageurs buy discounted pAssets and redeem them for pETH collateral. More redemptions indicate that supply exceeds demand.
 
-Both rates accrue on your debt at once, annualized and continuous. The practical effects:
+The protocol uses this onchain activity to drive the peg-steering rate.
 
-- Your debt grows over time, so your [LTV](/minting/managing-your-trove) drifts upward even if you take no action.
-- Adding collateral or repaying debt lowers your exposure to both rates; the secondary rate in particular eases as your LTV drops.
-- The combined rate is visible onchain as the sum of the primary and secondary rates.
+## Peg-Steering Rate
 
-## Bounds and stewardship
+The peg-steering rate is the primary interest rate paid by pAsset issuers.
 
-Both rates are hard-capped at **250% APR** in the contracts, and that ceiling cannot be raised by stewards or by vote. Within those bounds stewards tune only quantitative parameters: the primary rate's sensitivity, the secondary rate's curve (minimum, maximum, kink, and slopes), and the primary revenue split (subject to the 25% floors). The rate logic itself cannot be rewritten. See [Audits & Security](/resources/audits-security) for the full scope of bounded parameters.
+It adjusts whenever pAssets are issued or redeemed. More issuance pushes the rate lower, while more redemptions push it higher.
 
-<NextSteps
-  steps={[
-    { href: '/minting/managing-your-trove', title: 'Manage a Position', description: 'How accruing interest shows up in your LTV and what to watch.' },
-    { href: '/redemptions-liquidations', title: 'Redemptions & Liquidations', description: 'The issuance and redemption flow that drives the primary rate.' },
-    { href: '/resources/risk-disclosure', title: 'Risk Disclosure', description: 'How rising rates and redistribution affect position risk.' }
-  ]}
-/>
+This creates a feedback loop:
+- A pAsset trades above peg.
+- Issuance becomes profitable.
+- Issuance expands supply.
+- The peg-steering rate moves lower.
+- Lower rates make new positions more attractive.
+- Supply can expand until the opportunity closes and the pAsset returns toward peg.
+
+And in the other direction:
+- A pAsset trades below peg.
+- Redemptions become profitable.
+- Redemptions contract supply.
+- The peg-steering rate moves higher.
+- Higher rates make issued debt more expensive.
+- Supply can tighten until the opportunity closes and the pAsset returns toward peg.
+
+## Why This Is Novel
+
+This mechanism exists because Polaris has permissionless issuance and redemptions.
+
+Many collateralized debt systems can only react through governance, external market-price feeds, or manual parameter changes.
+
+Polaris can observe issuance and redemption activity directly, then use that activity to adjust rates automatically.
+
+This allows the rate to reflect conditions inside the protocol as they evolve, with no offchain input.
+
+## Accrual
+
+The peg-steering rate is continuously added to an issuer's outstanding debt.
+
+This means the cost of an open position grows over time while debt remains outstanding.
+
+Issuers should monitor:
+- The current peg-steering rate.
+- Their outstanding debt.
+- Their LTV.
+- Their liquidation price.
+
+## Bounds
+
+The peg-steering rate is autonomous and not directly controlled by stewards.
+
+The expected minimum is zero. Final production bounds and implementation details should be verified in [Parameters](/resources/testnet#parameters) and reviewed against the deployed contracts.
+
+## Spike-And-Decay Fees
+
+Issuance and redemptions also use spike-and-decay fees.
+
+These fees make large sudden flows more expensive and help prevent issuance and redemptions from being used as a low-cost way to influence the rate.
+
+When peg-defense volume spikes, fees rise.
+
+When peg-defense volume slows, fees decay.
+
+As a result, aggressive peg-defense activity becomes more expensive as volume increases.
+
+## Safety Rate
+
+The safety rate is the secondary interest rate within Polaris. It remains inactive under normal conditions and only comes into play during stressed conditions.
+
+The safety rate activates once a pAsset market falls below its TCR threshold.
+
+On current testnet, this threshold is 165%, but final values should be verified in [Parameters](/resources/testnet#parameters).
+
+When active, the safety rate moves value from riskier positions to healthier positions.
+
+Higher-LTV issuers pay the safety rate.
+
+Lower-LTV issuers receive it.
+
+This encourages collateral-only and low-leverage positions to enter the system, earn the additional rate, and improve pAsset market health.
+
+At the same time, the safety rate penalizes excessive leverage when the system is already under stress.
+
+Under normal conditions, the peg-steering rate remains the active interest-rate mechanism. The safety rate adds an additional protective cost only when the system needs stronger defense.
+
+Final safety-rate parameters, activation conditions, and display logic should be checked in [Parameters](/resources/testnet#parameters) once published.
+
+## Where Interest Goes
+
+Peg-steering interest is protocol revenue.
+
+Depending on the pAsset market and configured splits, it can flow to:
+- Earn Vault depositors.
+- vePOLAR lockers.
+- Ecosystem or Flow paths where configured.
+
+vePOLAR is intended to receive a guaranteed minimum share of issuer interest from deployed pAsset markets once live.
+
+Safety-rate payments are different. They are designed to move value directly from higher-LTV issuers toward lower-LTV issuers during stressed conditions.
+
+Current splits and pending production values live in [Parameters](/resources/testnet#parameters).
+
+## What Issuers Should Watch
+
+- Interest is continuously added to outstanding debt.
+- The peg-steering rate can move when issuance or redemptions occur.
+- Above-peg pressure generally pushes the peg-steering rate lower.
+- Below-peg pressure generally pushes the peg-steering rate higher.
+- Spike-and-decay fees can make heavy issuance or redemption activity more expensive.
+- The safety rate can add cost to higher-LTV positions during stressed conditions.
+- Lower-LTV positions can receive safety-rate payments when the safety rate is active.
+- Current values should be checked in the app and in [Parameters](/resources/testnet#parameters).
+
+## Next Steps
+
+- [Peg Defense](/redemptions-liquidations): Understand issuance and redemptions.
+- [Issuing pAssets](/minting): Understand how users create pAssets.
+- [Manage A Position](/minting/manage-position): Understand position cost, LTV, and repayment.
+- [Yield Sources](/yield/yield-sources): Understand where protocol yield comes from.
+- [Parameters](/resources/testnet#parameters): Check current values.
