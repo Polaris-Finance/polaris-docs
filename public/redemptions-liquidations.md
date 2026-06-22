@@ -22,7 +22,7 @@ Together, these mechanisms create arbitrage loops that push pAssets back toward 
 
 ## When pAssets Trade Above Peg
 
-If USDp trades above $1, an arbitrageur can create new USDp against pETH collateral and sell it into the market.
+If USDp trades above \$1, an arbitrageur can create new USDp against pETH collateral and sell it into the market.
 
 That increases USDp supply and applies downward pressure on price.
 
@@ -35,7 +35,7 @@ In simple terms:
 
 ## When pAssets Trade Below Peg
 
-If USDp trades below $1, an arbitrageur can buy USDp cheaply and redeem it for pETH collateral at the protocol reference value, minus fees and execution costs.
+If USDp trades below \$1, an arbitrageur can buy USDp cheaply and redeem it for pETH collateral at the protocol reference value, minus fees and execution costs.
 
 That buys USDp from the market and reduces supply.
 

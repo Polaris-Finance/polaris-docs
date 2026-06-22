@@ -37,6 +37,25 @@ export const OG_IMAGE_ALT =
 export const OG_IMAGE_WIDTH = 1200
 export const OG_IMAGE_HEIGHT = 630
 
+// Map a route prefix to a section-specific OG image. Longest matching prefix
+// wins. Start empty (every route falls back to OG_IMAGE_PATH); add entries
+// only once the corresponding image binaries exist under public/.
+export const OG_IMAGE_SECTIONS = {}
+
+export function ogImagePathForRoute(pathname = '/') {
+  const path = pathname.startsWith('/') ? pathname : `/${pathname}`
+  let matched = OG_IMAGE_PATH
+  let matchedLength = -1
+  for (const [prefix, image] of Object.entries(OG_IMAGE_SECTIONS)) {
+    const isMatch = path === prefix || path.startsWith(`${prefix}/`)
+    if (isMatch && prefix.length > matchedLength) {
+      matched = image
+      matchedLength = prefix.length
+    }
+  }
+  return matched
+}
+
 export const SEARCH_URL_TEMPLATE =
   process.env.SITE_SEARCH_URL_TEMPLATE ?? process.env.NEXT_PUBLIC_SITE_SEARCH_URL_TEMPLATE ?? ''
 

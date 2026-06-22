@@ -16,15 +16,17 @@ concurrency:
   group: pages
   cancel-in-progress: true
 
+# Shared base path / site URL inherited by every job.
+env:
+  BASE_PATH: /polaris-docs
+  NEXT_PUBLIC_BASE_PATH: /polaris-docs
+  SITE_URL: https://tokenbrice.github.io
+  NEXT_PUBLIC_SITE_URL: https://tokenbrice.github.io
+
 jobs:
   source-checks:
     name: Source checks
     runs-on: ubuntu-latest
-    env:
-      BASE_PATH: /polaris-docs
-      NEXT_PUBLIC_BASE_PATH: /polaris-docs
-      SITE_URL: https://tokenbrice.github.io
-      NEXT_PUBLIC_SITE_URL: https://tokenbrice.github.io
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -47,11 +49,6 @@ jobs:
   build:
     name: Build and artifact checks
     runs-on: ubuntu-latest
-    env:
-      BASE_PATH: /polaris-docs
-      NEXT_PUBLIC_BASE_PATH: /polaris-docs
-      SITE_URL: https://tokenbrice.github.io
-      NEXT_PUBLIC_SITE_URL: https://tokenbrice.github.io
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -105,11 +102,6 @@ jobs:
   external-links:
     name: External link check
     runs-on: ubuntu-latest
-    env:
-      BASE_PATH: /polaris-docs
-      NEXT_PUBLIC_BASE_PATH: /polaris-docs
-      SITE_URL: https://tokenbrice.github.io
-      NEXT_PUBLIC_SITE_URL: https://tokenbrice.github.io
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -132,11 +124,6 @@ jobs:
   deploy:
     needs: [source-checks, build, production-audit]
     runs-on: ubuntu-latest
-    env:
-      BASE_PATH: /polaris-docs
-      NEXT_PUBLIC_BASE_PATH: /polaris-docs
-      SITE_URL: https://tokenbrice.github.io
-      NEXT_PUBLIC_SITE_URL: https://tokenbrice.github.io
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

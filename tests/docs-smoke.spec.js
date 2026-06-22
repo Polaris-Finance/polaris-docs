@@ -212,16 +212,42 @@ async function expectNoUnnamedVisibleControls(page) {
             !node.closest('[aria-hidden="true"]')
           )
         })
-        .map((node) => ({
-          tag: node.tagName.toLowerCase(),
-          text: node.textContent?.trim() ?? '',
-          ariaLabel: node.getAttribute('aria-label') ?? '',
-          title: node.getAttribute('title') ?? '',
-          alt: node.querySelector('img')?.getAttribute('alt') ?? '',
-          placeholder: node.getAttribute('placeholder') ?? ''
-        }))
+        .map((node) => {
+          // Resolve the accessible name the way the a11y tree does: own text,
+          // aria-label/labelledby, title, child img alt, placeholder, and an
+          // associated <label> (via aria-labelledby, label[for], or wrapping).
+          const labelledby = node.getAttribute('aria-labelledby')
+          let label = labelledby
+            ? labelledby
+                .split(/\s+/)
+                .map((id) => document.getElementById(id)?.textContent?.trim() ?? '')
+                .join(' ')
+                .trim()
+            : ''
+          if (!label && node.id) {
+            label =
+              document.querySelector(`label[for="${CSS.escape(node.id)}"]`)?.textContent?.trim() ??
+              ''
+          }
+          if (!label) label = node.closest('label')?.textContent?.trim() ?? ''
+          return {
+            tag: node.tagName.toLowerCase(),
+            text: node.textContent?.trim() ?? '',
+            ariaLabel: node.getAttribute('aria-label') ?? '',
+            title: node.getAttribute('title') ?? '',
+            alt: node.querySelector('img')?.getAttribute('alt') ?? '',
+            placeholder: node.getAttribute('placeholder') ?? '',
+            label
+          }
+        })
         .filter(
-          (node) => !node.text && !node.ariaLabel && !node.title && !node.alt && !node.placeholder
+          (node) =>
+            !node.text &&
+            !node.ariaLabel &&
+            !node.title &&
+            !node.alt &&
+            !node.placeholder &&
+            !node.label
         )
     )
 
@@ -309,6 +335,9 @@ test.describe('generated route smoke', () => {
         if (response.status() === 404) notFoundResponses.push(response.url())
       })
 
+      const pageErrors = []
+      page.on('pageerror', (error) => pageErrors.push(error))
+
       await page.goto(pathWithBase(route), { waitUntil: 'networkidle' })
 
       const sameOriginNotFound = notFoundResponses.filter((url) => {
@@ -321,8 +350,10 @@ test.describe('generated route smoke', () => {
 
       await expect(page.getByRole('heading', { level: 1 }).first()).toBeVisible()
       expect(sameOriginNotFound).toEqual([])
+      expect(pageErrors).toEqual([])
       await expectRequiredMetadata(page, route)
       await expectNoDocumentOverflow(page)
+      await expectNoUnnamedVisibleControls(page)
       await expectTablesAreCaptionedAndFocusable(page)
     })
   }
@@ -490,7 +521,14 @@ test('desktop theme menu can switch to light mode', async ({ page }, testInfo) =
 test('sampled article text meets contrast in dark and light themes', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'desktop', 'desktop-only contrast sample')
 
-  const routes = ['/', '/resources', '/resources/brand-assets', '/yield']
+  const routes = [
+    '/',
+    '/resources',
+    '/resources/brand-assets',
+    '/yield',
+    '/polar/tokenomics',
+    '/resources/risk-disclosure'
+  ]
 
   for (const route of routes) {
     await page.goto(pathWithBase(route))
@@ -513,7 +551,13 @@ test('print media keeps wide reference pages within the viewport', async ({ page
 
   await page.emulateMedia({ media: 'print' })
 
-  for (const route of ['/resources/contracts', '/stewardship/flows', '/launch-status']) {
+  for (const route of [
+    '/resources/contracts',
+    '/stewardship/flows',
+    '/launch-status',
+    '/polar/tokenomics',
+    '/resources/risk-disclosure'
+  ]) {
     await page.goto(pathWithBase(route), { waitUntil: 'networkidle' })
     await expectNoDocumentOverflow(page)
   }

@@ -16,8 +16,32 @@
   --polaris-peth: #7ba5c9;
   --polaris-polar: #9b8fcf;
 
+  /* Prose color roles, theme-aware. Light defaults; .dark overrides below. */
+  --pl-text-strong: #1a2e42;
+  --pl-text-muted: #5a6a7a;
+  --pl-accent-blue: #2c5f8a;
+
+  /* Card surfaces, one canonical translucent tint per role. */
+  --pl-surface: rgba(44, 74, 110, 0.02);
+  --pl-surface-hover: rgba(63, 127, 168, 0.04);
+  --pl-card-border: rgba(44, 74, 110, 0.14);
+
+  /* One shared hover transition + lift for the card family. */
+  --pl-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --pl-card-lift: translateY(-2px);
+
   --font-serif-stack: var(--font-serif), 'Cormorant Garamond', Georgia, serif;
   --font-sans-stack: var(--font-sans), 'Inter', system-ui, sans-serif;
+}
+
+.dark {
+  --pl-text-strong: #ece3cf;
+  --pl-text-muted: #8a9aaa;
+  --pl-accent-blue: #7ba5c9;
+
+  --pl-surface: rgba(10, 22, 40, 0.4);
+  --pl-surface-hover: rgba(123, 165, 201, 0.05);
+  --pl-card-border: rgba(123, 165, 201, 0.15);
 }
 
 /* Base typography */
@@ -1772,7 +1796,7 @@ article button[title*='Copy'] {
   color: #1a3a5c;
 }
 .pl-callout[data-variant='info'] .pl-callout-icon {
-  color: #2c5f8a;
+  color: var(--pl-accent-blue);
 }
 
 .pl-callout[data-variant='warning'] {
@@ -1809,7 +1833,7 @@ article button[title*='Copy'] {
   color: #faf6ee;
 }
 .dark .pl-callout[data-variant='info'] .pl-callout-icon {
-  color: #7ba5c9;
+  color: var(--pl-accent-blue);
 }
 
 .dark .pl-callout[data-variant='warning'] {
@@ -1847,75 +1871,6 @@ article button[title*='Copy'] {
 .dark .pl-callout a {
   color: #c6e0ff;
 }
-/* ── Definition Card ─────────────────────────────────────────────────────── */
-
-.pl-definition-card {
-  display: block;
-  padding: 0.85rem 1rem;
-  margin: 0.6rem 0;
-  border-radius: 8px;
-  border-left: 3px solid;
-  background: rgba(44, 74, 110, 0.025);
-  transition:
-    background 0.15s ease,
-    transform 0.15s ease;
-}
-
-.pl-definition-card:hover {
-  background: rgba(44, 74, 110, 0.05);
-}
-
-.pl-definition-term {
-  font-weight: 700;
-  font-size: 0.9rem;
-  color: #1a2e42;
-  margin-bottom: 0.2rem;
-}
-
-.pl-definition-desc {
-  font-size: 0.85rem;
-  line-height: 1.55;
-  color: #3a4a5a;
-  margin: 0;
-}
-
-.dark .pl-definition-card {
-  background: rgba(10, 22, 40, 0.35);
-}
-
-.dark .pl-definition-card:hover {
-  background: rgba(10, 22, 40, 0.5);
-}
-
-.dark .pl-definition-term {
-  color: #ece3cf;
-}
-
-.dark .pl-definition-desc {
-  color: #a8b8c8;
-}
-
-/* Token color variants */
-.pl-def-peth {
-  border-left-color: #7ba5c9;
-}
-.pl-def-polar {
-  border-left-color: #9b8fcf;
-}
-.pl-def-pusd {
-  border-left-color: #c4b896;
-}
-.pl-def-passet {
-  border-left-color: #b1934f;
-}
-.pl-def-default {
-  border-left-color: rgba(44, 74, 110, 0.3);
-}
-
-.dark .pl-def-default {
-  border-left-color: rgba(123, 165, 201, 0.3);
-}
-
 /* ── Next Steps ──────────────────────────────────────────────────────────── */
 
 .pl-next-steps {
@@ -1932,12 +1887,8 @@ article button[title*='Copy'] {
   font-family: var(--font-serif-stack);
   font-size: 1.05rem;
   font-weight: 600;
-  color: #1a2e42;
+  color: var(--pl-text-strong);
   margin-bottom: 0.75rem;
-}
-
-.dark .pl-next-steps-label {
-  color: #ece3cf;
 }
 
 .pl-next-steps-grid {
@@ -1952,54 +1903,40 @@ article button[title*='Copy'] {
   gap: 0.25rem;
   padding: 0.9rem 1.1rem;
   border-radius: 10px;
-  border: 1px solid rgba(44, 74, 110, 0.16);
-  background: rgba(44, 74, 110, 0.02);
+  border: 1px solid var(--pl-card-border);
+  background: var(--pl-surface);
   text-decoration: none !important;
   color: inherit !important;
   transition:
     border-color 0.18s ease,
     background 0.18s ease,
     box-shadow 0.18s ease,
-    transform 0.18s cubic-bezier(0.2, 0.7, 0.2, 1);
+    transform 0.18s var(--pl-ease);
   min-height: 44px;
 }
 
 .pl-next-step-card:hover {
   border-color: rgba(63, 127, 168, 0.5);
-  background: rgba(63, 127, 168, 0.04);
-  transform: translateY(-2px);
+  background: var(--pl-surface-hover);
+  transform: var(--pl-card-lift);
   box-shadow: 0 8px 20px -12px rgba(44, 74, 110, 0.35);
-}
-
-.dark .pl-next-step-card {
-  border-color: rgba(212, 200, 174, 0.12);
-  background: rgba(10, 22, 40, 0.4);
 }
 
 .dark .pl-next-step-card:hover {
   border-color: rgba(123, 165, 201, 0.4);
-  background: rgba(123, 165, 201, 0.05);
   box-shadow: 0 8px 24px -12px rgba(0, 0, 0, 0.4);
 }
 
 .pl-next-step-title {
   font-weight: 700;
   font-size: 0.9rem;
-  color: #1a2e42;
-}
-
-.dark .pl-next-step-title {
-  color: #ece3cf;
+  color: var(--pl-text-strong);
 }
 
 .pl-next-step-desc {
   font-size: 0.78rem;
   line-height: 1.5;
-  color: #5a6a7a;
-}
-
-.dark .pl-next-step-desc {
-  color: #8a9aaa;
+  color: var(--pl-text-muted);
 }
 
 .pl-next-step-arrow {
@@ -2032,15 +1969,10 @@ article button[title*='Copy'] {
   padding: 0.55rem 1rem;
   margin: 1rem 0 1.25rem;
   border-radius: 8px;
-  border: 1px solid rgba(44, 74, 110, 0.14);
-  background: rgba(44, 74, 110, 0.03);
+  border: 1px solid var(--pl-card-border);
+  background: var(--pl-surface);
   font-size: 0.75rem;
   line-height: 1.4;
-}
-
-.dark .pl-status-banner {
-  border-color: rgba(123, 165, 201, 0.15);
-  background: rgba(10, 22, 40, 0.45);
 }
 
 .pl-status-pill {
@@ -2068,17 +2000,17 @@ article button[title*='Copy'] {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #4caf50;
+  background: #2f7a5a;
   flex-shrink: 0;
+}
+
+.dark .pl-status-dot {
+  background: #78be9b;
 }
 
 .pl-status-network {
   font-weight: 600;
-  color: #2c5f8a;
-}
-
-.dark .pl-status-network {
-  color: #7ba5c9;
+  color: var(--pl-accent-blue);
 }
 
 .pl-status-sep {
@@ -2086,11 +2018,7 @@ article button[title*='Copy'] {
 }
 
 .pl-status-date {
-  color: #5a6a7a;
-}
-
-.dark .pl-status-date {
-  color: #8a9aaa;
+  color: var(--pl-text-muted);
 }
 
 .pl-status-link {
@@ -2180,14 +2108,9 @@ article [class*='overflow-x-auto']:has(table)::after {
   article table[data-pl-table][data-pl-wide='true'] tbody tr {
     margin: 0 0 1rem;
     padding: 0.9rem 1rem;
-    border: 1px solid rgba(44, 74, 110, 0.16);
+    border: 1px solid var(--pl-card-border);
     border-radius: 10px;
-    background: rgba(44, 74, 110, 0.035);
-  }
-
-  .dark article table[data-pl-table][data-pl-wide='true'] tbody tr {
-    border-color: rgba(123, 165, 201, 0.16);
-    background: rgba(10, 22, 40, 0.4);
+    background: var(--pl-surface);
   }
 
   /* Stack each cell as label-over-value. Block (not grid) so cells with mixed
@@ -2404,11 +2327,16 @@ article [class*='overflow-x-auto']:has(table)::after {
   --pl-curve-accent-40: rgba(134, 109, 55, 0.45);
   --pl-curve-accent-25: rgba(134, 109, 55, 0.3);
   --pl-curve-dot-stroke: #faf7f0;
+  /* The pETH-blue curve line, grid, and floor guides. */
+  --pl-curve-line: #7ba5c9;
+  --pl-curve-line-35: rgba(123, 165, 201, 0.35);
+  --pl-curve-line-25: rgba(123, 165, 201, 0.25);
+  --pl-curve-line-10: rgba(123, 165, 201, 0.1);
   margin: 1.5rem 0;
   padding: 1.25rem;
   border-radius: 12px;
-  border: 1px solid rgba(44, 74, 110, 0.14);
-  background: rgba(44, 74, 110, 0.02);
+  border: 1px solid var(--pl-card-border);
+  background: var(--pl-surface);
 }
 
 .dark .pl-curve-explorer {
@@ -2417,20 +2345,18 @@ article [class*='overflow-x-auto']:has(table)::after {
   --pl-curve-accent-40: rgba(216, 201, 164, 0.4);
   --pl-curve-accent-25: rgba(216, 201, 164, 0.25);
   --pl-curve-dot-stroke: #0a1628;
-  border-color: rgba(123, 165, 201, 0.15);
-  background: rgba(10, 22, 40, 0.4);
+  --pl-curve-line: #7ba5c9;
+  --pl-curve-line-35: rgba(123, 165, 201, 0.35);
+  --pl-curve-line-25: rgba(123, 165, 201, 0.25);
+  --pl-curve-line-10: rgba(123, 165, 201, 0.1);
 }
 
 .pl-curve-header {
   font-family: var(--font-serif-stack);
   font-size: 1.05rem;
   font-weight: 600;
-  color: #1a2e42;
+  color: var(--pl-text-strong);
   margin-bottom: 1rem;
-}
-
-.dark .pl-curve-header {
-  color: #ece3cf;
 }
 
 .pl-curve-controls {
@@ -2451,31 +2377,19 @@ article [class*='overflow-x-auto']:has(table)::after {
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #5a6a7a;
-}
-
-.dark .pl-curve-field label {
-  color: #8a9aaa;
+  color: var(--pl-text-muted);
 }
 
 .pl-curve-field input[type='range'] {
   width: 100%;
-  accent-color: #2c5f8a;
-}
-
-.dark .pl-curve-field input[type='range'] {
-  accent-color: #7ba5c9;
+  accent-color: var(--pl-accent-blue);
 }
 
 .pl-curve-value {
   font-family: var(--font-serif-stack);
   font-size: 1.1rem;
   font-weight: 600;
-  color: #2c5f8a;
-}
-
-.dark .pl-curve-value {
-  color: #7ba5c9;
+  color: var(--pl-accent-blue);
 }
 
 .pl-curve-output {
@@ -2502,22 +2416,14 @@ article [class*='overflow-x-auto']:has(table)::after {
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #5a6a7a;
-}
-
-.dark .pl-curve-metric-label {
-  color: #8a9aaa;
+  color: var(--pl-text-muted);
 }
 
 .pl-curve-metric-value {
   font-family: var(--font-serif-stack);
   font-size: 1.2rem;
   font-weight: 600;
-  color: #1a2e42;
-}
-
-.dark .pl-curve-metric-value {
-  color: #ece3cf;
+  color: var(--pl-text-strong);
 }
 
 .pl-curve-viz {
@@ -2544,8 +2450,7 @@ article [class*='overflow-x-auto']:has(table)::after {
 /* ── Accessibility: reduced motion ───────────────────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {
-  .pl-next-step-card:hover,
-  .pl-definition-card:hover {
+  .pl-next-step-card:hover {
     transform: none !important;
   }
 }

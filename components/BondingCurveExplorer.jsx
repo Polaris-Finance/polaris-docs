@@ -151,8 +151,8 @@ export function BondingCurveExplorer() {
         <svg viewBox="0 0 600 120" preserveAspectRatio="none">
           <defs>
             <linearGradient id="bc-grad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#7ba5c9" stopOpacity="0.35" />
-              <stop offset="100%" stopColor="#7ba5c9" stopOpacity="0.02" />
+              <stop offset="0%" stopColor="var(--pl-curve-line)" stopOpacity="0.35" />
+              <stop offset="100%" stopColor="var(--pl-curve-line)" stopOpacity="0.02" />
             </linearGradient>
           </defs>
           {[0, 0.25, 0.5, 0.75, 1].map((tick) => (
@@ -162,13 +162,19 @@ export function BondingCurveExplorer() {
               y1={10 + tick * 100}
               x2={590}
               y2={10 + tick * 100}
-              stroke="rgba(123,165,201,0.1)"
+              stroke="var(--pl-curve-line-10)"
               strokeWidth="1"
               strokeDasharray="2 4"
             />
           ))}
           <path d={`${viz.path} L 590 ${viz.baseY} L 10 ${viz.baseY} Z`} fill="url(#bc-grad)" />
-          <path d={viz.path} fill="none" stroke="#7ba5c9" strokeWidth="2" strokeLinecap="round" />
+          <path
+            d={viz.path}
+            fill="none"
+            stroke="var(--pl-curve-line)"
+            strokeWidth="2"
+            strokeLinecap="round"
+          />
 
           {/* floor price guides */}
           <line
@@ -176,7 +182,7 @@ export function BondingCurveExplorer() {
             y1={viz.floorY}
             x2={viz.floorX}
             y2={viz.floorY}
-            stroke="rgba(123,165,201,0.35)"
+            stroke="var(--pl-curve-line-35)"
             strokeWidth="1"
             strokeDasharray="3 3"
           />
@@ -185,7 +191,7 @@ export function BondingCurveExplorer() {
             y1={viz.floorY}
             x2={viz.floorX}
             y2={viz.baseY}
-            stroke="rgba(123,165,201,0.25)"
+            stroke="var(--pl-curve-line-25)"
             strokeWidth="1"
             strokeDasharray="3 3"
           />
@@ -237,7 +243,7 @@ export function BondingCurveExplorer() {
             cx={viz.floorX}
             cy={viz.floorY}
             r="4"
-            fill="#7ba5c9"
+            fill="var(--pl-curve-line)"
             stroke="var(--pl-curve-dot-stroke)"
             strokeWidth="1.5"
           />

@@ -5,6 +5,7 @@ import {
   OG_IMAGE_PATH,
   OG_IMAGE_WIDTH,
   markdownPathForRoute,
+  ogImagePathForRoute,
   ORGANIZATION_NAME,
   pathWithBase,
   SEARCH_URL_TEMPLATE,
@@ -17,10 +18,10 @@ import {
 const organizationId = `${absoluteUrl('/')}#organization`
 const websiteId = `${absoluteUrl('/')}#website`
 
-function ogImages() {
+function ogImages(path = '/') {
   return [
     {
-      url: absoluteUrl(OG_IMAGE_PATH),
+      url: absoluteUrl(ogImagePathForRoute(path)),
       width: OG_IMAGE_WIDTH,
       height: OG_IMAGE_HEIGHT,
       alt: OG_IMAGE_ALT
@@ -210,7 +211,7 @@ export function buildPageMetadata(metadata, path) {
       url: pathWithBase(path),
       type: path === '/' ? 'website' : 'article',
       siteName: SITE_NAME,
-      images: ogImages()
+      images: ogImages(path)
     },
     twitter: {
       ...metadata.twitter,

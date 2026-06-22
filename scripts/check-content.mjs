@@ -53,6 +53,11 @@ const forbiddenPatterns = [
   {
     pattern: /http:\/\/(?!(?:localhost|127\.0\.0\.1|\[::1\])(?::\d+)?(?:\b|\/))/i,
     message: 'Use HTTPS links except for localhost or loopback development URLs'
+  },
+  {
+    pattern: /(?<!\\)\$\d/,
+    message:
+      'Unescaped "$" before a digit triggers site-wide KaTeX inline math; escape dollar amounts as "\\$"'
   }
 ]
 
@@ -259,7 +264,7 @@ for (const file of files) {
   }
 
   for (const rule of forbiddenPatterns) {
-    if (!isMdx && /HTML comments|GitHub-style/.test(rule.message)) continue
+    if (!isMdx && /HTML comments|GitHub-style|KaTeX/.test(rule.message)) continue
     if (rule.pattern.test(text)) {
       failures.push(`${rel}: ${rule.message}`)
     }

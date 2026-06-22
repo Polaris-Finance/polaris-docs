@@ -1,7 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 780" fill="none">
   <defs>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&amp;family=Inter:wght@400;500;600&amp;display=swap');
       .title { font-family: 'Cormorant Garamond', Georgia, serif; fill: #F5F0E6; }
       .label { font-family: 'Inter', Arial, sans-serif; fill: #8BA4B8; }
       .label-bright { font-family: 'Inter', Arial, sans-serif; fill: #F5F0E6; }

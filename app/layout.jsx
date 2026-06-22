@@ -134,7 +134,7 @@ const logo = (
 )
 
 const navbar = (
-  <Navbar logo={logo} logoLink={false}>
+  <Navbar logo={logo} logoLink={false} aria-label="Primary">
     <a
       href="https://polarisfinance.io"
       style={{ padding: '0.25rem 0.5rem' }}

@@ -9,7 +9,14 @@ function buildSectionIndex() {
   let group = 'Get started'
   for (const [key, value] of Object.entries(rootMeta)) {
     if (value && typeof value === 'object') {
-      if (value.type === 'separator' && value.title) group = value.title
+      if (value.type === 'separator' && value.title) {
+        group = value.title
+        continue
+      }
+      // Object-form page entries (e.g. the hidden `resources` section) carry a
+      // title but no string value. Index the ones that name a real route segment
+      // (no `href` alias) so their nested pages resolve to the right section.
+      if (value.title && !value.href) index[key] = { title: value.title, group }
       continue
     }
     if (typeof value === 'string') index[key] = { title: value, group }
@@ -34,12 +41,12 @@ export function sectionForPath(path) {
   return segs.length > 1 ? entry.title : entry.group
 }
 
-// Coarse content type, used for a result's color-coded marker. Meaning is also
-// carried by the section label, so the color is never the only signal.
+// Coarse content type, used for a result's color-coded marker. Only 'app' and
+// 'reference' carry a distinct dot color; everything else falls back to the
+// default marker. Meaning is also carried by the section label, so the color is
+// never the only signal.
 export function kindForPath(path) {
   if (/^\/using-app(\/|$)/.test(path)) return 'app'
   if (/^\/resources(\/|$)/.test(path)) return 'reference'
-  if (path === '/launch-status') return 'status'
-  if (path === '/quickstart' || path === '/troubleshooting') return 'guide'
   return 'concept'
 }

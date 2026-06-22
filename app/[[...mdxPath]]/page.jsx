@@ -33,10 +33,6 @@ const searchVocabulary = [
     ]
   },
   {
-    match: /^\/resources\/safety-verification$/,
-    terms: ['official app', 'app URL', 'phishing', 'verify contracts', 'testnet', 'mainnet']
-  },
-  {
     match: /^\/using-app\/issue$|^\/minting\/manage-position$/,
     terms: [
       'Issue',
@@ -96,11 +92,15 @@ const searchVocabulary = [
     priorityTerms: ['pETH', 'pETH bonding curve', 'bonding curve', 'pETH floor']
   },
   {
-    match: /^\/resources$|^\/resources\/(contracts|parameters|testnet|faq)$/,
+    match: /^\/resources$|^\/resources\/(testnet|faq)$/,
     terms: [
       'app',
       'official app',
+      'app URL',
+      'phishing',
+      'verify contracts',
       'testnet',
+      'mainnet',
       'Sepolia',
       'WETH',
       'WETH faucet',

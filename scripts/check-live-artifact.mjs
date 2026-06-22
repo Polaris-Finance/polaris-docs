@@ -224,6 +224,15 @@ for (const resource of pickResources(home.body)) {
   await fetchHeadOrGet(resource.url, { status: 200, mime: resource.mime })
 }
 
+const notFoundUrl = siteUrl('/this-page-does-not-exist')
+const notFound = await fetch(notFoundUrl, {
+  redirect: 'follow',
+  headers: { 'user-agent': 'polaris-docs-live-smoke/1.0' }
+})
+if (notFound.status !== 404) {
+  failures.push(`${notFoundUrl} returned ${notFound.status}; expected 404`)
+}
+
 if (failures.length) {
   console.error('Live artifact smoke check failed:\n')
   for (const failure of failures) console.error(`- ${failure}`)

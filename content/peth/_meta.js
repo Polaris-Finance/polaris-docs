@@ -1,5 +1,5 @@
 export default {
   index: 'Bonding Curve',
-  split: 'Split: fpETH & vpETH',
+  split: 'pETH Split: fpETH and vpETH',
   'floor-price': 'Floor Price'
 }

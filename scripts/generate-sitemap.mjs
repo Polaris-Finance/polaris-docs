@@ -119,8 +119,6 @@ function sitemapPolicy(route) {
     '/launch-status',
     '/quickstart',
     '/troubleshooting',
-    '/resources/contracts',
-    '/resources/parameters',
     '/resources/audits-security',
     '/resources/faq',
     '/resources/testnet'

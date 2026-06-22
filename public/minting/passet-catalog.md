@@ -42,13 +42,7 @@ For current status, always check [Launch Status](https://tokenbrice.github.io/po
 
 ## Expanding The pAsset Network
 
-Polaris is designed as infrastructure for many pAsset markets. Builders and operators can use the open-source Polaris codebase to deploy their own markets on top of the shared pETH collateral architecture.
-
-These markets can become part of the Polaris yield network by opting into Flows, sharing revenue with vePOLAR, and directing pETH incentives back to their issuers.
-
-Because every pAsset is built on pETH, activity in one market can increase pETH demand, trading volume, and yield flows for the broader ecosystem.
-
-This creates a shared alignment loop: new markets bring demand, pETH activity grows, Polaris routes incentives, issuers earn yield, and vePOLAR gains new revenue sources. Builders that use pETH can share in the success of the wider Polaris ecosystem rather than growing in isolation.
+Polaris is designed as infrastructure for many pAsset markets, where builders can deploy their own markets on top of the shared pETH collateral architecture and opt into the Polaris yield network.
 
 For builders interested in launching a market, see [Launch A pAsset](https://tokenbrice.github.io/polaris-docs/minting/launch-a-passet).
 

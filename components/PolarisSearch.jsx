@@ -11,6 +11,7 @@ import {
 } from 'react'
 import { useRouter } from 'next/navigation'
 import { hrefWithBase, pathWithBase } from '../app/site-config.mjs'
+import { kindForPath, sectionForPath } from '../app/search-taxonomy.mjs'
 
 // A Polaris-branded replacement for Nextra's stock Pagefind search. Same engine
 // and data, richer result display: each hit carries its section and a type
@@ -27,28 +28,24 @@ const MAX_FACETS = 8
 const RECENT_KEY = 'polaris-docs:recent-searches'
 const MAX_RECENT = 5
 
+// Curated entries derive their section label and kind marker from the shared
+// taxonomy so their colors match live search results for the same routes.
+function curate(title, url) {
+  return { title, url, section: sectionForPath(url), kind: kindForPath(url) }
+}
+
 // Curated entry points for the queryless state, in the protocol's reading order.
 const START_HERE = [
-  { title: 'Public Testnet Quickstart', url: '/quickstart', section: 'Start Here', kind: 'guide' },
-  { title: 'Why Polaris', url: '/why-polaris', section: 'Understand Polaris', kind: 'concept' },
-  {
-    title: 'Open a Position',
-    url: '/using-app/issue',
-    section: 'Use Polaris',
-    kind: 'guide'
-  }
+  curate('Public Testnet Quickstart', '/quickstart'),
+  curate('Why Polaris', '/why-polaris'),
+  curate('Open a Position', '/using-app/issue')
 ]
 
 // Recovery links for a no-results query.
 const RECOVERY = [
-  { title: 'FAQ', url: '/resources/faq', section: 'Reference', kind: 'reference' },
-  { title: 'Troubleshooting', url: '/troubleshooting', section: 'Reference', kind: 'guide' },
-  {
-    title: 'Browse the full docs (llms.txt)',
-    url: '/llms.txt',
-    section: 'Plain text',
-    kind: 'reference'
-  }
+  curate('FAQ', '/resources/faq'),
+  curate('Troubleshooting', '/troubleshooting'),
+  curate('Browse the full docs (llms.txt)', '/llms.txt')
 ]
 
 const QUERY_ALIASES = new Map([
@@ -458,9 +455,19 @@ export function PolarisSearch() {
             : ''
 
   return (
-    <div ref={containerRef} className="nextra-search pl-search">
+    <div
+      ref={containerRef}
+      className="nextra-search pl-search"
+      role="search"
+      aria-label="Search the documentation"
+    >
       <span id={`${id}-status`} className="pl-sr-only" aria-live="polite" aria-atomic="true">
         {liveStatus}
+      </span>
+      <span id={`${id}-help`} className="pl-sr-only">
+        Use the Up and Down arrow keys to move through results, Enter to open the selected result,
+        and Escape to close. Press slash or {isMac ? 'Command' : 'Control'}+K from anywhere to focus
+        this search.
       </span>
       <div className="pl-search-field">
         <SearchIcon />
@@ -478,6 +485,7 @@ export function PolarisSearch() {
           aria-activedescendant={activeId}
           aria-autocomplete="list"
           aria-label="Search the documentation"
+          aria-describedby={`${id}-help`}
           onChange={(e) => {
             setQuery(e.target.value)
             setSection(null)

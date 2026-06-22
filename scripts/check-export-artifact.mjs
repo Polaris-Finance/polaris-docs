@@ -1,6 +1,12 @@
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
 import path from 'node:path'
-import { absoluteUrl, BASE_PATH, SITE_BASE_URL, SITE_URL } from '../app/site-config.mjs'
+import {
+  absoluteUrl,
+  BASE_PATH,
+  OG_IMAGE_PATH,
+  SITE_BASE_URL,
+  SITE_URL
+} from '../app/site-config.mjs'
 
 const root = process.cwd()
 const outDir = path.join(root, 'out')
@@ -151,6 +157,24 @@ function assertHtmlFile(file) {
     if (ogUrl && ogUrl !== expectedCanonical) {
       failures.push(
         `${relativeFile} og:url mismatch: expected ${expectedCanonical}, found ${ogUrl}`
+      )
+    }
+
+    const ogTitle = extractMetaContent(html, 'og:title')
+    if (!ogTitle) {
+      failures.push(`${relativeFile} is missing a non-empty og:title`)
+    }
+
+    const ogDescription = extractMetaContent(html, 'og:description')
+    if (!ogDescription) {
+      failures.push(`${relativeFile} is missing a non-empty og:description`)
+    }
+
+    const ogImage = extractMetaContent(html, 'og:image')
+    const expectedOgImage = absoluteUrl(OG_IMAGE_PATH)
+    if (ogImage && ogImage !== expectedOgImage) {
+      failures.push(
+        `${relativeFile} og:image mismatch: expected ${expectedOgImage}, found ${ogImage}`
       )
     }
   }
@@ -403,6 +427,7 @@ assertCnameMode()
 
 for (const requiredAsset of [
   '_pagefind/pagefind.js',
+  '404.html',
   'favicon.svg',
   'og-image.png',
   'emblem.svg'
