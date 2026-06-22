@@ -54,8 +54,8 @@
         "pETH",
         "pAssets"
       ],
-      "updated": null,
-      "lastVerified": null
+      "updated": "2026-06-12",
+      "lastVerified": "2026-06-12"
     },
     {
       "route": "/launch-status",

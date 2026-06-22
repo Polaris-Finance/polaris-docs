@@ -6,21 +6,33 @@
 Canonical URL: https://tokenbrice.github.io/polaris-docs/
 Markdown URL: https://tokenbrice.github.io/polaris-docs/index.md
 Section: Introduction
+Updated: 2026-06-12
+Last verified: 2026-06-12
 
 Documentation index: https://tokenbrice.github.io/polaris-docs/llms.txt
 Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.txt
 
 ---
 
-# Polaris Documentation
+Polaris is an onchain yield layer built around pETH, a yield-bearing collateral asset purposefully designed to back Polaris stablecoins and other synthetic assets.
+ETH enters the system through the Polaris bonding curve, pETH becomes the core reserve asset, and protocol activity routes yield back into the system. This creates a foundation for onchain money and yield-bearing synthetic assets that do not depend on RWAs, centralized exchanges, custodians, or offchain black-box agreements.
+The Polaris stack is built around three core assets that work together to create collateral, synthetic assets, and long-term stewardship.
 
-Polaris is an immutable DeFi protocol for creating pAssets against pETH collateral.
+Asset | What it is | Why it matters
 
-ETH enters through the Polaris bonding curve, pETH becomes the shared collateral asset, and protocol activity routes yield back into the system.
+pETH | A yield-bearing reserve asset backed by ETH within the Polaris bonding curve | Provides capital-efficient, yield-bearing collateral with a natively growing floor value
+pAssets | Decentralized currencies and synthetic assets backed by pETH | Enable scalable onchain money without custodians or external counterparties
+POLAR | The stewardship token that governs key protocol parameters and captures protocol value | Aligns long-term incentives while keeping the protocol decentralized
+
+Image: Polaris system overview: ETH swaps into pETH on the bonding curve, pETH collateralizes pAsset markets that issue USDp, and burning pETH for POLAR raises the floor and releases ETH.
+
+Polaris is currently in Public Testnet 1 on Sepolia. Start with the quickstart if you want to try the app, or continue below for the high-level system view.
+
+## Choose Your Path
 
 Use this page to choose the right path through the docs.
 
-## Try Polaris On Testnet
+### Try Polaris On Testnet
 
 Use Public Testnet 1 with Sepolia test assets.
 
@@ -29,7 +41,7 @@ Use Public Testnet 1 with Sepolia test assets.
 - [App Guide](https://tokenbrice.github.io/polaris-docs/using-app): Understand the Dashboard, Swap, Issue, Earn, Split, Zap, and Advanced tabs.
 - [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting): Fix common wallet, faucet, quote, and transaction issues.
 
-## Understand The Protocol
+### Understand The Protocol
 
 Learn how pETH, pAssets, peg defense, interest rates, and Earn Vaults fit together.
 
@@ -40,7 +52,7 @@ Learn how pETH, pAssets, peg defense, interest rates, and Earn Vaults fit togeth
 - [Interest Rates](https://tokenbrice.github.io/polaris-docs/minting/interest-rates): How Polaris adjusts issuer costs from onchain peg-defense activity.
 - [Earn Vaults](https://tokenbrice.github.io/polaris-docs/yield): How pAsset deposits earn from issuer interest and liquidation processing.
 
-## Manage Risk
+### Manage Risk
 
 Understand position risk, liquidations, redemptions, Recovery Mode, and current parameters.
 
@@ -50,7 +62,7 @@ Understand position risk, liquidations, redemptions, Recovery Mode, and current 
 - [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode): How Polaris restricts risk-increasing actions when system backing is thin.
 - [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters): Current testnet parameter values.
 
-## POLAR And Stewardship
+### POLAR And Stewardship
 
 Understand POLAR, conversion auctions, vePOLAR, and bounded stewardship.
 
@@ -60,7 +72,7 @@ Understand POLAR, conversion auctions, vePOLAR, and bounded stewardship.
 - [vePOLAR](https://tokenbrice.github.io/polaris-docs/stewardship/vepolar): Vote-escrowed POLAR and stewardship rights.
 - [Stewardship](https://tokenbrice.github.io/polaris-docs/stewardship): What stewards can and cannot touch.
 
-## Build On Polaris
+### Build On Polaris
 
 Launch pAsset markets, apply for Flows, or integrate with Polaris infrastructure.
 
@@ -68,5 +80,9 @@ Launch pAsset markets, apply for Flows, or integrate with Polaris infrastructure
 - [Fee Router And Flows](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router): How protocol revenue is routed and shared with approved integrations.
 - [Public Testnet 1](https://tokenbrice.github.io/polaris-docs/resources/testnet): Network, manifests, parameters, and contract addresses.
 - [Audits And Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security): Audit status, disclosure guidance, and security model.
+
+## Launch Timeline
+
+Image: Polaris launch timeline. Early Research, 2024. Team Formation, June 2025. Private Testnet 1, March 2026. Public Testnet 1, May 2026, the current phase. Audits, Planned. Mainnet Launch, Forthcoming. pAsset Expansion, Planned. Integrations, Planned. Future Products, Exploring. Polaris is currently in Public Testnet 1 on Sepolia. The roadmap continues through audits, mainnet launch, pAsset expansion, integrations, and future products.
 
 Relevant app/search vocabulary: app, official app, testnet, Public Testnet 1, Sepolia, pETH, pAssets.
