@@ -202,7 +202,7 @@
       <!-- Area 1: released ETH (purple) -->
       <path d="M0.0,100.0 L0.2,87.2 L0.5,83.9 L0.8,81.6 L1.0,79.7 L1.2,78.2 L1.5,76.8 L1.8,75.6 L2.0,74.5 L2.2,73.4 L2.5,72.5 L2.8,71.6 L3.0,70.8 L3.2,70.0 L3.5,69.2 L3.8,68.5 L4.0,67.8 L4.3,67.2 L4.5,66.5 L4.8,65.9 L5.0,65.3 L5.3,64.8 L5.5,64.2 L5.8,63.7 L6.0,63.2 L6.0,63.2 L8.3,59.0 L10.6,55.5 L12.8,52.5 L15.1,49.9 L17.4,47.5 L19.7,45.3 L22.0,43.2 L24.2,41.3 L26.5,39.5 L28.8,37.9 L31.1,36.3 L33.4,34.7 L35.6,33.3 L37.9,31.9 L40.2,30.5 L42.5,29.3 L43.7,28.6 L43.7,100 L0,100 Z" fill="#9B8FCF" opacity="0.35"/>
 
-      <!-- Area 2: pUSD (cream) -->
+      <!-- Area 2: USDp (cream) -->
       <path d="M43.7,28.6 L44.8,28.0 L47.0,26.8 L49.3,25.7 L51.6,24.5 L53.9,23.4 L56.2,22.4 L58.4,21.3 L60.7,20.3 L63.0,19.3 L65.3,18.4 L67.6,17.4 L69.8,16.5 L72.1,15.6 L74.4,14.7 L76.7,13.9 L79.0,13.0 L81.2,12.2 L83.5,11.4 L85.8,10.6 L88.1,9.8 L88.1,100 L43.7,100 Z" fill="#E8DCC4" opacity="0.20"/>
 
       <!-- Area 3: pETH mcap (green) -->
@@ -258,7 +258,7 @@
     <text x="50" y="148" font-family="Inter, system-ui, sans-serif" font-size="12" fill="rgba(232,220,196,0.55)" text-anchor="middle" letter-spacing="0.05em">Collateral</text>
   </g>
 
-  <!-- Arrow 3: pETH to CDB/pUSD -->
+  <!-- Arrow 3: pETH to CDB/USDp -->
   <!-- pETH outer ring ends at x=688, CDB card starts at x=780 -->
   <g>
     <line x1="693" y1="175" x2="775" y2="175" stroke="#7BA5C9" stroke-width="2" marker-end="url(#arrowBlue)" opacity="0.85"/>
@@ -267,7 +267,7 @@
     <text x="734" y="158" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#7BA5C9" text-anchor="middle" font-weight="500">deposit</text>
   </g>
 
-  <!-- ==================== STEP 4: CDB → pUSD ==================== -->
+  <!-- ==================== STEP 4: CDB → USDp ==================== -->
   <g transform="translate(780, 85)">
     <!-- Card Background -->
     <rect x="0" y="0" width="180" height="200" rx="24" fill="#0d1f3c" stroke="rgba(232,220,196,0.12)" stroke-width="1" filter="url(#shadow)"/>
@@ -314,16 +314,16 @@
       <rect x="-52" y="50" width="34" height="14" rx="7" fill="rgba(123,165,201,0.1)"/>
       <text x="-35" y="60" font-family="Inter, system-ui, sans-serif" font-size="9" fill="#7BA5C9" text-anchor="middle" font-weight="500">pETH</text>
       <rect x="18" y="50" width="34" height="14" rx="7" fill="rgba(232,220,196,0.1)"/>
-      <text x="35" y="60" font-family="Inter, system-ui, sans-serif" font-size="9" fill="#E8DCC4" text-anchor="middle" font-weight="500">pUSD</text>
+      <text x="35" y="60" font-family="Inter, system-ui, sans-serif" font-size="9" fill="#E8DCC4" text-anchor="middle" font-weight="500">USDp</text>
     </g>
 
     <!-- Title -->
     <text x="90" y="162" font-family="'Cormorant Garamond', Georgia, serif" font-size="16" font-weight="500" fill="#E8DCC4" text-anchor="middle">CDB</text>
-    <text x="90" y="182" font-family="Inter, system-ui, sans-serif" font-size="11" fill="rgba(232,220,196,0.55)" text-anchor="middle" letter-spacing="0.03em">Borrow pUSD</text>
+    <text x="90" y="182" font-family="Inter, system-ui, sans-serif" font-size="11" fill="rgba(232,220,196,0.55)" text-anchor="middle" letter-spacing="0.03em">Issue USDp</text>
   </g>
 
-  <!-- Arrow 4: CDB to pUSD/Yield -->
-  <!-- CDB card ends at x=960, pUSD outer ring (r=62) starts at x=1038 -->
+  <!-- Arrow 4: CDB to USDp/Yield -->
+  <!-- CDB card ends at x=960, USDp outer ring (r=62) starts at x=1038 -->
   <g>
     <line x1="965" y1="175" x2="1033" y2="175" stroke="#E8DCC4" stroke-width="2" marker-end="url(#arrowCream)" opacity="0.85"/>
     <!-- Label pill -->
@@ -331,21 +331,21 @@
     <text x="999" y="158" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#E8DCC4" text-anchor="middle" font-weight="500">mint</text>
   </g>
 
-  <!-- ==================== OUTCOME: pUSD + Yield ==================== -->
+  <!-- ==================== OUTCOME: USDp + Yield ==================== -->
   <g transform="translate(1050, 125)">
     <!-- Outer glow ring - brighter for outcome emphasis -->
     <circle cx="50" cy="50" r="58" fill="none" stroke="#E8DCC4" stroke-width="1" opacity="0.25"/>
     <circle cx="50" cy="50" r="62" fill="none" stroke="#E8DCC4" stroke-width="0.5" opacity="0.12"/>
-    <!-- pUSD Circle -->
+    <!-- USDp Circle -->
     <circle cx="50" cy="50" r="50" fill="url(#pusdCircleBg)" stroke="#E8DCC4" stroke-width="2.5" filter="url(#shadow)"/>
-    <!-- pUSD Dollar Symbol with shadow -->
+    <!-- USDp Dollar Symbol with shadow -->
     <text x="50" y="70" font-family="'Cormorant Garamond', Georgia, serif" font-size="43" font-weight="500" fill="url(#pusdGradient)" text-anchor="middle" filter="url(#softGlow)">$</text>
     <!-- Small star above with glow -->
     <g filter="url(#softGlow)">
       <polygon points="50,22 51.6,27.5 57.9,27.5 52.9,31.6 54.6,37.2 50,33.0 45.4,37.2 47.1,31.6 42.1,27.5 48.4,27.5" fill="#F5F0E6" fill-opacity="0.85"/>
     </g>
     <!-- Label -->
-    <text x="50" y="125" font-family="'Cormorant Garamond', Georgia, serif" font-size="18" font-weight="600" fill="#E8DCC4" text-anchor="middle">pUSD</text>
+    <text x="50" y="125" font-family="'Cormorant Garamond', Georgia, serif" font-size="18" font-weight="600" fill="#E8DCC4" text-anchor="middle">USDp</text>
 
     <!-- Yield Badge - enhanced -->
     <g transform="translate(50, 145)">

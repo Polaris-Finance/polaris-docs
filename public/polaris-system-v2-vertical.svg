@@ -154,7 +154,7 @@
       <!-- Area 1: released ETH (purple) -->
       <path d="M0.0,85.0 L0.2,74.1 L0.4,71.3 L0.6,69.3 L0.8,67.8 L1.0,66.4 L1.3,65.3 L1.5,64.2 L1.7,63.3 L1.9,62.4 L2.1,61.6 L2.3,60.9 L2.5,60.1 L2.7,59.5 L2.9,58.8 L3.1,58.2 L3.3,57.6 L3.5,57.1 L3.8,56.5 L4.0,56.0 L4.2,55.5 L4.4,55.0 L4.6,54.6 L4.8,54.1 L5.0,53.7 L5.0,53.7 L6.9,50.1 L8.8,47.2 L10.7,44.6 L12.6,42.4 L14.5,40.3 L16.4,38.5 L18.3,36.7 L20.2,35.1 L22.1,33.6 L24.0,32.2 L25.9,30.8 L27.8,29.5 L29.7,28.3 L31.6,27.1 L33.5,26.0 L35.4,24.9 L36.4,24.3 L36.4,85 L0,85 Z" fill="#9B8FCF" opacity="0.35"/>
 
-      <!-- Area 2: pUSD (cream) -->
+      <!-- Area 2: USDp (cream) -->
       <path d="M36.4,24.3 L37.3,23.8 L39.2,22.8 L41.1,21.8 L43.0,20.8 L44.9,19.9 L46.8,19.0 L48.7,18.1 L50.6,17.3 L52.5,16.4 L54.4,15.6 L56.3,14.8 L58.2,14.0 L60.1,13.3 L62.0,12.5 L63.9,11.8 L65.8,11.1 L67.7,10.4 L69.6,9.7 L71.5,9.0 L73.4,8.3 L73.4,85 L36.4,85 Z" fill="#E8DCC4" opacity="0.20"/>
 
       <!-- Area 3: pETH mcap (green) -->
@@ -268,15 +268,15 @@
       <rect x="-42" y="42" width="30" height="12" rx="6" fill="rgba(123,165,201,0.1)"/>
       <text x="-27" y="51" font-family="Inter, system-ui, sans-serif" font-size="8" fill="#7BA5C9" text-anchor="middle" font-weight="500">pETH</text>
       <rect x="12" y="42" width="30" height="12" rx="6" fill="rgba(232,220,196,0.1)"/>
-      <text x="27" y="51" font-family="Inter, system-ui, sans-serif" font-size="8" fill="#E8DCC4" text-anchor="middle" font-weight="500">pUSD</text>
+      <text x="27" y="51" font-family="Inter, system-ui, sans-serif" font-size="8" fill="#E8DCC4" text-anchor="middle" font-weight="500">USDp</text>
     </g>
 
     <!-- Title -->
     <text x="80" y="130" font-family="'Cormorant Garamond', Georgia, serif" font-size="14" font-weight="500" fill="#E8DCC4" text-anchor="middle">CDB</text>
-    <text x="80" y="150" font-family="Inter, system-ui, sans-serif" font-size="10" fill="rgba(232,220,196,0.55)" text-anchor="middle" letter-spacing="0.03em">Borrow pUSD</text>
+    <text x="80" y="150" font-family="Inter, system-ui, sans-serif" font-size="10" fill="rgba(232,220,196,0.55)" text-anchor="middle" letter-spacing="0.03em">Issue USDp</text>
   </g>
 
-  <!-- Arrow 4: CDB to pUSD -->
+  <!-- Arrow 4: CDB to USDp -->
   <!-- CDB ends y=880, OUTCOME label at y=945 -->
   <g>
     <line x1="200" y1="885" x2="200" y2="918" stroke="#E8DCC4" stroke-width="2" opacity="0.85"/>
@@ -285,14 +285,14 @@
     <text x="228" y="907" font-family="Inter, system-ui, sans-serif" font-size="9" fill="#E8DCC4" text-anchor="middle" font-weight="500">mint</text>
   </g>
 
-  <!-- ==================== OUTCOME: pUSD + Yield ==================== -->
+  <!-- ==================== OUTCOME: USDp + Yield ==================== -->
   <g transform="translate(200, 960)">
     <!-- Step Label -->
     <text x="0" y="-15" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#E8DCC4" text-anchor="middle" letter-spacing="0.15em">OUTCOME</text>
     <!-- Outer glow rings -->
     <circle cx="0" cy="42" r="50" fill="none" stroke="#E8DCC4" stroke-width="1" opacity="0.25"/>
     <circle cx="0" cy="42" r="54" fill="none" stroke="#E8DCC4" stroke-width="0.5" opacity="0.12"/>
-    <!-- pUSD Circle -->
+    <!-- USDp Circle -->
     <circle cx="0" cy="42" r="42" fill="url(#pusdCircleBg)" stroke="#E8DCC4" stroke-width="2.5" filter="url(#shadow)"/>
     <!-- Dollar Symbol -->
     <text x="0" y="58" font-family="'Cormorant Garamond', Georgia, serif" font-size="36" font-weight="500" fill="url(#pusdGradient)" text-anchor="middle" filter="url(#softGlow)">$</text>
@@ -301,7 +301,7 @@
       <polygon points="0,18 1.3,22.5 6.6,22.5 2.4,25.8 3.8,30.4 0,27 -3.8,30.4 -2.4,25.8 -6.6,22.5 -1.3,22.5" fill="#F5F0E6" fill-opacity="0.85"/>
     </g>
     <!-- Label -->
-    <text x="0" y="112" font-family="'Cormorant Garamond', Georgia, serif" font-size="16" font-weight="600" fill="#E8DCC4" text-anchor="middle">pUSD</text>
+    <text x="0" y="112" font-family="'Cormorant Garamond', Georgia, serif" font-size="16" font-weight="600" fill="#E8DCC4" text-anchor="middle">USDp</text>
 
     <!-- Yield Badge -->
     <g transform="translate(0, 130)">
