@@ -10,6 +10,7 @@ Use this page when a term in the app, docs, or contracts needs a precise meaning
 User-facing pages should prefer the simpler public labels below.
 
 Also in Reference:
+
 - [Public Testnet 1](/resources/testnet)
 - [Audits And Security](/resources/audits-security)
 - [Risk Disclosure](/resources/risk-disclosure)
@@ -18,72 +19,50 @@ Also in Reference:
 
 ## Public Terms
 
-Advanced:
-The app area for expert operations: PSM issue/redeem, pETH-to-POLAR conversion, and the testnet faucet. See [Advanced](/using-app/advanced).
+Advanced: The app area for expert operations: PSM issue/redeem, pETH-to-POLAR conversion, and the testnet faucet. See [Advanced](/using-app/advanced).
 
-Earn Vault:
-A pAsset deposit venue that earns from issuer interest and liquidation processing. Earn Vaults are first-loss backstops, so deposits can be used during liquidations. See [Earn Vaults](/yield).
+Earn Vault: A pAsset deposit venue that earns from issuer interest and liquidation processing. Earn Vaults are first-loss backstops, so deposits can be used during liquidations. See [Earn Vaults](/yield).
 
-fpETH:
-The floor-value token created when pETH is split. It represents pETH floor exposure and can be used for ETH borrowing strategies. See [pETH Split](/peth/split).
+fpETH: The floor-value token created when pETH is split. It represents pETH floor exposure and can be used for ETH borrowing strategies. See [pETH Split](/peth/split).
 
-Interest Rate:
-The cost paid by pAsset issuers. Polaris uses a peg-steering rate that responds to issuance and redemption activity, plus a safety rate that can activate during stressed conditions. See [Interest Rates](/minting/interest-rates).
+Interest Rate: The cost paid by pAsset issuers. Polaris uses a peg-steering rate that responds to issuance and redemption activity, plus a safety rate that can activate during stressed conditions. See [Interest Rates](/minting/interest-rates).
 
-Issue:
-The app tab where users create pAssets against pETH collateral. See [Issue](/using-app/issue).
+Issue: The app tab where users create pAssets against pETH collateral. See [Issue](/using-app/issue).
 
-LTV:
-Loan-to-value. Position debt divided by collateral value. Lower LTV gives more room before liquidation. See [Manage A Position](/minting/manage-position).
+LTV: Loan-to-value. Position debt divided by collateral value. Lower LTV gives more room before liquidation. See [Manage A Position](/minting/manage-position).
 
-pAsset:
-A Polaris synthetic asset backed by pETH collateral, such as USDp or GOLDp.
+pAsset: A Polaris synthetic asset backed by pETH collateral, such as USDp or GOLDp.
 
-Peg Defense:
-The paired issuance and redemption mechanisms that help pAssets trade around their reference value. Issuance expands supply above peg. Redemptions contract supply below peg. See [Peg Defense](/redemptions-liquidations).
+Peg Defense: The paired issuance and redemption mechanisms that help pAssets trade around their reference value. Issuance expands supply above peg. Redemptions contract supply below peg. See [Peg Defense](/redemptions-liquidations).
 
-pETH:
-The ETH-backed reserve and collateral asset created through the Polaris bonding curve. See [pETH](/peth).
+pETH: The ETH-backed reserve and collateral asset created through the Polaris bonding curve. See [pETH](/peth).
 
-GOLDp:
-A pAsset designed to track gold exposure without issuer custody at the protocol layer.
+GOLDp: A pAsset designed to track gold exposure without issuer custody at the protocol layer.
 
-POLAR:
-The stewardship and growth token used for long-term protocol coordination and value capture. See [POLAR](/polar).
+POLAR: The stewardship and growth token used for long-term protocol coordination and value capture. See [POLAR](/polar).
 
-Position:
-An individual collateral position backed by pETH. Users can add collateral, issue more, repay, withdraw collateral, or close it. See [Issuing pAssets](/minting).
+Position: An individual collateral position backed by pETH. Users can add collateral, issue more, repay, withdraw collateral, or close it. See [Issuing pAssets](/minting).
 
-USDp:
-The flagship Polaris pAsset, designed to track the US dollar and backed by pETH collateral.
+USDp: The flagship Polaris pAsset, designed to track the US dollar and backed by pETH collateral.
 
-Split:
-The operation that turns pETH into equal amounts of fpETH and vpETH, or merges equal fpETH and vpETH back into pETH. See [Split](/using-app/split).
+Split: The operation that turns pETH into equal amounts of fpETH and vpETH, or merges equal fpETH and vpETH back into pETH. See [Split](/using-app/split).
 
-vpETH:
-The volatility-premium leg created when pETH is split. It represents exposure to pETH value above the floor.
+vpETH: The volatility-premium leg created when pETH is split. It represents exposure to pETH value above the floor.
 
-Zap:
-An app flow that bundles several actions into one transaction. A zap simplifies execution, but it does not change the underlying economics. See [Zap](/using-app/zap).
+Zap: An app flow that bundles several actions into one transaction. A zap simplifies execution, but it does not change the underlying economics. See [Zap](/using-app/zap).
 
 ## Technical Aliases
 
 These names may appear in contract labels, older materials, or internal implementation details. Public docs should prefer the terms above.
 
-CDP:
-Legacy and contract-facing label for an individual collateral position. Public docs use position.
+CDP: Legacy and contract-facing label for an individual collateral position. Public docs use position.
 
-CDB / branch:
-Legacy and contract-facing label for a pAsset market. Public docs use pAsset market.
+CDB / branch: Legacy and contract-facing label for a pAsset market. Public docs use pAsset market.
 
-ICR / MCR:
-Collateral-ratio terms used in some protocol references. They are the inverse of LTV: collateral value divided by debt value.
+ICR / MCR: Collateral-ratio terms used in some protocol references. They are the inverse of LTV: collateral value divided by debt value.
 
-Mint / minting:
-Contract-facing language for creating a token. Public docs use issue, create, or receive depending on the action.
+Mint / minting: Contract-facing language for creating a token. Public docs use issue, create, or receive depending on the action.
 
-PSM:
-Peg Stability Module. The direct mechanism for issuing or redeeming pAssets against pETH at the oracle price.
+PSM: Peg Stability Module. The direct mechanism for issuing or redeeming pAssets against pETH at the oracle price.
 
-SP:
-Internal name for the liquidation backstop behind an Earn Vault. Public docs use Earn Vault.
+SP: Internal name for the liquidation backstop behind an Earn Vault. Public docs use Earn Vault.
