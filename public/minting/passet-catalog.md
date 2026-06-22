@@ -12,8 +12,6 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 ---
 
-# pAssets
-
 pAssets are synthetic assets created inside Polaris against pETH collateral.
 
 They are designed to give users onchain exposure to currencies, commodities, and other reference assets without relying on custodial reserves or offchain issuers.
@@ -23,6 +21,7 @@ They are designed to give users onchain exposure to currencies, commodities, and
 pETH is the reserve and collateral asset of Polaris. pAssets are synthetic assets created against that collateral.
 
 This gives every pAsset market a shared foundation:
+
 - All pAssets are backed by pETH.
 - Each market uses the same core infrastructure architecture.
 - Each pAsset market has its own accounting, reference pricing, parameters, Earn Vault, and risk controls.
@@ -35,11 +34,9 @@ pETH is not a pAsset. It is the ETH-backed collateral asset that powers the syst
 
 Public Testnet 1 currently supports two pAsset markets.
 
-USDp:
-Tracks the US dollar. USDp is the flagship Polaris stablecoin and the main dollar market.
+USDp: Tracks the US dollar. USDp is the flagship Polaris stablecoin and the main dollar market.
 
-GOLDp:
-Tracks one ounce of gold. GOLDp provides gold-price exposure backed by pETH collateral rather than vaulted bullion.
+GOLDp: Tracks one ounce of gold. GOLDp provides gold-price exposure backed by pETH collateral rather than vaulted bullion.
 
 For current status, always check [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status).
 
@@ -47,13 +44,16 @@ For current status, always check [Launch Status](https://tokenbrice.github.io/po
 
 Polaris is designed as infrastructure for many pAsset markets. Builders and operators can use the open-source Polaris codebase to deploy their own markets on top of the shared pETH collateral architecture.
 
-These markets can become part of the Polaris yield network by opting into Flows, sharing revenue with vePOLAR, and directing pETH incentives back to their issuers. Because every pAsset is built on pETH, activity in one market can increase pETH demand, trading volume, and yield flows for the broader ecosystem.
+These markets can become part of the Polaris yield network by opting into Flows, sharing revenue with vePOLAR, and directing pETH incentives back to their issuers.
+
+Because every pAsset is built on pETH, activity in one market can increase pETH demand, trading volume, and yield flows for the broader ecosystem.
 
 This creates a shared alignment loop: new markets bring demand, pETH activity grows, Polaris routes incentives, issuers earn yield, and vePOLAR gains new revenue sources. Builders that use pETH can share in the success of the wider Polaris ecosystem rather than growing in isolation.
 
 For builders interested in launching a market, see [Launch A pAsset](https://tokenbrice.github.io/polaris-docs/minting/launch-a-passet).
 
 ## Next Steps
+
 - [USDp](https://tokenbrice.github.io/polaris-docs/minting/pusd): Understand the flagship Polaris dollar asset.
 - [GOLDp](https://tokenbrice.github.io/polaris-docs/minting/pgold): Understand decentralized gold exposure backed by pETH.
 - [Issuing pAssets](https://tokenbrice.github.io/polaris-docs/minting): Create pAssets against pETH collateral.

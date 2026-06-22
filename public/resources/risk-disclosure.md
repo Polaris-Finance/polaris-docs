@@ -13,82 +13,168 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 ---
 
 Polaris is trustless, immutable infrastructure. That design choice has real costs, and we disclose them before claiming the benefits.
+
 Every risk below is paired with the mechanism that mitigates it. Mitigation does not mean elimination.
-Nothing here is financial advice. Polaris is currently in the phase shown on [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status). Testnet assets have no monetary value, and production use is not live unless Launch Status says it is.
+
+Nothing here is financial advice. Polaris is currently in the phase shown on [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status).
+
+Testnet assets have no monetary value, and production use is not live unless Launch Status says it is.
+
 Trustlessness means the protocol will not, and cannot, step in to make you whole.
+
 ## Smart-Contract Risk
+
 Polaris lives entirely onchain. Its bonding curve, pAsset markets, position accounting, Earn Vaults, and conversion auctions are smart contracts, and any smart contract can contain bugs.
-Mitigation: The intended core is immutable and admin-key-free, removing upgrade and governance-key attack surface but raising the stakes on getting the code right.
-Final audit reports are not published in these docs yet. Until reports appear on [Audits And Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security), treat the protocol as unaudited.
+
+**Mitigation:** The intended core is immutable and admin-key-free, removing upgrade and governance-key attack surface but raising the stakes on getting the code right.
+
+Final audit reports are not published in these docs yet.
+
+Until reports appear on [Audits And Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security), treat the protocol as unaudited.
+
 ## Collateral And Price Risk
+
 The only collateral for pAsset positions is pETH. The protocol prices pETH in USD using the bonding curve price and the ETH/USD price feed.
-The ETH/USD component is expected to be the main driver of pETH/USD collateral value. pETH can also move relative to ETH through the bonding curve, but for issuers the key risk is simple: if the value of their pETH collateral falls relative to their debt, their LTV rises and the position can move closer to liquidation.
-Mitigation: The pETH floor defines the maximum pETH/ETH downside under the bonding curve design, while the floor ratio shows the distance between the current pETH price and that floor.
+
+The ETH/USD component is expected to be the main driver of pETH/USD collateral value.
+
+pETH can also move relative to ETH through the bonding curve, but for issuers the key risk is simple: if the value of their pETH collateral falls relative to their debt, their LTV rises and the position can move closer to liquidation.
+
+**Mitigation:** The pETH floor defines the maximum pETH/ETH downside under the bonding curve design, while the floor ratio shows the distance between the current pETH price and that floor.
+
 For issuers, the practical risk to monitor is the pETH/USD collateral value used by the protocol, their LTV, and their liquidation price.
-Important: The pETH floor defines pETH/ETH downside under the bonding curve. It does not protect against ETH/USD volatility. If ETH falls against the dollar, the USD value of pETH collateral can fall with it.
+
+**Important:** The pETH floor defines pETH/ETH downside under the bonding curve.
+
+It does not protect against ETH/USD volatility. If ETH falls against the dollar, the USD value of pETH collateral can fall with it.
+
 ## Oracle Risk
+
 Pricing pETH collateral for liquidation requires an ETH price feed. A stale, manipulated, or failed oracle could misprice collateral and trigger wrong liquidations, or fail to trigger correct ones.
-Mitigation: Peg awareness uses redemption and issuance volume as internal signals for each pAsset. The oracle dependency is confined to pricing ETH collateral, plus the reference-asset feed for non-USD pAssets.
+
+**Mitigation:** Peg awareness uses redemption and issuance volume as internal signals for each pAsset.
+
+The oracle dependency is confined to pricing ETH collateral, plus the reference-asset feed for non-USD pAssets.
+
 GOLDp composes ETH/USD and gold/USD feeds with the curve price, so either feed failing affects its pricing.
-External price feeds are read through a Medianiser. Current testnet and production address status lives on Contracts And Addresses (/resources/testnet#contracts-and-addresses).
+
+External price feeds are read through a Medianiser.
+
+Current testnet and production address status lives on [Contracts And Addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses).
+
 ## Peg And Depeg Risk
+
 A pAsset can trade away from its peg, below it in a panic or above it in a demand spike. Depegs can be temporary or, under severe stress, sustained.
-Mitigation: Two opposing arbitrage mechanisms defend the peg structurally.
-Redemptions: When a pAsset trades below peg, arbitrageurs can buy it cheaply and redeem it for pETH collateral.
-Issuance: When a pAsset trades above peg, arbitrageurs can create and sell more of it.
+
+**Mitigation:** Two opposing arbitrage mechanisms defend the peg structurally.
+
+- Redemptions: When a pAsset trades below peg, arbitrageurs can buy it cheaply and redeem it for pETH collateral.
+- Issuance: When a pAsset trades above peg, arbitrageurs can create and sell more of it.
+
 Because both mechanisms are permissionless, they can activate without offchain issuer intervention.
+
 See [Peg Defense](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations).
+
 ## Liquidation Risk
-If your position's LTV rises above the maximum, the position can be liquidated (/redemptions-liquidations/liquidations). You lose collateral to cover the debt, liquidation penalty, and execution costs.
-Mitigation: Liquidation logic is transparent and onchain, with no discretionary calls.
+
+If your position's LTV rises above the maximum, the position can be [liquidated](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations). You lose collateral to cover the debt, liquidation penalty, and execution costs.
+
+**Mitigation:** Liquidation logic is transparent and onchain, with no discretionary calls.
+
 You control your LTV: add collateral or repay debt to stay clear of the threshold.
+
 pETH's rising floor and yield-bearing nature may dampen, but do not remove, the volatility that causes liquidations. Monitor your position actively, especially in volatile markets.
+
 ## Interest Rate Risk
-Every open position accrues interest on its outstanding debt.
-The main rate is the peg-steering rate, which responds automatically to issuance and redemption activity. When redemptions dominate, the rate can rise. When issuance dominates, the rate can fall.
+
+Every open position accrues interest on its outstanding debt. The main rate is the peg-steering rate, which responds automatically to issuance and redemption activity.
+
+When redemptions dominate, the rate can rise. When issuance dominates, the rate can fall.
+
 Polaris also has a safety rate for stressed conditions. When active, it can move value from higher-LTV positions to lower-LTV positions.
+
 Interest increases debt over time, which can raise your LTV and move your position closer to liquidation even if you take no action.
-Mitigation:
-Monitor your position, keep an LTV buffer, and understand the current rates before issuing pAssets. Adding collateral or repaying debt lowers your LTV and reduces liquidation risk.
-See [Interest Rates](https://tokenbrice.github.io/polaris-docs/minting/interest-rates).
+
+**Mitigation:** Monitor your position, keep an LTV buffer, and understand the current rates before issuing pAssets.
+
+Adding collateral or repaying debt lowers your LTV and reduces liquidation risk. See [Interest Rates](https://tokenbrice.github.io/polaris-docs/minting/interest-rates).
+
 ## Issuance And Redemption Exposure
-Issuance and redemptions are socialized across all open positions for the affected pAsset.
-New issuance can increase position size by adding debt and collateral. Redemptions can reduce collateral and debt even if a position is solvent.
-No position is targeted before another. The protocol does not redeem against the riskiest position first, and a low LTV does not exempt a position from redemption exposure.
-Fees from issuance and redemptions flow back to affected positions, helping compensate the positions impacted by the mechanism.
-Mitigation:
-Understand that lower LTV protects against liquidation, not against issuance or redemption exposure. If you want less exposure to these system-wide flows, the main lever is reducing debt.
+
+Issuance and redemptions are socialized across all open positions for the affected pAsset. New issuance can increase position size by adding debt and collateral.
+
+Redemptions can reduce collateral and debt even if a position is solvent. No position is targeted before another.
+
+The protocol does not redeem against the riskiest position first, and a low LTV does not exempt a position from redemption exposure. Fees from issuance and redemptions flow back to affected positions, helping compensate the positions impacted by the mechanism.
+
+**Mitigation:** Understand that lower LTV protects against liquidation, not against issuance or redemption exposure.
+
+If you want less exposure to these system-wide flows, the main lever is reducing debt.
+
 See [Peg Defense](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations).
+
 ## Earn Vault First-Loss Risk
+
 Depositing pAssets into an [Earn Vault](https://tokenbrice.github.io/polaris-docs/yield) can earn protocol-native yield, but the vault is the system's first-loss liquidation backstop.
+
 During liquidations, deposited pAssets can be used to absorb liquidated debt and may be replaced by pETH collateral.
-Mitigation:
-Earn Vaults are designed to be compensated through issuer interest and liquidation processing, but deposits are not principal-safe. Losses can occur if liquidations execute poorly, collateral value moves sharply, or market conditions deteriorate faster than the system can process.
+
+**Mitigation:** Earn Vaults are designed to be compensated through issuer interest and liquidation processing, but deposits are not principal-safe.
+
+Losses can occur if liquidations execute poorly, collateral value moves sharply, or market conditions deteriorate faster than the system can process.
+
 Size deposits accordingly and read [Earn Vaults](https://tokenbrice.github.io/polaris-docs/yield) before depositing.
+
 ## Recovery Mode
-When reserve backing relative to total debt drops below a threshold, the affected pAsset market enters Recovery Mode (/redemptions-liquidations/recovery-mode).
-Mitigation: Recovery Mode restricts risk-increasing actions while keeping protective actions open.
+
+When reserve backing relative to total debt drops below a threshold, the affected pAsset market enters [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode).
+
+**Mitigation:** Recovery Mode restricts risk-increasing actions while keeping protective actions open.
+
 You can add collateral or repay debt. Actions that withdraw collateral, issue more debt, or weaken backing face tighter rules.
+
 Liquidation eligibility does not change. A position is liquidated only when its LTV exceeds the normal maximum.
+
 ## Stewardship And Economic Risk
+
 Stewards control quantitative parameters such as interest splits, conversion-price parameters, and converter rebates.
+
 Parameter changes can affect yield, position economics, and ecosystem incentives.
-Mitigation: Stewardship is constrained. Many parameters move only within hardcoded ranges, and the core logic cannot be changed.
-See Stewardship (/stewardship) and [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters).
+
+**Mitigation:** Stewardship is constrained. Many parameters move only within hardcoded ranges, and the core logic cannot be changed.
+
+See [Stewardship](https://tokenbrice.github.io/polaris-docs/stewardship) and [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters).
+
 ## MEV Risk
+
 Redemptions, liquidations, and conversion auctions are profitable, permissionless actions. They attract MEV searchers, arbitrageurs, and keepers.
-Mitigation: MEV competition helps execute stabilizing actions, but ordinary users should not expect to win arbitrage races manually.
+
+**Mitigation:** MEV competition helps execute stabilizing actions, but ordinary users should not expect to win arbitrage races manually.
+
 Use the protocol for the position you want, not to front-run bots.
+
 ## Dependency Risk: Ethereum
+
 Production Polaris is intended for Ethereum mainnet. Polaris inherits Ethereum's risks: consensus failures, severe congestion, transaction censorship, or contentious forks.
-Mitigation: This dependency is deliberate and unhedged. The only counterparties Polaris is meant to ask you to trust are immutable code and Ethereum itself.
+
+**Mitigation:** This dependency is deliberate and unhedged. The only counterparties Polaris is meant to ask you to trust are immutable code and Ethereum itself.
+
 Polaris does not spread across chains to dilute that exposure, because doing so would reintroduce bridge and external-dependency risks.
+
 ## Frontend And Phishing Risk
+
 Fake frontends, fake contract addresses, and fake support channels can appear before users know what the official ones look like.
+
 A malicious frontend can ask you to approve tokens, sign dangerous messages, or connect to the wrong network.
-Mitigation: Use only the frontend, network, and addresses listed in these docs.
+
+**Mitigation:** Use only the frontend, network, and addresses listed in these docs.
+
 Never enter a seed phrase, private key, or recovery words into any Polaris-related site.
-The current status checklist lives on [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) and Public Testnet 1 (/resources/testnet).
-For the reasoning behind these trade-offs, read [Why Polaris](https://tokenbrice.github.io/polaris-docs/why-polaris). For definitions, see the [Glossary](https://tokenbrice.github.io/polaris-docs/resources).
+
+The current status checklist lives on [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) and [Public Testnet 1](https://tokenbrice.github.io/polaris-docs/resources/testnet).
+
+For the reasoning behind these trade-offs, read [Why Polaris](https://tokenbrice.github.io/polaris-docs/why-polaris).
+
+For definitions, see the [Glossary](https://tokenbrice.github.io/polaris-docs/resources).
 
 Relevant app/search vocabulary: risk, risks, risk disclosure, smart contract risk, liquidation risk.

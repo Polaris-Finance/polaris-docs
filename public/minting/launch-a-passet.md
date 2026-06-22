@@ -14,7 +14,9 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 Polaris is designed as infrastructure for many pAsset markets. Builders and operators can use the open-source Polaris codebase to deploy markets on top of the shared pETH collateral architecture.
 
-These markets can become part of the Polaris yield network by opting into Flows, sharing revenue with vePOLAR, and directing pETH incentives back to their issuers. Because every pAsset is built on pETH, activity in one market can increase pETH demand, trading volume, and yield flows for the broader ecosystem.
+These markets can become part of the Polaris yield network by opting into Flows, sharing revenue with vePOLAR, and directing pETH incentives back to their issuers.
+
+Because every pAsset is built on pETH, activity in one market can increase pETH demand, trading volume, and yield flows for the broader ecosystem.
 
 This creates a shared alignment loop: new markets bring demand, pETH activity grows, Polaris routes incentives, issuers earn yield, and vePOLAR gains new revenue sources. Builders that use pETH can share in the success of the wider Polaris ecosystem rather than growing in isolation.
 
@@ -29,6 +31,7 @@ pETH Flows are how aligned markets receive pETH incentives. A builder that wants
 Stewards can then whitelist the market into pETH Flows if the proposal creates clear value for the ecosystem.
 
 In practice, this creates two layers:
+
 - Deployment: builders can launch and operate their own pAsset markets.
 - Alignment: builders can apply for pETH Flow incentives, ecosystem recognition, and broader coordination with Polaris.
 
@@ -55,6 +58,7 @@ Builders do not need to bootstrap a separate reserve asset or design a new colla
 Each pAsset market still has its own accounting, reference pricing, parameters, Earn Vault, and risk controls. But the core infrastructure is shared.
 
 This gives builders access to:
+
 - A common pETH collateral base.
 - Existing issuance and redemption mechanics.
 - Earn Vault infrastructure.
@@ -69,6 +73,7 @@ A pAsset can track any asset with a reliable oracle price feed.
 That does not mean every asset is a good candidate.
 
 Builders should be prepared to explain:
+
 - What the pAsset tracks.
 - Why there is user demand.
 - Which oracle feeds can support it.
@@ -87,6 +92,7 @@ Each market must route a hardcoded minimum share of primary interest to its Earn
 Beyond that safety minimum, the deployer can choose how revenue is allocated.
 
 Possible destinations include:
+
 - The pAsset issuer or operator.
 - vePOLAR lockers.
 - Ecosystem partners.
@@ -105,6 +111,7 @@ For pAsset markets, this can mean sending pETH incentives to issuers in proporti
 Flows are not automatic and must be whitelisted by vePOLAR. Whitelisting can happen before or after deployment. Builders apply by showing how their market grows demand, strengthens the pETH ecosystem, and offers value back to Polaris.
 
 That value could include:
+
 - A share of primary interest to vePOLAR.
 - Liquidity commitments.
 - Distribution commitments.
@@ -117,6 +124,7 @@ That value could include:
 Each pAsset market needs risk parameters appropriate to the asset.
 
 These may include:
+
 - Minimum collateral ratio.
 - Recovery Mode threshold.
 - Issuance and redemption fee settings.
@@ -135,6 +143,7 @@ Launching a pAsset is not just a contract deployment.
 Users need a path to acquire, use, and exit the asset.
 
 Builders should consider:
+
 - Initial liquidity.
 - Swap routes.
 - Earn Vault demand.
@@ -148,6 +157,7 @@ Strong pAsset markets combine reliable reference pricing with real distribution.
 ## Technical Requirements
 
 Builders should expect to provide:
+
 - Verified contract addresses.
 - Source code and ABIs.
 - Oracle design and feed details.
@@ -166,6 +176,7 @@ The exact launch template is pending. Until then, builders should prepare around
 Flow onboarding is stewarded because Flow streams direct protocol value.
 
 The expected path is:
+
 1. Deploy or prepare the pAsset market.
 2. Draft a Flow proposal.
 3. Explain the asset, market, revenue model, and user demand.
@@ -180,6 +191,7 @@ The expected path is:
 A pAsset market is only officially recognized or Flow-approved once [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status), [Fee Router And Flows](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router), or the relevant reference pages list it.
 
 ## Next Steps
+
 - [pAssets](https://tokenbrice.github.io/polaris-docs/minting/passet-catalog): Understand the current pAsset model.
 - [USDp](https://tokenbrice.github.io/polaris-docs/minting/pusd): Review the flagship pAsset market.
 - [GOLDp](https://tokenbrice.github.io/polaris-docs/minting/pgold): Review a non-USD pAsset market.

@@ -93,8 +93,14 @@ Liquidation gas compensation, fixed deposit at position open | 0.0375 pETH | 0.0
 Liquidation gas compensation, variable | 0.5% of SP-portion collateral, capped at 2 pETH | Same | Hardcoded
 
 Public Testnet 1 POLAR staking is temporary and should not be treated as part of the final POLAR design.
-The app may display the inverse metric, **max LTV**. Public Testnet 1's 115% MCR is about 87.0% max LTV; the 150% Emergency Mode action MCR is about 66.7% max LTV.
-Use the app quote and live contract reads before signing. Do not copy Sepolia values into a production integration, and treat older beta, MCR, or Recovery Mode examples as stale if they disagree with the values above.
+
+The app may display the inverse metric, **max LTV**.
+
+Public Testnet 1's 115% MCR is about 87.0% max LTV; the 150% Emergency Mode action MCR is about 66.7% max LTV.
+
+Use the app quote and live contract reads before signing.
+
+Do not copy Sepolia values into a production integration, and treat older beta, MCR, or Recovery Mode examples as stale if they disagree with the values above.
 
 ## Contracts and addresses
 

@@ -12,10 +12,16 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 ---
 
-pETH combines two sources of value: its floor value and its premium above the floor.
-The Split mechanism separates those two components:
+pETH combines two sources of value: its floor value and its premium above the floor. The Split mechanism separates those two components:
+
+```text
 1 pETH = 1 fpETH + 1 vpETH
-Splitting does not create extra value. It separates one pETH token into two interconnected tokens, so users can hold, trade, merge, or borrow against the part of pETH they want.
+```
+
+Splitting does not create extra value.
+
+It separates one pETH token into two interconnected tokens, so users can hold, trade, merge, or borrow against the part of pETH they want.
+
 ## The Two Legs
 
 Token | What it represents | Main use
@@ -23,9 +29,20 @@ Token | What it represents | Main use
 fpETH | The floor-value component of pETH | Passive ETH yield, reserve loan collateral, looping within DeFi
 vpETH | The premium above the floor | Hold or trade the upside and volatility component of pETH
 
-Think of pETH as: pETH value = floor value + premium above floor fpETH isolates the floor-value side. vpETH isolates the remaining premium.
+Think of pETH as:
+
+```text
+pETH value = floor value + premium above floor
+```
+
+fpETH isolates the floor-value side.
+
+vpETH isolates the remaining premium.
+
 If pETH trades close to its floor, vpETH may be worth very little. If pETH trades far above its floor, vpETH carries most of that premium exposure.
+
 ## Example
+
 If pETH trades at 1.00 ETH:
 
 Floor price | Floor ratio | fpETH claim (floor leg) | vpETH exposure (premium leg)
@@ -34,29 +51,47 @@ Floor price | Floor ratio | fpETH claim (floor leg) | vpETH exposure (premium le
 0.90 ETH | 90% | ~0.90 ETH | ~0.10 ETH
 
 This is only a simple decomposition. fpETH and vpETH can each trade on their own markets, so realized prices may differ.
+
 ## Split And Merge
-Splitting deposits pETH into the splitter contract and sends equal amounts of fpETH and vpETH to your wallet.
-Merging burns equal amounts of fpETH and vpETH and releases the matching pETH.
+
+Splitting deposits pETH into the splitter contract and sends equal amounts of fpETH and vpETH to your wallet. Merging burns equal amounts of fpETH and vpETH and releases the matching pETH.
+
 You need both legs in equal amounts to merge back into pETH. If you sell or deposit one leg, you must reacquire it before merging.
+
 ## fpETH Redemption
-fpETH can be redeemed through the splitter for WETH based on the current pETH floor price.
-That redemption path is why fpETH represents the floor leg and is enforced by the splitter and bonding curve mechanics while the relevant contract invariants hold.
+
+fpETH can be redeemed through the splitter for WETH based on the current pETH floor price. That redemption path is why fpETH represents the floor leg and is enforced by the splitter and bonding curve mechanics while the relevant contract invariants hold.
+
 ## Reserve Loans
-Reserve loans use fpETH as collateral.
-The borrowable WETH amount is based on the fpETH amount and the current pETH floor price, not on pETH's market premium.
-This reduces liquidation risk from pETH premium swings, because the loan is sized against the floor-value component rather than the volatile premium.
-Reserve loans are separate from pAsset positions. They use fpETH collateral and WETH borrowing, rather than pETH collateral and pAsset issuance.
+
+Reserve loans use fpETH as collateral. The borrowable WETH amount is based on the fpETH amount and the current pETH floor price, not on pETH's market premium.
+
+This reduces liquidation risk from pETH premium swings, because the loan is sized against the floor-value component rather than the volatile premium. Reserve loans are separate from pAsset positions.
+
+They use fpETH collateral and WETH borrowing, rather than pETH collateral and pAsset issuance.
+
 ## Non-Staking ETH Yield
-fpETH is designed to give users ETH-denominated yield without relying on staking.
-Its value is tied to the pETH floor. When Polaris activity raises the floor, the fpETH redemption value rises with it.
-That makes fpETH a new kind of ETH yield asset: not staking yield, not lending yield, and not offchain yield. It is yield from protocol activity increasing the floor of pETH.
-Because fpETH represents the floor-value component of pETH, it is structurally the lower-risk side of the split. It does not need pETH to trade higher in the market. It only needs the pETH floor to keep rising.
-fpETH is not risk-free. It still depends on the splitter, bonding curve, Ethereum execution, and smart-contract correctness. But within the Polaris system, it is designed to be the most conservative way to earn from pETH floor growth.
+
+fpETH is designed to give users ETH-denominated yield without relying on staking. Its value is tied to the pETH floor.
+
+When Polaris activity raises the floor, the fpETH redemption value rises with it. That makes fpETH a new kind of ETH yield asset: not staking yield, not lending yield, and not offchain yield.
+
+It is yield from protocol activity increasing the floor of pETH. Because fpETH represents the floor-value component of pETH, it is structurally the lower-risk side of the split.
+
+It does not need pETH to trade higher in the market. It only needs the pETH floor to keep rising.
+
+fpETH is not risk-free. It still depends on the splitter, bonding curve, Ethereum execution, and smart-contract correctness.
+
+But within the Polaris system, it is designed to be the most conservative way to earn from pETH floor growth.
+
 ## Related App Tabs
+
 - [Split](https://tokenbrice.github.io/polaris-docs/using-app/split): Split pETH into fpETH and vpETH, or merge both legs back into pETH.
 - [Issue](https://tokenbrice.github.io/polaris-docs/using-app/issue): Create pAssets and access reserve-loan actions if supported in the app.
 - [Dashboard](https://tokenbrice.github.io/polaris-docs/using-app): View live token prices, balances, and position state.
+
 ## Next Steps
+
 - [pETH Floor Price](https://tokenbrice.github.io/polaris-docs/peth/floor-price): Understand the floor that backs fpETH.
 - [Issue](https://tokenbrice.github.io/polaris-docs/using-app/issue): Use pETH to create pAssets.
 - [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure): Understand the risks around pETH, fpETH, vpETH, and reserve loans.

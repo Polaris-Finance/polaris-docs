@@ -18,6 +18,7 @@ URL: https://tokenbrice.github.io/polaris-docs/quickstart
 Markdown URL: https://tokenbrice.github.io/polaris-docs/quickstart.md
 
 Use this page to try Polaris on Public Testnet 1.
+
 1. Open [https://app.testnet.polarisfinance.io/](https://app.testnet.polarisfinance.io/).
 2. Connect your wallet on Sepolia, chain ID 11155111.
 3. Get Sepolia ETH for gas from a Sepolia faucet if needed.
@@ -26,6 +27,7 @@ Use this page to try Polaris on Public Testnet 1.
 6. Use Issue to issue USDp or GOLDp against pETH.
 7. Use Earn to deposit pAssets into an Earn Vault.
 8. Return to the Dashboard to confirm your positions and rewards.
+
 ## Success Checks
 
 Check | Expected result

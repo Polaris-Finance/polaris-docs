@@ -13,41 +13,64 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 ---
 
 ## What It Is
-The pETH floor is the code-enforced minimum price of pETH in ETH terms, enforced by the bonding curve.
-It is not a treasury promise, discretionary backstop, or target price. It is a result of the curve's reserves, supply, and burn rules, enforced directly by immutable code while the relevant contract invariants hold.
-The easiest way to think about it:
+
+The pETH floor is the code-enforced minimum price of pETH in ETH terms, enforced by the bonding curve. It is not a treasury promise, discretionary backstop, or target price.
+
+It is a result of the curve's reserves, supply, and burn rules, enforced directly by immutable code while the relevant contract invariants hold. The easiest way to think about it:
+
 - pETH can and will trade above its floor.
 - The floor is the code-enforced lower bound created by the bonding curve.
 - Protocol activity is designed to push the floor upward over time.
 - Your curve-implied downside in ETH terms depends on the distance between your entry price and the floor.
+
 ## The Curve
+
 The Polaris bonding curve prices pETH using a power-law relationship between price and supply:
-$$ P = \alpha \cdot Q^{\beta} $$
+
+$$
+P = \alpha \cdot Q^{\beta}
+$$
+
 Where:
+
 - P is the pETH price in ETH.
 - Q is the pETH supply.
 - alpha is a scaling parameter.
 - beta is the curve exponent.
+
 As pETH supply increases, the curve price rises. As pETH is sold or burned, supply falls.
+
 beta controls how tightly pETH tracks ETH:
+
 - A higher beta makes pETH more sensitive to supply changes.
 - A lower beta keeps pETH more closely coupled to ETH.
+
 Current curve parameters live in [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters).
+
 ## What Moves The Floor
-The pETH floor is raised by burning pETH.
-When pETH is permanently removed from supply and the ETH released from the curve is routed back into the system, the floor price increases for the remaining pETH.
+
+The pETH floor is raised by burning pETH. When pETH is permanently removed from supply and the ETH released from the curve is routed back into the system, the floor price increases for the remaining pETH.
+
 This means the floor is driven by activity that creates burnable pETH flow, including:
+
 - Conversion volume, where pETH is burned to create POLAR.
 - Bonding curve trading fees that accrue as pETH and are later burned.
 - Other pETH-denominated protocol fees directed to floor-increasing burns.
+
 The ETH reserve supports the bonding curve, but the floor does not rise simply because more ETH is sitting in the reserve. The floor rises when protocol activity produces pETH burns that permanently reduce supply.
+
 In simple terms: adoption creates activity, activity creates fee flow, fee flow creates burns, and burns raise the floor.
 
 Image: The rising pETH floor as a staircase stepping up over time, each step driven by swap-fee burns, conversion-auction burns, or other pETH-denominated fee burns
 
 ## Floor Ratio
+
 The floor ratio expresses the floor as a percentage of the current pETH market price:
+
+```text
 Floor ratio = Floor price / Market price * 100
+```
+
 It tells you the curve-implied drawdown to the floor before gas, slippage, MEV, smart-contract risk, and chain-liveness risk.
 
 Floor ratio | Curve-implied drawdown to floor
@@ -56,11 +79,12 @@ Floor ratio | Curve-implied drawdown to floor
 67% | 33%
 55% | 45%
 
-A higher floor ratio means less curve-implied downside to the floor. A lower floor ratio means more distance between market price and floor.
-The floor ratio can move over time:
+A higher floor ratio means less curve-implied downside to the floor. A lower floor ratio means more distance between market price and floor. The floor ratio can move over time:
+
 - In periods of strong demand, the market price can move far above the floor and the ratio can fall.
 - As the market price normalizes or the floor catches up, the ratio can rise.
 - As the floor ratio rises, remaining downside to the floor becomes smaller.
+
 The floor ratio frames curve-implied downside in ETH terms. It does not include gas, slippage, MEV, smart-contract risk, or Ethereum liveness risk. For the full risk model, see [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure).
 
 Image: A volatile pETH market-price line above a steadily rising floor line, showing the floor ratio as the distance between them
@@ -68,7 +92,9 @@ Image: A volatile pETH market-price line above a steadily rising floor line, sho
 ## Interactive Explorer
 
 Use the explorer to see how pETH supply, market price, floor price, and floor ratio move under different curve settings.
+
 ## Next Steps
+
 - [pETH Split](https://tokenbrice.github.io/polaris-docs/peth/split): Separate the floor-backed claim from the premium upside.
 - [POLAR Conversion Auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions): Understand the pETH burn that lifts the floor and creates POLAR.
 - [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure): Understand what the floor does and does not protect you from.

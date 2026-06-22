@@ -25,6 +25,7 @@ Note: USDp is Testnet-active on Sepolia. See [Launch Status](https://tokenbrice.
 USDp is designed for users who want dollar-denominated onchain exposure without relying on a centralized stablecoin issuer or taking issuer counterparty risk.
 
 Users can:
+
 - Create USDp against pETH collateral.
 - Hold USDp as a decentralized dollar asset.
 - Deposit USDp into an Earn Vault to earn scalable, protocol-native yield.

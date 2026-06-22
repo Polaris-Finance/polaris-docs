@@ -17,9 +17,8 @@
 URL: https://tokenbrice.github.io/polaris-docs/using-app
 Markdown URL: https://tokenbrice.github.io/polaris-docs/using-app.md
 
-The Dashboard is your starting point in Polaris.
-It shows your balances, active positions, Earn Vault opportunities, recent activity, and the testnet faucet.
-Use it to:
+The Dashboard is your starting point in Polaris. It shows your balances, active positions, Earn Vault opportunities, recent activity, and the testnet faucet. Use it to:
+
 - Connect your wallet.
 - Claim test WETH on Sepolia.
 - Check your pETH, pAsset, POLAR, fpETH, and vpETH balances.
@@ -29,7 +28,8 @@ Use it to:
 Image: Polaris Dashboard showing balances, Earn Vault opportunities, onboarding steps, recent activity, and token prices
 
 The Dashboard is an overview screen.
-To take action, use Swap (/using-app/swap), [Issue](https://tokenbrice.github.io/polaris-docs/using-app/issue), Earn (/using-app/earn), Split (/using-app/split), Zap (/using-app/zap), or Advanced (/using-app/advanced).
+
+To take action, use [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap), [Issue](https://tokenbrice.github.io/polaris-docs/using-app/issue), [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn), [Split](https://tokenbrice.github.io/polaris-docs/using-app/split), [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap), or [Advanced](https://tokenbrice.github.io/polaris-docs/using-app/advanced).
 
 ---
 
@@ -44,14 +44,9 @@ These tools are permissionless and offer more flexibility, but they assume famil
 
 ## Current Modules
 
-Peg Stability Module:
-Issue or redeem USDp and GOLDp against pETH at the oracle price. This arbitrage helps maintain each peg.
-
-Convert pETH To POLAR:
-Exchange pETH for newly created POLAR through a one-way conversion auction. Converted pETH is permanently burned. There is no reverse direction.
-
-Testnet ETH Faucet:
-Claim test WETH using Sepolia ETH, subject to the current rate, cooldown period, and faucet limits.
+- Peg Stability Module: Issue or redeem USDp and GOLDp against pETH at the oracle price. This arbitrage helps maintain each peg.
+- Convert pETH To POLAR: Exchange pETH for newly created POLAR through a one-way conversion auction. Converted pETH is permanently burned. There is no reverse direction.
+- Testnet ETH Faucet: Claim test WETH using Sepolia ETH, subject to the current rate, cooldown period, and faucet limits.
 
 Image: Polaris Advanced tab with expert operations, PSM issue and redeem panels, pETH-to-POLAR conversion, and faucet
 
@@ -79,6 +74,7 @@ Markdown URL: https://tokenbrice.github.io/polaris-docs/using-app/earn.md
 Earn is where you deposit assets into Polaris yield opportunities.
 
 Current opportunities include:
+
 - USDp Earn Vault, where deposits earn from issuer interest and liquidation processing.
 - GOLDp Earn Vault, where deposits earn from issuer interest and liquidation processing.
 - vpETH rewards, where holders gain exposure to the volatile component of pETH beyond its floor value and participate in pETH rewards distribution.
@@ -115,11 +111,8 @@ Markdown URL: https://tokenbrice.github.io/polaris-docs/using-app/issue.md
 
 Issue is where you create pAssets against pETH collateral or borrow ETH against fpETH.
 
-USDp and GOLDp:
-Deposit pETH collateral and create overcollateralized pAssets against your position.
-
-ETH:
-Borrow ETH against fpETH at up to 100% LTV with no liquidation risk, because the fpETH floor only rises.
+- USDp and GOLDp: Deposit pETH collateral and create overcollateralized pAssets against your position.
+- ETH: Borrow ETH against fpETH at up to 100% LTV with no liquidation risk, because the fpETH floor only rises.
 
 Once connected, you can manage existing positions from this tab, including adjustments, repayments, and closures.
 
@@ -139,6 +132,7 @@ Image: Polaris Issue tab with USDp, GOLDp, and ETH sub-tabs, a collateral field,
 Creating pAssets opens an active position, not a one-time swap.
 
 Before signing, check:
+
 - LTV and liquidation price.
 - Current interest rate.
 - Expected debt and collateral changes.
@@ -164,23 +158,29 @@ Relevant app/search vocabulary: Issue, Manage Position, borrow, issue, trove, tr
 URL: https://tokenbrice.github.io/polaris-docs/using-app/split
 Markdown URL: https://tokenbrice.github.io/polaris-docs/using-app/split.md
 
-pETH combines two distinct sources of value: a steadily growing floor, represented by fpETH, and a volatile component above that floor, represented by vpETH.
-Split converts pETH into matching fpETH and vpETH at a fixed 1:1:1 ratio.
-This creates two assets with distinct risk and return profiles while preserving a path back to pETH.
-The process is fully reversible and does not rely on external dependencies. Merge 1 fpETH and 1 vpETH back into 1 pETH at any time.
-Use this page for the app workflow. Use [pETH Split](https://tokenbrice.github.io/polaris-docs/peth/split) for the mechanism.
+pETH combines two distinct sources of value: a steadily growing floor, represented by fpETH, and a volatile component above that floor, represented by vpETH. Split converts pETH into matching fpETH and vpETH at a fixed 1:1:1 ratio.
+
+This creates two assets with distinct risk and return profiles while preserving a path back to pETH. The process is fully reversible and does not rely on external dependencies.
+
+Merge 1 fpETH and 1 vpETH back into 1 pETH at any time. Use this page for the app workflow.
+
+Use [pETH Split](https://tokenbrice.github.io/polaris-docs/peth/split) for the mechanism.
 
 Image: Polaris Split tab with a Split/Merge toggle, fpETH and vpETH outputs, live floor and market prices, and a price simulator
 
 ## Basic Flow
+
 1. Choose Split or Merge.
 2. Enter the amount.
 3. Review the expected output.
 4. Approve pETH, fpETH, or vpETH if required.
 5. Sign the transaction.
 6. Confirm your wallet balances update.
+
 After splitting, your pETH balance decreases and your fpETH and vpETH balances increase by the same amount.
+
 After merging, your fpETH and vpETH balances decrease by the same amount and your pETH balance increases.
+
 For failed split or merge transactions, see [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting).
 
 Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor price.
@@ -192,14 +192,16 @@ Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor pri
 URL: https://tokenbrice.github.io/polaris-docs/using-app/swap
 Markdown URL: https://tokenbrice.github.io/polaris-docs/using-app/swap.md
 
-Swap lets you exchange between supported Polaris assets from one place.
-You can use it to acquire pETH, move between pAssets, or exit back into supported test assets where routes are available.
+Swap lets you exchange between supported Polaris assets from one place. You can use it to acquire pETH, move between pAssets, or exit back into supported test assets where routes are available.
+
 pETH routes use the Polaris bonding curve. pETH is the core collateral asset in Polaris, so acquiring it unlocks actions such as issuing pAssets, splitting into fpETH and vpETH, and participating in other protocol strategies.
 
 Image: Polaris Swap tab showing the buy/sell direction, the WETH to pETH bonding-curve route, quote, and slippage controls
 
 Before signing, check the quoted price, expected output, and slippage settings.
+
 ## Basic Flow
+
 1. Choose the direction: buy pETH with WETH, or sell pETH for WETH.
 2. Enter the amount.
 3. Review the quote and route.
@@ -207,6 +209,7 @@ Before signing, check the quoted price, expected output, and slippage settings.
 5. Approve the input token if prompted.
 6. Sign the swap transaction.
 7. Confirm your pETH or WETH balance updates.
+
 For stale quotes or reverted swaps, see [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting).
 
 Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor price.
@@ -218,17 +221,21 @@ Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor pri
 URL: https://tokenbrice.github.io/polaris-docs/using-app/zap
 Markdown URL: https://tokenbrice.github.io/polaris-docs/using-app/zap.md
 
-Zap combines multiple onchain actions into a single transaction, making it easier to enter common Polaris strategies.
-A zap only simplifies execution. The underlying economics remain exactly the same, and positions can always be managed manually afterward.
+Zap combines multiple onchain actions into a single transaction, making it easier to enter common Polaris strategies. A zap only simplifies execution. The underlying economics remain exactly the same, and positions can always be managed manually afterward.
+
 ## Current Strategies
-USDp Stable Yield: Uses your WETH to buy USDp and deposit it into the USDp Earn Vault in one step, earning yield from issuer interest and liquidation gains.
-Floor Carry: Converts ETH into fpETH and borrows ETH against it, creating a non-liquidatable position that can be looped to increase exposure.
+
+- USDp Stable Yield: Uses your WETH to buy USDp and deposit it into the USDp Earn Vault in one step, earning yield from issuer interest and liquidation gains.
+- Floor Carry: Converts ETH into fpETH and borrows ETH against it, creating a non-liquidatable position that can be looped to increase exposure.
+
 Additional strategies will become available over time.
 
 Image: Polaris Zap tab showing the USDp Stable Yield route from WETH through USDp into the Earn Vault
 
 You keep full self-custody throughout the process. Before signing, a simulation shows the expected result and slippage is set by your settings.
+
 ## Basic Flow
+
 1. Choose the strategy.
 2. Enter the input amount.
 3. Review every route leg, the output estimate, slippage, and the deposit or loan target.
@@ -236,6 +243,7 @@ You keep full self-custody throughout the process. Before signing, a simulation 
 5. Sign approvals only for expected spenders.
 6. Sign the zap.
 7. Confirm the final position on the Dashboard, Earn, or Issue tab.
+
 For stale quotes, failed simulations, or partial setup after approval, see [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting).
 
 Relevant app/search vocabulary: Earn, earn, yield, APR, Earn Vault, deposit, claim rewards.

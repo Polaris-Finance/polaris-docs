@@ -15,62 +15,88 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 ---
 
 Use this page when a wallet action, quote, balance, faucet claim, or transaction does not behave as expected.
+
 ## Wrong Network
+
 Confirm your wallet is connected to Sepolia, chain ID 11155111.
+
 ## Wrong Frontend
-Use only the official Public Testnet 1 app:
-https://app.testnet.polarisfinance.io/
+
+Use only the official Public Testnet 1 app: https://app.testnet.polarisfinance.io/
+
 ## Faucet Claim Fails
+
 The faucet may fail if:
+
 - You do not have enough Sepolia ETH.
 - Your address is still in cooldown.
 - The daily faucet cap has been reached.
 - The faucet is paused.
+
 ## Balance Missing
+
 Check that:
+
 - You are connected with the same wallet.
 - The transaction confirmed.
 - You are viewing the correct asset and network.
 - The app has refreshed after confirmation.
+
 ## Approval Succeeded But Action Failed
-Approvals and actions are separate transactions.
-If approval succeeded, return to the action tab and submit the transaction again after checking the new quote.
+
+Approvals and actions are separate transactions. If approval succeeded, return to the action tab and submit the transaction again after checking the new quote.
+
 ## Wrong Allowance Or Spender
-If the wallet shows an unexpected spender, token, or amount, do not sign.
-Confirm the action, token, and contract against the app and Contracts And Addresses (/resources/testnet#contracts-and-addresses).
+
+If the wallet shows an unexpected spender, token, or amount, do not sign. Confirm the action, token, and contract against the app and [Contracts And Addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses).
+
 ## Quote Changed
-Quotes can change when protocol state moves.
-Refresh the quote before signing.
+
+Quotes can change when protocol state moves. Refresh the quote before signing.
+
 ## Slippage Or Output Changed
-Your transaction may fail if the output moves outside your slippage settings before inclusion.
-Refresh the quote, check the expected output, and retry only if the transaction still matches your intent.
+
+Your transaction may fail if the output moves outside your slippage settings before inclusion. Refresh the quote, check the expected output, and retry only if the transaction still matches your intent.
+
 ## Issue Action Fails
+
 Common causes:
+
 - LTV is too high.
 - Minimum debt or collateral requirements are not met.
 - The position would become unsafe after the action.
 - Recovery Mode restricts the action.
 - The quote changed before the transaction landed.
+
 ## Earn Action Fails
+
 Common causes:
+
 - Insufficient pAsset balance.
 - Approval has not been completed.
 - The selected Earn Vault is unavailable.
 - The transaction quote expired.
+
 ## Split Or Merge Fails
+
 Common causes:
+
 - Insufficient pETH, fpETH, or vpETH balance.
 - Approval has not been completed.
 - The transaction quote expired.
 - You do not hold equal fpETH and vpETH amounts for merging.
+
 ## Zap Fails
+
 Common causes:
+
 - One of the bundled actions cannot execute.
 - Slippage settings are too tight.
 - The route changed before the transaction landed.
 - You do not have enough gas or input token balance.
+
 ## Transaction Pending Or Reverted
-Check gas settings, wallet status, and the transaction on Sepolia Etherscan.
-If the transaction reverted, refresh the app and get a new quote before retrying.
+
+Check gas settings, wallet status, and the transaction on Sepolia Etherscan. If the transaction reverted, refresh the app and get a new quote before retrying.
 
 Relevant app/search vocabulary: quickstart, troubleshooting, wrong network, Sepolia, faucet, approval, stale quote, failed transaction.

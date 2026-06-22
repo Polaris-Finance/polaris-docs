@@ -37,6 +37,7 @@ When a pAsset trades above peg, the system wants more supply. Issuance becomes a
 When a pAsset trades below peg, the system wants less supply. Redemptions become attractive, supply contracts, and the peg-steering rate moves higher.
 
 In simple terms:
+
 - Above peg: make issuance cheaper so supply can expand.
 - Below peg: make issuance more expensive so supply can contract.
 
@@ -44,11 +45,9 @@ In simple terms:
 
 Polaris does not need to ask an oracle whether USDp is trading at $0.99 or $1.01. Instead, it observes how users interact with the protocol.
 
-Above peg:
-Arbitrageurs issue pAssets and sell them into the market. More issuance indicates stronger demand for that pAsset.
+Above peg: Arbitrageurs issue pAssets and sell them into the market. More issuance indicates stronger demand for that pAsset.
 
-Below peg:
-Arbitrageurs buy discounted pAssets and redeem them for pETH collateral. More redemptions indicate that supply exceeds demand.
+Below peg: Arbitrageurs buy discounted pAssets and redeem them for pETH collateral. More redemptions indicate that supply exceeds demand.
 
 The protocol uses this onchain activity to drive the peg-steering rate.
 
@@ -59,6 +58,7 @@ The peg-steering rate is the primary interest rate paid by pAsset issuers.
 It adjusts whenever pAssets are issued or redeemed. More issuance pushes the rate lower, while more redemptions push it higher.
 
 This creates a feedback loop:
+
 - A pAsset trades above peg.
 - Issuance becomes profitable.
 - Issuance expands supply.
@@ -67,6 +67,7 @@ This creates a feedback loop:
 - Supply can expand until the opportunity closes and the pAsset returns toward peg.
 
 And in the other direction:
+
 - A pAsset trades below peg.
 - Redemptions become profitable.
 - Redemptions contract supply.
@@ -91,6 +92,7 @@ The peg-steering rate is continuously added to an issuer's outstanding debt.
 This means the cost of an open position grows over time while debt remains outstanding.
 
 Issuers should monitor:
+
 - The current peg-steering rate.
 - Their outstanding debt.
 - Their LTV.
@@ -141,6 +143,7 @@ Final safety-rate parameters, activation conditions, and display logic should be
 Peg-steering interest is protocol revenue.
 
 Depending on the pAsset market and configured splits, it can flow to:
+
 - Earn Vault depositors.
 - vePOLAR lockers.
 - Ecosystem or Flow paths where configured.

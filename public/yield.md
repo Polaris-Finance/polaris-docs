@@ -33,11 +33,9 @@ Image: ETH enters the bonding curve as pETH, pETH backs pAsset positions, and pA
 
 Depositors earn from two streams.
 
-Issuer interest:
-A share of the interest paid by positions that issued that pAsset.
+Issuer interest: A share of the interest paid by positions that issued that pAsset.
 
-Liquidation processing:
-When a position is liquidated, the vault can absorb debt and receive pETH collateral. The outcome depends on the liquidation, execution timing, collateral price, and market conditions.
+Liquidation processing: When a position is liquidated, the vault can absorb debt and receive pETH collateral. The outcome depends on the liquidation, execution timing, collateral price, and market conditions.
 
 For the full source model, see [Yield Sources](https://tokenbrice.github.io/polaris-docs/yield/yield-sources).
 

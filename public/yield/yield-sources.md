@@ -20,46 +20,32 @@ As Polaris activity grows, more fees and revenue can be routed through the syste
 
 ## The Sources
 
-Issuer interest:
-Origin: interest paid by positions that issued pAssets.
-Flows to: split by the interest router between Earn Vault depositors, vePOLAR lockers, and other configured destinations.
+Source | Origin | Flows to
 
-Liquidation processing:
-Origin: liquidated positions processed through Earn Vaults.
-Flows to: Earn Vault depositors.
-
-Bonding curve swap fees:
-Origin: fees on ETH to pETH and pETH to ETH swaps.
-Flows to: pETH floor growth and positions that receive routed pETH rewards.
-
-Conversion gains:
-Origin: ETH released when pETH is burned to create POLAR in a conversion auction.
-Flows to: the Fee Router, which recycles value into pETH and routes it to configured destinations.
+Issuer interest | Interest paid by positions that issued pAssets | Split by the interest router between Earn Vault depositors, vePOLAR lockers, and other configured destinations
+Liquidation processing | Liquidated positions processed through Earn Vaults | Earn Vault depositors
+Bonding curve swap fees | Fees on ETH to pETH and pETH to ETH swaps | pETH floor growth and positions that receive routed pETH rewards
+Conversion gains | ETH released when pETH is burned to create POLAR in a conversion auction | The Fee Router, which recycles value into pETH and routes it to configured destinations
 
 ## What Each Source Supports
 
-Earn Vault yield:
-Driven mainly by issuer interest and liquidation processing.
+Destination | Driven by
 
-pETH yield:
-Driven by bonding curve swap fees, conversion gains, floor growth, and routed pETH rewards.
-
-vePOLAR value capture:
-Driven by a guaranteed minimum share of issuer interest from deployed pAsset markets, once vePOLAR is live.
-
-Flow revenue:
-Driven by protocol revenue shared with approved integrations that create durable demand for Polaris assets.
+Earn Vault yield | Issuer interest and liquidation processing
+pETH yield | Bonding curve swap fees, conversion gains, floor growth, and routed pETH rewards
+vePOLAR value capture | A guaranteed minimum share of issuer interest from deployed pAsset markets, once vePOLAR is live
+Flow revenue | Protocol revenue shared with approved integrations that create durable demand for Polaris assets
 
 ## Why This Is Self-Scaling
 
 The primary yield sources depend on protocol activity:
+
 - More pAssets issued can mean more issuer interest.
 - More trading can mean more bonding curve swap fees.
 - More POLAR created through conversion can mean more conversion gains.
 - More integrations can mean more demand for pETH and pAssets.
 
-Liquidations can also create Earn Vault yield, but they exist to protect solvency, not to generate yield for its own sake. They are expected to matter most during market stress, when issuer interest may fall and the system needs backstop
-liquidity most.
+Liquidations can also create Earn Vault yield, but they exist to protect solvency, not to generate yield for its own sake. They are expected to matter most during market stress, when issuer interest may fall and the system needs backstop liquidity most.
 
 ## Owned, Not Rented
 

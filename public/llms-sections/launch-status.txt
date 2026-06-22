@@ -30,10 +30,12 @@ Production network | Ethereum mainnet
 Mainnet contracts | Not published
 
 ## What This Means
+
 - Polaris is currently available on Public Testnet 1 using Sepolia test assets only.
 - Testnet assets have no monetary value, redemption rights, or claim on future mainnet assets.
 - Do not rely on production infrastructure, audits, bounty programs, or mainnet workflows unless explicitly marked as live.
 - Sepolia deployments may change as testing progresses.
+
 ## Reference Pages
 
 Need | Page
@@ -46,7 +48,7 @@ Risk taxonomy | Risk Disclosure
 Audit and disclosure status | Audits & Security
 
 ## Start Here
-To use the app now, follow the [Public Testnet Quickstart](https://tokenbrice.github.io/polaris-docs/quickstart).
-Before signing, confirm the app URL, network, asset, contract, and transaction details match the current testnet references.
+
+To use the app now, follow the [Public Testnet Quickstart](https://tokenbrice.github.io/polaris-docs/quickstart). Before signing, confirm the app URL, network, asset, contract, and transaction details match the current testnet references.
 
 Relevant app/search vocabulary: app, official app, testnet app, app.testnet.polarisfinance.io, connect wallet, testnet, Public Testnet 1, Sepolia, Sepolia ETH, chain ID 11155111, WETH faucet, borrow, earn, swap, contracts, audits.

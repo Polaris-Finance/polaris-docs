@@ -12,20 +12,42 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 ---
 
-Blockchains gave the world something new: a shared global state that no single institution controls.
-DeFi was meant to build on that foundation. A financial layer that is more open and transparent, where participation depends less on trust and more on verifiable rules.
+Blockchains gave the world something new: a shared global state that no single institution controls. DeFi was meant to build on that foundation.
+
+A financial layer that is more open and transparent, where participation depends less on trust and more on verifiable rules.
+
 But over time, much of DeFi has drifted back toward the dependencies it was built to escape: custodians, centralized exchanges, multisigs, upgradeable contracts, offchain collateral, and black-box yield.
-The result is a financial system that looks onchain from the outside, but often depends on centralized promises underneath.
-Users are asked to trust intermediaries they cannot see, legal agreements they cannot verify, and yield sources they do not control. They inherit new risks, but are rarely compensated for them.
-Polaris takes a different path.
+
+The result is a financial system that looks onchain from the outside, but often depends on centralized promises underneath. Users are asked to trust intermediaries they cannot see, legal agreements they cannot verify, and yield sources they do not control.
+
+They inherit new risks, but are rarely compensated for them. Polaris takes a different path.
+
 Built around an immutable foundation, pETH is a yield-bearing asset backed by native ETH and designed to support decentralized currencies and synthetic assets without introducing external counterparties or offchain dependencies.
+
 ## The Problem
-DeFi’s yield economy has become increasingly concentrated around two sources: T-bills and RWAs for stablecoins, and ETH staking for ETH-denominated assets.
-Both have their place, but this is not the end state we aim for. When stablecoin yield depends on RWAs, the system becomes reliant on external institutions to generate and distribute returns. When ETH yield comes primarily from staking, every ETH-denominated asset ends up competing for the same source of return, one that has steadily compressed over time. This creates a structural dependency problem that worsens as the system grows. DeFi may become more productive on the surface, but underneath it is more reliant on custodians, offchain agreements, upgrade keys, and opaque operational processes.
+
+DeFi’s yield economy has become increasingly concentrated around two sources: T-bills and RWAs for stablecoins, and ETH staking for ETH-denominated assets. Both have their place, but this is not the end state we aim for.
+
+When stablecoin yield depends on RWAs, the system becomes reliant on external institutions to generate and distribute returns. When ETH yield comes primarily from staking, every ETH-denominated asset ends up competing for the same source of return, one that has steadily compressed over time.
+
+This creates a structural dependency problem that worsens as the system grows. DeFi may become more productive on the surface, but underneath it is more reliant on custodians, offchain agreements, upgrade keys, and opaque operational processes.
+
 Users often do not see these dependencies. They see an APY, a token balance, and an interface that feels onchain, while the systems supporting that yield often rely on assets that can be frozen or contracts that can be upgraded without their consent.
+
 That is not enough for the next era of internet-native finance.
+
 ## The Polaris Thesis
-The internet needs financial infrastructure that can support both human and machine economies without relying on trusted counterparties. That requires permissionless money and collateral that remain sovereign throughout their lifecycle, from the assets that back them to the mechanisms that generate their yield. Polaris is designed around that belief. The protocol transforms ETH into pETH, a yield-bearing reserve asset with a natively growing floor. pETH can then support the creation of pAssets such as USDp and GOLDp, creating decentralized currencies and synthetic assets that scale with protocol activity. Instead of importing yield from centralized counterparties, Polaris routes value from its own mechanisms back into the system. Users can hold pETH as productive collateral, issue pAssets against it, deposit pAssets into Earn Vaults, split pETH into floor and volatility components, and participate in bounded stewardship through the POLAR token.
+
+The internet needs financial infrastructure that can support both human and machine economies without relying on trusted counterparties.
+
+That requires permissionless money and collateral that remain sovereign throughout their lifecycle, from the assets that back them to the mechanisms that generate their yield. Polaris is designed around that belief.
+
+The protocol transforms ETH into pETH, a yield-bearing reserve asset with a natively growing floor. pETH can then support the creation of pAssets such as USDp and GOLDp, creating decentralized currencies and synthetic assets that scale with protocol activity.
+
+Instead of importing yield from centralized counterparties, Polaris routes value from its own mechanisms back into the system.
+
+Users can hold pETH as productive collateral, issue pAssets against it, deposit pAssets into Earn Vaults, split pETH into floor and volatility components, and participate in bounded stewardship through the POLAR token.
+
 ## Design Choices
 
 Choice | Why it exists | What it enables
@@ -40,8 +62,13 @@ Redemptions | Help defend pAsset pegs below their reference value | Below-peg pr
 Peg-responsive interest rates | Adjust issuer costs based on each pAsset's peg conditions | Helps balance supply and demand while routing value back to Earn Vaults and POLAR stewardship.
 
 ## The End Goal
-Polaris exists to help DeFi become less dependent on the centralized financial system. A way to create money that remains decentralized and permissionless, without sacrificing the openness and transparency that blockchains were designed to provide. A fully censorship-resistant stablecoin may be the product people notice first, but the larger vision is a decentralized yield layer for onchain money.
+
+Polaris exists to help DeFi become less dependent on the centralized financial system. A way to create money that remains decentralized and permissionless, without sacrificing the openness and transparency that blockchains were designed to provide.
+
+A fully censorship-resistant stablecoin may be the product people notice first, but the larger vision is a decentralized yield layer for onchain money.
+
 ## Next Steps
+
 - [pETH](https://tokenbrice.github.io/polaris-docs/peth): How the shared collateral primitive, bonding curve, and floor price work.
 - [Issuing pAssets](https://tokenbrice.github.io/polaris-docs/minting): How USDp and GOLDp positions work.
 - [Earn Vaults](https://tokenbrice.github.io/polaris-docs/yield): How pAsset deposits earn from protocol activity.

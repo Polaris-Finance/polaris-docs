@@ -17,6 +17,7 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 Earn is where you deposit assets into Polaris yield opportunities.
 
 Current opportunities include:
+
 - USDp Earn Vault, where deposits earn from issuer interest and liquidation processing.
 - GOLDp Earn Vault, where deposits earn from issuer interest and liquidation processing.
 - vpETH rewards, where holders gain exposure to the volatile component of pETH beyond its floor value and participate in pETH rewards distribution.

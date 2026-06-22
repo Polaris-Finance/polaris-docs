@@ -12,48 +12,78 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 ---
 
-Everything needed to represent Polaris correctly: logos, palette, and type.
-The canonical surface is dark. Polaris was designed against a night sky, not a white page.
+Everything needed to represent Polaris correctly: logos, palette, and type. The canonical surface is dark. Polaris was designed against a night sky, not a white page.
 
 Image: Polaris full logo
 
 Full logo preview for placement checks. Keep the SVG unmodified and provide enough contrast around it.
+
 ## Logos
-Emblem: Path: /emblem.svg Use: Standalone mark for avatars, favicons, and tight spaces.
-Full logo: Path: /full-logo.svg Use: Mark plus wordmark for headers and primary placements.
-Favicon, SVG: Path: /favicon.svg Use: Scalable browser favicon.
-Favicon, PNG / ICO: Path: /favicon.png, /favicon.ico Use: Raster favicons for legacy contexts.
-Apple touch icon: Path: /apple-touch-icon.png Use: iOS home-screen icon.
+
+Asset | Path | Use
+
+Emblem | `/emblem.svg` | Standalone mark for avatars, favicons, and tight spaces.
+Full logo | `/full-logo.svg` | Mark plus wordmark for headers and primary placements.
+Favicon, SVG | `/favicon.svg` | Scalable browser favicon.
+Favicon, PNG / ICO | `/favicon.png`, `/favicon.ico` | Raster favicons for legacy contexts.
+Apple touch icon | `/apple-touch-icon.png` | iOS home-screen icon.
+
 ## Palette: Celestial Night Sky
-## Navy Backgrounds
+
+### Navy Backgrounds
+
 The canonical surfaces. Layer from darkest to lighter for depth.
-Navy darkest: Hex: #050a14 Role: Primary background. Accessible use: Use with Star or Star bright text.
-Navy dark: Hex: #0a1628 Role: Raised surfaces and panels. Accessible use: Use with Star text for body copy.
-Navy: Hex: #0d1f3c Role: Cards, borders, and accents. Accessible use: Use as a surface or border color, not low-contrast body text.
-## Star And Cream
+
+Color | Hex | Role | Accessible use
+
+Navy darkest | `#050a14` | Primary background | Use with Star or Star bright text.
+Navy dark | `#0a1628` | Raised surfaces and panels | Use with Star text for body copy.
+Navy | `#0d1f3c` | Cards, borders, and accents | Use as a surface or border color, not low-contrast body text.
+
+### Star And Cream
+
 The light values: text and starlight against the navy.
-Star: Hex: #E8DCC4 Role: Primary text and default starlight. Accessible use: Primary body text on navy backgrounds.
-Star bright: Hex: #FAF6EE Role: Brightest highlights and emphasis. Accessible use: Use sparingly for high-emphasis text and icons.
-Cream: Hex: #F5F0E6 Role: Secondary light surfaces. Accessible use: Pair with dark navy text. Do not use as text on white.
+
+Color | Hex | Role | Accessible use
+
+Star | `#E8DCC4` | Primary text and default starlight | Primary body text on navy backgrounds.
+Star bright | `#FAF6EE` | Brightest highlights and emphasis | Use sparingly for high-emphasis text and icons.
+Cream | `#F5F0E6` | Secondary light surfaces | Pair with dark navy text. Do not use as text on white.
+
 ## Token Colors
-USDp: Hex: #E8DCC4 Accessible use: Works as text or icon color on navy. Add text labels in charts.
-pETH: Hex: #7BA5C9 Accessible use: Works for lines and icons on navy. Avoid color-only legends.
-POLAR: Hex: #9B8FCF Accessible use: Works for accent graphics on navy. Pair with visible labels.
-Tokens not listed, such as GOLDp, do not yet have a published signature color.
-Do not rely on color alone. Token charts, route maps, and warnings should pair colors with labels, icons, or text so meaning survives in grayscale, print, and assistive technologies.
+
+Token | Hex | Accessible use
+
+USDp | `#E8DCC4` | Works as text or icon color on navy. Add text labels in charts.
+pETH | `#7BA5C9` | Works for lines and icons on navy. Avoid color-only legends.
+POLAR | `#9B8FCF` | Works for accent graphics on navy. Pair with visible labels.
+
+Tokens not listed, such as GOLDp, do not yet have a published signature color. Do not rely on color alone.
+
+Token charts, route maps, and warnings should pair colors with labels, icons, or text so meaning survives in grayscale, print, and assistive technologies.
+
 ## Typography
-Headings: Typeface: Cormorant Garamond. Notes: Serif. Sets the cerebral, classical tone.
-Body: Typeface: Inter. Notes: Sans-serif. Clean and legible at every size.
+
+Use | Typeface | Notes
+
+Headings | Cormorant Garamond | Serif. Sets the cerebral, classical tone.
+Body | Inter | Sans-serif. Clean and legible at every size.
+
 ## Usage
+
 Do:
+
 - Treat dark mode as the canonical surface.
 - Design against the navy palette first.
 - Use Star #E8DCC4 for body text, not pure white.
 - Keep borders subtle.
 - Give the emblem clear space.
+
 Do not:
+
 - Do not use pure white #FFFFFF for text. It is too harsh against the navy.
 - Do not recolor the logos or token colors.
 - Do not stretch, rotate, or add effects to the marks.
 - Do not place the logo on a busy or low-contrast background.
+
 Need the terms behind the tokens? See the [Glossary](https://tokenbrice.github.io/polaris-docs/resources).

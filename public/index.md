@@ -15,7 +15,11 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 ---
 
 Polaris is an onchain yield layer built around pETH, a yield-bearing collateral asset purposefully designed to back Polaris stablecoins and other synthetic assets.
-ETH enters the system through the Polaris bonding curve, pETH becomes the core reserve asset, and protocol activity routes yield back into the system. This creates a foundation for onchain money and yield-bearing synthetic assets that do not depend on RWAs, centralized exchanges, custodians, or offchain black-box agreements.
+
+ETH enters the system through the Polaris bonding curve, pETH becomes the core reserve asset, and protocol activity routes yield back into the system.
+
+This creates a foundation for onchain money and yield-bearing synthetic assets that do not depend on RWAs, centralized exchanges, custodians, or offchain black-box agreements.
+
 The Polaris stack is built around three core assets that work together to create collateral, synthetic assets, and long-term stewardship.
 
 Asset | What it is | Why it matters

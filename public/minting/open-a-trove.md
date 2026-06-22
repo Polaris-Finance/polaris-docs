@@ -17,6 +17,7 @@ Open the Issue tab to create USDp or GOLDp against pETH collateral. Opening a po
 Image: Polaris Issue tab with USDp, GOLDp, and ETH sub-tabs, a collateral field, LTV slider, effective rate, and a projected-position panel
 
 ## Basic Flow
+
 1. Open the Issue tab.
 2. Choose USDp or GOLDp.
 3. Enter how much pETH you want to deposit.
@@ -25,16 +26,21 @@ Image: Polaris Issue tab with USDp, GOLDp, and ETH sub-tabs, a collateral field,
 6. Approve pETH if required.
 7. Sign the transaction.
 8. Confirm the position appears in the Issue tab.
+
 ## What To Watch
+
 - Lower LTV gives you more room before liquidation.
 - Higher LTV gives you more capital efficiency but less safety.
 - Your position can receive pETH incentives based on issued debt.
 - New issuance and redemptions can change your position when pAssets trade away from peg.
 - You can add collateral, repay debt, or close the position later.
+
 For failed transactions or disabled actions, see [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting).
+
 ## Next Steps
-- Issue App Guide: Understand the Issue tab and how to manage an existing position.
-- Manage a Position: Adjust, monitor, and close a position.
-- Earn Vaults: Earn yield by depositing pAssets.
+
+- [Issue App Guide](https://tokenbrice.github.io/polaris-docs/using-app/issue): Understand the Issue tab and how to manage an existing position.
+- [Manage A Position](https://tokenbrice.github.io/polaris-docs/minting/manage-position): Adjust, monitor, and close a position.
+- [Earn Vaults](https://tokenbrice.github.io/polaris-docs/yield): Earn yield by depositing pAssets.
 
 Relevant app/search vocabulary: Issue, Manage Position, borrow, issue, trove, troves, open trove, manage trove, collateralized debt position, CDP, open borrow position, repay, close borrow position, USDp, GOLDp, LTV, loan-to-value, official app, borrow position, manage borrow position, pAsset debt position.

@@ -16,11 +16,8 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 Issue is where you create pAssets against pETH collateral or borrow ETH against fpETH.
 
-USDp and GOLDp:
-Deposit pETH collateral and create overcollateralized pAssets against your position.
-
-ETH:
-Borrow ETH against fpETH at up to 100% LTV with no liquidation risk, because the fpETH floor only rises.
+- USDp and GOLDp: Deposit pETH collateral and create overcollateralized pAssets against your position.
+- ETH: Borrow ETH against fpETH at up to 100% LTV with no liquidation risk, because the fpETH floor only rises.
 
 Once connected, you can manage existing positions from this tab, including adjustments, repayments, and closures.
 
@@ -40,6 +37,7 @@ Image: Polaris Issue tab with USDp, GOLDp, and ETH sub-tabs, a collateral field,
 Creating pAssets opens an active position, not a one-time swap.
 
 Before signing, check:
+
 - LTV and liquidation price.
 - Current interest rate.
 - Expected debt and collateral changes.

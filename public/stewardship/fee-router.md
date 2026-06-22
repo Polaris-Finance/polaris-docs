@@ -28,11 +28,8 @@ It moves existing assets only. It does not create POLAR, pETH, or any other pAss
 
 ## Inputs
 
-Conversion auctions:
-pETH purchased with released ETH, after any converter rebate.
-
-Bonding-curve swap fees:
-pETH fees from ETH to pETH and pETH to ETH swaps.
+- Conversion auctions: pETH purchased with released ETH, after any converter rebate.
+- Bonding-curve swap fees: pETH fees from ETH to pETH and pETH to ETH swaps.
 
 These are the only two sources wired into the Fee Router today.
 
@@ -52,11 +49,8 @@ Anyone can trigger the burn-and-repurchase step. Sending buffered pETH onward to
 
 ## Outputs
 
-Positions:
-Receive pETH yield credited proportionally to recorded debt.
-
-Flow recipients:
-Receive revenue-sharing distributions for whitelisted contracts.
+- Positions: Receive pETH yield credited proportionally to recorded debt.
+- Flow recipients: Receive revenue-sharing distributions for whitelisted contracts.
 
 The Fee Router buffers incoming value before distribution. Buffering smooths bursty conversions and swap fees into steadier accounting periods.
 
@@ -65,6 +59,7 @@ The converter rebate sits upstream of the router. It controls how much released 
 ## Operator Checks
 
 Before relying on the Fee Router, operators and indexers should verify:
+
 - Router address, source, and ABI.
 - Published input sources.
 - Current recipient path and bounds.
@@ -82,17 +77,16 @@ They are designed to replace recurring token emissions with revenue paid in pETH
 
 The base rule:
 
+```text
 Flow share = contract's weighted asset held / total weighted asset held across whitelisted contracts
+```
 
 If a whitelisted contract holds 20% of the whitelisted pETH supply, it receives 20% of that Flow before launch-specific adjustments.
 
 ## Flow Families
 
-pETH Flow:
-For eligible pETH-holding contracts. Funded by bonding-curve and conversion-related revenue.
-
-pAsset Flow:
-For eligible pAsset-holding contracts. Funded by issuer interest or other pAsset revenue after required Earn Vault allocation.
+- pETH Flow: For eligible pETH-holding contracts. Funded by bonding-curve and conversion-related revenue.
+- pAsset Flow: For eligible pAsset-holding contracts. Funded by issuer interest or other pAsset revenue after required Earn Vault allocation.
 
 Each Flow has its own whitelist, observed asset, recipient rules, and parameter bounds. Final contracts will define which assets, recipients, and revenue sources go live.
 
@@ -101,6 +95,7 @@ Each Flow has its own whitelist, observed asset, recipient rules, and parameter 
 The Flow formula should run automatically once configured.
 
 Stewardship is limited to edge decisions:
+
 - Admit or remove a contract from a whitelist.
 - Set a bounded weight or kickstart where allowed.
 - Distinguish observed address from recipient address where contracts support it.
@@ -113,6 +108,7 @@ Operators should prepare product details, verified contracts, admin and upgrade 
 ## Flow Lifecycle
 
 Flow onboarding follows a stewarded path:
+
 1. Application.
 2. Review.
 3. vePOLAR vote.
@@ -123,12 +119,14 @@ Flow onboarding follows a stewarded path:
 ## Flows Versus Emissions
 
 Emission gauges:
+
 - Currency: governance token emissions.
 - Funding: inflation.
 - Allocation: recurring votes and bribes.
 - Stewardship load: ongoing weight wars.
 
 Polaris Flows:
+
 - Currency: pETH or pAssets.
 - Funding: protocol revenue.
 - Allocation: formula based on eligible holdings.

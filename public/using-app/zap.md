@@ -14,17 +14,21 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 ---
 
-Zap combines multiple onchain actions into a single transaction, making it easier to enter common Polaris strategies.
-A zap only simplifies execution. The underlying economics remain exactly the same, and positions can always be managed manually afterward.
+Zap combines multiple onchain actions into a single transaction, making it easier to enter common Polaris strategies. A zap only simplifies execution. The underlying economics remain exactly the same, and positions can always be managed manually afterward.
+
 ## Current Strategies
-USDp Stable Yield: Uses your WETH to buy USDp and deposit it into the USDp Earn Vault in one step, earning yield from issuer interest and liquidation gains.
-Floor Carry: Converts ETH into fpETH and borrows ETH against it, creating a non-liquidatable position that can be looped to increase exposure.
+
+- USDp Stable Yield: Uses your WETH to buy USDp and deposit it into the USDp Earn Vault in one step, earning yield from issuer interest and liquidation gains.
+- Floor Carry: Converts ETH into fpETH and borrows ETH against it, creating a non-liquidatable position that can be looped to increase exposure.
+
 Additional strategies will become available over time.
 
 Image: Polaris Zap tab showing the USDp Stable Yield route from WETH through USDp into the Earn Vault
 
 You keep full self-custody throughout the process. Before signing, a simulation shows the expected result and slippage is set by your settings.
+
 ## Basic Flow
+
 1. Choose the strategy.
 2. Enter the input amount.
 3. Review every route leg, the output estimate, slippage, and the deposit or loan target.
@@ -32,6 +36,7 @@ You keep full self-custody throughout the process. Before signing, a simulation 
 5. Sign approvals only for expected spenders.
 6. Sign the zap.
 7. Confirm the final position on the Dashboard, Earn, or Issue tab.
+
 For stale quotes, failed simulations, or partial setup after approval, see [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting).
 
 Relevant app/search vocabulary: Earn, earn, yield, APR, Earn Vault, deposit, claim rewards.
