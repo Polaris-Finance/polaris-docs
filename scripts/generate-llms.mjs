@@ -71,7 +71,8 @@ function parsePage(fullPath) {
     keywords,
     lastVerified: extractPageDate(frontmatter, body, ['lastVerified', 'last_verified']),
     updated: extractPageDate(frontmatter, body, ['updated', 'lastUpdated', 'date']),
-    body: sanitizeMdxForLlms(body, route)
+    body: sanitizeMdxForLlms(body, route),
+    bodyMarkdown: sanitizeMdxForMarkdownMirror(body, route)
   }
 }
 
@@ -80,8 +81,12 @@ function propValue(props, name) {
   return match?.[2]?.trim() ?? ''
 }
 
-function renderImageAlt(props) {
+function renderImageAlt(props, { markdown = false } = {}) {
   const alt = propValue(props, 'alt') || propValue(props, 'aria-label') || propValue(props, 'title')
+  if (markdown) {
+    const src = propValue(props, 'src') || propValue(props, 'href')
+    return src ? `![${alt}](${src})` : alt ? `*${alt}*` : ''
+  }
   return alt ? `Image: ${alt}` : ''
 }
 
@@ -112,14 +117,14 @@ function renderNextSteps(props) {
   ].join('\n')
 }
 
-function stripJsxTags(value) {
+function stripJsxTags(value, { markdown = false } = {}) {
+  const systemOverview =
+    'Polaris system overview: ETH swaps into pETH on the bonding curve, pETH collateralizes pAsset markets that issue USDp, and burning pETH for POLAR raises the floor and releases ETH.'
+  const timeline = `${timelineSummary()} ${timelineCaption()}`
   return value
     .replace(/<NextSteps\s+([\s\S]*?)\/>/g, (_match, props) => renderNextSteps(props))
-    .replace(/<LaunchTimeline\s*\/>/g, `Image: ${timelineSummary()} ${timelineCaption()}`)
-    .replace(
-      /<SystemOverviewFigure\s*\/>/g,
-      'Image: Polaris system overview: ETH swaps into pETH on the bonding curve, pETH collateralizes pAsset markets that issue USDp, and burning pETH for POLAR raises the floor and releases ETH.'
-    )
+    .replace(/<LaunchTimeline\s*\/>/g, markdown ? timeline : `Image: ${timeline}`)
+    .replace(/<SystemOverviewFigure\s*\/>/g, markdown ? systemOverview : `Image: ${systemOverview}`)
     .replace(
       /<TimedExplainers\s*\/>/g,
       [
@@ -129,9 +134,11 @@ function stripJsxTags(value) {
         '- [Full Introduction](/explainers/10-min): 10 min read.'
       ].join('\n')
     )
-    .replace(/<img\s+([^>]*?)\/?>/gi, (_match, props) => renderImageAlt(props))
-    .replace(/<Image\s+([^>]*?)\/?>/g, (_match, props) => renderImageAlt(props))
-    .replace(/!\[([^\]]*)]\([^)]+\)/g, (_match, alt) => (alt ? `Image: ${alt}` : ''))
+    .replace(/<img\s+([^>]*?)\/?>/gi, (_match, props) => renderImageAlt(props, { markdown }))
+    .replace(/<Image\s+([^>]*?)\/?>/g, (_match, props) => renderImageAlt(props, { markdown }))
+    .replace(/!\[([^\]]*)]\([^)]+\)/g, (match, alt) =>
+      markdown ? match : alt ? `Image: ${alt}` : ''
+    )
     .replace(/<style[\s\S]*?<\/style>/gi, '')
     .replace(/^\s*(import|export)\s.+$/gm, '')
     .replace(/<svg[\s\S]*?<\/svg>/gi, '')
@@ -172,16 +179,28 @@ function absolutizeMarkdownLinks(value, route) {
     .replace(/\]\((\/[^)\s]+)\)/g, (_match, href) => `](${absoluteUrl(href)})`)
 }
 
-function sanitizeMdxForLlms(body, route) {
-  return appendVocabulary(
-    absolutizeMarkdownLinks(normalizeTables(stripJsxTags(body)), route),
-    route
-  )
+function cleanupEntities(value) {
+  return value
     .replace(/&nbsp;/g, ' ')
     .replace(/&amp;/g, '&')
     .replace(/\n{3,}/g, '\n\n')
     .replace(/[ \t]+\n/g, '\n')
     .trim()
+}
+
+function sanitizeMdxForLlms(body, route) {
+  return cleanupEntities(
+    appendVocabulary(absolutizeMarkdownLinks(normalizeTables(stripJsxTags(body)), route), route)
+  )
+}
+
+// Markdown mirror variant for the human-readable /*.md files: keep real
+// ![alt](url) image markdown and omit the appended search-vocabulary line. The
+// Image:/vocabulary conventions stay only in the machine llms*.txt bundles.
+function sanitizeMdxForMarkdownMirror(body, route) {
+  return cleanupEntities(
+    absolutizeMarkdownLinks(normalizeTables(stripJsxTags(body, { markdown: true })), route)
+  )
 }
 
 function checkOrWrite(relativePath, nextContent) {
@@ -324,7 +343,7 @@ Full documentation bundle: ${absoluteUrl('/llms-full.txt')}
 
 ---
 
-${stripLeadingH1(page.body)}
+${stripLeadingH1(page.bodyMarkdown)}
 `
 }
 
