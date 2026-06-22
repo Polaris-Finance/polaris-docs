@@ -26,11 +26,13 @@ A position is still liquidated only when its LTV exceeds the normal maximum.
 What changes is the set of actions issuers can take.
 
 Allowed actions:
+
 - Add collateral.
 - Repay debt.
 - Make adjustments that improve or preserve system backing.
 
 Restricted actions:
+
 - Withdraw collateral.
 - Issue more debt.
 - Make adjustments that increase LTV or weaken backing.
@@ -44,6 +46,7 @@ Recovery Mode does not automatically close healthy positions and does not change
 The defense is the same in every mode: keep a healthy LTV buffer.
 
 To reduce risk:
+
 1. Add pETH collateral.
 2. Repay pAsset debt.
 3. Avoid running positions close to the maximum LTV.

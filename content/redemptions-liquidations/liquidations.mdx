@@ -5,8 +5,6 @@ description: "How Polaris liquidates positions above maximum LTV to keep pAssets
 
 # Polaris Liquidations
 
-# Liquidations
-
 A liquidation closes a position when its LTV rises above the maximum.
 
 Liquidations protect protocol solvency and help ensure pAssets remain overcollateralized. Every pAsset is backed by collateral, and positions that cross the maximum LTV must be closed to keep the system healthy.
@@ -16,10 +14,12 @@ A liquidation is different from a redemption. Liquidations close unsafe position
 ## What Happens
 
 When a position is liquidated:
-The position's debt is cancelled.
-Its pETH collateral is seized.
-If the Earn Vault can absorb the debt, the vault burns pAssets equal to the debt and receives the liquidated pETH collateral, including the liquidation penalty.
-If the Earn Vault cannot absorb it, the remaining debt and collateral are redistributed across other positions.
+
+1. The position's debt is cancelled.
+2. Its pETH collateral is seized.
+3. If the Earn Vault can absorb the debt, the vault burns pAssets equal to the debt and receives the liquidated pETH collateral, including the liquidation penalty.
+4. If the Earn Vault cannot absorb it, the remaining debt and collateral are redistributed across other positions.
+
 Any collateral beyond the debt, liquidation penalty, and applicable gas or keeper compensation can be claimed by the former position owner where supported by the contracts.
 
 ## Earn Vault First
@@ -41,6 +41,7 @@ In redistribution, the liquidated debt and collateral are spread across the rema
 Liquidation is involuntary.
 
 A liquidated position gives up collateral to cover:
+
 - Debt.
 - Liquidation penalty.
 - Gas compensation or keeper incentive where applicable.

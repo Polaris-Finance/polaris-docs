@@ -20,6 +20,7 @@ If USDp trades above $1, an arbitrageur can create new USDp against pETH collate
 That increases USDp supply and applies downward pressure on price.
 
 In simple terms:
+
 1. USDp trades above peg.
 2. An arbitrageur adds pETH collateral and issues USDp.
 3. The arbitrageur sells USDp into the market to capture the spread.
@@ -32,10 +33,13 @@ If USDp trades below $1, an arbitrageur can buy USDp cheaply and redeem it for p
 That buys USDp from the market and reduces supply.
 
 In simple terms:
+
 1. USDp trades below peg.
 2. An arbitrageur buys discounted USDp.
 3. The arbitrageur redeems it for pETH collateral.
 4. Supply contracts until the opportunity closes.
+
+> **Note:** Redemptions assume the system is fully backed. If the protocol becomes undercollateralized, the collateral returned on redemption is scaled down in proportion, on top of fees. Confirm the quoted collateral in the app before signing.
 
 ## How Positions Are Affected
 
