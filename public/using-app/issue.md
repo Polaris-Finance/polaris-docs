@@ -14,13 +14,13 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 ---
 
-Issue is where you create pAssets against pETH or borrow ETH against fpETH.
+Issue is where you create pAssets against pETH collateral or borrow ETH against fpETH.
 
 USDp and GOLDp:
-Deposit pETH collateral and create overcollateralized assets against your position.
+Deposit pETH collateral and create overcollateralized pAssets against your position.
 
 ETH:
-Borrow ETH against fpETH at up to 100% LTV with no liquidation risk, as the fpETH floor only ever rises. A small performance fee accrues on the floor's appreciation, so the loan's debt grows slowly over time.
+Borrow ETH against fpETH at up to 100% LTV with no liquidation risk, because the fpETH floor only rises.
 
 Once connected, you can manage existing positions from this tab, including adjustments, repayments, and closures.
 
@@ -35,20 +35,25 @@ Image: Polaris Issue tab with USDp, GOLDp, and ETH sub-tabs, a collateral field,
 5. Sign the transaction.
 6. Confirm the updated position in the Dashboard or Issue tab.
 
-## How Your Position Changes Over Time
+## What To Watch
 
-Your position is affected by more than the amount you create or borrow.
+Creating pAssets opens an active position, not a one-time swap.
 
-- Your pETH collateral has exposure to ETH through the bonding curve.
-- Your position can receive pETH incentives based on your issued debt.
-- New issuance can increase the size of open positions by adding debt and collateral.
-- Redemptions can reduce collateral and debt across open positions when pAssets trade below peg.
-- Your liquidation price changes as collateral value, debt, and interest move.
+Before signing, check:
+- LTV and liquidation price.
+- Current interest rate.
+- Expected debt and collateral changes.
+- Any incentives shown by the app.
+- Whether the action is allowed in the current system mode.
 
-Creating pAssets is not just a one-time transaction. Monitor your position and keep a clear buffer below the maximum LTV.
+Your position can change over time as prices move, interest accrues, incentives are routed, and issuance or redemptions affect open positions.
+
+Keep a clear buffer below the maximum LTV.
+
+For position mechanics, see [Manage A Position](https://tokenbrice.github.io/polaris-docs/minting/manage-position).
 
 For disabled actions or reverted transactions, see [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting).
 
 For position risk, see [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure).
 
-Relevant app/search vocabulary: Issue, Manage Position, borrow, issue, trove, troves, open trove, manage trove, collateralized debt position, CDP, open borrow position, repay, close borrow position, pUSD, pGOLD, LTV, loan-to-value, official app.
+Relevant app/search vocabulary: Issue, Manage Position, borrow, issue, trove, troves, open trove, manage trove, collateralized debt position, CDP, open borrow position, repay, close borrow position, USDp, GOLDp, LTV, loan-to-value, official app.

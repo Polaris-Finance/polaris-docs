@@ -60,6 +60,6 @@ Recovery Mode is most likely during market stress, when adding collateral may be
 
 ## Next Steps
 
-- [Manage a Position](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove): Understand LTV and position management.
+- [Manage A Position](https://tokenbrice.github.io/polaris-docs/minting/manage-position): Understand LTV and position management.
 - [Liquidations](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations): Understand what happens above max LTV.
 - [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure): Understand broader protocol risks.

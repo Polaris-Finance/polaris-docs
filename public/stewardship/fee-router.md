@@ -12,26 +12,27 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 ---
 
-This page covers two related systems:
-- Fee Router: internal revenue plumbing for protocol yield.
-- Flows: formula-based revenue sharing for approved integrations.
+This page covers two related systems.
 
-Current status:
-Fee Router addresses, ABIs, events, distribution cadence, Flow whitelists, and final parameter bounds are pending audited deployment. Use [Contracts And Addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses) and [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters) for published values.
+The Fee Router is internal protocol plumbing. It receives selected protocol revenue, buffers it, and sends it to configured destinations.
+
+Flows are the ecosystem layer. They share protocol revenue with approved contracts that create durable demand for Polaris assets.
+
+Current status: Fee Router addresses, ABIs, events, distribution cadence, Flow whitelists, and final parameter bounds are pending audited deployment. Published values live in [Contracts And Addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses) and [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters).
 
 ## Fee Router
 
 The Fee Router receives protocol revenue, buffers it, and sends it to the configured recipient path.
 
-It moves existing assets only. It does not create POLAR, pETH or any other pAsset.
+It moves existing assets only. It does not create POLAR, pETH, or any other pAsset.
 
 ## Inputs
 
 Conversion auctions:
-What enters: pETH purchased with released ETH, after any converter rebate.
+pETH purchased with released ETH, after any converter rebate.
 
 Bonding-curve swap fees:
-What enters: pETH fees from ETH to pETH and pETH to ETH swaps.
+pETH fees from ETH to pETH and pETH to ETH swaps.
 
 These are the only two sources wired into the Fee Router today.
 
@@ -66,12 +67,12 @@ The converter rebate sits upstream of the router. It controls how much released 
 Before relying on the Fee Router, operators and indexers should verify:
 - Router address, source, and ABI.
 - Published input sources.
-- Current recipient path and any minimum or maximum bounds.
+- Current recipient path and bounds.
 - Distribution cadence and claim path.
 - Events for deposits, buffering, distributions, claims, and parameter changes.
 - Audit notes specific to router accounting.
 
-Indexers should track inputs by source, buffered amounts before distribution, each distribution or claim, and the parameter values active during the distribution.
+Indexers should track inputs by source, buffered amounts, distributions, claims, and the parameter values active during each distribution.
 
 ## Flows
 
@@ -88,16 +89,12 @@ If a whitelisted contract holds 20% of the whitelisted pETH supply, it receives 
 ## Flow Families
 
 pETH Flow:
-Recipients: eligible pETH-holding contracts.
-Funded by: bonding-curve and conversion-related revenue.
+For eligible pETH-holding contracts. Funded by bonding-curve and conversion-related revenue.
 
 pAsset Flow:
-Recipients: eligible pAsset-holding contracts.
-Funded by: issuer interest or other pAsset revenue after required Earn Vault allocation.
+For eligible pAsset-holding contracts. Funded by issuer interest or other pAsset revenue after required Earn Vault allocation.
 
-Each Flow has its own whitelist, observed asset, recipient rules, and parameter bounds.
-
-Final contracts will define which assets, recipients, and revenue sources go live.
+Each Flow has its own whitelist, observed asset, recipient rules, and parameter bounds. Final contracts will define which assets, recipients, and revenue sources go live.
 
 ## Stewarded Edges
 
@@ -115,37 +112,27 @@ Operators should prepare product details, verified contracts, admin and upgrade 
 
 ## Flow Lifecycle
 
-Application:
-Operator submits product, contracts, requested Flow, and risk details.
-
-Review:
-Stewards check eligibility, security posture, and bounds.
-
-Vote:
-vePOLAR votes on whitelist admission and settings.
-
-Activation:
-Recipient is added through the official execution path.
-
-Distribution:
-Formula allocates revenue by holdings, weights, and active parameters.
-
-Monitoring:
-Holdings, distributions, and risks are tracked.
+Flow onboarding follows a stewarded path:
+1. Application.
+2. Review.
+3. vePOLAR vote.
+4. Activation through the official execution path.
+5. Distribution by formula.
+6. Ongoing monitoring.
 
 ## Flows Versus Emissions
 
 Emission gauges:
-Currency: governance token emissions.
-Funding: inflation.
-Allocation: recurring votes and bribes.
-Stewardship load: ongoing weight wars.
+- Currency: governance token emissions.
+- Funding: inflation.
+- Allocation: recurring votes and bribes.
+- Stewardship load: ongoing weight wars.
 
 Polaris Flows:
-Currency: pETH or pAssets.
-Funding: protocol revenue.
-Allocation: formula based on eligible holdings.
-Stewardship load: onboarding plus bounded adjustments.
+- Currency: pETH or pAssets.
+- Funding: protocol revenue.
+- Allocation: formula based on eligible holdings.
+- Stewardship load: onboarding plus bounded adjustments.
 
 ## Related Docs
 

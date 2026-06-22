@@ -20,7 +20,7 @@ Everything below is Public Testnet 1 on Sepolia.
 
 Sepolia values are replaceable artifacts with no monetary value, no production redemption, and no mainnet claim. Do not infer production constants or addresses from them.
 
-Production values are not published unless this page and Launch Status say they are.
+Production values are not published unless this page and [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) say they are.
 
 ## Environment
 
@@ -86,14 +86,14 @@ Issue alpha | `1e18` | `1e18` | Deploy script
 Redemption alpha | `1e18` | `1e18` | Deploy script
 Issue minute decay factor | `998076443575628800` | `998076443575628800` | Deploy script
 Redemption minute decay factor | `998076443575628800` | `998076443575628800` | Deploy script
-Primary interest split (Earn Vault / POLAR staking / ecosystem) | 75% / 25% / 0% | 75% / 25% / 0% | Deploy script
+Testnet primary interest split (Earn Vault / temporary POLAR staking / ecosystem) | 75% / 25% / 0% | 75% / 25% / 0% | Deploy script
 Liquidation penalty, Earn Vault path | 5% | 5% | Deploy script
 Liquidation penalty, redistribution path (MCR − 100%) | 15% | 15% | Derived in contract
 Liquidation gas compensation, fixed deposit at position open | 0.0375 pETH | 0.0375 pETH | Deploy script
 Liquidation gas compensation, variable | 0.5% of SP-portion collateral, capped at 2 pETH | Same | Hardcoded
 
-The app may display the inverse borrower metric, **max LTV**. Public Testnet 1's 115% MCR is about 87.0% max LTV; the 150% Emergency Mode action MCR is about 66.7% max LTV.
-
+Public Testnet 1 POLAR staking is temporary and should not be treated as part of the final POLAR design.
+The app may display the inverse metric, **max LTV**. Public Testnet 1's 115% MCR is about 87.0% max LTV; the 150% Emergency Mode action MCR is about 66.7% max LTV.
 Use the app quote and live contract reads before signing. Do not copy Sepolia values into a production integration, and treat older beta, MCR, or Recovery Mode examples as stale if they disagree with the values above.
 
 ## Contracts and addresses

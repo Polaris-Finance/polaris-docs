@@ -15,30 +15,22 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 ---
 
 pETH combines two distinct sources of value: a steadily growing floor, represented by fpETH, and a volatile component above that floor, represented by vpETH.
-
 Split converts pETH into matching fpETH and vpETH at a fixed 1:1:1 ratio.
-
 This creates two assets with distinct risk and return profiles while preserving a path back to pETH.
-
 The process is fully reversible and does not rely on external dependencies. Merge 1 fpETH and 1 vpETH back into 1 pETH at any time.
-
 Use this page for the app workflow. Use [pETH Split](https://tokenbrice.github.io/polaris-docs/peth/split) for the mechanism.
 
 Image: Polaris Split tab with a Split/Merge toggle, fpETH and vpETH outputs, live floor and market prices, and a price simulator
 
 ## Basic Flow
-
 1. Choose Split or Merge.
 2. Enter the amount.
 3. Review the expected output.
 4. Approve pETH, fpETH, or vpETH if required.
 5. Sign the transaction.
 6. Confirm your wallet balances update.
-
 After splitting, your pETH balance decreases and your fpETH and vpETH balances increase by the same amount.
-
 After merging, your fpETH and vpETH balances decrease by the same amount and your pETH balance increases.
-
 For failed split or merge transactions, see [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting).
 
 Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor price.

@@ -15,113 +15,61 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 ---
 
 FAQ answers are intentionally short. Follow the linked canonical page when you need exact status, addresses, parameters, or risk details.
-
 ## General
-
 ### What is Polaris?
-
 Polaris is a DeFi yield layer built around pETH. ETH becomes pETH through a bonding curve, pETH collateralizes pAssets such as USDp and GOLDp, and protocol activity routes yield through onchain mechanisms.
-
 Start with [Why Polaris](https://tokenbrice.github.io/polaris-docs/why-polaris).
-
 ### What is live now?
-
 The current phase is owned by [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status).
-
-Polaris is in Public Testnet 1 on Sepolia, chain ID `11155111`. Production and mainnet deployments are not live.
-
+Polaris is in Public Testnet 1 on Sepolia, chain ID 11155111. Production and mainnet deployments are not live.
 ### Which app should I use?
-
 Use only the app listed on [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status).
-
 For Public Testnet 1, follow [Public Testnet Quickstart](https://tokenbrice.github.io/polaris-docs/quickstart).
-
 ## Using The App
-
 ### How do I get started on testnet?
-
 Open the official testnet app, connect Sepolia, use test assets only, swap into pETH, then try Issue, Earn, Split, Zap, or Advanced as needed.
-
 The step-by-step path is [Public Testnet Quickstart](https://tokenbrice.github.io/polaris-docs/quickstart).
-
 ### Why does the app say Issue?
-
 Issue is where users create pAssets against pETH collateral.
-
 You deposit pETH, create a pAsset such as USDp or GOLDp, and manage the resulting position over time.
-
 See [Issue](https://tokenbrice.github.io/polaris-docs/using-app/issue) and [Issuing pAssets](https://tokenbrice.github.io/polaris-docs/minting).
-
-### What interest do I pay on a position?
-
-Two autonomous rates accrue on your debt: a primary rate that responds to issuance and redemption flow, and a secondary rate that rises with how heavily the system is borrowed. Both are capped at 250% APR. The secondary rate is redistributive, so conservatively collateralized positions can come out ahead while high-LTV positions pay more.
-
+What interest do I pay on a position?
+The main rate is the peg-steering rate. It responds automatically to issuance and redemption activity for that pAsset.
+Polaris also has a safety rate for stressed conditions. When active, it can move value from higher-LTV positions to lower-LTV positions.
+Interest is added to your outstanding debt over time, so it can raise your LTV if you take no action.
 See [Interest Rates](https://tokenbrice.github.io/polaris-docs/minting/interest-rates).
-
 ### What should I do if a quote or transaction fails?
-
 Use [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting).
-
 Most failures come from wrong network, stale quotes, insufficient allowance, insufficient gas, Recovery Mode restrictions, or changed state before inclusion.
-
 ## Contracts, Parameters, And Safety
-
 ### Where are contract addresses?
-
-[Contracts And Addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses) owns addresses.
-
+Contracts And Addresses (/resources/testnet#contracts-and-addresses) owns addresses.
 Public Testnet 1 addresses are Sepolia artifacts. Production addresses are not published until Launch Status says production is live.
-
 ### Where are current parameters?
-
 [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters) owns numeric values.
-
 Task pages link there instead of repeating parameter tables.
-
 ### Where are testnet manifests?
-
-[Public Testnet 1 Artifacts](https://tokenbrice.github.io/polaris-docs/resources/testnet) owns manifest paths and testnet artifact sources.
-
+Public Testnet 1 Artifacts (/resources/testnet) owns manifest paths and testnet artifact sources.
 ### What should I verify before signing?
-
 At minimum, verify frontend URL, network, chain ID, address, token, spender, amount, and action.
-
 ## Risk
-
 ### Can I lose funds?
-
 Yes. Polaris involves smart-contract risk, collateral price risk, liquidation risk, Earn Vault first-loss risk, MEV risk, oracle risk, and frontend/phishing risk.
-
 Read [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure).
-
 ### What is LTV?
-
 LTV is loan-to-value: position debt divided by collateral value. Lower LTV is safer.
-
 Protocol parameters may also show the inverse ratio, ICR or MCR. For example, a 115% MCR equals about 87% max LTV, and a position at 150% ICR sits at 66.7% LTV.
-
-See the [Glossary](https://tokenbrice.github.io/polaris-docs/resources) and [Manage a Position](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove).
-
+See the [Glossary](https://tokenbrice.github.io/polaris-docs/resources) and [Manage A Position](https://tokenbrice.github.io/polaris-docs/minting/manage-position).
 ### What is Recovery Mode?
-
 Recovery Mode is the protective state a pAsset market enters when system backing becomes thin relative to total debt.
-
 It restricts risk-increasing actions but does not automatically liquidate healthy positions.
-
-See [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode) and [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters).
-
+See Recovery Mode (/redemptions-liquidations/recovery-mode) and [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters).
 ## Security
-
 ### Is Polaris audited?
-
 Audit status is owned by [Audits And Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security).
-
 Until final reports are linked there, do not rely on audit claims found elsewhere.
-
 ### Is there a bug bounty?
-
 Bug-bounty and disclosure status are owned by [Audits And Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security).
-
 Do not send exploit details to private forms, direct messages, or third-party pages unless the official security page links them.
 
 Relevant app/search vocabulary: app, official app, testnet, Sepolia, WETH, WETH faucet, Zap, Split, Swap, Issue, Earn, Guide, Advanced, Analytics, APR, Reserve Loan.

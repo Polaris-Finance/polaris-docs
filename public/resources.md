@@ -29,19 +29,19 @@ Advanced:
 The app area for expert operations: PSM issue/redeem, pETH-to-POLAR conversion, and the testnet faucet. See [Advanced](https://tokenbrice.github.io/polaris-docs/using-app/advanced).
 
 Earn Vault:
-A pAsset deposit venue that earns from issuer interest and liquidation gains. Earn Vaults are first-loss backstops, so deposits can be consumed during liquidations. See [Earn Vaults](https://tokenbrice.github.io/polaris-docs/yield).
+A pAsset deposit venue that earns from issuer interest and liquidation processing. Earn Vaults are first-loss backstops, so deposits can be used during liquidations. See [Earn Vaults](https://tokenbrice.github.io/polaris-docs/yield).
 
 fpETH:
 The floor-value token created when pETH is split. It represents pETH floor exposure and can be used for ETH borrowing strategies. See [pETH Split](https://tokenbrice.github.io/polaris-docs/peth/split).
 
 Interest Rate:
-The cost paid by pAsset issuers. Polaris interest rates are designed to respond to issuance and redemption activity, using those flows as the onchain peg signal.
+The cost paid by pAsset issuers. Polaris uses a peg-steering rate that responds to issuance and redemption activity, plus a safety rate that can activate during stressed conditions. See [Interest Rates](https://tokenbrice.github.io/polaris-docs/minting/interest-rates).
 
 Issue:
 The app tab where users create pAssets against pETH collateral. See [Issue](https://tokenbrice.github.io/polaris-docs/using-app/issue).
 
 LTV:
-Loan-to-value. Position debt divided by collateral value. Lower LTV gives more room before liquidation. See [Manage a Position](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove).
+Loan-to-value. Position debt divided by collateral value. Lower LTV gives more room before liquidation. See [Manage A Position](https://tokenbrice.github.io/polaris-docs/minting/manage-position).
 
 pAsset:
 A Polaris synthetic asset backed by pETH collateral, such as USDp or GOLDp.
@@ -81,7 +81,7 @@ CDP:
 Legacy and contract-facing label for an individual collateral position. Public docs use position.
 
 CDB / branch:
-Legacy and contract-facing label for a pAsset market. Public docs use pAsset market or protocol market.
+Legacy and contract-facing label for a pAsset market. Public docs use pAsset market.
 
 ICR / MCR:
 Collateral-ratio terms used in some protocol references. They are the inverse of LTV: collateral value divided by debt value.

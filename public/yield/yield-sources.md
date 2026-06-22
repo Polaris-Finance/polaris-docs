@@ -16,7 +16,7 @@ Polaris yield comes from onchain protocol activity: issuance, liquidations, swap
 
 This page lists the sources. [Fee Router And Flows](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router) covers routing.
 
-Adoption creates activity. Activity creates fees. Fees create yield. Yield creates more demand.
+As Polaris activity grows, more fees and revenue can be routed through the system.
 
 ## The Sources
 
@@ -24,8 +24,8 @@ Issuer interest:
 Origin: interest paid by positions that issued pAssets.
 Flows to: split by the interest router between Earn Vault depositors, vePOLAR lockers, and other configured destinations.
 
-Liquidation gains:
-Origin: penalties and discounted collateral from liquidated positions.
+Liquidation processing:
+Origin: liquidated positions processed through Earn Vaults.
 Flows to: Earn Vault depositors.
 
 Bonding curve swap fees:
@@ -39,7 +39,7 @@ Flows to: the Fee Router, which recycles value into pETH and routes it to config
 ## What Each Source Supports
 
 Earn Vault yield:
-Driven mainly by issuer interest and liquidation gains.
+Driven mainly by issuer interest and liquidation processing.
 
 pETH yield:
 Driven by bonding curve swap fees, conversion gains, floor growth, and routed pETH rewards.
@@ -58,7 +58,8 @@ The primary yield sources depend on protocol activity:
 - More POLAR created through conversion can mean more conversion gains.
 - More integrations can mean more demand for pETH and pAssets.
 
-Liquidations can also create Earn Vault yield, but they exist to protect solvency, not to generate yield for its own sake. They are expected to matter most during market stress, when issuer interest may fall and the system needs backstop liquidity most.
+Liquidations can also create Earn Vault yield, but they exist to protect solvency, not to generate yield for its own sake. They are expected to matter most during market stress, when issuer interest may fall and the system needs backstop
+liquidity most.
 
 ## Owned, Not Rented
 
@@ -67,6 +68,8 @@ Polaris yield is not subsidized, bridged in, or voted into being.
 It emerges from protocol use and is captured by the protocol itself.
 
 That makes yield a function of Polaris activity rather than an external incentive budget.
+
+Yield comes from protocol revenue and system activity, not POLAR emissions.
 
 ## How Yield Is Distributed
 
@@ -77,11 +80,5 @@ Issuer interest follows separate pAsset-denominated split logic.
 Earn Vaults, vePOLAR, positions, and approved Flow recipients each receive yield through their configured path.
 
 Current values and pending production status live in [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters).
-
-## Parameters
-
-Use [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters) for current yield-related values.
-
-This page owns the source model, not numeric tables.
 
 Relevant app/search vocabulary: Earn, earn, yield, APR, Earn Vault, deposit, claim rewards.

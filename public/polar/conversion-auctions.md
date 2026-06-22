@@ -13,80 +13,53 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 ---
 
 Conversion auctions are the mechanism that creates new POLAR after the initial distribution.
-
 Converters burn pETH and receive newly created POLAR. Burning pETH reduces supply, helps raise the pETH floor, and releases ETH from the bonding curve that can be routed back into the system.
-
 This makes POLAR issuance directly connected to pETH floor growth and protocol activity, not a fixed emissions schedule.
 
 Image: A converter burns pETH, receives new POLAR, raises the pETH floor, and releases ETH from the bonding-curve reserve
 
 ## What Conversion Does
-
 Each conversion has three effects:
 - pETH is permanently burned.
 - New POLAR is issued to the converter.
 - ETH released from the bonding curve reserve can be routed as rebate and system yield.
-
 Conversions are one-way. POLAR cannot be converted back into pETH through the protocol.
-
 ## Spike-And-Decay Pricing
-
 Conversion runs as a continuous, permissionless auction.
-
 Anyone can convert pETH into POLAR at any time. Whether it is profitable depends on the conversion price, the POLAR market price, and any rebate available at the time.
-
 The auction price follows a spike-and-decay model:
 1. The conversion price decays while nobody converts.
-2. When the price falls low enough, conversion become attractive.
+2. When the price falls low enough, conversions become attractive.
 3. When a conversion happens, the price spikes upward.
 4. After the spike, decay resumes until the next conversion.
-
 The spike is based on how much POLAR supply is created. A large conversion spikes the price more than a small conversion, which makes large one-shot conversions less efficient.
-
 This steers the system toward smaller, more frequent conversions instead of sudden, unbounded issuance.
 
 Image: Conversion price decays until it reaches an arbitrage window, then spikes after conversion and begins decaying again
 
 ## Why Burning pETH Matters
-
 Burning pETH is what makes POLAR issuance productive.
-
 When pETH is burned, supply is permanently reduced. Under the bonding curve design, that raises the floor price for the remaining pETH.
-
 This means POLAR creation is tied to a structural improvement in the collateral base. Existing POLAR holders are diluted, but the system receives a pETH burn and potential floor growth in return.
-
 For the full floor mechanism, see [pETH Floor Price](https://tokenbrice.github.io/polaris-docs/peth/floor-price).
-
 ## Converter Rebate
-
 Before released ETH becomes system yield, a portion can be returned to the converter as a rebate.
-
 The rebate is a stewardship-controlled dial between conversion volume and system yield.
-
 The rebate changes how released ETH is distributed. It does not change the underlying pETH burn.
-
-After any rebate, remaining ETH is swapped back into pETH and routed through the [Fee Router](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router) to support pETH yield flows.
-
+After any rebate, remaining ETH is swapped back into pETH and routed through the Fee Router (/stewardship/fee-router) to support pETH yield flows.
 ## Who Converts
-
 Conversion is permissionless, but it is primarily designed for arbitrageurs, keepers, and MEV searchers.
-
 Most users will not need to convert manually. They will typically buy POLAR off the market where they usually swap tokens then hold POLAR or lock it as vePOLAR.
-
 Manual conversion only makes sense when the quoted POLAR output plus any rebate is more attractive than buying POLAR in the open market.
-
 ## How To Convert
-
-1. Open the official conversion interface when Launch Status lists it as live.
+1. Open the official conversion interface listed in [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status).
 2. Review the conversion price, POLAR market price, rebate, and expected output.
 3. Enter the amount of pETH to convert.
 4. Check the resulting price spike and final quote.
 5. Convert only if the quote is better than the open market alternative.
 6. Sign the transaction.
 7. Receive POLAR and any rebate shown in the quote.
-
-On Public Testnet 1, conversions are Sepolia-only where exposed. Production conversions are not actionable until [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) publishes the official app, contracts, final parameters, and audit status.
-
+Production conversions are only actionable once [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) publishes the official app, contracts, final parameters, and audit status.
 ## Next Steps
 - [POLAR](https://tokenbrice.github.io/polaris-docs/polar): Why POLAR exists and how it fits into Polaris.
 - [POLAR Tokenomics](https://tokenbrice.github.io/polaris-docs/polar/tokenomics): Issuance, vePOLAR, productive dilution, and pending terms.

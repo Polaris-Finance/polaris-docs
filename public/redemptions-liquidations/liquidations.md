@@ -12,6 +12,8 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 ---
 
+# Liquidations
+
 A liquidation closes a position when its LTV rises above the maximum.
 
 Liquidations protect protocol solvency and help ensure pAssets remain overcollateralized. Every pAsset is backed by collateral, and positions that cross the maximum LTV must be closed to keep the system healthy.
@@ -21,18 +23,19 @@ A liquidation is different from a redemption. Liquidations close unsafe position
 ## What Happens
 
 When a position is liquidated:
-1. The position's debt is cancelled.
-2. Its pETH collateral is seized.
-3. The debt is absorbed by the Earn Vault if possible.
-4. If the Earn Vault cannot absorb it, the remaining debt and collateral are redistributed across other positions.
+The position's debt is cancelled.
+Its pETH collateral is seized.
+If the Earn Vault can absorb the debt, the vault burns pAssets equal to the debt and receives the liquidated pETH collateral, including the liquidation penalty.
+If the Earn Vault cannot absorb it, the remaining debt and collateral are redistributed across other positions.
+Any collateral beyond the debt, liquidation penalty, and applicable gas or keeper compensation can be claimed by the former position owner where supported by the contracts.
 
 ## Earn Vault First
 
 The Earn Vault is the first line of defense.
 
-If the Earn Vault has enough pAsset liquidity, it burns pAssets equal to the liquidated debt and receives the liquidated pETH collateral.
+If the Earn Vault has enough pAsset liquidity, it burns pAssets equal to the liquidated debt and receives pETH collateral from the liquidated position.
 
-Because positions are normally liquidated while still overcollateralized, the Earn Vault can receive more value in pETH than the pAssets it burns. That surplus is part of the yield earned by depositors.
+Because positions are normally liquidated while still overcollateralized, the Earn Vault can receive more value in pETH than the pAssets it burns. That surplus, including liquidation penalty value where applicable, compensates depositors for taking liquidation-processing risk.
 
 ## Redistribution Fallback
 
@@ -49,7 +52,7 @@ A liquidated position gives up collateral to cover:
 - Liquidation penalty.
 - Gas compensation or keeper incentive where applicable.
 
-Any remaining surplus can be claimed by the former borrower where supported by the contracts.
+Any remaining surplus can be claimed by the former position owner where supported by the contracts.
 
 The best defense is simple: keep your LTV comfortably below the maximum.
 
@@ -58,7 +61,7 @@ The best defense is simple: keep your LTV comfortably below the maximum.
 - Liquidation can happen quickly during volatile markets.
 - Thin LTV buffers leave little room for price movement.
 - Oracle prices, execution timing, gas, and keeper availability matter.
-- Earn Vault depositors earn by absorbing liquidation risk.
+- Earn Vault depositors take liquidation-processing risk.
 - If the Earn Vault is insufficient, redistribution can affect other positions.
 
 ## Recovery Mode
@@ -67,11 +70,11 @@ Recovery Mode does not change the liquidation line.
 
 A position is liquidatable when its LTV exceeds the normal maximum, in every mode.
 
-Recovery Mode only restricts borrower actions that would make system backing weaker.
+Recovery Mode only restricts issuer actions that would make system backing weaker.
 
 ## Next Steps
 
-- [Manage a Position](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove): Keep your LTV healthy.
+- [Manage A Position](https://tokenbrice.github.io/polaris-docs/minting/manage-position): Keep your LTV healthy.
 - [Earn Vaults](https://tokenbrice.github.io/polaris-docs/yield): Understand how vaults absorb liquidations.
 - [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode): Understand system-wide protective rules.
 

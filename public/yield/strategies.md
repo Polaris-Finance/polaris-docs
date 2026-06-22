@@ -12,50 +12,86 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 ---
 
-Polaris is built from a few composable parts - pETH as collateral, pAsset positions, and Earn Vaults. Those parts combine into several common position shapes. This page describes what is possible, not what you should do. Nothing here is advice, and every shape below carries the risks set out in [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure).
+Polaris is built from a few composable parts: pETH, pAsset positions, Earn Vaults, and pETH split assets.
 
-## Hold pETH, no debt
+Those parts can be combined into different position shapes.
 
-The simplest position is to hold [pETH](https://tokenbrice.github.io/polaris-docs/peth) with nothing issued against it. pETH is a productive reserve asset with a floor designed to rise as protocol activity routes value back into the curve.
+This page describes what is possible, not what you should do. Nothing here is financial advice, and every strategy carries risk.
 
-- What it gives: exposure to pETH with no debt and no liquidation risk.
-- Main risk: pETH can move against ETH above its floor. There is no peg and no protection beyond the curve floor.
+Read [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure) before using any of these strategies.
 
-## Issue a pAsset against pETH
+## Hold pETH, No Debt
 
-Deposit pETH and [issue](https://tokenbrice.github.io/polaris-docs/minting) a pAsset such as USDp or GOLDp. You keep your pETH collateral, and its ETH exposure, while holding a pegged asset you can use elsewhere.
+The simplest position is to hold [pETH](https://tokenbrice.github.io/polaris-docs/peth) with nothing issued against it.
 
-- What it gives: a pegged asset, dollar or gold, drawn against pETH while retaining collateral upside.
-- Main risk: the position has an LTV and a liquidation price, and it accrues [interest](https://tokenbrice.github.io/polaris-docs/minting/interest-rates). Issuance and redemptions can resize it.
+pETH is the reserve and collateral asset of Polaris. It has a floor designed to rise as protocol activity routes value back into the curve.
 
-## Draw stable value without selling ETH exposure
+What it gives:
+Exposure to pETH with no debt and no liquidation risk.
 
-Because a position lets you issue a USD-pegged pAsset against pETH, you can raise stable liquidity without selling the ETH exposure held in your collateral. Repaying the pAsset later unwinds the position and restores it.
+Main risk:
+pETH can move against ETH above its floor. The pETH floor defines pETH/ETH downside under the bonding curve, but it does not protect against ETH/USD volatility.
 
-- What it gives: stable liquidity now while keeping collateral exposure for later.
-- Main risk: this is leverage. A falling pETH collateral value raises your LTV toward liquidation, and interest accrues the whole time.
+## Issue A pAsset Against pETH
 
-## Earn on idle pAssets
+Deposit pETH and [issue](https://tokenbrice.github.io/polaris-docs/minting) a pAsset such as USDp or GOLDp.
 
-Deposit USDp or GOLDp into an [Earn Vault](https://tokenbrice.github.io/polaris-docs/yield) to earn issuer interest and liquidation gains. The vault is the system's first-loss backstop, so deposits can be consumed during liquidations.
+You keep your pETH collateral exposure while receiving a pegged asset that can be held, deposited, or used elsewhere.
 
-- What it gives: pAsset-denominated yield on otherwise idle pAssets.
-- Main risk: first-loss exposure. A deposit can be partially consumed, and liquidation gains arrive as pETH, which has price risk.
+What it gives:
+A pAsset created against pETH collateral while retaining exposure to the collateral.
 
-## Split pETH and reserve loans
+Main risk:
+The position has LTV, interest, and liquidation risk. Issuance and redemptions can also resize open positions.
 
-pETH can be [split](https://tokenbrice.github.io/polaris-docs/peth/split) into fpETH and vpETH, separating floor value from upside. fpETH can then be used in reserve-loan strategies.
+## Draw Stable Value Without Selling ETH Exposure
 
-- What it gives: finer control over which part of pETH's value you hold or borrow against.
-- Main risk: these are advanced mechanics with their own execution and price risks. Read the linked pages before using them.
+A USDp position can let you access stable liquidity without selling the ETH exposure embedded in your pETH collateral.
 
-## Before acting
+Repaying the USDp later reduces or closes the position.
 
-These shapes can be combined, and each adds risk as it adds flexibility. None is risk-free, and none is a recommendation. Read [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure) in full, and confirm current thresholds and fees in [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters).
+What it gives:
+Stable liquidity while keeping collateral exposure.
 
-Next steps:
+Main risk:
+This is leverage. If pETH collateral value falls or interest increases debt, your LTV can move toward liquidation.
+
+## Earn On Idle pAssets
+
+Deposit USDp or GOLDp into an [Earn Vault](https://tokenbrice.github.io/polaris-docs/yield) to earn protocol-native yield from issuer interest and liquidation processing.
+
+What it gives:
+pAsset-denominated yield on otherwise idle pAssets.
+
+Main risk:
+Earn Vaults are first-loss liquidation backstops. Deposits are not principal-safe and can be affected by liquidations, collateral price movement, and execution conditions.
+
+## Split pETH And Reserve Loans
+
+pETH can be [split](https://tokenbrice.github.io/polaris-docs/peth/split) into fpETH and vpETH, separating floor exposure from the value above the floor.
+
+fpETH can then be used in reserve-loan strategies where supported.
+
+What it gives:
+More control over which part of pETH's value you hold or borrow against.
+
+Main risk:
+These are advanced mechanics with their own execution, pricing, and liquidity risks. Read the linked pages before using them.
+
+## Before Acting
+
+These strategies can be combined, and each adds risk as it adds flexibility.
+
+None is risk-free, and none is a recommendation.
+
+Confirm current thresholds and fees in [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters).
+
+## Next Steps
+
 - [pETH](https://tokenbrice.github.io/polaris-docs/peth): The reserve asset every strategy starts from.
-- [Issuing pAssets](https://tokenbrice.github.io/polaris-docs/minting): How positions are opened and managed.
+- [Issuing pAssets](https://tokenbrice.github.io/polaris-docs/minting): How pAssets are created against pETH collateral.
+- [Manage A Position](https://tokenbrice.github.io/polaris-docs/minting/manage-position): How to monitor LTV, interest, and repayment.
 - [Earn Vaults](https://tokenbrice.github.io/polaris-docs/yield): The main venue for pAsset yield.
+- [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure): Understand the full risk model.
 
 Relevant app/search vocabulary: Earn, earn, yield, APR, Earn Vault, deposit, claim rewards.

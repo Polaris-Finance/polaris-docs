@@ -13,88 +13,54 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 ---
 
 This page summarizes POLAR's economic structure.
-
-Final supply, distribution, vesting, vePOLAR deployment details, and production parameters are pending. Treat any number not published in Launch Status, Parameters, or an official tokenomics release as not finalized.
-
+Final supply, distribution, vesting, vePOLAR deployment details, and production parameters are pending. Launch materials, [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status), and [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters) own final numbers.
 For the reasoning behind the token, see [POLAR](https://tokenbrice.github.io/polaris-docs/polar). For the issuance mechanism, see [Conversion Auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions).
-
 ## Issuance Structure
-
 POLAR is expected to have an initial fixed supply minted at launch and allocated across buckets such as treasury, team, investors, advisors, community, and ecosystem programs.
-
 Those tokens may enter circulation over time through vesting, distributions, incentives, or treasury activity. That is circulating supply release, not new issuance.
-
 After the initial supply is created, new POLAR is intended to be issued through one primary path: burning pETH in a conversion auction.
-
 There is no planned calendar-based inflation schedule that creates new POLAR independently of protocol activity.
-
 This means:
 - New POLAR requires a pETH burn.
 - POLAR issuance tracks conversion activity, not arbitrary emissions.
 - Conversion is continuous, permissionless, and priced through spike-and-decay auctions.
 - Most profitable conversions are expected to be executed by arbitrageurs, keepers, or MEV searchers.
-
 Each conversion burns pETH, creates POLAR, and can release ETH from the bonding curve that is routed back into the system.
-
 ## Productive Dilution
-
 Every conversion dilutes existing POLAR holders, but that dilution is designed to buy a concrete improvement.
-
 POLAR dilution is productive when it is paired with pETH burns, floor growth, released ETH yield, and ecosystem expansion.
-
 Productive dilution follows these design principles:
 - Bounded: Spike-and-decay pricing makes rapid or large issuance progressively more expensive.
 - Productive: New POLAR is connected to burned pETH and released ETH yield.
 - Activity-linked: Issuance depends on conversion demand, not a fixed emissions calendar.
 - Team-dilutive: The founding team's early share can be diluted by the same mechanism as everyone else.
-
 The goal is not to avoid dilution entirely. The goal is to make dilution pay for something valuable to the system.
-
 ## vePOLAR Stewardship
-
 POLAR's long-term coordination role is vePOLAR.
-
 vePOLAR is the planned vote-escrow layer for Polaris. Users will lock POLAR for up to 4 years to receive stewardship rights and participate in bounded protocol coordination.
-
 vePOLAR is intended to support:
 - Parameter coordination.
 - Incentive direction.
 - Ecosystem integrations.
 - Long-term stewardship alignment.
 - Future yield routes.
-
 Current testnet staking surfaces are temporary and should not be treated as part of the final POLAR design or as vePOLAR voting power.
-
-Do not use a conversion, staking, or locking interface unless [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) and [Contracts And Addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses) list it as live.
-
+For live app surfaces and contract status, use [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) and [Contracts And Addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses).
 ## Yield Routes
-
 vePOLAR is the primary value capture layer for POLAR. Lockers are intended to receive a guaranteed minimum share of issuer interest from every deployed pAsset market. As more pAssets are created and more debt is issued, this gives vePOLAR direct exposure to protocol revenue across the Polaris system.
-
-Positions:
-Routed by the Fee Router. Receive pETH yield credited based on recorded debt.
-
-vePOLAR lockers:
-Receive a guaranteed minimum share of issuer interest from all deployed pAssets, with final routing details pending deployment.
-
-Flow recipients:
-Routed by the Fee Router through Flows. Enables revenue-sharing for whitelisted integrations.
-
+Positions: Routed by the Fee Router. Receive pETH yield credited based on recorded debt.
+vePOLAR lockers: Receive a guaranteed minimum share of issuer interest from all deployed pAssets, with final routing details pending deployment.
+Flow recipients: Routed by the Fee Router through Flows. Enables revenue-sharing for whitelisted integrations.
 Exact destination splits, vePOLAR terms, Flow parameters, and final routing details are pending.
-
 ## What POLAR Does Not Have
-
 POLAR is designed to avoid the usual extractive surfaces.
 - No gauges controlled by open-ended emissions.
 - No protocol-routed bribe markets.
 - No calendar-based inflation.
 - No creation outside pETH conversion after the initial distribution.
 - No unbounded DAO control over the core protocol.
-
 Ecosystem incentives are intended to flow through hard-asset revenue sharing, not permanent POLAR emissions.
-
 ## Pending Terms
-
 The following terms are not final until published through official launch materials:
 - Initial total supply.
 - Distribution schedule.
@@ -103,9 +69,7 @@ The following terms are not final until published through official launch materi
 - Flow onboarding process.
 - Polar Council allocation, eligibility, reporting, and operating framework.
 - Final yield routing and destination splits.
-
 Until then, this page describes the intended structure, not final launch numbers.
-
 ## Next Steps
 - [Conversion Auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions): The spike-and-decay mechanism behind POLAR conversion.
 - [vePOLAR Locking](https://tokenbrice.github.io/polaris-docs/stewardship/vepolar): The planned lock design and stewardship role.

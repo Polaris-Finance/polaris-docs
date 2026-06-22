@@ -13,36 +13,21 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 ---
 
 vePOLAR is vote-escrowed POLAR.
-
 Users lock POLAR for up to 4 years to receive stewardship rights for bounded parameters and edge decisions.
-
-Current status:
-vePOLAR locking is not live yet. The official lock contract address, proposal thresholds, final yield split, and claim path are pending audited deployment. Do not lock POLAR through any unofficial interface.
-
+Current status: vePOLAR locking is not live yet. The official lock contract address, proposal thresholds, final yield split, and claim path are pending audited deployment. Do not lock POLAR through any unofficial interface.
 ## What vePOLAR Does
-
-Lock POLAR.
-Receive vePOLAR.
-Steward bounded parameters.
-Receive routed protocol yield.
-
+Lock POLAR. Receive vePOLAR. Steward bounded parameters. Receive routed protocol yield.
 vePOLAR holders are stewards, not unbounded governors.
-
 They steer quantitative parameters within hardcoded ranges and vote on permitted onboarding decisions, including:
 - pAsset market onboarding.
 - Flow onboarding.
 - Bounded fee and interest splits.
 - Conversion parameter tuning.
 - Treasury programs once a framework is published.
-
-The full enumeration of powers and constraints lives in [Stewardship](https://tokenbrice.github.io/polaris-docs/stewardship).
-
+The full enumeration of powers and constraints lives in Stewardship (/stewardship).
 The bonding curve, pAsset market logic, liquidations, redemptions, and Earn Vault mechanics are outside vote scope.
-
 ## What vePOLAR Does Not Do
-
 vePOLAR cannot touch the immutable core.
-
 It cannot:
 - Upgrade contracts.
 - Add admin keys.
@@ -50,61 +35,29 @@ It cannot:
 - Create POLAR outside conversion auctions.
 - Move parameters outside immutable minimum and maximum ranges.
 - Change user positions, deposits, balances, or locks by discretion.
-
 ## Lock Status
-
 The intended lock design is committed, but audited deployment and production terms are pending.
-
-POLAR contract address:
-Pending deployment.
-
-vePOLAR contract address:
-Pending deployment.
-
-Network:
-Public Testnet 1 uses Sepolia where exposed. Production is intended for Ethereum mainnet after launch.
-
-Lock duration choices:
-1 week to 4 years.
-
-Vote-power formula and decay:
-Linear decay.
-
-Increase or extend lock:
-Enabled.
-
-Withdraw:
-Only at lock expiry.
-
-Delegation:
-Enabled.
-
+POLAR contract address: Pending deployment.
+vePOLAR contract address: Pending deployment.
+Network: Production is intended for Ethereum mainnet after launch.
+Lock duration choices: 1 week to 4 years.
+Vote-power formula and decay: Linear decay.
+Increase or extend lock: Enabled.
+Withdraw: Only at lock expiry.
+Delegation: Enabled.
 ## veNFT
-
 Each vePOLAR lock is represented by a veNFT.
-
 The veNFT carries the locked POLAR position, including its voting power, remaining lock duration, and related stewardship rights.
-
 Because the lock is represented as an NFT, it can be transferred or sold on secondary markets where supported. Transferring the veNFT transfers control of the underlying lock.
-
 This makes vePOLAR positions more flexible than a purely account-bound lock, but it also means users should treat veNFT transfers carefully. Selling or transferring the veNFT means giving up the associated locked POLAR, voting power, and future yield rights.
-
 ## Yield For Lockers
-
 vePOLAR is intended to be more than influence alone.
-
 vePOLAR lockers are intended to receive a guaranteed minimum share of issuer interest from every deployed pAsset market.
-
 As more pAssets are created and more debt is issued, vePOLAR receives direct exposure to protocol revenue across the Polaris system.
-
 This is protocol revenue, not POLAR emissions.
-
 Exact splits, buffering, and claim mechanics are pending final deployment.
-
 ## Before Locking
-
 Locking is an illiquid commitment by design.
-
 Before locking POLAR, verify:
 - The official app URL.
 - POLAR and vePOLAR addresses.
@@ -112,17 +65,11 @@ Before locking POLAR, verify:
 - Lock duration, voting power, unlock, and withdrawal rules.
 - The final yield split and claim path.
 - The audit status of the locking and stewardship contracts.
-
-Do not lock through any contract or frontend not published in official Polaris docs.
-
+Do not lock through any contract or frontend unless it is listed in [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) and [Contracts And Addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses).
 ## The Polar Council
-
 The Polar Council is a planned treasury-funded program to cultivate aligned, active stewards.
-
 Its allocation, operating framework, eligibility, and reporting requirements are pending publication.
-
 ## Next Steps
-
 - [Stewardship](https://tokenbrice.github.io/polaris-docs/stewardship): What stewards can and cannot touch.
 - [POLAR Tokenomics](https://tokenbrice.github.io/polaris-docs/polar/tokenomics): Issuance, productive dilution, vePOLAR, and yield destinations.
 - [Contracts And Addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses): Verify any lock contract against the canonical address list.

@@ -12,8 +12,7 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 ---
 
-Open the Issue tab to create USDp or GOLDp against pETH collateral.
-Opening a position lets you unlock liquidity from pETH while keeping exposure to the collateral that powers Polaris.
+Open the Issue tab to create USDp or GOLDp against pETH collateral. Opening a position lets you unlock liquidity from pETH while keeping exposure to the collateral that powers Polaris.
 
 Image: Polaris Issue tab with USDp, GOLDp, and ETH sub-tabs, a collateral field, LTV slider, effective rate, and a projected-position panel
 
@@ -34,8 +33,8 @@ Image: Polaris Issue tab with USDp, GOLDp, and ETH sub-tabs, a collateral field,
 - You can add collateral, repay debt, or close the position later.
 For failed transactions or disabled actions, see [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting).
 ## Next Steps
-- [Issue App Guide](https://tokenbrice.github.io/polaris-docs/using-app/issue): Understand the Issue tab and how to manage an existing position.
-- [Manage a Position](https://tokenbrice.github.io/polaris-docs/minting/managing-your-trove): Adjust, monitor, and close a position.
-- [Earn Vaults](https://tokenbrice.github.io/polaris-docs/yield): Earn yield by depositing pAssets.
+- Issue App Guide: Understand the Issue tab and how to manage an existing position.
+- Manage a Position: Adjust, monitor, and close a position.
+- Earn Vaults: Earn yield by depositing pAssets.
 
-Relevant app/search vocabulary: Issue, Manage Position, borrow, issue, trove, troves, open trove, manage trove, collateralized debt position, CDP, open borrow position, repay, close borrow position, pUSD, pGOLD, LTV, loan-to-value, official app, borrow position, manage borrow position, pAsset debt position.
+Relevant app/search vocabulary: Issue, Manage Position, borrow, issue, trove, troves, open trove, manage trove, collateralized debt position, CDP, open borrow position, repay, close borrow position, USDp, GOLDp, LTV, loan-to-value, official app, borrow position, manage borrow position, pAsset debt position.
