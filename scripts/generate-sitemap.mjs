@@ -132,7 +132,7 @@ function sitemapPolicy(route) {
 
   if (
     /^\/using-app(?:\/|$)/.test(route) ||
-    /^\/minting\/(open-a-trove|manage-position)$/.test(route) ||
+    /^\/minting\/manage-position$/.test(route) ||
     /^\/yield(?:\/yield-sources)?$/.test(route) ||
     /^\/polar\/(conversion-auctions|tokenomics)$/.test(route) ||
     /^\/redemptions-liquidations(?:\/(liquidations|recovery-mode))?$/.test(route)

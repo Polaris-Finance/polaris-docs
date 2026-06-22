@@ -441,7 +441,7 @@ test('search ranking favors direct destinations for high-intent queries', async 
     { query: 'POLAR', expectedTopTwo: ['/polar', '/polar/tokenomics'] },
     { query: 'pETH', expectedTopTwo: ['/peth'] },
     { query: 'liquidation', expectedTopTwo: ['/redemptions-liquidations/liquidations'] },
-    { query: 'trove', expectedTopTwo: ['/minting/open-a-trove', '/minting/managing-your-trove'] },
+    { query: 'trove', expectedTopTwo: ['/using-app/issue', '/minting/manage-position'] },
     { query: 'risk', expectedTopTwo: ['/resources/risk-disclosure'] }
   ]
 

@@ -37,7 +37,7 @@ const searchVocabulary = [
     terms: ['official app', 'app URL', 'phishing', 'verify contracts', 'testnet', 'mainnet']
   },
   {
-    match: /^\/using-app\/issue$|^\/minting\/(open-a-trove|manage-position)$/,
+    match: /^\/using-app\/issue$|^\/minting\/manage-position$/,
     terms: [
       'Issue',
       'Manage Position',
@@ -60,7 +60,7 @@ const searchVocabulary = [
     ]
   },
   {
-    match: /^\/minting\/(open-a-trove|manage-position)$/,
+    match: /^\/minting\/manage-position$/,
     terms: [
       'borrow position',
       'open borrow position',

@@ -33,9 +33,9 @@ const START_HERE = [
   { title: 'Why Polaris', url: '/why-polaris', section: 'Understand Polaris', kind: 'concept' },
   {
     title: 'Open a Position',
-    url: '/minting/open-a-trove',
-    section: 'pAssets',
-    kind: 'concept'
+    url: '/using-app/issue',
+    section: 'Use Polaris',
+    kind: 'guide'
   }
 ]
 
@@ -74,8 +74,8 @@ const DIRECT_ROUTE_BOOSTS = [
   { query: 'polar', routes: ['/polar', '/polar/tokenomics'] },
   { query: 'peth', routes: ['/peth'] },
   { query: 'liquidation', routes: ['/redemptions-liquidations/liquidations'] },
-  { query: 'position', routes: ['/minting/open-a-trove', '/minting/managing-your-trove'] },
-  { query: 'trove', routes: ['/minting/open-a-trove', '/minting/managing-your-trove'] },
+  { query: 'position', routes: ['/using-app/issue', '/minting/manage-position'] },
+  { query: 'trove', routes: ['/using-app/issue', '/minting/manage-position'] },
   { query: 'risk', routes: ['/resources/risk-disclosure'] }
 ]
 
