@@ -10,7 +10,6 @@ import { NextSteps } from './components/NextSteps'
 import { PageStatusBanner } from './components/PageStatusBanner'
 import { SystemOverviewFigure } from './components/SystemOverviewFigure'
 import { TokenHarmonyFigure } from './components/TokenHarmonyFigure'
-import { PositionSimulator } from './components/TroveSimulator'
 
 const themeComponents = getThemeComponents()
 const ThemeTable = themeComponents.table ?? 'table'
@@ -149,7 +148,6 @@ export function useMDXComponents(components) {
     PageStatusBanner,
     SystemOverviewFigure,
     TokenHarmonyFigure,
-    PositionSimulator,
     ...components
   }
 }
