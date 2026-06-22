@@ -2,7 +2,7 @@
   <defs>
     <style type="text/css">
       @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&amp;display=swap');
-      .tagline { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 500; font-size: 49px; fill: #ece7db; letter-spacing: 0.4px; }
+      .tagline { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 500; font-size: 60px; fill: #ece7db; letter-spacing: 0.4px; }
       .url { font-family: 'Cormorant Garamond', Georgia, serif; font-style: normal; font-weight: 500; font-size: 23px; fill: #8aa6c2; letter-spacing: 1.4px; }
     </style>
 
@@ -44,7 +44,7 @@
   </g>
 
   <!-- tagline -->
-  <text class="tagline" x="600" y="470" text-anchor="middle">Onchain self-scaling yield engine</text>
+  <text class="tagline" x="600" y="473" text-anchor="middle">Onchain Yield Engine</text>
 
   <!-- url -->
   <text class="url" x="600" y="540" text-anchor="middle">tokenbrice.github.io/polaris-docs</text>
