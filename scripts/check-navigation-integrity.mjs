@@ -1,32 +1,14 @@
-import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
+import { existsSync, readFileSync, statSync } from 'node:fs'
 import path from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { absoluteUrl } from '../app/site-config.mjs'
+import { routeForFile, walkMdx } from './lib/content.mjs'
 
 const root = process.cwd()
 const contentDir = path.join(root, 'content')
 const publicDir = path.join(root, 'public')
 const outDir = path.join(root, 'out')
 const failures = []
-
-function walk(dir) {
-  const entries = []
-  for (const entry of readdirSync(dir)) {
-    const fullPath = path.join(dir, entry)
-    const stat = statSync(fullPath)
-    if (stat.isDirectory()) entries.push(...walk(fullPath))
-    else if (entry.endsWith('.mdx')) entries.push(fullPath)
-  }
-  return entries
-}
-
-function routeForFile(fullPath) {
-  const rel = path.relative(contentDir, fullPath).replace(/\\/g, '/')
-  const route = rel.replace(/\.mdx$/, '')
-  if (route === 'index') return '/'
-  if (route.endsWith('/index')) return `/${route.slice(0, -'/index'.length)}`
-  return `/${route}`
-}
 
 function markdownPathForRoute(route) {
   if (route === '/') return 'index.md'
@@ -70,8 +52,8 @@ function readJson(relativePath) {
   }
 }
 
-const files = walk(contentDir).sort()
-const routes = new Set(files.map(routeForFile))
+const files = walkMdx(contentDir).sort()
+const routes = new Set(files.map((file) => routeForFile(contentDir, file)))
 
 for (const file of files) {
   const rel = path.relative(root, file)

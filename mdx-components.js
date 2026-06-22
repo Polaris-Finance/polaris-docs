@@ -4,6 +4,7 @@ import { Image } from 'nextra/components'
 import { hrefWithBase, isExternalHref } from './app/site-config.mjs'
 import { BondingCurveExplorer } from './components/BondingCurveExplorer'
 import { Callout } from './components/Callout'
+import { Figure } from './components/Figure'
 import { LaunchTimeline } from './components/LaunchTimeline'
 import { NextSteps } from './components/NextSteps'
 import { PageStatusBanner } from './components/PageStatusBanner'
@@ -140,6 +141,7 @@ export function useMDXComponents(components) {
     th: TableHeader,
     BondingCurveExplorer,
     Callout,
+    Figure,
     LaunchTimeline,
     NextSteps,
     PageStatusBanner,

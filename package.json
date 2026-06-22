@@ -9,6 +9,7 @@
     "npm": ">=10"
   },
   "scripts": {
+    "prepare": "git config core.hooksPath .githooks || true",
     "predev": "node scripts/sync-pagefind.mjs --if-exists",
     "dev": "node scripts/dev.mjs",
     "dev:search": "npm run build && npm run dev",

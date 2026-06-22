@@ -1,34 +1,13 @@
-import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { execFileSync } from 'node:child_process'
 import path from 'node:path'
 import { absoluteUrl } from '../app/site-config.mjs'
+import { routeForFile, walkMdx } from './lib/content.mjs'
 
 const root = process.cwd()
 const contentDir = path.join(root, 'content')
 const publicDir = path.join(root, 'public')
 const checkOnly = process.argv.includes('--check')
-
-function walk(dir) {
-  const entries = []
-  for (const entry of readdirSync(dir)) {
-    const fullPath = path.join(dir, entry)
-    const stat = statSync(fullPath)
-    if (stat.isDirectory()) {
-      entries.push(...walk(fullPath))
-    } else if (entry.endsWith('.mdx')) {
-      entries.push({ fullPath, stat })
-    }
-  }
-  return entries
-}
-
-function routeForFile(fullPath) {
-  const rel = path.relative(contentDir, fullPath).replace(/\\/g, '/')
-  const route = rel.replace(/\.mdx$/, '')
-  if (route === 'index') return '/'
-  if (route.endsWith('/index')) return `/${route.slice(0, -'/index'.length)}`
-  return `/${route}`
-}
 
 function xmlEscape(value) {
   return value
@@ -163,9 +142,9 @@ function checkOrWrite(relativePath, nextContent) {
 
 mkdirSync(publicDir, { recursive: true })
 
-const urls = walk(contentDir)
-  .map(({ fullPath }) => {
-    const route = routeForFile(fullPath)
+const urls = walkMdx(contentDir)
+  .map((fullPath) => {
+    const route = routeForFile(contentDir, fullPath)
     return {
       loc: absoluteUrl(route),
       lastmod: lastModified(fullPath),

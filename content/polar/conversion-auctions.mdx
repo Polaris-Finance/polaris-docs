@@ -9,7 +9,12 @@ Conversion auctions are the mechanism that creates new POLAR after the initial d
 
 Burning pETH reduces supply, helps raise the pETH floor, and releases ETH from the bonding curve that can be routed back into the system. This makes POLAR issuance directly connected to pETH floor growth and protocol activity, not a fixed emissions schedule.
 
-![A converter burns pETH, receives new POLAR, raises the pETH floor, and releases ETH from the bonding-curve reserve](/infographics/conversion-flow.svg)
+<Figure
+  src="/infographics/conversion-flow.svg"
+  alt="A converter burns pETH, receives new POLAR, raises the pETH floor, and releases ETH from the bonding-curve reserve"
+  width={1500}
+  height={900}
+/>
 
 ## What Conversion Does
 
@@ -33,7 +38,12 @@ Conversion runs as a continuous, permissionless auction. Anyone can convert pETH
 The spike is based on how much POLAR supply is created. A large conversion spikes the price more than a small conversion, which makes large one-shot conversions less efficient.
 This steers the system toward smaller, more frequent conversions instead of sudden, unbounded issuance.
 
-![Conversion price decays until it reaches an arbitrage window, then spikes after conversion and begins decaying again](/infographics/spike-and-decay.svg)
+<Figure
+  src="/infographics/spike-and-decay.svg"
+  alt="Conversion price decays until it reaches an arbitrage window, then spikes after conversion and begins decaying again"
+  width={1400}
+  height={780}
+/>
 
 ## Why Burning pETH Matters
 
