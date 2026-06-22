@@ -4,12 +4,15 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
+import json
 import os
 import re
 import shutil
 import sys
 import zipfile
 from dataclasses import dataclass
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Iterable
 from xml.sax.saxutils import escape
@@ -21,12 +24,26 @@ DEFAULT_OUT_DIR = ROOT / "review-docs"
 
 
 @dataclass
+class ReviewBlock:
+    id: str
+    type: str
+    mode: str
+    raw: str
+    text: str
+    separator: str
+    level: int | None = None
+    rows: list[list[str]] | None = None
+
+
+@dataclass
 class Page:
     source: Path
     route: str
     title: str
     description: str
-    body: str
+    frontmatter: str
+    source_hash: str
+    blocks: list[ReviewBlock]
 
 
 def xml_text(value: str) -> str:
@@ -103,8 +120,25 @@ def read_page(path: Path) -> Page:
         route=route,
         title=title,
         description=description,
-        body=sanitize_mdx(body),
+        frontmatter=frontmatter_to_text(frontmatter),
+        source_hash=sha256_text(text),
+        blocks=review_blocks_for_body(body),
     )
+
+
+def sha256_text(value: str) -> str:
+    return hashlib.sha256(value.encode("utf8")).hexdigest()
+
+
+def frontmatter_to_text(values: dict[str, str]) -> str:
+    if not values:
+        return ""
+    lines = ["---"]
+    for key, value in values.items():
+        quoted = json.dumps(value, ensure_ascii=False)
+        lines.append(f"{key}: {quoted}")
+    lines.append("---")
+    return "\n".join(lines)
 
 
 def title_from_body(body: str) -> str | None:
@@ -179,6 +213,204 @@ def strip_inline_markup(value: str) -> str:
     value = re.sub(r"\*\*([^*]+)\*\*", r"\1", value)
     value = re.sub(r"\*([^*]+)\*", r"\1", value)
     return re.sub(r"\s+", " ", value).strip()
+
+
+def review_inline_text(value: str) -> str:
+    value = re.sub(r"`([^`]+)`", r"\1", value)
+    value = re.sub(r"\*\*([^*]+)\*\*", r"\1", value)
+    value = re.sub(r"\*([^*]+)\*", r"\1", value)
+    value = value.replace("&nbsp;", " ").replace("&amp;", "&")
+    return re.sub(r"[ \t]+", " ", value).strip()
+
+
+def strip_content_newline(value: str) -> tuple[str, str]:
+    match = re.search(r"((?:\r?\n)+)$", value)
+    if not match:
+        return value, ""
+    suffix = match.group(1)
+    return value[: -len(suffix)], suffix
+
+
+def is_locked_start(stripped: str) -> bool:
+    return (
+        stripped.startswith("import ")
+        or stripped.startswith("export ")
+        or stripped.startswith("{/*")
+        or stripped.startswith("<")
+        or stripped.startswith("![")
+        or stripped.startswith("$$")
+        or stripped.startswith("```")
+    )
+
+
+def block_id(index: int, raw: str) -> str:
+    digest = sha256_text(raw)[:8]
+    return f"b{index:04d}-{digest}"
+
+
+def make_block(index: int, block_type: str, mode: str, raw_with_newline: str) -> ReviewBlock:
+    raw, separator = strip_content_newline(raw_with_newline)
+    level: int | None = None
+    rows: list[list[str]] | None = None
+
+    if block_type == "heading":
+        match = re.match(r"^(#{1,6})\s+(.+?)\s*$", raw)
+        level = min(len(match.group(1)), 6) if match else 2
+        text = review_inline_text(match.group(2)) if match else review_inline_text(raw)
+    elif block_type == "table":
+        rows = [split_table_row(line) for line in raw.splitlines() if line.strip().startswith("|")]
+        rows = [
+            [review_inline_text(cell) for cell in row]
+            for row in rows
+            if not all(re.fullmatch(r":?-{3,}:?", cell.strip() or "") for cell in row)
+        ]
+        text = "\n".join(" | ".join(row) for row in rows)
+    elif block_type == "quote":
+        text = " ".join(re.sub(r"^>\s?", "", line).strip() for line in raw.splitlines()).strip()
+        text = review_inline_text(text)
+    elif block_type == "list":
+        text = "\n".join(review_inline_text(line) for line in raw.splitlines())
+    elif block_type == "paragraph":
+        text = review_inline_text(" ".join(line.strip() for line in raw.splitlines()))
+    else:
+        text = locked_placeholder(block_type, raw)
+
+    return ReviewBlock(
+        id=block_id(index, raw),
+        type=block_type,
+        mode=mode,
+        raw=raw,
+        text=text,
+        separator=separator,
+        level=level,
+        rows=rows,
+    )
+
+
+def locked_placeholder(block_type: str, raw: str) -> str:
+    if block_type == "code":
+        first = raw.splitlines()[0] if raw.splitlines() else "code block"
+        return f"Locked code block preserved from source: {first}"
+    if block_type == "math":
+        return "Locked math/formula block preserved from source."
+    if block_type == "component":
+        match = re.match(r"</?([A-Za-z][A-Za-z0-9]*)", raw.strip())
+        label = match.group(1) if match else "MDX component"
+        return f"Locked MDX component preserved from source: {label}."
+    if block_type == "image":
+        alt = re.match(r"!\[([^\]]*)]", raw.strip())
+        return f"Locked image preserved from source: {alt.group(1)}." if alt else "Locked image."
+    return f"Locked {block_type} block preserved from source."
+
+
+def review_blocks_for_body(body: str) -> list[ReviewBlock]:
+    lines = body.splitlines(keepends=True)
+    blocks: list[ReviewBlock] = []
+    index = 0
+
+    def append_block(block_type: str, mode: str, raw_lines: list[str]) -> None:
+        if not raw_lines:
+            return
+        blocks.append(make_block(len(blocks) + 1, block_type, mode, "".join(raw_lines)))
+
+    while index < len(lines):
+        stripped = lines[index].strip()
+
+        if not stripped:
+            if blocks:
+                blocks[-1].separator += lines[index]
+            index += 1
+            continue
+
+        start = index
+
+        if stripped.startswith("```"):
+            index += 1
+            while index < len(lines):
+                if lines[index].strip().startswith("```"):
+                    index += 1
+                    break
+                index += 1
+            append_block("code", "locked", lines[start:index])
+            continue
+
+        if stripped.startswith("$$"):
+            index += 1
+            while index < len(lines):
+                if lines[index].strip().startswith("$$"):
+                    index += 1
+                    break
+                index += 1
+            append_block("math", "locked", lines[start:index])
+            continue
+
+        if re.match(r"^#{1,6}\s+", stripped):
+            index += 1
+            append_block("heading", "editable", lines[start:index])
+            continue
+
+        if (
+            stripped.startswith("|")
+            and index + 1 < len(lines)
+            and is_table_separator(lines[index + 1].strip())
+        ):
+            index += 2
+            while index < len(lines) and lines[index].strip().startswith("|"):
+                index += 1
+            append_block("table", "editable", lines[start:index])
+            continue
+
+        if stripped.startswith(">"):
+            index += 1
+            while index < len(lines) and lines[index].strip().startswith(">"):
+                index += 1
+            append_block("quote", "editable", lines[start:index])
+            continue
+
+        if re.match(r"^(?:[-*]|\d+\.)\s+", stripped):
+            index += 1
+            while index < len(lines):
+                next_stripped = lines[index].strip()
+                if not next_stripped:
+                    break
+                if re.match(r"^(?:[-*]|\d+\.)\s+", next_stripped) or re.match(
+                    r"^\s{2,}\S", lines[index]
+                ):
+                    index += 1
+                    continue
+                break
+            append_block("list", "editable", lines[start:index])
+            continue
+
+        if is_locked_start(stripped):
+            index += 1
+            while index < len(lines) and lines[index].strip():
+                # Treat multi-line JSX/components as one protected block.
+                if not lines[index].startswith((" ", "\t")) and not lines[index].strip().startswith(
+                    ("/", "}", "]")
+                ):
+                    break
+                index += 1
+            block_type = "image" if stripped.startswith("![") else "component"
+            append_block(block_type, "locked", lines[start:index])
+            continue
+
+        index += 1
+        while index < len(lines):
+            next_stripped = lines[index].strip()
+            if not next_stripped:
+                break
+            if (
+                re.match(r"^#{1,6}\s+", next_stripped)
+                or next_stripped.startswith(("```", "$$", "|", ">", "<", "!["))
+                or re.match(r"^(?:[-*]|\d+\.)\s+", next_stripped)
+                or is_locked_start(next_stripped)
+            ):
+                break
+            index += 1
+        append_block("paragraph", "editable", lines[start:index])
+
+    return blocks
 
 
 def is_table_separator(line: str) -> bool:
@@ -324,7 +556,7 @@ def inline_runs(value: str) -> str:
         else:
             link = re.match(r"\[([^\]]+)]\(([^)]+)\)", token)
             if link:
-                runs.append(run_xml(f"{link.group(1)} ({link.group(2)})"))
+                runs.append(run_xml(token))
         cursor = match.end()
     if cursor < len(value):
         runs.append(run_xml(value[cursor:]))
@@ -376,32 +608,33 @@ def document_xml(page: Page) -> str:
         paragraph_xml(page.title, "Title"),
         paragraph_xml(f"Source: {rel_source}", "Meta"),
         paragraph_xml(f"Route: {page.route}", "Meta"),
+        paragraph_xml(f"Source hash: {page.source_hash}", "Meta"),
     ]
     if page.description:
         pieces.append(paragraph_xml(f"Description: {page.description}", "Quote"))
-    pieces.append(paragraph_xml("Review copy below. Keep structural notes in comments.", "Meta"))
+    pieces.append(
+        paragraph_xml(
+            "Review copy below. Edit normal prose. Leave POLARIS locked/block marker lines in place.",
+            "Meta",
+        )
+    )
     pieces.append(paragraph_xml(""))
 
-    body = page.body
-    body = re.sub(r"^#\s+.+(?:\r?\n)+", "", body, count=1)
-    for block in parse_blocks(body):
-        block_type = block["type"]
-        if block_type == "heading":
-            level = int(block["level"])
-            pieces.append(paragraph_xml(str(block["text"]), f"Heading{level}"))
-        elif block_type == "quote":
-            pieces.append(paragraph_xml(str(block["text"]), "Quote"))
-        elif block_type == "list":
-            pieces.append(paragraph_xml(str(block["text"]), "ListParagraph"))
-        elif block_type == "code":
-            pieces.append(code_xml(str(block["text"])))
-        elif block_type == "table":
-            rows = [[strip_inline_markup(cell) for cell in row] for row in block["rows"]]  # type: ignore[index]
-            pieces.append(table_xml(rows))
-        elif block_type == "rule":
-            pieces.append(paragraph_xml(""))
+    for block in page.blocks:
+        pieces.append(paragraph_xml(block_marker(block), "Meta"))
+        if block.mode == "locked":
+            pieces.append(paragraph_xml(block.text, "Meta"))
+        elif block.type == "heading":
+            pieces.append(paragraph_xml(block.text, f"Heading{block.level or 2}"))
+        elif block.type == "quote":
+            pieces.append(paragraph_xml(block.text, "Quote"))
+        elif block.type == "list":
+            for line in block.text.splitlines() or [""]:
+                pieces.append(paragraph_xml(line, "ListParagraph"))
+        elif block.type == "table":
+            pieces.append(table_xml(block.rows or []))
         else:
-            pieces.append(paragraph_xml(str(block["text"])))
+            pieces.append(paragraph_xml(block.text))
 
     return (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
@@ -457,6 +690,7 @@ def core_xml(page: Page) -> str:
         f"<dc:title>{xml_text(page.title)}</dc:title>"
         f"<dc:subject>{xml_text(page.route)}</dc:subject>"
         "<dc:creator>Polaris Docs export</dc:creator>"
+        f"<cp:keywords>{xml_text(page.source_hash)}</cp:keywords>"
         "</cp:coreProperties>"
     )
 
@@ -546,11 +780,51 @@ def write_docx(page: Page, output_path: Path) -> None:
         archive.writestr("docProps/app.xml", APP_XML)
 
 
+def block_marker(block: ReviewBlock) -> str:
+    return f"[[POLARIS:BLOCK id={block.id} mode={block.mode} type={block.type}]]"
+
+
+def page_to_manifest(page: Page, out_dir: Path) -> dict[str, object]:
+    return {
+        "route": page.route,
+        "source": page.source.relative_to(ROOT).as_posix(),
+        "docx": output_path_for_route(out_dir, page.route).relative_to(out_dir).as_posix(),
+        "title": page.title,
+        "description": page.description,
+        "frontmatter": page.frontmatter,
+        "source_hash": page.source_hash,
+        "blocks": [
+            {
+                "id": block.id,
+                "type": block.type,
+                "mode": block.mode,
+                "raw": block.raw,
+                "text": block.text,
+                "separator": block.separator,
+                "level": block.level,
+                "rows": block.rows,
+            }
+            for block in page.blocks
+        ],
+    }
+
+
+def json_manifest(pages: Iterable[Page], out_dir: Path) -> str:
+    payload = {
+        "version": 1,
+        "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "tool": "scripts/export-gdocs-review.py",
+        "pages": [page_to_manifest(page, out_dir) for page in pages],
+    }
+    return json.dumps(payload, indent=2, ensure_ascii=False) + "\n"
+
+
 def manifest(pages: Iterable[Page], out_dir: Path) -> str:
     lines = [
         "# Polaris Docs Google Docs review export",
         "",
         "Generated DOCX files are review copies. Keep source-of-truth edits in `content/**/*.mdx`.",
+        "Machine-readable import metadata is in `_manifest.json`; do not edit it.",
         "",
         "| Route | Source | DOCX |",
         "| --- | --- | --- |",
@@ -578,8 +852,13 @@ def main() -> int:
     for page in pages:
         write_docx(page, output_path_for_route(out_dir, page.route))
     (out_dir / "_manifest.md").write_text(manifest(pages, out_dir), encoding="utf8")
+    (out_dir / "_manifest.json").write_text(json_manifest(pages, out_dir), encoding="utf8")
 
-    print(f"Exported {len(pages)} DOCX review files to {out_dir.relative_to(ROOT)}")
+    try:
+        display_out_dir = out_dir.relative_to(ROOT)
+    except ValueError:
+        display_out_dir = out_dir
+    print(f"Exported {len(pages)} DOCX review files to {display_out_dir}")
     print("Upload that folder to Google Drive and open the DOCX files as Google Docs for comments.")
     return 0
 
