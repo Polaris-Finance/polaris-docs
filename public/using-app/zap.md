@@ -23,7 +23,7 @@ Zap combines multiple onchain actions into a single transaction, making it easie
 
 Additional strategies will become available over time.
 
-Image: Polaris Zap tab showing the USDp Stable Yield route from WETH through USDp into the Earn Vault
+![Polaris Zap tab showing the USDp Stable Yield route from WETH through USDp into the Earn Vault](https://tokenbrice.github.io/polaris-docs/screenshots/zap.jpg)
 
 You keep full self-custody throughout the process. Before signing, a simulation shows the expected result and slippage is set by your settings.
 
@@ -38,5 +38,3 @@ You keep full self-custody throughout the process. Before signing, a simulation 
 7. Confirm the final position on the Dashboard, Earn, or Issue tab.
 
 For stale quotes, failed simulations, or partial setup after approval, see [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting).
-
-Relevant app/search vocabulary: Earn, earn, yield, APR, Earn Vault, deposit, claim rewards.

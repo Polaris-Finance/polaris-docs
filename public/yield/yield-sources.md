@@ -66,5 +66,3 @@ Issuer interest follows separate pAsset-denominated split logic.
 Earn Vaults, vePOLAR, positions, and approved Flow recipients each receive yield through their configured path.
 
 Current values and pending production status live in [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters).
-
-Relevant app/search vocabulary: Earn, earn, yield, APR, Earn Vault, deposit, claim rewards.

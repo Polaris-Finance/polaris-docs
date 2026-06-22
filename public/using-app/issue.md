@@ -21,7 +21,7 @@ Issue is where you create pAssets against pETH collateral or borrow ETH against 
 
 Once connected, you can manage existing positions from this tab, including adjustments, repayments, and closures.
 
-Image: Polaris Issue tab with USDp, GOLDp, and ETH sub-tabs, a collateral field, LTV slider, effective rate, and a projected-position panel
+![Polaris Issue tab with USDp, GOLDp, and ETH sub-tabs, a collateral field, LTV slider, effective rate, and a projected-position panel](https://tokenbrice.github.io/polaris-docs/screenshots/borrow.jpg)
 
 ## Basic Flow
 
@@ -53,5 +53,3 @@ For position mechanics, see [Manage A Position](https://tokenbrice.github.io/pol
 For disabled actions or reverted transactions, see [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting).
 
 For position risk, see [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure).
-
-Relevant app/search vocabulary: Issue, Manage Position, borrow, issue, trove, troves, open trove, manage trove, collateralized debt position, CDP, open borrow position, repay, close borrow position, USDp, GOLDp, LTV, loan-to-value, official app.

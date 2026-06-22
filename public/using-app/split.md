@@ -22,7 +22,7 @@ Merge 1 fpETH and 1 vpETH back into 1 pETH at any time. Use this page for the ap
 
 Use [pETH Split](https://tokenbrice.github.io/polaris-docs/peth/split) for the mechanism.
 
-Image: Polaris Split tab with a Split/Merge toggle, fpETH and vpETH outputs, live floor and market prices, and a price simulator
+![Polaris Split tab with a Split/Merge toggle, fpETH and vpETH outputs, live floor and market prices, and a price simulator](https://tokenbrice.github.io/polaris-docs/screenshots/split.jpg)
 
 ## Basic Flow
 
@@ -38,5 +38,3 @@ After splitting, your pETH balance decreases and your fpETH and vpETH balances i
 After merging, your fpETH and vpETH balances decrease by the same amount and your pETH balance increases.
 
 For failed split or merge transactions, see [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting).
-
-Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor price.

@@ -95,5 +95,3 @@ But within the Polaris system, it is designed to be the most conservative way to
 - [pETH Floor Price](https://tokenbrice.github.io/polaris-docs/peth/floor-price): Understand the floor that backs fpETH.
 - [Issue](https://tokenbrice.github.io/polaris-docs/using-app/issue): Use pETH to create pAssets.
 - [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure): Understand the risks around pETH, fpETH, vpETH, and reserve loans.
-
-Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor price, pETH bonding curve, bonding curve, pETH floor.

@@ -18,7 +18,7 @@ Swap lets you exchange between supported Polaris assets from one place. You can 
 
 pETH routes use the Polaris bonding curve. pETH is the core collateral asset in Polaris, so acquiring it unlocks actions such as issuing pAssets, splitting into fpETH and vpETH, and participating in other protocol strategies.
 
-Image: Polaris Swap tab showing the buy/sell direction, the WETH to pETH bonding-curve route, quote, and slippage controls
+![Polaris Swap tab showing the buy/sell direction, the WETH to pETH bonding-curve route, quote, and slippage controls](https://tokenbrice.github.io/polaris-docs/screenshots/swap.jpg)
 
 Before signing, check the quoted price, expected output, and slippage settings.
 
@@ -33,5 +33,3 @@ Before signing, check the quoted price, expected output, and slippage settings.
 7. Confirm your pETH or WETH balance updates.
 
 For stale quotes or reverted swaps, see [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting).
-
-Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor price.

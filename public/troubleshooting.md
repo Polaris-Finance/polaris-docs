@@ -98,5 +98,3 @@ Common causes:
 ## Transaction Pending Or Reverted
 
 Check gas settings, wallet status, and the transaction on Sepolia Etherscan. If the transaction reverted, refresh the app and get a new quote before retrying.
-
-Relevant app/search vocabulary: quickstart, troubleshooting, wrong network, Sepolia, faucet, approval, stale quote, failed transaction.

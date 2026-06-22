@@ -179,5 +179,3 @@ Need | Page
 
 Current live/not-live status | [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status)
 Fastest testnet user flow | [Public Testnet Quickstart](https://tokenbrice.github.io/polaris-docs/quickstart)
-
-Relevant app/search vocabulary: app, official app, testnet, Sepolia, WETH, WETH faucet, Zap, Split, Swap, Issue, Earn, Guide, Advanced, Analytics, APR, Reserve Loan.

@@ -105,5 +105,3 @@ Until then, this page describes the intended structure, not final launch numbers
 - [Conversion Auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions): The spike-and-decay mechanism behind POLAR conversion.
 - [vePOLAR Locking](https://tokenbrice.github.io/polaris-docs/stewardship/vepolar): The planned lock design and stewardship role.
 - [Fee Router And Flows](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router): How protocol revenue is buffered and routed.
-
-Relevant app/search vocabulary: POLAR, convert, lock, vePOLAR, burn pETH, conversion auction, POLAR token, POLAR staking, POLAR tokenomics.

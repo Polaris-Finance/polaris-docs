@@ -47,5 +47,3 @@ Audit and disclosure status | Audits & Security
 ## Start Here
 
 To use the app now, follow the [Public Testnet Quickstart](https://tokenbrice.github.io/polaris-docs/quickstart). Before signing, confirm the app URL, network, asset, contract, and transaction details match the current testnet references.
-
-Relevant app/search vocabulary: app, official app, testnet app, app.testnet.polarisfinance.io, connect wallet, testnet, Public Testnet 1, Sepolia, Sepolia ETH, chain ID 11155111, WETH faucet, borrow, earn, swap, contracts, audits.

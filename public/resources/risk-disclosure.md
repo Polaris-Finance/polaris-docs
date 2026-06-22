@@ -176,5 +176,3 @@ The current status checklist lives on [Launch Status](https://tokenbrice.github.
 For the reasoning behind these trade-offs, read [Why Polaris](https://tokenbrice.github.io/polaris-docs/why-polaris).
 
 For definitions, see the [Glossary](https://tokenbrice.github.io/polaris-docs/resources).
-
-Relevant app/search vocabulary: risk, risks, risk disclosure, smart contract risk, liquidation risk.

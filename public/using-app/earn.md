@@ -26,7 +26,7 @@ Earn Vault deposits act as the first line of defense during liquidations. Deposi
 
 Current testnet POLAR staking surfaces are temporary and should not be treated as part of the final POLAR design.
 
-Image: Polaris Earn tab with USDp, GOLDp, and vpETH sub-tabs, APRs, deposit/withdraw actions, and claim-pending options
+![Polaris Earn tab with USDp, GOLDp, and vpETH sub-tabs, APRs, deposit/withdraw actions, and claim-pending options](https://tokenbrice.github.io/polaris-docs/screenshots/earn.jpg)
 
 ## Basic Flow
 
@@ -42,5 +42,3 @@ For disabled deposits, claims, or rewards actions, see [Troubleshooting](https:/
 For Earn Vault mechanics, see [Earn Vaults](https://tokenbrice.github.io/polaris-docs/yield).
 
 For first-loss risk, see [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure).
-
-Relevant app/search vocabulary: Earn, earn, yield, APR, Earn Vault, deposit, claim rewards.

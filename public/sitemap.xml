@@ -37,12 +37,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tokenbrice.github.io/polaris-docs/minting/open-a-trove</loc>
-    <lastmod>2026-06-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://tokenbrice.github.io/polaris-docs/minting/passet-catalog</loc>
     <lastmod>2026-06-22</lastmod>
     <changefreq>monthly</changefreq>

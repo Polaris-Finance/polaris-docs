@@ -24,7 +24,7 @@ These tools are permissionless and offer more flexibility, but they assume famil
 - Convert pETH To POLAR: Exchange pETH for newly created POLAR through a one-way conversion auction. Converted pETH is permanently burned. There is no reverse direction.
 - Testnet ETH Faucet: Claim test WETH using Sepolia ETH, subject to the current rate, cooldown period, and faucet limits.
 
-Image: Polaris Advanced tab with expert operations, PSM issue and redeem panels, pETH-to-POLAR conversion, and faucet
+![Polaris Advanced tab with expert operations, PSM issue and redeem panels, pETH-to-POLAR conversion, and faucet](https://tokenbrice.github.io/polaris-docs/screenshots/advanced.jpg)
 
 ## Basic Flow
 

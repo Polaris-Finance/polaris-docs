@@ -16,7 +16,7 @@ Conversion auctions are the mechanism that creates new POLAR after the initial d
 
 Burning pETH reduces supply, helps raise the pETH floor, and releases ETH from the bonding curve that can be routed back into the system. This makes POLAR issuance directly connected to pETH floor growth and protocol activity, not a fixed emissions schedule.
 
-Image: A converter burns pETH, receives new POLAR, raises the pETH floor, and releases ETH from the bonding-curve reserve
+![A converter burns pETH, receives new POLAR, raises the pETH floor, and releases ETH from the bonding-curve reserve](https://tokenbrice.github.io/polaris-docs/infographics/conversion-flow.svg)
 
 ## What Conversion Does
 
@@ -40,7 +40,7 @@ Conversion runs as a continuous, permissionless auction. Anyone can convert pETH
 The spike is based on how much POLAR supply is created. A large conversion spikes the price more than a small conversion, which makes large one-shot conversions less efficient.
 This steers the system toward smaller, more frequent conversions instead of sudden, unbounded issuance.
 
-Image: Conversion price decays until it reaches an arbitrage window, then spikes after conversion and begins decaying again
+![Conversion price decays until it reaches an arbitrage window, then spikes after conversion and begins decaying again](https://tokenbrice.github.io/polaris-docs/infographics/spike-and-decay.svg)
 
 ## Why Burning pETH Matters
 
@@ -81,5 +81,3 @@ Production conversions are only actionable once [Launch Status](https://tokenbri
 - [POLAR](https://tokenbrice.github.io/polaris-docs/polar): Why POLAR exists and how it fits into Polaris.
 - [POLAR Tokenomics](https://tokenbrice.github.io/polaris-docs/polar/tokenomics): Issuance, vePOLAR, productive dilution, and pending terms.
 - [pETH Floor Price](https://tokenbrice.github.io/polaris-docs/peth/floor-price): How pETH burns can raise the floor.
-
-Relevant app/search vocabulary: POLAR, convert, lock, vePOLAR, burn pETH, conversion auction.

@@ -61,7 +61,7 @@ The ETH reserve supports the bonding curve, but the floor does not rise simply b
 
 In simple terms: adoption creates activity, activity creates fee flow, fee flow creates burns, and burns raise the floor.
 
-Image: The rising pETH floor as a staircase stepping up over time, each step driven by swap-fee burns, conversion-auction burns, or other pETH-denominated fee burns
+![The rising pETH floor as a staircase stepping up over time, each step driven by swap-fee burns, conversion-auction burns, or other pETH-denominated fee burns](https://tokenbrice.github.io/polaris-docs/infographics/rising-floor-mechanism.svg)
 
 ## Floor Ratio
 
@@ -87,7 +87,7 @@ A higher floor ratio means less curve-implied downside to the floor. A lower flo
 
 The floor ratio frames curve-implied downside in ETH terms. It does not include gas, slippage, MEV, smart-contract risk, or Ethereum liveness risk. For the full risk model, see [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure).
 
-Image: A volatile pETH market-price line above a steadily rising floor line, showing the floor ratio as the distance between them
+![A volatile pETH market-price line above a steadily rising floor line, showing the floor ratio as the distance between them](https://tokenbrice.github.io/polaris-docs/infographics/floor-ratio-explainer.svg)
 
 ## Interactive Explorer
 
@@ -98,5 +98,3 @@ Use the explorer to see how pETH supply, market price, floor price, and floor ra
 - [pETH Split](https://tokenbrice.github.io/polaris-docs/peth/split): Separate the floor-backed claim from the premium upside.
 - [POLAR Conversion Auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions): Understand the pETH burn that lifts the floor and creates POLAR.
 - [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure): Understand what the floor does and does not protect you from.
-
-Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor price, pETH bonding curve, bonding curve, pETH floor.

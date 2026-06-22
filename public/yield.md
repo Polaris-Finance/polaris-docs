@@ -27,7 +27,7 @@ Earn Vaults are first-loss backstops. Deposits can be used during liquidations a
 
 Liquidation gains are a defensive byproduct of the system, not the reason liquidations exist.
 
-Image: ETH enters the bonding curve as pETH, pETH backs pAsset positions, and pAssets deposited in Earn Vaults absorb liquidated debt and earn discounted pETH plus issuer interest
+![ETH enters the bonding curve as pETH, pETH backs pAsset positions, and pAssets deposited in Earn Vaults absorb liquidated debt and earn discounted pETH plus issuer interest](https://tokenbrice.github.io/polaris-docs/infographics/stability-pool.svg)
 
 ## How Yield Works
 
@@ -66,5 +66,3 @@ You need a pAsset to deposit, usually USDp or GOLDp, plus ETH for gas.
 - [Yield Sources](https://tokenbrice.github.io/polaris-docs/yield/yield-sources): Understand every yield stream on Polaris.
 - [Liquidations](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations): Understand how positions are closed and the vault is triggered.
 - [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure): Understand why yield is not principal-safe.
-
-Relevant app/search vocabulary: Earn, earn, yield, APR, Earn Vault, deposit, claim rewards.

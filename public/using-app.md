@@ -22,7 +22,7 @@ The Dashboard is your starting point in Polaris. It shows your balances, active 
 - Review Earn Vault opportunities.
 - Confirm recent transactions and position changes.
 
-Image: Polaris Dashboard showing balances, Earn Vault opportunities, onboarding steps, recent activity, and token prices
+![Polaris Dashboard showing balances, Earn Vault opportunities, onboarding steps, recent activity, and token prices](https://tokenbrice.github.io/polaris-docs/screenshots/dashboard.jpg)
 
 The Dashboard is an overview screen.
 

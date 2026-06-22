@@ -82,5 +82,3 @@ Next steps:
 - [Manage A Position](https://tokenbrice.github.io/polaris-docs/minting/manage-position): How to monitor LTV, interest, and repayment.
 - [Earn Vaults](https://tokenbrice.github.io/polaris-docs/yield): The main venue for pAsset yield.
 - [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure): Understand the full risk model.
-
-Relevant app/search vocabulary: Earn, earn, yield, APR, Earn Vault, deposit, claim rewards.

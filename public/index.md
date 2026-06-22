@@ -28,7 +28,7 @@ pETH | A yield-bearing reserve asset backed by ETH within the Polaris bonding cu
 pAssets | Decentralized currencies and synthetic assets backed by pETH | Enable scalable onchain money without custodians or external counterparties
 POLAR | The stewardship token that governs key protocol parameters and captures protocol value | Aligns long-term incentives while keeping the protocol decentralized
 
-Image: Polaris system overview: ETH swaps into pETH on the bonding curve, pETH collateralizes pAsset markets that issue USDp, and burning pETH for POLAR raises the floor and releases ETH.
+Polaris system overview: ETH swaps into pETH on the bonding curve, pETH collateralizes pAsset markets that issue USDp, and burning pETH for POLAR raises the floor and releases ETH.
 
 Polaris is currently in Public Testnet 1 on Sepolia. Start with the quickstart if you want to try the app, or continue below for the high-level system view.
 
@@ -87,6 +87,4 @@ Launch pAsset markets, apply for Flows, or integrate with Polaris infrastructure
 
 ## Launch Timeline
 
-Image: Polaris launch timeline. Early Research, 2024. Team Formation, June 2025. Private Testnet 1, March 2026. Public Testnet 1, May 2026, the current phase. Audits, Planned. Mainnet Launch, Forthcoming. pAsset Expansion, Planned. Integrations, Planned. Future Products, Exploring. Polaris is currently in Public Testnet 1 on Sepolia. The roadmap continues through audits, mainnet launch, pAsset expansion, integrations, and future products.
-
-Relevant app/search vocabulary: app, official app, testnet, Public Testnet 1, Sepolia, pETH, pAssets.
+Polaris launch timeline. Early Research, 2024. Team Formation, June 2025. Private Testnet 1, March 2026. Public Testnet 1, May 2026, the current phase. Audits, Planned. Mainnet Launch, Forthcoming. pAsset Expansion, Planned. Integrations, Planned. Future Products, Exploring. Polaris is currently in Public Testnet 1 on Sepolia. The roadmap continues through audits, mainnet launch, pAsset expansion, integrations, and future products.

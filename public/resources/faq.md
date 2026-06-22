@@ -101,5 +101,3 @@ Audit status is owned by [Audits And Security](https://tokenbrice.github.io/pola
 ### Is there a bug bounty?
 
 Bug-bounty and disclosure status are owned by [Audits And Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security). Do not send exploit details to private forms, direct messages, or third-party pages unless the official security page links them.
-
-Relevant app/search vocabulary: app, official app, testnet, Sepolia, WETH, WETH faucet, Zap, Split, Swap, Issue, Earn, Guide, Advanced, Analytics, APR, Reserve Loan.

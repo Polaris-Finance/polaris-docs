@@ -37,5 +37,3 @@ Issue | USDp or GOLDp position appears after issuing
 Earn | Earn Vault deposit appears after deposit or zap
 
 For failed transactions, missing balances, faucet limits, or wrong-network issues, see [Troubleshooting](https://tokenbrice.github.io/polaris-docs/troubleshooting).
-
-Relevant app/search vocabulary: quickstart, troubleshooting, wrong network, Sepolia, faucet, approval, stale quote, failed transaction.

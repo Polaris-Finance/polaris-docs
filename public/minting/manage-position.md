@@ -84,5 +84,3 @@ For the full risk model, see [Risk Disclosure](https://tokenbrice.github.io/pola
 - [Interest Rates](https://tokenbrice.github.io/polaris-docs/minting/interest-rates): Understand how interest affects debt.
 - [Liquidations](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/liquidations): Understand what happens if LTV crosses the maximum.
 - [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode): Understand system-wide protective rules.
-
-Relevant app/search vocabulary: Issue, Manage Position, borrow, issue, trove, troves, open trove, manage trove, collateralized debt position, CDP, open borrow position, repay, close borrow position, USDp, GOLDp, LTV, loan-to-value, official app, borrow position, manage borrow position, pAsset debt position.

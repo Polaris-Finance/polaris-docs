@@ -95,5 +95,3 @@ This gives Polaris a path to adapt and scale while preserving the immutability o
 - [Conversion Auctions](https://tokenbrice.github.io/polaris-docs/polar/conversion-auctions): How pETH converts into POLAR and raises the pETH floor.
 - [POLAR Tokenomics](https://tokenbrice.github.io/polaris-docs/polar/tokenomics): Issuance, productive dilution, vePOLAR, and pending mechanics.
 - [Stewardship](https://tokenbrice.github.io/polaris-docs/stewardship): Bounded parameter control and future vePOLAR.
-
-Relevant app/search vocabulary: POLAR, convert, lock, vePOLAR, burn pETH, conversion auction, POLAR token, POLAR staking, POLAR tokenomics.

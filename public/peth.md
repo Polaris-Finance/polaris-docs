@@ -80,5 +80,3 @@ It does not remove all risk.
 - [pETH Floor Price](https://tokenbrice.github.io/polaris-docs/peth/floor-price): Understand the curve-backed floor.
 - [pETH Split](https://tokenbrice.github.io/polaris-docs/peth/split): Learn how pETH separates into fpETH and vpETH.
 - [Issue](https://tokenbrice.github.io/polaris-docs/using-app/issue): Use pETH as collateral to create pAssets.
-
-Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor price, pETH bonding curve, bonding curve, pETH floor.

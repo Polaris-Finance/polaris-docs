@@ -73,5 +73,3 @@ Mint / minting: Contract-facing language for creating a token. Public docs use i
 PSM: Peg Stability Module. The direct mechanism for issuing or redeeming pAssets against pETH at the oracle price.
 
 SP: Internal name for the liquidation backstop behind an Earn Vault. Public docs use Earn Vault.
-
-Relevant app/search vocabulary: app, official app, testnet, Sepolia, WETH, WETH faucet, Zap, Split, Swap, Issue, Earn, Guide, Advanced, Analytics, APR, Reserve Loan.

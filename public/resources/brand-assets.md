@@ -14,7 +14,7 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 Everything needed to represent Polaris correctly: logos, palette, and type. The canonical surface is dark. Polaris was designed against a night sky, not a white page.
 
-Image: Polaris full logo
+![Polaris full logo](https://tokenbrice.github.io/polaris-docs/full-logo.svg)
 
 Full logo preview for placement checks. Keep the SVG unmodified and provide enough contrast around it.
 

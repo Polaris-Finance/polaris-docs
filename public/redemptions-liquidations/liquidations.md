@@ -78,5 +78,3 @@ Recovery Mode only restricts issuer actions that would make system backing weake
 - [Manage A Position](https://tokenbrice.github.io/polaris-docs/minting/manage-position): Keep your LTV healthy.
 - [Earn Vaults](https://tokenbrice.github.io/polaris-docs/yield): Understand how vaults absorb liquidations.
 - [Recovery Mode](https://tokenbrice.github.io/polaris-docs/redemptions-liquidations/recovery-mode): Understand system-wide protective rules.
-
-Relevant app/search vocabulary: liquidation, liquidations, liquidate, liquidated, liquidation penalty.
