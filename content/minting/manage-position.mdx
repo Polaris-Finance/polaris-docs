@@ -24,48 +24,38 @@ Collateral ratio = collateral value / debt face value
 For example, a 150% collateral ratio is the same as 66.7% LTV.
 
 Three rules matter:
+
 - If your LTV rises above the maximum, your position can be liquidated.
 - Interest increases your debt over time, which can raise your LTV.
 - Issuance, redemptions, rewards, and collateral price changes can move your position even if you take no action.
 
 ## Basic Actions
 
-Add collateral:
-Lowers LTV without changing debt.
+Add collateral: Lowers LTV without changing debt.
 
-Issue more:
-Creates more pAssets against your collateral. This raises LTV and reduces your safety buffer.
+Issue more: Creates more pAssets against your collateral. This raises LTV and reduces your safety buffer.
 
-Repay debt:
-Reduces outstanding debt, lowers LTV, and creates more room to withdraw collateral.
+Repay debt: Reduces outstanding debt, lowers LTV, and creates more room to withdraw collateral.
 
-Withdraw collateral:
-Removes collateral from the position. This raises LTV and reduces your safety buffer.
+Withdraw collateral: Removes collateral from the position. This raises LTV and reduces your safety buffer.
 
-Close:
-Repay the full debt, then withdraw remaining collateral.
+Close: Repay the full debt, then withdraw remaining collateral.
 
-Transfer:
-Positions are represented by NFTs. Transferring the NFT transfers control of the position, including its collateral, debt, and management rights.
+Transfer: Positions are represented by NFTs. Transferring the NFT transfers control of the position, including its collateral, debt, and management rights.
 
 ## How Your Position Can Change
 
 A position can change for reasons beyond your own transactions.
 
-Interest:
-The peg-steering rate is continuously added to outstanding debt.
+Interest: The peg-steering rate is continuously added to outstanding debt.
 
-Issuance:
-New issuance can add collateral and debt across open positions for the affected pAsset. This can increase the size of your position, including its debt.
+Issuance: New issuance can add collateral and debt across open positions for the affected pAsset. This can increase the size of your position, including its debt.
 
-Redemptions:
-Redemptions can reduce collateral and debt across open positions for the affected pAsset. Your LTV may improve, but your position becomes smaller and your pETH exposure falls.
+Redemptions: Redemptions can reduce collateral and debt across open positions for the affected pAsset. Your LTV may improve, but your position becomes smaller and your pETH exposure falls.
 
-Rewards and incentives:
-Your position may receive pETH incentives based on issued debt where configured.
+Rewards and incentives: Your position may receive pETH incentives based on issued debt where configured.
 
-Collateral price:
-Your LTV changes as the value of pETH collateral changes.
+Collateral price: Your LTV changes as the value of pETH collateral changes.
 
 ## What To Watch
 
