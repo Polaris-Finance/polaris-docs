@@ -4,7 +4,7 @@ const nodeOptions = [process.env.NODE_OPTIONS, '--no-experimental-webstorage']
   .filter(Boolean)
   .join(' ')
 
-const child = spawn('next', ['dev'], {
+const child = spawn('next', ['dev', '--webpack', ...process.argv.slice(2)], {
   env: {
     ...process.env,
     NODE_OPTIONS: nodeOptions
