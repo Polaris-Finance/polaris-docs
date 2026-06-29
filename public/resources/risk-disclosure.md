@@ -28,9 +28,7 @@ Polaris lives entirely onchain. Its bonding curve, pAsset markets, position acco
 
 **Mitigation:** The intended core is immutable and admin-key-free, removing upgrade and governance-key attack surface but raising the stakes on getting the code right.
 
-Final audit reports are not published in these docs yet.
-
-Until reports appear on [Audits And Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security), treat the protocol as unaudited.
+Until audit reports appear on [Audits And Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security), treat the protocol as unaudited.
 
 ## Collateral And Price Risk
 
@@ -44,9 +42,7 @@ pETH can also move relative to ETH through the bonding curve, but for issuers th
 
 For issuers, the practical risk to monitor is the pETH/USD collateral value used by the protocol, their LTV, and their liquidation price.
 
-**Important:** The pETH floor defines pETH/ETH downside under the bonding curve.
-
-It does not protect against ETH/USD volatility. If ETH falls against the dollar, the USD value of pETH collateral can fall with it.
+**Important:** The pETH floor does not protect against ETH/USD volatility. If ETH falls against the dollar, the USD value of pETH collateral can fall with it.
 
 ## Oracle Risk
 
@@ -95,15 +91,13 @@ Polaris also has a safety rate for stressed conditions. When active, it can move
 
 Interest increases debt over time, which can raise your LTV and move your position closer to liquidation even if you take no action.
 
-**Mitigation:** Monitor your position, keep an LTV buffer, and understand the current rates before issuing pAssets.
-
-Adding collateral or repaying debt lowers your LTV and reduces liquidation risk. See [Interest Rates](https://tokenbrice.github.io/polaris-docs/minting/interest-rates).
+**Mitigation:** Monitor your position, keep an LTV buffer, and understand the current rates before issuing pAssets. See [Interest Rates](https://tokenbrice.github.io/polaris-docs/minting/interest-rates).
 
 ## Issuance And Redemption Exposure
 
 Issuance and redemptions are socialized across all open positions for the affected pAsset. New issuance can increase position size by adding debt and collateral.
 
-Redemptions can reduce collateral and debt even if a position is solvent. No position is targeted before another.
+Redemptions can reduce collateral and debt even if a position is solvent.
 
 The protocol does not redeem against the riskiest position first, and a low LTV does not exempt a position from redemption exposure. Fees from issuance and redemptions flow back to affected positions, helping compensate the positions impacted by the mechanism.
 

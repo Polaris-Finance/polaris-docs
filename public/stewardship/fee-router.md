@@ -22,8 +22,6 @@ Current status: Fee Router addresses, ABIs, events, distribution cadence, Flow w
 
 ## Fee Router
 
-The Fee Router receives protocol revenue, buffers it, and sends it to the configured recipient path.
-
 It moves existing assets only. It does not create POLAR, pETH, or any other pAsset.
 
 ## Inputs
@@ -70,8 +68,6 @@ Before relying on the Fee Router, operators and indexers should verify:
 Indexers should track inputs by source, buffered amounts, distributions, claims, and the parameter values active during each distribution.
 
 ## Flows
-
-Flows share protocol revenue with approved contracts that create durable demand for Polaris assets.
 
 They are designed to replace recurring token emissions with revenue paid in pETH or pAssets.
 

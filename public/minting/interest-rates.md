@@ -32,15 +32,6 @@ The interest rate is the cost paid by pAsset issuers.
 
 The peg-steering rate responds to peg conditions rather than serving as a general benchmark for the cost of capital.
 
-When a pAsset trades above peg, the system wants more supply. Issuance becomes attractive, supply expands, and the peg-steering rate moves lower.
-
-When a pAsset trades below peg, the system wants less supply. Redemptions become attractive, supply contracts, and the peg-steering rate moves higher.
-
-In simple terms:
-
-- Above peg: make issuance cheaper so supply can expand.
-- Below peg: make issuance more expensive so supply can contract.
-
 ## The Peg Signal
 
 Polaris does not need to ask an oracle whether USDp is trading at \$0.99 or \$1.01. Instead, it observes how users interact with the protocol.
@@ -114,8 +105,6 @@ When peg-defense volume spikes, fees rise.
 
 When peg-defense volume slows, fees decay.
 
-As a result, aggressive peg-defense activity becomes more expensive as volume increases.
-
 ## Safety Rate
 
 The safety rate is the secondary interest rate within Polaris. It remains inactive under normal conditions and only comes into play during stressed conditions.
@@ -134,8 +123,6 @@ This encourages collateral-only and low-leverage positions to enter the system, 
 
 At the same time, the safety rate penalizes excessive leverage when the system is already under stress.
 
-Under normal conditions, the peg-steering rate remains the active interest-rate mechanism. The safety rate adds an additional protective cost only when the system needs stronger defense.
-
 Final safety-rate parameters, activation conditions, and display logic should be checked in [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters) once published.
 
 ## Where Interest Goes
@@ -148,9 +135,9 @@ Depending on the pAsset market and configured splits, it can flow to:
 - vePOLAR lockers.
 - Ecosystem or Flow paths where configured.
 
-vePOLAR is intended to receive a guaranteed minimum share of issuer interest from deployed pAsset markets once live.
+Once live, vePOLAR is designed to receive a guaranteed minimum share of issuer interest from deployed pAsset markets.
 
-Safety-rate payments are different. They are designed to move value directly from higher-LTV issuers toward lower-LTV issuers during stressed conditions.
+Safety-rate payments are different: they move value directly between issuers rather than to these destinations.
 
 Current splits and pending production values live in [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters).
 
@@ -158,8 +145,6 @@ Current splits and pending production values live in [Parameters](https://tokenb
 
 - Interest is continuously added to outstanding debt.
 - The peg-steering rate can move when issuance or redemptions occur.
-- Above-peg pressure generally pushes the peg-steering rate lower.
-- Below-peg pressure generally pushes the peg-steering rate higher.
 - Spike-and-decay fees can make heavy issuance or redemption activity more expensive.
 - The safety rate can add cost to higher-LTV positions during stressed conditions.
 - Lower-LTV positions can receive safety-rate payments when the safety rate is active.

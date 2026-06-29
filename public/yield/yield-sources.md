@@ -55,8 +55,6 @@ It emerges from protocol use and is captured by the protocol itself.
 
 That makes yield a function of Polaris activity rather than an external incentive budget.
 
-Yield comes from protocol revenue and system activity, not POLAR emissions.
-
 ## How Yield Is Distributed
 
 Conversion proceeds and swap fees go through the [Fee Router](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router).

@@ -20,11 +20,9 @@ ETH enters the system through the Polaris bonding curve and becomes pETH, the co
 
 This creates a monetary system where collateral, liquidity and protocol activity reinforce one another without relying on external counterparties or offchain dependencies.
 
-The flagship stablecoin of the Polaris ecosystem is USDp, a fully decentralized dollar backed by pETH. The same reserve model is designed to support several additional assets, all sharing the same collateral foundation.
+The flagship stablecoin of the Polaris ecosystem is USDp, a fully decentralized dollar backed by pETH. The same reserve model is designed to support several additional assets.
 
-USDp maintains its peg through overcollateralization and a series of protocol mechanisms described throughout this documentation, while the yield generated comes from onchain activity across the ecosystem, including bonding curve fees, borrowing demand, conversions, and other protocol mechanisms.
-
-This allows value created within Polaris to remain within Polaris.
+USDp maintains its peg through overcollateralization and protocol mechanisms detailed throughout these docs. Its yield comes from onchain activity across the ecosystem, including bonding curve fees, borrowing demand, and conversions.
 
 Polaris is built around three core assets that serve as the foundation of the ecosystem.
 

@@ -47,7 +47,7 @@ USDp manifest | USDp token, CDP manager, Earn Vault, PSM, price feed, medianiser
 GOLDp manifest | GOLDp token, CDP manager, Earn Vault, PSM, price feed, ETH/USD and XAU/USD medianisers, interest controller, read helper | `deployments/sepolia/deployment-manifest.pgold.ts`
 Deploy script defaults | Fee floors, fee alpha values, decay factors, initial rates, and deployment constants not all written into the manifests | `script/DeployPolaris.s.sol`
 
-Treat these as testnet artifacts: useful for testing, indexer scaffolding, and UI verification, but not public provenance or production-canonical.
+Treat these as testnet artifacts: useful for testing, indexer scaffolding, and UI verification, but not a publicly verifiable source and not production-canonical.
 
 ## Parameters
 
@@ -100,7 +100,7 @@ Public Testnet 1's 115% MCR is about 87.0% max LTV; the 150% Emergency Mode acti
 
 Use the app quote and live contract reads before signing.
 
-Do not copy Sepolia values into a production integration, and treat older beta, MCR, or Recovery Mode examples as stale if they disagree with the values above.
+Do not copy Sepolia values into a production integration, and treat older examples for bonding-curve beta, MCR, or Recovery Mode as stale if they disagree with the values above.
 
 ## Contracts and addresses
 
@@ -170,7 +170,7 @@ Ethereum mainnet, chain ID `1` | Forthcoming. No canonical production addresses 
 
 1. Confirm the network and chain ID match [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status).
 2. Confirm the address appears in [Contracts and addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses) above.
-3. Open [Sepolia Etherscan](https://sepolia.etherscan.io/) and search for the exact address; confirm the source or ABI matches the verified explorer entry when verification is published.
+3. Open [Sepolia Etherscan](https://sepolia.etherscan.io/) and search for the exact address. If contract verification is published, confirm the source or ABI matches the verified explorer entry.
 4. Never paste an address from a screenshot, direct message, ad, or search result without checking this page.
 
 ## Related pages

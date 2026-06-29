@@ -11,7 +11,7 @@ The pETH floor is the code-enforced minimum price of pETH in ETH terms, enforced
 
 It is a result of the curve's reserves, supply, and burn rules, enforced directly by immutable code while the relevant contract invariants hold. The easiest way to think about it:
 
-- pETH can and will trade above its floor.
+- pETH can trade above its floor.
 - The floor is the code-enforced lower bound created by the bonding curve.
 - Protocol activity is designed to push the floor upward over time.
 - Your curve-implied downside in ETH terms depends on the distance between your entry price and the floor.
@@ -81,9 +81,8 @@ A higher floor ratio means less curve-implied downside to the floor. A lower flo
 
 - In periods of strong demand, the market price can move far above the floor and the ratio can fall.
 - As the market price normalizes or the floor catches up, the ratio can rise.
-- As the floor ratio rises, remaining downside to the floor becomes smaller.
 
-The floor ratio frames curve-implied downside in ETH terms. It does not include gas, slippage, MEV, smart-contract risk, or Ethereum liveness risk. For the full risk model, see [Risk Disclosure](/resources/risk-disclosure).
+The floor ratio frames only curve-implied downside in ETH terms, not the other risks listed above. For the full risk model, see [Risk Disclosure](/resources/risk-disclosure).
 
 <Figure
   src="/infographics/floor-ratio-explainer.svg"

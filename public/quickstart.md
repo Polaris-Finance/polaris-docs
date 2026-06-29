@@ -14,8 +14,6 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 ---
 
-Use this page to try Polaris on Public Testnet 1.
-
 1. Open [https://app.testnet.polarisfinance.io/](https://app.testnet.polarisfinance.io/).
 2. Connect your wallet on Sepolia, chain ID 11155111.
 3. Get Sepolia ETH for gas from a Sepolia faucet if needed.

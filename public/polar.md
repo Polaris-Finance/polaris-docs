@@ -74,21 +74,11 @@ Users will lock POLAR to receive stewardship rights and participate in bounded p
 
 The goal is not open-ended governance over the core protocol.
 
-The core remains constrained. vePOLAR is designed to coordinate parameters, incentives, integrations, and ecosystem growth within defined limits.
+The core remains constrained. vePOLAR is designed to coordinate parameters, incentives, integrations, and ecosystem growth within defined limits, giving Polaris a path to adapt and scale while preserving the immutability of the base system.
 
 Current testnet staking surfaces are temporary and should not be treated as part of the final POLAR design.
 
 For live app surfaces and contract status, use [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) and [Contracts And Addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses).
-
-## Stewardship Without Mutable Core Logic
-
-POLAR is designed to coordinate the ecosystem without making the core protocol dependent on open-ended governance.
-
-The core remains constrained.
-
-vePOLAR stewardship is intended to coordinate parameters, incentives, integrations, and ecosystem growth within defined limits.
-
-This gives Polaris a path to adapt and scale while preserving the immutability of the base system.
 
 ## Next Steps
 

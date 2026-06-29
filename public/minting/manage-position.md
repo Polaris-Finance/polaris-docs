@@ -20,13 +20,13 @@ The main app-facing health metric is loan-to-value, or LTV.
 
 LTV is the value of your debt divided by the value of your collateral.
 
-LTV = debt face value / collateral value
+LTV = debt value / collateral value
 
 Lower LTV gives you more room before liquidation.
 
 Some protocol references use collateral ratio instead. Collateral ratio is the inverse of LTV.
 
-Collateral ratio = collateral value / debt face value
+Collateral ratio = collateral value / debt value
 
 For example, a 150% collateral ratio is the same as 66.7% LTV.
 
@@ -68,8 +68,7 @@ Collateral price: Your LTV changes as the value of pETH collateral changes.
 
 - Keep a buffer below the maximum LTV.
 - Interest increases debt over time.
-- Issuing more pAssets or withdrawing collateral raises LTV.
-- Repaying debt or adding collateral lowers LTV.
+- Issuing pAssets or withdrawing collateral raises LTV; repaying debt or adding collateral lowers it.
 - Redemptions can affect solvent positions.
 - Lower LTV protects against liquidation, not redemption exposure.
 - Recovery Mode can restrict risk-increasing actions.

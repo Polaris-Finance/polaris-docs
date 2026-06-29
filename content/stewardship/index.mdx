@@ -9,8 +9,6 @@ Governance risk comes from scope. When token holders can vote on anything, undef
 
 Polaris takes a different path: an immutable core with a clearly scoped stewardship layer for the decisions that cannot or should not be fully automated. Calling it governance would be misleading.
 
-Polaris does not give token holders open-ended control over the protocol. It gives stewards a bounded role around the parts of the system that still require human judgment.
-
 Current status: Stewardship is not live yet. POLAR and vePOLAR contract addresses, proposal thresholds, voting periods, execution delays, and final parameter bounds are pending audited deployment.
 
 This page describes intended scope and lifecycle, not live launch parameters.
@@ -43,9 +41,7 @@ Safety-critical adjustable values ship with hardcoded limits. The remaining nume
 | Flow weights | Set whitelisted recipient weights and related edge parameters | Hardcoded limits. No gauges, bribes, or POLAR emissions |
 | Treasury programs | Operate programs such as the Polar Council | Framework, eligibility, allocation, and reporting requirements are pending publication |
 
-A stewardship vote can bring a new pAsset or Flow participant into the system, or move an approved parameter within its range.
-
-It cannot alter the bonding curve, redemption mechanism, liquidation logic, Earn Vault mechanics, or core contract immutability.
+Stewardship cannot alter the bonding curve, redemption mechanism, liquidation logic, Earn Vault mechanics, or core contract immutability.
 
 ## What Stewardship Does Not Do
 
@@ -85,8 +81,6 @@ The final stewardship UI and contract-level process are pending. The intended li
 5. Queue and execution: Approved changes are queued and executed through the published contract path.
 6. Verification: Docs, indexers, and monitors confirm the new state onchain.
 7. Monitoring: Operators and stewards watch the result and propose reversals or adjustments if needed.
-
-No proposal is executable until the official process, contracts, and parameter bounds are published.
 
 ## The Three-Tier Decision Model
 

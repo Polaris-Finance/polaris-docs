@@ -40,12 +40,12 @@ Mainnet contracts | Not published
 
 Need | Page
 
-Fastest safe testnet flow | Public Testnet Quickstart
-Sepolia manifest paths and artifact sources | Public Testnet 1 Artifacts
-Contract addresses and verification rules | Contracts & Addresses
-Numeric protocol parameters | Parameters
-Risk taxonomy | Risk Disclosure
-Audit and disclosure status | Audits & Security
+Fastest safe testnet flow | [Public Testnet Quickstart](https://tokenbrice.github.io/polaris-docs/quickstart)
+Sepolia manifest paths and artifact sources | [Public Testnet 1 Artifacts](https://tokenbrice.github.io/polaris-docs/resources/testnet#manifest-sources)
+Contract addresses and verification rules | [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses)
+Numeric protocol parameters | [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters)
+Risk taxonomy | [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure)
+Audit and disclosure status | [Audits & Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security)
 
 ## Start Here
 

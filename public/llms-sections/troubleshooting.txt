@@ -55,7 +55,7 @@ If the wallet shows an unexpected spender, token, or amount, do not sign. Confir
 
 ## Quote Changed
 
-Quotes can change when protocol state moves. Refresh the quote before signing.
+Quotes can change as protocol state updates. Refresh the quote before signing.
 
 ## Slippage Or Output Changed
 

@@ -76,7 +76,7 @@ fpETH is designed to give users ETH-denominated yield without relying on staking
 
 When Polaris activity raises the floor, the fpETH redemption value rises with it. That makes fpETH a new kind of ETH yield asset: not staking yield, not lending yield, and not offchain yield.
 
-It is yield from protocol activity increasing the floor of pETH. Because fpETH represents the floor-value component of pETH, it is structurally the lower-risk side of the split.
+It is yield from protocol activity increasing the floor of pETH.
 
 It does not need pETH to trade higher in the market. It only needs the pETH floor to keep rising.
 

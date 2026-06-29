@@ -20,9 +20,7 @@ Earn Vaults are first-loss backstops. Deposits can be used during liquidations a
 
 ## Why Use Earn Vaults
 
-- Earn pAsset-denominated interest from issuers.
 - Put idle pAssets to work without opening a position.
-- Help keep pAssets backed during stress.
 - Receive liquidation gains when liquidations are processed successfully.
 
 Liquidation gains are a defensive byproduct of the system, not the reason liquidations exist.

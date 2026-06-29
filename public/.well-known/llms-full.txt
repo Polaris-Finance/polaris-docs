@@ -21,11 +21,9 @@ ETH enters the system through the Polaris bonding curve and becomes pETH, the co
 
 This creates a monetary system where collateral, liquidity and protocol activity reinforce one another without relying on external counterparties or offchain dependencies.
 
-The flagship stablecoin of the Polaris ecosystem is USDp, a fully decentralized dollar backed by pETH. The same reserve model is designed to support several additional assets, all sharing the same collateral foundation.
+The flagship stablecoin of the Polaris ecosystem is USDp, a fully decentralized dollar backed by pETH. The same reserve model is designed to support several additional assets.
 
-USDp maintains its peg through overcollateralization and a series of protocol mechanisms described throughout this documentation, while the yield generated comes from onchain activity across the ecosystem, including bonding curve fees, borrowing demand, conversions, and other protocol mechanisms.
-
-This allows value created within Polaris to remain within Polaris.
+USDp maintains its peg through overcollateralization and protocol mechanisms detailed throughout these docs. Its yield comes from onchain activity across the ecosystem, including bonding curve fees, borrowing demand, and conversions.
 
 Polaris is built around three core assets that serve as the foundation of the ecosystem.
 
@@ -77,12 +75,12 @@ Mainnet contracts | Not published
 
 Need | Page
 
-Fastest safe testnet flow | Public Testnet Quickstart
-Sepolia manifest paths and artifact sources | Public Testnet 1 Artifacts
-Contract addresses and verification rules | Contracts & Addresses
-Numeric protocol parameters | Parameters
-Risk taxonomy | Risk Disclosure
-Audit and disclosure status | Audits & Security
+Fastest safe testnet flow | [Public Testnet Quickstart](https://tokenbrice.github.io/polaris-docs/quickstart)
+Sepolia manifest paths and artifact sources | [Public Testnet 1 Artifacts](https://tokenbrice.github.io/polaris-docs/resources/testnet#manifest-sources)
+Contract addresses and verification rules | [Contracts & Addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses)
+Numeric protocol parameters | [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters)
+Risk taxonomy | [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure)
+Audit and disclosure status | [Audits & Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security)
 
 ## Start Here
 
@@ -96,8 +94,6 @@ Relevant app/search vocabulary: app, official app, testnet app, app.testnet.pola
 
 URL: https://tokenbrice.github.io/polaris-docs/quickstart
 Markdown URL: https://tokenbrice.github.io/polaris-docs/quickstart.md
-
-Use this page to try Polaris on Public Testnet 1.
 
 1. Open [https://app.testnet.polarisfinance.io/](https://app.testnet.polarisfinance.io/).
 2. Connect your wallet on Sepolia, chain ID 11155111.
@@ -157,7 +153,7 @@ These tools are permissionless and offer more flexibility, but they assume famil
 
 - Peg Stability Module: Issue or redeem USDp and GOLDp against pETH at the oracle price, which is an arbitrage that helps maintain each of these assets’ peg.
 - Convert pETH to POLAR: Exchange pETH for newly issued POLAR through a one-way conversion mechanism. Converted pETH is permanently burned and cannot be converted back.
-- You also have the Testnet ETH Faucet here: Claim test WETH using Sepolia ETH, subject to the current rate, cooldown period, and faucet limits.
+- Testnet ETH Faucet: Claim test WETH using Sepolia ETH, subject to the current rate, cooldown period, and faucet limits.
 
 Image: Polaris Advanced tab with expert operations, PSM issue and redeem panels, pETH-to-POLAR conversion, and faucet
 
@@ -187,7 +183,7 @@ Earn is where you deposit assets into Polaris yield opportunities.
 Current opportunities include:
 
 - USDp Earn Vault, where depositors earn from issuer interest and liquidation gains.
-- GOLDp Earn Vault, where deposits earn from issuer interest and liquidation gains.
+- GOLDp Earn Vault, where depositors earn from issuer interest and liquidation gains.
 - vpETH rewards, where holders gain exposure to the volatile component of pETH and participate in pETH rewards distribution.
 
 Earn Vault deposits help process liquidations and support the stability of the system during periods of stress. In return, depositors earn protocol-native yield.
@@ -305,7 +301,7 @@ Markdown URL: https://tokenbrice.github.io/polaris-docs/using-app/swap.md
 
 Swap provides a simple way to exchange between supported Polaris assets. Use it to acquire pETH, move between pAssets, or swap into supported test assets when available.
 
-As the collateral foundation of the ecosystem, pETH is required for actions such as issuing pAssets, splitting into fpETH and vpETH, and accessing other protocol strategies. And pETH swaps are routed through the Polaris bonding curve.
+As the collateral foundation of the ecosystem, pETH is required for actions such as issuing pAssets, splitting into fpETH and vpETH, and accessing other protocol strategies. pETH swaps route through the Polaris bonding curve.
 
 Image: Polaris Swap tab showing the buy/sell direction, the WETH to pETH bonding-curve route, quote, and slippage controls
 
@@ -400,7 +396,7 @@ If the wallet shows an unexpected spender, token, or amount, do not sign. Confir
 
 ## Quote Changed
 
-Quotes can change when protocol state moves. Refresh the quote before signing.
+Quotes can change as protocol state updates. Refresh the quote before signing.
 
 ## Slippage Or Output Changed
 
@@ -523,15 +519,6 @@ The interest rate is the cost paid by pAsset issuers.
 
 The peg-steering rate responds to peg conditions rather than serving as a general benchmark for the cost of capital.
 
-When a pAsset trades above peg, the system wants more supply. Issuance becomes attractive, supply expands, and the peg-steering rate moves lower.
-
-When a pAsset trades below peg, the system wants less supply. Redemptions become attractive, supply contracts, and the peg-steering rate moves higher.
-
-In simple terms:
-
-- Above peg: make issuance cheaper so supply can expand.
-- Below peg: make issuance more expensive so supply can contract.
-
 ## The Peg Signal
 
 Polaris does not need to ask an oracle whether USDp is trading at \$0.99 or \$1.01. Instead, it observes how users interact with the protocol.
@@ -605,8 +592,6 @@ When peg-defense volume spikes, fees rise.
 
 When peg-defense volume slows, fees decay.
 
-As a result, aggressive peg-defense activity becomes more expensive as volume increases.
-
 ## Safety Rate
 
 The safety rate is the secondary interest rate within Polaris. It remains inactive under normal conditions and only comes into play during stressed conditions.
@@ -625,8 +610,6 @@ This encourages collateral-only and low-leverage positions to enter the system, 
 
 At the same time, the safety rate penalizes excessive leverage when the system is already under stress.
 
-Under normal conditions, the peg-steering rate remains the active interest-rate mechanism. The safety rate adds an additional protective cost only when the system needs stronger defense.
-
 Final safety-rate parameters, activation conditions, and display logic should be checked in [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters) once published.
 
 ## Where Interest Goes
@@ -639,9 +622,9 @@ Depending on the pAsset market and configured splits, it can flow to:
 - vePOLAR lockers.
 - Ecosystem or Flow paths where configured.
 
-vePOLAR is intended to receive a guaranteed minimum share of issuer interest from deployed pAsset markets once live.
+Once live, vePOLAR is designed to receive a guaranteed minimum share of issuer interest from deployed pAsset markets.
 
-Safety-rate payments are different. They are designed to move value directly from higher-LTV issuers toward lower-LTV issuers during stressed conditions.
+Safety-rate payments are different: they move value directly between issuers rather than to these destinations.
 
 Current splits and pending production values live in [Parameters](https://tokenbrice.github.io/polaris-docs/resources/testnet#parameters).
 
@@ -649,8 +632,6 @@ Current splits and pending production values live in [Parameters](https://tokenb
 
 - Interest is continuously added to outstanding debt.
 - The peg-steering rate can move when issuance or redemptions occur.
-- Above-peg pressure generally pushes the peg-steering rate lower.
-- Below-peg pressure generally pushes the peg-steering rate higher.
 - Spike-and-decay fees can make heavy issuance or redemption activity more expensive.
 - The safety rate can add cost to higher-LTV positions during stressed conditions.
 - Lower-LTV positions can receive safety-rate payments when the safety rate is active.
@@ -677,7 +658,7 @@ These markets can become part of the Polaris yield network by opting into Flows,
 
 Because every pAsset is built on pETH, activity in one market can increase pETH demand, trading volume, and yield flows for the broader ecosystem.
 
-This creates a shared alignment loop: new markets bring demand, pETH activity grows, Polaris routes incentives, issuers earn yield, and vePOLAR gains new revenue sources. Builders that use pETH can share in the success of the wider Polaris ecosystem rather than growing in isolation.
+This creates a shared alignment loop: new markets bring demand, pETH activity grows, Polaris routes incentives, issuers earn yield, and vePOLAR gains new revenue sources.
 
 This page is for builders and operators exploring how to launch a pAsset market and align it with Polaris.
 
@@ -873,13 +854,13 @@ The main app-facing health metric is loan-to-value, or LTV.
 
 LTV is the value of your debt divided by the value of your collateral.
 
-LTV = debt face value / collateral value
+LTV = debt value / collateral value
 
 Lower LTV gives you more room before liquidation.
 
 Some protocol references use collateral ratio instead. Collateral ratio is the inverse of LTV.
 
-Collateral ratio = collateral value / debt face value
+Collateral ratio = collateral value / debt value
 
 For example, a 150% collateral ratio is the same as 66.7% LTV.
 
@@ -921,8 +902,7 @@ Collateral price: Your LTV changes as the value of pETH collateral changes.
 
 - Keep a buffer below the maximum LTV.
 - Interest increases debt over time.
-- Issuing more pAssets or withdrawing collateral raises LTV.
-- Repaying debt or adding collateral lowers LTV.
+- Issuing pAssets or withdrawing collateral raises LTV; repaying debt or adding collateral lowers it.
 - Redemptions can affect solvent positions.
 - Lower LTV protects against liquidation, not redemption exposure.
 - Recovery Mode can restrict risk-increasing actions.
@@ -1189,7 +1169,7 @@ The Polaris bonding curve lets users buy and sell pETH directly against the prot
 
 Most DeFi assets depend on external markets for liquidity. If liquidity providers leave, exit conditions can deteriorate quickly.
 
-pETH works differently. The curve gives pETH a protocol-native path in and out of ETH without the reliance on any external liquidity provider that may decide to leave during times of volatility.
+pETH works differently. The curve gives pETH a protocol-native path in and out of ETH without relying on external liquidity providers.
 
 ## The pETH Floor
 
@@ -1245,7 +1225,7 @@ The pETH floor is the code-enforced minimum price of pETH in ETH terms, enforced
 
 It is a result of the curve's reserves, supply, and burn rules, enforced directly by immutable code while the relevant contract invariants hold. The easiest way to think about it:
 
-- pETH can and will trade above its floor.
+- pETH can trade above its floor.
 - The floor is the code-enforced lower bound created by the bonding curve.
 - Protocol activity is designed to push the floor upward over time.
 - Your curve-implied downside in ETH terms depends on the distance between your entry price and the floor.
@@ -1310,9 +1290,8 @@ A higher floor ratio means less curve-implied downside to the floor. A lower flo
 
 - In periods of strong demand, the market price can move far above the floor and the ratio can fall.
 - As the market price normalizes or the floor catches up, the ratio can rise.
-- As the floor ratio rises, remaining downside to the floor becomes smaller.
 
-The floor ratio frames curve-implied downside in ETH terms. It does not include gas, slippage, MEV, smart-contract risk, or Ethereum liveness risk. For the full risk model, see [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure).
+The floor ratio frames only curve-implied downside in ETH terms, not the other risks listed above. For the full risk model, see [Risk Disclosure](https://tokenbrice.github.io/polaris-docs/resources/risk-disclosure).
 
 Image: A volatile pETH market-price line above a steadily rising floor line, showing the floor ratio as the distance between them
 
@@ -1399,7 +1378,7 @@ fpETH is designed to give users ETH-denominated yield without relying on staking
 
 When Polaris activity raises the floor, the fpETH redemption value rises with it. That makes fpETH a new kind of ETH yield asset: not staking yield, not lending yield, and not offchain yield.
 
-It is yield from protocol activity increasing the floor of pETH. Because fpETH represents the floor-value component of pETH, it is structurally the lower-risk side of the split.
+It is yield from protocol activity increasing the floor of pETH.
 
 It does not need pETH to trade higher in the market. It only needs the pETH floor to keep rising.
 
@@ -1490,21 +1469,11 @@ Users will lock POLAR to receive stewardship rights and participate in bounded p
 
 The goal is not open-ended governance over the core protocol.
 
-The core remains constrained. vePOLAR is designed to coordinate parameters, incentives, integrations, and ecosystem growth within defined limits.
+The core remains constrained. vePOLAR is designed to coordinate parameters, incentives, integrations, and ecosystem growth within defined limits, giving Polaris a path to adapt and scale while preserving the immutability of the base system.
 
 Current testnet staking surfaces are temporary and should not be treated as part of the final POLAR design.
 
 For live app surfaces and contract status, use [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status) and [Contracts And Addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses).
-
-## Stewardship Without Mutable Core Logic
-
-POLAR is designed to coordinate the ecosystem without making the core protocol dependent on open-ended governance.
-
-The core remains constrained.
-
-vePOLAR stewardship is intended to coordinate parameters, incentives, integrations, and ecosystem growth within defined limits.
-
-This gives Polaris a path to adapt and scale while preserving the immutability of the base system.
 
 ## Next Steps
 
@@ -1623,7 +1592,7 @@ Each conversion burns pETH, creates POLAR, and can release ETH from the bonding 
 
 ## Productive Dilution
 
-Every conversion dilutes existing POLAR holders, but that dilution is designed to buy a concrete improvement. POLAR dilution is productive when it is paired with pETH burns, floor growth, released ETH yield, and ecosystem expansion.
+Every conversion dilutes existing POLAR holders, but that dilution is designed to deliver a concrete improvement. POLAR dilution is productive when it is paired with pETH burns, floor growth, released ETH yield, and ecosystem expansion.
 
 Productive dilution follows these design principles:
 
@@ -1650,7 +1619,7 @@ For live app surfaces and contract status, use [Launch Status](https://tokenbric
 
 ## Yield Routes
 
-vePOLAR is the primary value capture layer for POLAR. Lockers are intended to receive a guaranteed minimum share of issuer interest from every deployed pAsset market.
+vePOLAR is the primary value capture layer for POLAR, designed to give lockers a guaranteed minimum share of issuer interest from every deployed pAsset market.
 
 As more pAssets are created and more debt is issued, this gives vePOLAR direct exposure to protocol revenue across the Polaris system.
 
@@ -1755,13 +1724,7 @@ Issuance and redemption fees also flow to the affected positions. Unlike designs
 
 ## Why This Matters
 
-Polaris does not rely on an offchain issuer to defend pAsset pegs.
-
-Above-peg pressure invites issuance.
-
-Below-peg pressure invites redemptions.
-
-Both mechanisms are permissionless and driven by arbitrage. The protocol also uses this activity as the onchain signal for autonomous interest rates.
+Polaris does not rely on an offchain issuer to defend pAsset pegs. Both mechanisms are permissionless and driven by arbitrage, and the protocol also uses this activity as the onchain signal for autonomous interest rates.
 
 See [Interest Rates](https://tokenbrice.github.io/polaris-docs/minting/interest-rates).
 
@@ -1790,7 +1753,7 @@ Markdown URL: https://tokenbrice.github.io/polaris-docs/redemptions-liquidations
 
 A liquidation closes a position when its LTV rises above the maximum.
 
-Liquidations protect protocol solvency and help ensure pAssets remain overcollateralized. Every pAsset is backed by collateral, and positions that cross the maximum LTV must be closed to keep the system healthy.
+Liquidations protect protocol solvency and help ensure pAssets remain overcollateralized.
 
 A liquidation is different from a redemption. Liquidations close unsafe positions to protect solvency. Redemptions are peg-defense actions that can affect solvent positions when a pAsset trades below peg.
 
@@ -1896,8 +1859,6 @@ Restricted actions:
 - Issue more debt.
 - Make adjustments that increase LTV or weaken backing.
 
-In short: actions that make the system safer remain open. Actions that make the system riskier face tighter rules.
-
 Recovery Mode does not automatically close healthy positions and does not change the normal liquidation threshold.
 
 ## How To Stay Safe
@@ -1929,8 +1890,6 @@ Markdown URL: https://tokenbrice.github.io/polaris-docs/stewardship.md
 Governance risk comes from scope. When token holders can vote on anything, undefined boundaries and misaligned incentives create capture risk.
 
 Polaris takes a different path: an immutable core with a clearly scoped stewardship layer for the decisions that cannot or should not be fully automated. Calling it governance would be misleading.
-
-Polaris does not give token holders open-ended control over the protocol. It gives stewards a bounded role around the parts of the system that still require human judgment.
 
 Current status: Stewardship is not live yet. POLAR and vePOLAR contract addresses, proposal thresholds, voting periods, execution delays, and final parameter bounds are pending audited deployment.
 
@@ -1964,9 +1923,7 @@ Primary interest split | Set how issuer interest is split between the Earn Vault
 Flow weights | Set whitelisted recipient weights and related edge parameters | Hardcoded limits. No gauges, bribes, or POLAR emissions
 Treasury programs | Operate programs such as the Polar Council | Framework, eligibility, allocation, and reporting requirements are pending publication
 
-A stewardship vote can bring a new pAsset or Flow participant into the system, or move an approved parameter within its range.
-
-It cannot alter the bonding curve, redemption mechanism, liquidation logic, Earn Vault mechanics, or core contract immutability.
+Stewardship cannot alter the bonding curve, redemption mechanism, liquidation logic, Earn Vault mechanics, or core contract immutability.
 
 ## What Stewardship Does Not Do
 
@@ -2006,8 +1963,6 @@ The final stewardship UI and contract-level process are pending. The intended li
 5. Queue and execution: Approved changes are queued and executed through the published contract path.
 6. Verification: Docs, indexers, and monitors confirm the new state onchain.
 7. Monitoring: Operators and stewards watch the result and propose reversals or adjustments if needed.
-
-No proposal is executable until the official process, contracts, and parameter bounds are published.
 
 ## The Three-Tier Decision Model
 
@@ -2056,8 +2011,6 @@ Current status: Fee Router addresses, ABIs, events, distribution cadence, Flow w
 
 ## Fee Router
 
-The Fee Router receives protocol revenue, buffers it, and sends it to the configured recipient path.
-
 It moves existing assets only. It does not create POLAR, pETH, or any other pAsset.
 
 ## Inputs
@@ -2104,8 +2057,6 @@ Before relying on the Fee Router, operators and indexers should verify:
 Indexers should track inputs by source, buffered amounts, distributions, claims, and the parameter values active during each distribution.
 
 ## Flows
-
-Flows share protocol revenue with approved contracts that create durable demand for Polaris assets.
 
 They are designed to replace recurring token emissions with revenue paid in pETH or pAssets.
 
@@ -2201,14 +2152,7 @@ The bonding curve, pAsset market logic, liquidations, redemptions, and Earn Vaul
 
 ## What vePOLAR Does Not Do
 
-vePOLAR cannot touch the immutable core. It cannot:
-
-- Upgrade contracts.
-- Add admin keys.
-- Create gauges or bribe markets.
-- Create POLAR outside conversion auctions.
-- Move parameters outside immutable minimum and maximum ranges.
-- Change user positions, deposits, balances, or locks by discretion.
+vePOLAR cannot touch the immutable core. It cannot upgrade contracts, add admin keys, create gauges or bribe markets, or change user positions and balances by discretion. See [Stewardship](https://tokenbrice.github.io/polaris-docs/stewardship) for the full list.
 
 ## Lock Status
 
@@ -2235,9 +2179,9 @@ This makes vePOLAR positions more flexible than a purely account-bound lock, but
 
 ## Yield For Lockers
 
-vePOLAR is intended to be more than influence alone. vePOLAR lockers are intended to receive a guaranteed minimum share of issuer interest from every deployed pAsset market.
+vePOLAR is designed to give lockers a guaranteed minimum share of issuer interest from every deployed pAsset market.
 
-As more pAssets are created and more debt is issued, vePOLAR receives direct exposure to protocol revenue across the Polaris system. This is protocol revenue, not POLAR emissions.
+As more pAssets are created and more debt is issued, vePOLAR receives direct exposure to protocol revenue. This is protocol revenue, not POLAR emissions.
 
 Exact splits, buffering, and claim mechanics are pending final deployment.
 
@@ -2303,9 +2247,7 @@ For now, the two operate independently. Stablecoins generate enormous economic a
 
 Polaris connects these two systems by placing its collateral, pETH, at the center of its yield layer.
 
-As demand for the stablecoins and synthetic assets permissionlessly issued on Polaris grows, the resulting protocol activity is designed to reinforce pETH, the reserve asset supporting them. Instead of importing yield from external dependencies, Polaris redirects value created within its own economy back into the system through liquidity flows.
-
-pETH derives its yield from the economic activity generated within Polaris itself. As the reserve asset of the protocol, it allows the collateral backing the monetary layer to participate directly in the value created by that economy.
+As demand for the stablecoins and synthetic assets permissionlessly issued on Polaris grows, the resulting protocol activity is designed to reinforce pETH, the reserve asset supporting them. Rather than importing yield from external dependencies, pETH derives its yield from the economic activity generated within Polaris itself, letting the collateral backing the monetary layer participate directly in the value that economy creates.
 
 This distinguishes it from liquid staking tokens, whose yield comes from securing the Ethereum network.
 
@@ -2335,14 +2277,14 @@ The more the ecosystem grows, the stronger its reserve foundation becomes. And t
 
 Choice | Why it exists | What it enables
 
-pETH as common collateral | Gives every pAsset market the same ETH-backed reserve foundation | USDp, GOLDp, and future pAssets can scale from the same collateral reserve, making risk easier to understand across the system
+pETH as common collateral | Gives every pAsset market the same ETH-backed reserve foundation | USDp, GOLDp, and future pAssets can scale from the same collateral reserve, making risk easier to understand across the system.
 Two-way bonding curve | Gives pETH native liquidity without depending on external liquidity providers | ETH can enter and exit through transparent onchain rules while fees and burns can raise the pETH floor.
-Earn Vaults | Turn liquidation processing and issuer activity into yield opportunities | pAsset holders can earn yield while providing an additional layer of resilience to the system.
-POLAR stewardship | Allows decision-making within predefined boundaries while keeping the core logic immutable. | Long-term coordination without rewriting the base protocol
-pETH split | Separates floor exposure from upside exposure | Users can choose different risk and return profiles
+Earn Vaults | Turns liquidation processing and issuer activity into yield opportunities | pAsset holders can earn yield while providing an additional layer of resilience to the system.
+POLAR stewardship | Allows decision-making within predefined boundaries while keeping the core logic immutable. | Long-term coordination without rewriting the base protocol.
+pETH split | Separates floor exposure from upside exposure | Users can choose different risk and return profiles.
 Direct pAsset issuance | Lets users create pAssets directly from the protocol against pETH collateral | New pAssets can scale from native demand without relying on external lenders.
-Redemptions | Help defend pAsset pegs below their reference value | Below-peg pressure can be corrected without offchain redemption promises.
-Peg-responsive interest rates | Adjust issuer costs based on each pAsset's peg conditions | Helps balance supply and demand while routing value back to Earn Vaults and POLAR stewardship.
+Redemptions | Helps defend pAsset pegs below their reference value | Below-peg pressure can be corrected without offchain redemption promises.
+Peg-responsive interest rates | Adjusts issuer costs based on each pAsset's peg conditions | Helps balance supply and demand while routing value back to Earn Vaults and POLAR stewardship.
 
 ## Next Steps
 
@@ -2365,9 +2307,7 @@ Earn Vaults are first-loss backstops. Deposits can be used during liquidations a
 
 ## Why Use Earn Vaults
 
-- Earn pAsset-denominated interest from issuers.
 - Put idle pAssets to work without opening a position.
-- Help keep pAssets backed during stress.
 - Receive liquidation gains when liquidations are processed successfully.
 
 Liquidation gains are a defensive byproduct of the system, not the reason liquidations exist.
@@ -2544,8 +2484,6 @@ It emerges from protocol use and is captured by the protocol itself.
 
 That makes yield a function of Polaris activity rather than an external incentive budget.
 
-Yield comes from protocol revenue and system activity, not POLAR emissions.
-
 ## How Yield Is Distributed
 
 Conversion proceeds and swap fees go through the [Fee Router](https://tokenbrice.github.io/polaris-docs/stewardship/fee-router).
@@ -2636,7 +2574,7 @@ Relevant app/search vocabulary: app, official app, app URL, phishing, verify con
 URL: https://tokenbrice.github.io/polaris-docs/resources/audits-security
 Markdown URL: https://tokenbrice.github.io/polaris-docs/resources/audits-security.md
 
-Audits and verifications are ongoing. This page will be updated when audit reports, a bug bounty, or an official disclosure channel are live.
+Audits and verifications are in progress. This page will be updated when audit reports, a bug bounty, or an official disclosure channel are live.
 
 ## Current Status
 
@@ -2654,19 +2592,19 @@ This page will list the official contact when one is live.
 
 Polaris is designed to reduce trusted human control over the core protocol.
 
-## Immutability
+### Immutability
 
 The core contracts are intended to be non-upgradeable after deployment. This removes upgrade-key and proxy-admin attack surface, but it also raises the stakes on getting the code right. Immutability cuts both ways: it cannot be tampered with, and it cannot be patched.
 
-## No Admin Keys
+### No Admin Keys
 
 The design has no freeze, blacklist, or pause functions for anyone, including the team. No privileged key is intended to move user funds.
 
-## Bounded Stewardship
+### Bounded Stewardship
 
 Stewards adjust only quantitative parameters. Many of these parameters are bounded by hardcoded ranges, such as interest-rate maxima, fee-split floors, and issuance/redemption decay factors. Stewardship cannot rewrite the core logic. See [Stewardship](https://tokenbrice.github.io/polaris-docs/stewardship).
 
-## Narrow Oracle Dependency
+### Narrow Oracle Dependency
 
 Peg awareness uses internal issuance and redemption volume rather than a direct pAsset market-price oracle. Collateral pricing still requires ETH price feeds, and non-USD pAssets may require additional reference-asset feeds.
 
@@ -2875,9 +2813,7 @@ Polaris lives entirely onchain. Its bonding curve, pAsset markets, position acco
 
 **Mitigation:** The intended core is immutable and admin-key-free, removing upgrade and governance-key attack surface but raising the stakes on getting the code right.
 
-Final audit reports are not published in these docs yet.
-
-Until reports appear on [Audits And Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security), treat the protocol as unaudited.
+Until audit reports appear on [Audits And Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security), treat the protocol as unaudited.
 
 ## Collateral And Price Risk
 
@@ -2891,9 +2827,7 @@ pETH can also move relative to ETH through the bonding curve, but for issuers th
 
 For issuers, the practical risk to monitor is the pETH/USD collateral value used by the protocol, their LTV, and their liquidation price.
 
-**Important:** The pETH floor defines pETH/ETH downside under the bonding curve.
-
-It does not protect against ETH/USD volatility. If ETH falls against the dollar, the USD value of pETH collateral can fall with it.
+**Important:** The pETH floor does not protect against ETH/USD volatility. If ETH falls against the dollar, the USD value of pETH collateral can fall with it.
 
 ## Oracle Risk
 
@@ -2942,15 +2876,13 @@ Polaris also has a safety rate for stressed conditions. When active, it can move
 
 Interest increases debt over time, which can raise your LTV and move your position closer to liquidation even if you take no action.
 
-**Mitigation:** Monitor your position, keep an LTV buffer, and understand the current rates before issuing pAssets.
-
-Adding collateral or repaying debt lowers your LTV and reduces liquidation risk. See [Interest Rates](https://tokenbrice.github.io/polaris-docs/minting/interest-rates).
+**Mitigation:** Monitor your position, keep an LTV buffer, and understand the current rates before issuing pAssets. See [Interest Rates](https://tokenbrice.github.io/polaris-docs/minting/interest-rates).
 
 ## Issuance And Redemption Exposure
 
 Issuance and redemptions are socialized across all open positions for the affected pAsset. New issuance can increase position size by adding debt and collateral.
 
-Redemptions can reduce collateral and debt even if a position is solvent. No position is targeted before another.
+Redemptions can reduce collateral and debt even if a position is solvent.
 
 The protocol does not redeem against the riskiest position first, and a low LTV does not exempt a position from redemption exposure. Fees from issuance and redemptions flow back to affected positions, helping compensate the positions impacted by the mechanism.
 
@@ -3066,7 +2998,7 @@ USDp manifest | USDp token, CDP manager, Earn Vault, PSM, price feed, medianiser
 GOLDp manifest | GOLDp token, CDP manager, Earn Vault, PSM, price feed, ETH/USD and XAU/USD medianisers, interest controller, read helper | `deployments/sepolia/deployment-manifest.pgold.ts`
 Deploy script defaults | Fee floors, fee alpha values, decay factors, initial rates, and deployment constants not all written into the manifests | `script/DeployPolaris.s.sol`
 
-Treat these as testnet artifacts: useful for testing, indexer scaffolding, and UI verification, but not public provenance or production-canonical.
+Treat these as testnet artifacts: useful for testing, indexer scaffolding, and UI verification, but not a publicly verifiable source and not production-canonical.
 
 ## Parameters
 
@@ -3119,7 +3051,7 @@ Public Testnet 1's 115% MCR is about 87.0% max LTV; the 150% Emergency Mode acti
 
 Use the app quote and live contract reads before signing.
 
-Do not copy Sepolia values into a production integration, and treat older beta, MCR, or Recovery Mode examples as stale if they disagree with the values above.
+Do not copy Sepolia values into a production integration, and treat older examples for bonding-curve beta, MCR, or Recovery Mode as stale if they disagree with the values above.
 
 ## Contracts and addresses
 
@@ -3189,7 +3121,7 @@ Ethereum mainnet, chain ID `1` | Forthcoming. No canonical production addresses 
 
 1. Confirm the network and chain ID match [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status).
 2. Confirm the address appears in [Contracts and addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses) above.
-3. Open [Sepolia Etherscan](https://sepolia.etherscan.io/) and search for the exact address; confirm the source or ABI matches the verified explorer entry when verification is published.
+3. Open [Sepolia Etherscan](https://sepolia.etherscan.io/) and search for the exact address. If contract verification is published, confirm the source or ABI matches the verified explorer entry.
 4. Never paste an address from a screenshot, direct message, ad, or search result without checking this page.
 
 ## Related pages

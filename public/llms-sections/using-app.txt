@@ -44,7 +44,7 @@ These tools are permissionless and offer more flexibility, but they assume famil
 
 - Peg Stability Module: Issue or redeem USDp and GOLDp against pETH at the oracle price, which is an arbitrage that helps maintain each of these assets’ peg.
 - Convert pETH to POLAR: Exchange pETH for newly issued POLAR through a one-way conversion mechanism. Converted pETH is permanently burned and cannot be converted back.
-- You also have the Testnet ETH Faucet here: Claim test WETH using Sepolia ETH, subject to the current rate, cooldown period, and faucet limits.
+- Testnet ETH Faucet: Claim test WETH using Sepolia ETH, subject to the current rate, cooldown period, and faucet limits.
 
 Image: Polaris Advanced tab with expert operations, PSM issue and redeem panels, pETH-to-POLAR conversion, and faucet
 
@@ -74,7 +74,7 @@ Earn is where you deposit assets into Polaris yield opportunities.
 Current opportunities include:
 
 - USDp Earn Vault, where depositors earn from issuer interest and liquidation gains.
-- GOLDp Earn Vault, where deposits earn from issuer interest and liquidation gains.
+- GOLDp Earn Vault, where depositors earn from issuer interest and liquidation gains.
 - vpETH rewards, where holders gain exposure to the volatile component of pETH and participate in pETH rewards distribution.
 
 Earn Vault deposits help process liquidations and support the stability of the system during periods of stress. In return, depositors earn protocol-native yield.
@@ -192,7 +192,7 @@ Markdown URL: https://tokenbrice.github.io/polaris-docs/using-app/swap.md
 
 Swap provides a simple way to exchange between supported Polaris assets. Use it to acquire pETH, move between pAssets, or swap into supported test assets when available.
 
-As the collateral foundation of the ecosystem, pETH is required for actions such as issuing pAssets, splitting into fpETH and vpETH, and accessing other protocol strategies. And pETH swaps are routed through the Polaris bonding curve.
+As the collateral foundation of the ecosystem, pETH is required for actions such as issuing pAssets, splitting into fpETH and vpETH, and accessing other protocol strategies. pETH swaps route through the Polaris bonding curve.
 
 Image: Polaris Swap tab showing the buy/sell direction, the WETH to pETH bonding-curve route, quote, and slippage controls
 

@@ -14,7 +14,7 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 ---
 
-Audits and verifications are ongoing. This page will be updated when audit reports, a bug bounty, or an official disclosure channel are live.
+Audits and verifications are in progress. This page will be updated when audit reports, a bug bounty, or an official disclosure channel are live.
 
 ## Current Status
 
@@ -32,19 +32,19 @@ This page will list the official contact when one is live.
 
 Polaris is designed to reduce trusted human control over the core protocol.
 
-## Immutability
+### Immutability
 
 The core contracts are intended to be non-upgradeable after deployment. This removes upgrade-key and proxy-admin attack surface, but it also raises the stakes on getting the code right. Immutability cuts both ways: it cannot be tampered with, and it cannot be patched.
 
-## No Admin Keys
+### No Admin Keys
 
 The design has no freeze, blacklist, or pause functions for anyone, including the team. No privileged key is intended to move user funds.
 
-## Bounded Stewardship
+### Bounded Stewardship
 
 Stewards adjust only quantitative parameters. Many of these parameters are bounded by hardcoded ranges, such as interest-rate maxima, fee-split floors, and issuance/redemption decay factors. Stewardship cannot rewrite the core logic. See [Stewardship](https://tokenbrice.github.io/polaris-docs/stewardship).
 
-## Narrow Oracle Dependency
+### Narrow Oracle Dependency
 
 Peg awareness uses internal issuance and redemption volume rather than a direct pAsset market-price oracle. Collateral pricing still requires ETH price feeds, and non-USD pAssets may require additional reference-asset feeds.
 

@@ -64,13 +64,7 @@ Issuance and redemption fees also flow to the affected positions. Unlike designs
 
 ## Why This Matters
 
-Polaris does not rely on an offchain issuer to defend pAsset pegs.
-
-Above-peg pressure invites issuance.
-
-Below-peg pressure invites redemptions.
-
-Both mechanisms are permissionless and driven by arbitrage. The protocol also uses this activity as the onchain signal for autonomous interest rates.
+Polaris does not rely on an offchain issuer to defend pAsset pegs. Both mechanisms are permissionless and driven by arbitrage, and the protocol also uses this activity as the onchain signal for autonomous interest rates.
 
 See [Interest Rates](https://tokenbrice.github.io/polaris-docs/minting/interest-rates).
 

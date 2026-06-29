@@ -88,7 +88,7 @@ Relevant app/search vocabulary: app, official app, app URL, phishing, verify con
 URL: https://tokenbrice.github.io/polaris-docs/resources/audits-security
 Markdown URL: https://tokenbrice.github.io/polaris-docs/resources/audits-security.md
 
-Audits and verifications are ongoing. This page will be updated when audit reports, a bug bounty, or an official disclosure channel are live.
+Audits and verifications are in progress. This page will be updated when audit reports, a bug bounty, or an official disclosure channel are live.
 
 ## Current Status
 
@@ -106,19 +106,19 @@ This page will list the official contact when one is live.
 
 Polaris is designed to reduce trusted human control over the core protocol.
 
-## Immutability
+### Immutability
 
 The core contracts are intended to be non-upgradeable after deployment. This removes upgrade-key and proxy-admin attack surface, but it also raises the stakes on getting the code right. Immutability cuts both ways: it cannot be tampered with, and it cannot be patched.
 
-## No Admin Keys
+### No Admin Keys
 
 The design has no freeze, blacklist, or pause functions for anyone, including the team. No privileged key is intended to move user funds.
 
-## Bounded Stewardship
+### Bounded Stewardship
 
 Stewards adjust only quantitative parameters. Many of these parameters are bounded by hardcoded ranges, such as interest-rate maxima, fee-split floors, and issuance/redemption decay factors. Stewardship cannot rewrite the core logic. See [Stewardship](https://tokenbrice.github.io/polaris-docs/stewardship).
 
-## Narrow Oracle Dependency
+### Narrow Oracle Dependency
 
 Peg awareness uses internal issuance and redemption volume rather than a direct pAsset market-price oracle. Collateral pricing still requires ETH price feeds, and non-USD pAssets may require additional reference-asset feeds.
 
@@ -327,9 +327,7 @@ Polaris lives entirely onchain. Its bonding curve, pAsset markets, position acco
 
 **Mitigation:** The intended core is immutable and admin-key-free, removing upgrade and governance-key attack surface but raising the stakes on getting the code right.
 
-Final audit reports are not published in these docs yet.
-
-Until reports appear on [Audits And Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security), treat the protocol as unaudited.
+Until audit reports appear on [Audits And Security](https://tokenbrice.github.io/polaris-docs/resources/audits-security), treat the protocol as unaudited.
 
 ## Collateral And Price Risk
 
@@ -343,9 +341,7 @@ pETH can also move relative to ETH through the bonding curve, but for issuers th
 
 For issuers, the practical risk to monitor is the pETH/USD collateral value used by the protocol, their LTV, and their liquidation price.
 
-**Important:** The pETH floor defines pETH/ETH downside under the bonding curve.
-
-It does not protect against ETH/USD volatility. If ETH falls against the dollar, the USD value of pETH collateral can fall with it.
+**Important:** The pETH floor does not protect against ETH/USD volatility. If ETH falls against the dollar, the USD value of pETH collateral can fall with it.
 
 ## Oracle Risk
 
@@ -394,15 +390,13 @@ Polaris also has a safety rate for stressed conditions. When active, it can move
 
 Interest increases debt over time, which can raise your LTV and move your position closer to liquidation even if you take no action.
 
-**Mitigation:** Monitor your position, keep an LTV buffer, and understand the current rates before issuing pAssets.
-
-Adding collateral or repaying debt lowers your LTV and reduces liquidation risk. See [Interest Rates](https://tokenbrice.github.io/polaris-docs/minting/interest-rates).
+**Mitigation:** Monitor your position, keep an LTV buffer, and understand the current rates before issuing pAssets. See [Interest Rates](https://tokenbrice.github.io/polaris-docs/minting/interest-rates).
 
 ## Issuance And Redemption Exposure
 
 Issuance and redemptions are socialized across all open positions for the affected pAsset. New issuance can increase position size by adding debt and collateral.
 
-Redemptions can reduce collateral and debt even if a position is solvent. No position is targeted before another.
+Redemptions can reduce collateral and debt even if a position is solvent.
 
 The protocol does not redeem against the riskiest position first, and a low LTV does not exempt a position from redemption exposure. Fees from issuance and redemptions flow back to affected positions, helping compensate the positions impacted by the mechanism.
 
@@ -518,7 +512,7 @@ USDp manifest | USDp token, CDP manager, Earn Vault, PSM, price feed, medianiser
 GOLDp manifest | GOLDp token, CDP manager, Earn Vault, PSM, price feed, ETH/USD and XAU/USD medianisers, interest controller, read helper | `deployments/sepolia/deployment-manifest.pgold.ts`
 Deploy script defaults | Fee floors, fee alpha values, decay factors, initial rates, and deployment constants not all written into the manifests | `script/DeployPolaris.s.sol`
 
-Treat these as testnet artifacts: useful for testing, indexer scaffolding, and UI verification, but not public provenance or production-canonical.
+Treat these as testnet artifacts: useful for testing, indexer scaffolding, and UI verification, but not a publicly verifiable source and not production-canonical.
 
 ## Parameters
 
@@ -571,7 +565,7 @@ Public Testnet 1's 115% MCR is about 87.0% max LTV; the 150% Emergency Mode acti
 
 Use the app quote and live contract reads before signing.
 
-Do not copy Sepolia values into a production integration, and treat older beta, MCR, or Recovery Mode examples as stale if they disagree with the values above.
+Do not copy Sepolia values into a production integration, and treat older examples for bonding-curve beta, MCR, or Recovery Mode as stale if they disagree with the values above.
 
 ## Contracts and addresses
 
@@ -641,7 +635,7 @@ Ethereum mainnet, chain ID `1` | Forthcoming. No canonical production addresses 
 
 1. Confirm the network and chain ID match [Launch Status](https://tokenbrice.github.io/polaris-docs/launch-status).
 2. Confirm the address appears in [Contracts and addresses](https://tokenbrice.github.io/polaris-docs/resources/testnet#contracts-and-addresses) above.
-3. Open [Sepolia Etherscan](https://sepolia.etherscan.io/) and search for the exact address; confirm the source or ABI matches the verified explorer entry when verification is published.
+3. Open [Sepolia Etherscan](https://sepolia.etherscan.io/) and search for the exact address. If contract verification is published, confirm the source or ABI matches the verified explorer entry.
 4. Never paste an address from a screenshot, direct message, ad, or search result without checking this page.
 
 ## Related pages
