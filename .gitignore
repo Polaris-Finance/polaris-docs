@@ -32,6 +32,7 @@ next-env.d.ts
 /agents/
 
 # local tool artifacts
+__pycache__/
 /review-docs/
 /.playwright/
 /.playwright-cli
