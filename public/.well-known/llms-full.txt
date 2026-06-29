@@ -43,6 +43,8 @@ Polaris is currently in Public Testnet 1 on Sepolia. Start with the quickstart i
 
 Image: Polaris launch timeline. Early Research, 2024. Team Formation, June 2025. Private Testnet 1, March 2026. Public Testnet 1, May 2026, the current phase. Audits, Planned. Mainnet Launch, Forthcoming. pAsset Expansion, Planned. Integrations, Planned. Future Products, Exploring. Polaris is currently in Public Testnet 1 on Sepolia. The roadmap continues through audits, mainnet launch, pAsset expansion, integrations, and future products.
 
+[Why Polaris](https://tokenbrice.github.io/polaris-docs/why-polaris) lays out the manifesto, the case for pETH, and the long-term vision behind the protocol.
+
 Relevant app/search vocabulary: app, official app, testnet, Public Testnet 1, Sepolia, pETH, pAssets.
 
 ---
