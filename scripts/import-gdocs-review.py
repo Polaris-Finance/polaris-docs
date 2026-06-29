@@ -25,9 +25,12 @@ from xml.etree import ElementTree as ET
 ROOT = Path.cwd()
 CONTENT_DIR = ROOT / "content"
 WORD_NS = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
-BLOCK_MARKER = re.compile(
-    r"^\[\[POLARIS:BLOCK\s+id=([^\s]+)\s+mode=([^\s]+)\s+type=([^\s\]]+)\]\]$"
-)
+BLOCK_MARKERS = [
+    re.compile(r"^\[\[POLARIS\s+([^\s\]]+)\s+([^\s\]]+)\s+([^\s\]]+)\]\]$"),
+    re.compile(
+        r"^\[\[POLARIS:BLOCK\s+id=([^\s]+)\s+mode=([^\s]+)\s+type=([^\s\]]+)\]\]$"
+    ),
+]
 
 
 @dataclass
@@ -207,6 +210,14 @@ def table_rows(table: ET.Element) -> list[list[str]]:
     return rows
 
 
+def parse_block_marker(text: str) -> tuple[str, str, str] | None:
+    for pattern in BLOCK_MARKERS:
+        marker = pattern.match(text)
+        if marker:
+            return marker.group(1), marker.group(2), marker.group(3)
+    return None
+
+
 def parse_docx_blocks(docx_bytes: bytes) -> list[ImportedBlock]:
     with zipfile.ZipFile(io.BytesIO(docx_bytes)) as archive:
         document_xml = archive.read("word/document.xml")
@@ -222,12 +233,12 @@ def parse_docx_blocks(docx_bytes: bytes) -> list[ImportedBlock]:
     for child in body:
         if child.tag == f"{WORD_NS}p":
             text = paragraph_text(child)
-            marker = BLOCK_MARKER.match(text)
+            marker = parse_block_marker(text)
             if marker:
                 current = ImportedBlock(
-                    id=marker.group(1),
-                    mode=marker.group(2),
-                    type=marker.group(3),
+                    id=marker[0],
+                    mode=marker[1],
+                    type=marker[2],
                     elements=[],
                 )
                 blocks.append(current)

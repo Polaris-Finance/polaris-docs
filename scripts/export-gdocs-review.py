@@ -524,8 +524,50 @@ def parse_blocks(markdown: str) -> list[dict[str, object]]:
     return blocks
 
 
-def run_xml(text: str, bold: bool = False, italic: bool = False, code: bool = False) -> str:
-    props = []
+def size_props(half_points: int) -> list[str]:
+    value = str(half_points)
+    return [f'<w:sz w:val="{value}"/>', f'<w:szCs w:val="{value}"/>']
+
+
+META_RUN_PROPS = ['<w:color w:val="64748B"/>', *size_props(18)]
+MARKER_RUN_PROPS = ['<w:color w:val="E2E8F0"/>', *size_props(8)]
+MARKER_PARAGRAPH_PROPS = (
+    '<w:spacing w:before="0" w:after="0" w:line="120" w:lineRule="exact"/>'
+)
+DIRECT_RUN_PROPS_BY_STYLE = {
+    "Title": ["<w:b/>", *size_props(40)],
+    "Heading1": ["<w:b/>", *size_props(32)],
+    "Heading2": ["<w:b/>", *size_props(28)],
+    "Heading3": ["<w:b/>", *size_props(24)],
+    "Heading4": ["<w:b/>", *size_props(22)],
+    "Heading5": ["<w:b/>", *size_props(22)],
+    "Heading6": ["<w:b/>", *size_props(22)],
+    "Meta": META_RUN_PROPS,
+    "Quote": ['<w:color w:val="4B5563"/>'],
+    "CodeBlock": [
+        '<w:rFonts w:ascii="Aptos Mono" w:hAnsi="Aptos Mono"/>',
+        *size_props(19),
+    ],
+}
+DIRECT_PARAGRAPH_PROPS_BY_STYLE = {
+    "Title": ['<w:spacing w:after="240"/>'],
+    "Heading1": ['<w:spacing w:before="360" w:after="160"/>'],
+    "Heading2": ['<w:spacing w:before="280" w:after="120"/>'],
+    "Heading3": ['<w:spacing w:before="220" w:after="100"/>'],
+    "Quote": ['<w:ind w:left="360"/>', '<w:spacing w:after="160"/>'],
+    "ListParagraph": ['<w:ind w:left="360" w:hanging="240"/>'],
+    "CodeBlock": ['<w:spacing w:before="80" w:after="80"/>'],
+}
+
+
+def run_xml(
+    text: str,
+    bold: bool = False,
+    italic: bool = False,
+    code: bool = False,
+    base_props: Iterable[str] | None = None,
+) -> str:
+    props = list(base_props or [])
     if bold:
         props.append("<w:b/>")
     if italic:
@@ -540,32 +582,54 @@ def run_xml(text: str, bold: bool = False, italic: bool = False, code: bool = Fa
 INLINE_TOKEN = re.compile(r"(`[^`]+`|\*\*[^*]+\*\*|\*[^*]+\*|\[[^\]]+]\([^)]+\))")
 
 
-def inline_runs(value: str) -> str:
+def inline_runs(value: str, base_props: Iterable[str] | None = None) -> str:
     runs: list[str] = []
     cursor = 0
     for match in INLINE_TOKEN.finditer(value):
         if match.start() > cursor:
-            runs.append(run_xml(value[cursor : match.start()]))
+            runs.append(run_xml(value[cursor : match.start()], base_props=base_props))
         token = match.group(0)
         if token.startswith("`"):
-            runs.append(run_xml(token[1:-1], code=True))
+            runs.append(run_xml(token[1:-1], code=True, base_props=base_props))
         elif token.startswith("**"):
-            runs.append(run_xml(token[2:-2], bold=True))
+            runs.append(run_xml(token[2:-2], bold=True, base_props=base_props))
         elif token.startswith("*"):
-            runs.append(run_xml(token[1:-1], italic=True))
+            runs.append(run_xml(token[1:-1], italic=True, base_props=base_props))
         else:
             link = re.match(r"\[([^\]]+)]\(([^)]+)\)", token)
             if link:
-                runs.append(run_xml(token))
+                runs.append(run_xml(token, base_props=base_props))
         cursor = match.end()
     if cursor < len(value):
-        runs.append(run_xml(value[cursor:]))
-    return "".join(runs) or run_xml("")
+        runs.append(run_xml(value[cursor:], base_props=base_props))
+    return "".join(runs) or run_xml("", base_props=base_props)
 
 
-def paragraph_xml(text: str, style: str | None = None) -> str:
-    ppr = f'<w:pPr><w:pStyle w:val="{attr(style)}"/></w:pPr>' if style else ""
-    return f"<w:p>{ppr}{inline_runs(text)}</w:p>"
+def paragraph_xml(
+    text: str,
+    style: str | None = None,
+    *,
+    run_props: Iterable[str] | None = None,
+    paragraph_props: Iterable[str] | None = None,
+) -> str:
+    ppr_parts = []
+    if style:
+        ppr_parts.append(f'<w:pStyle w:val="{attr(style)}"/>')
+        ppr_parts.extend(DIRECT_PARAGRAPH_PROPS_BY_STYLE.get(style, []))
+    ppr_parts.extend(paragraph_props or [])
+    ppr = f"<w:pPr>{''.join(ppr_parts)}</w:pPr>" if ppr_parts else ""
+    if run_props is None:
+        run_props = DIRECT_RUN_PROPS_BY_STYLE.get(style or "")
+    return f"<w:p>{ppr}{inline_runs(text, base_props=run_props)}</w:p>"
+
+
+def marker_xml(block: ReviewBlock) -> str:
+    return paragraph_xml(
+        block_marker(block),
+        "Marker",
+        run_props=MARKER_RUN_PROPS,
+        paragraph_props=[MARKER_PARAGRAPH_PROPS],
+    )
 
 
 def code_xml(text: str) -> str:
@@ -602,30 +666,36 @@ def table_xml(rows: list[list[str]]) -> str:
     )
 
 
+EDITOR_INSTRUCTIONS = (
+    "How to edit this page: rewrite the normal text just like any Google Doc. "
+    "You can ignore the faint gray bookmark lines — they keep your edits in "
+    "sync and disappear once the page is published."
+)
+
+
 def document_xml(page: Page) -> str:
-    rel_source = page.source.relative_to(ROOT).as_posix()
-    pieces = [
-        paragraph_xml(page.title, "Title"),
-        paragraph_xml(f"Source: {rel_source}", "Meta"),
-        paragraph_xml(f"Route: {page.route}", "Meta"),
-        paragraph_xml(f"Source hash: {page.source_hash}", "Meta"),
-    ]
-    if page.description:
-        pieces.append(paragraph_xml(f"Description: {page.description}", "Quote"))
-    pieces.append(
-        paragraph_xml(
-            "Review copy below. Edit normal prose. Leave POLARIS locked/block marker lines in place.",
-            "Meta",
-        )
+    title_block_index = next(
+        (
+            index
+            for index, block in enumerate(page.blocks)
+            if block.type == "heading" and (block.level or 2) == 1
+        ),
+        None,
     )
+    pieces = [paragraph_xml(EDITOR_INSTRUCTIONS, "Meta")]
+    if title_block_index is None:
+        pieces.append(paragraph_xml(page.title, "Title"))
+    if page.description:
+        pieces.append(paragraph_xml(page.description, "Quote"))
     pieces.append(paragraph_xml(""))
 
-    for block in page.blocks:
-        pieces.append(paragraph_xml(block_marker(block), "Meta"))
+    for index, block in enumerate(page.blocks):
+        pieces.append(marker_xml(block))
         if block.mode == "locked":
             pieces.append(paragraph_xml(block.text, "Meta"))
         elif block.type == "heading":
-            pieces.append(paragraph_xml(block.text, f"Heading{block.level or 2}"))
+            style = "Title" if index == title_block_index else f"Heading{block.level or 2}"
+            pieces.append(paragraph_xml(block.text, style))
         elif block.type == "quote":
             pieces.append(paragraph_xml(block.text, "Quote"))
         elif block.type == "list":
@@ -745,6 +815,12 @@ STYLES_XML = """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <w:basedOn w:val="Normal"/>
     <w:rPr><w:color w:val="64748B"/><w:sz w:val="18"/></w:rPr>
   </w:style>
+  <w:style w:type="paragraph" w:styleId="Marker">
+    <w:name w:val="Marker"/>
+    <w:basedOn w:val="Normal"/>
+    <w:pPr><w:spacing w:before="0" w:after="0" w:line="120" w:lineRule="exact"/></w:pPr>
+    <w:rPr><w:color w:val="E2E8F0"/><w:sz w:val="8"/></w:rPr>
+  </w:style>
   <w:style w:type="paragraph" w:styleId="ListParagraph">
     <w:name w:val="List Paragraph"/>
     <w:basedOn w:val="Normal"/>
@@ -781,7 +857,7 @@ def write_docx(page: Page, output_path: Path) -> None:
 
 
 def block_marker(block: ReviewBlock) -> str:
-    return f"[[POLARIS:BLOCK id={block.id} mode={block.mode} type={block.type}]]"
+    return f"[[POLARIS {block.id} {block.mode} {block.type}]]"
 
 
 def page_to_manifest(page: Page, out_dir: Path) -> dict[str, object]:
