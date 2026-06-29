@@ -14,11 +14,11 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 ---
 
-pETH combines two distinct sources of value: a steadily growing floor, represented by fpETH, and a volatile component above that floor, represented by vpETH. Split converts pETH into matching fpETH and vpETH at a fixed 1:1:1 ratio.
+pETH consists of two components: fpETH, which tracks the steadily growing floor value, and vpETH, which captures the volatile value above that floor. Splitting converts pETH into equal amounts of fpETH and vpETH at a fixed 1:1:1 ratio.
 
-This creates two assets with distinct risk and return profiles while preserving a path back to pETH. The process is fully reversible and does not rely on external dependencies.
+Splitting creates two assets with different risk and return characteristics while preserving a path back to pETH. The process is fully reversible and remains entirely within the Polaris system.
 
-Merge 1 fpETH and 1 vpETH back into 1 pETH at any time. Use this page for the app workflow.
+At any time, 1 fpETH and 1 vpETH can be merged back into 1 pETH. Use this page to manage both operations.
 
 Use [pETH Split](https://tokenbrice.github.io/polaris-docs/peth/split) for the mechanism.
 

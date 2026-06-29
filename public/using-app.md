@@ -14,7 +14,7 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 ---
 
-The Dashboard is your starting point in Polaris. It shows your balances, active positions, Earn Vault opportunities, recent activity, and the testnet faucet. Use it to:
+The Dashboard is your starting point in Polaris. It shows an overview with your balances, active positions, Earn Vault opportunities, recent activity, and the testnet faucet. Use it to:
 
 - Connect your wallet.
 - Claim test WETH on Sepolia.
@@ -23,7 +23,5 @@ The Dashboard is your starting point in Polaris. It shows your balances, active 
 - Confirm recent transactions and position changes.
 
 ![Polaris Dashboard showing balances, Earn Vault opportunities, onboarding steps, recent activity, and token prices](https://tokenbrice.github.io/polaris-docs/screenshots/dashboard.jpg)
-
-The Dashboard is an overview screen.
 
 To take action, use [Swap](https://tokenbrice.github.io/polaris-docs/using-app/swap), [Issue](https://tokenbrice.github.io/polaris-docs/using-app/issue), [Earn](https://tokenbrice.github.io/polaris-docs/using-app/earn), [Split](https://tokenbrice.github.io/polaris-docs/using-app/split), [Zap](https://tokenbrice.github.io/polaris-docs/using-app/zap), or [Advanced](https://tokenbrice.github.io/polaris-docs/using-app/advanced).

@@ -14,10 +14,10 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 ---
 
-Issue is where you create pAssets against pETH collateral or borrow ETH against fpETH.
+Issue is where you mint pAssets against pETH collateral or loop positions by borrowing ETH against fpETH.
 
-- USDp and GOLDp: Deposit pETH collateral and create overcollateralized pAssets against your position.
-- ETH: Borrow ETH against fpETH at up to 100% LTV with no liquidation risk, because the fpETH floor only rises.
+- USDp and GOLDp: Deposit pETH collateral and mint overcollateralized pAssets against your position.
+- ETH: Borrow ETH against fpETH at up to 100% LTV with no liquidation risk, as the fpETH floor only rises.
 
 Once connected, you can manage existing positions from this tab, including adjustments, repayments, and closures.
 

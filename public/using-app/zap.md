@@ -14,7 +14,7 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 ---
 
-Zap combines multiple onchain actions into a single transaction, making it easier to enter common Polaris strategies. A zap only simplifies execution. The underlying economics remain exactly the same, and positions can always be managed manually afterward.
+Zap combines multiple onchain actions into a single transaction, simplifying access to common Polaris strategies. The outcome is identical to executing each step manually, and positions can always be managed manually afterward.
 
 ## Current Strategies
 
@@ -24,8 +24,6 @@ Zap combines multiple onchain actions into a single transaction, making it easie
 Additional strategies will become available over time.
 
 ![Polaris Zap tab showing the USDp Stable Yield route from WETH through USDp into the Earn Vault](https://tokenbrice.github.io/polaris-docs/screenshots/zap.jpg)
-
-You keep full self-custody throughout the process. Before signing, a simulation shows the expected result and slippage is set by your settings.
 
 ## Basic Flow
 

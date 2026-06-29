@@ -1,45 +1,69 @@
 ---
 title: "Why Polaris"
-description: "Why DeFi needs immutable, counterparty-free, yield-bearing money and collateral."
+description: "Why permissionless money needs a yield-bearing reserve asset, how pETH unites Ethereum’s monetary and yield layers, and the long-term Polaris vision."
 ---
 
 # Why Polaris
 
-Blockchains gave the world something new: a shared global state that no single institution controls. DeFi was meant to build on that foundation.
+## Manifesto
 
-A financial layer that is more open and transparent, where participation depends less on trust and more on verifiable rules.
+Decentralized finance was built on the idea that money should not depend on trusted intermediaries. A permissionless financial layer open to everybody, where participation depends on transparent rules rather than centralized institutions.
 
-But over time, much of DeFi has drifted back toward the dependencies it was built to escape: custodians, centralized exchanges, multisigs, upgradeable contracts, offchain collateral, and black-box yield.
+Over the years, stablecoins have become the foundation of this onchain economy, enabling everything from trading and lending to payments and settlement.
 
-The result is a financial system that looks onchain from the outside, but often depends on centralized promises underneath. Users are asked to trust intermediaries they cannot see, legal agreements they cannot verify, and yield sources they do not control.
+However, their biggest tradeoff is that most rely on centralized issuers that control the underlying reserves, retain the yield those reserves generate, and ultimately keep ownership over the monetary infrastructure, including the ability to freeze assets.
 
-They inherit new risks, but are rarely compensated for them. Polaris takes a different path.
+At the same time, others evolved beyond simple digital dollars into yield-bearing financial products whose returns depend on external counterparties and increasingly complex strategies, becoming more of a tokenized derivative than a true currency.
 
-Built around an immutable foundation, pETH is a yield-bearing asset backed by native ETH and designed to support decentralized currencies and synthetic assets without introducing external counterparties or offchain dependencies.
+Both approaches helped DeFi grow and demonstrated strong product-market fit. Yet they gradually reintroduced the very dependencies the ecosystem was built to remove.
 
-## The Problem
+The result is a fundamental contradiction.
 
-DeFi’s yield economy has become increasingly concentrated around two sources: T-bills and RWAs for stablecoins, and ETH staking for ETH-denominated assets. Both have their place, but this is not the end state we aim for.
+Blockchains gave us financial infrastructure that anyone can access and verify, yet the currencies flowing through it often depend on centralized institutions or on risks users cannot fully evaluate.
 
-When stablecoin yield depends on RWAs, the system becomes reliant on external institutions to generate and distribute returns. When ETH yield comes primarily from staking, every ETH-denominated asset ends up competing for the same source of return, one that has steadily compressed over time.
+We still have not answered one of the fundamental questions in crypto: what should permissionless money look like at global scale?
 
-This creates a structural dependency problem that worsens as the system grows. DeFi may become more productive on the surface, but underneath it is more reliant on custodians, offchain agreements, upgrade keys, and opaque operational processes.
+## Why pETH
 
-Users often do not see these dependencies. They see an APY, a token balance, and an interface that feels onchain, while the systems supporting that yield often rely on assets that can be frozen or contracts that can be upgraded without their consent.
+The evolution of stablecoins revealed another structural problem.
 
-That is not enough for the next era of internet-native finance.
+Even if permissionless money could scale without relying on centralized issuers or opaque sources of yield, Ethereum would still face a different challenge. The network secures one of the largest financial ecosystems in the world, yet very little of the activity on top of it meaningfully strengthens ETH itself.
 
-## The Polaris Thesis
+Today, staking is the primary source of native ETH yield, as it plays a fundamental role in securing the network. But as DeFi expands, staking should not be the only way for ETH to participate.
 
-The internet needs financial infrastructure that can support both human and machine economies without relying on trusted counterparties.
+Polaris is built on a simple observation: Ethereum’s monetary layer and its yield layer should not be separate systems.
 
-That requires permissionless money and collateral that remain sovereign throughout their lifecycle, from the assets that back them to the mechanisms that generate their yield. Polaris is designed around that belief.
+For now, the two operate independently. Stablecoins generate enormous economic activity, while the collateral supporting them rarely benefits from it. Meanwhile, ETH secures the network that makes this economy possible, yet captures little of the value created above it.
 
-The protocol transforms ETH into pETH, a yield-bearing reserve asset with a natively growing floor. pETH can then support the creation of pAssets such as USDp and GOLDp, creating decentralized currencies and synthetic assets that scale with protocol activity.
+Polaris connects these two systems by placing its collateral, pETH, at the center of its yield layer.
 
-Instead of importing yield from centralized counterparties, Polaris routes value from its own mechanisms back into the system.
+As demand for the stablecoins and synthetic assets permissionlessly issued on Polaris grows, the resulting protocol activity is designed to reinforce pETH, the reserve asset supporting them. Instead of importing yield from external dependencies, Polaris redirects value created within its own economy back into the system through liquidity flows.
 
-Users can hold pETH as productive collateral, issue pAssets against it, deposit pAssets into Earn Vaults, split pETH into floor and volatility components, and participate in bounded stewardship through the POLAR token.
+pETH derives its yield from the economic activity generated within Polaris itself. As the reserve asset of the protocol, it allows the collateral backing the monetary layer to participate directly in the value created by that economy.
+
+This distinguishes it from liquid staking tokens, whose yield comes from securing the Ethereum network.
+
+## Vision
+
+Stablecoins are the largest monetary application built on blockchains today, and USDp is Polaris’ path toward a stable, censorship-resistant dollar that can finally scale. But once a scalable reserve asset exists, its role goes far beyond issuing a single currency.
+
+As more assets are built on pETH, the same reserve foundation can support currencies, commodities and synthetic assets that all share one infrastructure.
+
+As the ecosystem expands, the reserve asset can evolve alongside it. Splitting pETH into fpETH and vpETH is one example, letting users unlock entirely new strategies. Over time, new primitives can keep extending that foundation.
+
+The same principle applies to the applications built above it. Polaris is designed as infrastructure rather than a closed ecosystem, allowing third-party builders to permissionlessly issue their own stablecoins, synthetic assets and financial applications.
+
+In turn, every application built on Polaris contributes to the same pETH-based reserve foundation, so builders benefit from an ecosystem that grows stronger as it expands.
+
+This also changes how real-world value reaches the blockchain. Rather than importing traditional financial infrastructure, with its custodians and trust assumptions, Polaris provides a foundation where those same currencies, commodities and assets can exist while preserving the properties that made blockchains valuable in the first place: transparency, censorship resistance, immutability and permissionless access.
+
+If this model succeeds, ETH itself can play a broader role within Ethereum. Staking will always remain fundamental to securing the network, but it should not be ETH’s only productive destination.
+
+By introducing a native yield layer, pETH creates another productive path for ETH, giving holders and stakers a new choice while letting the monetary system built on Ethereum expand.
+
+In that future, Ethereum’s growth and its monetary infrastructure no longer evolve independently.
+
+The more the ecosystem grows, the stronger its reserve foundation becomes. And the stronger that foundation, the more it can support the next generation of DeFi applications.
 
 ## Design Choices
 
@@ -53,12 +77,6 @@ Users can hold pETH as productive collateral, issue pAssets against it, deposit 
 | Direct pAsset issuance | Lets users create pAssets directly from the protocol against pETH collateral | New pAssets can scale from native demand without relying on external lenders. |
 | Redemptions | Help defend pAsset pegs below their reference value | Below-peg pressure can be corrected without offchain redemption promises. |
 | Peg-responsive interest rates | Adjust issuer costs based on each pAsset's peg conditions | Helps balance supply and demand while routing value back to Earn Vaults and POLAR stewardship. |
-
-## The End Goal
-
-Polaris exists to help DeFi become less dependent on the centralized financial system. A way to create money that remains decentralized and permissionless, without sacrificing the openness and transparency that blockchains were designed to provide.
-
-A fully censorship-resistant stablecoin may be the product people notice first, but the larger vision is a decentralized yield layer for onchain money.
 
 ## Next Steps
 

@@ -14,15 +14,15 @@ Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.t
 
 ---
 
-The Advanced section gives direct access to core Polaris mechanisms for arbitrageurs, keepers, and experienced users.
+The Advanced section gives direct access to core Polaris mechanisms for arbitrageurs and experienced users.
 
 These tools are permissionless and offer more flexibility, but they assume familiarity with how the protocol works.
 
 ## Current Modules
 
-- Peg Stability Module: Issue or redeem USDp and GOLDp against pETH at the oracle price. This arbitrage helps maintain each peg.
-- Convert pETH To POLAR: Exchange pETH for newly created POLAR through a one-way conversion auction. Converted pETH is permanently burned. There is no reverse direction.
-- Testnet ETH Faucet: Claim test WETH using Sepolia ETH, subject to the current rate, cooldown period, and faucet limits.
+- Peg Stability Module: Issue or redeem USDp and GOLDp against pETH at the oracle price, which is an arbitrage that helps maintain each of these assets’ peg.
+- Convert pETH to POLAR: Exchange pETH for newly issued POLAR through a one-way conversion mechanism. Converted pETH is permanently burned and cannot be converted back.
+- You also have the Testnet ETH Faucet here: Claim test WETH using Sepolia ETH, subject to the current rate, cooldown period, and faucet limits.
 
 ![Polaris Advanced tab with expert operations, PSM issue and redeem panels, pETH-to-POLAR conversion, and faucet](https://tokenbrice.github.io/polaris-docs/screenshots/advanced.jpg)
 
