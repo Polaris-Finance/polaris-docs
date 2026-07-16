@@ -20,7 +20,7 @@
     "clean:export": "node scripts/clean-export.mjs",
     "prebuild": "node scripts/clean-export.mjs && node scripts/generate-sitemap.mjs && node scripts/generate-llms.mjs",
     "build": "next build --webpack",
-    "postbuild": "pagefind --site out --output-subdir _pagefind && node scripts/sync-pagefind.mjs",
+    "postbuild": "node -e \"require('node:fs').rmSync('out/_pagefind', { recursive: true, force: true })\" && pagefind --site out --output-subdir _pagefind && node scripts/sync-pagefind.mjs",
     "ci": "npm run ci:source && npm run build && npm run ci:artifact && npm run audit:prod",
     "ci:source": "npm run lint && npm run format:check && npm run lint:content && npm run test:gdocs-roundtrip && npm run check:links && npm run check:generated && npm run check:host",
     "ci:artifact": "npm run check:artifact && npm run check:pagefind && npm run check:navigation && npm run check:gdocs-import && npm run test:e2e:artifact",

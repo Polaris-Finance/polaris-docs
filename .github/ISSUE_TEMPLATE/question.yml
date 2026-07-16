@@ -1,0 +1,17 @@
+name: Question
+description: Ask a question about the documentation or how to use it
+labels: [question]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Your question
+    validations:
+      required: true
+  - type: input
+    id: page-url
+    attributes:
+      label: Related page (optional)
+      placeholder: https://polaris-finance.github.io/polaris-docs/...
+    validations:
+      required: false

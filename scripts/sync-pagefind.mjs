@@ -42,6 +42,10 @@ for (const file of unusedUiBundles) {
   rmSync(path.join(sourceDir, file), { force: true })
 }
 
+// Every page declares lang="en", so pagefind-entry.json only ever points at
+// wasm.en.pagefind; the unknown-language fallback binary is dead deploy weight.
+rmSync(path.join(sourceDir, 'wasm.unknown.pagefind'), { force: true })
+
 rmSync(targetDir, { recursive: true, force: true })
 mkdirSync(path.dirname(targetDir), { recursive: true })
 cpSync(sourceDir, targetDir, { recursive: true })

@@ -363,12 +363,43 @@ test('unknown routes serve the recovery 404 and legacy routes redirect', async (
   await page.goto(pathWithBase('/this-page-does-not-exist'))
   await expect(page).toHaveTitle(/Page not found/i)
   await expect(page.getByRole('link', { name: /home page/i })).toBeVisible()
+  await expect(
+    page.locator('input[type="search"][placeholder*="Search"]:visible').first()
+  ).toBeAttached()
 
   // A route deleted by the July 2026 rewrite recovers via the 404 redirect
   // map, preserving the fragment across the hop.
   await page.goto(`${pathWithBase('/using-app/issue')}#fees`)
   await expect(page).toHaveURL(new RegExp(`${escapeRegExp(pathWithBase('/testnet/mint'))}/?#fees$`))
   await expect(page.getByRole('heading', { level: 1 }).first()).toBeVisible()
+})
+
+test('breadcrumb links resolve and pageless folders stay unlinked', async ({ page }) => {
+  // /risks has an index page, so its crumb is a link and must resolve.
+  await page.goto(pathWithBase('/risks/risks-polaris-removes'))
+  const crumbLinks = page.locator('.nextra-breadcrumb a')
+  await expect(crumbLinks).toHaveCount(1)
+  const href = await crumbLinks.first().getAttribute('href')
+  const response = await page.request.get(new URL(href, page.url()).toString())
+  expect(response.status(), `breadcrumb ${href} resolves`).toBe(200)
+
+  // /architecture has no index page: its crumb must render as a span, not a
+  // link that would 404.
+  await page.goto(pathWithBase('/architecture/bonding-curve'))
+  await expect(page.locator('.nextra-breadcrumb a')).toHaveCount(0)
+  await expect(page.locator('.nextra-breadcrumb')).toContainText('Protocol Architecture')
+})
+
+test('prev/next pagination follows the sidebar order', async ({ page }) => {
+  // core-assets/_meta.js orders … usdp, goldp, polar …; the footer pagination
+  // anchors carry the neighbor title.
+  await page.goto(pathWithBase('/core-assets/goldp'))
+  await expect(
+    page.locator(`a[title="USDp"][href="${pathWithBase('/core-assets/usdp')}"]`)
+  ).toBeVisible()
+  await expect(
+    page.locator(`a[title="POLAR"][href="${pathWithBase('/core-assets/polar')}"]`)
+  ).toBeVisible()
 })
 
 test('homepage renders with metadata and basic accessibility', async ({ page }) => {

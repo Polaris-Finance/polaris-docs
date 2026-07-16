@@ -36,6 +36,17 @@ jobs:
       - name: Validate docs with single build artifact
         run: npm run ci
 
+      - name: Upload Playwright artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-artifacts
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: ignore
+          retention-days: 7
+
       - name: Check external links
         run: npm run check:links:external
         continue-on-error: true

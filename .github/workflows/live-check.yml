@@ -1,0 +1,42 @@
+name: Live site health check
+
+on:
+  schedule:
+    # Daily, off the top of the hour to dodge GitHub's cron congestion.
+    - cron: '17 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  live-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+
+      # check-live-artifact.mjs only imports app/site-config.mjs, so no
+      # dependency install is needed; it defaults to the production site URL.
+      - name: Smoke check live site
+        run: npm run check:live-artifact
+
+      - name: Open or update tracking issue
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          title="Scheduled live-site health check failed"
+          run_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          existing="$(gh issue list --state open --search "\"$title\" in:title" --json number --jq '.[0].number')"
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body "Still failing on $(date -u +%Y-%m-%d): $run_url"
+          else
+            gh issue create --title "$title" --body "The daily live-site smoke check failed. Latest run: $run_url"
+          fi

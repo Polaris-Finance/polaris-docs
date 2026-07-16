@@ -1,0 +1,26 @@
+name: Documentation error
+description: Report incorrect, outdated, or confusing content on the docs site
+labels: [docs-error]
+body:
+  - type: input
+    id: page-url
+    attributes:
+      label: Page URL
+      description: Link to the docs page where you found the problem.
+      placeholder: https://polaris-finance.github.io/polaris-docs/core-assets/peth
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong?
+      description: Quote the passage if possible and describe the error.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+      description: What should the page say or do instead, if you know?
+    validations:
+      required: false

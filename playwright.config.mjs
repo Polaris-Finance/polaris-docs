@@ -16,7 +16,9 @@ export default defineConfig({
   expect: {
     timeout: 10_000
   },
-  reporter: [['list']],
+  // The HTML report is only written on CI, where it gets uploaded as a
+  // workflow artifact when a run fails.
+  reporter: process.env.CI ? [['list'], ['html', { open: 'never' }]] : [['list']],
   use: {
     baseURL,
     screenshot: 'only-on-failure',
