@@ -10,8 +10,6 @@ import {
 } from 'node:fs'
 import path from 'node:path'
 import {
-  LAUNCH_CHAIN_ID,
-  LAUNCH_EXPLORER_URL,
   LAUNCH_NETWORK,
   LAUNCH_PHASE,
   timelineCaption,
@@ -339,228 +337,21 @@ function removeStaleMarkdownMirrors(expectedRelativePaths) {
   visit(publicDir)
 }
 
-function escapeRegExp(value) {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-}
-
-function stripInlineMarkdown(value) {
-  return value
-    .replace(/\[([^\]]+)]\([^)]+\)/g, '$1')
-    .replace(/`([^`]+)`/g, '$1')
-    .replace(/\*\*([^*]+)\*\*/g, '$1')
-    .replace(/\*([^*]+)\*/g, '$1')
-    .replace(/<[^>]+>/g, '')
-    .replace(/\s+/g, ' ')
-    .trim()
-}
-
-function parseMarkdownTable(line) {
-  return line
-    .trim()
-    .replace(/^\|/, '')
-    .replace(/\|$/, '')
-    .split('|')
-    .map((cell) => cell.trim())
-}
-
-function isSeparatorRow(cells) {
-  return cells.every((cell) => /^:?-{3,}:?$/.test(cell))
-}
-
-function tableAfterHeading(source, heading) {
-  const lines = source.split(/\r?\n/)
-  const headingPattern = new RegExp(`^#{2,6}\\s+${escapeRegExp(heading)}\\s*$`, 'i')
-  const start = lines.findIndex((line) => headingPattern.test(line.trim()))
-  if (start === -1) return []
-
-  const tableStart = lines.findIndex((line, index) => index > start && line.trim().startsWith('|'))
-  if (tableStart === -1) return []
-
-  const tableLines = []
-  for (let index = tableStart; index < lines.length; index += 1) {
-    const line = lines[index]
-    if (!line.trim().startsWith('|')) break
-    tableLines.push(line)
-  }
-
-  if (tableLines.length < 2) return []
-
-  const headers = parseMarkdownTable(tableLines[0]).map(stripInlineMarkdown)
-  return tableLines
-    .slice(1)
-    .map(parseMarkdownTable)
-    .filter((cells) => !isSeparatorRow(cells))
-    .map((cells) =>
-      Object.fromEntries(headers.map((header, index) => [header, cells[index]?.trim() ?? '']))
-    )
-}
-
-function tableAfterAnyHeading(source, headings) {
-  for (const heading of headings) {
-    const rows = tableAfterHeading(source, heading)
-    if (rows.length) return rows
-  }
-  return []
-}
-
-function firstAddress(value) {
-  return /\b0x[a-fA-F0-9]{40}\b/.exec(value)?.[0]?.toLowerCase() ?? null
-}
-
-function firstMarkdownUrl(value) {
-  return /\]\(([^)]+)\)/.exec(value)?.[1] ?? null
-}
-
-function integerFrom(value) {
-  const match = /\b\d+\b/.exec(stripInlineMarkdown(value))
-  return match ? Number(match[0]) : null
-}
-
-function contractEntries(rows, group) {
-  return rows
-    .map((row) => {
-      const rawAddress = row['Sepolia address'] ?? ''
-      const address = firstAddress(rawAddress)
-      if (!address) return null
-      return {
-        group,
-        name: stripInlineMarkdown(row.Contract ?? ''),
-        address,
-        explorerUrl: firstMarkdownUrl(rawAddress) ?? `${LAUNCH_EXPLORER_URL}/address/${address}`
-      }
-    })
-    .filter(Boolean)
-}
-
-function buildProtocolManifest(pages) {
-  const page = pages.find(({ route }) => route === '/resources/testnet')
-  if (!page) return null
-
-  const source = readFileSync(path.join(contentDir, 'resources/testnet.mdx'), 'utf8')
-  const environmentRows = tableAfterHeading(source, 'Environment')
-  const environment = Object.fromEntries(
-    environmentRows.map((row) => [
-      stripInlineMarkdown(row.Fact ?? ''),
-      stripInlineMarkdown(row.Value ?? '')
-    ])
-  )
-
-  const sharedCoreRows = tableAfterHeading(source, 'Shared core parameters')
-  const pAssetRows = tableAfterAnyHeading(source, [
-    'pAsset market parameters',
-    'pAsset branch parameters'
-  ])
-  const productionRows = tableAfterHeading(source, 'Production addresses')
-  const lastVerified = normalizeDate(environment['Last verified'] ?? '') ?? page.lastVerified
-
-  const sharedCoreParameters = sharedCoreRows.map((row) => ({
-    name: stripInlineMarkdown(row.Parameter ?? ''),
-    value: stripInlineMarkdown(row[`${LAUNCH_PHASE} value`] ?? ''),
-    source: stripInlineMarkdown(row.Source ?? '')
-  }))
-
-  const assetNames = Object.keys(pAssetRows[0] ?? {}).filter(
-    (key) => key !== 'Parameter' && key !== 'Source'
-  )
-  const pAssetParameters = Object.fromEntries(
-    assetNames.map((asset) => [
-      asset,
-      pAssetRows.map((row) => ({
-        name: stripInlineMarkdown(row.Parameter ?? ''),
-        value: stripInlineMarkdown(row[asset] ?? ''),
-        source: stripInlineMarkdown(row.Source ?? '')
-      }))
-    ])
-  )
-
-  const contracts = [
-    ...contractEntries(tableAfterHeading(source, 'Shared core'), 'shared-core'),
-    ...contractEntries(
-      tableAfterAnyHeading(source, ['USDp market', 'pUSD market', 'pUSD branch']),
-      'pusd-branch'
-    ),
-    ...contractEntries(
-      tableAfterAnyHeading(source, ['GOLDp market', 'pGOLD market', 'pGOLD branch']),
-      'pgold-branch'
-    )
-  ]
-
-  const production = productionRows.map((row) => ({
-    network: stripInlineMarkdown(row.Network ?? ''),
-    chainId: integerFrom(row.Network ?? ''),
-    status: stripInlineMarkdown(row.Status ?? '')
-  }))
-
-  return {
-    schemaVersion: 1,
-    site: absoluteUrl('/'),
-    source: {
-      route: page.route,
-      url: absoluteUrl(page.route),
-      markdownUrl: absoluteUrl(markdownPathForRoute(page.route)),
-      lastVerified
-    },
-    status: {
-      publicPhase: environment['Public phase'] ?? '',
-      productionFinality: environment['Production finality'] ?? ''
-    },
-    environment: {
-      network: environment.Network ?? '',
-      chainId: integerFrom(environment['Chain ID'] ?? ''),
-      officialApp: environment['Official app'] ?? '',
-      testnetValue: environment['Testnet value'] ?? '',
-      testnetGas: environment['Testnet gas'] ?? '',
-      reserveToken: environment['Reserve token'] ?? '',
-      activePassets: environment['Active pAssets'] ?? ''
-    },
-    warnings: [
-      `${LAUNCH_PHASE} values are ${LAUNCH_NETWORK} testnet artifacts.`,
-      'Testnet assets have no monetary value, no production redemption, and no mainnet claim.',
-      'Do not infer production constants, addresses, audit status, or launch status from testnet values.',
-      `Use Launch Status and ${LAUNCH_PHASE} as the canonical sources before signing transactions.`
-    ],
-    parameters: {
-      sharedCore: sharedCoreParameters,
-      pAssets: pAssetParameters
-    },
-    contracts: {
-      network: LAUNCH_NETWORK,
-      chainId: LAUNCH_CHAIN_ID,
-      explorer: LAUNCH_EXPLORER_URL,
-      entries: contracts
-    },
-    production
-  }
-}
-
 // Section labels mirror the current primary navigation vocabulary in content/_meta.js.
 const sectionTitles = {
-  introduction: 'Introduction',
-  'launch-status': 'Launch Status',
-  quickstart: 'Public Testnet Quickstart',
-  'using-app': 'Use Polaris',
-  troubleshooting: 'Troubleshooting',
-  'understand-polaris': 'Understand Polaris',
-  resources: 'Reference'
+  home: 'Home',
+  'core-assets': 'Core Assets',
+  architecture: 'Protocol Architecture',
+  design: 'Protocol Design',
+  testnet: 'Using Polaris Testnet',
+  developers: 'Developers',
+  risks: 'Risks'
 }
 const sectionOrder = Object.keys(sectionTitles)
 
 function sectionForRoute(route) {
-  if (route === '/') return 'introduction'
-  if (route === '/launch-status') return 'launch-status'
-  if (route === '/quickstart') return 'quickstart'
-  if (route === '/troubleshooting') return 'troubleshooting'
-  if (/^\/using-app(?:\/|$)/.test(route)) return 'using-app'
-  if (/^\/resources(?:\/|$)/.test(route)) return 'resources'
-  if (
-    /^\/(?:why-polaris|peth|minting|yield|redemptions-liquidations|polar|stewardship)(?:\/|$)/.test(
-      route
-    )
-  ) {
-    return 'understand-polaris'
-  }
-
-  return route.replace(/^\//, '').split('/')[0] || 'introduction'
+  if (/^\/(?:manifesto|why-peth|vision)?$/.test(route)) return 'home'
+  return route.replace(/^\//, '').split('/')[0] || 'home'
 }
 
 function sectionSlug(section) {
@@ -593,12 +384,11 @@ const orderedSections = [
 
 const header = `# Polaris Documentation
 
-> User and developer documentation for Polaris, the pETH-powered yield layer for DeFi. Issue pAssets backed entirely by onchain collateral and yield. No T-bills. No CEXs. No compromises.
+> User documentation for Polaris, an onchain yield layer built around pETH, a yield-bearing reserve asset designed to collateralize censorship-resistant stablecoins and synthetic assets.
 
 ## Agent Guidance
 
-- Start with [Launch Status](${absoluteUrl('/launch-status')}) for what is live, supported, or production-final.
-- Treat [${LAUNCH_PHASE}](${absoluteUrl('/resources/testnet')}) as the source of truth for ${LAUNCH_NETWORK} network, parameter, and contract-address values.
+- Polaris is currently in ${LAUNCH_PHASE} on ${LAUNCH_NETWORK}.
 - ${LAUNCH_PHASE} assets are ${LAUNCH_NETWORK} test assets with no monetary value, no production redemption, and no mainnet claim.
 - Do not infer production addresses, production constants, audit status, or launch status from testnet values.
 - Prefer the Markdown URLs in this file for retrieval, and cite the canonical URL shown beside each page.
@@ -637,9 +427,6 @@ const machineReadableBody = [
   '',
   `- [Complete docs bundle](${absoluteUrl('/llms-full.txt')}): Full sanitized Markdown for every public docs page.`,
   `- [JSON docs index](${absoluteUrl('/llms-index.json')}): Routes, canonical URLs, Markdown URLs, sections, keywords, and freshness metadata.`,
-  `- [Polaris testnet manifest](${absoluteUrl(
-    '/polaris-testnet-manifest.json'
-  )}): Machine-readable ${LAUNCH_PHASE} environment, parameters, contracts, and warnings.`,
   `- [Well-known llms.txt mirror](${absoluteUrl(
     '/.well-known/llms.txt'
   )}): Alternate discovery path for the docs index.`,
@@ -695,7 +482,6 @@ const llmsIndex = `${JSON.stringify(
       llmsFull: absoluteUrl('/llms-full.txt'),
       wellKnownLlms: absoluteUrl('/.well-known/llms.txt'),
       wellKnownLlmsFull: absoluteUrl('/.well-known/llms-full.txt'),
-      protocolManifest: absoluteUrl('/polaris-testnet-manifest.json'),
       sections: sectionArtifacts.map(({ title, relativePath }) => ({
         title,
         url: absoluteUrl(`/${relativePath}`)
@@ -717,15 +503,12 @@ const llmsIndex = `${JSON.stringify(
   2
 )}\n`
 
-const protocolManifest = `${JSON.stringify(buildProtocolManifest(pages), null, 2)}\n`
-
 const failures = [
   checkOrWrite('llms.txt', llms),
   checkOrWrite('.well-known/llms.txt', llms),
   checkOrWrite('llms-full.txt', llmsFull),
   checkOrWrite('.well-known/llms-full.txt', llmsFull),
   checkOrWrite('llms-index.json', llmsIndex),
-  checkOrWrite('polaris-testnet-manifest.json', protocolManifest),
   ...pageMarkdownArtifacts.map(({ relativePath, content }) => checkOrWrite(relativePath, content)),
   ...sectionArtifacts.map(({ relativePath, content }) => checkOrWrite(relativePath, content)),
   ...validateCleanLlmsFull(llmsFull)

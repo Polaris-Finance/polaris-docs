@@ -37,7 +37,6 @@ for (const generatedFile of [
   'llms.txt',
   'llms-full.txt',
   'llms-index.json',
-  'polaris-testnet-manifest.json',
   '.well-known/llms.txt',
   '.well-known/llms-full.txt'
 ]) {
@@ -99,7 +98,7 @@ for (const file of mdxFiles) {
 const markdownOrHtmlLinkPattern =
   /!?\[[^\]]*]\(([^)\s]+)(?:\s+"[^"]*")?\)|\b(?:href|src)=["']([^"']+)["']/g
 const jsxPropLinkPattern = /\b(?:url|image|appUrl|appHref|ctaUrl|ctaHref)=["']([^"']+)["']/g
-// Object-syntax hrefs, e.g. <NextSteps steps={[{ href: '/minting' }]}>
+// Object-syntax hrefs, e.g. steps={[{ href: '/testnet' }]}
 const jsxObjectHrefPattern = /\bhref:\s*['"]([^'"]+)['"]/g
 const rawUrlPattern = /\bhttps?:\/\/[^\s"'<>),\]]+/g
 const links = []

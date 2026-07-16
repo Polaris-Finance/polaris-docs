@@ -60,10 +60,7 @@ export const metadata = {
         { url: pathWithBase('/llms.txt'), title: 'llms.txt' },
         { url: pathWithBase('/llms-full.txt'), title: 'llms-full.txt' }
       ],
-      'application/json': [
-        { url: pathWithBase('/llms-index.json'), title: 'LLM docs index' },
-        { url: pathWithBase('/polaris-testnet-manifest.json'), title: 'Polaris testnet manifest' }
-      ]
+      'application/json': [{ url: pathWithBase('/llms-index.json'), title: 'LLM docs index' }]
     }
   },
   applicationName: SITE_NAME,

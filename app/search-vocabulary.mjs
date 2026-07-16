@@ -5,10 +5,10 @@
 export const searchVocabulary = [
   {
     match: /^\/$/,
-    terms: ['app', 'official app', 'testnet', 'Public Testnet 1', 'Sepolia', 'pETH', 'pAssets']
+    terms: ['app', 'official app', 'testnet', 'Sepolia', 'pETH', 'pAssets', 'USDp']
   },
   {
-    match: /^\/launch-status$/,
+    match: /^\/testnet(\/|$)/,
     terms: [
       'app',
       'official app',
@@ -16,23 +16,16 @@ export const searchVocabulary = [
       'app.testnet.polarisfinance.io',
       'connect wallet',
       'testnet',
-      'Public Testnet 1',
       'Sepolia',
       'Sepolia ETH',
       'chain ID 11155111',
-      'WETH faucet',
-      'borrow',
-      'earn',
-      'swap',
-      'contracts',
-      'audits'
+      'faucet'
     ]
   },
   {
-    match: /^\/using-app\/issue$|^\/minting\/manage-position$/,
+    match: /^\/testnet\/mint$/,
     terms: [
-      'Issue',
-      'Manage Position',
+      'Mint',
       'borrow',
       'issue',
       'trove',
@@ -42,26 +35,13 @@ export const searchVocabulary = [
       'collateralized debt position',
       'CDP',
       'open borrow position',
+      'manage position',
       'repay',
       'close borrow position',
       'USDp',
       'GOLDp',
       'LTV',
-      'loan-to-value',
-      'official app'
-    ]
-  },
-  {
-    match: /^\/minting\/manage-position$/,
-    terms: [
-      'borrow position',
-      'open borrow position',
-      'manage borrow position',
-      'pAsset debt position',
-      'trove',
-      'troves',
-      'open trove',
-      'manage trove'
+      'loan-to-value'
     ],
     priorityTerms: [
       'borrow position',
@@ -75,74 +55,58 @@ export const searchVocabulary = [
     ]
   },
   {
-    match: /^\/using-app\/(earn|zap)$|^\/yield(\/.*)?$/,
-    terms: ['Earn', 'earn', 'yield', 'APR', 'Earn Vault', 'deposit', 'claim rewards']
+    match: /^\/testnet\/(earn|zap)$|^\/architecture\/earn-vaults$/,
+    terms: [
+      'Earn',
+      'earn',
+      'yield',
+      'APR',
+      'Earn Vault',
+      'deposit',
+      'claim rewards',
+      'sUSDp',
+      'sGOLDp'
+    ]
   },
   {
-    match: /^\/using-app\/(swap|split)$|^\/peth(\/.*)?$/,
+    match: /^\/testnet\/(swap|split)$|^\/core-assets\/(peth|fpeth|vpeth)$/,
     terms: ['Swap', 'swap', 'Split', 'fpETH', 'vpETH', 'pETH', 'floor price']
   },
   {
-    match: /^\/peth(\/.*)?$/,
+    match: /^\/core-assets\/peth$|^\/architecture\/bonding-curve$/,
     terms: ['pETH', 'pETH bonding curve', 'bonding curve', 'pETH floor'],
     priorityTerms: ['pETH', 'pETH bonding curve', 'bonding curve', 'pETH floor']
   },
   {
-    match: /^\/resources$|^\/resources\/(testnet|faq)$/,
-    terms: [
-      'app',
-      'official app',
-      'app URL',
-      'phishing',
-      'verify contracts',
-      'testnet',
-      'mainnet',
-      'Sepolia',
-      'WETH',
-      'WETH faucet',
-      'Zap',
-      'Split',
-      'Swap',
-      'Issue',
-      'Earn',
-      'Guide',
-      'Advanced',
-      'Analytics',
-      'APR',
-      'Reserve Loan'
-    ]
-  },
-  {
-    match: /^\/polar(\/(conversion-auctions|tokenomics))?$/,
+    match: /^\/core-assets\/polar$|^\/architecture\/tokenomics$|^\/design\/conversions$/,
     terms: ['POLAR', 'convert', 'lock', 'vePOLAR', 'burn pETH', 'conversion auction']
   },
   {
-    match: /^\/polar(\/tokenomics)?$/,
+    match: /^\/core-assets\/polar$|^\/architecture\/tokenomics$/,
     terms: ['POLAR token', 'POLAR staking', 'POLAR tokenomics'],
     priorityTerms: ['POLAR', 'POLAR token', 'POLAR staking', 'staking POLAR', 'vePOLAR']
   },
   {
-    match: /^\/redemptions-liquidations\/liquidations$/,
+    match: /^\/architecture\/reserve-loans$/,
+    terms: ['Reserve Loan', 'Reserve Loans', 'borrow ETH', 'non-liquidatable', 'fpETH collateral']
+  },
+  {
+    match: /^\/design\/liquidations$/,
     terms: ['liquidation', 'liquidations', 'liquidate', 'liquidated', 'liquidation penalty'],
     priorityTerms: ['liquidation', 'liquidations', 'liquidate', 'liquidated']
   },
   {
-    match: /^\/resources\/risk-disclosure$/,
-    terms: ['risk', 'risks', 'risk disclosure', 'smart contract risk', 'liquidation risk'],
-    priorityTerms: ['risk', 'risks', 'risk disclosure']
+    match: /^\/design\/oracles$/,
+    terms: ['oracle', 'oracles', 'Medianiser', 'price feed', 'ETH/USD', 'XAU/USD']
   },
   {
-    match: /^\/quickstart$|^\/troubleshooting$/,
-    terms: [
-      'quickstart',
-      'troubleshooting',
-      'wrong network',
-      'Sepolia',
-      'faucet',
-      'approval',
-      'stale quote',
-      'failed transaction'
-    ]
+    match: /^\/testnet\/advanced$/,
+    terms: ['Peg Stability Module', 'PSM', 'redeem', 'convert pETH to POLAR', 'arbitrage']
+  },
+  {
+    match: /^\/risks(\/|$)/,
+    terms: ['risk', 'risks', 'risk disclosure', 'smart contract risk', 'liquidation risk'],
+    priorityTerms: ['risk', 'risks', 'risk disclosure']
   }
 ]
 

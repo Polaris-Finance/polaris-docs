@@ -42,9 +42,10 @@ function readableSegment(segment) {
   const specialCases = new Map([
     ['peth', 'pETH'],
     ['polar', 'POLAR'],
-    ['vepolar', 'vePOLAR'],
-    ['faq', 'FAQ'],
-    ['redemptions-liquidations', 'Redemptions & Liquidations']
+    ['architecture', 'Protocol Architecture'],
+    ['design', 'Protocol Design'],
+    ['testnet', 'Using Polaris Testnet'],
+    ['passet-markets', 'pAsset Markets']
   ])
 
   if (specialCases.has(segment)) return specialCases.get(segment)
@@ -53,17 +54,6 @@ function readableSegment(segment) {
     .split('-')
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
     .join(' ')
-}
-
-function stripMarkdown(value) {
-  return value
-    .replace(/\[([^\]]+)]\([^)]+\)/g, '$1')
-    .replace(/`([^`]+)`/g, '$1')
-    .replace(/\*\*([^*]+)\*\*/g, '$1')
-    .replace(/\*([^*]+)\*/g, '$1')
-    .replace(/<[^>]+>/g, '')
-    .replace(/\s+/g, ' ')
-    .trim()
 }
 
 function stripFrontmatter(sourceCode) {
@@ -195,13 +185,7 @@ export function buildPageMetadata(metadata, path) {
           { url: pathWithBase('/llms.txt'), title: 'llms.txt' },
           { url: pathWithBase('/llms-full.txt'), title: 'llms-full.txt' }
         ],
-        'application/json': [
-          { url: pathWithBase('/llms-index.json'), title: 'LLM docs index' },
-          {
-            url: pathWithBase('/polaris-testnet-manifest.json'),
-            title: 'Polaris testnet manifest'
-          }
-        ]
+        'application/json': [{ url: pathWithBase('/llms-index.json'), title: 'LLM docs index' }]
       }
     },
     openGraph: {
@@ -336,96 +320,12 @@ export function buildTechArticleJsonLd({ metadata, path, sourceCode }) {
   return article
 }
 
-export function extractFaqJsonLd(sourceCode, path) {
-  if (path !== '/resources/faq') return null
-
-  const body = stripFrontmatter(sourceCode)
-  const accordionPairs = [
-    ...body.matchAll(
-      /question:\s*(['"`])([\s\S]*?)\1\s*,\s*answer:\s*([\s\S]*?)(?=\n\s*},|\n\s*}\s*\])/g
-    )
-  ]
-    .map((match) => ({
-      question: stripMarkdown(match[2]),
-      answer: stripMarkdown(match[3])
-    }))
-    .filter(({ question, answer }) => question && answer)
-
-  if (accordionPairs.length) {
-    return {
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      mainEntity: accordionPairs.map(({ question, answer }) => ({
-        '@type': 'Question',
-        name: question,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: answer
-        }
-      }))
-    }
-  }
-
-  const lines = body.split(/\r?\n/)
-  const pairs = []
-  let current = null
-
-  const finishCurrent = () => {
-    if (!current) return
-    const answer = stripMarkdown(current.answer.join(' '))
-    if (current.question && answer) {
-      pairs.push({
-        '@type': 'Question',
-        name: current.question,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: answer
-        }
-      })
-    }
-    current = null
-  }
-
-  for (const line of lines) {
-    const trimmed = line.trim()
-    const questionMatch = /^###\s+(.+\?)\s*$/.exec(trimmed) ?? /^\*\*([^*?]+\?)\*\*$/.exec(trimmed)
-
-    if (questionMatch) {
-      finishCurrent()
-      current = {
-        question: stripMarkdown(questionMatch[1]),
-        answer: []
-      }
-      continue
-    }
-
-    if (!current) continue
-    if (!trimmed || trimmed.startsWith('## ')) continue
-    if (trimmed === '---') {
-      finishCurrent()
-      continue
-    }
-    current.answer.push(trimmed)
-  }
-
-  finishCurrent()
-
-  if (!pairs.length) return null
-
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: pairs
-  }
-}
-
 export function buildPageJsonLd({ metadata, path, sourceCode }) {
   const title = titleFromMetadata(metadata)
 
   return [
     buildBreadcrumbJsonLd(path, title),
-    buildTechArticleJsonLd({ metadata, path, sourceCode }),
-    extractFaqJsonLd(sourceCode, path)
+    buildTechArticleJsonLd({ metadata, path, sourceCode })
   ].filter(Boolean)
 }
 

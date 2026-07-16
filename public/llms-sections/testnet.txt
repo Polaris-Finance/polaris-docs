@@ -1,0 +1,123 @@
+# Polaris Documentation
+
+> User documentation for Polaris, an onchain yield layer built around pETH, a yield-bearing reserve asset designed to collateralize censorship-resistant stablecoins and synthetic assets.
+
+## Agent Guidance
+
+- Polaris is currently in Public Testnet 1 on Sepolia.
+- Public Testnet 1 assets are Sepolia test assets with no monetary value, no production redemption, and no mainnet claim.
+- Do not infer production addresses, production constants, audit status, or launch status from testnet values.
+- Prefer the Markdown URLs in this file for retrieval, and cite the canonical URL shown beside each page.
+
+# Using Polaris Testnet
+
+## Advanced
+
+URL: https://tokenbrice.github.io/polaris-docs/testnet/advanced
+Markdown URL: https://tokenbrice.github.io/polaris-docs/testnet/advanced.md
+
+Advanced provides direct access to protocol mechanisms that are primarily intended for arbitrageurs, keepers and experienced users.
+
+This section includes tools such as the Peg Stability Module, the pETH-to-POLAR conversion mechanism and the testnet faucet.
+
+- Peg Stability Module: Mint or redeem USDp and GOLDp against pETH at the oracle price.
+- Convert pETH to POLAR: Convert pETH into newly issued POLAR through the protocol's one-way conversion mechanism.
+
+While these actions remain permissionless, they assume a good understanding of how Polaris works.
+
+If you are unfamiliar with a particular mechanism, refer to its dedicated documentation before using it.
+
+Relevant app/search vocabulary: app, official app, testnet app, app.testnet.polarisfinance.io, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Peg Stability Module, PSM, redeem, convert pETH to POLAR, arbitrage.
+
+---
+
+## Dashboard
+
+URL: https://tokenbrice.github.io/polaris-docs/testnet/dashboard
+Markdown URL: https://tokenbrice.github.io/polaris-docs/testnet/dashboard.md
+
+The Dashboard provides a complete overview of your activity across Polaris. From here you can monitor your balances, active positions, Earn deposits and recent transactions, while also accessing the Sepolia faucet before interacting with the protocol.
+
+It is designed to be the starting point of the application, allowing you to quickly understand the current state of your portfolio without navigating through every individual section.
+
+Relevant app/search vocabulary: app, official app, testnet app, app.testnet.polarisfinance.io, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet.
+
+---
+
+## Earn
+
+URL: https://tokenbrice.github.io/polaris-docs/testnet/earn
+Markdown URL: https://tokenbrice.github.io/polaris-docs/testnet/earn.md
+
+Earn brings together the yield opportunities currently available across Polaris.
+
+Depending on the asset, you can deposit into Earn Vaults, stake POLAR or participate in other protocol-native strategies as they become available. Your current deposits, pending rewards and historical performance are all managed from this section.
+
+Relevant app/search vocabulary: app, official app, testnet app, app.testnet.polarisfinance.io, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Earn, earn, yield, APR, Earn Vault, deposit, claim rewards, sUSDp, sGOLDp.
+
+---
+
+## Mint
+
+URL: https://tokenbrice.github.io/polaris-docs/testnet/mint
+Markdown URL: https://tokenbrice.github.io/polaris-docs/testnet/mint.md
+
+The Mint section is where collateralized positions are created and managed.
+
+Using pETH as collateral, you can mint USDp or GOLDp.
+
+If you hold fpETH, the same interface also lets you borrow ETH through Reserve Loans, which remain non-liquidatable.
+
+Existing positions can also be adjusted from this page by adding collateral, repaying debt or closing the position.
+
+Before confirming any transaction, review your collateral ratio, interest rate and the resulting position.
+
+Relevant app/search vocabulary: app, official app, testnet app, app.testnet.polarisfinance.io, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Mint, borrow, issue, trove, troves, open trove, manage trove, collateralized debt position, CDP, open borrow position, manage position, repay, close borrow position, USDp, GOLDp, LTV, loan-to-value.
+
+---
+
+## Split
+
+URL: https://tokenbrice.github.io/polaris-docs/testnet/split
+Markdown URL: https://tokenbrice.github.io/polaris-docs/testnet/split.md
+
+Split allows you to separate pETH into fpETH and vpETH, or merge those two assets back into pETH whenever you choose.
+
+Because the operation is entirely internal to Polaris, splitting and merging never changes the total economic value represented by your position. It simply separates the floor component from the market premium, allowing each asset to be used independently.
+
+Relevant app/search vocabulary: app, official app, testnet app, app.testnet.polarisfinance.io, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Swap, swap, Split, fpETH, vpETH, pETH, floor price.
+
+---
+
+## Swap
+
+URL: https://tokenbrice.github.io/polaris-docs/testnet/swap
+Markdown URL: https://tokenbrice.github.io/polaris-docs/testnet/swap.md
+
+Swap lets you exchange supported assets across Polaris, which currently are the Core Assets.
+
+All pETH swaps are executed through the Polaris bonding curve, while additional trading routes may be available depending on the assets involved.
+
+Before confirming a swap, review the quoted output, price impact, fees and minimum received.
+
+Relevant app/search vocabulary: app, official app, testnet app, app.testnet.polarisfinance.io, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Swap, swap, Split, fpETH, vpETH, pETH, floor price.
+
+---
+
+## Zap
+
+URL: https://tokenbrice.github.io/polaris-docs/testnet/zap
+Markdown URL: https://tokenbrice.github.io/polaris-docs/testnet/zap.md
+
+Zap combines several protocol actions into a single transaction, making common strategies easier to execute.
+
+The final result is identical to performing every step manually, while reducing the number of transactions required. Positions created through Zap can always be managed later using the standard sections of the application.
+
+Available strategies may evolve over time as new protocol features are introduced.
+
+Current strategies are:
+
+- USDp Stable Yield: Converts ETH into USDp and deposits it into the USDp Earn Vault
+- Floor Carry: Converts ETH into fpETH and opens a Reserve Loan, making it easy to build non-liquidatable looping positions.
+
+Relevant app/search vocabulary: app, official app, testnet app, app.testnet.polarisfinance.io, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Earn, earn, yield, APR, Earn Vault, deposit, claim rewards, sUSDp, sGOLDp.

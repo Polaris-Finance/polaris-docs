@@ -1,0 +1,38 @@
+---
+title: "Interest Rates"
+description: "Polaris uses two complementary interest rates to manage pAsset markets."
+---
+
+# Interest Rates
+
+Polaris uses two complementary interest rates to manage pAsset markets. Together, they help maintain the target price of each pAsset while protecting the overall health of the collateral system.
+
+The Peg Stability Rate is the primary interest rate paid by pAsset minters. It adjusts automatically according to minting and redemption activity and helps keep pAssets trading around their target price.
+
+The Protocol Safety Rate is a secondary interest rate that normally remains inactive. It only activates when the overall collateralization of a pAsset market falls below a predefined threshold, automatically shifting value from higher-leverage positions to lower-leverage or collateral-only positions.
+
+## Peg Stability Rate
+
+The Peg Stability Rate is the standard borrowing cost paid by users who mint pAssets.
+
+Interest paid through the Peg Stability Rate becomes the primary yield source for that pAsset market and is distributed according to the market's configured flow allocation, including the required minimum shares assigned to the Earn Vault and vePOLAR.
+
+A unique feature about the Peg Stability Rate is that it doesn't change through governance or manual intervention. Instead, it adjusts automatically based on minting and redemption activity taking place inside the protocol.
+
+When a pAsset trades above its target price, arbitrage opportunities naturally encourage new minting. As minting activity increases, the Peg Stability Rate can gradually decrease, reducing the cost of creating new pAssets and allowing supply to expand more quickly.
+
+Vice versa, when a pAsset trades below its target price, arbitrage opportunities encourage redemptions instead. As redemption activity increases, the Peg Stability Rate can gradually increase, making new minting less attractive while helping the circulating supply contract.
+
+## Protocol Safety Rate
+
+The Protocol Safety Rate is designed to protect the overall collateral health of a pAsset market.
+
+Under normal market conditions it remains inactive and has no effect on user positions. It only activates when the market's aggregate collateral ratio falls below a predefined threshold. Once active, positions with higher leverage begin paying an additional interest rate, while lower-leverage or collateral-only positions receive those payments.
+
+This makes it profitable for healthier positions to enter or remain in the market during stressed conditions, while making high-leverage positions more expensive to maintain.
+
+The goal is to improve the market's overall collateral health by increasing the cost of higher leverage while rewarding more conservative collateralization.
+
+This encourages the market to return toward stronger overall collateralization without requiring liquidations or governance intervention.
+
+Unlike the Peg Stability Rate, the Protocol Safety Rate is not protocol revenue. Every payment made through the mechanism remains inside the same pAsset market and is redistributed directly between participants.

@@ -28,12 +28,12 @@ export const SITE_NAME = 'Polaris Docs'
 export const SITE_TITLE = 'Polaris Documentation'
 export const SITE_TITLE_TEMPLATE = '%s - Polaris Docs'
 export const SITE_DESCRIPTION =
-  'User documentation for Polaris, the pETH-powered yield layer for DeFi. Issue pAssets backed entirely by onchain collateral and yield.'
+  'User documentation for Polaris, an onchain yield layer built around pETH, a yield-bearing reserve asset designed to collateralize censorship-resistant stablecoins and synthetic assets.'
 
 export const ORGANIZATION_NAME = 'Polaris'
 export const OG_IMAGE_PATH = '/og-image.png'
 export const OG_IMAGE_ALT =
-  'Polaris documentation for pETH, pAssets, issuing, yield, and stewardship.'
+  'Polaris documentation for pETH, pAssets, minting, yield, and stewardship.'
 export const OG_IMAGE_WIDTH = 1200
 export const OG_IMAGE_HEIGHT = 630
 

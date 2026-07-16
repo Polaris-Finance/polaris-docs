@@ -2,13 +2,6 @@ import { Children, cloneElement, createElement, isValidElement } from 'react'
 import { useMDXComponents as getThemeComponents } from 'nextra-theme-docs'
 import { Image } from 'nextra/components'
 import { hrefWithBase, isExternalHref } from './app/site-config.mjs'
-import { BondingCurveExplorer } from './components/BondingCurveExplorer'
-import { Callout } from './components/Callout'
-import { Figure } from './components/Figure'
-import { LaunchTimeline } from './components/LaunchTimeline'
-import { NextSteps } from './components/NextSteps'
-import { PageStatusBanner } from './components/PageStatusBanner'
-import { SystemOverviewFigure } from './components/SystemOverviewFigure'
 
 const themeComponents = getThemeComponents()
 const ThemeTable = themeComponents.table ?? 'table'
@@ -139,13 +132,6 @@ export function useMDXComponents(components) {
     a: MdxAnchor,
     table: AccessibleTable,
     th: TableHeader,
-    BondingCurveExplorer,
-    Callout,
-    Figure,
-    LaunchTimeline,
-    NextSteps,
-    PageStatusBanner,
-    SystemOverviewFigure,
     ...components
   }
 }

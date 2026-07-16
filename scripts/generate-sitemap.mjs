@@ -94,30 +94,17 @@ function lastModified(fullPath) {
 function sitemapPolicy(route) {
   if (route === '/') return { changefreq: 'weekly', priority: '1.0' }
 
-  const volatileRoutes = new Set([
-    '/launch-status',
-    '/quickstart',
-    '/troubleshooting',
-    '/resources/audits-security',
-    '/resources/faq',
-    '/resources/testnet'
-  ])
+  const volatileRoutes = new Set(['/testnet', '/developers'])
 
-  if (volatileRoutes.has(route)) {
-    return { changefreq: 'daily', priority: '0.9' }
+  if (volatileRoutes.has(route) || /^\/testnet\//.test(route)) {
+    return { changefreq: 'weekly', priority: '0.9' }
   }
 
-  if (
-    /^\/using-app(?:\/|$)/.test(route) ||
-    /^\/minting\/manage-position$/.test(route) ||
-    /^\/yield(?:\/yield-sources)?$/.test(route) ||
-    /^\/polar\/(conversion-auctions|tokenomics)$/.test(route) ||
-    /^\/redemptions-liquidations(?:\/(liquidations|recovery-mode))?$/.test(route)
-  ) {
+  if (/^\/core-assets(?:\/|$)/.test(route)) {
     return { changefreq: 'weekly', priority: '0.8' }
   }
 
-  if (/^\/resources\/(risk-disclosure|brand-assets)$/.test(route)) {
+  if (/^\/risks(?:\/|$)/.test(route)) {
     return { changefreq: 'monthly', priority: '0.7' }
   }
 

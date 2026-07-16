@@ -1,0 +1,100 @@
+# Polaris Documentation
+
+> User documentation for Polaris, an onchain yield layer built around pETH, a yield-bearing reserve asset designed to collateralize censorship-resistant stablecoins and synthetic assets.
+
+## Agent Guidance
+
+- Polaris is currently in Public Testnet 1 on Sepolia.
+- Public Testnet 1 assets are Sepolia test assets with no monetary value, no production redemption, and no mainnet claim.
+- Do not infer production addresses, production constants, audit status, or launch status from testnet values.
+- Prefer the Markdown URLs in this file for retrieval, and cite the canonical URL shown beside each page.
+
+# Risks
+
+## Risks
+
+URL: https://tokenbrice.github.io/polaris-docs/risks
+Markdown URL: https://tokenbrice.github.io/polaris-docs/risks.md
+
+Polaris is built as immutable onchain infrastructure. This reduces reliance on trusted intermediaries, admin keys and offchain counterparties, but it does not remove risk.
+
+The following risks are not exhaustive. Users should understand the protocol, their own positions and the assets they interact with before using Polaris.
+
+## Smart Contract Risk
+
+Polaris depends on smart contracts to manage pETH, pAsset markets, Earn Vaults, liquidations, conversions, Reserve Loans and other protocol mechanisms.
+
+Bugs, implementation errors or unexpected interactions between contracts could lead to loss of funds or incorrect protocol behaviour. Immutability also means that core contracts are not designed to be upgraded or paused after deployment which reduces admin-key risk but increases the importance of audits, testing and careful use.
+
+## Market And Collateral Risk
+
+pETH is the shared collateral asset of Polaris. It has a market price and a mathematically derived floor price, but its market price can still move over time.
+
+The premium above the pETH floor may expand or contract depending on demand, liquidity and broader market conditions. Since the pETH floor is denominated in ETH, users also remain exposed to ETH price movements against USD, gold or any other reference asset.
+
+Users who mint pAssets against pETH collateral can be liquidated if their position becomes too risky.
+
+## Peg And Liquidity Risk
+
+USDp, GOLDp and future pAssets are designed to track external reference values, but they may trade above or below those values during periods of volatility, low liquidity, oracle disruption or market stress.
+
+Polaris uses permissionless minting, redemptions and interest-rate mechanisms to support pAsset pegs, but these mechanisms depend on arbitrage incentives, available liquidity, Ethereum execution and market participation.
+
+## Oracle Risk
+
+Polaris keeps pETH pricing internal to the bonding curve, but pAsset markets still require external reference prices such as ETH/USD or XAU/USD.
+
+If an oracle feed is stale, unavailable, manipulated or misconfigured, the protocol may value collateral or pAssets incorrectly. This could affect minting, redemptions, liquidations and market safety.
+
+Polaris uses a Medianiser to reduce reliance on a single oracle source where multiple feeds are available, but oracle risk cannot be fully removed.
+
+## Earn Vault And Liquidation Risk
+
+Earn Vaults provide yield by helping absorb liquidations in their pAsset market.
+
+When a position is liquidated, Earn Vault deposits may be burned to cancel debt, with the vault receiving pETH collateral in return. This can generate liquidation gains, but it also means Earn Vault depositors act as a first-loss backstop.
+
+Losses may occur if collateral value falls quickly, liquidations are delayed, oracle prices are wrong, or received collateral later falls in value.
+
+## Stewardship and Parameter Risk
+
+Polaris uses bounded stewardship rather than open-ended governance. Stewards cannot rewrite the core protocol, change the bonding curve or introduce arbitrary new collateral.
+
+However, stewardship can still influence certain parts of the ecosystem, including protocol parameters, oracle feed replacement, flow recipients and incentive programs. As a result, these decisions can shape liquidity, integrations, yields and other economic dynamics across Polaris.
+
+## Execution And Integration Risk
+
+Polaris runs on Ethereum and inherits Ethereum-related risks, including congestion, high gas costs, transaction failure, MEV, reorgs and censorship by some validators.
+
+Users may also interact with Polaris through third-party interfaces, vaults, markets or integrations. Those systems can introduce their own smart contract, admin, liquidity and frontend risks, even if Polaris itself operates as intended.
+
+Users should verify official contract addresses, review transaction details before signing and avoid unofficial links or support channels.
+
+Relevant app/search vocabulary: risk, risks, risk disclosure, smart contract risk, liquidation risk.
+
+---
+
+## Risks Polaris Removes
+
+URL: https://tokenbrice.github.io/polaris-docs/risks/risks-polaris-removes
+Markdown URL: https://tokenbrice.github.io/polaris-docs/risks/risks-polaris-removes.md
+
+Polaris is designed to minimize trust wherever possible, although some sources of uncertainty remain unavoidable and are covered in the dedicated Risks section.
+
+Some considerations remain unavoidable and are covered in the dedicated Risks section. The architectural decisions below remove many of the trust assumptions commonly found in DeFi, allowing users to interact directly with transparent onchain mechanisms.
+
+**The core protocol has no admin privileges.** Once deployed, no individual or organization can move user funds or change the protocol rules.
+
+**The core protocol is immutable.** Its fundamental mechanics cannot be upgraded or replaced after deployment.
+
+**Assets cannot be frozen.** Neither pETH nor any pAsset includes blacklist or freeze functionality, allowing users to retain control over their assets without depending on a centralized party.
+
+**All collateral remains onchain.** Every pAsset is backed by pETH, removing the need to trust banks or custodians to safeguard the assets supporting the protocol.
+
+**pAssets are issued directly by protocol rules.** USDp, GOLDp and every future pAsset are created according to transparent onchain mechanisms, without a company deciding when assets can be issued or redeemed.
+
+**Every pAsset is fully collateralized at minting.** The protocol does not allow privileged actors, multisigs or administrators to create unbacked assets outside the normal minting process.
+
+**Stewardship remains bounded.** Ecosystem parameters can evolve over time without giving anyone the ability to rewrite the core protocol or introduce new collateral.
+
+Relevant app/search vocabulary: risk, risks, risk disclosure, smart contract risk, liquidation risk.

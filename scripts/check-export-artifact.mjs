@@ -312,45 +312,6 @@ function assertLlmsIndex(text) {
   }
 }
 
-function assertProtocolManifest(text) {
-  let parsed
-  try {
-    parsed = JSON.parse(text)
-  } catch (error) {
-    failures.push(`out/polaris-testnet-manifest.json is invalid JSON: ${error.message}`)
-    return
-  }
-
-  if (parsed.site !== absoluteUrl('/')) {
-    failures.push(
-      `out/polaris-testnet-manifest.json site mismatch: expected ${absoluteUrl('/')}, found ${parsed.site}`
-    )
-  }
-
-  if (parsed.environment?.chainId !== 11155111) {
-    failures.push('out/polaris-testnet-manifest.json has unexpected testnet chain ID')
-  }
-
-  if (!Array.isArray(parsed.contracts?.entries) || parsed.contracts.entries.length === 0) {
-    failures.push('out/polaris-testnet-manifest.json has no contract entries')
-  } else {
-    for (const contract of parsed.contracts.entries) {
-      if (!/^0x[a-f0-9]{40}$/.test(contract.address ?? '')) {
-        failures.push(
-          `out/polaris-testnet-manifest.json has invalid contract address: ${contract.address}`
-        )
-      }
-      if (contract.explorerUrl)
-        assertOutReferenceExists('out/polaris-testnet-manifest.json', contract.explorerUrl)
-    }
-  }
-
-  for (const value of [parsed.source?.url, parsed.source?.markdownUrl]) {
-    if (typeof value === 'string')
-      assertOutReferenceExists('out/polaris-testnet-manifest.json', value)
-  }
-}
-
 function assertLlmsSections() {
   const sectionDir = path.join(outDir, 'llms-sections')
   if (!existsSync(sectionDir)) {
@@ -404,7 +365,6 @@ const wellKnownLlms = readOut('.well-known/llms.txt')
 const llmsFull = readOut('llms-full.txt')
 const wellKnownLlmsFull = readOut('.well-known/llms-full.txt')
 const llmsIndex = readOut('llms-index.json')
-const protocolManifest = readOut('polaris-testnet-manifest.json')
 
 assertGeneratedTextArtifact('sitemap.xml', sitemap)
 assertGeneratedTextArtifact('robots.txt', robots)
@@ -413,7 +373,6 @@ assertGeneratedTextArtifact('.well-known/llms.txt', wellKnownLlms)
 assertGeneratedTextArtifact('llms-full.txt', llmsFull)
 assertGeneratedTextArtifact('.well-known/llms-full.txt', wellKnownLlmsFull)
 assertGeneratedTextArtifact('llms-index.json', llmsIndex)
-assertGeneratedTextArtifact('polaris-testnet-manifest.json', protocolManifest)
 assertSitemap(sitemap)
 assertRobots(robots)
 assertLlms('llms.txt', llms)
@@ -421,7 +380,6 @@ assertLlms('.well-known/llms.txt', wellKnownLlms)
 assertLlms('llms-full.txt', llmsFull)
 assertLlms('.well-known/llms-full.txt', wellKnownLlmsFull)
 assertLlmsIndex(llmsIndex)
-assertProtocolManifest(protocolManifest)
 assertLlmsSections()
 assertCnameMode()
 
@@ -448,11 +406,6 @@ for (const file of walk(outDir)) {
       `out/${relativeOut(file)} is ${Math.round(size / 1024)} KB; image budget is ${imageBudgetBytes / 1024} KB`
     )
   }
-}
-
-const faqHtml = readOut('resources/faq.html')
-if (faqHtml && !faqHtml.includes('"@type":"FAQPage"')) {
-  failures.push('out/resources/faq.html is missing FAQPage structured data')
 }
 
 if (failures.length) {

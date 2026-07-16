@@ -47,8 +47,7 @@ for (const relativePath of [
   'public/.well-known/llms.txt',
   'public/llms-full.txt',
   'public/.well-known/llms-full.txt',
-  'public/llms-index.json',
-  'public/polaris-testnet-manifest.json'
+  'public/llms-index.json'
 ]) {
   const text = readIfExists(relativePath)
   if (!text) {

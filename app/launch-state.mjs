@@ -26,7 +26,7 @@ export const TIMELINE_PHASES = [
     labelPos: 'above',
     style: 'spark',
     desc: 'Closed testnet for internal validation and security review.',
-    link: '/resources/testnet'
+    link: null
   },
   {
     name: 'Public Testnet 1',
@@ -35,7 +35,7 @@ export const TIMELINE_PHASES = [
     style: 'polaris',
     isNow: true,
     desc: 'Public testnet on Sepolia. Open for community testing and feedback.',
-    link: '/resources/testnet'
+    link: null
   },
   {
     name: 'Audits',
@@ -43,7 +43,7 @@ export const TIMELINE_PHASES = [
     labelPos: 'above',
     style: 'distant',
     desc: 'Independent security reviews before production deployment.',
-    link: '/launch-status'
+    link: null
   },
   {
     name: 'Mainnet Launch',
@@ -51,7 +51,7 @@ export const TIMELINE_PHASES = [
     labelPos: 'below',
     style: 'distant',
     desc: 'Production deployment on Ethereum mainnet.',
-    link: '/launch-status'
+    link: null
   },
   {
     name: 'pAsset Expansion',
@@ -59,7 +59,7 @@ export const TIMELINE_PHASES = [
     labelPos: 'above',
     style: 'distant',
     desc: 'Additional synthetic asset markets beyond the initial pAssets.',
-    link: '/minting/passet-catalog'
+    link: null
   },
   {
     name: 'Integrations',
@@ -67,7 +67,7 @@ export const TIMELINE_PHASES = [
     labelPos: 'below',
     style: 'distant',
     desc: 'Partner, protocol, and B2B integrations built around Polaris assets and yield flows.',
-    link: '/stewardship/fee-router'
+    link: null
   },
   {
     name: 'Future Products',

@@ -1,0 +1,14 @@
+---
+title: "Spike-and-decay Fees"
+description: "Several core mechanisms across Polaris use spike-and-decay pricing."
+---
+
+# Spike-and-decay Fees
+
+Several core mechanisms across Polaris use spike-and-decay pricing, including bonding curve swaps, pAsset minting and redemptions, and pETH-to-POLAR conversions. In particular, the first two have the same design with different parameters, while pETH-to-POLAR conversions use a Dutch auction mechanism.
+
+Each of these mechanisms responds to a different type of market activity, but they all adjust their pricing according to the same market forces. As demand for a particular action increases, so does its cost. As demand fades, that cost gradually decays until interacting with the protocol becomes attractive again.
+
+This allows prices to continuously adapt as market conditions evolve, enabling Polaris to capture more value during periods of higher demand while naturally encouraging activity again as costs decline.
+
+Once deployed, the mechanism operates entirely through immutable protocol mechanics. Unlike parameters such as the conversion rebate, spike-and-decay pricing is not adjusted through stewardship and responds exclusively to market activity. The minimum and maximum fee ranges will be finalized closer to launch.

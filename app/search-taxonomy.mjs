@@ -46,7 +46,7 @@ export function sectionForPath(path) {
 // default marker. Meaning is also carried by the section label, so the color is
 // never the only signal.
 export function kindForPath(path) {
-  if (/^\/using-app(\/|$)/.test(path)) return 'app'
-  if (/^\/resources(\/|$)/.test(path)) return 'reference'
+  if (/^\/testnet(\/|$)/.test(path)) return 'app'
+  if (/^\/developers(\/|$)/.test(path)) return 'reference'
   return 'concept'
 }

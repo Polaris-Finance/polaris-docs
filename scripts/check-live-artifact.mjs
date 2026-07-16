@@ -127,10 +127,10 @@ const home = await fetchText(siteUrl('/'), { status: 200, mime: ['text/html'] })
 assertProjectScopedAttributes(home.body, siteUrl('/'))
 assertHtmlMetadata(home.body, siteUrl('/'), `${expectedBaseUrl}/`)
 
-const launchStatusUrl = siteUrl('/launch-status')
-const launchStatus = await fetchText(launchStatusUrl, { status: 200, mime: ['text/html'] })
-assertProjectScopedAttributes(launchStatus.body, launchStatusUrl)
-assertHtmlMetadata(launchStatus.body, launchStatusUrl, `${expectedBaseUrl}/launch-status`)
+const pethUrl = siteUrl('/core-assets/peth')
+const pethPage = await fetchText(pethUrl, { status: 200, mime: ['text/html'] })
+assertProjectScopedAttributes(pethPage.body, pethUrl)
+assertHtmlMetadata(pethPage.body, pethUrl, `${expectedBaseUrl}/core-assets/peth`)
 
 const robotsUrl = siteUrl('/robots.txt')
 const robots = await fetchText(robotsUrl, { status: 200, mime: ['text/plain'] })
@@ -199,25 +199,6 @@ if (firstMarkdownUrl) {
     status: 200,
     mime: ['text/markdown', 'text/plain', 'application/octet-stream']
   })
-}
-
-const manifestUrl = siteUrl('/polaris-testnet-manifest.json')
-const manifest = await fetchText(manifestUrl, { status: 200, mime: ['application/json'] })
-try {
-  const parsed = JSON.parse(manifest.body)
-  if (parsed.site !== `${expectedBaseUrl}/`) {
-    failures.push(
-      `${manifestUrl} site mismatch: expected ${expectedBaseUrl}/, found ${parsed.site}`
-    )
-  }
-  if (parsed.environment?.chainId !== 11155111) {
-    failures.push(`${manifestUrl} has unexpected testnet chain ID`)
-  }
-  if (!Array.isArray(parsed.contracts?.entries) || parsed.contracts.entries.length === 0) {
-    failures.push(`${manifestUrl} has no contract entries`)
-  }
-} catch (error) {
-  failures.push(`${manifestUrl} is invalid JSON: ${error.message}`)
 }
 
 for (const resource of pickResources(home.body)) {

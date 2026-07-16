@@ -363,7 +363,7 @@ test('homepage renders with metadata and basic accessibility', async ({ page }) 
   await page.goto(pathWithBase('/'))
 
   await expect(page).toHaveTitle(/Polaris/i)
-  await expect(page.getByRole('heading', { level: 1 })).toContainText(/Polaris/i)
+  await expect(page.getByRole('heading', { level: 1 })).toContainText(/Introduction/i)
   await expect(page.locator('script[type="application/ld+json"]').first()).toBeAttached()
   await expectNoDocumentOverflow(page)
   await expectNoUnnamedVisibleControls(page)
@@ -378,18 +378,19 @@ test('search opens, returns useful results, and fits its surface', async ({ page
 
   const results = page.locator('.nextra-search-results')
   await expect(results).toBeVisible()
-  await expect(results).toContainText(/position/i)
-  await expect(results).toContainText(/open|managing/i)
+  await expect(results).toContainText(/Mint/i)
+  await expect(results).toContainText(/Using Polaris Testnet/i)
   await expect(results.locator('.pl-search-count')).toContainText(/Top \d+ of \d+|\d+ shown/)
   await expect(input).toHaveAttribute('aria-autocomplete', 'list')
   await expect(input).toHaveAttribute('aria-expanded', 'true')
   await expect(input).toHaveAttribute('aria-controls', /.+-listbox$/)
 
-  const mintingChip = results.getByRole('button', { name: /pAssets/i })
-  await expect(mintingChip).toBeVisible()
-  await mintingChip.click()
-  await expect(mintingChip).toHaveAttribute('aria-pressed', 'true')
-  await expect(results.locator('.pl-search-count')).toContainText(/in pAssets/)
+  await input.fill('pETH')
+  const sectionChip = results.getByRole('button', { name: /Core Assets/i })
+  await expect(sectionChip).toBeVisible()
+  await sectionChip.click()
+  await expect(sectionChip).toHaveAttribute('aria-pressed', 'true')
+  await expect(results.locator('.pl-search-count')).toContainText(/in Core Assets/)
   await results.getByRole('button', { name: /^All$/ }).click()
 
   const inputBox = await input.boundingBox()
@@ -422,7 +423,7 @@ test('search opens, returns useful results, and fits its surface', async ({ page
   }
 
   await input.fill('risk')
-  await expect(results).toContainText(/Risk Disclosure/i)
+  await expect(results).toContainText(/Risks/i)
 })
 
 test('search keyboard, clear, and empty-state refinements work', async ({ page }) => {
@@ -456,12 +457,12 @@ test('search keyboard, clear, and empty-state refinements work', async ({ page }
   await expect(results).toContainText(/Search for .liquidation./i)
   await page.getByRole('option', { name: /search for .liquidation./i }).click()
   await expect(input).toHaveValue('liquidation')
-  await expect(results).toContainText(/Polaris Liquidations/i)
+  await expect(results).toContainText(/Liquidations/i)
 
   await input.fill('xqzvnotfound')
   await expect(results).toContainText(/No matches/i)
   await expect(results).toContainText(/Try instead/i)
-  await expect(results).toContainText(/FAQ/i)
+  await expect(results).toContainText(/Risks/i)
 })
 
 test('search ranking favors direct destinations for high-intent queries', async ({ page }) => {
@@ -469,11 +470,11 @@ test('search ranking favors direct destinations for high-intent queries', async 
 
   const input = page.locator('input[type="search"][placeholder*="Search"]:visible').first()
   const cases = [
-    { query: 'POLAR', expectedTopTwo: ['/polar', '/polar/tokenomics'] },
-    { query: 'pETH', expectedTopTwo: ['/peth'] },
-    { query: 'liquidation', expectedTopTwo: ['/redemptions-liquidations/liquidations'] },
-    { query: 'trove', expectedTopTwo: ['/using-app/issue', '/minting/manage-position'] },
-    { query: 'risk', expectedTopTwo: ['/resources/risk-disclosure'] }
+    { query: 'POLAR', expectedTopTwo: ['/core-assets/polar', '/architecture/tokenomics'] },
+    { query: 'pETH', expectedTopTwo: ['/core-assets/peth'] },
+    { query: 'liquidation', expectedTopTwo: ['/design/liquidations'] },
+    { query: 'trove', expectedTopTwo: ['/testnet/mint'] },
+    { query: 'risk', expectedTopTwo: ['/risks'] }
   ]
 
   await input.click()
@@ -523,11 +524,11 @@ test('sampled article text meets contrast in dark and light themes', async ({ pa
 
   const routes = [
     '/',
-    '/resources',
-    '/resources/brand-assets',
-    '/yield',
-    '/polar/tokenomics',
-    '/resources/risk-disclosure'
+    '/core-assets/peth',
+    '/architecture/flows',
+    '/design/interest-rates',
+    '/testnet/mint',
+    '/risks'
   ]
 
   for (const route of routes) {
@@ -552,18 +553,18 @@ test('print media keeps wide reference pages within the viewport', async ({ page
   await page.emulateMedia({ media: 'print' })
 
   for (const route of [
-    '/resources/contracts',
-    '/stewardship/flows',
-    '/launch-status',
-    '/polar/tokenomics',
-    '/resources/risk-disclosure'
+    '/architecture/tokenomics',
+    '/architecture/passet-markets',
+    '/design/oracles',
+    '/core-assets/fpeth',
+    '/risks'
   ]) {
     await page.goto(pathWithBase(route), { waitUntil: 'networkidle' })
     await expectNoDocumentOverflow(page)
   }
 })
 
-test('dense glossary page stays within the route prefetch budget', async ({ page }) => {
+test('dense article page stays within the route prefetch budget', async ({ page }) => {
   const routeRequests = new Set()
   page.on('request', (request) => {
     const type = request.resourceType()
@@ -573,14 +574,14 @@ test('dense glossary page stays within the route prefetch budget', async ({ page
     const currentOrigin = new URL(page.url() || 'http://127.0.0.1').origin
     if (url.origin !== currentOrigin) return
     if (url.pathname.includes('/_next/') || url.pathname.includes('/_pagefind/')) return
-    if (url.pathname === pathWithBase('/resources/glossary')) return
+    if (url.pathname === pathWithBase('/risks')) return
 
     if (/\/polaris-docs\/.+(?:\.txt|\.html)?$/.test(url.pathname)) {
       routeRequests.add(url.pathname)
     }
   })
 
-  await page.goto(pathWithBase('/resources/glossary'), { waitUntil: 'networkidle' })
+  await page.goto(pathWithBase('/risks'), { waitUntil: 'networkidle' })
   expect([...routeRequests].sort()).toHaveLength(routeRequests.size)
   expect(routeRequests.size).toBeLessThanOrEqual(16)
 })

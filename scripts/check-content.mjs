@@ -61,14 +61,7 @@ const forbiddenPatterns = [
   }
 ]
 
-const exactFreshnessRequired = new Set([
-  'content/launch-status.mdx',
-  'content/quickstart.mdx',
-  'content/resources/contracts.mdx',
-  'content/resources/parameters.mdx',
-  'content/resources/testnet.mdx',
-  'content/troubleshooting.mdx'
-])
+const exactFreshnessRequired = new Set([])
 
 const exactDatePattern =
   /\b(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2},\s+\d{4}\b|\b\d{4}-\d{2}-\d{2}\b/

@@ -1,0 +1,313 @@
+# Polaris Documentation
+
+> User documentation for Polaris, an onchain yield layer built around pETH, a yield-bearing reserve asset designed to collateralize censorship-resistant stablecoins and synthetic assets.
+
+## Agent Guidance
+
+- Polaris is currently in Public Testnet 1 on Sepolia.
+- Public Testnet 1 assets are Sepolia test assets with no monetary value, no production redemption, and no mainnet claim.
+- Do not infer production addresses, production constants, audit status, or launch status from testnet values.
+- Prefer the Markdown URLs in this file for retrieval, and cite the canonical URL shown beside each page.
+
+# Protocol Design
+
+## Adaptive Peg Defence
+
+URL: https://tokenbrice.github.io/polaris-docs/design/adaptive-peg-defence
+Markdown URL: https://tokenbrice.github.io/polaris-docs/design/adaptive-peg-defence.md
+
+Polaris uses permissionless minting and redemptions to help pAssets trade around their target price.
+
+Many collateralized asset systems are more effective at defending one side of the peg than the other, allowing supply to contract without providing an equally direct way to expand it when stressful situations come, or vice versa.
+
+Polaris supports both directions through the same permissionless architecture, allowing pAssets to be minted against pETH collateral or redeemed for pETH at their target value whenever market conditions create an arbitrage opportunity.
+
+## Above Peg
+
+When a pAsset trades above its target price, market participants can mint new supply against pETH collateral and sell it into the market.
+
+For example, if USDp trades above one dollar, an arbitrageur can deposit ETH into the bonding curve, receive pETH and immediately mint new USDp before selling it above one dollar.
+
+The resulting profit encourages new supply to enter the market, increasing the circulating supply and naturally pushing the market price back toward its target.
+
+This mechanism is made possible by the Polaris bonding curve, which allows new collateral to enter the protocol as pETH before supporting pAssets. As a result, every newly minted asset remains fully backed while the protocol collateral base continues to grow.
+
+Polaris extends this mechanism through its Distributed Peg Defense model, which distributes the additional collateral, debt and minting fees across existing positions according to the protocol's accounting model instead of assigning them to a newly opened position.
+
+This allows supply to expand in response to above-peg demand without pushing a single new position toward liquidation. The expansion is shared across the market, allowing the protocol to respond to upward depegs through direct onchain minting.
+
+## Below Peg
+
+When a pAsset trades below its target price, market participants can buy the discounted asset and redeem it through the protocol for pETH at its target price.
+
+For example, if USDp trades below one dollar, an arbitrageur can purchase USDp below peg, redeem it for pETH and capture the price difference. The redeemed USDp is burned during the redemption process, reducing the circulating supply and encouraging the market price to move back toward its target.
+
+The same Distributed Peg Defense model applies during redemptions by distributing collateral removal, debt reduction and redemption fees across existing positions according to the protocol's accounting model instead of concentrating the redemption on a single position.
+
+This allows supply to contract without targeting individual positions first. The contraction is shared across the market, allowing the protocol to respond to downward depegs through direct onchain redemptions.
+
+---
+
+## Conversions
+
+URL: https://tokenbrice.github.io/polaris-docs/design/conversions
+Markdown URL: https://tokenbrice.github.io/polaris-docs/design/conversions.md
+
+As introduced in the POLAR section, the long-term supply of POLAR does not grow through perpetual emissions. Once the initial allocation begins following its vesting schedule, every additional POLAR enters circulation through the Polaris conversion mechanism.
+
+This approach ensures that the supply doesn't simply expand because time passes or because the protocol needs new incentives. Every new POLAR exists because someone has chosen to convert pETH, directly linking the growth of the utility token to the economic activity taking place across Polaris.
+
+Each conversion permanently transforms pETH into newly minted POLAR. The two assets therefore grow together over time, allowing the POLAR supply to expand while the reserve asset at the core of the ecosystem continues increasing in value.
+
+## From pETH to POLAR
+
+Whenever a user converts pETH, the converted pETH is permanently burned and an equivalent amount of new POLAR is minted.
+
+Burning pETH reduces its circulating supply while releasing ETH from the bonding curve reserve. A portion of that ETH may be returned directly to the converter as a rebate, while the remaining value is ultimately routed back into the protocol through the Fee Router, where it contributes to the protocol-native yield reflected in the pETH floor.
+
+Every conversion therefore has two consequences taking place at the same time, expanding the POLAR supply while increasing the value represented by every remaining unit of pETH.
+
+## Conversion Pricing
+
+Conversions are permissionless and can take place at any time, but the conversion price is continuously changing through a Dutch auction mechanism.
+
+Whenever someone converts pETH into POLAR, the price immediately increases before beginning to decay again. The size of that increase depends on the fraction of the existing POLAR supply minted by the conversion, meaning a conversion that mints a larger share of the supply pushes the price up much more aggressively than a smaller one.
+
+This naturally encourages smaller and more frequent operations instead of large supply-shocking events.
+
+As the price gradually falls, opportunities emerge whenever converting becomes more attractive than acquiring POLAR on the open market. Once that opportunity is taken, the price moves back up before beginning the same process again, distributing new POLAR issuance over time.
+
+## One-Way Only
+
+One of the defining properties of the conversion mechanism is that it only works in one direction, from pETH to POLAR.
+
+If POLAR could also be converted back into pETH, part of the value generated by every conversion would always need to remain reserved for future redemptions. Because that redemption path does not exist, the protocol never needs to set aside capital for future exits, allowing the full economic value generated by each conversion to remain inside Polaris.
+
+Since pETH is the reserve asset supporting the entire ecosystem, permanently reducing its supply increases the value represented by every remaining unit while expanding the supply of POLAR. This creates a direct economic relationship between the two assets, allowing the utility token to grow without following a fixed emissions schedule while every conversion also contributes to the growth of the pETH floor and the protocol-native ETH yield earned by pETH and fpETH holders.
+
+## Rebates
+
+Part of the ETH released during a conversion may be returned directly to the converter as a rebate.
+
+The rebate is a protocol parameter adjusted through Polaris stewardship, which influences how the value generated by a conversion is distributed between the converter and the broader ecosystem. Increasing the rebate makes conversions more attractive, while reducing it directs a larger share of the released ETH toward the pETH yield flows.
+
+Regardless of the rebate, the underlying pETH burn isn't changed and keeps on being converted into POLAR.
+
+## Who Converts?
+
+Although conversions are permissionless, most users are unlikely to interact with the mechanism directly.
+
+In practice, conversions are primarily performed by arbitrageurs, keepers and other market participants whenever the conversion price, together with any available rebate, becomes more attractive than acquiring POLAR on the open market. Most users will simply buy POLAR through secondary markets without ever interacting with the conversion mechanism themselves.
+
+Relevant app/search vocabulary: POLAR, convert, lock, vePOLAR, burn pETH, conversion auction.
+
+---
+
+## Fee Router
+
+URL: https://tokenbrice.github.io/polaris-docs/design/fee-router
+Markdown URL: https://tokenbrice.github.io/polaris-docs/design/fee-router.md
+
+The Fee Router is the system that redirects value generated by Polaris back into the ecosystem.
+
+Its role is to collect protocol revenue denominated in pETH, process it through the bonding curve and distribute the resulting rewards according to the pETH flows.
+
+## Strengthening pETH First
+
+When pETH collected as protocol fees reaches the Fee Router, it is first burned at the pETH floor. This permanently removes the accumulated pETH from circulation, increasing the floor price of every remaining pETH while releasing the corresponding ETH from the bonding curve reserve.
+
+That ETH is then immediately used to purchase newly minted pETH at the current bonding curve market price, creating additional demand. Only then are the newly minted pETH distributed as rewards through the pETH flows.
+
+Passing protocol revenue through the bonding curve allows the same value to strengthen the pETH floor before becoming rewards to be distributed throughout the ecosystem. And by the time those rewards reach their recipients, both the floor price and the market price of pETH have already benefited from protocol activity.
+
+## A Shared Economic Engine
+
+The Fee Router determines how protocol value moves through Polaris, while pETH flows determine where the resulting incentives are ultimately directed.
+
+This architecture ensures that value generated anywhere within Polaris always returns to the same collateral foundation before being redistributed across the ecosystem.
+
+Every incentive distributed by the protocol has therefore already contributed to growing the reserve asset supporting every pAsset market, allowing Polaris to continue expanding around a single economic engine.
+
+---
+
+## Interest Rates
+
+URL: https://tokenbrice.github.io/polaris-docs/design/interest-rates
+Markdown URL: https://tokenbrice.github.io/polaris-docs/design/interest-rates.md
+
+Polaris uses two complementary interest rates to manage pAsset markets. Together, they help maintain the target price of each pAsset while protecting the overall health of the collateral system.
+
+The Peg Stability Rate is the primary interest rate paid by pAsset minters. It adjusts automatically according to minting and redemption activity and helps keep pAssets trading around their target price.
+
+The Protocol Safety Rate is a secondary interest rate that normally remains inactive. It only activates when the overall collateralization of a pAsset market falls below a predefined threshold, automatically shifting value from higher-leverage positions to lower-leverage or collateral-only positions.
+
+## Peg Stability Rate
+
+The Peg Stability Rate is the standard borrowing cost paid by users who mint pAssets.
+
+Interest paid through the Peg Stability Rate becomes the primary yield source for that pAsset market and is distributed according to the market's configured flow allocation, including the required minimum shares assigned to the Earn Vault and vePOLAR.
+
+A unique feature about the Peg Stability Rate is that it doesn't change through governance or manual intervention. Instead, it adjusts automatically based on minting and redemption activity taking place inside the protocol.
+
+When a pAsset trades above its target price, arbitrage opportunities naturally encourage new minting. As minting activity increases, the Peg Stability Rate can gradually decrease, reducing the cost of creating new pAssets and allowing supply to expand more quickly.
+
+Vice versa, when a pAsset trades below its target price, arbitrage opportunities encourage redemptions instead. As redemption activity increases, the Peg Stability Rate can gradually increase, making new minting less attractive while helping the circulating supply contract.
+
+## Protocol Safety Rate
+
+The Protocol Safety Rate is designed to protect the overall collateral health of a pAsset market.
+
+Under normal market conditions it remains inactive and has no effect on user positions. It only activates when the market's aggregate collateral ratio falls below a predefined threshold. Once active, positions with higher leverage begin paying an additional interest rate, while lower-leverage or collateral-only positions receive those payments.
+
+This makes it profitable for healthier positions to enter or remain in the market during stressed conditions, while making high-leverage positions more expensive to maintain.
+
+The goal is to improve the market's overall collateral health by increasing the cost of higher leverage while rewarding more conservative collateralization.
+
+This encourages the market to return toward stronger overall collateralization without requiring liquidations or governance intervention.
+
+Unlike the Peg Stability Rate, the Protocol Safety Rate is not protocol revenue. Every payment made through the mechanism remains inside the same pAsset market and is redistributed directly between participants.
+
+---
+
+## Liquidations
+
+URL: https://tokenbrice.github.io/polaris-docs/design/liquidations
+Markdown URL: https://tokenbrice.github.io/polaris-docs/design/liquidations.md
+
+When a user mints a pAsset, they do so against pETH collateral. If the value of that collateral falls too far relative to the debt, the position can fall below the protocol's Minimum Collateral Ratio of 115% and become eligible for liquidation.
+
+Liquidations protect the solvency of each pAsset market by closing unsafe positions before they create losses for the wider system.
+
+## Liquidation Process
+
+Each pAsset market has its own Earn Vault, which acts as the first line of defense during liquidations. Depositors supply the pAsset to the Earn Vault, and those deposits can be used to cancel the debt of liquidated positions.
+
+When a liquidation occurs, the position's debt is cancelled using pAssets from the Earn Vault, while the corresponding pETH collateral is transferred to the vault. Earn Vault depositors therefore receive liquidation gains in exchange for acting as the first-loss backstop for the market.
+
+This liquidation mechanism is one of the sources of protocol-native yield distributed through Earn Vaults and is explained in greater detail in the dedicated Earn Vault section.
+
+## Fallback Redistribution
+
+If the Earn Vault does not hold enough deposits to absorb the entire liquidation, the remaining debt and collateral are redistributed across the other open positions in the same pAsset market. This fallback mechanism keeps liquidation processing entirely inside the protocol without relying on external auctions or discretionary intervention.
+
+Redistribution means open positions receive a proportional share of both the remaining debt and collateral. While intended only as a fallback mechanism, it ensures that liquidations can always be completed even when the Earn Vault is temporarily unable to absorb the full position.
+
+Relevant app/search vocabulary: liquidation, liquidations, liquidate, liquidated, liquidation penalty.
+
+---
+
+## Oracles
+
+URL: https://tokenbrice.github.io/polaris-docs/design/oracles
+Markdown URL: https://tokenbrice.github.io/polaris-docs/design/oracles.md
+
+Polaris is built around the idea that the protocol should determine its own behavior whenever possible. The price of pETH, for example, is determined entirely by the bonding curve and never depends on external price feeds.
+
+However, pAssets require external reference prices. Polaris keeps the oracle layer limited to those markets, with a design that can be reused across every future pAsset while minimizing oracle dependency and remaining resilient to oracle failures.
+
+To achieve this, Polaris routes every external price through a custom oracle aggregator called the Medianiser.
+
+The Medianiser is used wherever external reference prices are needed. For instance, USDp uses it for ETH/USD, while GOLDp uses it for both ETH/USD and XAU/USD. Future pAssets follow the same approach by using the reference feeds required for their own underlying asset.
+
+This allows Polaris to keep pETH pricing internal to the bonding curve while using external oracles only where real-world reference pricing is unavoidable. It also means USDp does not require an external market-price oracle to maintain its peg, because minting, redemptions and interest rate adjustments respond to protocol activity instead of an external USDp price feed.
+
+## The Medianiser
+
+Each Medianiser is responsible for a single external price, such as ETH/USD or XAU/USD. Every pAsset market can then use one or more Medianisers to calculate the collateral value required for that asset.
+
+A Medianiser supports up to three independent oracle feeds. Only one feed is required, but additional feeds improve resilience whenever multiple high-quality data sources are available.
+
+When more than one feed is configured, the Medianiser selects the price according to the feeds currently available:
+
+- If three valid feeds are available, it returns the median price.
+- If one or two valid feeds are available, it returns the first valid feed in the configured order.
+- If no valid feeds are available, it falls back to the last valid price.
+
+A feed is considered valid only if the external call succeeds, the returned value is positive and the price is not stale.
+
+This lets Polaris continue operating in a flexible way even if individual oracle feeds become unavailable. When multiple feeds are available, the protocol aggregates them. If some feeds fail, it continues operating with the remaining valid feeds, and if every configured feed becomes unavailable, it falls back to the last valid price.
+
+## Updating Oracle Feeds
+
+Although the protocol itself is immutable, oracle providers may change over time or become unavailable.
+
+Oracle sources can therefore be replaced through stewardship. A failed feed can be replaced immediately, while replacing a live feed or adding a new feed to an empty slot requires a timelock.
+
+This allows Polaris to recover from oracle failures without giving stewards immediate discretionary control over active price sources.
+
+Relevant app/search vocabulary: oracle, oracles, Medianiser, price feed, ETH/USD, XAU/USD.
+
+---
+
+## Recovery Mode
+
+URL: https://tokenbrice.github.io/polaris-docs/design/recovery-mode
+Markdown URL: https://tokenbrice.github.io/polaris-docs/design/recovery-mode.md
+
+Recovery Mode is the protective state a pAsset market enters when its overall collateralization falls below a critical threshold.
+
+Each pAsset market has its own Recovery Mode. Stress affecting one market does not automatically place every other market into the same state, allowing USDp, GOLDp and future pAssets to remain independent from one another.
+
+Once active, the protocol continues operating normally while restricting actions that would further weaken the affected market. Users can still add collateral, repay debt and improve the health of their positions, while actions such as minting additional pAssets can become unavailable.
+
+The goal is to prevent the market from becoming weaker while still allowing participants to repay positions and reduce debt. The normal liquidation threshold does not change, and positions are liquidated only after reaching the same maximum LTV that applies under normal market conditions.
+
+## Peg Stability
+
+Recovery Mode also affects direct minting and redemptions. New direct minting is disabled because it would increase the outstanding debt to the affected market, while redemptions remain open because they reduce the circulating supply.
+
+If the market's collateral falls below full backing, redemption payouts become proportional to the collateral that remains available. This ensures every redeemer receives the same share of the remaining backing instead of rewarding the first participants to exit.
+
+Bonding curve swaps remain live throughout this whole process. The bonding curve is shared pETH infrastructure rather than part of any individual pAsset market, allowing pETH holders to continue using it even if a specific market enters Recovery Mode.
+
+The mechanism is designed to help a stressed market deleverage in an orderly manner without shutting down the rest of the Polaris ecosystem.
+
+---
+
+## Revenue Model
+
+URL: https://tokenbrice.github.io/polaris-docs/design/revenue-model
+Markdown URL: https://tokenbrice.github.io/polaris-docs/design/revenue-model.md
+
+Polaris operates under the design philosophy that value generated throughout the protocol should not leak externally. Following this, protocol revenue is generated entirely from activity taking place inside the Polaris ecosystem.
+
+Creating pAssets, trading through the bonding curve, opening Reserve Loans, building on top of pETH and future protocol primitives all contribute to the same revenue engine.
+
+The fees generated by these activities are routed back through the bonding curve to strengthen pETH, increase its floor and distribute yield through pETH flows.
+
+Every fee generated by the protocol first strengthens the collateral layer before being distributed across the ecosystem, allowing the same economic activity that generates value to reinforce the foundation supporting Polaris.
+
+## Revenue Through Flows
+
+Both pETH flows and pAsset flows are designed to become valuable yield sources for the entire Polaris ecosystem.
+
+These flows can be directed to pAsset markets, integrations, applications, liquidity venues and other approved recipients, with the vePOLAR stewardship ultimately determining all of this.
+
+As adoption grows, the value of these flows grows alongside it, giving external protocols a direct incentive to build on Polaris while contributing to its growth.
+
+Further details on flows are covered in the dedicated Flows section of this documentation.
+
+## How Polaris Earns
+
+Polaris participates in the same economic model as every other participant. To receive protocol revenue, treasury-held POLAR must first be locked as vePOLAR.
+
+There are no protocol fees routed directly to an equity entity and no hidden offchain fees. Value generated by the system remains onchain, strengthening pETH before becoming available through the same mechanisms used by every other participant.
+
+Therefore, vePOLAR revenue follows the same principle, with vePOLAR holders receiving a share of the interest paid by pAsset minters.
+
+This keeps value creation and value distribution economically aligned, ensuring that every participant contributes to the system before receiving the value it generates.
+
+---
+
+## Spike-and-decay Fees
+
+URL: https://tokenbrice.github.io/polaris-docs/design/spike-and-decay-fees
+Markdown URL: https://tokenbrice.github.io/polaris-docs/design/spike-and-decay-fees.md
+
+Several core mechanisms across Polaris use spike-and-decay pricing, including bonding curve swaps, pAsset minting and redemptions, and pETH-to-POLAR conversions. In particular, the first two have the same design with different parameters, while pETH-to-POLAR conversions use a Dutch auction mechanism.
+
+Each of these mechanisms responds to a different type of market activity, but they all adjust their pricing according to the same market forces. As demand for a particular action increases, so does its cost. As demand fades, that cost gradually decays until interacting with the protocol becomes attractive again.
+
+This allows prices to continuously adapt as market conditions evolve, enabling Polaris to capture more value during periods of higher demand while naturally encouraging activity again as costs decline.
+
+Once deployed, the mechanism operates entirely through immutable protocol mechanics. Unlike parameters such as the conversion rebate, spike-and-decay pricing is not adjusted through stewardship and responds exclusively to market activity. The minimum and maximum fee ranges will be finalized closer to launch.

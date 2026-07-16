@@ -1,0 +1,24 @@
+---
+title: "Recovery Mode"
+description: "Recovery Mode is the protective state a pAsset market enters when its overall collateralization falls below a critical threshold."
+---
+
+# Recovery Mode
+
+Recovery Mode is the protective state a pAsset market enters when its overall collateralization falls below a critical threshold.
+
+Each pAsset market has its own Recovery Mode. Stress affecting one market does not automatically place every other market into the same state, allowing USDp, GOLDp and future pAssets to remain independent from one another.
+
+Once active, the protocol continues operating normally while restricting actions that would further weaken the affected market. Users can still add collateral, repay debt and improve the health of their positions, while actions such as minting additional pAssets can become unavailable.
+
+The goal is to prevent the market from becoming weaker while still allowing participants to repay positions and reduce debt. The normal liquidation threshold does not change, and positions are liquidated only after reaching the same maximum LTV that applies under normal market conditions.
+
+## Peg Stability
+
+Recovery Mode also affects direct minting and redemptions. New direct minting is disabled because it would increase the outstanding debt to the affected market, while redemptions remain open because they reduce the circulating supply.
+
+If the market's collateral falls below full backing, redemption payouts become proportional to the collateral that remains available. This ensures every redeemer receives the same share of the remaining backing instead of rewarding the first participants to exit.
+
+Bonding curve swaps remain live throughout this whole process. The bonding curve is shared pETH infrastructure rather than part of any individual pAsset market, allowing pETH holders to continue using it even if a specific market enters Recovery Mode.
+
+The mechanism is designed to help a stressed market deleverage in an orderly manner without shutting down the rest of the Polaris ecosystem.

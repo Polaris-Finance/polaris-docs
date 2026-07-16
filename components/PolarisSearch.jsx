@@ -36,15 +36,15 @@ function curate(title, url) {
 
 // Curated entry points for the queryless state, in the protocol's reading order.
 const START_HERE = [
-  curate('Public Testnet Quickstart', '/quickstart'),
-  curate('Why Polaris', '/why-polaris'),
-  curate('Open a Position', '/using-app/issue')
+  curate('Why pETH', '/why-peth'),
+  curate('pETH', '/core-assets/peth'),
+  curate('Using Polaris Testnet', '/testnet/dashboard')
 ]
 
 // Recovery links for a no-results query.
 const RECOVERY = [
-  curate('FAQ', '/resources/faq'),
-  curate('Troubleshooting', '/troubleshooting'),
+  curate('Introduction', '/'),
+  curate('Risks', '/risks'),
   curate('Browse the full docs (llms.txt)', '/llms.txt')
 ]
 
@@ -68,12 +68,12 @@ const QUERY_ALIASES = new Map([
 ])
 
 const DIRECT_ROUTE_BOOSTS = [
-  { query: 'polar', routes: ['/polar', '/polar/tokenomics'] },
-  { query: 'peth', routes: ['/peth'] },
-  { query: 'liquidation', routes: ['/redemptions-liquidations/liquidations'] },
-  { query: 'position', routes: ['/using-app/issue', '/minting/manage-position'] },
-  { query: 'trove', routes: ['/using-app/issue', '/minting/manage-position'] },
-  { query: 'risk', routes: ['/resources/risk-disclosure'] }
+  { query: 'polar', routes: ['/core-assets/polar', '/architecture/tokenomics'] },
+  { query: 'peth', routes: ['/core-assets/peth'] },
+  { query: 'liquidation', routes: ['/design/liquidations'] },
+  { query: 'position', routes: ['/testnet/mint'] },
+  { query: 'trove', routes: ['/testnet/mint'] },
+  { query: 'risk', routes: ['/risks'] }
 ]
 
 const noopSubscribe = () => () => {}
