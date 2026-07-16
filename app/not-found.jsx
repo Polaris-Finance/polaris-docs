@@ -1,4 +1,7 @@
+import { LegacyRedirect } from '../components/LegacyRedirect'
 import { pathWithBase } from './site-config.mjs'
+
+export const metadata = { title: 'Page not found' }
 
 export default function NotFound() {
   return (
@@ -10,6 +13,7 @@ export default function NotFound() {
           <a href={pathWithBase('/')}>Return to the docs home page</a>
         </p>
       </article>
+      <LegacyRedirect />
     </main>
   )
 }

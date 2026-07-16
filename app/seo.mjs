@@ -1,3 +1,5 @@
+import fs from 'node:fs'
+import path from 'node:path'
 import {
   absoluteUrl,
   OG_IMAGE_ALT,
@@ -17,6 +19,29 @@ import {
 
 const organizationId = `${absoluteUrl('/')}#organization`
 const websiteId = `${absoluteUrl('/')}#website`
+
+// Real page routes derived from content/*.mdx the same way the router maps
+// files. Breadcrumb ListItems only link segments in this set; pageless
+// intermediates (e.g. /design) stay name-only, which schema.org permits,
+// instead of advertising URLs that 404.
+const CONTENT_ROUTES = collectContentRoutes()
+
+function collectContentRoutes() {
+  const contentDir = path.join(process.cwd(), 'content')
+  const routes = new Set(['/'])
+  const walk = (dir, prefix) => {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (entry.isDirectory()) {
+        walk(path.join(dir, entry.name), `${prefix}/${entry.name}`)
+      } else if (entry.name.endsWith('.mdx')) {
+        const name = entry.name.replace(/\.mdx$/, '')
+        routes.add(name === 'index' ? prefix || '/' : `${prefix}/${name}`)
+      }
+    }
+  }
+  walk(contentDir, '')
+  return routes
+}
 
 function ogImages(path = '/') {
   return [
@@ -262,12 +287,13 @@ export function buildBreadcrumbJsonLd(path, title) {
   segments.forEach((segment, index) => {
     const isCurrentPage = index === segments.length - 1
     const route = `/${segments.slice(0, index + 1).join('/')}`
-    itemListElement.push({
+    const listItem = {
       '@type': 'ListItem',
       position: index + 2,
-      name: isCurrentPage ? title : readableSegment(segment),
-      item: absoluteUrl(route)
-    })
+      name: isCurrentPage ? title : readableSegment(segment)
+    }
+    if (isCurrentPage || CONTENT_ROUTES.has(route)) listItem.item = absoluteUrl(route)
+    itemListElement.push(listItem)
   })
 
   return {

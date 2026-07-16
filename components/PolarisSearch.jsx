@@ -299,7 +299,26 @@ export function PolarisSearch() {
       const based = hrefWithBase(pathOnly)
       const here = location.pathname.replace(/\/$/, '') === based.replace(/\/$/, '')
       if (here) {
-        if (hash) location.hash = hash
+        // Same-page target: reassigning an identical location.hash is a no-op,
+        // so the panel would close with zero feedback. Jump manually in that
+        // case, and move focus to the target for keyboard users either way.
+        const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+          ? 'auto'
+          : 'smooth'
+        const el = hash ? document.getElementById(hash) : null
+        if (el) {
+          if (location.hash === `#${hash}`) {
+            el.scrollIntoView({ behavior, block: 'start' })
+          } else {
+            location.hash = hash
+          }
+          el.tabIndex = -1
+          el.focus({ preventScroll: true })
+        } else if (hash) {
+          location.hash = hash
+        } else {
+          window.scrollTo({ top: 0, behavior })
+        }
       } else {
         router.push(url)
       }

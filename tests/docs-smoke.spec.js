@@ -359,6 +359,18 @@ test.describe('generated route smoke', () => {
   }
 })
 
+test('unknown routes serve the recovery 404 and legacy routes redirect', async ({ page }) => {
+  await page.goto(pathWithBase('/this-page-does-not-exist'))
+  await expect(page).toHaveTitle(/Page not found/i)
+  await expect(page.getByRole('link', { name: /home page/i })).toBeVisible()
+
+  // A route deleted by the July 2026 rewrite recovers via the 404 redirect
+  // map, preserving the fragment across the hop.
+  await page.goto(`${pathWithBase('/using-app/issue')}#fees`)
+  await expect(page).toHaveURL(new RegExp(`${escapeRegExp(pathWithBase('/testnet/mint'))}/?#fees$`))
+  await expect(page.getByRole('heading', { level: 1 }).first()).toBeVisible()
+})
+
 test('homepage renders with metadata and basic accessibility', async ({ page }) => {
   await page.goto(pathWithBase('/'))
 
