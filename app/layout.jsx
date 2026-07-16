@@ -30,7 +30,9 @@ const inter = Inter({
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
-  weight: ['600', '700'],
+  // Headings render at 600 only (article h1/h2/h3 pin the weight), so the
+  // 700 face was dead payload.
+  weight: ['600'],
   variable: '--font-serif',
   display: 'swap'
 })

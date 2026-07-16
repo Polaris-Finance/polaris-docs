@@ -49,17 +49,39 @@ body {
   border: 0;
 }
 
-/* Editorial serif headings, matching the landing site */
+/* Editorial serif headings, matching the landing site. Explicit h1/h2 sizes
+   give the all-prose docs a clearer hierarchy than the theme's text-4xl/3xl
+   defaults; !important is needed where the theme sets the same property with
+   a utility class (font-bold, text-4xl/3xl, nextra-border). Weight is pinned
+   to 600 — the only Cormorant weight the layout loads. */
 
 article h1,
 article h2,
 article h3 {
   font-family: var(--font-serif-stack);
   letter-spacing: 0.01em;
+  text-wrap: balance;
 }
 
 article h1 {
-  font-weight: 600;
+  font-weight: 600 !important;
+  font-size: clamp(2.15rem, 1.6rem + 1.8vw, 2.75rem) !important;
+}
+
+article h2 {
+  font-size: clamp(1.6rem, 1.42rem + 0.7vw, 2.1rem) !important;
+  border-bottom-color: rgba(177, 147, 79, 0.35) !important;
+}
+
+.dark article h2 {
+  border-bottom-color: rgba(216, 201, 164, 0.3) !important;
+}
+
+/* The paragraph that opens a page reads as a lede. */
+
+article h1 + p {
+  font-size: 1.08rem;
+  line-height: 1.6;
 }
 
 /* Dark mode — the canonical Polaris surface */
