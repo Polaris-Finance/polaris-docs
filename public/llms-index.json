@@ -1,46 +1,46 @@
 {
-  "site": "https://tokenbrice.github.io/polaris-docs/",
+  "site": "https://polaris-finance.github.io/polaris-docs/",
   "artifacts": {
-    "llms": "https://tokenbrice.github.io/polaris-docs/llms.txt",
-    "llmsFull": "https://tokenbrice.github.io/polaris-docs/llms-full.txt",
-    "wellKnownLlms": "https://tokenbrice.github.io/polaris-docs/.well-known/llms.txt",
-    "wellKnownLlmsFull": "https://tokenbrice.github.io/polaris-docs/.well-known/llms-full.txt",
+    "llms": "https://polaris-finance.github.io/polaris-docs/llms.txt",
+    "llmsFull": "https://polaris-finance.github.io/polaris-docs/llms-full.txt",
+    "wellKnownLlms": "https://polaris-finance.github.io/polaris-docs/.well-known/llms.txt",
+    "wellKnownLlmsFull": "https://polaris-finance.github.io/polaris-docs/.well-known/llms-full.txt",
     "sections": [
       {
         "title": "Home",
-        "url": "https://tokenbrice.github.io/polaris-docs/llms-sections/home.txt"
+        "url": "https://polaris-finance.github.io/polaris-docs/llms-sections/home.txt"
       },
       {
         "title": "Core Assets",
-        "url": "https://tokenbrice.github.io/polaris-docs/llms-sections/core-assets.txt"
+        "url": "https://polaris-finance.github.io/polaris-docs/llms-sections/core-assets.txt"
       },
       {
         "title": "Protocol Architecture",
-        "url": "https://tokenbrice.github.io/polaris-docs/llms-sections/architecture.txt"
+        "url": "https://polaris-finance.github.io/polaris-docs/llms-sections/architecture.txt"
       },
       {
         "title": "Protocol Design",
-        "url": "https://tokenbrice.github.io/polaris-docs/llms-sections/design.txt"
+        "url": "https://polaris-finance.github.io/polaris-docs/llms-sections/design.txt"
       },
       {
         "title": "Using Polaris Testnet",
-        "url": "https://tokenbrice.github.io/polaris-docs/llms-sections/testnet.txt"
+        "url": "https://polaris-finance.github.io/polaris-docs/llms-sections/testnet.txt"
       },
       {
         "title": "Developers",
-        "url": "https://tokenbrice.github.io/polaris-docs/llms-sections/developers.txt"
+        "url": "https://polaris-finance.github.io/polaris-docs/llms-sections/developers.txt"
       },
       {
         "title": "Risks",
-        "url": "https://tokenbrice.github.io/polaris-docs/llms-sections/risks.txt"
+        "url": "https://polaris-finance.github.io/polaris-docs/llms-sections/risks.txt"
       }
     ]
   },
   "pages": [
     {
       "route": "/",
-      "url": "https://tokenbrice.github.io/polaris-docs/",
-      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/index.md",
+      "url": "https://polaris-finance.github.io/polaris-docs/",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/index.md",
       "section": "Home",
       "title": "Introduction",
       "description": "Polaris is an onchain yield layer built around pETH.",
@@ -57,8 +57,8 @@
     },
     {
       "route": "/architecture/bonding-curve",
-      "url": "https://tokenbrice.github.io/polaris-docs/architecture/bonding-curve",
-      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/architecture/bonding-curve.md",
+      "url": "https://polaris-finance.github.io/polaris-docs/architecture/bonding-curve",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/architecture/bonding-curve.md",
       "section": "Protocol Architecture",
       "title": "Bonding Curve",
       "description": "Bonding curves have been used across crypto for years, particularly in DEXs and launchpads.",
@@ -72,8 +72,8 @@
     },
     {
       "route": "/architecture/earn-vaults",
-      "url": "https://tokenbrice.github.io/polaris-docs/architecture/earn-vaults",
-      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/architecture/earn-vaults.md",
+      "url": "https://polaris-finance.github.io/polaris-docs/architecture/earn-vaults",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/architecture/earn-vaults.md",
       "section": "Protocol Architecture",
       "title": "Earn Vaults",
       "description": "Earn Vaults allow pAssets minted through Polaris to become yield-bearing assets.",
@@ -92,8 +92,8 @@
     },
     {
       "route": "/architecture/flows",
-      "url": "https://tokenbrice.github.io/polaris-docs/architecture/flows",
-      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/architecture/flows.md",
+      "url": "https://polaris-finance.github.io/polaris-docs/architecture/flows",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/architecture/flows.md",
       "section": "Protocol Architecture",
       "title": "Flows",
       "description": "Flows distribute protocol-generated value to applications, markets and integrations building on top of Polaris.",
@@ -102,8 +102,8 @@
     },
     {
       "route": "/architecture/passet-markets",
-      "url": "https://tokenbrice.github.io/polaris-docs/architecture/passet-markets",
-      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/architecture/passet-markets.md",
+      "url": "https://polaris-finance.github.io/polaris-docs/architecture/passet-markets",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/architecture/passet-markets.md",
       "section": "Protocol Architecture",
       "title": "pAsset Markets",
       "description": "pAssets are currencies and synthetic assets issued against pETH using the shared collateral infrastructure provided by Polaris.",
@@ -112,8 +112,8 @@
     },
     {
       "route": "/architecture/reserve-loans",
-      "url": "https://tokenbrice.github.io/polaris-docs/architecture/reserve-loans",
-      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/architecture/reserve-loans.md",
+      "url": "https://polaris-finance.github.io/polaris-docs/architecture/reserve-loans",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/architecture/reserve-loans.md",
       "section": "Protocol Architecture",
       "title": "Reserve Loans",
       "description": "Reserve Loans are one of the core financial primitives introduced by Polaris, allowing users to borrow ETH directly from the bonding curve reserve.",
@@ -128,8 +128,8 @@
     },
     {
       "route": "/architecture/steward-responsibilities",
-      "url": "https://tokenbrice.github.io/polaris-docs/architecture/steward-responsibilities",
-      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/architecture/steward-responsibilities.md",
+      "url": "https://polaris-finance.github.io/polaris-docs/architecture/steward-responsibilities",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/architecture/steward-responsibilities.md",
       "section": "Protocol Architecture",
       "title": "Steward Responsibilities",
       "description": "Although the core protocol cannot change, some parts of the ecosystem still benefit from ongoing coordination.",
@@ -138,8 +138,8 @@
     },
     {
       "route": "/architecture/stewardship",
-      "url": "https://tokenbrice.github.io/polaris-docs/architecture/stewardship",
-      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/architecture/stewardship.md",
+      "url": "https://polaris-finance.github.io/polaris-docs/architecture/stewardship",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/architecture/stewardship.md",
       "section": "Protocol Architecture",
       "title": "Stewardship",
       "description": "Polaris uses bounded stewardship instead of open-ended governance.",
@@ -148,8 +148,8 @@
     },
     {
       "route": "/architecture/tokenomics",
-      "url": "https://tokenbrice.github.io/polaris-docs/architecture/tokenomics",
-      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/architecture/tokenomics.md",
+      "url": "https://polaris-finance.github.io/polaris-docs/architecture/tokenomics",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/architecture/tokenomics.md",
       "section": "Protocol Architecture",
       "title": "Tokenomics",
       "description": "The final POLAR allocation, vesting schedule and launch parameters will be published closer to launch once they have been finalized.",
@@ -168,8 +168,8 @@
     },
     {
       "route": "/core-assets/fpeth",
-      "url": "https://tokenbrice.github.io/polaris-docs/core-assets/fpeth",
-      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/core-assets/fpeth.md",
+      "url": "https://polaris-finance.github.io/polaris-docs/core-assets/fpeth",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/core-assets/fpeth.md",
       "section": "Core Assets",
       "title": "fpETH",
       "description": "One of the unique properties of pETH is that it has both a market price and a mathematically-derived floor.",
@@ -186,8 +186,8 @@
     },
     {
       "route": "/core-assets/goldp",
-      "url": "https://tokenbrice.github.io/polaris-docs/core-assets/goldp",
-      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/core-assets/goldp.md",
+      "url": "https://polaris-finance.github.io/polaris-docs/core-assets/goldp",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/core-assets/goldp.md",
       "section": "Core Assets",
       "title": "GOLDp",
       "description": "GOLDp is the Polaris digital gold.",
@@ -196,8 +196,8 @@
     },
     {
       "route": "/core-assets/peth",
-      "url": "https://tokenbrice.github.io/polaris-docs/core-assets/peth",
-      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/core-assets/peth.md",
+      "url": "https://polaris-finance.github.io/polaris-docs/core-assets/peth",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/core-assets/peth.md",
       "section": "Core Assets",
       "title": "pETH",
       "description": "pETH is the native yield-bearing asset of Polaris.",
@@ -217,8 +217,8 @@
     },
     {
       "route": "/core-assets/polar",
-      "url": "https://tokenbrice.github.io/polaris-docs/core-assets/polar",
-      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/core-assets/polar.md",
+      "url": "https://polaris-finance.github.io/polaris-docs/core-assets/polar",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/core-assets/polar.md",
       "section": "Core Assets",
       "title": "POLAR",
       "description": "POLAR is the token powering Polaris.",
@@ -237,8 +237,8 @@
     },
     {
       "route": "/core-assets/usdp",
-      "url": "https://tokenbrice.github.io/polaris-docs/core-assets/usdp",
-      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/core-assets/usdp.md",
+      "url": "https://polaris-finance.github.io/polaris-docs/core-assets/usdp",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/core-assets/usdp.md",
       "section": "Core Assets",
       "title": "USDp",
       "description": "USDp is the native Polaris dollar.",
@@ -247,8 +247,8 @@
     },
     {
       "route": "/core-assets/vpeth",
-      "url": "https://tokenbrice.github.io/polaris-docs/core-assets/vpeth",
-      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/core-assets/vpeth.md",
+      "url": "https://polaris-finance.github.io/polaris-docs/core-assets/vpeth",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/core-assets/vpeth.md",
       "section": "Core Assets",
       "title": "vpETH",
       "description": "Every time pETH trades above its mathematically-derived floor, the difference represents its market premium.",
@@ -265,8 +265,8 @@
     },
     {
       "route": "/design/adaptive-peg-defence",
-      "url": "https://tokenbrice.github.io/polaris-docs/design/adaptive-peg-defence",
-      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/design/adaptive-peg-defence.md",
+      "url": "https://polaris-finance.github.io/polaris-docs/design/adaptive-peg-defence",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/design/adaptive-peg-defence.md",
       "section": "Protocol Design",
       "title": "Adaptive Peg Defence",
       "description": "Polaris uses permissionless minting and redemptions to help pAssets trade around their target price.",
@@ -275,8 +275,8 @@
     },
     {
       "route": "/design/conversions",
-      "url": "https://tokenbrice.github.io/polaris-docs/design/conversions",
-      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/design/conversions.md",
+      "url": "https://polaris-finance.github.io/polaris-docs/design/conversions",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/design/conversions.md",
       "section": "Protocol Design",
       "title": "Conversions",
       "description": "As introduced in the POLAR section, the long-term supply of POLAR does not grow through perpetual emissions.",
@@ -292,8 +292,8 @@
     },
     {
       "route": "/design/fee-router",
-      "url": "https://tokenbrice.github.io/polaris-docs/design/fee-router",
-      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/design/fee-router.md",
+      "url": "https://polaris-finance.github.io/polaris-docs/design/fee-router",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/design/fee-router.md",
       "section": "Protocol Design",
       "title": "Fee Router",
       "description": "The Fee Router is the system that redirects value generated by Polaris back into the ecosystem.",
@@ -302,8 +302,8 @@
     },
     {
       "route": "/design/interest-rates",
-      "url": "https://tokenbrice.github.io/polaris-docs/design/interest-rates",
-      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/design/interest-rates.md",
+      "url": "https://polaris-finance.github.io/polaris-docs/design/interest-rates",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/design/interest-rates.md",
       "section": "Protocol Design",
       "title": "Interest Rates",
       "description": "Polaris uses two complementary interest rates to manage pAsset markets.",
@@ -312,8 +312,8 @@
     },
     {
       "route": "/design/liquidations",
-      "url": "https://tokenbrice.github.io/polaris-docs/design/liquidations",
-      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/design/liquidations.md",
+      "url": "https://polaris-finance.github.io/polaris-docs/design/liquidations",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/design/liquidations.md",
       "section": "Protocol Design",
       "title": "Liquidations",
       "description": "When a user mints a pAsset, they do so against pETH collateral.",
@@ -328,8 +328,8 @@
     },
     {
       "route": "/design/oracles",
-      "url": "https://tokenbrice.github.io/polaris-docs/design/oracles",
-      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/design/oracles.md",
+      "url": "https://polaris-finance.github.io/polaris-docs/design/oracles",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/design/oracles.md",
       "section": "Protocol Design",
       "title": "Oracles",
       "description": "Polaris is built around the idea that the protocol should determine its own behavior whenever possible.",
@@ -345,8 +345,8 @@
     },
     {
       "route": "/design/recovery-mode",
-      "url": "https://tokenbrice.github.io/polaris-docs/design/recovery-mode",
-      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/design/recovery-mode.md",
+      "url": "https://polaris-finance.github.io/polaris-docs/design/recovery-mode",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/design/recovery-mode.md",
       "section": "Protocol Design",
       "title": "Recovery Mode",
       "description": "Recovery Mode is the protective state a pAsset market enters when its overall collateralization falls below a critical threshold.",
@@ -355,8 +355,8 @@
     },
     {
       "route": "/design/revenue-model",
-      "url": "https://tokenbrice.github.io/polaris-docs/design/revenue-model",
-      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/design/revenue-model.md",
+      "url": "https://polaris-finance.github.io/polaris-docs/design/revenue-model",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/design/revenue-model.md",
       "section": "Protocol Design",
       "title": "Revenue Model",
       "description": "Polaris operates under the design philosophy that value generated throughout the protocol should not leak externally.",
@@ -365,8 +365,8 @@
     },
     {
       "route": "/design/spike-and-decay-fees",
-      "url": "https://tokenbrice.github.io/polaris-docs/design/spike-and-decay-fees",
-      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/design/spike-and-decay-fees.md",
+      "url": "https://polaris-finance.github.io/polaris-docs/design/spike-and-decay-fees",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/design/spike-and-decay-fees.md",
       "section": "Protocol Design",
       "title": "Spike-and-decay Fees",
       "description": "Several core mechanisms across Polaris use spike-and-decay pricing.",
@@ -375,8 +375,8 @@
     },
     {
       "route": "/developers",
-      "url": "https://tokenbrice.github.io/polaris-docs/developers",
-      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/developers.md",
+      "url": "https://polaris-finance.github.io/polaris-docs/developers",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/developers.md",
       "section": "Developers",
       "title": "Developers",
       "description": "Technical documentation for building on Polaris is in progress.",
@@ -385,8 +385,8 @@
     },
     {
       "route": "/manifesto",
-      "url": "https://tokenbrice.github.io/polaris-docs/manifesto",
-      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/manifesto.md",
+      "url": "https://polaris-finance.github.io/polaris-docs/manifesto",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/manifesto.md",
       "section": "Home",
       "title": "Manifesto",
       "description": "Decentralized finance was built on the idea that money should not depend on trusted intermediaries.",
@@ -395,8 +395,8 @@
     },
     {
       "route": "/risks",
-      "url": "https://tokenbrice.github.io/polaris-docs/risks",
-      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/risks.md",
+      "url": "https://polaris-finance.github.io/polaris-docs/risks",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/risks.md",
       "section": "Risks",
       "title": "Risks",
       "description": "Polaris is built as immutable onchain infrastructure.",
@@ -411,8 +411,8 @@
     },
     {
       "route": "/risks/risks-polaris-removes",
-      "url": "https://tokenbrice.github.io/polaris-docs/risks/risks-polaris-removes",
-      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/risks/risks-polaris-removes.md",
+      "url": "https://polaris-finance.github.io/polaris-docs/risks/risks-polaris-removes",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/risks/risks-polaris-removes.md",
       "section": "Risks",
       "title": "Risks Polaris Removes",
       "description": "Polaris is designed to minimize trust wherever possible, although some sources of uncertainty remain unavoidable and are covered in the dedicated Risks section.",
@@ -427,8 +427,8 @@
     },
     {
       "route": "/testnet/advanced",
-      "url": "https://tokenbrice.github.io/polaris-docs/testnet/advanced",
-      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/testnet/advanced.md",
+      "url": "https://polaris-finance.github.io/polaris-docs/testnet/advanced",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/testnet/advanced.md",
       "section": "Using Polaris Testnet",
       "title": "Advanced",
       "description": "Advanced provides direct access to protocol mechanisms that are primarily intended for arbitrageurs, keepers and experienced users.",
@@ -453,8 +453,8 @@
     },
     {
       "route": "/testnet/dashboard",
-      "url": "https://tokenbrice.github.io/polaris-docs/testnet/dashboard",
-      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/testnet/dashboard.md",
+      "url": "https://polaris-finance.github.io/polaris-docs/testnet/dashboard",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/testnet/dashboard.md",
       "section": "Using Polaris Testnet",
       "title": "Dashboard",
       "description": "The Dashboard provides a complete overview of your activity across Polaris.",
@@ -474,8 +474,8 @@
     },
     {
       "route": "/testnet/earn",
-      "url": "https://tokenbrice.github.io/polaris-docs/testnet/earn",
-      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/testnet/earn.md",
+      "url": "https://polaris-finance.github.io/polaris-docs/testnet/earn",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/testnet/earn.md",
       "section": "Using Polaris Testnet",
       "title": "Earn",
       "description": "Earn brings together the yield opportunities currently available across Polaris.",
@@ -504,8 +504,8 @@
     },
     {
       "route": "/testnet/mint",
-      "url": "https://tokenbrice.github.io/polaris-docs/testnet/mint",
-      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/testnet/mint.md",
+      "url": "https://polaris-finance.github.io/polaris-docs/testnet/mint",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/testnet/mint.md",
       "section": "Using Polaris Testnet",
       "title": "Mint",
       "description": "The Mint section is where collateralized positions are created and managed.",
@@ -542,8 +542,8 @@
     },
     {
       "route": "/testnet/split",
-      "url": "https://tokenbrice.github.io/polaris-docs/testnet/split",
-      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/testnet/split.md",
+      "url": "https://polaris-finance.github.io/polaris-docs/testnet/split",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/testnet/split.md",
       "section": "Using Polaris Testnet",
       "title": "Split",
       "description": "Split allows you to separate pETH into fpETH and vpETH, or merge those two assets back into pETH whenever you choose.",
@@ -570,8 +570,8 @@
     },
     {
       "route": "/testnet/swap",
-      "url": "https://tokenbrice.github.io/polaris-docs/testnet/swap",
-      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/testnet/swap.md",
+      "url": "https://polaris-finance.github.io/polaris-docs/testnet/swap",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/testnet/swap.md",
       "section": "Using Polaris Testnet",
       "title": "Swap",
       "description": "Swap lets you exchange supported assets across Polaris, which currently are the Core Assets.",
@@ -598,8 +598,8 @@
     },
     {
       "route": "/testnet/zap",
-      "url": "https://tokenbrice.github.io/polaris-docs/testnet/zap",
-      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/testnet/zap.md",
+      "url": "https://polaris-finance.github.io/polaris-docs/testnet/zap",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/testnet/zap.md",
       "section": "Using Polaris Testnet",
       "title": "Zap",
       "description": "Zap combines several protocol actions into a single transaction, making common strategies easier to execute.",
@@ -628,8 +628,8 @@
     },
     {
       "route": "/vision",
-      "url": "https://tokenbrice.github.io/polaris-docs/vision",
-      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/vision.md",
+      "url": "https://polaris-finance.github.io/polaris-docs/vision",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/vision.md",
       "section": "Home",
       "title": "Vision",
       "description": "Stablecoins are the largest monetary application built on blockchains today.",
@@ -638,8 +638,8 @@
     },
     {
       "route": "/why-peth",
-      "url": "https://tokenbrice.github.io/polaris-docs/why-peth",
-      "markdownUrl": "https://tokenbrice.github.io/polaris-docs/why-peth.md",
+      "url": "https://polaris-finance.github.io/polaris-docs/why-peth",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/why-peth.md",
       "section": "Home",
       "title": "Why pETH",
       "description": "The evolution of stablecoins revealed another structural problem.",

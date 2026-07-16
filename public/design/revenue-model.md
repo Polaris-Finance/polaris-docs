@@ -3,12 +3,12 @@
 
 > Polaris operates under the design philosophy that value generated throughout the protocol should not leak externally.
 
-Canonical URL: https://tokenbrice.github.io/polaris-docs/design/revenue-model
-Markdown URL: https://tokenbrice.github.io/polaris-docs/design/revenue-model.md
+Canonical URL: https://polaris-finance.github.io/polaris-docs/design/revenue-model
+Markdown URL: https://polaris-finance.github.io/polaris-docs/design/revenue-model.md
 Section: Protocol Design
 
-Documentation index: https://tokenbrice.github.io/polaris-docs/llms.txt
-Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.txt
+Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
+Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt
 
 ---
 

@@ -3,12 +3,12 @@
 
 > Reserve Loans are one of the core financial primitives introduced by Polaris, allowing users to borrow ETH directly from the bonding curve reserve.
 
-Canonical URL: https://tokenbrice.github.io/polaris-docs/architecture/reserve-loans
-Markdown URL: https://tokenbrice.github.io/polaris-docs/architecture/reserve-loans.md
+Canonical URL: https://polaris-finance.github.io/polaris-docs/architecture/reserve-loans
+Markdown URL: https://polaris-finance.github.io/polaris-docs/architecture/reserve-loans.md
 Section: Protocol Architecture
 
-Documentation index: https://tokenbrice.github.io/polaris-docs/llms.txt
-Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.txt
+Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
+Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt
 
 ---
 

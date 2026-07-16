@@ -12,8 +12,8 @@
 
 ## Bonding Curve
 
-URL: https://tokenbrice.github.io/polaris-docs/architecture/bonding-curve
-Markdown URL: https://tokenbrice.github.io/polaris-docs/architecture/bonding-curve.md
+URL: https://polaris-finance.github.io/polaris-docs/architecture/bonding-curve
+Markdown URL: https://polaris-finance.github.io/polaris-docs/architecture/bonding-curve.md
 
 Bonding curves have been used across crypto for years, particularly in DEXs and launchpads, where they are mainly used as mechanisms for pricing and exchanging assets. Polaris innovates in a different direction by using a bonding curve to create a collateral asset capable of supporting an entire ecosystem of decentralized assets.
 
@@ -59,8 +59,8 @@ Relevant app/search vocabulary: pETH, pETH bonding curve, bonding curve, pETH fl
 
 ## Earn Vaults
 
-URL: https://tokenbrice.github.io/polaris-docs/architecture/earn-vaults
-Markdown URL: https://tokenbrice.github.io/polaris-docs/architecture/earn-vaults.md
+URL: https://polaris-finance.github.io/polaris-docs/architecture/earn-vaults
+Markdown URL: https://polaris-finance.github.io/polaris-docs/architecture/earn-vaults.md
 
 Earn Vaults allow pAssets minted through Polaris to become yield-bearing assets.
 
@@ -90,8 +90,8 @@ Relevant app/search vocabulary: Earn, earn, yield, APR, Earn Vault, deposit, cla
 
 ## Flows
 
-URL: https://tokenbrice.github.io/polaris-docs/architecture/flows
-Markdown URL: https://tokenbrice.github.io/polaris-docs/architecture/flows.md
+URL: https://polaris-finance.github.io/polaris-docs/architecture/flows
+Markdown URL: https://polaris-finance.github.io/polaris-docs/architecture/flows.md
 
 Flows distribute protocol-generated value to applications, markets and integrations building on top of Polaris.
 
@@ -129,8 +129,8 @@ Recipients are expected to create value for Polaris in return for flow support. 
 
 ## pAsset Markets
 
-URL: https://tokenbrice.github.io/polaris-docs/architecture/passet-markets
-Markdown URL: https://tokenbrice.github.io/polaris-docs/architecture/passet-markets.md
+URL: https://polaris-finance.github.io/polaris-docs/architecture/passet-markets
+Markdown URL: https://polaris-finance.github.io/polaris-docs/architecture/passet-markets.md
 
 pAssets are currencies and synthetic assets issued against pETH using the shared collateral infrastructure provided by Polaris. USDp and GOLDp are the first pAssets introduced by the protocol, but the underlying architecture is designed to support a much broader range of markets over time.
 
@@ -174,8 +174,8 @@ This shared architecture allows Polaris to grow as an ecosystem rather than as a
 
 ## Reserve Loans
 
-URL: https://tokenbrice.github.io/polaris-docs/architecture/reserve-loans
-Markdown URL: https://tokenbrice.github.io/polaris-docs/architecture/reserve-loans.md
+URL: https://polaris-finance.github.io/polaris-docs/architecture/reserve-loans
+Markdown URL: https://polaris-finance.github.io/polaris-docs/architecture/reserve-loans.md
 
 Reserve Loans are one of the core financial primitives introduced by Polaris, allowing users to borrow ETH directly from the bonding curve reserve using fpETH as collateral.
 
@@ -197,8 +197,8 @@ Relevant app/search vocabulary: Reserve Loan, Reserve Loans, borrow ETH, non-liq
 
 ## Steward Responsibilities
 
-URL: https://tokenbrice.github.io/polaris-docs/architecture/steward-responsibilities
-Markdown URL: https://tokenbrice.github.io/polaris-docs/architecture/steward-responsibilities.md
+URL: https://polaris-finance.github.io/polaris-docs/architecture/steward-responsibilities
+Markdown URL: https://polaris-finance.github.io/polaris-docs/architecture/steward-responsibilities.md
 
 Although the core protocol cannot change, some parts of the ecosystem still benefit from ongoing coordination.
 
@@ -220,8 +220,8 @@ Further details on each of these parameters are covered in the relevant sections
 
 ## Stewardship
 
-URL: https://tokenbrice.github.io/polaris-docs/architecture/stewardship
-Markdown URL: https://tokenbrice.github.io/polaris-docs/architecture/stewardship.md
+URL: https://polaris-finance.github.io/polaris-docs/architecture/stewardship
+Markdown URL: https://polaris-finance.github.io/polaris-docs/architecture/stewardship.md
 
 Polaris uses bounded stewardship instead of open-ended governance.
 
@@ -237,8 +237,8 @@ Stewards cannot introduce new collateral to back pAssets, modify the bonding cur
 
 ## Tokenomics
 
-URL: https://tokenbrice.github.io/polaris-docs/architecture/tokenomics
-Markdown URL: https://tokenbrice.github.io/polaris-docs/architecture/tokenomics.md
+URL: https://polaris-finance.github.io/polaris-docs/architecture/tokenomics
+Markdown URL: https://polaris-finance.github.io/polaris-docs/architecture/tokenomics.md
 
 The final POLAR allocation, vesting schedule and launch parameters will be published closer to launch once they have been finalized.
 

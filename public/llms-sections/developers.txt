@@ -12,8 +12,8 @@
 
 ## Developers
 
-URL: https://tokenbrice.github.io/polaris-docs/developers
-Markdown URL: https://tokenbrice.github.io/polaris-docs/developers.md
+URL: https://polaris-finance.github.io/polaris-docs/developers
+Markdown URL: https://polaris-finance.github.io/polaris-docs/developers.md
 
 Technical documentation for building on Polaris is in progress. The following sections will be published here.
 

@@ -3,12 +3,12 @@
 
 > The Dashboard provides a complete overview of your activity across Polaris.
 
-Canonical URL: https://tokenbrice.github.io/polaris-docs/testnet/dashboard
-Markdown URL: https://tokenbrice.github.io/polaris-docs/testnet/dashboard.md
+Canonical URL: https://polaris-finance.github.io/polaris-docs/testnet/dashboard
+Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/dashboard.md
 Section: Using Polaris Testnet
 
-Documentation index: https://tokenbrice.github.io/polaris-docs/llms.txt
-Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.txt
+Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
+Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt
 
 ---
 

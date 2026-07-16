@@ -1,4 +1,4 @@
-const DEFAULT_SITE_URL = 'https://tokenbrice.github.io'
+const DEFAULT_SITE_URL = 'https://polaris-finance.github.io'
 const DEFAULT_BASE_PATH = '/polaris-docs'
 
 function trimTrailingSlash(value) {

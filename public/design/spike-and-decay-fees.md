@@ -3,12 +3,12 @@
 
 > Several core mechanisms across Polaris use spike-and-decay pricing.
 
-Canonical URL: https://tokenbrice.github.io/polaris-docs/design/spike-and-decay-fees
-Markdown URL: https://tokenbrice.github.io/polaris-docs/design/spike-and-decay-fees.md
+Canonical URL: https://polaris-finance.github.io/polaris-docs/design/spike-and-decay-fees
+Markdown URL: https://polaris-finance.github.io/polaris-docs/design/spike-and-decay-fees.md
 Section: Protocol Design
 
-Documentation index: https://tokenbrice.github.io/polaris-docs/llms.txt
-Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.txt
+Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
+Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt
 
 ---
 

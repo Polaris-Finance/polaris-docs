@@ -3,12 +3,12 @@
 
 > Although the core protocol cannot change, some parts of the ecosystem still benefit from ongoing coordination.
 
-Canonical URL: https://tokenbrice.github.io/polaris-docs/architecture/steward-responsibilities
-Markdown URL: https://tokenbrice.github.io/polaris-docs/architecture/steward-responsibilities.md
+Canonical URL: https://polaris-finance.github.io/polaris-docs/architecture/steward-responsibilities
+Markdown URL: https://polaris-finance.github.io/polaris-docs/architecture/steward-responsibilities.md
 Section: Protocol Architecture
 
-Documentation index: https://tokenbrice.github.io/polaris-docs/llms.txt
-Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.txt
+Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
+Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt
 
 ---
 

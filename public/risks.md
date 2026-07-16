@@ -3,12 +3,12 @@
 
 > Polaris is built as immutable onchain infrastructure.
 
-Canonical URL: https://tokenbrice.github.io/polaris-docs/risks
-Markdown URL: https://tokenbrice.github.io/polaris-docs/risks.md
+Canonical URL: https://polaris-finance.github.io/polaris-docs/risks
+Markdown URL: https://polaris-finance.github.io/polaris-docs/risks.md
 Section: Risks
 
-Documentation index: https://tokenbrice.github.io/polaris-docs/llms.txt
-Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.txt
+Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
+Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt
 
 ---
 

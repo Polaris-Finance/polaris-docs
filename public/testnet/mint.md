@@ -3,12 +3,12 @@
 
 > The Mint section is where collateralized positions are created and managed.
 
-Canonical URL: https://tokenbrice.github.io/polaris-docs/testnet/mint
-Markdown URL: https://tokenbrice.github.io/polaris-docs/testnet/mint.md
+Canonical URL: https://polaris-finance.github.io/polaris-docs/testnet/mint
+Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/mint.md
 Section: Using Polaris Testnet
 
-Documentation index: https://tokenbrice.github.io/polaris-docs/llms.txt
-Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.txt
+Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
+Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt
 
 ---
 

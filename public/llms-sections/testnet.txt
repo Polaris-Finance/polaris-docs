@@ -12,8 +12,8 @@
 
 ## Advanced
 
-URL: https://tokenbrice.github.io/polaris-docs/testnet/advanced
-Markdown URL: https://tokenbrice.github.io/polaris-docs/testnet/advanced.md
+URL: https://polaris-finance.github.io/polaris-docs/testnet/advanced
+Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/advanced.md
 
 Advanced provides direct access to protocol mechanisms that are primarily intended for arbitrageurs, keepers and experienced users.
 
@@ -32,8 +32,8 @@ Relevant app/search vocabulary: app, official app, testnet app, app.testnet.pola
 
 ## Dashboard
 
-URL: https://tokenbrice.github.io/polaris-docs/testnet/dashboard
-Markdown URL: https://tokenbrice.github.io/polaris-docs/testnet/dashboard.md
+URL: https://polaris-finance.github.io/polaris-docs/testnet/dashboard
+Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/dashboard.md
 
 The Dashboard provides a complete overview of your activity across Polaris. From here you can monitor your balances, active positions, Earn deposits and recent transactions, while also accessing the Sepolia faucet before interacting with the protocol.
 
@@ -45,8 +45,8 @@ Relevant app/search vocabulary: app, official app, testnet app, app.testnet.pola
 
 ## Earn
 
-URL: https://tokenbrice.github.io/polaris-docs/testnet/earn
-Markdown URL: https://tokenbrice.github.io/polaris-docs/testnet/earn.md
+URL: https://polaris-finance.github.io/polaris-docs/testnet/earn
+Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/earn.md
 
 Earn brings together the yield opportunities currently available across Polaris.
 
@@ -58,8 +58,8 @@ Relevant app/search vocabulary: app, official app, testnet app, app.testnet.pola
 
 ## Mint
 
-URL: https://tokenbrice.github.io/polaris-docs/testnet/mint
-Markdown URL: https://tokenbrice.github.io/polaris-docs/testnet/mint.md
+URL: https://polaris-finance.github.io/polaris-docs/testnet/mint
+Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/mint.md
 
 The Mint section is where collateralized positions are created and managed.
 
@@ -77,8 +77,8 @@ Relevant app/search vocabulary: app, official app, testnet app, app.testnet.pola
 
 ## Split
 
-URL: https://tokenbrice.github.io/polaris-docs/testnet/split
-Markdown URL: https://tokenbrice.github.io/polaris-docs/testnet/split.md
+URL: https://polaris-finance.github.io/polaris-docs/testnet/split
+Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/split.md
 
 Split allows you to separate pETH into fpETH and vpETH, or merge those two assets back into pETH whenever you choose.
 
@@ -90,8 +90,8 @@ Relevant app/search vocabulary: app, official app, testnet app, app.testnet.pola
 
 ## Swap
 
-URL: https://tokenbrice.github.io/polaris-docs/testnet/swap
-Markdown URL: https://tokenbrice.github.io/polaris-docs/testnet/swap.md
+URL: https://polaris-finance.github.io/polaris-docs/testnet/swap
+Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/swap.md
 
 Swap lets you exchange supported assets across Polaris, which currently are the Core Assets.
 
@@ -105,8 +105,8 @@ Relevant app/search vocabulary: app, official app, testnet app, app.testnet.pola
 
 ## Zap
 
-URL: https://tokenbrice.github.io/polaris-docs/testnet/zap
-Markdown URL: https://tokenbrice.github.io/polaris-docs/testnet/zap.md
+URL: https://polaris-finance.github.io/polaris-docs/testnet/zap
+Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/zap.md
 
 Zap combines several protocol actions into a single transaction, making common strategies easier to execute.
 

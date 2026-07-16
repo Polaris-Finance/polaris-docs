@@ -19,7 +19,7 @@ User documentation for Polaris Finance (the pETH-powered yield layer for DeFi). 
 
 ## Deploy
 
-Push to `main` → `.github/workflows/deploy.yml` → GitHub Pages at tokenbrice.github.io/polaris-docs (`BASE_PATH=/polaris-docs`). `ci.yml` validates PRs. Not Cloudflare.
+Push to `main` → `.github/workflows/deploy.yml` → GitHub Pages at polaris-finance.github.io/polaris-docs (`BASE_PATH=/polaris-docs`). `ci.yml` validates PRs. Not Cloudflare.
 
 ## Rules
 

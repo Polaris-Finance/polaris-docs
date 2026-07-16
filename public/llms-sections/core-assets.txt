@@ -12,8 +12,8 @@
 
 ## fpETH
 
-URL: https://tokenbrice.github.io/polaris-docs/core-assets/fpeth
-Markdown URL: https://tokenbrice.github.io/polaris-docs/core-assets/fpeth.md
+URL: https://polaris-finance.github.io/polaris-docs/core-assets/fpeth
+Markdown URL: https://polaris-finance.github.io/polaris-docs/core-assets/fpeth.md
 
 One of the unique properties of pETH is that it has both a market price and a mathematically-derived floor.
 
@@ -97,8 +97,8 @@ Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor pri
 
 ## GOLDp
 
-URL: https://tokenbrice.github.io/polaris-docs/core-assets/goldp
-Markdown URL: https://tokenbrice.github.io/polaris-docs/core-assets/goldp.md
+URL: https://polaris-finance.github.io/polaris-docs/core-assets/goldp
+Markdown URL: https://polaris-finance.github.io/polaris-docs/core-assets/goldp.md
 
 GOLDp is the Polaris digital gold.
 
@@ -136,8 +136,8 @@ Polaris builds on this foundation with an additional stability rate built into i
 
 ## pETH
 
-URL: https://tokenbrice.github.io/polaris-docs/core-assets/peth
-Markdown URL: https://tokenbrice.github.io/polaris-docs/core-assets/peth.md
+URL: https://polaris-finance.github.io/polaris-docs/core-assets/peth
+Markdown URL: https://polaris-finance.github.io/polaris-docs/core-assets/peth.md
 
 pETH is the native yield-bearing asset of Polaris. It serves as the collateral for every pAsset but also forms the economic foundation on which the whole ecosystem is built.
 
@@ -183,8 +183,8 @@ Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor pri
 
 ## POLAR
 
-URL: https://tokenbrice.github.io/polaris-docs/core-assets/polar
-Markdown URL: https://tokenbrice.github.io/polaris-docs/core-assets/polar.md
+URL: https://polaris-finance.github.io/polaris-docs/core-assets/polar
+Markdown URL: https://polaris-finance.github.io/polaris-docs/core-assets/polar.md
 
 POLAR is the token powering Polaris.
 
@@ -230,8 +230,8 @@ Relevant app/search vocabulary: POLAR, convert, lock, vePOLAR, burn pETH, conver
 
 ## USDp
 
-URL: https://tokenbrice.github.io/polaris-docs/core-assets/usdp
-Markdown URL: https://tokenbrice.github.io/polaris-docs/core-assets/usdp.md
+URL: https://polaris-finance.github.io/polaris-docs/core-assets/usdp
+Markdown URL: https://polaris-finance.github.io/polaris-docs/core-assets/usdp.md
 
 USDp is the native Polaris dollar.
 
@@ -265,8 +265,8 @@ Although permissionless 1:1 minting is a genuine innovation for decentralised st
 
 ## vpETH
 
-URL: https://tokenbrice.github.io/polaris-docs/core-assets/vpeth
-Markdown URL: https://tokenbrice.github.io/polaris-docs/core-assets/vpeth.md
+URL: https://polaris-finance.github.io/polaris-docs/core-assets/vpeth
+Markdown URL: https://polaris-finance.github.io/polaris-docs/core-assets/vpeth.md
 
 Every time pETH trades above its mathematically-derived floor, the difference represents its market premium.
 

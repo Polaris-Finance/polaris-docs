@@ -1,6 +1,6 @@
 # Polaris Documentation
 
-User documentation for [Polaris](https://polarisfinance.io) - the onchain yield layer built around pETH. Built with [Nextra 4](https://nextra.site) (Next.js App Router), statically exported and deployed to GitHub Pages at **tokenbrice.github.io/polaris-docs**.
+User documentation for [Polaris](https://polarisfinance.io) - the onchain yield layer built around pETH. Built with [Nextra 4](https://nextra.site) (Next.js App Router), statically exported and deployed to GitHub Pages at **polaris-finance.github.io/polaris-docs**.
 
 Content lives as MDX in [`content/`](./content); the sidebar is driven by `_meta.js` files. No SaaS backend - the docs are fully git-native.
 
@@ -73,8 +73,7 @@ Other notes:
 
 ## Authoring
 
-- Follow the Polaris voice and spelling conventions: Polaris, onchain, DeFi, pUSD/pETH lowercase `p`, pAsset, Earn Vault, position, and T-bills.
-- Each concept page ends with a **Go deeper →** link to the matching essay on the [Polaris blog](https://polarisfinance.io/blog/).
+- Follow the Polaris voice and spelling conventions: Polaris, onchain, DeFi, pETH/fpETH/vpETH lowercase `p`, USDp/GOLDp trailing `p`, pAsset, Earn Vault, and position.
 - Add a page: create `content/<section>/<page>.mdx` and register its title/order in the section's `_meta.js`.
 
 ## Deploy
@@ -83,6 +82,6 @@ Pushing to `main` triggers `.github/workflows/deploy.yml` (source checks, produc
 
 0. Rename the local default branch to `main`, add the GitHub remote, and confirm the public repository URL. The initial local branch is currently not sufficient for deployment.
 1. In the repo's **Settings → Pages**, set **Source** to **GitHub Actions**.
-2. Keep `BASE_PATH=/polaris-docs` and `SITE_URL=https://tokenbrice.github.io` in the deploy workflow while the production URL is `https://tokenbrice.github.io/polaris-docs/`.
+2. Keep `BASE_PATH=/polaris-docs` and `SITE_URL=https://polaris-finance.github.io` in the deploy workflow while the production URL is `https://polaris-finance.github.io/polaris-docs/`.
 
-The site is deployed as a GitHub Pages project site. Treat `https://tokenbrice.github.io/polaris-docs/` as canonical. The source defaults and deploy workflow both build with `SITE_URL=https://tokenbrice.github.io` and `BASE_PATH=/polaris-docs`; there is no `public/CNAME` while `docs.polarisfinance.io` is not validated as serving this repo and may serve stale or unrelated content. Do not switch to root custom-domain settings until that host is confirmed to serve this docs build. If the docs later move to a working root custom domain, set `BASE_PATH=` and `SITE_URL` to that origin, then restore a matching `public/CNAME`.
+The site is deployed as a GitHub Pages project site. Treat `https://polaris-finance.github.io/polaris-docs/` as canonical. The source defaults and deploy workflow both build with `SITE_URL=https://polaris-finance.github.io` and `BASE_PATH=/polaris-docs`; there is no `public/CNAME` while `docs.polarisfinance.io` is not validated as serving this repo and may serve stale or unrelated content. Do not switch to root custom-domain settings until that host is confirmed to serve this docs build. If the docs later move to a working root custom domain, set `BASE_PATH=` and `SITE_URL` to that origin, then restore a matching `public/CNAME`.

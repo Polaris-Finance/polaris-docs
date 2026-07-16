@@ -3,12 +3,12 @@
 
 > Technical documentation for building on Polaris is in progress.
 
-Canonical URL: https://tokenbrice.github.io/polaris-docs/developers
-Markdown URL: https://tokenbrice.github.io/polaris-docs/developers.md
+Canonical URL: https://polaris-finance.github.io/polaris-docs/developers
+Markdown URL: https://polaris-finance.github.io/polaris-docs/developers.md
 Section: Developers
 
-Documentation index: https://tokenbrice.github.io/polaris-docs/llms.txt
-Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.txt
+Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
+Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt
 
 ---
 

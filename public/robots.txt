@@ -28,4 +28,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://tokenbrice.github.io/polaris-docs/sitemap.xml
+Sitemap: https://polaris-finance.github.io/polaris-docs/sitemap.xml

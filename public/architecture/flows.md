@@ -3,12 +3,12 @@
 
 > Flows distribute protocol-generated value to applications, markets and integrations building on top of Polaris.
 
-Canonical URL: https://tokenbrice.github.io/polaris-docs/architecture/flows
-Markdown URL: https://tokenbrice.github.io/polaris-docs/architecture/flows.md
+Canonical URL: https://polaris-finance.github.io/polaris-docs/architecture/flows
+Markdown URL: https://polaris-finance.github.io/polaris-docs/architecture/flows.md
 Section: Protocol Architecture
 
-Documentation index: https://tokenbrice.github.io/polaris-docs/llms.txt
-Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.txt
+Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
+Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt
 
 ---
 

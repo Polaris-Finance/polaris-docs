@@ -3,12 +3,12 @@
 
 > Polaris is an onchain yield layer built around pETH.
 
-Canonical URL: https://tokenbrice.github.io/polaris-docs/
-Markdown URL: https://tokenbrice.github.io/polaris-docs/index.md
+Canonical URL: https://polaris-finance.github.io/polaris-docs/
+Markdown URL: https://polaris-finance.github.io/polaris-docs/index.md
 Section: Home
 
-Documentation index: https://tokenbrice.github.io/polaris-docs/llms.txt
-Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.txt
+Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
+Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt
 
 ---
 

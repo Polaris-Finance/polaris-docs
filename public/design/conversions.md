@@ -3,12 +3,12 @@
 
 > As introduced in the POLAR section, the long-term supply of POLAR does not grow through perpetual emissions.
 
-Canonical URL: https://tokenbrice.github.io/polaris-docs/design/conversions
-Markdown URL: https://tokenbrice.github.io/polaris-docs/design/conversions.md
+Canonical URL: https://polaris-finance.github.io/polaris-docs/design/conversions
+Markdown URL: https://polaris-finance.github.io/polaris-docs/design/conversions.md
 Section: Protocol Design
 
-Documentation index: https://tokenbrice.github.io/polaris-docs/llms.txt
-Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.txt
+Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
+Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt
 
 ---
 

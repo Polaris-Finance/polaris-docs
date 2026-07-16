@@ -3,12 +3,12 @@
 
 > Zap combines several protocol actions into a single transaction, making common strategies easier to execute.
 
-Canonical URL: https://tokenbrice.github.io/polaris-docs/testnet/zap
-Markdown URL: https://tokenbrice.github.io/polaris-docs/testnet/zap.md
+Canonical URL: https://polaris-finance.github.io/polaris-docs/testnet/zap
+Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/zap.md
 Section: Using Polaris Testnet
 
-Documentation index: https://tokenbrice.github.io/polaris-docs/llms.txt
-Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.txt
+Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
+Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt
 
 ---
 

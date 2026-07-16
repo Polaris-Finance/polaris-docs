@@ -3,12 +3,12 @@
 
 > Stablecoins are the largest monetary application built on blockchains today.
 
-Canonical URL: https://tokenbrice.github.io/polaris-docs/vision
-Markdown URL: https://tokenbrice.github.io/polaris-docs/vision.md
+Canonical URL: https://polaris-finance.github.io/polaris-docs/vision
+Markdown URL: https://polaris-finance.github.io/polaris-docs/vision.md
 Section: Home
 
-Documentation index: https://tokenbrice.github.io/polaris-docs/llms.txt
-Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.txt
+Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
+Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt
 
 ---
 

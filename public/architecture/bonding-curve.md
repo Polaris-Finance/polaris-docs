@@ -3,12 +3,12 @@
 
 > Bonding curves have been used across crypto for years, particularly in DEXs and launchpads.
 
-Canonical URL: https://tokenbrice.github.io/polaris-docs/architecture/bonding-curve
-Markdown URL: https://tokenbrice.github.io/polaris-docs/architecture/bonding-curve.md
+Canonical URL: https://polaris-finance.github.io/polaris-docs/architecture/bonding-curve
+Markdown URL: https://polaris-finance.github.io/polaris-docs/architecture/bonding-curve.md
 Section: Protocol Architecture
 
-Documentation index: https://tokenbrice.github.io/polaris-docs/llms.txt
-Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.txt
+Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
+Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt
 
 ---
 

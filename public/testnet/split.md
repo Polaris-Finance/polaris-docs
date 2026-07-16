@@ -3,12 +3,12 @@
 
 > Split allows you to separate pETH into fpETH and vpETH, or merge those two assets back into pETH whenever you choose.
 
-Canonical URL: https://tokenbrice.github.io/polaris-docs/testnet/split
-Markdown URL: https://tokenbrice.github.io/polaris-docs/testnet/split.md
+Canonical URL: https://polaris-finance.github.io/polaris-docs/testnet/split
+Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/split.md
 Section: Using Polaris Testnet
 
-Documentation index: https://tokenbrice.github.io/polaris-docs/llms.txt
-Full documentation bundle: https://tokenbrice.github.io/polaris-docs/llms-full.txt
+Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
+Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt
 
 ---
 

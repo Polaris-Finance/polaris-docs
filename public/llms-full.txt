@@ -10,8 +10,8 @@
 
 ## Introduction
 
-URL: https://tokenbrice.github.io/polaris-docs/
-Markdown URL: https://tokenbrice.github.io/polaris-docs/index.md
+URL: https://polaris-finance.github.io/polaris-docs/
+Markdown URL: https://polaris-finance.github.io/polaris-docs/index.md
 
 Polaris is an onchain yield layer built around pETH, a yield-bearing reserve asset designed to collateralize censorship-resistant stablecoins and synthetic assets.
 
@@ -31,8 +31,8 @@ Relevant app/search vocabulary: app, official app, testnet, Sepolia, pETH, pAsse
 
 ## Manifesto
 
-URL: https://tokenbrice.github.io/polaris-docs/manifesto
-Markdown URL: https://tokenbrice.github.io/polaris-docs/manifesto.md
+URL: https://polaris-finance.github.io/polaris-docs/manifesto
+Markdown URL: https://polaris-finance.github.io/polaris-docs/manifesto.md
 
 Decentralized finance was built on the idea that money should not depend on trusted intermediaries. A permissionless financial layer open to everybody, where participation depends on transparent rules rather than centralized institutions.
 
@@ -52,8 +52,8 @@ This makes it clear that we have not yet managed to answer one of the fundamenta
 
 ## Vision
 
-URL: https://tokenbrice.github.io/polaris-docs/vision
-Markdown URL: https://tokenbrice.github.io/polaris-docs/vision.md
+URL: https://polaris-finance.github.io/polaris-docs/vision
+Markdown URL: https://polaris-finance.github.io/polaris-docs/vision.md
 
 Stablecoins are the largest monetary application built on blockchains today, and USDp represents Polaris' path toward a stable and censorship-resistant dollar that can finally scale. But once a scalable reserve asset exists as well, its role goes far beyond issuing a single currency.
 
@@ -77,8 +77,8 @@ In that future, Ethereum's growth and its monetary infrastructure no longer evol
 
 ## Why pETH
 
-URL: https://tokenbrice.github.io/polaris-docs/why-peth
-Markdown URL: https://tokenbrice.github.io/polaris-docs/why-peth.md
+URL: https://polaris-finance.github.io/polaris-docs/why-peth
+Markdown URL: https://polaris-finance.github.io/polaris-docs/why-peth.md
 
 The evolution of stablecoins revealed another structural problem.
 
@@ -102,8 +102,8 @@ This distinguishes it from liquid staking tokens, whose yield is derived from se
 
 ## fpETH
 
-URL: https://tokenbrice.github.io/polaris-docs/core-assets/fpeth
-Markdown URL: https://tokenbrice.github.io/polaris-docs/core-assets/fpeth.md
+URL: https://polaris-finance.github.io/polaris-docs/core-assets/fpeth
+Markdown URL: https://polaris-finance.github.io/polaris-docs/core-assets/fpeth.md
 
 One of the unique properties of pETH is that it has both a market price and a mathematically-derived floor.
 
@@ -187,8 +187,8 @@ Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor pri
 
 ## GOLDp
 
-URL: https://tokenbrice.github.io/polaris-docs/core-assets/goldp
-Markdown URL: https://tokenbrice.github.io/polaris-docs/core-assets/goldp.md
+URL: https://polaris-finance.github.io/polaris-docs/core-assets/goldp
+Markdown URL: https://polaris-finance.github.io/polaris-docs/core-assets/goldp.md
 
 GOLDp is the Polaris digital gold.
 
@@ -226,8 +226,8 @@ Polaris builds on this foundation with an additional stability rate built into i
 
 ## pETH
 
-URL: https://tokenbrice.github.io/polaris-docs/core-assets/peth
-Markdown URL: https://tokenbrice.github.io/polaris-docs/core-assets/peth.md
+URL: https://polaris-finance.github.io/polaris-docs/core-assets/peth
+Markdown URL: https://polaris-finance.github.io/polaris-docs/core-assets/peth.md
 
 pETH is the native yield-bearing asset of Polaris. It serves as the collateral for every pAsset but also forms the economic foundation on which the whole ecosystem is built.
 
@@ -273,8 +273,8 @@ Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor pri
 
 ## POLAR
 
-URL: https://tokenbrice.github.io/polaris-docs/core-assets/polar
-Markdown URL: https://tokenbrice.github.io/polaris-docs/core-assets/polar.md
+URL: https://polaris-finance.github.io/polaris-docs/core-assets/polar
+Markdown URL: https://polaris-finance.github.io/polaris-docs/core-assets/polar.md
 
 POLAR is the token powering Polaris.
 
@@ -320,8 +320,8 @@ Relevant app/search vocabulary: POLAR, convert, lock, vePOLAR, burn pETH, conver
 
 ## USDp
 
-URL: https://tokenbrice.github.io/polaris-docs/core-assets/usdp
-Markdown URL: https://tokenbrice.github.io/polaris-docs/core-assets/usdp.md
+URL: https://polaris-finance.github.io/polaris-docs/core-assets/usdp
+Markdown URL: https://polaris-finance.github.io/polaris-docs/core-assets/usdp.md
 
 USDp is the native Polaris dollar.
 
@@ -355,8 +355,8 @@ Although permissionless 1:1 minting is a genuine innovation for decentralised st
 
 ## vpETH
 
-URL: https://tokenbrice.github.io/polaris-docs/core-assets/vpeth
-Markdown URL: https://tokenbrice.github.io/polaris-docs/core-assets/vpeth.md
+URL: https://polaris-finance.github.io/polaris-docs/core-assets/vpeth
+Markdown URL: https://polaris-finance.github.io/polaris-docs/core-assets/vpeth.md
 
 Every time pETH trades above its mathematically-derived floor, the difference represents its market premium.
 
@@ -415,8 +415,8 @@ Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor pri
 
 ## Bonding Curve
 
-URL: https://tokenbrice.github.io/polaris-docs/architecture/bonding-curve
-Markdown URL: https://tokenbrice.github.io/polaris-docs/architecture/bonding-curve.md
+URL: https://polaris-finance.github.io/polaris-docs/architecture/bonding-curve
+Markdown URL: https://polaris-finance.github.io/polaris-docs/architecture/bonding-curve.md
 
 Bonding curves have been used across crypto for years, particularly in DEXs and launchpads, where they are mainly used as mechanisms for pricing and exchanging assets. Polaris innovates in a different direction by using a bonding curve to create a collateral asset capable of supporting an entire ecosystem of decentralized assets.
 
@@ -462,8 +462,8 @@ Relevant app/search vocabulary: pETH, pETH bonding curve, bonding curve, pETH fl
 
 ## Earn Vaults
 
-URL: https://tokenbrice.github.io/polaris-docs/architecture/earn-vaults
-Markdown URL: https://tokenbrice.github.io/polaris-docs/architecture/earn-vaults.md
+URL: https://polaris-finance.github.io/polaris-docs/architecture/earn-vaults
+Markdown URL: https://polaris-finance.github.io/polaris-docs/architecture/earn-vaults.md
 
 Earn Vaults allow pAssets minted through Polaris to become yield-bearing assets.
 
@@ -493,8 +493,8 @@ Relevant app/search vocabulary: Earn, earn, yield, APR, Earn Vault, deposit, cla
 
 ## Flows
 
-URL: https://tokenbrice.github.io/polaris-docs/architecture/flows
-Markdown URL: https://tokenbrice.github.io/polaris-docs/architecture/flows.md
+URL: https://polaris-finance.github.io/polaris-docs/architecture/flows
+Markdown URL: https://polaris-finance.github.io/polaris-docs/architecture/flows.md
 
 Flows distribute protocol-generated value to applications, markets and integrations building on top of Polaris.
 
@@ -532,8 +532,8 @@ Recipients are expected to create value for Polaris in return for flow support. 
 
 ## pAsset Markets
 
-URL: https://tokenbrice.github.io/polaris-docs/architecture/passet-markets
-Markdown URL: https://tokenbrice.github.io/polaris-docs/architecture/passet-markets.md
+URL: https://polaris-finance.github.io/polaris-docs/architecture/passet-markets
+Markdown URL: https://polaris-finance.github.io/polaris-docs/architecture/passet-markets.md
 
 pAssets are currencies and synthetic assets issued against pETH using the shared collateral infrastructure provided by Polaris. USDp and GOLDp are the first pAssets introduced by the protocol, but the underlying architecture is designed to support a much broader range of markets over time.
 
@@ -577,8 +577,8 @@ This shared architecture allows Polaris to grow as an ecosystem rather than as a
 
 ## Reserve Loans
 
-URL: https://tokenbrice.github.io/polaris-docs/architecture/reserve-loans
-Markdown URL: https://tokenbrice.github.io/polaris-docs/architecture/reserve-loans.md
+URL: https://polaris-finance.github.io/polaris-docs/architecture/reserve-loans
+Markdown URL: https://polaris-finance.github.io/polaris-docs/architecture/reserve-loans.md
 
 Reserve Loans are one of the core financial primitives introduced by Polaris, allowing users to borrow ETH directly from the bonding curve reserve using fpETH as collateral.
 
@@ -600,8 +600,8 @@ Relevant app/search vocabulary: Reserve Loan, Reserve Loans, borrow ETH, non-liq
 
 ## Steward Responsibilities
 
-URL: https://tokenbrice.github.io/polaris-docs/architecture/steward-responsibilities
-Markdown URL: https://tokenbrice.github.io/polaris-docs/architecture/steward-responsibilities.md
+URL: https://polaris-finance.github.io/polaris-docs/architecture/steward-responsibilities
+Markdown URL: https://polaris-finance.github.io/polaris-docs/architecture/steward-responsibilities.md
 
 Although the core protocol cannot change, some parts of the ecosystem still benefit from ongoing coordination.
 
@@ -623,8 +623,8 @@ Further details on each of these parameters are covered in the relevant sections
 
 ## Stewardship
 
-URL: https://tokenbrice.github.io/polaris-docs/architecture/stewardship
-Markdown URL: https://tokenbrice.github.io/polaris-docs/architecture/stewardship.md
+URL: https://polaris-finance.github.io/polaris-docs/architecture/stewardship
+Markdown URL: https://polaris-finance.github.io/polaris-docs/architecture/stewardship.md
 
 Polaris uses bounded stewardship instead of open-ended governance.
 
@@ -640,8 +640,8 @@ Stewards cannot introduce new collateral to back pAssets, modify the bonding cur
 
 ## Tokenomics
 
-URL: https://tokenbrice.github.io/polaris-docs/architecture/tokenomics
-Markdown URL: https://tokenbrice.github.io/polaris-docs/architecture/tokenomics.md
+URL: https://polaris-finance.github.io/polaris-docs/architecture/tokenomics
+Markdown URL: https://polaris-finance.github.io/polaris-docs/architecture/tokenomics.md
 
 The final POLAR allocation, vesting schedule and launch parameters will be published closer to launch once they have been finalized.
 
@@ -673,8 +673,8 @@ Relevant app/search vocabulary: POLAR, convert, lock, vePOLAR, burn pETH, conver
 
 ## Adaptive Peg Defence
 
-URL: https://tokenbrice.github.io/polaris-docs/design/adaptive-peg-defence
-Markdown URL: https://tokenbrice.github.io/polaris-docs/design/adaptive-peg-defence.md
+URL: https://polaris-finance.github.io/polaris-docs/design/adaptive-peg-defence
+Markdown URL: https://polaris-finance.github.io/polaris-docs/design/adaptive-peg-defence.md
 
 Polaris uses permissionless minting and redemptions to help pAssets trade around their target price.
 
@@ -710,8 +710,8 @@ This allows supply to contract without targeting individual positions first. The
 
 ## Conversions
 
-URL: https://tokenbrice.github.io/polaris-docs/design/conversions
-Markdown URL: https://tokenbrice.github.io/polaris-docs/design/conversions.md
+URL: https://polaris-finance.github.io/polaris-docs/design/conversions
+Markdown URL: https://polaris-finance.github.io/polaris-docs/design/conversions.md
 
 As introduced in the POLAR section, the long-term supply of POLAR does not grow through perpetual emissions. Once the initial allocation begins following its vesting schedule, every additional POLAR enters circulation through the Polaris conversion mechanism.
 
@@ -765,8 +765,8 @@ Relevant app/search vocabulary: POLAR, convert, lock, vePOLAR, burn pETH, conver
 
 ## Fee Router
 
-URL: https://tokenbrice.github.io/polaris-docs/design/fee-router
-Markdown URL: https://tokenbrice.github.io/polaris-docs/design/fee-router.md
+URL: https://polaris-finance.github.io/polaris-docs/design/fee-router
+Markdown URL: https://polaris-finance.github.io/polaris-docs/design/fee-router.md
 
 The Fee Router is the system that redirects value generated by Polaris back into the ecosystem.
 
@@ -792,8 +792,8 @@ Every incentive distributed by the protocol has therefore already contributed to
 
 ## Interest Rates
 
-URL: https://tokenbrice.github.io/polaris-docs/design/interest-rates
-Markdown URL: https://tokenbrice.github.io/polaris-docs/design/interest-rates.md
+URL: https://polaris-finance.github.io/polaris-docs/design/interest-rates
+Markdown URL: https://polaris-finance.github.io/polaris-docs/design/interest-rates.md
 
 Polaris uses two complementary interest rates to manage pAsset markets. Together, they help maintain the target price of each pAsset while protecting the overall health of the collateral system.
 
@@ -831,8 +831,8 @@ Unlike the Peg Stability Rate, the Protocol Safety Rate is not protocol revenue.
 
 ## Liquidations
 
-URL: https://tokenbrice.github.io/polaris-docs/design/liquidations
-Markdown URL: https://tokenbrice.github.io/polaris-docs/design/liquidations.md
+URL: https://polaris-finance.github.io/polaris-docs/design/liquidations
+Markdown URL: https://polaris-finance.github.io/polaris-docs/design/liquidations.md
 
 When a user mints a pAsset, they do so against pETH collateral. If the value of that collateral falls too far relative to the debt, the position can fall below the protocol's Minimum Collateral Ratio of 115% and become eligible for liquidation.
 
@@ -858,8 +858,8 @@ Relevant app/search vocabulary: liquidation, liquidations, liquidate, liquidated
 
 ## Oracles
 
-URL: https://tokenbrice.github.io/polaris-docs/design/oracles
-Markdown URL: https://tokenbrice.github.io/polaris-docs/design/oracles.md
+URL: https://polaris-finance.github.io/polaris-docs/design/oracles
+Markdown URL: https://polaris-finance.github.io/polaris-docs/design/oracles.md
 
 Polaris is built around the idea that the protocol should determine its own behavior whenever possible. The price of pETH, for example, is determined entirely by the bonding curve and never depends on external price feeds.
 
@@ -901,8 +901,8 @@ Relevant app/search vocabulary: oracle, oracles, Medianiser, price feed, ETH/USD
 
 ## Recovery Mode
 
-URL: https://tokenbrice.github.io/polaris-docs/design/recovery-mode
-Markdown URL: https://tokenbrice.github.io/polaris-docs/design/recovery-mode.md
+URL: https://polaris-finance.github.io/polaris-docs/design/recovery-mode
+Markdown URL: https://polaris-finance.github.io/polaris-docs/design/recovery-mode.md
 
 Recovery Mode is the protective state a pAsset market enters when its overall collateralization falls below a critical threshold.
 
@@ -926,8 +926,8 @@ The mechanism is designed to help a stressed market deleverage in an orderly man
 
 ## Revenue Model
 
-URL: https://tokenbrice.github.io/polaris-docs/design/revenue-model
-Markdown URL: https://tokenbrice.github.io/polaris-docs/design/revenue-model.md
+URL: https://polaris-finance.github.io/polaris-docs/design/revenue-model
+Markdown URL: https://polaris-finance.github.io/polaris-docs/design/revenue-model.md
 
 Polaris operates under the design philosophy that value generated throughout the protocol should not leak externally. Following this, protocol revenue is generated entirely from activity taking place inside the Polaris ecosystem.
 
@@ -961,8 +961,8 @@ This keeps value creation and value distribution economically aligned, ensuring 
 
 ## Spike-and-decay Fees
 
-URL: https://tokenbrice.github.io/polaris-docs/design/spike-and-decay-fees
-Markdown URL: https://tokenbrice.github.io/polaris-docs/design/spike-and-decay-fees.md
+URL: https://polaris-finance.github.io/polaris-docs/design/spike-and-decay-fees
+Markdown URL: https://polaris-finance.github.io/polaris-docs/design/spike-and-decay-fees.md
 
 Several core mechanisms across Polaris use spike-and-decay pricing, including bonding curve swaps, pAsset minting and redemptions, and pETH-to-POLAR conversions. In particular, the first two have the same design with different parameters, while pETH-to-POLAR conversions use a Dutch auction mechanism.
 
@@ -976,8 +976,8 @@ Once deployed, the mechanism operates entirely through immutable protocol mechan
 
 ## Advanced
 
-URL: https://tokenbrice.github.io/polaris-docs/testnet/advanced
-Markdown URL: https://tokenbrice.github.io/polaris-docs/testnet/advanced.md
+URL: https://polaris-finance.github.io/polaris-docs/testnet/advanced
+Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/advanced.md
 
 Advanced provides direct access to protocol mechanisms that are primarily intended for arbitrageurs, keepers and experienced users.
 
@@ -996,8 +996,8 @@ Relevant app/search vocabulary: app, official app, testnet app, app.testnet.pola
 
 ## Dashboard
 
-URL: https://tokenbrice.github.io/polaris-docs/testnet/dashboard
-Markdown URL: https://tokenbrice.github.io/polaris-docs/testnet/dashboard.md
+URL: https://polaris-finance.github.io/polaris-docs/testnet/dashboard
+Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/dashboard.md
 
 The Dashboard provides a complete overview of your activity across Polaris. From here you can monitor your balances, active positions, Earn deposits and recent transactions, while also accessing the Sepolia faucet before interacting with the protocol.
 
@@ -1009,8 +1009,8 @@ Relevant app/search vocabulary: app, official app, testnet app, app.testnet.pola
 
 ## Earn
 
-URL: https://tokenbrice.github.io/polaris-docs/testnet/earn
-Markdown URL: https://tokenbrice.github.io/polaris-docs/testnet/earn.md
+URL: https://polaris-finance.github.io/polaris-docs/testnet/earn
+Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/earn.md
 
 Earn brings together the yield opportunities currently available across Polaris.
 
@@ -1022,8 +1022,8 @@ Relevant app/search vocabulary: app, official app, testnet app, app.testnet.pola
 
 ## Mint
 
-URL: https://tokenbrice.github.io/polaris-docs/testnet/mint
-Markdown URL: https://tokenbrice.github.io/polaris-docs/testnet/mint.md
+URL: https://polaris-finance.github.io/polaris-docs/testnet/mint
+Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/mint.md
 
 The Mint section is where collateralized positions are created and managed.
 
@@ -1041,8 +1041,8 @@ Relevant app/search vocabulary: app, official app, testnet app, app.testnet.pola
 
 ## Split
 
-URL: https://tokenbrice.github.io/polaris-docs/testnet/split
-Markdown URL: https://tokenbrice.github.io/polaris-docs/testnet/split.md
+URL: https://polaris-finance.github.io/polaris-docs/testnet/split
+Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/split.md
 
 Split allows you to separate pETH into fpETH and vpETH, or merge those two assets back into pETH whenever you choose.
 
@@ -1054,8 +1054,8 @@ Relevant app/search vocabulary: app, official app, testnet app, app.testnet.pola
 
 ## Swap
 
-URL: https://tokenbrice.github.io/polaris-docs/testnet/swap
-Markdown URL: https://tokenbrice.github.io/polaris-docs/testnet/swap.md
+URL: https://polaris-finance.github.io/polaris-docs/testnet/swap
+Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/swap.md
 
 Swap lets you exchange supported assets across Polaris, which currently are the Core Assets.
 
@@ -1069,8 +1069,8 @@ Relevant app/search vocabulary: app, official app, testnet app, app.testnet.pola
 
 ## Zap
 
-URL: https://tokenbrice.github.io/polaris-docs/testnet/zap
-Markdown URL: https://tokenbrice.github.io/polaris-docs/testnet/zap.md
+URL: https://polaris-finance.github.io/polaris-docs/testnet/zap
+Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/zap.md
 
 Zap combines several protocol actions into a single transaction, making common strategies easier to execute.
 
@@ -1089,8 +1089,8 @@ Relevant app/search vocabulary: app, official app, testnet app, app.testnet.pola
 
 ## Developers
 
-URL: https://tokenbrice.github.io/polaris-docs/developers
-Markdown URL: https://tokenbrice.github.io/polaris-docs/developers.md
+URL: https://polaris-finance.github.io/polaris-docs/developers
+Markdown URL: https://polaris-finance.github.io/polaris-docs/developers.md
 
 Technical documentation for building on Polaris is in progress. The following sections will be published here.
 
@@ -1108,8 +1108,8 @@ Technical documentation for building on Polaris is in progress. The following se
 
 ## Risks
 
-URL: https://tokenbrice.github.io/polaris-docs/risks
-Markdown URL: https://tokenbrice.github.io/polaris-docs/risks.md
+URL: https://polaris-finance.github.io/polaris-docs/risks
+Markdown URL: https://polaris-finance.github.io/polaris-docs/risks.md
 
 Polaris is built as immutable onchain infrastructure. This reduces reliance on trusted intermediaries, admin keys and offchain counterparties, but it does not remove risk.
 
@@ -1171,8 +1171,8 @@ Relevant app/search vocabulary: risk, risks, risk disclosure, smart contract ris
 
 ## Risks Polaris Removes
 
-URL: https://tokenbrice.github.io/polaris-docs/risks/risks-polaris-removes
-Markdown URL: https://tokenbrice.github.io/polaris-docs/risks/risks-polaris-removes.md
+URL: https://polaris-finance.github.io/polaris-docs/risks/risks-polaris-removes
+Markdown URL: https://polaris-finance.github.io/polaris-docs/risks/risks-polaris-removes.md
 
 Polaris is designed to minimize trust wherever possible, although some sources of uncertainty remain unavoidable and are covered in the dedicated Risks section.
 

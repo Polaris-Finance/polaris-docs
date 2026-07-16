@@ -10,72 +10,72 @@
 
 ## Machine-readable artifacts
 
-- [Complete docs bundle](https://tokenbrice.github.io/polaris-docs/llms-full.txt): Full sanitized Markdown for every public docs page.
-- [JSON docs index](https://tokenbrice.github.io/polaris-docs/llms-index.json): Routes, canonical URLs, Markdown URLs, sections, keywords, and freshness metadata.
-- [Well-known llms.txt mirror](https://tokenbrice.github.io/polaris-docs/.well-known/llms.txt): Alternate discovery path for the docs index.
-- [Well-known full bundle mirror](https://tokenbrice.github.io/polaris-docs/.well-known/llms-full.txt): Alternate discovery path for the full Markdown bundle.
-- [Home section bundle](https://tokenbrice.github.io/polaris-docs/llms-sections/home.txt): Focused Markdown bundle for this documentation section.
-- [Core Assets section bundle](https://tokenbrice.github.io/polaris-docs/llms-sections/core-assets.txt): Focused Markdown bundle for this documentation section.
-- [Protocol Architecture section bundle](https://tokenbrice.github.io/polaris-docs/llms-sections/architecture.txt): Focused Markdown bundle for this documentation section.
-- [Protocol Design section bundle](https://tokenbrice.github.io/polaris-docs/llms-sections/design.txt): Focused Markdown bundle for this documentation section.
-- [Using Polaris Testnet section bundle](https://tokenbrice.github.io/polaris-docs/llms-sections/testnet.txt): Focused Markdown bundle for this documentation section.
-- [Developers section bundle](https://tokenbrice.github.io/polaris-docs/llms-sections/developers.txt): Focused Markdown bundle for this documentation section.
-- [Risks section bundle](https://tokenbrice.github.io/polaris-docs/llms-sections/risks.txt): Focused Markdown bundle for this documentation section.
+- [Complete docs bundle](https://polaris-finance.github.io/polaris-docs/llms-full.txt): Full sanitized Markdown for every public docs page.
+- [JSON docs index](https://polaris-finance.github.io/polaris-docs/llms-index.json): Routes, canonical URLs, Markdown URLs, sections, keywords, and freshness metadata.
+- [Well-known llms.txt mirror](https://polaris-finance.github.io/polaris-docs/.well-known/llms.txt): Alternate discovery path for the docs index.
+- [Well-known full bundle mirror](https://polaris-finance.github.io/polaris-docs/.well-known/llms-full.txt): Alternate discovery path for the full Markdown bundle.
+- [Home section bundle](https://polaris-finance.github.io/polaris-docs/llms-sections/home.txt): Focused Markdown bundle for this documentation section.
+- [Core Assets section bundle](https://polaris-finance.github.io/polaris-docs/llms-sections/core-assets.txt): Focused Markdown bundle for this documentation section.
+- [Protocol Architecture section bundle](https://polaris-finance.github.io/polaris-docs/llms-sections/architecture.txt): Focused Markdown bundle for this documentation section.
+- [Protocol Design section bundle](https://polaris-finance.github.io/polaris-docs/llms-sections/design.txt): Focused Markdown bundle for this documentation section.
+- [Using Polaris Testnet section bundle](https://polaris-finance.github.io/polaris-docs/llms-sections/testnet.txt): Focused Markdown bundle for this documentation section.
+- [Developers section bundle](https://polaris-finance.github.io/polaris-docs/llms-sections/developers.txt): Focused Markdown bundle for this documentation section.
+- [Risks section bundle](https://polaris-finance.github.io/polaris-docs/llms-sections/risks.txt): Focused Markdown bundle for this documentation section.
 
 ## Home
 
-- [Introduction](https://tokenbrice.github.io/polaris-docs/index.md): Polaris is an onchain yield layer built around pETH. Canonical: https://tokenbrice.github.io/polaris-docs/
-- [Manifesto](https://tokenbrice.github.io/polaris-docs/manifesto.md): Decentralized finance was built on the idea that money should not depend on trusted intermediaries. Canonical: https://tokenbrice.github.io/polaris-docs/manifesto
-- [Vision](https://tokenbrice.github.io/polaris-docs/vision.md): Stablecoins are the largest monetary application built on blockchains today. Canonical: https://tokenbrice.github.io/polaris-docs/vision
-- [Why pETH](https://tokenbrice.github.io/polaris-docs/why-peth.md): The evolution of stablecoins revealed another structural problem. Canonical: https://tokenbrice.github.io/polaris-docs/why-peth
+- [Introduction](https://polaris-finance.github.io/polaris-docs/index.md): Polaris is an onchain yield layer built around pETH. Canonical: https://polaris-finance.github.io/polaris-docs/
+- [Manifesto](https://polaris-finance.github.io/polaris-docs/manifesto.md): Decentralized finance was built on the idea that money should not depend on trusted intermediaries. Canonical: https://polaris-finance.github.io/polaris-docs/manifesto
+- [Vision](https://polaris-finance.github.io/polaris-docs/vision.md): Stablecoins are the largest monetary application built on blockchains today. Canonical: https://polaris-finance.github.io/polaris-docs/vision
+- [Why pETH](https://polaris-finance.github.io/polaris-docs/why-peth.md): The evolution of stablecoins revealed another structural problem. Canonical: https://polaris-finance.github.io/polaris-docs/why-peth
 
 ## Core Assets
 
-- [fpETH](https://tokenbrice.github.io/polaris-docs/core-assets/fpeth.md): One of the unique properties of pETH is that it has both a market price and a mathematically-derived floor. Canonical: https://tokenbrice.github.io/polaris-docs/core-assets/fpeth
-- [GOLDp](https://tokenbrice.github.io/polaris-docs/core-assets/goldp.md): GOLDp is the Polaris digital gold. Canonical: https://tokenbrice.github.io/polaris-docs/core-assets/goldp
-- [pETH](https://tokenbrice.github.io/polaris-docs/core-assets/peth.md): pETH is the native yield-bearing asset of Polaris. Canonical: https://tokenbrice.github.io/polaris-docs/core-assets/peth
-- [POLAR](https://tokenbrice.github.io/polaris-docs/core-assets/polar.md): POLAR is the token powering Polaris. Canonical: https://tokenbrice.github.io/polaris-docs/core-assets/polar
-- [USDp](https://tokenbrice.github.io/polaris-docs/core-assets/usdp.md): USDp is the native Polaris dollar. Canonical: https://tokenbrice.github.io/polaris-docs/core-assets/usdp
-- [vpETH](https://tokenbrice.github.io/polaris-docs/core-assets/vpeth.md): Every time pETH trades above its mathematically-derived floor, the difference represents its market premium. Canonical: https://tokenbrice.github.io/polaris-docs/core-assets/vpeth
+- [fpETH](https://polaris-finance.github.io/polaris-docs/core-assets/fpeth.md): One of the unique properties of pETH is that it has both a market price and a mathematically-derived floor. Canonical: https://polaris-finance.github.io/polaris-docs/core-assets/fpeth
+- [GOLDp](https://polaris-finance.github.io/polaris-docs/core-assets/goldp.md): GOLDp is the Polaris digital gold. Canonical: https://polaris-finance.github.io/polaris-docs/core-assets/goldp
+- [pETH](https://polaris-finance.github.io/polaris-docs/core-assets/peth.md): pETH is the native yield-bearing asset of Polaris. Canonical: https://polaris-finance.github.io/polaris-docs/core-assets/peth
+- [POLAR](https://polaris-finance.github.io/polaris-docs/core-assets/polar.md): POLAR is the token powering Polaris. Canonical: https://polaris-finance.github.io/polaris-docs/core-assets/polar
+- [USDp](https://polaris-finance.github.io/polaris-docs/core-assets/usdp.md): USDp is the native Polaris dollar. Canonical: https://polaris-finance.github.io/polaris-docs/core-assets/usdp
+- [vpETH](https://polaris-finance.github.io/polaris-docs/core-assets/vpeth.md): Every time pETH trades above its mathematically-derived floor, the difference represents its market premium. Canonical: https://polaris-finance.github.io/polaris-docs/core-assets/vpeth
 
 ## Protocol Architecture
 
-- [Bonding Curve](https://tokenbrice.github.io/polaris-docs/architecture/bonding-curve.md): Bonding curves have been used across crypto for years, particularly in DEXs and launchpads. Canonical: https://tokenbrice.github.io/polaris-docs/architecture/bonding-curve
-- [Earn Vaults](https://tokenbrice.github.io/polaris-docs/architecture/earn-vaults.md): Earn Vaults allow pAssets minted through Polaris to become yield-bearing assets. Canonical: https://tokenbrice.github.io/polaris-docs/architecture/earn-vaults
-- [Flows](https://tokenbrice.github.io/polaris-docs/architecture/flows.md): Flows distribute protocol-generated value to applications, markets and integrations building on top of Polaris. Canonical: https://tokenbrice.github.io/polaris-docs/architecture/flows
-- [pAsset Markets](https://tokenbrice.github.io/polaris-docs/architecture/passet-markets.md): pAssets are currencies and synthetic assets issued against pETH using the shared collateral infrastructure provided by Polaris. Canonical: https://tokenbrice.github.io/polaris-docs/architecture/passet-markets
-- [Reserve Loans](https://tokenbrice.github.io/polaris-docs/architecture/reserve-loans.md): Reserve Loans are one of the core financial primitives introduced by Polaris, allowing users to borrow ETH directly from the bonding curve reserve. Canonical: https://tokenbrice.github.io/polaris-docs/architecture/reserve-loans
-- [Steward Responsibilities](https://tokenbrice.github.io/polaris-docs/architecture/steward-responsibilities.md): Although the core protocol cannot change, some parts of the ecosystem still benefit from ongoing coordination. Canonical: https://tokenbrice.github.io/polaris-docs/architecture/steward-responsibilities
-- [Stewardship](https://tokenbrice.github.io/polaris-docs/architecture/stewardship.md): Polaris uses bounded stewardship instead of open-ended governance. Canonical: https://tokenbrice.github.io/polaris-docs/architecture/stewardship
-- [Tokenomics](https://tokenbrice.github.io/polaris-docs/architecture/tokenomics.md): The final POLAR allocation, vesting schedule and launch parameters will be published closer to launch once they have been finalized. Canonical: https://tokenbrice.github.io/polaris-docs/architecture/tokenomics
+- [Bonding Curve](https://polaris-finance.github.io/polaris-docs/architecture/bonding-curve.md): Bonding curves have been used across crypto for years, particularly in DEXs and launchpads. Canonical: https://polaris-finance.github.io/polaris-docs/architecture/bonding-curve
+- [Earn Vaults](https://polaris-finance.github.io/polaris-docs/architecture/earn-vaults.md): Earn Vaults allow pAssets minted through Polaris to become yield-bearing assets. Canonical: https://polaris-finance.github.io/polaris-docs/architecture/earn-vaults
+- [Flows](https://polaris-finance.github.io/polaris-docs/architecture/flows.md): Flows distribute protocol-generated value to applications, markets and integrations building on top of Polaris. Canonical: https://polaris-finance.github.io/polaris-docs/architecture/flows
+- [pAsset Markets](https://polaris-finance.github.io/polaris-docs/architecture/passet-markets.md): pAssets are currencies and synthetic assets issued against pETH using the shared collateral infrastructure provided by Polaris. Canonical: https://polaris-finance.github.io/polaris-docs/architecture/passet-markets
+- [Reserve Loans](https://polaris-finance.github.io/polaris-docs/architecture/reserve-loans.md): Reserve Loans are one of the core financial primitives introduced by Polaris, allowing users to borrow ETH directly from the bonding curve reserve. Canonical: https://polaris-finance.github.io/polaris-docs/architecture/reserve-loans
+- [Steward Responsibilities](https://polaris-finance.github.io/polaris-docs/architecture/steward-responsibilities.md): Although the core protocol cannot change, some parts of the ecosystem still benefit from ongoing coordination. Canonical: https://polaris-finance.github.io/polaris-docs/architecture/steward-responsibilities
+- [Stewardship](https://polaris-finance.github.io/polaris-docs/architecture/stewardship.md): Polaris uses bounded stewardship instead of open-ended governance. Canonical: https://polaris-finance.github.io/polaris-docs/architecture/stewardship
+- [Tokenomics](https://polaris-finance.github.io/polaris-docs/architecture/tokenomics.md): The final POLAR allocation, vesting schedule and launch parameters will be published closer to launch once they have been finalized. Canonical: https://polaris-finance.github.io/polaris-docs/architecture/tokenomics
 
 ## Protocol Design
 
-- [Adaptive Peg Defence](https://tokenbrice.github.io/polaris-docs/design/adaptive-peg-defence.md): Polaris uses permissionless minting and redemptions to help pAssets trade around their target price. Canonical: https://tokenbrice.github.io/polaris-docs/design/adaptive-peg-defence
-- [Conversions](https://tokenbrice.github.io/polaris-docs/design/conversions.md): As introduced in the POLAR section, the long-term supply of POLAR does not grow through perpetual emissions. Canonical: https://tokenbrice.github.io/polaris-docs/design/conversions
-- [Fee Router](https://tokenbrice.github.io/polaris-docs/design/fee-router.md): The Fee Router is the system that redirects value generated by Polaris back into the ecosystem. Canonical: https://tokenbrice.github.io/polaris-docs/design/fee-router
-- [Interest Rates](https://tokenbrice.github.io/polaris-docs/design/interest-rates.md): Polaris uses two complementary interest rates to manage pAsset markets. Canonical: https://tokenbrice.github.io/polaris-docs/design/interest-rates
-- [Liquidations](https://tokenbrice.github.io/polaris-docs/design/liquidations.md): When a user mints a pAsset, they do so against pETH collateral. Canonical: https://tokenbrice.github.io/polaris-docs/design/liquidations
-- [Oracles](https://tokenbrice.github.io/polaris-docs/design/oracles.md): Polaris is built around the idea that the protocol should determine its own behavior whenever possible. Canonical: https://tokenbrice.github.io/polaris-docs/design/oracles
-- [Recovery Mode](https://tokenbrice.github.io/polaris-docs/design/recovery-mode.md): Recovery Mode is the protective state a pAsset market enters when its overall collateralization falls below a critical threshold. Canonical: https://tokenbrice.github.io/polaris-docs/design/recovery-mode
-- [Revenue Model](https://tokenbrice.github.io/polaris-docs/design/revenue-model.md): Polaris operates under the design philosophy that value generated throughout the protocol should not leak externally. Canonical: https://tokenbrice.github.io/polaris-docs/design/revenue-model
-- [Spike-and-decay Fees](https://tokenbrice.github.io/polaris-docs/design/spike-and-decay-fees.md): Several core mechanisms across Polaris use spike-and-decay pricing. Canonical: https://tokenbrice.github.io/polaris-docs/design/spike-and-decay-fees
+- [Adaptive Peg Defence](https://polaris-finance.github.io/polaris-docs/design/adaptive-peg-defence.md): Polaris uses permissionless minting and redemptions to help pAssets trade around their target price. Canonical: https://polaris-finance.github.io/polaris-docs/design/adaptive-peg-defence
+- [Conversions](https://polaris-finance.github.io/polaris-docs/design/conversions.md): As introduced in the POLAR section, the long-term supply of POLAR does not grow through perpetual emissions. Canonical: https://polaris-finance.github.io/polaris-docs/design/conversions
+- [Fee Router](https://polaris-finance.github.io/polaris-docs/design/fee-router.md): The Fee Router is the system that redirects value generated by Polaris back into the ecosystem. Canonical: https://polaris-finance.github.io/polaris-docs/design/fee-router
+- [Interest Rates](https://polaris-finance.github.io/polaris-docs/design/interest-rates.md): Polaris uses two complementary interest rates to manage pAsset markets. Canonical: https://polaris-finance.github.io/polaris-docs/design/interest-rates
+- [Liquidations](https://polaris-finance.github.io/polaris-docs/design/liquidations.md): When a user mints a pAsset, they do so against pETH collateral. Canonical: https://polaris-finance.github.io/polaris-docs/design/liquidations
+- [Oracles](https://polaris-finance.github.io/polaris-docs/design/oracles.md): Polaris is built around the idea that the protocol should determine its own behavior whenever possible. Canonical: https://polaris-finance.github.io/polaris-docs/design/oracles
+- [Recovery Mode](https://polaris-finance.github.io/polaris-docs/design/recovery-mode.md): Recovery Mode is the protective state a pAsset market enters when its overall collateralization falls below a critical threshold. Canonical: https://polaris-finance.github.io/polaris-docs/design/recovery-mode
+- [Revenue Model](https://polaris-finance.github.io/polaris-docs/design/revenue-model.md): Polaris operates under the design philosophy that value generated throughout the protocol should not leak externally. Canonical: https://polaris-finance.github.io/polaris-docs/design/revenue-model
+- [Spike-and-decay Fees](https://polaris-finance.github.io/polaris-docs/design/spike-and-decay-fees.md): Several core mechanisms across Polaris use spike-and-decay pricing. Canonical: https://polaris-finance.github.io/polaris-docs/design/spike-and-decay-fees
 
 ## Using Polaris Testnet
 
-- [Advanced](https://tokenbrice.github.io/polaris-docs/testnet/advanced.md): Advanced provides direct access to protocol mechanisms that are primarily intended for arbitrageurs, keepers and experienced users. Canonical: https://tokenbrice.github.io/polaris-docs/testnet/advanced
-- [Dashboard](https://tokenbrice.github.io/polaris-docs/testnet/dashboard.md): The Dashboard provides a complete overview of your activity across Polaris. Canonical: https://tokenbrice.github.io/polaris-docs/testnet/dashboard
-- [Earn](https://tokenbrice.github.io/polaris-docs/testnet/earn.md): Earn brings together the yield opportunities currently available across Polaris. Canonical: https://tokenbrice.github.io/polaris-docs/testnet/earn
-- [Mint](https://tokenbrice.github.io/polaris-docs/testnet/mint.md): The Mint section is where collateralized positions are created and managed. Canonical: https://tokenbrice.github.io/polaris-docs/testnet/mint
-- [Split](https://tokenbrice.github.io/polaris-docs/testnet/split.md): Split allows you to separate pETH into fpETH and vpETH, or merge those two assets back into pETH whenever you choose. Canonical: https://tokenbrice.github.io/polaris-docs/testnet/split
-- [Swap](https://tokenbrice.github.io/polaris-docs/testnet/swap.md): Swap lets you exchange supported assets across Polaris, which currently are the Core Assets. Canonical: https://tokenbrice.github.io/polaris-docs/testnet/swap
-- [Zap](https://tokenbrice.github.io/polaris-docs/testnet/zap.md): Zap combines several protocol actions into a single transaction, making common strategies easier to execute. Canonical: https://tokenbrice.github.io/polaris-docs/testnet/zap
+- [Advanced](https://polaris-finance.github.io/polaris-docs/testnet/advanced.md): Advanced provides direct access to protocol mechanisms that are primarily intended for arbitrageurs, keepers and experienced users. Canonical: https://polaris-finance.github.io/polaris-docs/testnet/advanced
+- [Dashboard](https://polaris-finance.github.io/polaris-docs/testnet/dashboard.md): The Dashboard provides a complete overview of your activity across Polaris. Canonical: https://polaris-finance.github.io/polaris-docs/testnet/dashboard
+- [Earn](https://polaris-finance.github.io/polaris-docs/testnet/earn.md): Earn brings together the yield opportunities currently available across Polaris. Canonical: https://polaris-finance.github.io/polaris-docs/testnet/earn
+- [Mint](https://polaris-finance.github.io/polaris-docs/testnet/mint.md): The Mint section is where collateralized positions are created and managed. Canonical: https://polaris-finance.github.io/polaris-docs/testnet/mint
+- [Split](https://polaris-finance.github.io/polaris-docs/testnet/split.md): Split allows you to separate pETH into fpETH and vpETH, or merge those two assets back into pETH whenever you choose. Canonical: https://polaris-finance.github.io/polaris-docs/testnet/split
+- [Swap](https://polaris-finance.github.io/polaris-docs/testnet/swap.md): Swap lets you exchange supported assets across Polaris, which currently are the Core Assets. Canonical: https://polaris-finance.github.io/polaris-docs/testnet/swap
+- [Zap](https://polaris-finance.github.io/polaris-docs/testnet/zap.md): Zap combines several protocol actions into a single transaction, making common strategies easier to execute. Canonical: https://polaris-finance.github.io/polaris-docs/testnet/zap
 
 ## Developers
 
-- [Developers](https://tokenbrice.github.io/polaris-docs/developers.md): Technical documentation for building on Polaris is in progress. Canonical: https://tokenbrice.github.io/polaris-docs/developers
+- [Developers](https://polaris-finance.github.io/polaris-docs/developers.md): Technical documentation for building on Polaris is in progress. Canonical: https://polaris-finance.github.io/polaris-docs/developers
 
 ## Risks
 
-- [Risks](https://tokenbrice.github.io/polaris-docs/risks.md): Polaris is built as immutable onchain infrastructure. Canonical: https://tokenbrice.github.io/polaris-docs/risks
-- [Risks Polaris Removes](https://tokenbrice.github.io/polaris-docs/risks/risks-polaris-removes.md): Polaris is designed to minimize trust wherever possible, although some sources of uncertainty remain unavoidable and are covered in the dedicated Risks section. Canonical: https://tokenbrice.github.io/polaris-docs/risks/risks-polaris-removes
+- [Risks](https://polaris-finance.github.io/polaris-docs/risks.md): Polaris is built as immutable onchain infrastructure. Canonical: https://polaris-finance.github.io/polaris-docs/risks
+- [Risks Polaris Removes](https://polaris-finance.github.io/polaris-docs/risks/risks-polaris-removes.md): Polaris is designed to minimize trust wherever possible, although some sources of uncertainty remain unavoidable and are covered in the dedicated Risks section. Canonical: https://polaris-finance.github.io/polaris-docs/risks/risks-polaris-removes
