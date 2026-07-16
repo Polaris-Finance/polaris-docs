@@ -97,9 +97,6 @@ for (const file of mdxFiles) {
 
 const markdownOrHtmlLinkPattern =
   /!?\[[^\]]*]\(([^)\s]+)(?:\s+"[^"]*")?\)|\b(?:href|src)=["']([^"']+)["']/g
-const jsxPropLinkPattern = /\b(?:url|image|appUrl|appHref|ctaUrl|ctaHref)=["']([^"']+)["']/g
-// Object-syntax hrefs, e.g. steps={[{ href: '/testnet' }]}
-const jsxObjectHrefPattern = /\bhref:\s*['"]([^'"]+)['"]/g
 const rawUrlPattern = /\bhttps?:\/\/[^\s"'<>),\]]+/g
 const links = []
 
@@ -125,12 +122,6 @@ for (const file of sourceFiles) {
   let match
   while ((match = markdownOrHtmlLinkPattern.exec(text))) {
     pushLink(file, match[1] || match[2], seen)
-  }
-  while ((match = jsxPropLinkPattern.exec(text))) {
-    pushLink(file, match[1], seen)
-  }
-  while ((match = jsxObjectHrefPattern.exec(text))) {
-    pushLink(file, match[1], seen)
   }
   if (file.startsWith(publicDir)) {
     while ((match = rawUrlPattern.exec(text))) {

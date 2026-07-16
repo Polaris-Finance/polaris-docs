@@ -9,12 +9,6 @@ import {
   writeFileSync
 } from 'node:fs'
 import path from 'node:path'
-import {
-  LAUNCH_NETWORK,
-  LAUNCH_PHASE,
-  timelineCaption,
-  timelineSummary
-} from '../app/launch-state.mjs'
 import { absoluteUrl, markdownPathForRoute } from '../app/site-config.mjs'
 import { searchVocabulary } from '../app/search-vocabulary.mjs'
 import { routeForFile, walkMdx } from './lib/content.mjs'
@@ -47,8 +41,7 @@ function parsePage(fullPath) {
     title: titleMatch ? stripQuotes(titleMatch[1]) : 'Untitled',
     description: descMatch ? stripQuotes(descMatch[1]) : '',
     keywords,
-    lastVerified: extractPageDate(frontmatter, body, ['lastVerified', 'last_verified']),
-    updated: extractPageDate(frontmatter, body, ['updated', 'lastUpdated', 'date']),
+    updated: extractPageDate(frontmatter, ['updated', 'lastUpdated', 'date']),
     body: sanitizeMdxForLlms(body, route),
     bodyMarkdown: sanitizeMdxForMarkdownMirror(body, route)
   }
@@ -68,53 +61,10 @@ function renderImageAlt(props, { markdown = false } = {}) {
   return alt ? `Image: ${alt}` : ''
 }
 
-function linkForLlms(href) {
-  if (/^https?:\/\//.test(href)) return href
-  if (href.startsWith('/')) return absoluteUrl(href)
-  return href
-}
-
-function renderNextSteps(props) {
-  const stepsBlock = /steps=\{\[([\s\S]*?)\]\}/.exec(props)?.[1] ?? props
-  const steps = [
-    ...stepsBlock.matchAll(
-      /href:\s*(['"])(.*?)\1\s*,\s*title:\s*(['"])(.*?)\3(?:\s*,\s*description:\s*(['"])(.*?)\5)?/g
-    )
-  ]
-
-  if (!steps.length) return ''
-
-  return [
-    'Next steps:',
-    ...steps.map((match) => {
-      const href = linkForLlms(match[2])
-      const title = match[4]
-      const description = match[6] ? `: ${match[6]}` : ''
-      return `- [${title}](${href})${description}`
-    })
-  ].join('\n')
-}
-
 function stripJsxTags(value, { markdown = false } = {}) {
-  const systemOverview =
-    'Polaris system overview: ETH swaps into pETH on the bonding curve, pETH collateralizes pAsset markets that issue USDp, and burning pETH for POLAR raises the floor and releases ETH.'
-  const timeline = `${timelineSummary()} ${timelineCaption()}`
   return value
-    .replace(/<NextSteps\s+([\s\S]*?)\/>/g, (_match, props) => renderNextSteps(props))
-    .replace(/<LaunchTimeline\s*\/>/g, markdown ? timeline : `Image: ${timeline}`)
-    .replace(/<SystemOverviewFigure\s*\/>/g, markdown ? systemOverview : `Image: ${systemOverview}`)
-    .replace(
-      /<TimedExplainers\s*\/>/g,
-      [
-        'Timed explainers:',
-        '- [Overview](/explainers/2-min): 2 min read.',
-        '- [Presentation](/explainers/5-min): 5 min read.',
-        '- [Full Introduction](/explainers/10-min): 10 min read.'
-      ].join('\n')
-    )
     .replace(/<img\s+([^>]*?)\/?>/gi, (_match, props) => renderImageAlt(props, { markdown }))
     .replace(/<Image\s+([^>]*?)\/?>/g, (_match, props) => renderImageAlt(props, { markdown }))
-    .replace(/<Figure\s+([^>]*?)\/?>/g, (_match, props) => renderImageAlt(props, { markdown }))
     .replace(/!\[([^\]]*)]\([^)]+\)/g, (match, alt) =>
       markdown ? match : alt ? `Image: ${alt}` : ''
     )
@@ -253,7 +203,7 @@ function normalizeDate(value) {
   return `${written[3]}-${month}-${written[2].padStart(2, '0')}`
 }
 
-function extractPageDate(frontmatter, body, names) {
+function extractPageDate(frontmatter, names) {
   for (const name of names) {
     const frontmatterMatch = new RegExp(`^${name}:\\s*["']?([^"']+)["']?\\s*$`, 'im').exec(
       frontmatter
@@ -262,19 +212,6 @@ function extractPageDate(frontmatter, body, names) {
       const date = normalizeDate(frontmatterMatch[1])
       if (date) return date
     }
-  }
-
-  if (names.some((name) => /updated|verified|modified/i.test(name))) {
-    const bannerMatch = /<PageStatusBanner\s+lastUpdated=(["'])(.*?)\1\s*\/>/i.exec(body)
-    if (bannerMatch) {
-      const date = normalizeDate(bannerMatch[2])
-      if (date) return date
-    }
-  }
-
-  if (names.some((name) => /last[_-]?verified/i.test(name))) {
-    const bodyMatch = /\*\*Last verified:\*\*\s*([^.\n]+)/i.exec(body)
-    if (bodyMatch) return normalizeDate(bodyMatch[1])
   }
 
   return null
@@ -293,8 +230,7 @@ function generatedPageMarkdown(page) {
     `Canonical URL: ${absoluteUrl(page.route)}`,
     `Markdown URL: ${absoluteUrl(markdownPathForRoute(page.route))}`,
     `Section: ${sectionTitles[page.section] ?? page.section}`,
-    page.updated ? `Updated: ${page.updated}` : '',
-    page.lastVerified ? `Last verified: ${page.lastVerified}` : ''
+    page.updated ? `Updated: ${page.updated}` : ''
   ].filter(Boolean)
 
   return `${generatedMarkdownMarker}
@@ -388,8 +324,7 @@ const header = `# Polaris Documentation
 
 ## Agent Guidance
 
-- Polaris is currently in ${LAUNCH_PHASE} on ${LAUNCH_NETWORK}.
-- ${LAUNCH_PHASE} assets are ${LAUNCH_NETWORK} test assets with no monetary value, no production redemption, and no mainnet claim.
+- Polaris is currently on the Sepolia public testnet; testnet assets have no monetary value, no production redemption, and no mainnet claim.
 - Do not infer production addresses, production constants, audit status, or launch status from testnet values.
 - Prefer the Markdown URLs in this file for retrieval, and cite the canonical URL shown beside each page.
 `
@@ -487,7 +422,7 @@ const llmsIndex = `${JSON.stringify(
         url: absoluteUrl(`/${relativePath}`)
       }))
     },
-    pages: pages.map(({ route, section, title, description, keywords, updated, lastVerified }) => ({
+    pages: pages.map(({ route, section, title, description, keywords, updated }) => ({
       route,
       url: absoluteUrl(route),
       markdownUrl: absoluteUrl(markdownPathForRoute(route)),
@@ -495,8 +430,7 @@ const llmsIndex = `${JSON.stringify(
       title,
       description,
       keywords,
-      updated,
-      lastVerified
+      updated
     }))
   },
   null,

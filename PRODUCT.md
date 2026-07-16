@@ -8,13 +8,13 @@ product
 
 Technically-literate people who are **new to Polaris** — DeFi-fluent readers evaluating or learning to use the protocol, not the team that built it. They arrive in one of two modes:
 
-- **Primary: prospective participants** — people deciding whether to mint pAssets, deposit ETH into the bonding curve, earn yield in the Stability Pool, or hold/convert POLAR. Their context is "I understand DeFi mechanics in general; show me how *this* system works and what it costs me." They read to decide and to act.
+- **Primary: prospective participants** — people deciding whether to mint pAssets, deposit ETH into the bonding curve, earn yield in the Earn Vaults, or hold/convert POLAR. Their context is "I understand DeFi mechanics in general; show me how *this* system works and what it costs me." They read to decide and to act.
 
 Most readers arrive **pre-mainnet** (Public Testnet 1 is live on Sepolia; mainnet is forthcoming), so they are forming a first impression of an evolving system whose final parameters are not all fixed.
 
 ## Product Purpose
 
-Documentation that makes a genuinely hard system **understandable and usable**: Polaris, the **pETH-powered yield layer for all of DeFi** (a self-scaling, counterparty-free stablecoin operating system). It explains how the three engines (pAssets / branches and CDPs, pETH / bonding curve, POLAR / conversion) work, how to use them, and the trade-offs each one makes.
+Documentation that makes a genuinely hard system **understandable and usable**: Polaris, the **onchain yield layer built around pETH** (a counterparty-free reserve asset backing censorship-resistant stablecoins and synthetic assets). It explains how the three engines (pAssets / debt positions, pETH / bonding curve, POLAR / conversion) work, how to use them, and the trade-offs each one makes.
 
 Success is **comprehension**: a technically-literate newcomer leaves able to explain what Polaris does, why it is architected to stay trustless at scale, and what a given action will do to their position — without having to read the contracts. It is a reference tool first; the brand expression serves that comprehension, never competes with it.
 

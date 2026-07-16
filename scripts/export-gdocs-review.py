@@ -156,42 +156,12 @@ def render_image_alt(props: str) -> str:
     return f"Image: {alt}" if alt else ""
 
 
-def render_next_steps(props: str) -> str:
-    block_match = re.search(r"steps=\{\[([\s\S]*?)\]\}", props)
-    block = block_match.group(1) if block_match else props
-    steps = re.findall(
-        r"href:\s*(['\"])(.*?)\1\s*,\s*title:\s*(['\"])(.*?)\3(?:\s*,\s*description:\s*(['\"])(.*?)\5)?",
-        block,
-        flags=re.DOTALL,
-    )
-    if not steps:
-        return ""
-
-    lines = ["Next steps:"]
-    for _href_quote, href, _title_quote, title, _desc_quote, description in steps:
-        suffix = f": {description}" if description else ""
-        lines.append(f"- {title} ({href}){suffix}")
-    return "\n".join(lines)
-
-
-def render_page_status(props: str) -> str:
-    updated = prop_value(props, "lastUpdated")
-    return f"Page status: last updated {updated}." if updated else "Page status banner."
-
-
 def sanitize_mdx(body: str) -> str:
     value = body
     value = re.sub(r"\{/\*[\s\S]*?\*/\}", "", value)
     value = re.sub(r"<style[\s\S]*?</style>", "", value, flags=re.IGNORECASE)
     value = re.sub(r"<svg[\s\S]*?</svg>", "Image: inline diagram omitted.", value, flags=re.IGNORECASE)
     value = re.sub(r"^\s*(import|export)\s.+$", "", value, flags=re.MULTILINE)
-    value = re.sub(r"<NextSteps\s+([\s\S]*?)/>", lambda m: render_next_steps(m.group(1)), value)
-    value = re.sub(r"<PageStatusBanner\s+([\s\S]*?)/>", lambda m: render_page_status(m.group(1)), value)
-    value = re.sub(r"<LaunchTimeline\s*/>", "Image: launch timeline.", value)
-    value = re.sub(r"<SystemOverviewFigure\s*/>", "Image: Polaris system overview figure.", value)
-    value = re.sub(r"<TokenHarmonyFigure\s*/>", "Image: token harmony figure.", value)
-    value = re.sub(r"<BondingCurveExplorer\s*/>", "Interactive component: bonding curve explorer.", value)
-    value = re.sub(r"<PositionSimulator\s*/>", "Interactive component: position simulator.", value)
     value = re.sub(r"<img\s+([^>]*?)/?>", lambda m: render_image_alt(m.group(1)), value, flags=re.IGNORECASE)
     value = re.sub(r"<Image\s+([^>]*?)/?>", lambda m: render_image_alt(m.group(1)), value)
     value = re.sub(r"!\[([^\]]*)]\([^)]+\)", lambda m: f"Image: {m.group(1)}" if m.group(1) else "", value)

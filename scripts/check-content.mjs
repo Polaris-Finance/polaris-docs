@@ -1,6 +1,5 @@
 import { readdirSync, readFileSync, statSync } from 'node:fs'
 import path from 'node:path'
-import { LAUNCH_PHASE } from '../app/launch-state.mjs'
 
 const root = process.cwd()
 const scanRoots = ['content', 'app', 'README.md'].map((entry) => path.join(root, entry))
@@ -60,11 +59,6 @@ const forbiddenPatterns = [
       'Unescaped "$" before a digit triggers site-wide KaTeX inline math; escape dollar amounts as "\\$"'
   }
 ]
-
-const exactFreshnessRequired = new Set([])
-
-const exactDatePattern =
-  /\b(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2},\s+\d{4}\b|\b\d{4}-\d{2}-\d{2}\b/
 
 function slugifyHeading(value) {
   return value
@@ -221,20 +215,6 @@ for (const file of files) {
       }
     }
 
-    const bannerMatch = /<PageStatusBanner\s+lastUpdated=(["'])(.*?)\1\s*\/>/.exec(text)
-    const containsContractAddress = /\b0x[a-fA-F0-9]{40}\b/.test(text)
-    if (exactFreshnessRequired.has(rel) || containsContractAddress) {
-      if (!bannerMatch) {
-        failures.push(
-          `${rel}: high-risk page must include PageStatusBanner with exact lastUpdated date`
-        )
-      } else if (!exactDatePattern.test(bannerMatch[2])) {
-        failures.push(
-          `${rel}: high-risk PageStatusBanner lastUpdated must use an exact date, found "${bannerMatch[2]}"`
-        )
-      }
-    }
-
     const headingSlugs = new Map()
     for (const [index, line] of text.split('\n').entries()) {
       const match = /^(#{1,6})\s+(.+)$/.exec(line)
@@ -260,20 +240,6 @@ for (const file of files) {
     if (!isMdx && /HTML comments|GitHub-style|KaTeX/.test(rule.message)) continue
     if (rule.pattern.test(text)) {
       failures.push(`${rel}: ${rule.message}`)
-    }
-  }
-
-  // Every public-testnet phase mention must match the canonical phase in
-  // app/launch-state.mjs (the module itself keeps prior phases as timeline
-  // history, so it is exempt). On a phase bump this lists every file that
-  // still claims the old phase so each one gets a conscious update.
-  if (rel !== path.join('app', 'launch-state.mjs')) {
-    for (const match of text.matchAll(/\bpublic testnet \d+\b/gi)) {
-      if (match[0].toLowerCase() !== LAUNCH_PHASE.toLowerCase()) {
-        failures.push(
-          `${rel}: stale launch phase "${match[0]}" (current phase is "${LAUNCH_PHASE}" per app/launch-state.mjs)`
-        )
-      }
     }
   }
 }

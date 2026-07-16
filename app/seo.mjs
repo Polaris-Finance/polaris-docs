@@ -56,13 +56,6 @@ function readableSegment(segment) {
     .join(' ')
 }
 
-function stripFrontmatter(sourceCode) {
-  if (!sourceCode?.startsWith('---\n')) return sourceCode ?? ''
-  const end = sourceCode.indexOf('\n---', 4)
-  if (end === -1) return sourceCode
-  return sourceCode.slice(end + '\n---'.length).replace(/^\r?\n/, '')
-}
-
 const monthNumbers = new Map([
   ['january', '01'],
   ['february', '02'],
@@ -116,11 +109,6 @@ function frontmatterDate(sourceCode, names) {
   return null
 }
 
-function lastVerifiedDate(sourceCode) {
-  const match = /\*\*Last verified:\*\*\s*([^.\n]+)/i.exec(stripFrontmatter(sourceCode))
-  return match ? normalizeDate(match[1]) : null
-}
-
 function timestampDate(metadata) {
   const timestamp = Number(metadata?.timestamp)
   if (!Number.isFinite(timestamp)) return null
@@ -133,9 +121,8 @@ function pageFreshness(metadata, sourceCode) {
     frontmatterDate(sourceCode, ['date', 'published', 'datePublished'])
 
   const modified =
-    metadataDate(metadata, ['updated', 'lastUpdated', 'lastVerified', 'dateModified']) ??
-    frontmatterDate(sourceCode, ['updated', 'lastUpdated', 'lastVerified', 'dateModified']) ??
-    lastVerifiedDate(sourceCode) ??
+    metadataDate(metadata, ['updated', 'lastUpdated', 'dateModified']) ??
+    frontmatterDate(sourceCode, ['updated', 'lastUpdated', 'dateModified']) ??
     timestampDate(metadata)
 
   return {
@@ -249,7 +236,7 @@ export function buildGlobalJsonLd() {
         'https://t.me/polaris_ann',
         'https://github.com/Polaris-Finance'
       ],
-      knowsAbout: ['pETH', 'pAssets', 'USDp', 'POLAR', 'pAsset issuance', 'bonding curve'],
+      knowsAbout: ['pETH', 'pAssets', 'USDp', 'POLAR', 'pAsset minting', 'bonding curve'],
       logo: {
         '@type': 'ImageObject',
         url: absoluteUrl('/favicon.png'),

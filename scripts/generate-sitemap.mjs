@@ -23,10 +23,7 @@ function frontmatterUpdated(fullPath) {
   const end = text.indexOf('\n---', 4)
   if (end === -1) return null
   const frontmatter = text.slice(4, end)
-  return (
-    extractFrontmatterDate(frontmatter, ['updated', 'lastUpdated', 'lastVerified', 'date']) ??
-    extractLastVerifiedDate(text.slice(end + '\n---'.length))
-  )
+  return extractFrontmatterDate(frontmatter, ['updated', 'lastUpdated', 'date'])
 }
 
 const monthNumbers = new Map([
@@ -65,11 +62,6 @@ function extractFrontmatterDate(frontmatter, names) {
     if (date) return date
   }
   return null
-}
-
-function extractLastVerifiedDate(body) {
-  const match = /\*\*Last verified:\*\*\s*([^.\n]+)/i.exec(body)
-  return match ? normalizeDate(match[1]) : null
 }
 
 function gitLastModified(fullPath) {

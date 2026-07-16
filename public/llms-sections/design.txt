@@ -4,8 +4,7 @@
 
 ## Agent Guidance
 
-- Polaris is currently in Public Testnet 1 on Sepolia.
-- Public Testnet 1 assets are Sepolia test assets with no monetary value, no production redemption, and no mainnet claim.
+- Polaris is currently on the Sepolia public testnet; testnet assets have no monetary value, no production redemption, and no mainnet claim.
 - Do not infer production addresses, production constants, audit status, or launch status from testnet values.
 - Prefer the Markdown URLs in this file for retrieval, and cite the canonical URL shown beside each page.
 

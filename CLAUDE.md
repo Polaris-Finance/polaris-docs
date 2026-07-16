@@ -4,7 +4,7 @@ User documentation for Polaris Finance (the pETH-powered yield layer for DeFi). 
 
 ## Structure
 
-- `content/<topic>/*.mdx` — all docs pages (topics: minting, peth, polar, yield, redemptions-liquidations, stewardship, using-app, resources) plus top-level .mdx pages.
+- `content/<topic>/*.mdx` — all docs pages (topics: core-assets, architecture, design, testnet, risks) plus top-level .mdx pages (index, manifesto, why-peth, vision, developers).
 - `_meta.js` in `content/` and each topic folder drives sidebar titles/order; register new pages there.
 - `app/` — layout.jsx, `[[...mdxPath]]` catch-all route, site-config.mjs.
 - `public/` — assets + generated artifacts (.md mirrors, llms*.txt, sitemap, `_pagefind/`).
