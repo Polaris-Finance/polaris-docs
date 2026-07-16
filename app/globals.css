@@ -153,12 +153,12 @@ article table[data-pl-table]:focus-visible {
   outline-offset: 3px;
 }
 
-article :is(.katex-display, pre) {
+article pre {
   max-width: 100%;
   overflow-x: auto;
 }
 
-article :is(.katex-display, pre):focus-visible {
+article pre:focus-visible {
   outline: 2px solid var(--x-color-primary-600);
   outline-offset: 3px;
 }
@@ -175,6 +175,40 @@ article :is(p, li) {
 
 article :is(h1, h2, h3, h4) {
   scroll-margin-top: 5rem;
+}
+
+/* Landing confirmation for anchor jumps (TOC clicks, search results, shared
+   #links): a brief brand-gold wash on the target heading that fades once.
+   Background-only, so there is no layout shift; being animation-driven, the
+   global prefers-reduced-motion block collapses it to an instant no-op. */
+
+article :is(h1, h2, h3, h4):target {
+  border-radius: 0.3rem;
+  animation: pl-target-flash 2s ease-out both;
+}
+
+@keyframes pl-target-flash {
+  0%,
+  30% {
+    background-color: rgba(177, 147, 79, 0.18);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+.dark article :is(h1, h2, h3, h4):target {
+  animation-name: pl-target-flash-dark;
+}
+
+@keyframes pl-target-flash-dark {
+  0%,
+  30% {
+    background-color: rgba(216, 201, 164, 0.14);
+  }
+  100% {
+    background-color: transparent;
+  }
 }
 
 /* ── Light identity for interior pages ──────────────────────────────────
@@ -328,6 +362,20 @@ article figcaption {
   white-space: nowrap;
 }
 
+/* ── Footer ─────────────────────────────────────────────────────────────── */
+
+/* The llms.txt link previously used opacity 0.7, which fails 4.5:1 AA at
+   0.85rem in light mode. Solid theme-aware colors keep it quiet but legible. */
+
+.pl-footer-llms {
+  font-size: 0.85rem;
+  color: rgba(13, 31, 60, 0.78);
+}
+
+.dark .pl-footer-llms {
+  color: rgba(232, 220, 196, 0.78);
+}
+
 /* ── Touch targets ──────────────────────────────────────────────────────── */
 
 header nav a,
@@ -377,8 +425,12 @@ article button[title*='Copy'] {
 /* Mobile: un-hide the search wrapper, hide the Website link, let search grow */
 
 @media (max-width: 767px) {
+  /* Let the logo shrink (ellipsizing its text) instead of clipping behind the
+     search box at very narrow widths. */
+
   .pl-logo-link {
-    flex: 0 0 auto;
+    flex: 0 1 auto;
+    min-width: 0;
     gap: 0.45rem !important;
   }
 
@@ -391,6 +443,9 @@ article button[title*='Copy'] {
   .pl-logo-text {
     font-size: 1.05rem !important;
     letter-spacing: 0.02em !important;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   header nav div:has(> .nextra-search) {
@@ -1023,7 +1078,10 @@ article button[title*='Copy'] {
     cursor: pointer;
   }
 
-  /* Keep the facet row and first results clear of the floating close button. */
+  /* Keep the facet row and first results clear of the floating close button.
+     The scrollbar is hidden, so a right-edge fade signals that more chips are
+     reachable by scrolling; the 3rem end padding keeps the last chip clear of
+     the fade once scrolled fully. */
 
   .pl-search-facets {
     flex-wrap: nowrap;
@@ -1033,6 +1091,7 @@ article button[title*='Copy'] {
     padding-block: 0.35rem;
     padding-right: 3rem;
     scroll-padding-inline: 0.7rem 3rem;
+    mask-image: linear-gradient(90deg, #000 calc(100% - 2.5rem), transparent);
   }
 
   .pl-search-facets::-webkit-scrollbar {

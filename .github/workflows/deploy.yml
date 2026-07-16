@@ -141,4 +141,9 @@ jobs:
           node-version-file: .nvmrc
 
       - name: Smoke check deployed Pages site
+        # page_url is GitHub's ground truth for where Pages actually serves the
+        # site; asserting canonicals against it (instead of the SITE_URL that
+        # generated them) catches a misconfigured SITE_URL at deploy time.
+        env:
+          LIVE_ARTIFACT_EXPECTED_BASE_URL: ${{ steps.deployment.outputs.page_url }}
         run: npm run check:live-artifact -- --base-url "${{ steps.deployment.outputs.page_url }}"

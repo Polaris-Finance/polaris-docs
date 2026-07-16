@@ -5,7 +5,6 @@ const withNextra = nextra({
   // Nextra 4 reads MDX from the `content/` directory and builds the page map
   // automatically. Theme/search options can be added here later.
   defaultShowCopyCode: true,
-  latex: true,
   search: {
     codeblocks: false
   }

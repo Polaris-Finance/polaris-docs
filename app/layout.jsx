@@ -19,7 +19,6 @@ import {
   SITE_TITLE,
   SITE_TITLE_TEMPLATE
 } from './site-config.mjs'
-import 'katex/dist/katex.min.css'
 import 'nextra-theme-docs/style.css'
 import './globals.css'
 
@@ -150,10 +149,7 @@ const footer = (
         The pETH-powered yield layer for all of DeFi
       </span>
       <span style={{ opacity: 0.9 }}>© {new Date().getFullYear()} Polaris</span>
-      <a
-        href={pathWithBase('/llms.txt')}
-        style={{ opacity: 0.7, fontSize: '0.85rem', color: 'inherit' }}
-      >
+      <a href={pathWithBase('/llms.txt')} className="pl-footer-llms">
         Docs for LLMs (llms.txt)
       </a>
     </div>
