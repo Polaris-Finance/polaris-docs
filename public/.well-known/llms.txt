@@ -14,19 +14,19 @@
 - [JSON docs index](https://polaris-finance.github.io/polaris-docs/llms-index.json): Routes, canonical URLs, Markdown URLs, sections, keywords, and freshness metadata.
 - [Well-known llms.txt mirror](https://polaris-finance.github.io/polaris-docs/.well-known/llms.txt): Alternate discovery path for the docs index.
 - [Well-known full bundle mirror](https://polaris-finance.github.io/polaris-docs/.well-known/llms-full.txt): Alternate discovery path for the full Markdown bundle.
-- [Overview section bundle](https://polaris-finance.github.io/polaris-docs/llms-sections/home.txt): Focused Markdown bundle for this documentation section.
+- [Overview section bundle](https://polaris-finance.github.io/polaris-docs/llms-sections/overview.txt): Focused Markdown bundle for this documentation section.
 - [Core Assets section bundle](https://polaris-finance.github.io/polaris-docs/llms-sections/core-assets.txt): Focused Markdown bundle for this documentation section.
-- [Protocol Architecture section bundle](https://polaris-finance.github.io/polaris-docs/llms-sections/architecture.txt): Focused Markdown bundle for this documentation section.
-- [Protocol Design section bundle](https://polaris-finance.github.io/polaris-docs/llms-sections/design.txt): Focused Markdown bundle for this documentation section.
+- [Core Architecture section bundle](https://polaris-finance.github.io/polaris-docs/llms-sections/architecture.txt): Focused Markdown bundle for this documentation section.
+- [Protocol Mechanics section bundle](https://polaris-finance.github.io/polaris-docs/llms-sections/design.txt): Focused Markdown bundle for this documentation section.
 - [Using Polaris Testnet section bundle](https://polaris-finance.github.io/polaris-docs/llms-sections/testnet.txt): Focused Markdown bundle for this documentation section.
 - [Risks section bundle](https://polaris-finance.github.io/polaris-docs/llms-sections/risks.txt): Focused Markdown bundle for this documentation section.
 
 ## Overview
 
 - [Introduction](https://polaris-finance.github.io/polaris-docs/index.md): Polaris is an onchain yield layer built around pETH. Canonical: https://polaris-finance.github.io/polaris-docs/
-- [Manifesto](https://polaris-finance.github.io/polaris-docs/manifesto.md): Decentralized finance was built on the idea that money should not depend on trusted intermediaries. Canonical: https://polaris-finance.github.io/polaris-docs/manifesto
-- [Vision](https://polaris-finance.github.io/polaris-docs/vision.md): Stablecoins are the largest monetary application built on blockchains today. Canonical: https://polaris-finance.github.io/polaris-docs/vision
-- [Why pETH](https://polaris-finance.github.io/polaris-docs/why-peth.md): The evolution of stablecoins revealed another structural problem. Canonical: https://polaris-finance.github.io/polaris-docs/why-peth
+- [Manifesto](https://polaris-finance.github.io/polaris-docs/overview/manifesto.md): Decentralized finance was built on the idea that money should not depend on trusted intermediaries. Canonical: https://polaris-finance.github.io/polaris-docs/overview/manifesto
+- [Vision](https://polaris-finance.github.io/polaris-docs/overview/vision.md): Stablecoins are the largest monetary application built on blockchains today. Canonical: https://polaris-finance.github.io/polaris-docs/overview/vision
+- [Why pETH](https://polaris-finance.github.io/polaris-docs/overview/why-peth.md): The evolution of stablecoins revealed another structural problem. Canonical: https://polaris-finance.github.io/polaris-docs/overview/why-peth
 
 ## Core Assets
 
@@ -37,7 +37,7 @@
 - [USDp](https://polaris-finance.github.io/polaris-docs/core-assets/usdp.md): USDp is the native Polaris dollar. Canonical: https://polaris-finance.github.io/polaris-docs/core-assets/usdp
 - [vpETH](https://polaris-finance.github.io/polaris-docs/core-assets/vpeth.md): Every time pETH trades above its mathematically-derived floor, the difference represents its market premium. Canonical: https://polaris-finance.github.io/polaris-docs/core-assets/vpeth
 
-## Protocol Architecture
+## Core Architecture
 
 - [Bonding Curve](https://polaris-finance.github.io/polaris-docs/architecture/bonding-curve.md): Bonding curves have been used across crypto for years, particularly in DEXs and launchpads. Canonical: https://polaris-finance.github.io/polaris-docs/architecture/bonding-curve
 - [Earn Vaults](https://polaris-finance.github.io/polaris-docs/architecture/earn-vaults.md): Earn Vaults allow pAssets minted through Polaris to become yield-bearing assets. Canonical: https://polaris-finance.github.io/polaris-docs/architecture/earn-vaults
@@ -47,7 +47,7 @@
 - [Stewardship](https://polaris-finance.github.io/polaris-docs/architecture/stewardship.md): Polaris uses bounded stewardship instead of open-ended governance. Canonical: https://polaris-finance.github.io/polaris-docs/architecture/stewardship
 - [Tokenomics](https://polaris-finance.github.io/polaris-docs/architecture/tokenomics.md): The final POLAR allocation, vesting schedule and launch parameters will be published closer to launch once they have been finalized. Canonical: https://polaris-finance.github.io/polaris-docs/architecture/tokenomics
 
-## Protocol Design
+## Protocol Mechanics
 
 - [Adaptive Peg Defence](https://polaris-finance.github.io/polaris-docs/design/adaptive-peg-defence.md): Polaris uses permissionless minting and redemptions to help pAssets trade around their target price. Canonical: https://polaris-finance.github.io/polaris-docs/design/adaptive-peg-defence
 - [Conversions](https://polaris-finance.github.io/polaris-docs/design/conversions.md): As introduced in the POLAR section, the long-term supply of POLAR does not grow through perpetual emissions. Canonical: https://polaris-finance.github.io/polaris-docs/design/conversions
@@ -72,4 +72,4 @@
 ## Risks
 
 - [Risks](https://polaris-finance.github.io/polaris-docs/risks.md): Polaris is built as immutable onchain infrastructure. Canonical: https://polaris-finance.github.io/polaris-docs/risks
-- [Risks Polaris Removes](https://polaris-finance.github.io/polaris-docs/risks/risks-polaris-removes.md): Polaris is designed to minimize trust wherever possible, although some sources of uncertainty remain unavoidable and are covered in the dedicated Risks section. Canonical: https://polaris-finance.github.io/polaris-docs/risks/risks-polaris-removes
+- [Security Properties](https://polaris-finance.github.io/polaris-docs/risks/security-properties.md): Polaris is designed to minimize trust wherever possible, although some sources of uncertainty remain unavoidable and are covered in the dedicated Risks section. Canonical: https://polaris-finance.github.io/polaris-docs/risks/security-properties

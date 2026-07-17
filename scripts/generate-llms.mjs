@@ -275,18 +275,17 @@ function removeStaleMarkdownMirrors(expectedRelativePaths) {
 
 // Section labels mirror the current primary navigation vocabulary in content/_meta.js.
 const sectionTitles = {
-  home: 'Overview',
+  overview: 'Overview',
   'core-assets': 'Core Assets',
-  architecture: 'Protocol Architecture',
-  design: 'Protocol Design',
+  architecture: 'Core Architecture',
+  design: 'Protocol Mechanics',
   testnet: 'Using Polaris Testnet',
   risks: 'Risks'
 }
 const sectionOrder = Object.keys(sectionTitles)
 
 function sectionForRoute(route) {
-  if (/^\/(?:manifesto|why-peth|vision)?$/.test(route)) return 'home'
-  return route.replace(/^\//, '').split('/')[0] || 'home'
+  return route.replace(/^\//, '').split('/')[0] || 'overview'
 }
 
 function sectionSlug(section) {

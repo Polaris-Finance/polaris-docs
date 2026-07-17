@@ -8,7 +8,7 @@
 - Do not infer production addresses, production constants, audit status, or launch status from testnet values.
 - Prefer the Markdown URLs in this file for retrieval, and cite the canonical URL shown beside each page.
 
-# Protocol Design
+# Protocol Mechanics
 
 ## Adaptive Peg Defence
 

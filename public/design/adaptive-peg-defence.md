@@ -5,7 +5,7 @@
 
 Canonical URL: https://polaris-finance.github.io/polaris-docs/design/adaptive-peg-defence
 Markdown URL: https://polaris-finance.github.io/polaris-docs/design/adaptive-peg-defence.md
-Section: Protocol Design
+Section: Protocol Mechanics
 
 Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
 Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt

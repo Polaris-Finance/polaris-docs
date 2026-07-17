@@ -3,8 +3,8 @@
 
 > The evolution of stablecoins revealed another structural problem.
 
-Canonical URL: https://polaris-finance.github.io/polaris-docs/why-peth
-Markdown URL: https://polaris-finance.github.io/polaris-docs/why-peth.md
+Canonical URL: https://polaris-finance.github.io/polaris-docs/overview/why-peth
+Markdown URL: https://polaris-finance.github.io/polaris-docs/overview/why-peth.md
 Section: Overview
 
 Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt

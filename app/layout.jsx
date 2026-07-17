@@ -1,4 +1,4 @@
-import { Footer, Layout, Navbar } from 'nextra-theme-docs'
+import { Footer, Layout, Navbar, ThemeSwitch } from 'nextra-theme-docs'
 import { Head } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
 import { Inter, Cormorant_Garamond } from 'next/font/google'
@@ -133,6 +133,11 @@ const logo = (
 
 const navbar = (
   <Navbar logo={logo} logoLink={false} aria-label="Primary">
+    {/* Desktop-only: mobile keeps the theme switch in the sidebar sheet and
+        hides these links to leave room for search (see globals.css). */}
+    <span className="pl-nav-theme">
+      <ThemeSwitch />
+    </span>
     <a
       href="https://polarisfinance.io"
       style={{ padding: '0.25rem 0.5rem' }}
@@ -151,9 +156,19 @@ const footer = (
         The pETH-powered yield layer for all of DeFi
       </span>
       <span style={{ opacity: 0.9 }}>© {new Date().getFullYear()} Polaris</span>
-      <a href={pathWithBase('/llms.txt')} className="pl-footer-llms">
-        Docs for LLMs (llms.txt)
-      </a>
+      <span style={{ display: 'flex', gap: '1rem' }}>
+        <a href={pathWithBase('/llms.txt')} className="pl-footer-llms">
+          llms.txt
+        </a>
+        <a
+          href="https://x.com/polarisfinance_"
+          className="pl-footer-llms"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Polaris on X
+        </a>
+      </span>
     </div>
   </Footer>
 )

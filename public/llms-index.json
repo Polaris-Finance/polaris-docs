@@ -8,18 +8,18 @@
     "sections": [
       {
         "title": "Overview",
-        "url": "https://polaris-finance.github.io/polaris-docs/llms-sections/home.txt"
+        "url": "https://polaris-finance.github.io/polaris-docs/llms-sections/overview.txt"
       },
       {
         "title": "Core Assets",
         "url": "https://polaris-finance.github.io/polaris-docs/llms-sections/core-assets.txt"
       },
       {
-        "title": "Protocol Architecture",
+        "title": "Core Architecture",
         "url": "https://polaris-finance.github.io/polaris-docs/llms-sections/architecture.txt"
       },
       {
-        "title": "Protocol Design",
+        "title": "Protocol Mechanics",
         "url": "https://polaris-finance.github.io/polaris-docs/llms-sections/design.txt"
       },
       {
@@ -55,7 +55,7 @@
       "route": "/architecture/bonding-curve",
       "url": "https://polaris-finance.github.io/polaris-docs/architecture/bonding-curve",
       "markdownUrl": "https://polaris-finance.github.io/polaris-docs/architecture/bonding-curve.md",
-      "section": "Protocol Architecture",
+      "section": "Core Architecture",
       "title": "Bonding Curve",
       "description": "Bonding curves have been used across crypto for years, particularly in DEXs and launchpads.",
       "keywords": [
@@ -70,7 +70,7 @@
       "route": "/architecture/earn-vaults",
       "url": "https://polaris-finance.github.io/polaris-docs/architecture/earn-vaults",
       "markdownUrl": "https://polaris-finance.github.io/polaris-docs/architecture/earn-vaults.md",
-      "section": "Protocol Architecture",
+      "section": "Core Architecture",
       "title": "Earn Vaults",
       "description": "Earn Vaults allow pAssets minted through Polaris to become yield-bearing assets.",
       "keywords": [
@@ -90,7 +90,7 @@
       "route": "/architecture/flows",
       "url": "https://polaris-finance.github.io/polaris-docs/architecture/flows",
       "markdownUrl": "https://polaris-finance.github.io/polaris-docs/architecture/flows.md",
-      "section": "Protocol Architecture",
+      "section": "Core Architecture",
       "title": "Flows",
       "description": "Flows distribute protocol-generated value to applications, markets and integrations building on top of Polaris.",
       "keywords": [],
@@ -100,7 +100,7 @@
       "route": "/architecture/passet-markets",
       "url": "https://polaris-finance.github.io/polaris-docs/architecture/passet-markets",
       "markdownUrl": "https://polaris-finance.github.io/polaris-docs/architecture/passet-markets.md",
-      "section": "Protocol Architecture",
+      "section": "Core Architecture",
       "title": "pAsset Markets",
       "description": "pAssets are currencies and synthetic assets issued against pETH using the shared collateral infrastructure provided by Polaris.",
       "keywords": [],
@@ -110,7 +110,7 @@
       "route": "/architecture/reserve-loans",
       "url": "https://polaris-finance.github.io/polaris-docs/architecture/reserve-loans",
       "markdownUrl": "https://polaris-finance.github.io/polaris-docs/architecture/reserve-loans.md",
-      "section": "Protocol Architecture",
+      "section": "Core Architecture",
       "title": "Reserve Loans",
       "description": "Reserve Loans are one of the core financial primitives introduced by Polaris, allowing users to borrow ETH directly from the bonding curve reserve.",
       "keywords": [
@@ -126,7 +126,7 @@
       "route": "/architecture/stewardship",
       "url": "https://polaris-finance.github.io/polaris-docs/architecture/stewardship",
       "markdownUrl": "https://polaris-finance.github.io/polaris-docs/architecture/stewardship.md",
-      "section": "Protocol Architecture",
+      "section": "Core Architecture",
       "title": "Stewardship",
       "description": "Polaris uses bounded stewardship instead of open-ended governance.",
       "keywords": [],
@@ -136,7 +136,7 @@
       "route": "/architecture/tokenomics",
       "url": "https://polaris-finance.github.io/polaris-docs/architecture/tokenomics",
       "markdownUrl": "https://polaris-finance.github.io/polaris-docs/architecture/tokenomics.md",
-      "section": "Protocol Architecture",
+      "section": "Core Architecture",
       "title": "Tokenomics",
       "description": "The final POLAR allocation, vesting schedule and launch parameters will be published closer to launch once they have been finalized.",
       "keywords": [
@@ -253,7 +253,7 @@
       "route": "/design/adaptive-peg-defence",
       "url": "https://polaris-finance.github.io/polaris-docs/design/adaptive-peg-defence",
       "markdownUrl": "https://polaris-finance.github.io/polaris-docs/design/adaptive-peg-defence.md",
-      "section": "Protocol Design",
+      "section": "Protocol Mechanics",
       "title": "Adaptive Peg Defence",
       "description": "Polaris uses permissionless minting and redemptions to help pAssets trade around their target price.",
       "keywords": [],
@@ -263,7 +263,7 @@
       "route": "/design/conversions",
       "url": "https://polaris-finance.github.io/polaris-docs/design/conversions",
       "markdownUrl": "https://polaris-finance.github.io/polaris-docs/design/conversions.md",
-      "section": "Protocol Design",
+      "section": "Protocol Mechanics",
       "title": "Conversions",
       "description": "As introduced in the POLAR section, the long-term supply of POLAR does not grow through perpetual emissions.",
       "keywords": [
@@ -280,7 +280,7 @@
       "route": "/design/fee-router",
       "url": "https://polaris-finance.github.io/polaris-docs/design/fee-router",
       "markdownUrl": "https://polaris-finance.github.io/polaris-docs/design/fee-router.md",
-      "section": "Protocol Design",
+      "section": "Protocol Mechanics",
       "title": "Fee Router",
       "description": "The Fee Router is the system that redirects value generated by Polaris back into the ecosystem.",
       "keywords": [],
@@ -290,7 +290,7 @@
       "route": "/design/interest-rates",
       "url": "https://polaris-finance.github.io/polaris-docs/design/interest-rates",
       "markdownUrl": "https://polaris-finance.github.io/polaris-docs/design/interest-rates.md",
-      "section": "Protocol Design",
+      "section": "Protocol Mechanics",
       "title": "Interest Rates",
       "description": "Polaris uses two complementary interest rates to manage pAsset markets.",
       "keywords": [],
@@ -300,7 +300,7 @@
       "route": "/design/liquidations",
       "url": "https://polaris-finance.github.io/polaris-docs/design/liquidations",
       "markdownUrl": "https://polaris-finance.github.io/polaris-docs/design/liquidations.md",
-      "section": "Protocol Design",
+      "section": "Protocol Mechanics",
       "title": "Liquidations",
       "description": "When a user mints a pAsset, they do so against pETH collateral.",
       "keywords": [
@@ -316,7 +316,7 @@
       "route": "/design/oracles",
       "url": "https://polaris-finance.github.io/polaris-docs/design/oracles",
       "markdownUrl": "https://polaris-finance.github.io/polaris-docs/design/oracles.md",
-      "section": "Protocol Design",
+      "section": "Protocol Mechanics",
       "title": "Oracles",
       "description": "Polaris is built around the idea that the protocol should determine its own behavior whenever possible.",
       "keywords": [
@@ -333,7 +333,7 @@
       "route": "/design/recovery-mode",
       "url": "https://polaris-finance.github.io/polaris-docs/design/recovery-mode",
       "markdownUrl": "https://polaris-finance.github.io/polaris-docs/design/recovery-mode.md",
-      "section": "Protocol Design",
+      "section": "Protocol Mechanics",
       "title": "Recovery Mode",
       "description": "Recovery Mode is the protective state a pAsset market enters when its overall collateralization falls below a critical threshold.",
       "keywords": [],
@@ -343,7 +343,7 @@
       "route": "/design/revenue-model",
       "url": "https://polaris-finance.github.io/polaris-docs/design/revenue-model",
       "markdownUrl": "https://polaris-finance.github.io/polaris-docs/design/revenue-model.md",
-      "section": "Protocol Design",
+      "section": "Protocol Mechanics",
       "title": "Revenue Model",
       "description": "Polaris operates under the design philosophy that value generated throughout the protocol should not leak externally.",
       "keywords": [],
@@ -353,19 +353,39 @@
       "route": "/design/spike-and-decay-fees",
       "url": "https://polaris-finance.github.io/polaris-docs/design/spike-and-decay-fees",
       "markdownUrl": "https://polaris-finance.github.io/polaris-docs/design/spike-and-decay-fees.md",
-      "section": "Protocol Design",
+      "section": "Protocol Mechanics",
       "title": "Spike-and-decay Fees",
       "description": "Several core mechanisms across Polaris use spike-and-decay pricing.",
       "keywords": [],
       "updated": null
     },
     {
-      "route": "/manifesto",
-      "url": "https://polaris-finance.github.io/polaris-docs/manifesto",
-      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/manifesto.md",
+      "route": "/overview/manifesto",
+      "url": "https://polaris-finance.github.io/polaris-docs/overview/manifesto",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/overview/manifesto.md",
       "section": "Overview",
       "title": "Manifesto",
       "description": "Decentralized finance was built on the idea that money should not depend on trusted intermediaries.",
+      "keywords": [],
+      "updated": null
+    },
+    {
+      "route": "/overview/vision",
+      "url": "https://polaris-finance.github.io/polaris-docs/overview/vision",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/overview/vision.md",
+      "section": "Overview",
+      "title": "Vision",
+      "description": "Stablecoins are the largest monetary application built on blockchains today.",
+      "keywords": [],
+      "updated": null
+    },
+    {
+      "route": "/overview/why-peth",
+      "url": "https://polaris-finance.github.io/polaris-docs/overview/why-peth",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/overview/why-peth.md",
+      "section": "Overview",
+      "title": "Why pETH",
+      "description": "The evolution of stablecoins revealed another structural problem.",
       "keywords": [],
       "updated": null
     },
@@ -386,11 +406,11 @@
       "updated": null
     },
     {
-      "route": "/risks/risks-polaris-removes",
-      "url": "https://polaris-finance.github.io/polaris-docs/risks/risks-polaris-removes",
-      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/risks/risks-polaris-removes.md",
+      "route": "/risks/security-properties",
+      "url": "https://polaris-finance.github.io/polaris-docs/risks/security-properties",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/risks/security-properties.md",
       "section": "Risks",
-      "title": "Risks Polaris Removes",
+      "title": "Security Properties",
       "description": "Polaris is designed to minimize trust wherever possible, although some sources of uncertainty remain unavoidable and are covered in the dedicated Risks section.",
       "keywords": [
         "risk",
@@ -600,26 +620,6 @@
         "sUSDp",
         "sGOLDp"
       ],
-      "updated": null
-    },
-    {
-      "route": "/vision",
-      "url": "https://polaris-finance.github.io/polaris-docs/vision",
-      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/vision.md",
-      "section": "Overview",
-      "title": "Vision",
-      "description": "Stablecoins are the largest monetary application built on blockchains today.",
-      "keywords": [],
-      "updated": null
-    },
-    {
-      "route": "/why-peth",
-      "url": "https://polaris-finance.github.io/polaris-docs/why-peth",
-      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/why-peth.md",
-      "section": "Overview",
-      "title": "Why pETH",
-      "description": "The evolution of stablecoins revealed another structural problem.",
-      "keywords": [],
       "updated": null
     }
   ]

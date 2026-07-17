@@ -6,7 +6,7 @@ import rootMeta from '../content/_meta.js'
 // belong to "Get started".
 function buildSectionIndex() {
   const index = {}
-  let group = 'Get started'
+  let group = 'Overview'
   for (const [key, value] of Object.entries(rootMeta)) {
     if (value && typeof value === 'object') {
       if (value.type === 'separator' && value.title) {
@@ -35,9 +35,9 @@ function segmentsOf(path) {
 // title already).
 export function sectionForPath(path) {
   const segs = segmentsOf(path)
-  if (!segs.length) return SECTION_INDEX.index?.group ?? 'Get started'
+  if (!segs.length) return SECTION_INDEX.index?.group ?? 'Overview'
   const entry = SECTION_INDEX[segs[0]]
-  if (!entry) return 'Get started'
+  if (!entry) return 'Overview'
   return segs.length > 1 ? entry.title : entry.group
 }
 

@@ -1,4 +1,4 @@
 export default {
   index: 'Overview',
-  'risks-polaris-removes': 'Risks Polaris Removes'
+  'security-properties': 'Security Properties'
 }

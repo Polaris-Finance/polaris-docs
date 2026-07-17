@@ -31,8 +31,8 @@ Relevant app/search vocabulary: app, official app, testnet, Sepolia, pETH, pAsse
 
 ## Manifesto
 
-URL: https://polaris-finance.github.io/polaris-docs/manifesto
-Markdown URL: https://polaris-finance.github.io/polaris-docs/manifesto.md
+URL: https://polaris-finance.github.io/polaris-docs/overview/manifesto
+Markdown URL: https://polaris-finance.github.io/polaris-docs/overview/manifesto.md
 
 Decentralized finance was built on the idea that money should not depend on trusted intermediaries. A permissionless financial layer open to everybody, where participation depends on transparent rules rather than centralized institutions.
 
@@ -52,8 +52,8 @@ This makes it clear that we have not yet managed to answer one of the fundamenta
 
 ## Vision
 
-URL: https://polaris-finance.github.io/polaris-docs/vision
-Markdown URL: https://polaris-finance.github.io/polaris-docs/vision.md
+URL: https://polaris-finance.github.io/polaris-docs/overview/vision
+Markdown URL: https://polaris-finance.github.io/polaris-docs/overview/vision.md
 
 Stablecoins are the largest monetary application built on blockchains today, and USDp represents Polaris' path toward a stable and censorship-resistant dollar that can finally scale. But once a scalable reserve asset exists as well, its role goes far beyond issuing a single currency.
 
@@ -77,8 +77,8 @@ In that future, Ethereum's growth and its monetary infrastructure no longer evol
 
 ## Why pETH
 
-URL: https://polaris-finance.github.io/polaris-docs/why-peth
-Markdown URL: https://polaris-finance.github.io/polaris-docs/why-peth.md
+URL: https://polaris-finance.github.io/polaris-docs/overview/why-peth
+Markdown URL: https://polaris-finance.github.io/polaris-docs/overview/why-peth.md
 
 The evolution of stablecoins revealed another structural problem.
 
@@ -1147,10 +1147,10 @@ Relevant app/search vocabulary: risk, risks, risk disclosure, smart contract ris
 
 ---
 
-## Risks Polaris Removes
+## Security Properties
 
-URL: https://polaris-finance.github.io/polaris-docs/risks/risks-polaris-removes
-Markdown URL: https://polaris-finance.github.io/polaris-docs/risks/risks-polaris-removes.md
+URL: https://polaris-finance.github.io/polaris-docs/risks/security-properties
+Markdown URL: https://polaris-finance.github.io/polaris-docs/risks/security-properties.md
 
 Polaris is designed to minimize trust wherever possible, although some sources of uncertainty remain unavoidable and are covered in the dedicated Risks section.
 

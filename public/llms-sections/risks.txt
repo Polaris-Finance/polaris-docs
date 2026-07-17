@@ -73,10 +73,10 @@ Relevant app/search vocabulary: risk, risks, risk disclosure, smart contract ris
 
 ---
 
-## Risks Polaris Removes
+## Security Properties
 
-URL: https://polaris-finance.github.io/polaris-docs/risks/risks-polaris-removes
-Markdown URL: https://polaris-finance.github.io/polaris-docs/risks/risks-polaris-removes.md
+URL: https://polaris-finance.github.io/polaris-docs/risks/security-properties
+Markdown URL: https://polaris-finance.github.io/polaris-docs/risks/security-properties.md
 
 Polaris is designed to minimize trust wherever possible, although some sources of uncertainty remain unavoidable and are covered in the dedicated Risks section.
 

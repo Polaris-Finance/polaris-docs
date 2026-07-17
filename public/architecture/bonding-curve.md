@@ -5,7 +5,7 @@
 
 Canonical URL: https://polaris-finance.github.io/polaris-docs/architecture/bonding-curve
 Markdown URL: https://polaris-finance.github.io/polaris-docs/architecture/bonding-curve.md
-Section: Protocol Architecture
+Section: Core Architecture
 
 Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
 Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt

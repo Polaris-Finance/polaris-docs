@@ -7,17 +7,11 @@ export default {
       toc: false
     }
   },
-  '-- home': {
-    type: 'separator',
-    title: 'Overview'
-  },
   index: 'Introduction',
-  manifesto: 'Manifesto',
-  'why-peth': 'Why pETH',
-  vision: 'Vision',
+  overview: 'Overview',
   'core-assets': 'Core Assets',
-  architecture: 'Protocol Architecture',
-  design: 'Protocol Design',
+  architecture: 'Core Architecture',
+  design: 'Protocol Mechanics',
   testnet: 'Using Polaris Testnet',
   risks: 'Risks'
 }

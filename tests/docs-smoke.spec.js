@@ -384,7 +384,7 @@ test('page chrome removals hold: no breadcrumbs, no TOC panel', async ({ page })
   // Owner decision (July 2026 feedback pass): visible breadcrumbs and the
   // "On this page" panel are disabled site-wide via the content/_meta.js
   // wildcard theme. JSON-LD breadcrumbs stay (crawler-facing only).
-  await page.goto(pathWithBase('/risks/risks-polaris-removes'))
+  await page.goto(pathWithBase('/risks/security-properties'))
   await expect(page.locator('.nextra-breadcrumb')).toHaveCount(0)
   // toc: false empties the panel but the theme keeps the aside shell in the
   // DOM; globals.css hides it.

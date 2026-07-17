@@ -66,7 +66,7 @@ article h3 {
 
 article h1 {
   font-weight: 600 !important;
-  font-size: clamp(2.15rem, 1.6rem + 1.8vw, 2.75rem) !important;
+  font-size: clamp(1.85rem, 1.5rem + 1.2vw, 2.3rem) !important;
 }
 
 /* The section hairline sits ABOVE the heading (owner decision, July 2026):
@@ -74,7 +74,7 @@ article h1 {
    the title. The theme's x:border-b utility needs the !important kill. */
 
 article h2 {
-  font-size: clamp(1.44rem, 1.28rem + 0.63vw, 1.89rem) !important;
+  font-size: clamp(1.32rem, 1.2rem + 0.5vw, 1.68rem) !important;
   border-bottom: 0 !important;
   border-top: 1px solid rgba(177, 147, 79, 0.35);
   padding-top: 1.75rem;
@@ -399,6 +399,24 @@ article figcaption {
 
 .pl-logo-text {
   white-space: nowrap;
+}
+
+/* ── Theme switch placement ─────────────────────────────────────────────── */
+
+/* The light/dark control lives in the navbar on desktop (owner request);
+   mobile keeps the theme switch inside the sidebar sheet, where there is
+   room, and hides the navbar copy to leave the row to logo + search. */
+
+@media (max-width: 767px) {
+  .pl-nav-theme {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .nextra-sidebar-footer button[title='Change theme'] {
+    display: none;
+  }
 }
 
 /* ── Footer ─────────────────────────────────────────────────────────────── */

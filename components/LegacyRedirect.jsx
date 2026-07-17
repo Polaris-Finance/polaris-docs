@@ -10,6 +10,10 @@ import { BASE_PATH, pathWithBase } from '../app/site-config.mjs'
 const LEGACY_REDIRECTS = {
   '/architecture/steward-responsibilities': '/architecture/stewardship',
   '/developers': '/',
+  '/manifesto': '/overview/manifesto',
+  '/why-peth': '/overview/why-peth',
+  '/vision': '/overview/vision',
+  '/risks/risks-polaris-removes': '/risks/security-properties',
   '/launch-status': '/testnet/dashboard',
   '/quickstart': '/testnet/dashboard',
   '/troubleshooting': '/testnet/advanced',

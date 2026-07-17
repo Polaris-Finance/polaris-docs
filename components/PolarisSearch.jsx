@@ -36,7 +36,7 @@ function curate(title, url) {
 
 // Curated entry points for the queryless state, in the protocol's reading order.
 const START_HERE = [
-  curate('Why pETH', '/why-peth'),
+  curate('Why pETH', '/overview/why-peth'),
   curate('pETH', '/core-assets/peth'),
   curate('Using Polaris Testnet', '/testnet/dashboard')
 ]

@@ -67,8 +67,8 @@ function readableSegment(segment) {
   const specialCases = new Map([
     ['peth', 'pETH'],
     ['polar', 'POLAR'],
-    ['architecture', 'Protocol Architecture'],
-    ['design', 'Protocol Design'],
+    ['architecture', 'Core Architecture'],
+    ['design', 'Protocol Mechanics'],
     ['testnet', 'Using Polaris Testnet'],
     ['passet-markets', 'pAsset Markets']
   ])
