@@ -1,4 +1,5 @@
-import { Footer, Layout, Navbar, ThemeSwitch } from 'nextra-theme-docs'
+import { Footer, Layout, Navbar } from 'nextra-theme-docs'
+import { NavThemeSwitch } from '../components/NavThemeSwitch'
 import { Head } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
 import { Inter, Cormorant_Garamond } from 'next/font/google'
@@ -136,7 +137,7 @@ const navbar = (
     {/* Desktop-only: mobile keeps the theme switch in the sidebar sheet and
         hides these links to leave room for search (see globals.css). */}
     <span className="pl-nav-theme">
-      <ThemeSwitch />
+      <NavThemeSwitch />
     </span>
     <a
       href="https://polarisfinance.io"
