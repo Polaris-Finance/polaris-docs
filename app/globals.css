@@ -17,9 +17,10 @@
   --polaris-polar: #9b8fcf;
 
   /* Prose color roles, theme-aware. Light defaults; .dark overrides below. */
-  /* Card surfaces, one canonical translucent tint per role. */
-  --pl-surface: rgba(44, 74, 110, 0.02);
-  --pl-card-border: rgba(44, 74, 110, 0.14);
+  /* Card surfaces read as soft filled boxes, not outlined ones (Aave-style,
+     July 2026): slightly stronger fill, near-invisible border. */
+  --pl-surface: rgba(44, 74, 110, 0.045);
+  --pl-card-border: rgba(44, 74, 110, 0.05);
 
   /* One shared hover transition + lift for the card family. */
   --font-serif-stack: var(--font-serif), 'Cormorant Garamond', Georgia, serif;
@@ -27,8 +28,8 @@
 }
 
 .dark {
-  --pl-surface: rgba(10, 22, 40, 0.4);
-  --pl-card-border: rgba(123, 165, 201, 0.15);
+  --pl-surface: rgba(123, 165, 201, 0.06);
+  --pl-card-border: rgba(123, 165, 201, 0.06);
 }
 
 /* Base typography */
@@ -68,13 +69,19 @@ article h1 {
   font-size: clamp(2.15rem, 1.6rem + 1.8vw, 2.75rem) !important;
 }
 
+/* The section hairline sits ABOVE the heading (owner decision, July 2026):
+   it separates the new section from the previous one rather than underlining
+   the title. The theme's x:border-b utility needs the !important kill. */
+
 article h2 {
-  font-size: clamp(1.6rem, 1.42rem + 0.7vw, 2.1rem) !important;
-  border-bottom-color: rgba(177, 147, 79, 0.35) !important;
+  font-size: clamp(1.44rem, 1.28rem + 0.63vw, 1.89rem) !important;
+  border-bottom: 0 !important;
+  border-top: 1px solid rgba(177, 147, 79, 0.35);
+  padding-top: 1.75rem;
 }
 
 .dark article h2 {
-  border-bottom-color: rgba(216, 201, 164, 0.3) !important;
+  border-top-color: rgba(216, 201, 164, 0.3);
 }
 
 /* The paragraph that opens a page reads as a lede. */
@@ -91,10 +98,12 @@ article h1 + p {
 }
 
 /* Sidebar auto-sizes to its longest label ("Deposit to the Earn Vault").
-   Content-width is kept at 94rem so the article area stays wide. */
+   With the "On this page" column removed, 94rem left the article stranded at
+   the left of a mostly empty canvas; 72rem centers the sidebar + article pair
+   with balanced margins while keeping ~56rem for the article. */
 
 :root {
-  --nextra-content-width: 94rem !important;
+  --nextra-content-width: 72rem !important;
 }
 
 @media (min-width: 768px) {
@@ -250,11 +259,11 @@ article :is(h1, h2, h3, h4):target {
 article hr {
   border: 0 !important;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(177, 147, 79, 0.45) 50%, transparent);
+  background: linear-gradient(90deg, transparent, rgba(177, 147, 79, 0.28) 50%, transparent);
 }
 
 .dark article hr {
-  background: linear-gradient(90deg, transparent, rgba(216, 201, 164, 0.4) 50%, transparent);
+  background: linear-gradient(90deg, transparent, rgba(216, 201, 164, 0.25) 50%, transparent);
 }
 
 /* ── Tables: editorial rules, not a spreadsheet grid ────────────────────────
@@ -275,12 +284,12 @@ article table[data-pl-table] :is(th, td) {
 article table[data-pl-table] thead th {
   text-align: left;
   background: rgba(63, 127, 168, 0.07);
-  border-bottom: 1.5px solid rgba(177, 147, 79, 0.5);
+  border-bottom: 1px solid rgba(177, 147, 79, 0.32);
 }
 
 .dark article table[data-pl-table] thead th {
   background: rgba(123, 165, 201, 0.1);
-  border-bottom-color: rgba(216, 201, 164, 0.42);
+  border-bottom-color: rgba(216, 201, 164, 0.28);
 }
 
 /* The first column is the row's subject; a touch more weight lets the eye run
@@ -332,7 +341,7 @@ article img[src*='/screenshots/'] {
 
 html:not(.dark) article img[src$='.svg'],
 html:not(.dark) article img[src*='/screenshots/'] {
-  box-shadow: 0 0 0 1px rgba(44, 74, 110, 0.12);
+  box-shadow: 0 2px 14px rgba(13, 31, 60, 0.08);
 }
 
 /* Infographics carry fine detail (labels, curves, multi-node flows) that gets
@@ -448,6 +457,24 @@ article [class*='x:float-end'] button,
 article button[aria-label*='Copy'],
 article button[title*='Copy'] {
   min-width: 44px;
+}
+
+/* Desktop (fine pointer): the "Copy page" control shrinks to roughly half its
+   touch size (owner request). Coarse pointers keep the 44px targets above;
+   WCAG's 44px criterion is touch-specific and 24px remains the pointer floor. */
+
+@media (pointer: fine) {
+  article [class*='x:float-end'] button {
+    min-height: 30px;
+    min-width: 30px;
+    font-size: 0.72rem;
+    gap: 0.35rem;
+  }
+
+  article [class*='x:float-end'] button svg {
+    width: 13px;
+    height: 13px;
+  }
 }
 
 /* ── Navbar search ───────────────────────────────────────────────────────── */
@@ -680,7 +707,7 @@ article button[title*='Copy'] {
   flex-direction: column;
   max-height: min(70vh, 30rem);
   border-radius: 0.85rem;
-  border: 1px solid rgba(13, 31, 60, 0.12);
+  border: 1px solid rgba(13, 31, 60, 0.07);
   background: rgba(250, 247, 240, 0.92);
   box-shadow: 0 22px 60px -18px rgba(13, 31, 60, 0.32);
   backdrop-filter: blur(16px) saturate(1.25);

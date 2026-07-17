@@ -642,13 +642,15 @@ test('docs controls meet 44px touch targets where scoped', async ({ page }, test
       'header nav .nextra-search input',
       '.nextra-sidebar a',
       '.nextra-sidebar button',
-      '.nextra-sidebar-footer button',
-      'article [class*="x:float-end"] button'
+      '.nextra-sidebar-footer button'
     ].join(', '),
-    'visible header/sidebar/article controls'
+    'visible header/sidebar controls'
   )
 
   if (testInfo.project.name === 'mobile') {
+    // The Copy page control is compact on fine pointers (owner request) but
+    // must keep the 44px target on touch devices.
+    await expectTouchTargets(page, 'article [class*="x:float-end"] button', 'article copy controls')
     await page
       .getByRole('button', { name: /menu|navigation/i })
       .first()
