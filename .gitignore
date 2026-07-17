@@ -41,3 +41,5 @@ __pycache__/
 /playwright-report/
 /test-results/
 /.next.stale*
+/.next-build/
+/.next-dev/

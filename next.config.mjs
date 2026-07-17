@@ -16,6 +16,11 @@ const withNextra = nextra({
 export default withNextra({
   output: 'export',
   basePath: BASE_PATH,
+  // The dev server runs in its own dist dir (set in scripts/dev.mjs) so
+  // `next build` never clobbers a running dev server's state — interleaving
+  // the two in one .next corrupts the dev webpack cache ("X is not exported
+  // from react"). Builds keep the default .next → out/ export flow.
+  distDir: process.env.NEXT_DIST_DIR ?? '.next',
   images: {
     unoptimized: true
   },

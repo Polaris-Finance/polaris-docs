@@ -401,6 +401,14 @@ article figcaption {
   white-space: nowrap;
 }
 
+/* Heading permalink "#" buttons are hidden (owner request): the ids stay for
+   deep links, search sub-results, and the :target wash — only the visible
+   affordance goes. */
+
+article .subheading-anchor {
+  display: none;
+}
+
 /* ── Theme switch placement ─────────────────────────────────────────────── */
 
 /* The light/dark control lives in the navbar on desktop (owner request);
@@ -419,6 +427,28 @@ article figcaption {
   }
 }
 
+/* The Website link matches the ThemeSwitch label (text-sm, gray) so the
+   navbar's right side reads as one family. */
+
+.pl-nav-website {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--x-color-gray-600);
+  transition: color 0.15s ease;
+}
+
+.pl-nav-website:hover {
+  color: var(--x-color-gray-800);
+}
+
+.dark .pl-nav-website {
+  color: var(--x-color-gray-400);
+}
+
+.dark .pl-nav-website:hover {
+  color: var(--x-color-gray-200);
+}
+
 /* ── Footer ─────────────────────────────────────────────────────────────── */
 
 /* The llms.txt link previously used opacity 0.7, which fails 4.5:1 AA at
@@ -431,6 +461,27 @@ article figcaption {
 
 .dark .pl-footer-llms {
   color: rgba(232, 220, 196, 0.78);
+}
+
+/* Icon-only X link beside llms.txt; inherits the quiet footer color. */
+
+.pl-footer-x {
+  display: inline-flex;
+  align-items: center;
+  color: rgba(13, 31, 60, 0.78);
+  transition: color 0.15s ease;
+}
+
+.pl-footer-x:hover {
+  color: var(--polaris-navy);
+}
+
+.dark .pl-footer-x {
+  color: rgba(232, 220, 196, 0.78);
+}
+
+.dark .pl-footer-x:hover {
+  color: var(--polaris-star-bright);
 }
 
 /* ── Touch targets ──────────────────────────────────────────────────────── */

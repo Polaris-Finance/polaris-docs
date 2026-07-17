@@ -7,6 +7,8 @@ const nodeOptions = [process.env.NODE_OPTIONS, '--no-experimental-webstorage']
 const child = spawn('next', ['dev', '--webpack', ...process.argv.slice(2)], {
   env: {
     ...process.env,
+    // Isolate the dev server from `next build` (see distDir in next.config.mjs).
+    NEXT_DIST_DIR: process.env.NEXT_DIST_DIR ?? '.next-dev',
     NODE_OPTIONS: nodeOptions
   },
   shell: process.platform === 'win32',
