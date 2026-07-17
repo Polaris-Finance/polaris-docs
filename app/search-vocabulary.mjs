@@ -55,7 +55,7 @@ export const searchVocabulary = [
     ]
   },
   {
-    match: /^\/testnet\/(earn|zap)$|^\/architecture\/earn-vaults$/,
+    match: /^\/testnet\/earn$|^\/architecture\/earn-vaults$/,
     terms: [
       'Earn',
       'earn',
@@ -87,7 +87,7 @@ export const searchVocabulary = [
     priorityTerms: ['POLAR', 'POLAR token', 'POLAR staking', 'staking POLAR', 'vePOLAR']
   },
   {
-    match: /^\/architecture\/reserve-loans$/,
+    match: /^\/architecture\/reserve-loans$|^\/testnet\/reserve-loan$/,
     terms: ['Reserve Loan', 'Reserve Loans', 'borrow ETH', 'non-liquidatable', 'fpETH collateral']
   },
   {

@@ -15,18 +15,41 @@
 URL: https://polaris-finance.github.io/polaris-docs/testnet/advanced
 Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/advanced.md
 
-Advanced provides direct access to protocol mechanisms that are primarily intended for arbitrageurs, keepers and experienced users.
+The Advanced section brings together protocol operations that go beyond the standard user flows.
 
-This section includes tools such as the Peg Stability Module, the pETH-to-POLAR conversion mechanism and the testnet faucet.
+These tools are primarily intended for arbitrageurs and experienced users who want direct access to core protocol mechanisms.
 
-- Peg Stability Module: Mint or redeem USDp and GOLDp against pETH at the oracle price.
-- Convert pETH to POLAR: Convert pETH into newly issued POLAR through the protocol's one-way conversion mechanism.
+This section currently includes the following operations:
 
-While these actions remain permissionless, they assume a good understanding of how Polaris works.
-
-If you are unfamiliar with a particular mechanism, refer to its dedicated documentation before using it.
+- **Mint / Redeem**: Mint or redeem USDp and GOLDp directly against pETH whenever market prices create arbitrage opportunities that help restore the peg.
+- **SP Direct**: Deposit directly into the Stability Pool instead of the auto-compounding Earn Vault.
+- **Collateral Auctions** *(currently unavailable)*: When a savings vault absorbs a liquidation, you can purchase pETH collateral from permissionless liquidation auctions. Most auctions are expected to be cleared by keeper bots, but anyone can participate.
+- **Conversions**: Convert pETH into POLAR directly through the protocol conversion mechanism.
 
 Relevant app/search vocabulary: app, official app, testnet app, app.testnet.polarisfinance.io, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Peg Stability Module, PSM, redeem, convert pETH to POLAR, arbitrage.
+
+---
+
+## Analytics
+
+URL: https://polaris-finance.github.io/polaris-docs/testnet/analytics
+Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/analytics.md
+
+This section offers a real-time overview of protocol activity throughout the testnet.
+
+From here you can monitor the performance of every major Polaris components, with interactive visualizations and live metrics that make it easy to understand how the protocol evolves over time and how its different features interact.
+
+## Protocol Metrics
+
+Analytics are organized by protocol component, allowing you to explore the metrics that matter for each part of the system. Depending on the selected view, you'll find information such as yield, utilization, liquidity, issuance, lending activity, governance participation and other protocol-specific indicators.
+
+## Fee Flows
+
+The Fee Flows visualization provides an interactive view of how value moves throughout Polaris. Multiple visualization modes are available to explore fee distribution, APR sources and the relationships between protocol components from different perspectives.
+
+Image: The Fee Flows visualization showing how value moves between Polaris components
+
+Relevant app/search vocabulary: app, official app, testnet app, app.testnet.polarisfinance.io, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet.
 
 ---
 
@@ -39,6 +62,8 @@ The Dashboard provides a complete overview of your activity across Polaris. From
 
 It is designed to be the starting point of the application, allowing you to quickly understand the current state of your portfolio without navigating through every individual section.
 
+Image: The Polaris testnet Dashboard, showing balances, active positions, Earn deposits and recent transactions
+
 Relevant app/search vocabulary: app, official app, testnet app, app.testnet.polarisfinance.io, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet.
 
 ---
@@ -48,11 +73,54 @@ Relevant app/search vocabulary: app, official app, testnet app, app.testnet.pola
 URL: https://polaris-finance.github.io/polaris-docs/testnet/earn
 Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/earn.md
 
-Earn brings together the yield opportunities currently available across Polaris.
+This section gives users access to the Earn Vaults. From here you can deposit into the auto-compounding sUSDp and sGOLDp Earn Vaults, monitor your deposits and accumulated yield, and withdraw your funds whenever you want.
 
-Depending on the asset, you can deposit into Earn Vaults, stake POLAR or participate in other protocol-native strategies as they become available. Your current deposits, pending rewards and historical performance are all managed from this section.
+Everything related to your Earn positions is managed from this section.
+
+Image: The Earn interface with the auto-compounding sUSDp and sGOLDp Earn Vaults
 
 Relevant app/search vocabulary: app, official app, testnet app, app.testnet.polarisfinance.io, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Earn, earn, yield, APR, Earn Vault, deposit, claim rewards, sUSDp, sGOLDp.
+
+---
+
+## Guide
+
+URL: https://polaris-finance.github.io/polaris-docs/testnet/guide
+Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/guide.md
+
+This section contains detailed explanations of every core interaction available during the testnet. Organized by protocol section and asset, it explains how each feature works and what happens when you perform different actions.
+
+It is designed to accompany your exploration of Polaris, making it easier to understand the protocol while using it.
+
+Each of the following pages also include explanations for the actions available in that section, providing additional context while you interact with the protocol.
+
+Image: The in-app Guide, with explanations organized by protocol section and asset
+
+Relevant app/search vocabulary: app, official app, testnet app, app.testnet.polarisfinance.io, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet.
+
+---
+
+## Liquidity
+
+URL: https://polaris-finance.github.io/polaris-docs/testnet/liquidity
+Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/liquidity.md
+
+This section is where you provide liquidity to Polaris pools and earn a share of the swap fees they generate.
+
+From here you can add or remove liquidity, monitor your positions and pool statistics, and manage your exposure across different protocol markets.
+
+Every pool displays its current liquidity, estimated APR, your share of the pool, and the assets that can be redeemed when withdrawing liquidity.
+
+Polaris currently offers the following liquidity pools:
+
+- USD Pool (USDp–ETH)
+- POLAR Pool (pETH–POLAR)
+- GOLD Pool (GOLDp–ETH)
+- Split TriPool (pETH–fpETH–vpETH)
+
+Image: The Liquidity interface listing Polaris pools with liquidity, APR and pool share
+
+Relevant app/search vocabulary: app, official app, testnet app, app.testnet.polarisfinance.io, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet.
 
 ---
 
@@ -71,7 +139,24 @@ Existing positions can also be adjusted from this page by adding collateral, rep
 
 Before confirming any transaction, review your collateral ratio, interest rate and the resulting position.
 
+Image: The Mint interface for creating and managing collateralized USDp and GOLDp positions
+
 Relevant app/search vocabulary: app, official app, testnet app, app.testnet.polarisfinance.io, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Mint, borrow, issue, trove, troves, open trove, manage trove, collateralized debt position, CDP, open borrow position, manage position, repay, close borrow position, USDp, GOLDp, LTV, loan-to-value.
+
+---
+
+## Reserve Loan
+
+URL: https://polaris-finance.github.io/polaris-docs/testnet/reserve-loan
+Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/reserve-loan.md
+
+Reserve Loans enable you to borrow ETH by using fpETH as collateral. From here you can open and manage non-liquidatable Reserve Loans, view your active positions, and repay or close existing loans.
+
+It is designed to provide a clear overview of your Reserve Loans and the actions available to manage them.
+
+Image: The Reserve Loan interface for opening and managing non-liquidatable ETH loans against fpETH
+
+Relevant app/search vocabulary: app, official app, testnet app, app.testnet.polarisfinance.io, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Reserve Loan, Reserve Loans, borrow ETH, non-liquidatable, fpETH collateral.
 
 ---
 
@@ -82,7 +167,11 @@ Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/split.md
 
 Split allows you to separate pETH into fpETH and vpETH, or merge those two assets back into pETH whenever you choose.
 
-Because the operation is entirely internal to Polaris, splitting and merging never changes the total economic value represented by your position. It simply separates the floor component from the market premium, allowing each asset to be used independently.
+Because the operation is entirely internal to Polaris, splitting and merging never changes the total economic value represented by your position.
+
+It simply separates the floor component from the market premium, allowing each asset to be used independently.
+
+Image: The Split interface for separating pETH into fpETH and vpETH or merging them back
 
 Relevant app/search vocabulary: app, official app, testnet app, app.testnet.polarisfinance.io, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Swap, swap, Split, fpETH, vpETH, pETH, floor price.
 
@@ -99,24 +188,38 @@ All pETH swaps are executed through the Polaris bonding curve, while additional 
 
 Before confirming a swap, review the quoted output, price impact, fees and minimum received.
 
+Image: The Swap interface with quoted output, price impact, fees and minimum received
+
 Relevant app/search vocabulary: app, official app, testnet app, app.testnet.polarisfinance.io, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Swap, swap, Split, fpETH, vpETH, pETH, floor price.
 
 ---
 
-## Zap
+## vePOLAR
 
-URL: https://polaris-finance.github.io/polaris-docs/testnet/zap
-Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/zap.md
+URL: https://polaris-finance.github.io/polaris-docs/testnet/vepolar
+Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/vepolar.md
 
-Zap combines several protocol actions into a single transaction, making common strategies easier to execute.
+This is where you commit POLAR to receive vePOLAR voting power.
 
-The final result is identical to performing every step manually, while reducing the number of transactions required. Positions created through Zap can always be managed later using the standard sections of the application.
+From here you can create and manage lock positions, monitor your voting power and rewards, and participate in protocol stewardship.
 
-Available strategies may evolve over time as new protocol features are introduced.
+Each position is created independently, letting you choose a different amount and commitment period for every lock.
 
-Current strategies are:
+Image: The vePOLAR interface for creating and managing POLAR lock positions
 
-- USDp Stable Yield: Converts ETH into USDp and deposits it into the USDp Earn Vault
-- Floor Carry: Converts ETH into fpETH and opens a Reserve Loan, making it easy to build non-liquidatable looping positions.
+Relevant app/search vocabulary: app, official app, testnet app, app.testnet.polarisfinance.io, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet.
 
-Relevant app/search vocabulary: app, official app, testnet app, app.testnet.polarisfinance.io, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Earn, earn, yield, APR, Earn Vault, deposit, claim rewards, sUSDp, sGOLDp.
+---
+
+## vpETH
+
+URL: https://polaris-finance.github.io/polaris-docs/testnet/vpeth
+Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/vpeth.md
+
+The vpETH Lending Market allows users to supply vpETH to earn lending yield or borrow vpETH against ETH collateral.
+
+Borrowed vpETH can be sold to create a hedged position, helping reduce exposure to pETH price movements while maintaining collateral onchain.
+
+From here you can supply or withdraw vpETH, manage collateral and debt, and monitor key market metrics including utilization, available liquidity, maximum LTV, and the current vpETH price.
+
+Relevant app/search vocabulary: app, official app, testnet app, app.testnet.polarisfinance.io, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet.

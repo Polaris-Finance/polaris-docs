@@ -543,11 +543,11 @@ test('search snippets avoid hidden vocabulary and table boilerplate', async ({ p
 
   const input = page.locator('input[type="search"][placeholder*="Search"]:visible').first()
   await input.click()
-  await input.fill('zap')
+  await input.fill('split')
 
   const results = page.locator('.nextra-search-results')
   await expect(results).toBeVisible()
-  await expect(results).toContainText(/Zap/i)
+  await expect(results).toContainText(/Split/i)
 
   const text = (await results.textContent()) ?? ''
   expect(text).not.toMatch(/Search vocabulary|Table columns|Skip to content/i)

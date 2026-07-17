@@ -21,3 +21,5 @@ If you hold fpETH, the same interface also lets you borrow ETH through Reserve L
 Existing positions can also be adjusted from this page by adding collateral, repaying debt or closing the position.
 
 Before confirming any transaction, review your collateral ratio, interest rate and the resulting position.
+
+![The Mint interface for creating and managing collateralized USDp and GOLDp positions](https://polaris-finance.github.io/polaris-docs/screenshots/testnet/mint.png)

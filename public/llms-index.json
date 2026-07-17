@@ -427,7 +427,7 @@
       "markdownUrl": "https://polaris-finance.github.io/polaris-docs/testnet/advanced.md",
       "section": "Using Polaris Testnet",
       "title": "Advanced",
-      "description": "Advanced provides direct access to protocol mechanisms that are primarily intended for arbitrageurs, keepers and experienced users.",
+      "description": "Protocol operations that go beyond the standard user flows.",
       "keywords": [
         "app",
         "official app",
@@ -444,6 +444,27 @@
         "redeem",
         "convert pETH to POLAR",
         "arbitrage"
+      ],
+      "updated": null
+    },
+    {
+      "route": "/testnet/analytics",
+      "url": "https://polaris-finance.github.io/polaris-docs/testnet/analytics",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/testnet/analytics.md",
+      "section": "Using Polaris Testnet",
+      "title": "Analytics",
+      "description": "A real-time overview of protocol activity throughout the testnet.",
+      "keywords": [
+        "app",
+        "official app",
+        "testnet app",
+        "app.testnet.polarisfinance.io",
+        "connect wallet",
+        "testnet",
+        "Sepolia",
+        "Sepolia ETH",
+        "chain ID 11155111",
+        "faucet"
       ],
       "updated": null
     },
@@ -474,7 +495,7 @@
       "markdownUrl": "https://polaris-finance.github.io/polaris-docs/testnet/earn.md",
       "section": "Using Polaris Testnet",
       "title": "Earn",
-      "description": "Earn brings together the yield opportunities currently available across Polaris.",
+      "description": "Deposit into the auto-compounding sUSDp and sGOLDp Earn Vaults.",
       "keywords": [
         "app",
         "official app",
@@ -495,6 +516,48 @@
         "claim rewards",
         "sUSDp",
         "sGOLDp"
+      ],
+      "updated": null
+    },
+    {
+      "route": "/testnet/guide",
+      "url": "https://polaris-finance.github.io/polaris-docs/testnet/guide",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/testnet/guide.md",
+      "section": "Using Polaris Testnet",
+      "title": "Guide",
+      "description": "Detailed explanations of every core interaction available during the testnet.",
+      "keywords": [
+        "app",
+        "official app",
+        "testnet app",
+        "app.testnet.polarisfinance.io",
+        "connect wallet",
+        "testnet",
+        "Sepolia",
+        "Sepolia ETH",
+        "chain ID 11155111",
+        "faucet"
+      ],
+      "updated": null
+    },
+    {
+      "route": "/testnet/liquidity",
+      "url": "https://polaris-finance.github.io/polaris-docs/testnet/liquidity",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/testnet/liquidity.md",
+      "section": "Using Polaris Testnet",
+      "title": "Liquidity",
+      "description": "Provide liquidity to Polaris pools and earn a share of the swap fees they generate.",
+      "keywords": [
+        "app",
+        "official app",
+        "testnet app",
+        "app.testnet.polarisfinance.io",
+        "connect wallet",
+        "testnet",
+        "Sepolia",
+        "Sepolia ETH",
+        "chain ID 11155111",
+        "faucet"
       ],
       "updated": null
     },
@@ -533,6 +596,32 @@
         "GOLDp",
         "LTV",
         "loan-to-value"
+      ],
+      "updated": null
+    },
+    {
+      "route": "/testnet/reserve-loan",
+      "url": "https://polaris-finance.github.io/polaris-docs/testnet/reserve-loan",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/testnet/reserve-loan.md",
+      "section": "Using Polaris Testnet",
+      "title": "Reserve Loan",
+      "description": "Borrow ETH by using fpETH as collateral through non-liquidatable Reserve Loans.",
+      "keywords": [
+        "app",
+        "official app",
+        "testnet app",
+        "app.testnet.polarisfinance.io",
+        "connect wallet",
+        "testnet",
+        "Sepolia",
+        "Sepolia ETH",
+        "chain ID 11155111",
+        "faucet",
+        "Reserve Loan",
+        "Reserve Loans",
+        "borrow ETH",
+        "non-liquidatable",
+        "fpETH collateral"
       ],
       "updated": null
     },
@@ -593,12 +682,12 @@
       "updated": null
     },
     {
-      "route": "/testnet/zap",
-      "url": "https://polaris-finance.github.io/polaris-docs/testnet/zap",
-      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/testnet/zap.md",
+      "route": "/testnet/vepolar",
+      "url": "https://polaris-finance.github.io/polaris-docs/testnet/vepolar",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/testnet/vepolar.md",
       "section": "Using Polaris Testnet",
-      "title": "Zap",
-      "description": "Zap combines several protocol actions into a single transaction, making common strategies easier to execute.",
+      "title": "vePOLAR",
+      "description": "Commit POLAR to receive vePOLAR voting power and participate in protocol stewardship.",
       "keywords": [
         "app",
         "official app",
@@ -609,16 +698,28 @@
         "Sepolia",
         "Sepolia ETH",
         "chain ID 11155111",
-        "faucet",
-        "Earn",
-        "earn",
-        "yield",
-        "APR",
-        "Earn Vault",
-        "deposit",
-        "claim rewards",
-        "sUSDp",
-        "sGOLDp"
+        "faucet"
+      ],
+      "updated": null
+    },
+    {
+      "route": "/testnet/vpeth",
+      "url": "https://polaris-finance.github.io/polaris-docs/testnet/vpeth",
+      "markdownUrl": "https://polaris-finance.github.io/polaris-docs/testnet/vpeth.md",
+      "section": "Using Polaris Testnet",
+      "title": "vpETH",
+      "description": "Supply vpETH to earn lending yield or borrow vpETH against ETH collateral.",
+      "keywords": [
+        "app",
+        "official app",
+        "testnet app",
+        "app.testnet.polarisfinance.io",
+        "connect wallet",
+        "testnet",
+        "Sepolia",
+        "Sepolia ETH",
+        "chain ID 11155111",
+        "faucet"
       ],
       "updated": null
     }

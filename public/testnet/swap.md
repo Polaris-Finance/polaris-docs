@@ -17,3 +17,5 @@ Swap lets you exchange supported assets across Polaris, which currently are the 
 All pETH swaps are executed through the Polaris bonding curve, while additional trading routes may be available depending on the assets involved.
 
 Before confirming a swap, review the quoted output, price impact, fees and minimum received.
+
+![The Swap interface with quoted output, price impact, fees and minimum received](https://polaris-finance.github.io/polaris-docs/screenshots/testnet/swap.png)

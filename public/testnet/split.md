@@ -14,4 +14,8 @@ Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-f
 
 Split allows you to separate pETH into fpETH and vpETH, or merge those two assets back into pETH whenever you choose.
 
-Because the operation is entirely internal to Polaris, splitting and merging never changes the total economic value represented by your position. It simply separates the floor component from the market premium, allowing each asset to be used independently.
+Because the operation is entirely internal to Polaris, splitting and merging never changes the total economic value represented by your position.
+
+It simply separates the floor component from the market premium, allowing each asset to be used independently.
+
+![The Split interface for separating pETH into fpETH and vpETH or merging them back](https://polaris-finance.github.io/polaris-docs/screenshots/testnet/split.png)

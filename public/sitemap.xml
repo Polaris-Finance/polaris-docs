@@ -175,6 +175,11 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://polaris-finance.github.io/polaris-docs/testnet/analytics</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://polaris-finance.github.io/polaris-docs/testnet/dashboard</loc>
     <lastmod>2026-07-16</lastmod>
     <changefreq>weekly</changefreq>
@@ -187,8 +192,23 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://polaris-finance.github.io/polaris-docs/testnet/guide</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://polaris-finance.github.io/polaris-docs/testnet/liquidity</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://polaris-finance.github.io/polaris-docs/testnet/mint</loc>
     <lastmod>2026-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://polaris-finance.github.io/polaris-docs/testnet/reserve-loan</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -205,8 +225,12 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/testnet/zap</loc>
-    <lastmod>2026-07-16</lastmod>
+    <loc>https://polaris-finance.github.io/polaris-docs/testnet/vepolar</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://polaris-finance.github.io/polaris-docs/testnet/vpeth</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>

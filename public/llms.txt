@@ -61,13 +61,18 @@
 
 ## Using Polaris Testnet
 
-- [Advanced](https://polaris-finance.github.io/polaris-docs/testnet/advanced.md): Advanced provides direct access to protocol mechanisms that are primarily intended for arbitrageurs, keepers and experienced users. Canonical: https://polaris-finance.github.io/polaris-docs/testnet/advanced
+- [Advanced](https://polaris-finance.github.io/polaris-docs/testnet/advanced.md): Protocol operations that go beyond the standard user flows. Canonical: https://polaris-finance.github.io/polaris-docs/testnet/advanced
+- [Analytics](https://polaris-finance.github.io/polaris-docs/testnet/analytics.md): A real-time overview of protocol activity throughout the testnet. Canonical: https://polaris-finance.github.io/polaris-docs/testnet/analytics
 - [Dashboard](https://polaris-finance.github.io/polaris-docs/testnet/dashboard.md): The Dashboard provides a complete overview of your activity across Polaris. Canonical: https://polaris-finance.github.io/polaris-docs/testnet/dashboard
-- [Earn](https://polaris-finance.github.io/polaris-docs/testnet/earn.md): Earn brings together the yield opportunities currently available across Polaris. Canonical: https://polaris-finance.github.io/polaris-docs/testnet/earn
+- [Earn](https://polaris-finance.github.io/polaris-docs/testnet/earn.md): Deposit into the auto-compounding sUSDp and sGOLDp Earn Vaults. Canonical: https://polaris-finance.github.io/polaris-docs/testnet/earn
+- [Guide](https://polaris-finance.github.io/polaris-docs/testnet/guide.md): Detailed explanations of every core interaction available during the testnet. Canonical: https://polaris-finance.github.io/polaris-docs/testnet/guide
+- [Liquidity](https://polaris-finance.github.io/polaris-docs/testnet/liquidity.md): Provide liquidity to Polaris pools and earn a share of the swap fees they generate. Canonical: https://polaris-finance.github.io/polaris-docs/testnet/liquidity
 - [Mint](https://polaris-finance.github.io/polaris-docs/testnet/mint.md): The Mint section is where collateralized positions are created and managed. Canonical: https://polaris-finance.github.io/polaris-docs/testnet/mint
+- [Reserve Loan](https://polaris-finance.github.io/polaris-docs/testnet/reserve-loan.md): Borrow ETH by using fpETH as collateral through non-liquidatable Reserve Loans. Canonical: https://polaris-finance.github.io/polaris-docs/testnet/reserve-loan
 - [Split](https://polaris-finance.github.io/polaris-docs/testnet/split.md): Split allows you to separate pETH into fpETH and vpETH, or merge those two assets back into pETH whenever you choose. Canonical: https://polaris-finance.github.io/polaris-docs/testnet/split
 - [Swap](https://polaris-finance.github.io/polaris-docs/testnet/swap.md): Swap lets you exchange supported assets across Polaris, which currently are the Core Assets. Canonical: https://polaris-finance.github.io/polaris-docs/testnet/swap
-- [Zap](https://polaris-finance.github.io/polaris-docs/testnet/zap.md): Zap combines several protocol actions into a single transaction, making common strategies easier to execute. Canonical: https://polaris-finance.github.io/polaris-docs/testnet/zap
+- [vePOLAR](https://polaris-finance.github.io/polaris-docs/testnet/vepolar.md): Commit POLAR to receive vePOLAR voting power and participate in protocol stewardship. Canonical: https://polaris-finance.github.io/polaris-docs/testnet/vepolar
+- [vpETH](https://polaris-finance.github.io/polaris-docs/testnet/vpeth.md): Supply vpETH to earn lending yield or borrow vpETH against ETH collateral. Canonical: https://polaris-finance.github.io/polaris-docs/testnet/vpeth
 
 ## Risks
 

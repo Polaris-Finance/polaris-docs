@@ -14,6 +14,7 @@ const LEGACY_REDIRECTS = {
   '/why-peth': '/overview/why-peth',
   '/vision': '/overview/vision',
   '/risks/risks-polaris-removes': '/risks/security-properties',
+  '/testnet/zap': '/testnet/swap',
   '/launch-status': '/testnet/dashboard',
   '/quickstart': '/testnet/dashboard',
   '/troubleshooting': '/testnet/advanced',

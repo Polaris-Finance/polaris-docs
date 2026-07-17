@@ -334,13 +334,18 @@ article blockquote {
 /* Infographics are intentional dark panels; frame them so they read as a
    deliberate inset in light mode rather than a stray dark band on cream. */
 
+/* data-nimg matches content images rendered through Nextra's Image pipeline,
+   whose bundled _next/static/media URLs no longer carry the source path. */
+
 article img[src$='.svg'],
-article img[src*='/screenshots/'] {
+article img[src*='/screenshots/'],
+article img[data-nimg] {
   border-radius: 10px;
 }
 
 html:not(.dark) article img[src$='.svg'],
-html:not(.dark) article img[src*='/screenshots/'] {
+html:not(.dark) article img[src*='/screenshots/'],
+html:not(.dark) article img[data-nimg] {
   box-shadow: 0 2px 14px rgba(13, 31, 60, 0.08);
 }
 
