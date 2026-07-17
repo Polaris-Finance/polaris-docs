@@ -9,7 +9,7 @@ export default {
   },
   '-- home': {
     type: 'separator',
-    title: 'Home'
+    title: 'Overview'
   },
   index: 'Introduction',
   manifesto: 'Manifesto',

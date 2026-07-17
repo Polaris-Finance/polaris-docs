@@ -14,14 +14,14 @@
 - [JSON docs index](https://polaris-finance.github.io/polaris-docs/llms-index.json): Routes, canonical URLs, Markdown URLs, sections, keywords, and freshness metadata.
 - [Well-known llms.txt mirror](https://polaris-finance.github.io/polaris-docs/.well-known/llms.txt): Alternate discovery path for the docs index.
 - [Well-known full bundle mirror](https://polaris-finance.github.io/polaris-docs/.well-known/llms-full.txt): Alternate discovery path for the full Markdown bundle.
-- [Home section bundle](https://polaris-finance.github.io/polaris-docs/llms-sections/home.txt): Focused Markdown bundle for this documentation section.
+- [Overview section bundle](https://polaris-finance.github.io/polaris-docs/llms-sections/home.txt): Focused Markdown bundle for this documentation section.
 - [Core Assets section bundle](https://polaris-finance.github.io/polaris-docs/llms-sections/core-assets.txt): Focused Markdown bundle for this documentation section.
 - [Protocol Architecture section bundle](https://polaris-finance.github.io/polaris-docs/llms-sections/architecture.txt): Focused Markdown bundle for this documentation section.
 - [Protocol Design section bundle](https://polaris-finance.github.io/polaris-docs/llms-sections/design.txt): Focused Markdown bundle for this documentation section.
 - [Using Polaris Testnet section bundle](https://polaris-finance.github.io/polaris-docs/llms-sections/testnet.txt): Focused Markdown bundle for this documentation section.
 - [Risks section bundle](https://polaris-finance.github.io/polaris-docs/llms-sections/risks.txt): Focused Markdown bundle for this documentation section.
 
-## Home
+## Overview
 
 - [Introduction](https://polaris-finance.github.io/polaris-docs/index.md): Polaris is an onchain yield layer built around pETH. Canonical: https://polaris-finance.github.io/polaris-docs/
 - [Manifesto](https://polaris-finance.github.io/polaris-docs/manifesto.md): Decentralized finance was built on the idea that money should not depend on trusted intermediaries. Canonical: https://polaris-finance.github.io/polaris-docs/manifesto

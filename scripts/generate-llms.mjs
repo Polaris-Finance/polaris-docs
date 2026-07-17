@@ -275,7 +275,7 @@ function removeStaleMarkdownMirrors(expectedRelativePaths) {
 
 // Section labels mirror the current primary navigation vocabulary in content/_meta.js.
 const sectionTitles = {
-  home: 'Home',
+  home: 'Overview',
   'core-assets': 'Core Assets',
   architecture: 'Protocol Architecture',
   design: 'Protocol Design',
