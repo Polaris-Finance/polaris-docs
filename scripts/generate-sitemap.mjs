@@ -86,7 +86,7 @@ function lastModified(fullPath) {
 function sitemapPolicy(route) {
   if (route === '/') return { changefreq: 'weekly', priority: '1.0' }
 
-  const volatileRoutes = new Set(['/testnet', '/developers'])
+  const volatileRoutes = new Set(['/testnet'])
 
   if (volatileRoutes.has(route) || /^\/testnet\//.test(route)) {
     return { changefreq: 'weekly', priority: '0.9' }

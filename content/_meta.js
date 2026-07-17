@@ -11,6 +11,5 @@ export default {
   architecture: 'Protocol Architecture',
   design: 'Protocol Design',
   testnet: 'Using Polaris Testnet',
-  developers: 'Developers',
   risks: 'Risks'
 }

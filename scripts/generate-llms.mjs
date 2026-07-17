@@ -280,7 +280,6 @@ const sectionTitles = {
   architecture: 'Protocol Architecture',
   design: 'Protocol Design',
   testnet: 'Using Polaris Testnet',
-  developers: 'Developers',
   risks: 'Risks'
 }
 const sectionOrder = Object.keys(sectionTitles)

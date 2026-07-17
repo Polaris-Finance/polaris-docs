@@ -1,10 +1,9 @@
 export default {
   'bonding-curve': 'Bonding Curve',
-  'earn-vaults': 'Earn Vaults',
-  stewardship: 'Stewardship',
-  'steward-responsibilities': 'Steward Responsibilities',
-  'reserve-loans': 'Reserve Loans',
   'passet-markets': 'pAsset Markets',
+  'earn-vaults': 'Earn Vaults',
+  'reserve-loans': 'Reserve Loans',
+  stewardship: 'Stewardship',
   flows: 'Flows',
   tokenomics: 'Tokenomics'
 }

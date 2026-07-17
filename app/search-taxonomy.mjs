@@ -47,6 +47,5 @@ export function sectionForPath(path) {
 // never the only signal.
 export function kindForPath(path) {
   if (/^\/testnet(\/|$)/.test(path)) return 'app'
-  if (/^\/developers(\/|$)/.test(path)) return 'reference'
   return 'concept'
 }

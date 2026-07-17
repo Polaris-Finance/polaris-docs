@@ -372,6 +372,12 @@ test('unknown routes serve the recovery 404 and legacy routes redirect', async (
   await page.goto(`${pathWithBase('/using-app/issue')}#fees`)
   await expect(page).toHaveURL(new RegExp(`${escapeRegExp(pathWithBase('/testnet/mint'))}/?#fees$`))
   await expect(page.getByRole('heading', { level: 1 }).first()).toBeVisible()
+
+  // A page merged away by the July 2026 feedback pass redirects to its new home.
+  await page.goto(pathWithBase('/architecture/steward-responsibilities'))
+  await expect(page).toHaveURL(
+    new RegExp(`${escapeRegExp(pathWithBase('/architecture/stewardship'))}/?$`)
+  )
 })
 
 test('breadcrumb links resolve and pageless folders stay unlinked', async ({ page }) => {

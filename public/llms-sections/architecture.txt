@@ -195,10 +195,22 @@ Relevant app/search vocabulary: Reserve Loan, Reserve Loans, borrow ETH, non-liq
 
 ---
 
-## Steward Responsibilities
+## Stewardship
 
-URL: https://polaris-finance.github.io/polaris-docs/architecture/steward-responsibilities
-Markdown URL: https://polaris-finance.github.io/polaris-docs/architecture/steward-responsibilities.md
+URL: https://polaris-finance.github.io/polaris-docs/architecture/stewardship
+Markdown URL: https://polaris-finance.github.io/polaris-docs/architecture/stewardship.md
+
+Polaris uses bounded stewardship instead of open-ended governance.
+
+Governance can become a source of uncertainty when it has the ability to change how a protocol operates or how value flows through the system after deployment. Users are then required to evaluate not only the protocol itself, but also the future decisions of those responsible for governing it.
+
+Polaris is designed to minimize that reliance by enforcing as much of the protocol as possible through immutable smart contracts. Where that is not possible, economic incentives encourage participants to act in ways that strengthen the system.
+
+Stewardship is therefore limited to the few decisions that neither mechanism can address, leaving the core protocol immutable.
+
+Stewards cannot introduce new collateral to back pAssets, modify the bonding curve or change the liquidation mechanisms that underpin the system. Users interact with the same core architecture throughout the lifetime of the protocol, without governance being able to redefine its foundations after deployment.
+
+## Steward Responsibilities
 
 Although the core protocol cannot change, some parts of the ecosystem still benefit from ongoing coordination.
 
@@ -215,23 +227,6 @@ This includes:
 These decisions influence how value moves throughout the Polaris ecosystem without giving stewards the ability to modify the protocol itself.
 
 Further details on each of these parameters are covered in the relevant sections of this documentation.
-
----
-
-## Stewardship
-
-URL: https://polaris-finance.github.io/polaris-docs/architecture/stewardship
-Markdown URL: https://polaris-finance.github.io/polaris-docs/architecture/stewardship.md
-
-Polaris uses bounded stewardship instead of open-ended governance.
-
-Governance can become a source of uncertainty when it has the ability to change how a protocol operates or how value flows through the system after deployment. Users are then required to evaluate not only the protocol itself, but also the future decisions of those responsible for governing it.
-
-Polaris is designed to minimize that reliance by enforcing as much of the protocol as possible through immutable smart contracts. Where that is not possible, economic incentives encourage participants to act in ways that strengthen the system.
-
-Stewardship is therefore limited to the few decisions that neither mechanism can address, leaving the core protocol immutable.
-
-Stewards cannot introduce new collateral to back pAssets, modify the bonding curve or change the liquidation mechanisms that underpin the system. Users interact with the same core architecture throughout the lifetime of the protocol, without governance being able to redefine its foundations after deployment.
 
 ---
 
@@ -262,6 +257,8 @@ The protocol itself follows the same economic model. Treasury-held POLAR partici
 
 Long-term participation in Polaris takes place through vePOLAR.
 
-Users commit POLAR for a chosen period of time to align themselves with the long-term growth of the ecosystem. In return, they receive a share of protocol-native value, including interest from deployed pAssets, together with stewardship rights. These returns are distributed through protocol activity itself, without relying on additional POLAR incentives.
+Users commit POLAR for a chosen period of time to align themselves with the long-term growth of the ecosystem. In return, they receive a share of protocol-native value, including interest from deployed pAssets, together with stewardship rights.
+
+These returns are distributed through protocol activity itself, without relying on additional POLAR incentives.
 
 Relevant app/search vocabulary: POLAR, convert, lock, vePOLAR, burn pETH, conversion auction, POLAR token, POLAR staking, POLAR tokenomics.

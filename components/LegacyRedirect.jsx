@@ -3,11 +3,13 @@
 import { useEffect } from 'react'
 import { BASE_PATH, pathWithBase } from '../app/site-config.mjs'
 
-// Routes deleted by the July 2026 rewrite (2931a3f), mapped to the page that
-// now carries their subject. The exported 404 page runs this client-side so old
-// links and bookmarks recover instead of dead-ending; the query string and
-// fragment survive the hop.
+// Routes deleted by the July 2026 rewrite (2931a3f) and later IA changes,
+// mapped to the page that now carries their subject. The exported 404 page
+// runs this client-side so old links and bookmarks recover instead of
+// dead-ending; the query string and fragment survive the hop.
 const LEGACY_REDIRECTS = {
+  '/architecture/steward-responsibilities': '/architecture/stewardship',
+  '/developers': '/',
   '/launch-status': '/testnet/dashboard',
   '/quickstart': '/testnet/dashboard',
   '/troubleshooting': '/testnet/advanced',

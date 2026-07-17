@@ -19,7 +19,6 @@
 - [Protocol Architecture section bundle](https://polaris-finance.github.io/polaris-docs/llms-sections/architecture.txt): Focused Markdown bundle for this documentation section.
 - [Protocol Design section bundle](https://polaris-finance.github.io/polaris-docs/llms-sections/design.txt): Focused Markdown bundle for this documentation section.
 - [Using Polaris Testnet section bundle](https://polaris-finance.github.io/polaris-docs/llms-sections/testnet.txt): Focused Markdown bundle for this documentation section.
-- [Developers section bundle](https://polaris-finance.github.io/polaris-docs/llms-sections/developers.txt): Focused Markdown bundle for this documentation section.
 - [Risks section bundle](https://polaris-finance.github.io/polaris-docs/llms-sections/risks.txt): Focused Markdown bundle for this documentation section.
 
 ## Home
@@ -45,7 +44,6 @@
 - [Flows](https://polaris-finance.github.io/polaris-docs/architecture/flows.md): Flows distribute protocol-generated value to applications, markets and integrations building on top of Polaris. Canonical: https://polaris-finance.github.io/polaris-docs/architecture/flows
 - [pAsset Markets](https://polaris-finance.github.io/polaris-docs/architecture/passet-markets.md): pAssets are currencies and synthetic assets issued against pETH using the shared collateral infrastructure provided by Polaris. Canonical: https://polaris-finance.github.io/polaris-docs/architecture/passet-markets
 - [Reserve Loans](https://polaris-finance.github.io/polaris-docs/architecture/reserve-loans.md): Reserve Loans are one of the core financial primitives introduced by Polaris, allowing users to borrow ETH directly from the bonding curve reserve. Canonical: https://polaris-finance.github.io/polaris-docs/architecture/reserve-loans
-- [Steward Responsibilities](https://polaris-finance.github.io/polaris-docs/architecture/steward-responsibilities.md): Although the core protocol cannot change, some parts of the ecosystem still benefit from ongoing coordination. Canonical: https://polaris-finance.github.io/polaris-docs/architecture/steward-responsibilities
 - [Stewardship](https://polaris-finance.github.io/polaris-docs/architecture/stewardship.md): Polaris uses bounded stewardship instead of open-ended governance. Canonical: https://polaris-finance.github.io/polaris-docs/architecture/stewardship
 - [Tokenomics](https://polaris-finance.github.io/polaris-docs/architecture/tokenomics.md): The final POLAR allocation, vesting schedule and launch parameters will be published closer to launch once they have been finalized. Canonical: https://polaris-finance.github.io/polaris-docs/architecture/tokenomics
 
@@ -70,10 +68,6 @@
 - [Split](https://polaris-finance.github.io/polaris-docs/testnet/split.md): Split allows you to separate pETH into fpETH and vpETH, or merge those two assets back into pETH whenever you choose. Canonical: https://polaris-finance.github.io/polaris-docs/testnet/split
 - [Swap](https://polaris-finance.github.io/polaris-docs/testnet/swap.md): Swap lets you exchange supported assets across Polaris, which currently are the Core Assets. Canonical: https://polaris-finance.github.io/polaris-docs/testnet/swap
 - [Zap](https://polaris-finance.github.io/polaris-docs/testnet/zap.md): Zap combines several protocol actions into a single transaction, making common strategies easier to execute. Canonical: https://polaris-finance.github.io/polaris-docs/testnet/zap
-
-## Developers
-
-- [Developers](https://polaris-finance.github.io/polaris-docs/developers.md): Technical documentation for building on Polaris is in progress. Canonical: https://polaris-finance.github.io/polaris-docs/developers
 
 ## Risks
 
