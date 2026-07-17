@@ -69,7 +69,7 @@ Other notes:
 - `app/not-found.jsx` is required for the optional catch-all route under `output: 'export'`.
 - The Pagefind `postbuild` writes to `out/_pagefind/` for the exported site and syncs a git-ignored copy to `public/_pagefind/` so Nextra search also works in `next dev`.
 - MDX gotchas in this config: do **not** use GitHub-style `> [!NOTE]` callouts or `<!-- -->` HTML comments - use `> **Note:**` blockquotes and `{/* ... */}` comments.
-- Public GitHub edit/feedback links are enabled in `app/layout.jsx` (`docsRepositoryBase`, `editLink`, `feedback`) and point at `Polaris-Finance/polaris-docs`.
+- Public GitHub edit/feedback links are disabled by owner preference (July 2026 feedback pass); re-enable via `docsRepositoryBase`, `editLink`, and `feedback` in `app/layout.jsx` if that changes.
 
 ## Authoring
 

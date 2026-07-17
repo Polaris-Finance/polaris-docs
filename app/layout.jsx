@@ -177,9 +177,8 @@ export default async function RootLayout({ children }) {
           footer={footer}
           pageMap={await getPageMap()}
           search={<PolarisSearch />}
-          docsRepositoryBase="https://github.com/Polaris-Finance/polaris-docs/blob/main"
-          editLink="Edit this page on GitHub"
-          feedback={{ content: 'Question? Give us feedback', labels: 'feedback' }}
+          editLink={null}
+          feedback={{ content: null }}
           sidebar={{ defaultMenuCollapseLevel: 1, toggleButton: true }}
           nextThemes={{ defaultTheme: 'dark' }}
         >

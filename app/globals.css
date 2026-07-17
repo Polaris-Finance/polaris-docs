@@ -193,6 +193,14 @@ article :is(p, li) {
   max-width: 72ch;
 }
 
+/* The "On this page" panel is disabled site-wide via the content/_meta.js
+   wildcard theme (owner decision, July 2026), but the theme still renders the
+   empty aside shell; hide it so the article column reclaims the width. */
+
+.nextra-toc {
+  display: none !important;
+}
+
 /* Anchor jumps shouldn't tuck headings under the sticky navbar. */
 
 article :is(h1, h2, h3, h4) {
@@ -348,73 +356,6 @@ article figcaption {
 }
 
 .dark article figcaption {
-  color: rgba(232, 220, 196, 0.74);
-}
-
-/* ── Related reading (computed section-mate cards, theme bottomContent) ──── */
-
-.pl-related {
-  margin-top: 2.5rem;
-}
-
-.pl-related-heading {
-  margin-bottom: 0.9rem;
-  font-family: var(--font-serif-stack);
-  font-size: 1.15rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-}
-
-.pl-related-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
-  gap: 0.7rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.pl-related-card {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-  height: 100%;
-  padding: 0.8rem 0.95rem;
-  border: 1px solid var(--pl-card-border);
-  border-radius: 10px;
-  background: var(--pl-surface);
-  color: inherit;
-  text-decoration: none;
-  transition:
-    border-color 0.15s ease,
-    background-color 0.15s ease;
-}
-
-.pl-related-card:hover {
-  border-color: var(--x-color-primary-600);
-}
-
-.pl-related-card-title {
-  font-size: 0.92rem;
-  font-weight: 600;
-  color: var(--polaris-navy);
-}
-
-.dark .pl-related-card-title {
-  color: var(--polaris-star-bright);
-}
-
-.pl-related-card-desc {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  font-size: 0.8rem;
-  line-height: 1.5;
-  color: rgba(58, 74, 90, 0.86);
-}
-
-.dark .pl-related-card-desc {
   color: rgba(232, 220, 196, 0.74);
 }
 
@@ -1368,25 +1309,6 @@ article [class*='overflow-x-auto']:has(table)::after {
   article table[data-pl-table][data-pl-wide='true'] td:first-child::before {
     display: none;
   }
-}
-
-/* ── TOC Active Section Highlight ────────────────────────────────────────── */
-
-.nextra-toc li a {
-  transition:
-    color 0.15s ease,
-    border-color 0.15s ease;
-}
-
-.nextra-toc li a[aria-selected='true'] {
-  color: #2c5f8a;
-  border-inline-start-color: #b1934f;
-  font-weight: 600;
-}
-
-.dark .nextra-toc li a[aria-selected='true'] {
-  color: #abccea;
-  border-inline-start-color: #d8c9a4;
 }
 
 @media (max-width: 767px) {

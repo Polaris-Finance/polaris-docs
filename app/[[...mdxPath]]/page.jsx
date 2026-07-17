@@ -1,6 +1,5 @@
 import { generateStaticParamsFor, importPage } from 'nextra/pages'
 import { useMDXComponents as getMDXComponents } from '../../mdx-components'
-import { RelatedReading } from '../../components/RelatedReading'
 import { JsonLd } from '../JsonLd'
 import { kindForPath, sectionForPath } from '../search-taxonomy.mjs'
 import { searchTermsForPath } from '../search-vocabulary.mjs'
@@ -68,12 +67,7 @@ export default async function Page(props) {
   const { default: MDXContent, toc, metadata, sourceCode } = await importPage(params.mdxPath)
   const path = params.mdxPath?.length ? `/${params.mdxPath.join('/')}` : '/'
   return (
-    <Wrapper
-      toc={toc}
-      metadata={metadata}
-      sourceCode={sourceCode}
-      bottomContent={<RelatedReading path={path} />}
-    >
+    <Wrapper toc={toc} metadata={metadata} sourceCode={sourceCode}>
       <SearchMeta path={path} />
       <JsonLd
         data={buildPageJsonLd({

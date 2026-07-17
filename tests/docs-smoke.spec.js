@@ -380,20 +380,16 @@ test('unknown routes serve the recovery 404 and legacy routes redirect', async (
   )
 })
 
-test('breadcrumb links resolve and pageless folders stay unlinked', async ({ page }) => {
-  // /risks has an index page, so its crumb is a link and must resolve.
+test('page chrome removals hold: no breadcrumbs, no TOC panel', async ({ page }) => {
+  // Owner decision (July 2026 feedback pass): visible breadcrumbs and the
+  // "On this page" panel are disabled site-wide via the content/_meta.js
+  // wildcard theme. JSON-LD breadcrumbs stay (crawler-facing only).
   await page.goto(pathWithBase('/risks/risks-polaris-removes'))
-  const crumbLinks = page.locator('.nextra-breadcrumb a')
-  await expect(crumbLinks).toHaveCount(1)
-  const href = await crumbLinks.first().getAttribute('href')
-  const response = await page.request.get(new URL(href, page.url()).toString())
-  expect(response.status(), `breadcrumb ${href} resolves`).toBe(200)
-
-  // /architecture has no index page: its crumb must render as a span, not a
-  // link that would 404.
-  await page.goto(pathWithBase('/architecture/bonding-curve'))
-  await expect(page.locator('.nextra-breadcrumb a')).toHaveCount(0)
-  await expect(page.locator('.nextra-breadcrumb')).toContainText('Protocol Architecture')
+  await expect(page.locator('.nextra-breadcrumb')).toHaveCount(0)
+  // toc: false empties the panel but the theme keeps the aside shell in the
+  // DOM; globals.css hides it.
+  await expect(page.locator('.nextra-toc')).toBeHidden()
+  await expect(page.locator('script[type="application/ld+json"]').first()).toBeAttached()
 })
 
 test('prev/next pagination follows the sidebar order', async ({ page }) => {
