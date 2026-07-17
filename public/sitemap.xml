@@ -140,16 +140,19 @@
   </url>
   <url>
     <loc>https://polaris-finance.github.io/polaris-docs/overview/manifesto</loc>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polaris-finance.github.io/polaris-docs/overview/vision</loc>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://polaris-finance.github.io/polaris-docs/overview/why-peth</loc>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -161,6 +164,7 @@
   </url>
   <url>
     <loc>https://polaris-finance.github.io/polaris-docs/risks/security-properties</loc>
+    <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

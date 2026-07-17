@@ -40,3 +40,4 @@ __pycache__/
 /.impeccable/
 /playwright-report/
 /test-results/
+/.next.stale*
