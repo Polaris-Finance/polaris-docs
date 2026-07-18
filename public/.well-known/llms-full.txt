@@ -1051,7 +1051,7 @@ This section contains detailed explanations of every core interaction available 
 
 It is designed to accompany your exploration of Polaris, making it easier to understand the protocol while using it.
 
-Each of the following pages also include explanations for the actions available in that section, providing additional context while you interact with the protocol.
+Each of the following pages also includes explanations for the actions available in that section, providing additional context while you interact with the protocol.
 
 Image: The in-app Guide's "What to do on Polaris?" view, with recommended actions filtered by token
 
