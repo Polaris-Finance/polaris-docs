@@ -17,3 +17,5 @@ The vpETH Lending Market allows users to supply vpETH to earn lending yield or b
 Borrowed vpETH can be sold to create a hedged position, helping reduce exposure to pETH price movements while maintaining collateral onchain.
 
 From here you can supply or withdraw vpETH, manage collateral and debt, and monitor key market metrics including utilization, available liquidity, maximum LTV, and the current vpETH price.
+
+![The vpETH Lending Market interface for supplying vpETH and borrowing against ETH collateral](https://polaris-finance.github.io/polaris-docs/screenshots/testnet/vpeth.png)

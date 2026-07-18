@@ -84,13 +84,6 @@ article h2 {
   border-top-color: rgba(216, 201, 164, 0.3);
 }
 
-/* The paragraph that opens a page reads as a lede. */
-
-article h1 + p {
-  font-size: 1.08rem;
-  line-height: 1.6;
-}
-
 /* Dark mode — the canonical Polaris surface */
 
 .dark body {

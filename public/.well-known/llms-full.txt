@@ -987,6 +987,8 @@ This section currently includes the following operations:
 - **Collateral Auctions** *(currently unavailable)*: When a savings vault absorbs a liquidation, you can purchase pETH collateral from permissionless liquidation auctions. Most auctions are expected to be cleared by keeper bots, but anyone can participate.
 - **Conversions**: Convert pETH into POLAR directly through the protocol conversion mechanism.
 
+Image: The Advanced section with its Mint/Redeem, SP Direct, Auctions and Conversions operations
+
 Relevant app/search vocabulary: app, official app, testnet app, app.testnet.polarisfinance.io, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Peg Stability Module, PSM, redeem, convert pETH to POLAR, arbitrage.
 
 ---
@@ -998,15 +1000,11 @@ Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/analytics.m
 
 This section offers a real-time overview of protocol activity throughout the testnet.
 
-From here you can monitor the performance of every major Polaris components, with interactive visualizations and live metrics that make it easy to understand how the protocol evolves over time and how its different features interact.
+From here you can monitor the performance of every major Polaris component, with interactive visualizations and live metrics that make it easy to understand how the protocol evolves over time and how its different features interact.
 
-## Protocol Metrics
+In particular, analytics are organized by protocol component, allowing you to explore the metrics that matter for each part of the system. Depending on the selected view, you'll find information such as yield, utilization, liquidity, issuance, lending activity, governance participation and other protocol-specific indicators.
 
-Analytics are organized by protocol component, allowing you to explore the metrics that matter for each part of the system. Depending on the selected view, you'll find information such as yield, utilization, liquidity, issuance, lending activity, governance participation and other protocol-specific indicators.
-
-## Fee Flows
-
-The Fee Flows visualization provides an interactive view of how value moves throughout Polaris. Multiple visualization modes are available to explore fee distribution, APR sources and the relationships between protocol components from different perspectives.
+On the right, the Fee Flows visualization provides an interactive view of how value moves throughout Polaris. Multiple visualization modes are available to explore fee distribution, APR sources and the relationships between protocol components from different perspectives.
 
 Image: The Fee Flows visualization showing how value moves between Polaris components
 
@@ -1055,7 +1053,7 @@ It is designed to accompany your exploration of Polaris, making it easier to und
 
 Each of the following pages also include explanations for the actions available in that section, providing additional context while you interact with the protocol.
 
-Image: The in-app Guide, with explanations organized by protocol section and asset
+Image: The in-app Guide's "What to do on Polaris?" view, with recommended actions filtered by token
 
 Relevant app/search vocabulary: app, official app, testnet app, app.testnet.polarisfinance.io, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet.
 
@@ -1093,8 +1091,6 @@ Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/mint.md
 The Mint section is where collateralized positions are created and managed.
 
 Using pETH as collateral, you can mint USDp or GOLDp.
-
-If you hold fpETH, the same interface also lets you borrow ETH through Reserve Loans, which remain non-liquidatable.
 
 Existing positions can also be adjusted from this page by adding collateral, repaying debt or closing the position.
 
@@ -1182,6 +1178,8 @@ The vpETH Lending Market allows users to supply vpETH to earn lending yield or b
 Borrowed vpETH can be sold to create a hedged position, helping reduce exposure to pETH price movements while maintaining collateral onchain.
 
 From here you can supply or withdraw vpETH, manage collateral and debt, and monitor key market metrics including utilization, available liquidity, maximum LTV, and the current vpETH price.
+
+Image: The vpETH Lending Market interface for supplying vpETH and borrowing against ETH collateral
 
 Relevant app/search vocabulary: app, official app, testnet app, app.testnet.polarisfinance.io, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet.
 
