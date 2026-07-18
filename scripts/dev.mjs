@@ -7,12 +7,10 @@ const nodeOptions = [process.env.NODE_OPTIONS, '--no-experimental-webstorage']
 
 const distDir = process.env.NEXT_DIST_DIR ?? '.next-dev'
 
-// The webpack dev cache is routinely poisoned by incremental invalidations
-// (content file adds/removes, dependency swaps); once poisoned, every page
-// 500s with "'useLayoutEffect' is not exported from 'react'" and restarts
-// don't recover — only clearing the cache does. Cold compiles are cheap on
-// this site, so start clean every time.
-rmSync(`${distDir}/cache`, { recursive: true, force: true })
+// A poisoned webpack cache makes React's client exports resolve against the
+// server build. Next nests dev state differently across versions, so reset the
+// dedicated dev output rather than depending on its internal cache path.
+rmSync(distDir, { recursive: true, force: true })
 
 const child = spawn('next', ['dev', '--webpack', ...process.argv.slice(2)], {
   env: {
