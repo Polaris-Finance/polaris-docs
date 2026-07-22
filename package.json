@@ -2,6 +2,7 @@
   "name": "polaris-docs",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "description": "User documentation for Polaris Finance — the pETH-powered yield layer for all of DeFi.",
   "packageManager": "npm@10.9.4",
   "engines": {
@@ -58,7 +59,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",
-    "@playwright/test": "^1.61.0",
+    "@playwright/test": "^1.61.1",
     "eslint": "^9.39.4",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react": "^7.37.5",
