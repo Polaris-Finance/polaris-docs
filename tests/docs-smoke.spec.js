@@ -1,7 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { expect, test } from '@playwright/test'
-import { allPageNodes, findTrailByRoute } from '../app/navigation-config.mjs'
+import { allVisiblePageNodes, findTrailByRoute } from '../app/navigation-config.mjs'
 import { BASE_PATH, pathWithBase } from '../app/site-config.mjs'
 
 const contentDir = path.join(process.cwd(), 'content')
@@ -454,7 +454,10 @@ test('homepage renders with metadata and basic accessibility', async ({ page }) 
   await page.goto(pathWithBase('/'))
 
   await expect(page).toHaveTitle(/Polaris/i)
-  await expect(page.getByRole('heading', { level: 1 })).toContainText(/Introduction/i)
+  await expect(page.getByRole('heading', { level: 1 })).toContainText(/Polaris documentation/i)
+  await expect(
+    page.locator('.pl-docs-home').getByRole('link', { name: /Polaris 101/i })
+  ).toHaveAttribute('href', pathWithBase('/polaris-101'))
   await expect(page.locator('script[type="application/ld+json"]').first()).toBeAttached()
   await expectNoDocumentOverflow(page)
   await expectNoUnnamedVisibleControls(page)
@@ -469,7 +472,7 @@ test('search opens, returns useful results, and fits its surface', async ({ page
   const results = dialog.getByRole('listbox', { name: 'Search results' })
   await expect(results).toBeVisible()
   await expect(results).toContainText(/Mint/i)
-  await expect(results).toContainText(/Using Polaris Testnet/i)
+  await expect(results).toContainText(/Using the Testnet/i)
   await expect(dialog.locator('.pl-search-count')).toContainText(/Top \d+ of \d+|\d+ shown/)
   await expect(input).toHaveAttribute('aria-autocomplete', 'list')
   await expect(input).toHaveAttribute('aria-expanded', 'true')
@@ -799,7 +802,7 @@ test('mobile navigation reveals the current leaf on a short viewport', async ({
 
   const dialog = await openMobileMenu(page)
   await dialog.getByRole('button', { name: /^Use Polaris/ }).click()
-  await dialog.getByRole('button', { name: /^Using Polaris Testnet/ }).click()
+  await dialog.getByRole('button', { name: /^Using the Testnet/ }).click()
 
   const current = dialog.getByRole('link', { name: 'Analytics', exact: true })
   await expect(current).toBeFocused()
@@ -822,7 +825,7 @@ test('every configured docs page is reachable in the mobile menu by touch and ke
   test.setTimeout(180_000)
   await page.goto(pathWithBase('/'))
 
-  for (const node of allPageNodes()) {
+  for (const node of allVisiblePageNodes()) {
     const keyboard = await revealMobileRoute(page, node.route, 'keyboard')
     await keyboard.link.focus()
     await expect(keyboard.link).toBeFocused()
@@ -860,20 +863,13 @@ test('desktop navigation exposes icons, hierarchy state, and a single current pa
   await expect(page.locator('main .pl-nav-icon')).toBeHidden()
 })
 
-test('footer is complete, route-aware, and uses correct external-link semantics', async ({
-  page
-}) => {
+test('footer stays compact and uses correct external-link semantics', async ({ page }) => {
   await page.goto(pathWithBase('/core-assets/peth'))
 
   const footer = page.getByRole('contentinfo', { name: 'Footer' })
   await expect(footer).toBeVisible()
-  for (const heading of ['Learn', 'Protocol', 'Use Polaris', 'Resources']) {
-    await expect(footer.getByRole('heading', { name: heading, exact: true })).toBeVisible()
-  }
-  await expect(footer.getByRole('link', { name: 'pETH', exact: true })).toHaveAttribute(
-    'aria-current',
-    'page'
-  )
+  await expect(footer.getByText('The pETH-powered yield layer for all of DeFi')).toBeVisible()
+  await expect(footer.locator('a')).toHaveCount(4)
   await expect(footer.getByRole('link', { name: 'llms.txt', exact: true })).toHaveAttribute(
     'href',
     pathWithBase('/llms.txt')

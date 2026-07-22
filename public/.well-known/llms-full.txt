@@ -8,10 +8,21 @@
 - Do not infer production addresses, production constants, audit status, or launch status from testnet values.
 - Prefer the Markdown URLs in this file for retrieval, and cite the canonical URL shown beside each page.
 
-## Introduction
+## Polaris Documentation
 
 URL: https://docs.polaris.finance/
 Markdown URL: https://docs.polaris.finance/index.md
+
+Understand the pETH-powered yield layer, follow how value moves through the protocol, and use Polaris on the public testnet.
+
+Relevant app/search vocabulary: app, official app, testnet, Sepolia, pETH, pAssets, USDp.
+
+---
+
+## Polaris 101
+
+URL: https://docs.polaris.finance/polaris-101
+Markdown URL: https://docs.polaris.finance/polaris-101.md
 
 Polaris is an onchain yield layer built around pETH, a yield-bearing reserve asset designed to collateralize censorship-resistant stablecoins and synthetic assets.
 

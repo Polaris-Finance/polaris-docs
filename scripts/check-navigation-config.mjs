@@ -6,7 +6,7 @@ import {
   allPageNodes,
   EXTERNAL_LINKS,
   findTrailByRoute,
-  FOOTER_GROUPS,
+  FOOTER_LINKS,
   metaEntriesForDirectory
 } from '../app/navigation-config.mjs'
 import { hasNavIcon } from '../components/navigation/NavIcon.js'
@@ -34,6 +34,7 @@ function labelFromMeta(value) {
   if (typeof value === 'string') return value
   if (!value || typeof value !== 'object') return ''
   if (value.type === 'separator') return labelFromMeta(value.title)
+  if (value.title) return labelFromMeta(value.title)
   const children = value.props?.children
   if (typeof children === 'string') return children
   if (Array.isArray(children)) return children.map(labelFromMeta).join('')
@@ -112,17 +113,12 @@ for (const page of pages) {
   }
 }
 
-for (const group of FOOTER_GROUPS) {
-  for (const link of group.links) {
-    if (link.type === 'route' && !configuredRoutes.includes(link.route)) {
-      addFailure(`footer route does not exist: ${link.route}`)
-    }
-    if (link.type === 'external') {
-      try {
-        new URL(link.href)
-      } catch {
-        addFailure(`footer external URL is invalid: ${link.href}`)
-      }
+for (const link of FOOTER_LINKS) {
+  if (link.type === 'external') {
+    try {
+      new URL(link.href)
+    } catch {
+      addFailure(`footer external URL is invalid: ${link.href}`)
     }
   }
 }
@@ -147,5 +143,5 @@ if (failures.length) {
 }
 
 console.log(
-  `Navigation config validation passed (${pages.length} routes, ${nodes.length} nodes, ${FOOTER_GROUPS.length} footer groups).`
+  `Navigation config validation passed (${pages.length} routes, ${nodes.length} nodes, ${FOOTER_LINKS.length} footer links).`
 )

@@ -275,16 +275,18 @@ function removeStaleMarkdownMirrors(expectedRelativePaths) {
 
 // Section labels mirror the current primary navigation vocabulary in content/_meta.js.
 const sectionTitles = {
+  introduction: 'Introduction',
   overview: 'Overview',
   'core-assets': 'Core Assets',
   architecture: 'Core Architecture',
   design: 'Protocol Mechanics',
-  testnet: 'Using Polaris Testnet',
+  testnet: 'Using the Testnet',
   risks: 'Risks'
 }
 const sectionOrder = Object.keys(sectionTitles)
 
 function sectionForRoute(route) {
+  if (route === '/' || route === '/polaris-101') return 'introduction'
   return route.replace(/^\//, '').split('/')[0] || 'overview'
 }
 

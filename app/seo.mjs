@@ -69,7 +69,7 @@ function readableSegment(segment) {
     ['polar', 'POLAR'],
     ['architecture', 'Core Architecture'],
     ['design', 'Protocol Mechanics'],
-    ['testnet', 'Using Polaris Testnet'],
+    ['testnet', 'Using the Testnet'],
     ['passet-markets', 'pAsset Markets']
   ])
 

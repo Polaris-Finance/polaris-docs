@@ -44,7 +44,9 @@ export function MobileDocsNav({ open, onOpenChange }) {
   const currentNode = stack.length ? findNodeById(stack.at(-1)) : null
   const backDestination =
     stack.length === 1 ? 'Documentation' : (findNodeById(stack.at(-2))?.label ?? 'Documentation')
-  const items = currentNode?.children ?? NAVIGATION_GROUPS
+  const items = (currentNode?.children ?? NAVIGATION_GROUPS).filter(
+    (node) => node.display !== 'hidden'
+  )
   const currentTrail = useMemo(() => findTrailByRoute(route), [route])
   const currentIds = useMemo(() => new Set(currentTrail.map((node) => node.id)), [currentTrail])
 

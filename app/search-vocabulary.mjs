@@ -4,7 +4,7 @@
 // machine-readable llms*.txt vocabulary lines — import it, never regex it out.
 export const searchVocabulary = [
   {
-    match: /^\/$/,
+    match: /^\/(?:polaris-101)?$/,
     terms: ['app', 'official app', 'testnet', 'Sepolia', 'pETH', 'pAssets', 'USDp']
   },
   {

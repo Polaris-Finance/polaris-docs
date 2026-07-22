@@ -5,7 +5,7 @@
 
 Canonical URL: https://docs.polaris.finance/testnet/swap
 Markdown URL: https://docs.polaris.finance/testnet/swap.md
-Section: Using Polaris Testnet
+Section: Using the Testnet
 
 Documentation index: https://docs.polaris.finance/llms.txt
 Full documentation bundle: https://docs.polaris.finance/llms-full.txt

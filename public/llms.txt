@@ -14,16 +14,21 @@
 - [JSON docs index](https://docs.polaris.finance/llms-index.json): Routes, canonical URLs, Markdown URLs, sections, keywords, and freshness metadata.
 - [Well-known llms.txt mirror](https://docs.polaris.finance/.well-known/llms.txt): Alternate discovery path for the docs index.
 - [Well-known full bundle mirror](https://docs.polaris.finance/.well-known/llms-full.txt): Alternate discovery path for the full Markdown bundle.
+- [Introduction section bundle](https://docs.polaris.finance/llms-sections/introduction.txt): Focused Markdown bundle for this documentation section.
 - [Overview section bundle](https://docs.polaris.finance/llms-sections/overview.txt): Focused Markdown bundle for this documentation section.
 - [Core Assets section bundle](https://docs.polaris.finance/llms-sections/core-assets.txt): Focused Markdown bundle for this documentation section.
 - [Core Architecture section bundle](https://docs.polaris.finance/llms-sections/architecture.txt): Focused Markdown bundle for this documentation section.
 - [Protocol Mechanics section bundle](https://docs.polaris.finance/llms-sections/design.txt): Focused Markdown bundle for this documentation section.
-- [Using Polaris Testnet section bundle](https://docs.polaris.finance/llms-sections/testnet.txt): Focused Markdown bundle for this documentation section.
+- [Using the Testnet section bundle](https://docs.polaris.finance/llms-sections/testnet.txt): Focused Markdown bundle for this documentation section.
 - [Risks section bundle](https://docs.polaris.finance/llms-sections/risks.txt): Focused Markdown bundle for this documentation section.
+
+## Introduction
+
+- [Polaris Documentation](https://docs.polaris.finance/index.md): Understand the pETH-powered yield layer and use Polaris on the public testnet. Canonical: https://docs.polaris.finance/
+- [Polaris 101](https://docs.polaris.finance/polaris-101.md): An introduction to Polaris, the onchain yield layer built around pETH. Canonical: https://docs.polaris.finance/polaris-101
 
 ## Overview
 
-- [Introduction](https://docs.polaris.finance/index.md): Polaris is an onchain yield layer built around pETH. Canonical: https://docs.polaris.finance/
 - [Manifesto](https://docs.polaris.finance/overview/manifesto.md): Decentralized finance was built on the idea that money should not depend on trusted intermediaries. Canonical: https://docs.polaris.finance/overview/manifesto
 - [Vision](https://docs.polaris.finance/overview/vision.md): Stablecoins are the largest monetary application built on blockchains today. Canonical: https://docs.polaris.finance/overview/vision
 - [Why pETH](https://docs.polaris.finance/overview/why-peth.md): The evolution of stablecoins revealed another structural problem. Canonical: https://docs.polaris.finance/overview/why-peth
@@ -59,7 +64,7 @@
 - [Revenue Model](https://docs.polaris.finance/design/revenue-model.md): Polaris operates under the design philosophy that all value generated throughout the protocol should not leak externally. Canonical: https://docs.polaris.finance/design/revenue-model
 - [Spike-and-Decay Fees](https://docs.polaris.finance/design/spike-and-decay-fees.md): Several core mechanisms in Polaris use spike-and-decay pricing. Canonical: https://docs.polaris.finance/design/spike-and-decay-fees
 
-## Using Polaris Testnet
+## Using the Testnet
 
 - [Advanced](https://docs.polaris.finance/testnet/advanced.md): Protocol operations that go beyond the standard user flows. Canonical: https://docs.polaris.finance/testnet/advanced
 - [Analytics](https://docs.polaris.finance/testnet/analytics.md): A real-time overview of protocol activity throughout the testnet. Canonical: https://docs.polaris.finance/testnet/analytics

@@ -7,6 +7,10 @@
     "wellKnownLlmsFull": "https://docs.polaris.finance/.well-known/llms-full.txt",
     "sections": [
       {
+        "title": "Introduction",
+        "url": "https://docs.polaris.finance/llms-sections/introduction.txt"
+      },
+      {
         "title": "Overview",
         "url": "https://docs.polaris.finance/llms-sections/overview.txt"
       },
@@ -23,7 +27,7 @@
         "url": "https://docs.polaris.finance/llms-sections/design.txt"
       },
       {
-        "title": "Using Polaris Testnet",
+        "title": "Using the Testnet",
         "url": "https://docs.polaris.finance/llms-sections/testnet.txt"
       },
       {
@@ -37,9 +41,9 @@
       "route": "/",
       "url": "https://docs.polaris.finance/",
       "markdownUrl": "https://docs.polaris.finance/index.md",
-      "section": "Overview",
-      "title": "Introduction",
-      "description": "Polaris is an onchain yield layer built around pETH.",
+      "section": "Introduction",
+      "title": "Polaris Documentation",
+      "description": "Understand the pETH-powered yield layer and use Polaris on the public testnet.",
       "keywords": [
         "app",
         "official app",
@@ -390,6 +394,24 @@
       "updated": null
     },
     {
+      "route": "/polaris-101",
+      "url": "https://docs.polaris.finance/polaris-101",
+      "markdownUrl": "https://docs.polaris.finance/polaris-101.md",
+      "section": "Introduction",
+      "title": "Polaris 101",
+      "description": "An introduction to Polaris, the onchain yield layer built around pETH.",
+      "keywords": [
+        "app",
+        "official app",
+        "testnet",
+        "Sepolia",
+        "pETH",
+        "pAssets",
+        "USDp"
+      ],
+      "updated": null
+    },
+    {
       "route": "/risks",
       "url": "https://docs.polaris.finance/risks",
       "markdownUrl": "https://docs.polaris.finance/risks.md",
@@ -425,7 +447,7 @@
       "route": "/testnet/advanced",
       "url": "https://docs.polaris.finance/testnet/advanced",
       "markdownUrl": "https://docs.polaris.finance/testnet/advanced.md",
-      "section": "Using Polaris Testnet",
+      "section": "Using the Testnet",
       "title": "Advanced",
       "description": "Protocol operations that go beyond the standard user flows.",
       "keywords": [
@@ -451,7 +473,7 @@
       "route": "/testnet/analytics",
       "url": "https://docs.polaris.finance/testnet/analytics",
       "markdownUrl": "https://docs.polaris.finance/testnet/analytics.md",
-      "section": "Using Polaris Testnet",
+      "section": "Using the Testnet",
       "title": "Analytics",
       "description": "A real-time overview of protocol activity throughout the testnet.",
       "keywords": [
@@ -472,7 +494,7 @@
       "route": "/testnet/dashboard",
       "url": "https://docs.polaris.finance/testnet/dashboard",
       "markdownUrl": "https://docs.polaris.finance/testnet/dashboard.md",
-      "section": "Using Polaris Testnet",
+      "section": "Using the Testnet",
       "title": "Dashboard",
       "description": "The Dashboard provides a complete overview of your activity across Polaris.",
       "keywords": [
@@ -493,7 +515,7 @@
       "route": "/testnet/earn",
       "url": "https://docs.polaris.finance/testnet/earn",
       "markdownUrl": "https://docs.polaris.finance/testnet/earn.md",
-      "section": "Using Polaris Testnet",
+      "section": "Using the Testnet",
       "title": "Earn",
       "description": "Deposit into the auto-compounding sUSDp and sGOLDp Earn Vaults.",
       "keywords": [
@@ -523,7 +545,7 @@
       "route": "/testnet/guide",
       "url": "https://docs.polaris.finance/testnet/guide",
       "markdownUrl": "https://docs.polaris.finance/testnet/guide.md",
-      "section": "Using Polaris Testnet",
+      "section": "Using the Testnet",
       "title": "Guide",
       "description": "Detailed explanations of every core interaction available during the testnet.",
       "keywords": [
@@ -544,7 +566,7 @@
       "route": "/testnet/liquidity",
       "url": "https://docs.polaris.finance/testnet/liquidity",
       "markdownUrl": "https://docs.polaris.finance/testnet/liquidity.md",
-      "section": "Using Polaris Testnet",
+      "section": "Using the Testnet",
       "title": "Liquidity",
       "description": "Provide liquidity to Polaris pools and earn a share of the swap fees they generate.",
       "keywords": [
@@ -565,7 +587,7 @@
       "route": "/testnet/mint",
       "url": "https://docs.polaris.finance/testnet/mint",
       "markdownUrl": "https://docs.polaris.finance/testnet/mint.md",
-      "section": "Using Polaris Testnet",
+      "section": "Using the Testnet",
       "title": "Mint",
       "description": "The Mint section is where collateralized positions are created and managed.",
       "keywords": [
@@ -603,7 +625,7 @@
       "route": "/testnet/reserve-loan",
       "url": "https://docs.polaris.finance/testnet/reserve-loan",
       "markdownUrl": "https://docs.polaris.finance/testnet/reserve-loan.md",
-      "section": "Using Polaris Testnet",
+      "section": "Using the Testnet",
       "title": "Reserve Loan",
       "description": "Borrow ETH by using fpETH as collateral through non-liquidatable Reserve Loans.",
       "keywords": [
@@ -629,7 +651,7 @@
       "route": "/testnet/split",
       "url": "https://docs.polaris.finance/testnet/split",
       "markdownUrl": "https://docs.polaris.finance/testnet/split.md",
-      "section": "Using Polaris Testnet",
+      "section": "Using the Testnet",
       "title": "Split",
       "description": "Split allows you to separate pETH into fpETH and vpETH, or merge those two assets back into pETH whenever you choose.",
       "keywords": [
@@ -657,7 +679,7 @@
       "route": "/testnet/swap",
       "url": "https://docs.polaris.finance/testnet/swap",
       "markdownUrl": "https://docs.polaris.finance/testnet/swap.md",
-      "section": "Using Polaris Testnet",
+      "section": "Using the Testnet",
       "title": "Swap",
       "description": "Swap lets you exchange supported assets across Polaris, which currently are the Core Assets.",
       "keywords": [
@@ -685,7 +707,7 @@
       "route": "/testnet/vepolar",
       "url": "https://docs.polaris.finance/testnet/vepolar",
       "markdownUrl": "https://docs.polaris.finance/testnet/vepolar.md",
-      "section": "Using Polaris Testnet",
+      "section": "Using the Testnet",
       "title": "vePOLAR",
       "description": "Commit POLAR to receive vePOLAR voting power and participate in protocol stewardship.",
       "keywords": [
@@ -706,7 +728,7 @@
       "route": "/testnet/vpeth",
       "url": "https://docs.polaris.finance/testnet/vpeth",
       "markdownUrl": "https://docs.polaris.finance/testnet/vpeth.md",
-      "section": "Using Polaris Testnet",
+      "section": "Using the Testnet",
       "title": "vpETH",
       "description": "Supply vpETH to earn lending yield or borrow vpETH against ETH collateral.",
       "keywords": [

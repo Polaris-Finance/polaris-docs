@@ -5,7 +5,7 @@
 
 Canonical URL: https://docs.polaris.finance/testnet/earn
 Markdown URL: https://docs.polaris.finance/testnet/earn.md
-Section: Using Polaris Testnet
+Section: Using the Testnet
 
 Documentation index: https://docs.polaris.finance/llms.txt
 Full documentation bundle: https://docs.polaris.finance/llms-full.txt

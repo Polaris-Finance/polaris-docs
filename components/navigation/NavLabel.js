@@ -28,10 +28,12 @@ export function metaForDirectory(directory) {
         ]
       }
 
-      return [
-        entry.metaKey,
-        createElement(NavLabel, { icon: entry.icon, key: entry.id }, entry.label)
-      ]
+      const title = createElement(NavLabel, { icon: entry.icon, key: entry.id }, entry.label)
+      if (entry.display) {
+        return [entry.metaKey, { title, display: entry.display, theme: entry.theme }]
+      }
+
+      return [entry.metaKey, title]
     })
   )
 }

@@ -32,11 +32,11 @@ function curate(title, url) {
 const START_HERE = [
   curate('Why pETH', '/overview/why-peth'),
   curate('pETH', '/core-assets/peth'),
-  curate('Using Polaris Testnet', '/testnet/dashboard')
+  curate('Using the Testnet', '/testnet/guide')
 ]
 
 const RECOVERY = [
-  curate('Introduction', '/'),
+  curate('Polaris 101', '/polaris-101'),
   curate('Risks', '/risks'),
   curate('Browse the full docs (llms.txt)', '/llms.txt')
 ]

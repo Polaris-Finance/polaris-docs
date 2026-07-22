@@ -6,19 +6,22 @@ export const EXTERNAL_LINKS = Object.freeze({
 
 export const NAVIGATION_GROUPS = [
   {
-    id: 'learn',
+    id: 'introduction',
     type: 'group',
-    label: 'Learn',
+    label: 'Introduction',
     children: [
       {
-        id: 'introduction',
+        id: 'docs-home',
         type: 'page',
         metaKey: 'index',
-        label: 'Introduction',
+        label: 'Polaris Documentation',
         route: '/',
-        icon: 'BookOpen',
+        icon: 'FileText',
+        display: 'hidden',
+        theme: { copyPage: false, pagination: false },
         kind: 'concept'
       },
+      page('polaris-101', 'polaris-101', 'Polaris 101', '/polaris-101', 'BookOpen'),
       {
         id: 'overview',
         type: 'folder',
@@ -150,7 +153,7 @@ export const NAVIGATION_GROUPS = [
         id: 'testnet',
         type: 'folder',
         metaKey: 'testnet',
-        label: 'Using Polaris Testnet',
+        label: 'Using the Testnet',
         routePrefix: '/testnet',
         icon: 'FlaskConical',
         children: [
@@ -212,47 +215,9 @@ export const NAVIGATION_GROUPS = [
   }
 ]
 
-export const FOOTER_GROUPS = [
-  {
-    id: 'footer-learn',
-    label: 'Learn',
-    links: [
-      footerRoute('/'),
-      footerRoute('/overview/why-peth'),
-      footerRoute('/overview/manifesto'),
-      footerRoute('/overview/vision')
-    ]
-  },
-  {
-    id: 'footer-protocol',
-    label: 'Protocol',
-    links: [
-      footerRoute('/core-assets/peth'),
-      footerRoute('/architecture/bonding-curve'),
-      footerRoute('/design/fee-router'),
-      footerRoute('/risks', 'Risks')
-    ]
-  },
-  {
-    id: 'footer-use-polaris',
-    label: 'Use Polaris',
-    links: [
-      footerRoute('/testnet/dashboard', 'Testnet Dashboard'),
-      footerRoute('/testnet/guide'),
-      footerRoute('/testnet/mint'),
-      footerRoute('/testnet/earn')
-    ]
-  },
-  {
-    id: 'footer-resources',
-    label: 'Resources',
-    links: [
-      { type: 'external', label: 'Website', href: EXTERNAL_LINKS.website },
-      { type: 'artifact', label: 'llms.txt', href: '/llms.txt' },
-      { type: 'artifact', label: 'llms-full.txt', href: '/llms-full.txt' },
-      { type: 'artifact', label: 'LLM index', href: '/llms-index.json' }
-    ]
-  }
+export const FOOTER_LINKS = [
+  { type: 'external', label: 'Website', href: EXTERNAL_LINKS.website },
+  { type: 'artifact', label: 'llms.txt', href: '/llms.txt' }
 ]
 
 function page(id, metaKey, label, route, icon, kind = 'concept') {
@@ -275,6 +240,10 @@ export function allNavigationNodes() {
 
 export function allPageNodes() {
   return allNavigationNodes().filter((node) => node.type === 'page')
+}
+
+export function allVisiblePageNodes() {
+  return allPageNodes().filter((node) => node.display !== 'hidden')
 }
 
 export function findNodeById(id) {
@@ -302,7 +271,7 @@ export function findTrailByRoute(route) {
 export function navigationSectionForRoute(route) {
   const trail = findTrailByRoute(route)
   const folder = [...trail].reverse().find((node) => node.type === 'folder')
-  return folder?.label ?? trail.find((node) => node.type === 'group')?.label ?? 'Learn'
+  return folder?.label ?? trail.find((node) => node.type === 'group')?.label ?? 'Introduction'
 }
 
 export function navigationKindForRoute(route) {
@@ -342,16 +311,4 @@ export function normalizeRoute(route = '/') {
   const path = route.split('#')[0].split('?')[0]
   if (!path || path === '/') return '/'
   return `/${path.replace(/^\/+|\/+$/g, '')}`
-}
-
-function footerRoute(route, label) {
-  return { type: 'route', route, label }
-}
-
-for (const group of FOOTER_GROUPS) {
-  for (const link of group.links) {
-    if (link.type !== 'route') continue
-    const pageNode = findPageByRoute(link.route)
-    if (pageNode && !link.label) link.label = pageNode.label
-  }
 }
