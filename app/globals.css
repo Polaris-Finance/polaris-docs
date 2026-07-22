@@ -358,21 +358,32 @@ article blockquote {
   background: rgba(216, 201, 164, 0.05);
 }
 
-/* Infographics are intentional dark panels; frame them so they read as a
-   deliberate inset in light mode rather than a stray dark band on cream. */
-
-/* data-nimg matches content images rendered through Nextra's Image pipeline,
-   whose bundled _next/static/media URLs no longer carry the source path. */
-
-article img[src$='.svg'],
-article img[src*='/screenshots/'],
-article img[data-nimg] {
+article img[src$='.svg'] {
   border-radius: 10px;
 }
 
-html:not(.dark) article img[src$='.svg'],
+/* Infographics are intentional dark panels; frame them so they read as
+   a deliberate inset in light mode rather than a stray dark band on cream. */
+
+html:not(.dark) article img[src$='.svg'] {
+  box-shadow: 0 2px 14px rgba(13, 31, 60, 0.08);
+}
+
+/* data-nimg matches content images rendered through Nextra's Image pipeline,
+   whose bundled _next/static/media URLs no longer carry the source path. The
+   extension-based SVG exclusion still works against those final asset URLs;
+   infographics are excluded separately so their existing treatment is kept. */
+
+article img[src*='/screenshots/'],
+article img[data-nimg]:not([src$='.svg']):not([src*='/infographics/']) {
+  background: var(--pl-surface);
+  border: 1px solid var(--pl-card-border);
+  padding: 0.75rem;
+  border-radius: 12px;
+}
+
 html:not(.dark) article img[src*='/screenshots/'],
-html:not(.dark) article img[data-nimg] {
+html:not(.dark) article img[data-nimg]:not([src$='.svg']):not([src*='/infographics/']) {
   box-shadow: 0 2px 14px rgba(13, 31, 60, 0.08);
 }
 
