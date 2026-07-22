@@ -67,6 +67,8 @@ article h3 {
 article h1 {
   font-weight: 600 !important;
   font-size: clamp(1.85rem, 1.5rem + 1.2vw, 2.3rem) !important;
+  border-bottom: 1px solid rgba(177, 147, 79, 0.35);
+  padding-bottom: 0.7rem;
 }
 
 /* The section hairline sits ABOVE the heading (owner decision, July 2026):
@@ -82,6 +84,38 @@ article h2 {
 
 .dark article h2 {
   border-top-color: rgba(216, 201, 164, 0.3);
+}
+
+.dark article h1 {
+  border-bottom-color: rgba(216, 201, 164, 0.3);
+}
+
+/* ── Two-tier prose hierarchy ─────────────────────────────────────────
+   Muted body prose lets headings and emphasis anchor reader focus.
+   Contrast: light ~7.5:1, dark ~17:1. */
+
+article :is(p, li) {
+  color: #43536b;
+}
+
+.dark article :is(p, li) {
+  color: rgba(232, 220, 196, 0.84);
+}
+
+article :is(strong, b) {
+  color: var(--polaris-navy);
+}
+
+.dark article :is(strong, b) {
+  color: var(--polaris-star-bright);
+}
+
+article :is(h1, h2, h3, h4) {
+  color: var(--polaris-navy);
+}
+
+.dark article :is(h1, h2, h3, h4) {
+  color: var(--polaris-star-bright);
 }
 
 /* Dark mode — the canonical Polaris surface */
