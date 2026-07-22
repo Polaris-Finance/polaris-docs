@@ -1,36 +1,32 @@
 ---
 title: "Adaptive Peg Defence"
-description: "Polaris uses permissionless minting and redemptions to help pAssets trade around their target price."
+description: "Polaris incorporates permissionless minting and redemptions to help pAssets trade around their target price."
 ---
 
 # Adaptive Peg Defence
 
-Polaris uses permissionless minting and redemptions to help pAssets trade around their target price.
+Polaris incorporates permissionless minting and redemptions to help pAssets trade around their target price.
 
 Many collateralized asset systems are more effective at defending one side of the peg than the other, allowing supply to contract without providing an equally direct way to expand it when stressful situations come, or vice versa.
 
-Polaris supports both directions through the same permissionless architecture, allowing pAssets to be minted against pETH collateral or redeemed for pETH at their target value whenever market conditions create an arbitrage opportunity.
+Polaris supports both directions, allowing pAssets to be minted against pETH collateral or redeemed for pETH at their target value whenever market conditions create an arbitrage opportunity.
 
 ## Above Peg
 
-When a pAsset trades above its target price, market participants can mint new supply against pETH collateral and sell it into the market.
+When a pAsset trades above its target price, market participants can mint new supply against pETH collateral and sell it into the market for a net profit.
 
-For example, if USDp trades above one dollar, an arbitrageur can deposit ETH into the bonding curve, receive pETH and immediately mint new USDp before selling it above one dollar.
+For example, if USDp trades above one dollar, an arbitrageur can deposit ETH into the bonding curve, receive pETH and immediately mint new USDp at par before selling it above one dollar. This increases the circulating supply and naturally pushes the market price back toward its target.
 
-The resulting profit encourages new supply to enter the market, increasing the circulating supply and naturally pushing the market price back toward its target.
+Polaris extends this mechanism thanks to its Adaptive Peg Defense model, which distributes the collateral, debt and minting fees across all existing positions, preventing them from being concentrated in a single position.
 
-This mechanism is made possible by the Polaris bonding curve, which allows new collateral to enter the protocol as pETH before supporting pAssets. As a result, every newly minted asset remains fully backed while the protocol collateral base continues to grow.
-
-Polaris extends this mechanism through its Distributed Peg Defense model, which distributes the additional collateral, debt and minting fees across existing positions according to the protocol's accounting model instead of assigning them to a newly opened position.
-
-This allows supply to expand in response to above-peg demand without pushing a single new position toward liquidation. The expansion is shared across the market, allowing the protocol to respond to upward depegs through direct onchain minting.
+This allows supply to expand in response to above-peg demand without pushing a single position toward liquidation. The expansion is shared across the market, allowing the protocol to respond to upward depegs through direct onchain minting.
 
 ## Below Peg
 
 When a pAsset trades below its target price, market participants can buy the discounted asset and redeem it through the protocol for pETH at its target price.
 
-For example, if USDp trades below one dollar, an arbitrageur can purchase USDp below peg, redeem it for pETH and capture the price difference. The redeemed USDp is burned during the redemption process, reducing the circulating supply and encouraging the market price to move back toward its target.
+For example, if USDp trades below one dollar, an arbitrageur can purchase USDp below peg, redeem it at par for pETH and capture the price difference. The redeemed USDp is burned, reducing the circulating supply and encouraging the market price to move back toward target.
 
-The same Distributed Peg Defense model applies during redemptions by distributing collateral removal, debt reduction and redemption fees across existing positions according to the protocol's accounting model instead of concentrating the redemption on a single position.
+The same Adaptive Peg Defense model applies to redemptions: collateral removal, debt reduction and redemption fees are split across existing positions instead of concentrating on a single position.
 
-This allows supply to contract without targeting individual positions first. The contraction is shared across the market, allowing the protocol to respond to downward depegs through direct onchain redemptions.
+As a result, supply contracts without disproportionately affecting individual positions. The contraction is shared across the market, allowing the protocol to respond to downward depegs through direct onchain redemptions.

@@ -141,7 +141,9 @@ Markdown URL: https://polaris-finance.github.io/polaris-docs/core-assets/peth.md
 
 pETH is the native yield-bearing asset of Polaris. It serves as the collateral for every pAsset but also forms the economic foundation on which the whole ecosystem is built.
 
-Ethereum already offers several ways to hold ETH onchain. Liquid staking tokens generate yield by securing the network, while other assets rely on custodians that exist offchain. Those approaches work well for the goals they were designed for, but Polaris is built around a different model.
+Unlike wrapped ETH, pETH is not designed to track the price of ETH on a 1:1 basis. It is a native reserve asset built on ETH reserves whose value evolves with the Polaris economy.
+
+This distinction is important because Ethereum already offers several ways to hold ETH onchain. Liquid staking tokens generate yield by securing the network, while other assets rely on custodians that exist offchain. Those approaches work well for the goals they were designed for, but Polaris is built around a different model.
 
 The protocol generates yield entirely from onchain activity and is designed to operate without relying on custodians, offchain assets or external yield sources. Its collateral asset is based on the same design principles, serving as the protocol's shared reserve asset while supporting the liquidity and yield mechanisms that power it.
 

@@ -13,12 +13,12 @@ Liquidations protect the solvency of each pAsset market by closing unsafe positi
 
 Each pAsset market has its own Earn Vault, which acts as the first line of defense during liquidations. Depositors supply the pAsset to the Earn Vault, and those deposits can be used to cancel the debt of liquidated positions.
 
-When a liquidation occurs, the position's debt is cancelled using pAssets from the Earn Vault, while the corresponding pETH collateral is transferred to the vault. Earn Vault depositors therefore receive liquidation gains in exchange for acting as the first-loss backstop for the market.
+When a liquidation occurs, the position's debt is cancelled using pAssets from the Earn Vault, while the corresponding pETH collateral is transferred to the vault. Earn Vault depositors therefore receive liquidation gains in exchange for acting as the first backstop for the market.
 
-This liquidation mechanism is one of the sources of protocol-native yield distributed through Earn Vaults and is explained in greater detail in the dedicated Earn Vault section.
+This liquidation mechanism is one source of protocol-native yield distributed to Earn Vault depositors and is explained in greater detail in the dedicated Earn Vault section.
 
 ## Fallback Redistribution
 
-If the Earn Vault does not hold enough deposits to absorb the entire liquidation, the remaining debt and collateral are redistributed across the other open positions in the same pAsset market. This fallback mechanism keeps liquidation processing entirely inside the protocol without relying on external auctions or discretionary intervention.
+If the Earn Vault does not hold enough deposits to absorb the entire liquidation, the remaining debt and collateral are redistributed across the other open positions in the same pAsset market. As such, liquidations are always processed entirely within the protocol without relying on external auctions or discretionary intervention.
 
-Redistribution means open positions receive a proportional share of both the remaining debt and collateral. While intended only as a fallback mechanism, it ensures that liquidations can always be completed even when the Earn Vault is temporarily unable to absorb the full position.
+Redistribution assigns each open position a proportional share of both the remaining debt and collateral. While intended only as a fallback mechanism, it ensures that liquidations can always occur even when the Earn Vault is temporarily unable to absorb the full position.

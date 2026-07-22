@@ -73,7 +73,7 @@ Relevant app/search vocabulary: risk, risks, risk disclosure, smart contract ris
 
 ---
 
-## Security Properties
+## Security Guarantees
 
 URL: https://polaris-finance.github.io/polaris-docs/risks/security-properties
 Markdown URL: https://polaris-finance.github.io/polaris-docs/risks/security-properties.md

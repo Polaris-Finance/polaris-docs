@@ -14,9 +14,9 @@ Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-f
 
 Polaris uses bounded stewardship instead of open-ended governance.
 
-Governance can become a source of uncertainty when it has the ability to change how a protocol operates or how value flows through the system after deployment. Users are then required to evaluate not only the protocol itself, but also the future decisions of those responsible for governing it.
+Governance can become a source of risk when it is capable of changing how a protocol operates or how value flows through the system after deployment. Users are then required to evaluate not only the protocol itself, but also the character and decision-making processes of those responsible for governing it.
 
-Polaris is designed to minimize that reliance by enforcing as much of the protocol as possible through immutable smart contracts. Where that is not possible, economic incentives encourage participants to act in ways that strengthen the system.
+Polaris is designed to minimize that reliance by enforcing as much of the protocol logic as possible through immutable smart contracts. Where that is not possible, economic incentives encourage participants to act in ways that strengthen the system.
 
 Stewardship is therefore limited to the few decisions that neither mechanism can address, leaving the core protocol immutable.
 
@@ -26,7 +26,7 @@ Stewards cannot introduce new collateral to back pAssets, modify the bonding cur
 
 Although the core protocol cannot change, some parts of the ecosystem still benefit from ongoing coordination.
 
-Stewardship is responsible for these parameters within predefined protocol boundaries, allowing the ecosystem to adapt to changing market conditions.
+Stewardship is responsible for certain parameters within predefined protocol boundaries, allowing the ecosystem to adapt to changing market conditions.
 
 This includes:
 

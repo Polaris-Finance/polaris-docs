@@ -28,4 +28,4 @@ If the market's collateral falls below full backing, redemption payouts become p
 
 Bonding curve swaps remain live throughout this whole process. The bonding curve is shared pETH infrastructure rather than part of any individual pAsset market, allowing pETH holders to continue using it even if a specific market enters Recovery Mode.
 
-The mechanism is designed to help a stressed market deleverage in an orderly manner without shutting down the rest of the Polaris ecosystem.
+The mechanism is designed to help a stressed market deleverage in an orderly and isolated manner, without impacting the wider Polaris ecosystem.

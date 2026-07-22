@@ -9,19 +9,19 @@ Polaris uses two complementary interest rates to manage pAsset markets. Together
 
 The Peg Stability Rate is the primary interest rate paid by pAsset minters. It adjusts automatically according to minting and redemption activity and helps keep pAssets trading around their target price.
 
-The Protocol Safety Rate is a secondary interest rate that normally remains inactive. It only activates when the overall collateralization of a pAsset market falls below a predefined threshold, automatically shifting value from higher-leverage positions to lower-leverage or collateral-only positions.
+The Protocol Safety Rate is a secondary interest rate that normally remains inactive. It only activates when the overall collateralization of a pAsset market falls below a predefined threshold, automatically paying interest from higher-leverage positions to lower-leverage or collateral-only positions.
 
 ## Peg Stability Rate
 
 The Peg Stability Rate is the standard borrowing cost paid by users who mint pAssets.
 
-Interest paid through the Peg Stability Rate becomes the primary yield source for that pAsset market and is distributed according to the market's configured flow allocation, including the required minimum shares assigned to the Earn Vault and vePOLAR.
+Interest paid through the Peg Stability Rate becomes the primary yield source for that pAsset market and is distributed to the pAsset's Earn Vault and vePOLAR stakers, according to the market's configured flow allocation assigned.
 
-A unique feature about the Peg Stability Rate is that it doesn't change through governance or manual intervention. Instead, it adjusts automatically based on minting and redemption activity taking place inside the protocol.
+A unique feature of the Peg Stability Rate is that it is not altered by governance or manual intervention. Instead, it adjusts automatically based on minting and redemption activity taking place inside the protocol.
 
-When a pAsset trades above its target price, arbitrage opportunities naturally encourage new minting. As minting activity increases, the Peg Stability Rate can gradually decrease, reducing the cost of creating new pAssets and allowing supply to expand more quickly.
+When a pAsset trades above its target price, arbitrage opportunities naturally encourage new minting. As net minting activity increases, the Peg Stability Rate responds to this signal by gradually decreasing, reducing the cost of creating new pAssets and allowing supply to expand more quickly.
 
-Vice versa, when a pAsset trades below its target price, arbitrage opportunities encourage redemptions instead. As redemption activity increases, the Peg Stability Rate can gradually increase, making new minting less attractive while helping the circulating supply contract.
+Vice versa, when a pAsset trades below its target price, arbitrage opportunities encourage redemptions instead. As net redemption activity increases, the Peg Stability Rate gradually increases, making the creation of new debt positions less attractive while helping the circulating supply contract.
 
 ## Protocol Safety Rate
 

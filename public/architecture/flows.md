@@ -14,7 +14,7 @@ Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-f
 
 Flows distribute protocol-generated value to applications, markets and integrations building on top of Polaris.
 
-These incentive streams are funded by protocol activity and distributed in pETH or pAssets. This allows ecosystem incentives to be paid using assets directly connected to protocol activity, without relying on inflationary POLAR emissions.
+These incentive streams are funded by protocol activity and distributed in pETH or pAssets. Thus, ecosystem incentives are paid out using assets directly connected to protocol activity, without relying on inflationary POLAR emissions.
 
 ## Flow Allocation
 

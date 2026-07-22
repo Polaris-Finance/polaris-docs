@@ -12,7 +12,7 @@ Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-f
 
 ---
 
-The Mint section is where collateralized positions are created and managed.
+This one is where collateralized positions are created and managed.
 
 Using pETH as collateral, you can mint USDp or GOLDp.
 

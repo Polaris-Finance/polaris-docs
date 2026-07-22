@@ -14,13 +14,13 @@ Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-f
 
 Earn Vaults allow pAssets minted through Polaris to become yield-bearing assets.
 
-Users deposit a pAsset into its corresponding Earn Vault, where those deposits are used to absorb liquidations whenever positions exceed the maximum allowed LTV. In return for this, depositors receive a guaranteed minimum share of the interest paid by minters of that pAsset together with any pETH liquidation gains generated when liquidations occur.
+Users deposit a pAsset into its corresponding Earn Vault, where those deposits are used to absorb liquidations whenever positions exceed the maximum allowed LTV. In return, depositors receive a guaranteed minimum share of the interest paid by pAsset minters over time, along with any pETH liquidation gains.
 
-This makes Earn Vaults the primary mechanism through which protocol-native yield is distributed to pAsset holders. Because both borrowing interest and liquidation gains originate from activity inside Polaris, the resulting yield does not rely on external lending markets or offchain assets.
+This makes Earn Vaults the primary mechanism through which protocol-native yield is distributed to pAsset holders. Since both minter interest and liquidation gains originate from activity inside Polaris, the resulting yield does not rely on external lending markets or offchain assets.
 
 ## Position Ownership
 
-Earn Vault deposits are represented as transferable NFTs because each position maintains its own accounting over time, causing rewards and liquidation outcomes to differ from one position to another.
+Each Earn Vault deposit is represented by a transferable NFT that tracks its own rewards over time.
 
 Representing deposits as NFTs allows users to transfer ownership of an Earn Vault position without withdrawing its underlying assets or resetting its accounting.
 

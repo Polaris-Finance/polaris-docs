@@ -116,7 +116,7 @@ export const NAVIGATION_GROUPS = [
           page(
             'spike-and-decay-fees',
             'spike-and-decay-fees',
-            'Spike-and-decay Fees',
+            'Spike-and-Decay Fees',
             '/design/spike-and-decay-fees',
             'Activity'
           ),
@@ -201,7 +201,7 @@ export const NAVIGATION_GROUPS = [
           page(
             'security-properties',
             'security-properties',
-            'Security Properties',
+            'Security Guarantees',
             '/risks/security-properties',
             'ShieldCheck',
             'reference'
