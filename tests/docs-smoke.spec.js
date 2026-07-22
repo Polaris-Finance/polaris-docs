@@ -254,38 +254,40 @@ async function expectNoUnnamedVisibleControls(page) {
   expect(offenders).toEqual([])
 }
 
-async function expectTouchTargets(page, selector, label) {
-  const offenders = await page.locator(selector).evaluateAll((nodes) =>
-    nodes
-      .filter((node) => {
-        const style = window.getComputedStyle(node)
-        const rect = node.getBoundingClientRect()
-        return (
-          style.visibility !== 'hidden' &&
-          style.display !== 'none' &&
-          rect.width > 0 &&
-          rect.height > 0 &&
-          !node.disabled &&
-          node.getAttribute('aria-disabled') !== 'true' &&
-          !node.closest('[aria-hidden="true"], [inert]')
-        )
-      })
-      .map((node) => {
-        const rect = node.getBoundingClientRect()
-        return {
-          name:
-            node.getAttribute('aria-label') ||
-            node.getAttribute('title') ||
-            node.textContent.trim() ||
-            node.tagName.toLowerCase(),
-          width: Math.round(rect.width),
-          height: Math.round(rect.height)
-        }
-      })
-      .filter(({ width, height }) => width < 44 || height < 44)
+async function expectTouchTargets(page, selector, label, floor = 44) {
+  const offenders = await page.locator(selector).evaluateAll(
+    (nodes, minSize) =>
+      nodes
+        .filter((node) => {
+          const style = window.getComputedStyle(node)
+          const rect = node.getBoundingClientRect()
+          return (
+            style.visibility !== 'hidden' &&
+            style.display !== 'none' &&
+            rect.width > 0 &&
+            rect.height > 0 &&
+            !node.disabled &&
+            node.getAttribute('aria-disabled') !== 'true' &&
+            !node.closest('[aria-hidden="true"], [inert]')
+          )
+        })
+        .map((node) => {
+          const rect = node.getBoundingClientRect()
+          return {
+            name:
+              node.getAttribute('aria-label') ||
+              node.getAttribute('title') ||
+              node.textContent.trim() ||
+              node.tagName.toLowerCase(),
+            width: Math.round(rect.width),
+            height: Math.round(rect.height)
+          }
+        })
+        .filter(({ width, height }) => width < minSize || height < minSize),
+    floor
   )
 
-  expect(offenders, `${label} below 44px touch target`).toEqual([])
+  expect(offenders, `${label} below ${floor}px target`).toEqual([])
 }
 
 async function expectTabOrderAvoidsHiddenControls(page, steps = 12) {
@@ -636,15 +638,18 @@ test('docs controls meet 44px touch targets where scoped', async ({ page }, test
 
   await expectTouchTargets(
     page,
-    [
-      'header nav a',
-      'header nav button',
-      'header nav .nextra-search input',
-      '.nextra-sidebar a',
-      '.nextra-sidebar button',
-      '.nextra-sidebar-footer button'
-    ].join(', '),
-    'visible header/sidebar controls'
+    ['header nav a', 'header nav button', 'header nav .nextra-search input'].join(', '),
+    'visible header controls'
+  )
+
+  // Sidebar rows are compact on fine pointers (owner-approved density, Aave
+  // plan A4) but must keep the 44px target on touch devices; 24px is the
+  // WCAG 2.5.8 pointer floor the compact rows still have to clear.
+  await expectTouchTargets(
+    page,
+    ['.nextra-sidebar a', '.nextra-sidebar button', '.nextra-sidebar-footer button'].join(', '),
+    'visible sidebar controls',
+    testInfo.project.name === 'mobile' ? 44 : 24
   )
 
   if (testInfo.project.name === 'mobile') {
