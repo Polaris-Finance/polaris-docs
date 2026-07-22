@@ -1,5 +1,5 @@
-const DEFAULT_SITE_URL = 'https://polaris-finance.github.io'
-const DEFAULT_BASE_PATH = '/polaris-docs'
+const DEFAULT_SITE_URL = 'https://docs.polaris.finance'
+const DEFAULT_BASE_PATH = ''
 
 function trimTrailingSlash(value) {
   return value.replace(/\/+$/, '')

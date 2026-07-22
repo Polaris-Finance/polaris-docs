@@ -12,8 +12,8 @@
 
 ## Advanced
 
-URL: https://polaris-finance.github.io/polaris-docs/testnet/advanced
-Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/advanced.md
+URL: https://docs.polaris.finance/testnet/advanced
+Markdown URL: https://docs.polaris.finance/testnet/advanced.md
 
 The Advanced section brings together protocol operations that go beyond the standard user flows.
 
@@ -35,8 +35,8 @@ Relevant app/search vocabulary: app, official app, testnet app, app.testnet.pola
 
 ## Analytics
 
-URL: https://polaris-finance.github.io/polaris-docs/testnet/analytics
-Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/analytics.md
+URL: https://docs.polaris.finance/testnet/analytics
+Markdown URL: https://docs.polaris.finance/testnet/analytics.md
 
 This section offers a real-time overview of protocol activity throughout the testnet.
 
@@ -54,8 +54,8 @@ Relevant app/search vocabulary: app, official app, testnet app, app.testnet.pola
 
 ## Dashboard
 
-URL: https://polaris-finance.github.io/polaris-docs/testnet/dashboard
-Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/dashboard.md
+URL: https://docs.polaris.finance/testnet/dashboard
+Markdown URL: https://docs.polaris.finance/testnet/dashboard.md
 
 The Dashboard provides a complete overview of your activity across Polaris. From here you can monitor your balances, active positions, Earn deposits and recent transactions, while also accessing the Sepolia faucet before interacting with the protocol.
 
@@ -69,8 +69,8 @@ Relevant app/search vocabulary: app, official app, testnet app, app.testnet.pola
 
 ## Earn
 
-URL: https://polaris-finance.github.io/polaris-docs/testnet/earn
-Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/earn.md
+URL: https://docs.polaris.finance/testnet/earn
+Markdown URL: https://docs.polaris.finance/testnet/earn.md
 
 This section gives users access to the Earn Vaults. From here you can deposit into the auto-compounding sUSDp and sGOLDp Earn Vaults, monitor your deposits and accumulated yield, and withdraw your funds whenever you want.
 
@@ -84,8 +84,8 @@ Relevant app/search vocabulary: app, official app, testnet app, app.testnet.pola
 
 ## Guide
 
-URL: https://polaris-finance.github.io/polaris-docs/testnet/guide
-Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/guide.md
+URL: https://docs.polaris.finance/testnet/guide
+Markdown URL: https://docs.polaris.finance/testnet/guide.md
 
 This section contains detailed explanations of every core interaction available during the testnet. Organized by protocol section and asset, it explains how each feature works and what happens when you perform different actions.
 
@@ -101,8 +101,8 @@ Relevant app/search vocabulary: app, official app, testnet app, app.testnet.pola
 
 ## Liquidity
 
-URL: https://polaris-finance.github.io/polaris-docs/testnet/liquidity
-Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/liquidity.md
+URL: https://docs.polaris.finance/testnet/liquidity
+Markdown URL: https://docs.polaris.finance/testnet/liquidity.md
 
 This section is where you provide liquidity to Polaris pools and earn a share of the swap fees they generate.
 
@@ -125,8 +125,8 @@ Relevant app/search vocabulary: app, official app, testnet app, app.testnet.pola
 
 ## Mint
 
-URL: https://polaris-finance.github.io/polaris-docs/testnet/mint
-Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/mint.md
+URL: https://docs.polaris.finance/testnet/mint
+Markdown URL: https://docs.polaris.finance/testnet/mint.md
 
 This one is where collateralized positions are created and managed.
 
@@ -144,8 +144,8 @@ Relevant app/search vocabulary: app, official app, testnet app, app.testnet.pola
 
 ## Reserve Loan
 
-URL: https://polaris-finance.github.io/polaris-docs/testnet/reserve-loan
-Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/reserve-loan.md
+URL: https://docs.polaris.finance/testnet/reserve-loan
+Markdown URL: https://docs.polaris.finance/testnet/reserve-loan.md
 
 Reserve Loans enable you to borrow ETH by using fpETH as collateral. From here you can open and manage non-liquidatable Reserve Loans, view your active positions, and repay or close existing loans.
 
@@ -159,8 +159,8 @@ Relevant app/search vocabulary: app, official app, testnet app, app.testnet.pola
 
 ## Split
 
-URL: https://polaris-finance.github.io/polaris-docs/testnet/split
-Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/split.md
+URL: https://docs.polaris.finance/testnet/split
+Markdown URL: https://docs.polaris.finance/testnet/split.md
 
 Split allows you to separate pETH into fpETH and vpETH, or merge those two assets back into pETH whenever you choose.
 
@@ -176,8 +176,8 @@ Relevant app/search vocabulary: app, official app, testnet app, app.testnet.pola
 
 ## Swap
 
-URL: https://polaris-finance.github.io/polaris-docs/testnet/swap
-Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/swap.md
+URL: https://docs.polaris.finance/testnet/swap
+Markdown URL: https://docs.polaris.finance/testnet/swap.md
 
 Swap lets you exchange supported assets across Polaris, which currently are the Core Assets.
 
@@ -193,8 +193,8 @@ Relevant app/search vocabulary: app, official app, testnet app, app.testnet.pola
 
 ## vePOLAR
 
-URL: https://polaris-finance.github.io/polaris-docs/testnet/vepolar
-Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/vepolar.md
+URL: https://docs.polaris.finance/testnet/vepolar
+Markdown URL: https://docs.polaris.finance/testnet/vepolar.md
 
 This is where you commit POLAR to receive vePOLAR voting power.
 
@@ -210,8 +210,8 @@ Relevant app/search vocabulary: app, official app, testnet app, app.testnet.pola
 
 ## vpETH
 
-URL: https://polaris-finance.github.io/polaris-docs/testnet/vpeth
-Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/vpeth.md
+URL: https://docs.polaris.finance/testnet/vpeth
+Markdown URL: https://docs.polaris.finance/testnet/vpeth.md
 
 The vpETH Lending Market allows users to supply vpETH to earn lending yield or borrow vpETH against ETH collateral.
 

@@ -3,12 +3,12 @@
 
 > Polaris is designed to minimize trust wherever possible, although some sources of uncertainty remain unavoidable and are covered in the dedicated Risks section.
 
-Canonical URL: https://polaris-finance.github.io/polaris-docs/risks/security-properties
-Markdown URL: https://polaris-finance.github.io/polaris-docs/risks/security-properties.md
+Canonical URL: https://docs.polaris.finance/risks/security-properties
+Markdown URL: https://docs.polaris.finance/risks/security-properties.md
 Section: Risks
 
-Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
-Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt
+Documentation index: https://docs.polaris.finance/llms.txt
+Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 ---
 

@@ -3,12 +3,12 @@
 
 > Protocol operations that go beyond the standard user flows.
 
-Canonical URL: https://polaris-finance.github.io/polaris-docs/testnet/advanced
-Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/advanced.md
+Canonical URL: https://docs.polaris.finance/testnet/advanced
+Markdown URL: https://docs.polaris.finance/testnet/advanced.md
 Section: Using Polaris Testnet
 
-Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
-Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt
+Documentation index: https://docs.polaris.finance/llms.txt
+Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 ---
 
@@ -24,4 +24,4 @@ This section currently includes the following operations:
  When a savings vault absorbs a liquidation, you can purchase pETH collateral from permissionless liquidation auctions. Most auctions are expected to be cleared by keeper bots, but anyone can participate.
 - **Conversions**: Convert pETH into POLAR directly through the protocol conversion mechanism.
 
-![The Advanced section with its Mint/Redeem, SP Direct, Auctions and Conversions operations](https://polaris-finance.github.io/polaris-docs/screenshots/testnet/advanced.png)
+![The Advanced section with its Mint/Redeem, SP Direct, Auctions and Conversions operations](https://docs.polaris.finance/screenshots/testnet/advanced.png)

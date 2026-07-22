@@ -3,12 +3,12 @@
 
 > Polaris uses two complementary interest rates to manage pAsset markets.
 
-Canonical URL: https://polaris-finance.github.io/polaris-docs/design/interest-rates
-Markdown URL: https://polaris-finance.github.io/polaris-docs/design/interest-rates.md
+Canonical URL: https://docs.polaris.finance/design/interest-rates
+Markdown URL: https://docs.polaris.finance/design/interest-rates.md
 Section: Protocol Mechanics
 
-Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
-Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt
+Documentation index: https://docs.polaris.finance/llms.txt
+Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 ---
 

@@ -3,12 +3,12 @@
 
 > The final POLAR allocation, vesting schedule and launch parameters will be published closer to launch once finalized.
 
-Canonical URL: https://polaris-finance.github.io/polaris-docs/architecture/tokenomics
-Markdown URL: https://polaris-finance.github.io/polaris-docs/architecture/tokenomics.md
+Canonical URL: https://docs.polaris.finance/architecture/tokenomics
+Markdown URL: https://docs.polaris.finance/architecture/tokenomics.md
 Section: Core Architecture
 
-Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
-Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt
+Documentation index: https://docs.polaris.finance/llms.txt
+Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 ---
 

@@ -28,4 +28,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://polaris-finance.github.io/polaris-docs/sitemap.xml
+Sitemap: https://docs.polaris.finance/sitemap.xml

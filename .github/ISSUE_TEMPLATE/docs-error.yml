@@ -7,7 +7,7 @@ body:
     attributes:
       label: Page URL
       description: Link to the docs page where you found the problem.
-      placeholder: https://polaris-finance.github.io/polaris-docs/core-assets/peth
+      placeholder: https://docs.polaris.finance/core-assets/peth
     validations:
       required: true
   - type: textarea

@@ -3,12 +3,12 @@
 
 > The Dashboard provides a complete overview of your activity across Polaris.
 
-Canonical URL: https://polaris-finance.github.io/polaris-docs/testnet/dashboard
-Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/dashboard.md
+Canonical URL: https://docs.polaris.finance/testnet/dashboard
+Markdown URL: https://docs.polaris.finance/testnet/dashboard.md
 Section: Using Polaris Testnet
 
-Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
-Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt
+Documentation index: https://docs.polaris.finance/llms.txt
+Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 ---
 
@@ -16,4 +16,4 @@ The Dashboard provides a complete overview of your activity across Polaris. From
 
 It is designed to be the starting point of the application, allowing you to quickly understand the current state of your portfolio without navigating through every individual section.
 
-![The Polaris testnet Dashboard, showing balances, active positions, Earn deposits and recent transactions](https://polaris-finance.github.io/polaris-docs/screenshots/testnet/dashboard.png)
+![The Polaris testnet Dashboard, showing balances, active positions, Earn deposits and recent transactions](https://docs.polaris.finance/screenshots/testnet/dashboard.png)

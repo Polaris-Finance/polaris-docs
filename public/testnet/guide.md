@@ -3,12 +3,12 @@
 
 > Detailed explanations of every core interaction available during the testnet.
 
-Canonical URL: https://polaris-finance.github.io/polaris-docs/testnet/guide
-Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/guide.md
+Canonical URL: https://docs.polaris.finance/testnet/guide
+Markdown URL: https://docs.polaris.finance/testnet/guide.md
 Section: Using Polaris Testnet
 
-Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
-Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt
+Documentation index: https://docs.polaris.finance/llms.txt
+Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 ---
 
@@ -18,4 +18,4 @@ It is designed to accompany your exploration of Polaris, making it easier to und
 
 Each of the following pages also include explanations for the actions available in that section, providing additional context while you interact with the protocol.
 
-![The in-app Guide's "What to do on Polaris?" view, with recommended actions filtered by token](https://polaris-finance.github.io/polaris-docs/screenshots/testnet/guide.png)
+![The in-app Guide's "What to do on Polaris?" view, with recommended actions filtered by token](https://docs.polaris.finance/screenshots/testnet/guide.png)

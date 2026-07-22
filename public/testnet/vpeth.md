@@ -3,12 +3,12 @@
 
 > Supply vpETH to earn lending yield or borrow vpETH against ETH collateral.
 
-Canonical URL: https://polaris-finance.github.io/polaris-docs/testnet/vpeth
-Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/vpeth.md
+Canonical URL: https://docs.polaris.finance/testnet/vpeth
+Markdown URL: https://docs.polaris.finance/testnet/vpeth.md
 Section: Using Polaris Testnet
 
-Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
-Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt
+Documentation index: https://docs.polaris.finance/llms.txt
+Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 ---
 
@@ -18,4 +18,4 @@ Borrowed vpETH can be sold to create a hedged position, helping reduce exposure 
 
 From here you can supply or withdraw vpETH, manage collateral and debt, and monitor key market metrics including utilization, available liquidity, maximum LTV, and the current vpETH price.
 
-![The vpETH Lending Market interface for supplying vpETH and borrowing against ETH collateral](https://polaris-finance.github.io/polaris-docs/screenshots/testnet/vpeth.png)
+![The vpETH Lending Market interface for supplying vpETH and borrowing against ETH collateral](https://docs.polaris.finance/screenshots/testnet/vpeth.png)

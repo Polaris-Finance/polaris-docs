@@ -3,12 +3,12 @@
 
 > Deposit into the auto-compounding sUSDp and sGOLDp Earn Vaults.
 
-Canonical URL: https://polaris-finance.github.io/polaris-docs/testnet/earn
-Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/earn.md
+Canonical URL: https://docs.polaris.finance/testnet/earn
+Markdown URL: https://docs.polaris.finance/testnet/earn.md
 Section: Using Polaris Testnet
 
-Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
-Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt
+Documentation index: https://docs.polaris.finance/llms.txt
+Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 ---
 
@@ -16,4 +16,4 @@ This section gives users access to the Earn Vaults. From here you can deposit in
 
 Everything related to your Earn positions is managed from this section.
 
-![The Earn interface with the auto-compounding sUSDp and sGOLDp Earn Vaults](https://polaris-finance.github.io/polaris-docs/screenshots/testnet/earn.png)
+![The Earn interface with the auto-compounding sUSDp and sGOLDp Earn Vaults](https://docs.polaris.finance/screenshots/testnet/earn.png)

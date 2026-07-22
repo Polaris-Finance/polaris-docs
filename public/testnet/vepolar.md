@@ -3,12 +3,12 @@
 
 > Commit POLAR to receive vePOLAR voting power and participate in protocol stewardship.
 
-Canonical URL: https://polaris-finance.github.io/polaris-docs/testnet/vepolar
-Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/vepolar.md
+Canonical URL: https://docs.polaris.finance/testnet/vepolar
+Markdown URL: https://docs.polaris.finance/testnet/vepolar.md
 Section: Using Polaris Testnet
 
-Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
-Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt
+Documentation index: https://docs.polaris.finance/llms.txt
+Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 ---
 
@@ -18,4 +18,4 @@ From here you can create and manage lock positions, monitor your voting power an
 
 Each position is created independently, letting you choose a different amount and commitment period for every lock.
 
-![The vePOLAR interface for creating and managing POLAR lock positions](https://polaris-finance.github.io/polaris-docs/screenshots/testnet/vepolar.png)
+![The vePOLAR interface for creating and managing POLAR lock positions](https://docs.polaris.finance/screenshots/testnet/vepolar.png)

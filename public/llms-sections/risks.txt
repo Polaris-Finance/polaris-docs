@@ -12,8 +12,8 @@
 
 ## Risks
 
-URL: https://polaris-finance.github.io/polaris-docs/risks
-Markdown URL: https://polaris-finance.github.io/polaris-docs/risks.md
+URL: https://docs.polaris.finance/risks
+Markdown URL: https://docs.polaris.finance/risks.md
 
 Polaris is built as immutable onchain infrastructure. This reduces reliance on trusted intermediaries, admin keys and offchain counterparties, but it does not remove risk.
 
@@ -75,8 +75,8 @@ Relevant app/search vocabulary: risk, risks, risk disclosure, smart contract ris
 
 ## Security Guarantees
 
-URL: https://polaris-finance.github.io/polaris-docs/risks/security-properties
-Markdown URL: https://polaris-finance.github.io/polaris-docs/risks/security-properties.md
+URL: https://docs.polaris.finance/risks/security-properties
+Markdown URL: https://docs.polaris.finance/risks/security-properties.md
 
 Polaris is designed to minimize trust wherever possible, although some sources of uncertainty remain unavoidable and are covered in the dedicated Risks section.
 

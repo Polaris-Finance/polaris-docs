@@ -685,7 +685,8 @@ test('dense article page stays within the route prefetch budget', async ({ page 
     if (url.pathname.includes('/_next/') || url.pathname.includes('/_pagefind/')) return
     if (url.pathname === pathWithBase('/risks')) return
 
-    if (/\/polaris-docs\/.+(?:\.txt|\.html)?$/.test(url.pathname)) {
+    const routePrefix = BASE_PATH ? `${BASE_PATH}/` : '/'
+    if (url.pathname.startsWith(routePrefix)) {
       routeRequests.add(url.pathname)
     }
   })

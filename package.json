@@ -35,6 +35,7 @@
     "check:artifact": "node scripts/check-export-artifact.mjs",
     "check:gdocs-import": "node scripts/check-gdocs-import.mjs",
     "check:live-artifact": "node scripts/check-live-artifact.mjs",
+    "check:redirect": "node scripts/check-docs-redirect.mjs",
     "check:host": "node scripts/check-host-consistency.mjs",
     "check:navigation": "node scripts/check-navigation-integrity.mjs",
     "check:navigation-config": "node scripts/check-navigation-config.mjs",

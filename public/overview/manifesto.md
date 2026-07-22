@@ -3,12 +3,12 @@
 
 > Decentralized finance was built on the idea that money should not depend on trusted intermediaries.
 
-Canonical URL: https://polaris-finance.github.io/polaris-docs/overview/manifesto
-Markdown URL: https://polaris-finance.github.io/polaris-docs/overview/manifesto.md
+Canonical URL: https://docs.polaris.finance/overview/manifesto
+Markdown URL: https://docs.polaris.finance/overview/manifesto.md
 Section: Overview
 
-Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
-Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt
+Documentation index: https://docs.polaris.finance/llms.txt
+Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 ---
 

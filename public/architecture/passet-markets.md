@@ -3,12 +3,12 @@
 
 > pAssets are currencies and synthetic assets issued against pETH using the shared collateral infrastructure provided by Polaris.
 
-Canonical URL: https://polaris-finance.github.io/polaris-docs/architecture/passet-markets
-Markdown URL: https://polaris-finance.github.io/polaris-docs/architecture/passet-markets.md
+Canonical URL: https://docs.polaris.finance/architecture/passet-markets
+Markdown URL: https://docs.polaris.finance/architecture/passet-markets.md
 Section: Core Architecture
 
-Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
-Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt
+Documentation index: https://docs.polaris.finance/llms.txt
+Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 ---
 

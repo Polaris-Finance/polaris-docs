@@ -12,6 +12,6 @@ body:
     id: page-url
     attributes:
       label: Related page (optional)
-      placeholder: https://polaris-finance.github.io/polaris-docs/...
+      placeholder: https://docs.polaris.finance/...
     validations:
       required: false

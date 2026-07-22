@@ -10,9 +10,7 @@ const withNextra = nextra({
   }
 })
 
-// Static export to GitHub Pages. The default mode is the project site at
-// tokenbrice.github.io/polaris-docs. Set BASE_PATH="" only when a validated root
-// custom domain is ready.
+// Static export to the root of the docs.polaris.finance custom domain.
 export default withNextra({
   output: 'export',
   basePath: BASE_PATH,

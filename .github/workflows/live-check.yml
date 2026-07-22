@@ -27,6 +27,9 @@ jobs:
       - name: Smoke check live site
         run: npm run check:live-artifact
 
+      - name: Check public docs redirect
+        run: npm run check:redirect
+
       - name: Open or update tracking issue
         if: failure()
         env:

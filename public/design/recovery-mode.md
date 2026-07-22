@@ -3,12 +3,12 @@
 
 > Recovery Mode is the protective state a pAsset market enters when its overall collateralization falls below a critical threshold.
 
-Canonical URL: https://polaris-finance.github.io/polaris-docs/design/recovery-mode
-Markdown URL: https://polaris-finance.github.io/polaris-docs/design/recovery-mode.md
+Canonical URL: https://docs.polaris.finance/design/recovery-mode
+Markdown URL: https://docs.polaris.finance/design/recovery-mode.md
 Section: Protocol Mechanics
 
-Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
-Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt
+Documentation index: https://docs.polaris.finance/llms.txt
+Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 ---
 

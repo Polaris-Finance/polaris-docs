@@ -3,12 +3,12 @@
 
 > Polaris uses bounded stewardship instead of open-ended governance.
 
-Canonical URL: https://polaris-finance.github.io/polaris-docs/architecture/stewardship
-Markdown URL: https://polaris-finance.github.io/polaris-docs/architecture/stewardship.md
+Canonical URL: https://docs.polaris.finance/architecture/stewardship
+Markdown URL: https://docs.polaris.finance/architecture/stewardship.md
 Section: Core Architecture
 
-Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
-Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt
+Documentation index: https://docs.polaris.finance/llms.txt
+Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 ---
 

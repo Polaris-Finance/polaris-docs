@@ -5,7 +5,7 @@ import { absoluteUrl, BASE_PATH, SITE_BASE_URL, SITE_URL } from '../app/site-con
 const root = process.cwd()
 const failures = []
 const expectedHost = new URL(SITE_URL).host
-const staleCustomHost = 'docs.polarisfinance.io'
+const staleHosts = ['docs.polarisfinance.io', 'tokenbrice.github.io', 'polaris-finance.github.io']
 
 function readIfExists(relativePath) {
   const fullPath = path.join(root, relativePath)
@@ -20,8 +20,10 @@ function assertIncludes(relativePath, expected) {
 }
 
 function assertNoStaleHost(relativePath, text) {
-  if (text.includes(staleCustomHost) && expectedHost !== staleCustomHost) {
-    failures.push(`${relativePath} still references ${staleCustomHost}`)
+  for (const staleHost of staleHosts) {
+    if (text.includes(staleHost) && expectedHost !== staleHost) {
+      failures.push(`${relativePath} still references ${staleHost}`)
+    }
   }
 }
 
@@ -39,6 +41,25 @@ assertIncludes('README.md', `SITE_URL=${SITE_URL}`)
 assertIncludes('README.md', `BASE_PATH=${BASE_PATH || ''}`)
 assertIncludes('.github/workflows/deploy.yml', `SITE_URL: ${SITE_URL}`)
 assertIncludes('.github/workflows/deploy.yml', `BASE_PATH: ${BASE_PATH || ''}`)
+
+for (const relativePath of [
+  'AGENTS.md',
+  'CLAUDE.md',
+  'README.md',
+  'next.config.mjs',
+  'app/site-config.mjs',
+  '.github/workflows/ci.yml',
+  '.github/workflows/deploy.yml',
+  '.github/workflows/live-check.yml',
+  'scripts/og-image.svg'
+]) {
+  const text = readIfExists(relativePath)
+  if (!text) {
+    failures.push(`${relativePath} is missing`)
+    continue
+  }
+  assertNoStaleHost(relativePath, text)
+}
 
 for (const relativePath of [
   'public/sitemap.xml',

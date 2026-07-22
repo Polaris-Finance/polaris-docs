@@ -3,12 +3,12 @@
 
 > Swap lets you exchange supported assets across Polaris, which currently are the Core Assets.
 
-Canonical URL: https://polaris-finance.github.io/polaris-docs/testnet/swap
-Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/swap.md
+Canonical URL: https://docs.polaris.finance/testnet/swap
+Markdown URL: https://docs.polaris.finance/testnet/swap.md
 Section: Using Polaris Testnet
 
-Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
-Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt
+Documentation index: https://docs.polaris.finance/llms.txt
+Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 ---
 
@@ -18,4 +18,4 @@ All pETH swaps are executed through the Polaris bonding curve, while additional 
 
 Before confirming a swap, review the quoted output, price impact, fees and minimum received.
 
-![The Swap interface with quoted output, price impact, fees and minimum received](https://polaris-finance.github.io/polaris-docs/screenshots/testnet/swap.png)
+![The Swap interface with quoted output, price impact, fees and minimum received](https://docs.polaris.finance/screenshots/testnet/swap.png)

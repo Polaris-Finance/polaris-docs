@@ -6,7 +6,7 @@ Thanks for helping improve the Polaris docs. The short version:
 
 ```sh
 npm ci
-npm run dev   # http://localhost:3000/polaris-docs/
+npm run dev   # http://localhost:3000/
 ```
 
 ## Where things live

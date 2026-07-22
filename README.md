@@ -1,6 +1,6 @@
 # Polaris Documentation
 
-User documentation for [Polaris](https://polarisfinance.io) - the onchain yield layer built around pETH. Built with [Nextra 4](https://nextra.site) (Next.js App Router), statically exported and deployed to GitHub Pages at **polaris-finance.github.io/polaris-docs**.
+User documentation for [Polaris](https://polarisfinance.io) - the onchain yield layer built around pETH. Built with [Nextra 4](https://nextra.site) (Next.js App Router), statically exported and deployed to GitHub Pages at **docs.polaris.finance**.
 
 Content lives as MDX in [`content/`](./content); the sidebar is driven by `_meta.js` files. No SaaS backend - the docs are fully git-native.
 
@@ -8,7 +8,7 @@ Content lives as MDX in [`content/`](./content); the sidebar is driven by `_meta
 
 ```bash
 npm install
-npm run dev        # http://localhost:3000/polaris-docs/  (Turbopack)
+npm run dev        # http://localhost:3000/  (Turbopack)
 ```
 
 Use Node 22 (`.nvmrc` / `.node-version`). CI uses the same major version.
@@ -21,7 +21,7 @@ index is missing, run `npm run dev:search` once, or run `npm run build` and rest
 
 ```bash
 npm run build      # static export to ./out  +  Pagefind search index
-npm run serve      # preview ./out at http://127.0.0.1:4173/polaris-docs/
+npm run serve      # preview ./out at http://127.0.0.1:4173/
 ```
 
 ## Validate
@@ -78,10 +78,13 @@ Other notes:
 
 ## Deploy
 
-Pushing to `main` triggers `.github/workflows/deploy.yml` (source checks, production audit, external links, and project-path build/Pagefind/artifact checks in parallel → GitHub Pages deploy after required gates pass). Before the first deploy:
+Pushing to `main` triggers `.github/workflows/deploy.yml` (source checks, production audit, external links, and root-path build/Pagefind/artifact checks in parallel → GitHub Pages deploy after required gates pass).
 
-0. Rename the local default branch to `main`, add the GitHub remote, and confirm the public repository URL. The initial local branch is currently not sufficient for deployment.
+The site uses a custom domain on GitHub Pages. Keep these settings aligned:
+
 1. In the repo's **Settings → Pages**, set **Source** to **GitHub Actions**.
-2. Keep `BASE_PATH=/polaris-docs` and `SITE_URL=https://polaris-finance.github.io` in the deploy workflow while the production URL is `https://polaris-finance.github.io/polaris-docs/`.
+2. Set the Pages **Custom domain** to `docs.polaris.finance` and enable **Enforce HTTPS** once GitHub makes it available.
+3. Keep `BASE_PATH=` and `SITE_URL=https://docs.polaris.finance` in the source defaults, CI, and deploy workflow.
+4. Keep `public/CNAME` set to `docs.polaris.finance`.
 
-The site is deployed as a GitHub Pages project site. Treat `https://polaris-finance.github.io/polaris-docs/` as canonical. The source defaults and deploy workflow both build with `SITE_URL=https://polaris-finance.github.io` and `BASE_PATH=/polaris-docs`; there is no `public/CNAME` while `docs.polarisfinance.io` is not validated as serving this repo and may serve stale or unrelated content. Do not switch to root custom-domain settings until that host is confirmed to serve this docs build. If the docs later move to a working root custom domain, set `BASE_PATH=` and `SITE_URL` to that origin, then restore a matching `public/CNAME`.
+Treat `https://docs.polaris.finance/` as canonical. `https://polaris.finance/docs/` is a vanity redirect to that domain; configure the external rule as a permanent `301` or `308` redirect while preserving the suffix path and query string. The scheduled live-site workflow checks both the deployed artifact and this redirect.

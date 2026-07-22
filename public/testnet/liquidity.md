@@ -3,12 +3,12 @@
 
 > Provide liquidity to Polaris pools and earn a share of the swap fees they generate.
 
-Canonical URL: https://polaris-finance.github.io/polaris-docs/testnet/liquidity
-Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/liquidity.md
+Canonical URL: https://docs.polaris.finance/testnet/liquidity
+Markdown URL: https://docs.polaris.finance/testnet/liquidity.md
 Section: Using Polaris Testnet
 
-Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
-Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt
+Documentation index: https://docs.polaris.finance/llms.txt
+Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 ---
 
@@ -25,4 +25,4 @@ Polaris currently offers the following liquidity pools:
 - GOLD Pool (GOLDp–ETH)
 - Split TriPool (pETH–fpETH–vpETH)
 
-![The Liquidity interface listing Polaris pools with liquidity, APR and pool share](https://polaris-finance.github.io/polaris-docs/screenshots/testnet/liquidity.png)
+![The Liquidity interface listing Polaris pools with liquidity, APR and pool share](https://docs.polaris.finance/screenshots/testnet/liquidity.png)

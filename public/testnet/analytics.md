@@ -3,12 +3,12 @@
 
 > A real-time overview of protocol activity throughout the testnet.
 
-Canonical URL: https://polaris-finance.github.io/polaris-docs/testnet/analytics
-Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/analytics.md
+Canonical URL: https://docs.polaris.finance/testnet/analytics
+Markdown URL: https://docs.polaris.finance/testnet/analytics.md
 Section: Using Polaris Testnet
 
-Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
-Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt
+Documentation index: https://docs.polaris.finance/llms.txt
+Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 ---
 
@@ -20,4 +20,4 @@ In particular, analytics are organized by protocol component, allowing you to ex
 
 On the right, the Fee Flows visualization provides an interactive view of how value moves throughout Polaris. Multiple visualization modes are available to explore fee distribution, APR sources and the relationships between protocol components from different perspectives.
 
-![The Fee Flows visualization showing how value moves between Polaris components](https://polaris-finance.github.io/polaris-docs/screenshots/testnet/fee-flows.png)
+![The Fee Flows visualization showing how value moves between Polaris components](https://docs.polaris.finance/screenshots/testnet/fee-flows.png)

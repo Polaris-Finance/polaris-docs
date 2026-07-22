@@ -3,12 +3,12 @@
 
 > Split allows you to separate pETH into fpETH and vpETH, or merge those two assets back into pETH whenever you choose.
 
-Canonical URL: https://polaris-finance.github.io/polaris-docs/testnet/split
-Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/split.md
+Canonical URL: https://docs.polaris.finance/testnet/split
+Markdown URL: https://docs.polaris.finance/testnet/split.md
 Section: Using Polaris Testnet
 
-Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
-Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt
+Documentation index: https://docs.polaris.finance/llms.txt
+Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 ---
 
@@ -18,4 +18,4 @@ Because the operation is entirely internal to Polaris, splitting and merging nev
 
 It simply separates the floor component from the market premium, allowing each asset to be used independently.
 
-![The Split interface for separating pETH into fpETH and vpETH or merging them back](https://polaris-finance.github.io/polaris-docs/screenshots/testnet/split.png)
+![The Split interface for separating pETH into fpETH and vpETH or merging them back](https://docs.polaris.finance/screenshots/testnet/split.png)

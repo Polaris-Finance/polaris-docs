@@ -10,7 +10,7 @@ const expectedBaseUrl = normalizeBaseUrl(
   process.env.LIVE_ARTIFACT_EXPECTED_BASE_URL ?? SITE_BASE_URL
 )
 const failures = []
-const staleCustomHost = 'docs.polarisfinance.io'
+const staleHosts = ['docs.polarisfinance.io', 'tokenbrice.github.io', 'polaris-finance.github.io']
 
 function normalizeBaseUrl(value) {
   const trimmed = value.trim().replace(/\/+$/, '')
@@ -40,8 +40,10 @@ async function fetchText(url, expected) {
   }
 
   const body = await response.text()
-  if (body.includes(staleCustomHost)) {
-    failures.push(`${url} contains stale custom-domain reference ${staleCustomHost}`)
+  for (const staleHost of staleHosts) {
+    if (body.includes(staleHost)) {
+      failures.push(`${url} contains stale host reference ${staleHost}`)
+    }
   }
 
   return { body, contentType, response }
@@ -92,17 +94,26 @@ function assertProjectScopedAttributes(html, url) {
   }
 }
 
+function urlsMatch(actual, expected) {
+  if (!actual) return false
+  try {
+    return new URL(actual).href === new URL(expected).href
+  } catch {
+    return false
+  }
+}
+
 function assertHtmlMetadata(html, url, canonicalUrl) {
   const canonical = /<link\s+rel=["']canonical["'][^>]*href=["']([^"']+)["']/i.exec(html)?.[1]
   const ogUrl = /<meta\s+property=["']og:url["'][^>]*content=["']([^"']+)["']/i.exec(html)?.[1]
 
-  if (canonical !== canonicalUrl) {
+  if (!urlsMatch(canonical, canonicalUrl)) {
     failures.push(
       `${url} canonical mismatch: expected ${canonicalUrl}, found ${canonical ?? '(missing)'}`
     )
   }
 
-  if (ogUrl && ogUrl !== canonicalUrl) {
+  if (ogUrl && !urlsMatch(ogUrl, canonicalUrl)) {
     failures.push(`${url} og:url mismatch: expected ${canonicalUrl}, found ${ogUrl}`)
   }
 }

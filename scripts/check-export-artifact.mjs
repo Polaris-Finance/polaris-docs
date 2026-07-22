@@ -11,7 +11,7 @@ import {
 const root = process.cwd()
 const outDir = path.join(root, 'out')
 const failures = []
-const staleCustomHost = 'docs.polarisfinance.io'
+const staleHosts = ['docs.polarisfinance.io', 'tokenbrice.github.io', 'polaris-finance.github.io']
 const expectedHost = new URL(SITE_URL).host
 
 function walk(dir) {
@@ -130,8 +130,19 @@ function extractCanonical(html) {
 }
 
 function assertNoStaleHost(relativeFile, value) {
-  if (value.includes(staleCustomHost)) {
-    failures.push(`${relativeFile} contains stale custom-domain reference ${staleCustomHost}`)
+  for (const staleHost of staleHosts) {
+    if (value.includes(staleHost)) {
+      failures.push(`${relativeFile} contains stale host reference ${staleHost}`)
+    }
+  }
+}
+
+function urlsMatch(actual, expected) {
+  if (!actual) return false
+  try {
+    return new URL(actual).href === new URL(expected).href
+  } catch {
+    return false
   }
 }
 
@@ -145,7 +156,7 @@ function assertHtmlFile(file) {
   if (route) {
     const expectedCanonical = absoluteUrl(route)
     const canonical = extractCanonical(html)
-    if (canonical !== expectedCanonical) {
+    if (!urlsMatch(canonical, expectedCanonical)) {
       failures.push(
         `${relativeFile} canonical mismatch: expected ${expectedCanonical}, found ${
           canonical || '(missing)'
@@ -154,7 +165,7 @@ function assertHtmlFile(file) {
     }
 
     const ogUrl = extractMetaContent(html, 'og:url')
-    if (ogUrl && ogUrl !== expectedCanonical) {
+    if (ogUrl && !urlsMatch(ogUrl, expectedCanonical)) {
       failures.push(
         `${relativeFile} og:url mismatch: expected ${expectedCanonical}, found ${ogUrl}`
       )

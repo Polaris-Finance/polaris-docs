@@ -1,241 +1,241 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/</loc>
+    <loc>https://docs.polaris.finance/</loc>
     <lastmod>2026-07-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/architecture/bonding-curve</loc>
-    <lastmod>2026-07-16</lastmod>
+    <loc>https://docs.polaris.finance/architecture/bonding-curve</loc>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/architecture/earn-vaults</loc>
-    <lastmod>2026-07-16</lastmod>
+    <loc>https://docs.polaris.finance/architecture/earn-vaults</loc>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/architecture/flows</loc>
-    <lastmod>2026-07-16</lastmod>
+    <loc>https://docs.polaris.finance/architecture/flows</loc>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/architecture/passet-markets</loc>
-    <lastmod>2026-07-16</lastmod>
+    <loc>https://docs.polaris.finance/architecture/passet-markets</loc>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/architecture/reserve-loans</loc>
-    <lastmod>2026-07-16</lastmod>
+    <loc>https://docs.polaris.finance/architecture/reserve-loans</loc>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/architecture/stewardship</loc>
+    <loc>https://docs.polaris.finance/architecture/stewardship</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://docs.polaris.finance/architecture/tokenomics</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://docs.polaris.finance/core-assets/fpeth</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://docs.polaris.finance/core-assets/goldp</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://docs.polaris.finance/core-assets/peth</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://docs.polaris.finance/core-assets/polar</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://docs.polaris.finance/core-assets/usdp</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://docs.polaris.finance/core-assets/vpeth</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://docs.polaris.finance/design/adaptive-peg-defence</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://docs.polaris.finance/design/conversions</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://docs.polaris.finance/design/fee-router</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://docs.polaris.finance/design/interest-rates</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://docs.polaris.finance/design/liquidations</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://docs.polaris.finance/design/oracles</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://docs.polaris.finance/design/recovery-mode</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://docs.polaris.finance/design/revenue-model</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://docs.polaris.finance/design/spike-and-decay-fees</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://docs.polaris.finance/overview/manifesto</loc>
     <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/architecture/tokenomics</loc>
+    <loc>https://docs.polaris.finance/overview/vision</loc>
     <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/core-assets/fpeth</loc>
-    <lastmod>2026-07-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/core-assets/goldp</loc>
-    <lastmod>2026-07-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/core-assets/peth</loc>
-    <lastmod>2026-07-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/core-assets/polar</loc>
-    <lastmod>2026-07-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/core-assets/usdp</loc>
-    <lastmod>2026-07-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/core-assets/vpeth</loc>
-    <lastmod>2026-07-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/design/adaptive-peg-defence</loc>
-    <lastmod>2026-07-16</lastmod>
+    <loc>https://docs.polaris.finance/overview/why-peth</loc>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/design/conversions</loc>
-    <lastmod>2026-07-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/design/fee-router</loc>
-    <lastmod>2026-07-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/design/interest-rates</loc>
-    <lastmod>2026-07-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/design/liquidations</loc>
-    <lastmod>2026-07-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/design/oracles</loc>
-    <lastmod>2026-07-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/design/recovery-mode</loc>
-    <lastmod>2026-07-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/design/revenue-model</loc>
-    <lastmod>2026-07-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/design/spike-and-decay-fees</loc>
-    <lastmod>2026-07-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/overview/manifesto</loc>
-    <lastmod>2026-07-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/overview/vision</loc>
-    <lastmod>2026-07-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/overview/why-peth</loc>
-    <lastmod>2026-07-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/risks</loc>
+    <loc>https://docs.polaris.finance/risks</loc>
     <lastmod>2026-07-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/risks/security-properties</loc>
-    <lastmod>2026-07-17</lastmod>
+    <loc>https://docs.polaris.finance/risks/security-properties</loc>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/testnet/advanced</loc>
-    <lastmod>2026-07-18</lastmod>
+    <loc>https://docs.polaris.finance/testnet/advanced</loc>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/testnet/analytics</loc>
-    <lastmod>2026-07-18</lastmod>
+    <loc>https://docs.polaris.finance/testnet/analytics</loc>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/testnet/dashboard</loc>
+    <loc>https://docs.polaris.finance/testnet/dashboard</loc>
     <lastmod>2026-07-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/testnet/earn</loc>
+    <loc>https://docs.polaris.finance/testnet/earn</loc>
     <lastmod>2026-07-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/testnet/guide</loc>
-    <lastmod>2026-07-18</lastmod>
+    <loc>https://docs.polaris.finance/testnet/guide</loc>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/testnet/liquidity</loc>
+    <loc>https://docs.polaris.finance/testnet/liquidity</loc>
     <lastmod>2026-07-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/testnet/mint</loc>
-    <lastmod>2026-07-18</lastmod>
+    <loc>https://docs.polaris.finance/testnet/mint</loc>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/testnet/reserve-loan</loc>
+    <loc>https://docs.polaris.finance/testnet/reserve-loan</loc>
     <lastmod>2026-07-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/testnet/split</loc>
+    <loc>https://docs.polaris.finance/testnet/split</loc>
     <lastmod>2026-07-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/testnet/swap</loc>
+    <loc>https://docs.polaris.finance/testnet/swap</loc>
     <lastmod>2026-07-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/testnet/vepolar</loc>
+    <loc>https://docs.polaris.finance/testnet/vepolar</loc>
     <lastmod>2026-07-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://polaris-finance.github.io/polaris-docs/testnet/vpeth</loc>
+    <loc>https://docs.polaris.finance/testnet/vpeth</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>

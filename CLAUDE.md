@@ -12,14 +12,14 @@ User documentation for Polaris Finance (the pETH-powered yield layer for DeFi). 
 
 ## Commands
 
-- `npm run dev` — http://localhost:3000/polaris-docs/
+- `npm run dev` — http://localhost:3000/
 - `npm run build` — static export to `./out` + Pagefind index (must stay `next build --webpack`)
 - `npm run lint`, `npm run lint:content`, `npm run check:links`
 - `npm run ci` — full local gate
 
 ## Deploy
 
-Push to `main` → `.github/workflows/deploy.yml` → GitHub Pages at polaris-finance.github.io/polaris-docs (`BASE_PATH=/polaris-docs`). `ci.yml` validates PRs. Not Cloudflare.
+Push to `main` → `.github/workflows/deploy.yml` → GitHub Pages at docs.polaris.finance (`BASE_PATH=`). `polaris.finance/docs` is an external redirect to that canonical URL; the docs site itself is not hosted on Cloudflare. `ci.yml` validates PRs.
 
 ## Rules
 

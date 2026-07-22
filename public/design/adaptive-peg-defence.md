@@ -3,12 +3,12 @@
 
 > Polaris incorporates permissionless minting and redemptions to help pAssets trade around their target price.
 
-Canonical URL: https://polaris-finance.github.io/polaris-docs/design/adaptive-peg-defence
-Markdown URL: https://polaris-finance.github.io/polaris-docs/design/adaptive-peg-defence.md
+Canonical URL: https://docs.polaris.finance/design/adaptive-peg-defence
+Markdown URL: https://docs.polaris.finance/design/adaptive-peg-defence.md
 Section: Protocol Mechanics
 
-Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
-Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt
+Documentation index: https://docs.polaris.finance/llms.txt
+Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 ---
 

@@ -3,12 +3,12 @@
 
 > Borrow ETH by using fpETH as collateral through non-liquidatable Reserve Loans.
 
-Canonical URL: https://polaris-finance.github.io/polaris-docs/testnet/reserve-loan
-Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/reserve-loan.md
+Canonical URL: https://docs.polaris.finance/testnet/reserve-loan
+Markdown URL: https://docs.polaris.finance/testnet/reserve-loan.md
 Section: Using Polaris Testnet
 
-Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
-Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt
+Documentation index: https://docs.polaris.finance/llms.txt
+Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 ---
 
@@ -16,4 +16,4 @@ Reserve Loans enable you to borrow ETH by using fpETH as collateral. From here y
 
 It is designed to provide a clear overview of your Reserve Loans and the actions available to manage them.
 
-![The Reserve Loan interface for opening and managing non-liquidatable ETH loans against fpETH](https://polaris-finance.github.io/polaris-docs/screenshots/testnet/reserve-loan.png)
+![The Reserve Loan interface for opening and managing non-liquidatable ETH loans against fpETH](https://docs.polaris.finance/screenshots/testnet/reserve-loan.png)

@@ -3,12 +3,12 @@
 
 > Polaris operates under the design philosophy that all value generated throughout the protocol should not leak externally.
 
-Canonical URL: https://polaris-finance.github.io/polaris-docs/design/revenue-model
-Markdown URL: https://polaris-finance.github.io/polaris-docs/design/revenue-model.md
+Canonical URL: https://docs.polaris.finance/design/revenue-model
+Markdown URL: https://docs.polaris.finance/design/revenue-model.md
 Section: Protocol Mechanics
 
-Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
-Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt
+Documentation index: https://docs.polaris.finance/llms.txt
+Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 ---
 

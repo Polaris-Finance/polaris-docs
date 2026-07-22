@@ -3,12 +3,12 @@
 
 > When a user mints a pAsset, they do so against pETH collateral.
 
-Canonical URL: https://polaris-finance.github.io/polaris-docs/design/liquidations
-Markdown URL: https://polaris-finance.github.io/polaris-docs/design/liquidations.md
+Canonical URL: https://docs.polaris.finance/design/liquidations
+Markdown URL: https://docs.polaris.finance/design/liquidations.md
 Section: Protocol Mechanics
 
-Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
-Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt
+Documentation index: https://docs.polaris.finance/llms.txt
+Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 ---
 

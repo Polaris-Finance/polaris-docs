@@ -3,12 +3,12 @@
 
 > USDp is the native Polaris dollar.
 
-Canonical URL: https://polaris-finance.github.io/polaris-docs/core-assets/usdp
-Markdown URL: https://polaris-finance.github.io/polaris-docs/core-assets/usdp.md
+Canonical URL: https://docs.polaris.finance/core-assets/usdp
+Markdown URL: https://docs.polaris.finance/core-assets/usdp.md
 Section: Core Assets
 
-Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
-Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt
+Documentation index: https://docs.polaris.finance/llms.txt
+Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 ---
 

@@ -3,12 +3,12 @@
 
 > The Mint section is where collateralized positions are created and managed.
 
-Canonical URL: https://polaris-finance.github.io/polaris-docs/testnet/mint
-Markdown URL: https://polaris-finance.github.io/polaris-docs/testnet/mint.md
+Canonical URL: https://docs.polaris.finance/testnet/mint
+Markdown URL: https://docs.polaris.finance/testnet/mint.md
 Section: Using Polaris Testnet
 
-Documentation index: https://polaris-finance.github.io/polaris-docs/llms.txt
-Full documentation bundle: https://polaris-finance.github.io/polaris-docs/llms-full.txt
+Documentation index: https://docs.polaris.finance/llms.txt
+Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 ---
 
@@ -20,4 +20,4 @@ Existing positions can also be adjusted from this page by adding collateral, rep
 
 Before confirming any transaction, review your collateral ratio, interest rate and the resulting position.
 
-![The Mint interface for creating and managing collateralized USDp and GOLDp positions](https://polaris-finance.github.io/polaris-docs/screenshots/testnet/mint.png)
+![The Mint interface for creating and managing collateralized USDp and GOLDp positions](https://docs.polaris.finance/screenshots/testnet/mint.png)

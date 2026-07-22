@@ -18,10 +18,10 @@ concurrency:
 
 # Shared base path / site URL inherited by every job.
 env:
-  BASE_PATH: /polaris-docs
-  NEXT_PUBLIC_BASE_PATH: /polaris-docs
-  SITE_URL: https://polaris-finance.github.io
-  NEXT_PUBLIC_SITE_URL: https://polaris-finance.github.io
+  BASE_PATH: ''
+  NEXT_PUBLIC_BASE_PATH: ''
+  SITE_URL: https://docs.polaris.finance
+  NEXT_PUBLIC_SITE_URL: https://docs.polaris.finance
 
 jobs:
   source-checks:
