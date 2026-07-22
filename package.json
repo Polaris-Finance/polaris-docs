@@ -2,6 +2,7 @@
   "name": "polaris-docs",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "description": "User documentation for Polaris Finance — the pETH-powered yield layer for all of DeFi.",
   "packageManager": "npm@10.9.4",
   "engines": {
