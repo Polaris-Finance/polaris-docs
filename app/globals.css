@@ -516,6 +516,88 @@ article .subheading-anchor {
   color: var(--polaris-star-bright);
 }
 
+/* ── Previous / next navigation cards ─────────────────────────────── */
+
+article > div[class*='x:print:hidden']:has(> a[title]) {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 1rem;
+  border-top: 0;
+}
+
+article > div[class*='x:print:hidden']:has(> a[title]) > a[title] {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  align-items: center;
+  width: 100%;
+  max-width: none;
+  padding: 1.1rem 1.25rem;
+  column-gap: 0.5rem;
+  row-gap: 0.35rem;
+  border: 1px solid var(--pl-card-border);
+  border-radius: 10px;
+  background: var(--pl-surface);
+  transition:
+    background-color 0.16s ease-out,
+    transform 0.16s ease-out;
+}
+
+article > div[class*='x:print:hidden']:has(> a[title]) > a[title]::before {
+  content: 'PREVIOUS';
+  grid-column: 1 / -1;
+  color: #3f5a78;
+  font-size: 0.68rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+article > div[class*='x:print:hidden']:has(> a[title]) > a[title][class*='x:text-end'] {
+  grid-template-columns: minmax(0, 1fr) auto;
+  margin-inline-start: 0;
+  text-align: end;
+}
+
+article > div[class*='x:print:hidden']:has(> a[title]) > a[title][class*='x:text-end']::before {
+  content: 'NEXT';
+}
+
+article > div[class*='x:print:hidden']:has(> a[title]) > a[title][class*='x:text-end']:only-child {
+  grid-column: 2;
+}
+
+article
+  > div[class*='x:print:hidden']:has(> a[title])
+  > a[title]:not([class*='x:text-end']):only-child {
+  grid-column: 1;
+}
+
+article > div[class*='x:print:hidden']:has(> a[title]) > a[title]:hover {
+  background: rgba(44, 74, 110, 0.075);
+  transform: translateY(-1px);
+}
+
+.dark article > div[class*='x:print:hidden']:has(> a[title]) > a[title]::before {
+  color: #9cc2e0;
+}
+
+.dark article > div[class*='x:print:hidden']:has(> a[title]) > a[title]:hover {
+  background: rgba(123, 165, 201, 0.1);
+}
+
+@media (max-width: 640px) {
+  article > div[class*='x:print:hidden']:has(> a[title]) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  article > div[class*='x:print:hidden']:has(> a[title]) > a[title]:only-child {
+    grid-column: 1;
+  }
+}
+
 /* ── Touch targets ──────────────────────────────────────────────────────── */
 
 header nav a,
@@ -527,9 +609,7 @@ header nav .nextra-search input,
 .nextra-sidebar a,
 .nextra-sidebar button,
 .nextra-sidebar-footer button,
-article button,
-article a[rel='prev'],
-article a[rel='next'] {
+article button {
   min-height: 44px;
 }
 
@@ -540,15 +620,11 @@ header nav button,
 .nextra-sidebar a,
 .nextra-sidebar button,
 .nextra-sidebar-footer button,
-article button,
-article a[rel='prev'],
-article a[rel='next'] {
+article button {
   align-items: center;
 }
 
-header nav a,
-article a[rel='prev'],
-article a[rel='next'] {
+header nav a {
   display: inline-flex;
 }
 
@@ -560,11 +636,18 @@ article button[title*='Copy'] {
   min-width: 44px;
 }
 
-/* Desktop (fine pointer): the "Copy page" control shrinks to roughly half its
-   touch size (owner request). Coarse pointers keep the 44px targets above;
-   WCAG's 44px criterion is touch-specific and 24px remains the pointer floor. */
+/* Desktop (fine pointer): sidebar controls use a denser reading rhythm, and the
+   "Copy page" control shrinks to roughly half its touch size (owner request).
+   Coarse pointers keep the 44px targets above; WCAG's 44px criterion is
+   touch-specific and 24px remains the pointer floor. */
 
 @media (pointer: fine) {
+  .nextra-sidebar a,
+  .nextra-sidebar button,
+  .nextra-sidebar-footer button {
+    min-height: 34px;
+  }
+
   article [class*='x:float-end'] button {
     min-height: 30px;
     min-width: 30px;
