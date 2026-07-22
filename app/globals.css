@@ -746,6 +746,7 @@ article button[title*='Copy'] {
 
 .pl-search-field {
   position: relative;
+  z-index: 45;
   display: flex;
   align-items: center;
   width: 100%;
@@ -922,6 +923,36 @@ article button[title*='Copy'] {
   to {
     opacity: 1;
     transform: none;
+  }
+}
+
+/* Focus scrim */
+
+.pl-search-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  background: rgba(13, 31, 60, 0.14);
+  animation: pl-search-scrim-fade 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:is(.dark) .pl-search-scrim {
+  background: rgba(5, 10, 20, 0.28);
+}
+
+@media (max-width: 767px) {
+  .pl-search-scrim {
+    display: none;
+  }
+}
+
+@keyframes pl-search-scrim-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
@@ -1380,6 +1411,10 @@ article button[title*='Copy'] {
   }
 
   .pl-search-spinner {
+    animation: none;
+  }
+
+  .pl-search-scrim {
     animation: none;
   }
 

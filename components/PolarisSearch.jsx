@@ -534,194 +534,197 @@ export function PolarisSearch() {
       </div>
 
       {open && (
-        <div className="nextra-search-results pl-search-results">
-          <button
-            type="button"
-            className="pl-search-close"
-            aria-label="Close search"
-            onClick={() => {
-              close()
-              inputRef.current?.blur()
-            }}
-          >
-            <CloseIcon />
-          </button>
+        <>
+          <div className="pl-search-scrim" aria-hidden="true" />
+          <div className="nextra-search-results pl-search-results">
+            <button
+              type="button"
+              className="pl-search-close"
+              aria-label="Close search"
+              onClick={() => {
+                close()
+                inputRef.current?.blur()
+              }}
+            >
+              <CloseIcon />
+            </button>
 
-          {facets.length > 1 && status !== 'idle' && (
-            <div className="pl-search-facets" role="group" aria-label="Filter by section">
-              <button
-                type="button"
-                className="pl-search-chip"
-                aria-pressed={section === null}
-                onClick={() => setSection(null)}
-              >
-                All
-              </button>
-              {facets.map((f) => (
+            {facets.length > 1 && status !== 'idle' && (
+              <div className="pl-search-facets" role="group" aria-label="Filter by section">
                 <button
-                  key={f.value}
                   type="button"
                   className="pl-search-chip"
-                  aria-pressed={section === f.value}
-                  onClick={() => toggleSection(f.value)}
+                  aria-pressed={section === null}
+                  onClick={() => setSection(null)}
                 >
-                  {f.value} <span className="pl-search-chip-count">{f.count}</span>
+                  All
                 </button>
-              ))}
-            </div>
-          )}
-
-          <div
-            ref={listRef}
-            id={listboxId}
-            role="listbox"
-            aria-label="Search results"
-            className="pl-search-list"
-          >
-            {status === 'error' && (
-              <div className="pl-search-message" role="status">
-                <InfoIcon />
-                <p>{error}</p>
+                {facets.map((f) => (
+                  <button
+                    key={f.value}
+                    type="button"
+                    className="pl-search-chip"
+                    aria-pressed={section === f.value}
+                    onClick={() => toggleSection(f.value)}
+                  >
+                    {f.value} <span className="pl-search-chip-count">{f.count}</span>
+                  </button>
+                ))}
               </div>
             )}
 
-            {status === 'loading' && (
-              <div className="pl-search-message" role="status">
-                <SpinnerIcon />
-                <span>Searching…</span>
-              </div>
-            )}
+            <div
+              ref={listRef}
+              id={listboxId}
+              role="listbox"
+              aria-label="Search results"
+              className="pl-search-list"
+            >
+              {status === 'error' && (
+                <div className="pl-search-message" role="status">
+                  <InfoIcon />
+                  <p>{error}</p>
+                </div>
+              )}
 
-            {status === 'idle' && (
-              <>
-                {recentRows.length > 0 && (
-                  <Group label="Recent">
-                    {recentRows.map((row) => (
-                      <RecentRow
-                        key={row.q}
-                        id={`${id}-i-${row.index}`}
-                        query={row.q}
-                        active={active === row.index}
-                        onActivate={() => onItem({ query: row.q })}
-                        onHover={() => setActive(row.index)}
-                      />
-                    ))}
-                  </Group>
-                )}
-                <Group label="Start here">
-                  {startRows.map((row) => (
-                    <LinkRow
-                      key={row.url}
-                      id={`${id}-i-${row.index}`}
-                      href={hrefWithBase(row.url)}
-                      title={row.title}
-                      section={row.section}
-                      kind={row.kind}
-                      active={active === row.index}
-                      onActivate={() => onItem({ url: row.url })}
-                      onHover={() => setActive(row.index)}
-                    />
-                  ))}
-                </Group>
-              </>
-            )}
+              {status === 'loading' && (
+                <div className="pl-search-message" role="status">
+                  <SpinnerIcon />
+                  <span>Searching…</span>
+                </div>
+              )}
 
-            {status === 'ready' && (
-              <>
-                {aliasSuggestion && (
-                  <Group label="Suggested search">
-                    <QuerySuggestionRow
-                      id={`${id}-i-0`}
-                      query={aliasSuggestion}
-                      active={active === 0}
-                      onActivate={() => onItem({ query: aliasSuggestion })}
-                      onHover={() => setActive(0)}
-                    />
-                  </Group>
-                )}
-                {readyGroups.map(({ page, headIndex, rows }) => (
-                  <div key={page.url} className="pl-search-group" role="presentation">
-                    <a
-                      id={`${id}-i-${headIndex}`}
-                      href={hrefWithBase(page.url)}
-                      role="option"
-                      aria-selected={active === headIndex}
-                      data-active={active === headIndex ? '' : undefined}
-                      className="pl-search-group-head pl-search-group-head--link"
-                      onMouseMove={() => setActive(headIndex)}
-                      onClick={(e) => {
-                        e.preventDefault()
-                        onItem({ url: page.url })
-                      }}
-                    >
-                      {page.section && (
-                        <span className="pl-search-eyebrow" data-kind={page.kind}>
-                          <span className="pl-search-dot" aria-hidden="true" />
-                          {page.section}
-                        </span>
-                      )}
-                      <span className="pl-search-page-title">{page.title}</span>
-                    </a>
-                    {rows.map((row) => (
-                      <ResultRow
+              {status === 'idle' && (
+                <>
+                  {recentRows.length > 0 && (
+                    <Group label="Recent">
+                      {recentRows.map((row) => (
+                        <RecentRow
+                          key={row.q}
+                          id={`${id}-i-${row.index}`}
+                          query={row.q}
+                          active={active === row.index}
+                          onActivate={() => onItem({ query: row.q })}
+                          onHover={() => setActive(row.index)}
+                        />
+                      ))}
+                    </Group>
+                  )}
+                  <Group label="Start here">
+                    {startRows.map((row) => (
+                      <LinkRow
                         key={row.url}
                         id={`${id}-i-${row.index}`}
                         href={hrefWithBase(row.url)}
                         title={row.title}
-                        excerpt={row.excerpt}
+                        section={row.section}
+                        kind={row.kind}
                         active={active === row.index}
                         onActivate={() => onItem({ url: row.url })}
                         onHover={() => setActive(row.index)}
                       />
                     ))}
-                  </div>
-                ))}
-              </>
-            )}
-
-            {status === 'empty' && (
-              <div className="pl-search-empty">
-                <p className="pl-search-empty-lead">
-                  No matches for <strong>“{deferredQuery.trim()}”</strong>.
-                </p>
-                {aliasSuggestion && (
-                  <Group label="Suggested search">
-                    <QuerySuggestionRow
-                      id={`${id}-i-0`}
-                      query={aliasSuggestion}
-                      active={active === 0}
-                      onActivate={() => onItem({ query: aliasSuggestion })}
-                      onHover={() => setActive(0)}
-                    />
                   </Group>
-                )}
-                <Group label="Try instead">
-                  {recoveryRows.map((row) => (
-                    <LinkRow
-                      key={row.url}
-                      id={`${id}-i-${row.index}`}
-                      href={hrefWithBase(row.url)}
-                      title={row.title}
-                      section={row.section}
-                      kind={row.kind}
-                      active={active === row.index}
-                      onActivate={() => onItem({ url: row.url })}
-                      onHover={() => setActive(row.index)}
-                    />
-                  ))}
-                </Group>
-              </div>
-            )}
-          </div>
+                </>
+              )}
 
-          <div className="pl-search-footer">
-            <span className="pl-search-count">{countLabel}</span>
-            <span className="pl-search-legend" aria-hidden="true">
-              <kbd>↑</kbd>
-              <kbd>↓</kbd> navigate <kbd>↵</kbd> open <kbd>esc</kbd> close
-            </span>
+              {status === 'ready' && (
+                <>
+                  {aliasSuggestion && (
+                    <Group label="Suggested search">
+                      <QuerySuggestionRow
+                        id={`${id}-i-0`}
+                        query={aliasSuggestion}
+                        active={active === 0}
+                        onActivate={() => onItem({ query: aliasSuggestion })}
+                        onHover={() => setActive(0)}
+                      />
+                    </Group>
+                  )}
+                  {readyGroups.map(({ page, headIndex, rows }) => (
+                    <div key={page.url} className="pl-search-group" role="presentation">
+                      <a
+                        id={`${id}-i-${headIndex}`}
+                        href={hrefWithBase(page.url)}
+                        role="option"
+                        aria-selected={active === headIndex}
+                        data-active={active === headIndex ? '' : undefined}
+                        className="pl-search-group-head pl-search-group-head--link"
+                        onMouseMove={() => setActive(headIndex)}
+                        onClick={(e) => {
+                          e.preventDefault()
+                          onItem({ url: page.url })
+                        }}
+                      >
+                        {page.section && (
+                          <span className="pl-search-eyebrow" data-kind={page.kind}>
+                            <span className="pl-search-dot" aria-hidden="true" />
+                            {page.section}
+                          </span>
+                        )}
+                        <span className="pl-search-page-title">{page.title}</span>
+                      </a>
+                      {rows.map((row) => (
+                        <ResultRow
+                          key={row.url}
+                          id={`${id}-i-${row.index}`}
+                          href={hrefWithBase(row.url)}
+                          title={row.title}
+                          excerpt={row.excerpt}
+                          active={active === row.index}
+                          onActivate={() => onItem({ url: row.url })}
+                          onHover={() => setActive(row.index)}
+                        />
+                      ))}
+                    </div>
+                  ))}
+                </>
+              )}
+
+              {status === 'empty' && (
+                <div className="pl-search-empty">
+                  <p className="pl-search-empty-lead">
+                    No matches for <strong>“{deferredQuery.trim()}”</strong>.
+                  </p>
+                  {aliasSuggestion && (
+                    <Group label="Suggested search">
+                      <QuerySuggestionRow
+                        id={`${id}-i-0`}
+                        query={aliasSuggestion}
+                        active={active === 0}
+                        onActivate={() => onItem({ query: aliasSuggestion })}
+                        onHover={() => setActive(0)}
+                      />
+                    </Group>
+                  )}
+                  <Group label="Try instead">
+                    {recoveryRows.map((row) => (
+                      <LinkRow
+                        key={row.url}
+                        id={`${id}-i-${row.index}`}
+                        href={hrefWithBase(row.url)}
+                        title={row.title}
+                        section={row.section}
+                        kind={row.kind}
+                        active={active === row.index}
+                        onActivate={() => onItem({ url: row.url })}
+                        onHover={() => setActive(row.index)}
+                      />
+                    ))}
+                  </Group>
+                </div>
+              )}
+            </div>
+
+            <div className="pl-search-footer">
+              <span className="pl-search-count">{countLabel}</span>
+              <span className="pl-search-legend" aria-hidden="true">
+                <kbd>↑</kbd>
+                <kbd>↓</kbd> navigate <kbd>↵</kbd> open <kbd>esc</kbd> close
+              </span>
+            </div>
           </div>
-        </div>
+        </>
       )}
     </div>
   )
