@@ -1,17 +1,29 @@
 'use client'
 
-import { useEffect } from 'react'
 import { usePathname } from 'next/navigation'
+import { useEffect, useRef } from 'react'
 
-// Nextra's "Copy page" toolbar renders a headless-ui listbox toggle whose only
-// child is a chevron icon, so it ships without an accessible name (fails axe's
-// button-name). The control can render after the route effect, so we watch for
-// late toolbar insertion and label only the nameless toggle beside "Copy page".
+function isOutsideScrollport(element, scrollport) {
+  const item = element.getBoundingClientRect()
+  const rail = scrollport.getBoundingClientRect()
+  return item.top < rail.top || item.bottom > rail.bottom
+}
+
 export function A11yEnhancements() {
   const pathname = usePathname()
+  const previousPathname = useRef(pathname)
 
   useEffect(() => {
     let frame = 0
+
+    const labelLandmarks = () => {
+      document.querySelector('header nav')?.setAttribute('aria-label', 'Primary')
+      const sidebar = document.querySelector('.nextra-sidebar')
+      if (sidebar) {
+        sidebar.setAttribute('role', 'navigation')
+        sidebar.setAttribute('aria-label', 'Documentation')
+      }
+    }
 
     const labelCopyPageOptions = () => {
       for (const button of document.querySelectorAll(
@@ -23,26 +35,50 @@ export function A11yEnhancements() {
       }
     }
 
-    const syncMobileNavInertState = () => {
-      const nav = document.querySelector('.nextra-mobile-nav')
-      if (!nav) return
+    const syncSidebarState = () => {
+      const sidebar = document.querySelector('.nextra-sidebar')
+      if (!sidebar) return
 
-      const rect = nav.getBoundingClientRect()
-      const style = window.getComputedStyle(nav)
-      const isClosed = style.display === 'none' || style.visibility === 'hidden' || rect.bottom <= 1
+      const links = sidebar.querySelectorAll('a[href]')
+      for (const link of links) link.removeAttribute('aria-current')
 
-      if (nav.inert !== isClosed) nav.inert = isClosed
-      if (nav.hasAttribute('inert') !== isClosed) nav.toggleAttribute('inert', isClosed)
-      if (isClosed) {
-        if (nav.getAttribute('aria-hidden') !== 'true') nav.setAttribute('aria-hidden', 'true')
-      } else if (nav.hasAttribute('aria-hidden')) {
-        nav.removeAttribute('aria-hidden')
+      const activeLink = sidebar.querySelector('li.active > a[href]')
+      if (activeLink) {
+        activeLink.setAttribute('aria-current', 'page')
+        const scrollport = activeLink.closest('ul[class*="overflow-y-auto"]') ?? sidebar
+        if (isOutsideScrollport(activeLink, scrollport)) {
+          activeLink.scrollIntoView({ block: 'nearest' })
+        }
       }
+
+      const folders = sidebar.querySelectorAll('button[data-href]')
+      folders.forEach((button, index) => {
+        const list = button.nextElementSibling?.querySelector('ul')
+        if (!list) return
+        const controlsId = list.id || `pl-sidebar-folder-${index}`
+        list.id = controlsId
+        button.setAttribute('aria-controls', controlsId)
+        const expanded = button.parentElement?.classList.contains('open') ? 'true' : 'false'
+        if (button.getAttribute('aria-expanded') !== expanded) {
+          button.setAttribute('aria-expanded', expanded)
+        }
+      })
     }
 
     const applyEnhancements = () => {
+      labelLandmarks()
       labelCopyPageOptions()
-      syncMobileNavInertState()
+      syncSidebarState()
+    }
+
+    const skipLink = document.querySelector('.nextra-skip-nav')
+    const focusMain = () => {
+      window.requestAnimationFrame(() => {
+        const main = document.querySelector('main')
+        if (!main) return
+        if (!main.hasAttribute('tabindex')) main.setAttribute('tabindex', '-1')
+        main.focus({ preventScroll: false })
+      })
     }
 
     const scheduleEnhancements = () => {
@@ -54,6 +90,7 @@ export function A11yEnhancements() {
     }
 
     applyEnhancements()
+    skipLink?.addEventListener('click', focusMain)
     const observer = new MutationObserver(scheduleEnhancements)
     observer.observe(document.body, {
       attributes: true,
@@ -62,15 +99,37 @@ export function A11yEnhancements() {
       subtree: true
     })
 
-    window.addEventListener('resize', scheduleEnhancements)
-    window.addEventListener('transitionend', scheduleEnhancements, true)
-
     return () => {
       if (frame) window.cancelAnimationFrame(frame)
+      skipLink?.removeEventListener('click', focusMain)
       observer.disconnect()
-      window.removeEventListener('resize', scheduleEnhancements)
-      window.removeEventListener('transitionend', scheduleEnhancements, true)
     }
+  }, [pathname])
+
+  useEffect(() => {
+    if (previousPathname.current === pathname) return
+    previousPathname.current = pathname
+    // Dialog libraries restore trigger focus after their leave transition.
+    // Move focus after that restoration so overlay navigation lands on content.
+    const timeout = window.setTimeout(() => {
+      let hashTarget = null
+      if (window.location.hash) {
+        try {
+          hashTarget = document.getElementById(decodeURIComponent(window.location.hash.slice(1)))
+        } catch {
+          hashTarget = document.getElementById(window.location.hash.slice(1))
+        }
+      }
+      const destination =
+        hashTarget ??
+        document.querySelector('article h1, main h1') ??
+        document.querySelector('main')
+      if (!destination) return
+      if (!destination.hasAttribute('tabindex')) destination.setAttribute('tabindex', '-1')
+      destination.focus({ preventScroll: false })
+      if (hashTarget) hashTarget.scrollIntoView({ block: 'start' })
+    }, 500)
+    return () => window.clearTimeout(timeout)
   }, [pathname])
 
   return null

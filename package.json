@@ -22,7 +22,7 @@
     "build": "next build --webpack",
     "postbuild": "node -e \"require('node:fs').rmSync('out/_pagefind', { recursive: true, force: true })\" && pagefind --site out --output-subdir _pagefind && node scripts/sync-pagefind.mjs",
     "ci": "npm run ci:source && npm run build && npm run ci:artifact && npm run audit:prod",
-    "ci:source": "npm run lint && npm run format:check && npm run lint:content && npm run test:gdocs-roundtrip && npm run check:links && npm run check:generated && npm run check:host",
+    "ci:source": "npm run lint && npm run format:check && npm run lint:content && npm run check:navigation-config && npm run test:gdocs-roundtrip && npm run check:links && npm run check:generated && npm run check:host",
     "ci:artifact": "npm run check:artifact && npm run check:pagefind && npm run check:navigation && npm run check:gdocs-import && npm run test:e2e:artifact",
     "lint": "eslint .",
     "format": "prettier --write \"{app,components,scripts,tests}/**/*.{js,jsx,mjs,css}\" \"*.{mjs,json}\" \".github/workflows/*.{yml,yaml}\"",
@@ -36,6 +36,7 @@
     "check:live-artifact": "node scripts/check-live-artifact.mjs",
     "check:host": "node scripts/check-host-consistency.mjs",
     "check:navigation": "node scripts/check-navigation-integrity.mjs",
+    "check:navigation-config": "node scripts/check-navigation-config.mjs",
     "check:pagefind": "node scripts/check-pagefind.mjs",
     "sync:pagefind": "node scripts/sync-pagefind.mjs",
     "test:e2e": "playwright test",
@@ -47,6 +48,8 @@
     "serve": "node scripts/serve-export.mjs"
   },
   "dependencies": {
+    "@headlessui/react": "2.2.10",
+    "lucide-react": "1.25.0",
     "next": "^16.2.9",
     "nextra": "^4.6.1",
     "nextra-theme-docs": "^4.6.1",
@@ -67,6 +70,7 @@
   },
   "overrides": {
     "postcss": "8.5.10",
+    "sharp": "0.35.3",
     "zod": "4.1.12"
   }
 }

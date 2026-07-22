@@ -1,4 +1,3 @@
-export default {
-  index: 'Overview',
-  'security-properties': 'Security Properties'
-}
+import { metaForDirectory } from '../../components/navigation/NavLabel.js'
+
+export default metaForDirectory('/risks')

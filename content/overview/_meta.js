@@ -1,5 +1,3 @@
-export default {
-  manifesto: 'Manifesto',
-  'why-peth': 'Why pETH',
-  vision: 'Vision'
-}
+import { metaForDirectory } from '../../components/navigation/NavLabel.js'
+
+export default metaForDirectory('/overview')

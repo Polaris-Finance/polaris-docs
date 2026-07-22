@@ -1,8 +1,3 @@
-export default {
-  peth: 'pETH',
-  usdp: 'USDp',
-  goldp: 'GOLDp',
-  polar: 'POLAR',
-  fpeth: 'fpETH',
-  vpeth: 'vpETH'
-}
+import { metaForDirectory } from '../../components/navigation/NavLabel.js'
+
+export default metaForDirectory('/core-assets')

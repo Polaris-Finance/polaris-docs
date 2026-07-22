@@ -1,10 +1,10 @@
-import { Footer, Layout, Navbar } from 'nextra-theme-docs'
-import { NavThemeSwitch } from '../components/NavThemeSwitch'
+import { Layout, Navbar } from 'nextra-theme-docs'
 import { Head } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
 import { Inter, Cormorant_Garamond } from 'next/font/google'
 import { A11yEnhancements } from '../components/A11yEnhancements'
-import { PolarisSearch } from '../components/PolarisSearch'
+import { PolarisFooter } from '../components/PolarisFooter'
+import { NavbarActions } from '../components/navigation/NavbarActions'
 import { JsonLd } from './JsonLd'
 import { buildGlobalJsonLd, metadataBase } from './seo.mjs'
 import {
@@ -133,50 +133,12 @@ const logo = (
 )
 
 const navbar = (
-  <Navbar logo={logo} logoLink={false} aria-label="Primary">
-    {/* Desktop-only: mobile keeps the theme switch in the sidebar sheet and
-        hides these links to leave room for search (see globals.css). */}
-    <span className="pl-nav-theme">
-      <NavThemeSwitch />
-    </span>
-    <a
-      href="https://polarisfinance.io"
-      className="pl-nav-website"
-      style={{ padding: '0.25rem 0.5rem' }}
-      target="_blank"
-      rel="noreferrer"
-    >
-      Website
-    </a>
+  <Navbar logo={logo} logoLink={false}>
+    <NavbarActions />
   </Navbar>
 )
 
-const footer = (
-  <Footer>
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
-      <span style={{ fontFamily: 'var(--font-serif), Georgia, serif', fontSize: '1.05rem' }}>
-        The pETH-powered yield layer for all of DeFi
-      </span>
-      <span style={{ opacity: 0.9 }}>© {new Date().getFullYear()} Polaris</span>
-      <span style={{ display: 'flex', gap: '1rem' }}>
-        <a href={pathWithBase('/llms.txt')} className="pl-footer-llms">
-          llms.txt
-        </a>
-        <a
-          href="https://x.com/polarisfinance_"
-          className="pl-footer-x"
-          target="_blank"
-          rel="noreferrer"
-          aria-label="Polaris on X"
-        >
-          <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true">
-            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-          </svg>
-        </a>
-      </span>
-    </div>
-  </Footer>
-)
+const footer = <PolarisFooter />
 
 export default async function RootLayout({ children }) {
   return (
@@ -196,7 +158,7 @@ export default async function RootLayout({ children }) {
           navbar={navbar}
           footer={footer}
           pageMap={await getPageMap()}
-          search={<PolarisSearch />}
+          search={null}
           editLink={null}
           feedback={{ content: null }}
           sidebar={{ defaultMenuCollapseLevel: 1, toggleButton: false }}
