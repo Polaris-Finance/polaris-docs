@@ -1,5 +1,6 @@
 export const EXTERNAL_LINKS = Object.freeze({
   website: 'https://polarisfinance.io',
+  testnetApp: 'https://app.testnet.polarisfinance.io',
   github: 'https://github.com/Polaris-Finance',
   x: 'https://x.com/polarisfinance_'
 })
