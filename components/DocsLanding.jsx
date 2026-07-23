@@ -1,24 +1,13 @@
 import {
-  ArrowLeftRight,
   ArrowRight,
   BookOpen,
-  ChartPie,
   Coins,
   ExternalLink,
   FlaskConical,
-  Gavel,
-  HandCoins,
-  Network,
-  Percent,
-  RefreshCw,
-  Route,
   Scale,
   ShieldAlert,
   ShieldCheck,
-  Stamp,
-  TrendingUp,
-  Waves,
-  Workflow
+  TrendingUp
 } from 'lucide-react'
 import Link from 'next/link'
 import { EXTERNAL_LINKS } from '../app/navigation-config.mjs'
@@ -33,55 +22,16 @@ const welcomeLinks = [
     featured: true
   },
   {
-    label: 'How Polaris works',
-    description: 'Follow value through the protocol and its connected engines.',
-    route: '/architecture/flows',
-    icon: Workflow
-  },
-  {
-    label: 'Core assets',
-    description: 'Understand pETH, pAssets, POLAR, and their roles in the system.',
-    route: '/core-assets/peth',
-    icon: Coins
-  }
-]
-
-const actionLinks = [
-  {
-    label: 'Mint a pAsset',
-    description: 'Open and manage a collateralized USDp or GOLDp position.',
-    route: '/testnet/mint',
-    icon: Stamp
-  },
-  {
-    label: 'Deposit ETH',
-    description: 'Enter the bonding curve to mint pETH on the public testnet.',
-    route: '/testnet/swap',
-    icon: ArrowLeftRight
-  },
-  {
-    label: 'Earn yield',
-    description: 'Deposit into the auto-compounding Polaris Earn Vaults.',
-    route: '/testnet/earn',
+    label: 'The bonding curve',
+    description: 'How ETH deposits mint pETH on a shared curve.',
+    route: '/architecture/bonding-curve',
     icon: TrendingUp
   },
   {
-    label: 'Take a reserve loan',
-    description: 'Borrow ETH against fpETH through a non-liquidatable Reserve Loan.',
-    route: '/testnet/reserve-loan',
-    icon: HandCoins
-  },
-  {
-    label: 'Convert assets',
-    description: 'Use direct minting, redemption, and conversion mechanisms.',
-    route: '/testnet/advanced',
-    icon: RefreshCw
-  },
-  {
-    label: 'Provide liquidity',
-    description: 'Join Polaris pools and earn a share of their swap fees.',
-    route: '/testnet/liquidity',
-    icon: Waves
+    label: 'pETH',
+    description: 'The native yield-bearing asset behind every pAsset.',
+    route: '/core-assets/peth',
+    icon: Coins
   }
 ]
 
@@ -104,15 +54,6 @@ const trustLinks = [
     route: '/architecture/stewardship',
     icon: Scale
   }
-]
-
-const referenceLinks = [
-  { label: 'Protocol flows', route: '/architecture/flows', icon: Network },
-  { label: 'Tokenomics', route: '/architecture/tokenomics', icon: ChartPie },
-  { label: 'Interest rates', route: '/design/interest-rates', icon: Percent },
-  { label: 'Fee routing', route: '/design/fee-router', icon: Route },
-  { label: 'Conversions', route: '/design/conversions', icon: RefreshCw },
-  { label: 'Liquidations', route: '/design/liquidations', icon: Gavel }
 ]
 
 function LandingLink({ className, item, iconSize = 19 }) {
@@ -185,38 +126,13 @@ export function DocsLanding() {
         </div>
       </nav>
 
-      <nav className="pl-docs-home-section" aria-labelledby="pl-docs-actions-title">
-        <h2 id="pl-docs-actions-title">Use Polaris</h2>
-        <div className="pl-docs-action-grid">
-          {actionLinks.map((item) => (
-            <LandingLink
-              key={item.route}
-              className="pl-docs-card-link pl-docs-action-link"
-              item={item}
-            />
-          ))}
-        </div>
-      </nav>
+      <TestnetBanner />
 
       <nav className="pl-docs-home-section" aria-labelledby="pl-docs-trust-title">
         <h2 id="pl-docs-trust-title">Security and trust</h2>
         <div className="pl-docs-trust-grid">
           {trustLinks.map((item) => (
             <LandingLink key={item.route} className="pl-docs-row-link" item={item} />
-          ))}
-        </div>
-      </nav>
-
-      <nav className="pl-docs-home-section" aria-labelledby="pl-docs-reference-title">
-        <h2 id="pl-docs-reference-title">Protocol reference</h2>
-        <div className="pl-docs-reference-grid">
-          {referenceLinks.map((item) => (
-            <LandingLink
-              key={item.route}
-              className="pl-docs-reference-link"
-              item={item}
-              iconSize={17}
-            />
           ))}
         </div>
       </nav>

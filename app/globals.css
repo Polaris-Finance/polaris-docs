@@ -297,6 +297,18 @@ article :is(p, li) {
   container: docs-home / inline-size;
 }
 
+/* The landing page is shorter than a viewport, so Nextra's viewport-filling
+   heights — on both the article and the sticky sidebar — would leave dead
+   space and push the body-level footer past the fold (a phantom scrollbar
+   exactly the footer's height). Let this page size to its content instead. */
+article:has(.pl-docs-home) {
+  min-height: 0;
+}
+
+div:has(> article .pl-docs-home) > .nextra-sidebar {
+  height: auto;
+}
+
 article:has(.pl-docs-home) main > h1:first-of-type {
   max-width: 100%;
   margin: 0;
@@ -314,6 +326,10 @@ article:has(.pl-docs-home) main > h1:first-of-type + p {
 }
 
 .pl-docs-home-section + .pl-docs-home-section {
+  margin-top: 3.5rem;
+}
+
+.pl-docs-home .pl-testnet-banner {
   margin-top: 3.5rem;
 }
 
