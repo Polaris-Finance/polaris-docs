@@ -15,7 +15,7 @@
 URL: https://docs.polaris.finance/
 Markdown URL: https://docs.polaris.finance/index.md
 
-Start with the fundamentals, then explore Polaris on the public testnet.
+Start with the fundamentals, then explore the public testnet.
 
 Relevant app/search vocabulary: app, official app, testnet, Sepolia, pETH, pAssets, USDp.
 

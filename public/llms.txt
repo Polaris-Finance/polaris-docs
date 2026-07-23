@@ -24,7 +24,7 @@
 
 ## Introduction
 
-- [Polaris Documentation](https://docs.polaris.finance/index.md): Start with the fundamentals, then explore Polaris on the public testnet. Canonical: https://docs.polaris.finance/
+- [Polaris Documentation](https://docs.polaris.finance/index.md): Start with the fundamentals, then explore the public testnet. Canonical: https://docs.polaris.finance/
 - [Polaris 101](https://docs.polaris.finance/polaris-101.md): An introduction to Polaris, the onchain yield layer built around pETH. Canonical: https://docs.polaris.finance/polaris-101
 
 ## Overview
