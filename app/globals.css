@@ -22,6 +22,14 @@
   --pl-surface: rgba(44, 74, 110, 0.045);
   --pl-card-border: rgba(44, 74, 110, 0.05);
 
+  /* Table roles, theme-aware. Tables inherit Nextra's neutral-gray defaults;
+     these tokens pull rules/header/hover onto the brand palette so dark mode
+     stops reading as a bright spreadsheet grid. Light defaults; .dark below. */
+  --pl-table-rule: rgba(63, 127, 168, 0.14);
+  --pl-table-header-bg: rgba(63, 127, 168, 0.07);
+  --pl-table-header-rule: rgba(177, 147, 79, 0.32);
+  --pl-table-hover: rgba(63, 127, 168, 0.05);
+
   /* One shared hover transition + lift for the card family. */
   --font-serif-stack: var(--font-serif), 'Cormorant Garamond', Georgia, serif;
   --font-sans-stack: var(--font-sans), 'Inter', system-ui, sans-serif;
@@ -30,6 +38,13 @@
 .dark {
   --pl-surface: rgba(123, 165, 201, 0.06);
   --pl-card-border: rgba(123, 165, 201, 0.06);
+
+  /* Cool low-alpha hairline (~L 0.23) instead of the theme's gray-600 (~L 0.45),
+     and a header fill strong enough to read as a band over the near-black page. */
+  --pl-table-rule: rgba(123, 165, 201, 0.14);
+  --pl-table-header-bg: rgba(123, 165, 201, 0.18);
+  --pl-table-header-rule: rgba(216, 201, 164, 0.3);
+  --pl-table-hover: rgba(123, 165, 201, 0.09);
 }
 
 /* Base typography */
@@ -613,9 +628,22 @@ article hr {
    border, drop top + sides), a defined header, and a row-hover highlight, so
    dense reference tables read like an editorial data table. */
 
+/* The theme colours every cell border with a neutral gray (gray-300 light /
+   gray-600 dark). Keep only the bottom rule but pull its colour onto the brand
+   token so dark rows separate without the cold spreadsheet glare. The theme
+   also stripes even rows gray; the design wants rules + hover, not zebra, so
+   clear that fill in both themes. */
+
 article table[data-pl-table] :is(th, td) {
   border-top: 0;
   border-inline: 0;
+  border-bottom-color: var(--pl-table-rule);
+}
+
+article table[data-pl-table] tbody tr,
+article table[data-pl-table] tbody tr:nth-child(even) {
+  border-top-color: var(--pl-table-rule);
+  background: transparent;
 }
 
 /* A quiet brand tint plus a gold hairline anchors the header to its columns.
@@ -624,13 +652,8 @@ article table[data-pl-table] :is(th, td) {
 
 article table[data-pl-table] thead th {
   text-align: left;
-  background: rgba(63, 127, 168, 0.07);
-  border-bottom: 1px solid rgba(177, 147, 79, 0.32);
-}
-
-.dark article table[data-pl-table] thead th {
-  background: rgba(123, 165, 201, 0.1);
-  border-bottom-color: rgba(216, 201, 164, 0.28);
+  background: var(--pl-table-header-bg);
+  border-bottom: 1px solid var(--pl-table-header-rule);
 }
 
 /* The first column is the row's subject; a touch more weight lets the eye run
@@ -647,11 +670,31 @@ article table[data-pl-table] tbody tr {
 }
 
 article table[data-pl-table] tbody tr:hover {
-  background: rgba(63, 127, 168, 0.05);
+  background: var(--pl-table-hover);
+}
+
+/* Dark's theme utilities are .dark-scoped (an extra class), so the row colours,
+   header rule, and hover need .dark-prefixed overrides to win specificity. The
+   values still come from the shared --pl-table-* tokens (which carry the dark
+   variant), so this block is structural, not a second set of colours. The
+   :hover rule stays last so it beats the even-row zebra reset on hover. */
+
+.dark article table[data-pl-table] :is(th, td) {
+  border-bottom-color: var(--pl-table-rule);
+}
+
+.dark article table[data-pl-table] tbody tr,
+.dark article table[data-pl-table] tbody tr:nth-child(even) {
+  border-top-color: var(--pl-table-rule);
+  background: transparent;
+}
+
+.dark article table[data-pl-table] thead th {
+  border-bottom-color: var(--pl-table-header-rule);
 }
 
 .dark article table[data-pl-table] tbody tr:hover {
-  background: rgba(123, 165, 201, 0.06);
+  background: var(--pl-table-hover);
 }
 
 /* Blockquotes read as a deliberate aside, not default-theme gray: brand the
