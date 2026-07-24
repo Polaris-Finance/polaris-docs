@@ -21,11 +21,11 @@ If the market's collateral falls below full backing, redemption payouts become *
 
 Bonding curve swaps remain live throughout this whole process. The bonding curve is shared pETH infrastructure rather than part of any individual pAsset market, allowing pETH holders to continue using it even if a specific market enters Recovery Mode.
 
-| Action | In Recovery Mode |
-| --- | --- |
-| Add collateral / repay debt | Allowed — improves position health |
-| Redemptions | Allowed — reduces circulating supply |
-| Bonding curve swaps | Allowed — shared pETH infrastructure, unaffected |
-| Minting additional pAssets (direct minting) | Disabled — would increase the market's debt |
+| Action | Status | Why |
+| --- | --- | --- |
+| Add collateral / repay debt | Allowed | Improves position health |
+| Redemptions | Allowed | Reduces circulating supply |
+| Bonding curve swaps | Allowed | Shared pETH infrastructure, unaffected |
+| Minting additional pAssets (direct minting) | Disabled | Would increase the market's debt |
 
 The mechanism is designed to help a stressed market deleverage in an orderly and isolated manner, without impacting the wider Polaris ecosystem.

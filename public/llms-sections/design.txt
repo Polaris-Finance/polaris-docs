@@ -124,8 +124,8 @@ Passing protocol revenue through the bonding curve allows the same value to stre
 
 In sequence:
 
-1. pETH collected as fees is **burned at the floor** — raising the floor price and releasing ETH from the reserve.
-2. That ETH immediately buys newly minted pETH — raising the bonding curve spot price.
+1. pETH collected as fees is **burned at the floor**, raising the floor price and releasing ETH from the reserve.
+2. That ETH immediately buys newly minted pETH, raising the bonding curve spot price.
 3. The newly minted pETH is distributed as rewards via pETH flows.
 
 ## A Shared Economic Engine
@@ -207,8 +207,8 @@ Redistribution assigns each open position a proportional share of both the remai
 
 Tier | When | What happens
 
-1 — Earn Vault | First backstop | Debt cancelled with vault pAssets; collateral moves to the vault; depositors receive liquidation gains
-2 — Redistribution | Only if the vault can't absorb the full position | Remaining debt and collateral spread proportionally across other open positions
+1. Earn Vault | First backstop | Debt cancelled with vault pAssets; collateral moves to the vault; depositors receive liquidation gains
+2. Redistribution | Only if the vault can't absorb the full position | Remaining debt and collateral spread proportionally across other open positions
 
 Relevant app/search vocabulary: liquidation, liquidations, liquidate, liquidated, liquidation penalty.
 
@@ -253,7 +253,7 @@ Oracle sources can therefore be replaced through stewardship. A failed feed can 
 
 Action | Requires
 
-Replace a failed feed | Immediate — no timelock
+Replace a failed feed | Immediate (no timelock)
 Replace a live feed | Timelock
 Add a feed to an empty slot | Timelock
 
@@ -284,12 +284,12 @@ If the market's collateral falls below full backing, redemption payouts become *
 
 Bonding curve swaps remain live throughout this whole process. The bonding curve is shared pETH infrastructure rather than part of any individual pAsset market, allowing pETH holders to continue using it even if a specific market enters Recovery Mode.
 
-Action | In Recovery Mode
+Action | Status | Why
 
-Add collateral / repay debt | Allowed — improves position health
-Redemptions | Allowed — reduces circulating supply
-Bonding curve swaps | Allowed — shared pETH infrastructure, unaffected
-Minting additional pAssets (direct minting) | Disabled — would increase the market's debt
+Add collateral / repay debt | Allowed | Improves position health
+Redemptions | Allowed | Reduces circulating supply
+Bonding curve swaps | Allowed | Shared pETH infrastructure, unaffected
+Minting additional pAssets (direct minting) | Disabled | Would increase the market's debt
 
 The mechanism is designed to help a stressed market deleverage in an orderly and isolated manner, without impacting the wider Polaris ecosystem.
 

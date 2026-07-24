@@ -129,7 +129,7 @@ Unlike pETH flows, every pAsset market routes a protocol-defined minimum allocat
 
 Flow type | Funded by | Distribution
 
-pETH flows | pETH activity — bonding curve swap fees, Reserve Loan fees, pETH→POLAR conversions | Fees burned into the floor, then acquired pETH distributed via pETH flows
+pETH flows | pETH activity: bonding curve swap fees, Reserve Loan fees, pETH→POLAR conversions | Fees burned into the floor, then acquired pETH distributed via pETH flows
 pAsset flows | Interest paid by that pAsset's minters (e.g. USDp, GOLDp) | Protocol-defined minimum to the Earn Vault + vePOLAR; remainder to approved recipients
 
 ## Stewardship Role
