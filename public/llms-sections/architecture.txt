@@ -209,7 +209,7 @@ Instead of paying a conventional borrowing interest rate, Reserve Loans apply a 
 
 This allows users to benefit from the growth of the fpETH floor while passively paying for the extra liquidity they access.
 
-Traditional lending | Reserve Loans
+Property | Traditional lending | Reserve Loans
 
 Liquidations | Possible | None
 Max borrow | Overcollateralized (below 100%) | Up to 100% of floor value

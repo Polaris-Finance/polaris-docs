@@ -155,7 +155,7 @@ Six months later, the floor has increased from 0.75 ETH to 0.82 ETH as more acti
 
 Bob still holds 1 fpETH and Alice still holds 1 vpETH. Together, those two tokens continue to represent exactly 1 pETH, just as they did on the day of the split.
 
-Floor | Premium | pETH value
+Stage | Floor | Premium | pETH value
 
 At the split | 0.75 ETH | 0.25 ETH | 1.00 ETH
 Six months later | 0.82 ETH | 0.23 ETH | 1.05 ETH
@@ -405,7 +405,7 @@ Suppose that six months later the floor has increased from 0.82 ETH to 0.90 ETH,
 
 Bob still owns one fpETH and Alice still owns one vpETH. Holding those two tokens together continues to make up exactly one pETH, but its composition has strongly changed since the day it was split.
 
-Floor | Premium | pETH value
+Stage | Floor | Premium | pETH value
 
 At the split | 0.82 ETH | 0.23 ETH | 1.05 ETH
 Six months later | 0.90 ETH | 0.40 ETH | 1.30 ETH
@@ -644,7 +644,7 @@ Instead of paying a conventional borrowing interest rate, Reserve Loans apply a 
 
 This allows users to benefit from the growth of the fpETH floor while passively paying for the extra liquidity they access.
 
-Traditional lending | Reserve Loans
+Property | Traditional lending | Reserve Loans
 
 Liquidations | Possible | None
 Max borrow | Overcollateralized (below 100%) | Up to 100% of floor value
@@ -871,7 +871,7 @@ The **Peg Stability Rate** is the primary interest rate paid by pAsset minters. 
 
 The **Protocol Safety Rate** is a secondary interest rate that normally remains inactive. It only activates when the overall collateralization of a pAsset market falls below a predefined threshold, automatically paying interest from higher-leverage positions to lower-leverage or collateral-only positions.
 
-Peg Stability Rate | Protocol Safety Rate
+Property | Peg Stability Rate | Protocol Safety Rate
 
 Role | Primary borrowing cost for pAsset minters | Protects the market's overall collateral health
 When active | Always | Only when collateralization falls below a threshold

@@ -116,7 +116,11 @@ function AccessibleTable({ children, tabIndex = 0, ...props }) {
       'data-pl-wide': isWide ? 'true' : undefined,
       ...props
     },
-    createElement('caption', { className: 'pl-table-caption' }, caption),
+    createElement(
+      'caption',
+      { className: 'pl-table-caption', 'data-pagefind-ignore': 'all' },
+      caption
+    ),
     annotateTableChildren(children, headers)
   )
 }

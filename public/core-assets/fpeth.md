@@ -51,7 +51,7 @@ Six months later, the floor has increased from 0.75 ETH to 0.82 ETH as more acti
 
 Bob still holds 1 fpETH and Alice still holds 1 vpETH. Together, those two tokens continue to represent exactly 1 pETH, just as they did on the day of the split.
 
-Floor | Premium | pETH value
+Stage | Floor | Premium | pETH value
 
 At the split | 0.75 ETH | 0.25 ETH | 1.00 ETH
 Six months later | 0.82 ETH | 0.23 ETH | 1.05 ETH
