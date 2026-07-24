@@ -26,7 +26,7 @@
      these tokens pull rules/header/hover onto the brand palette so dark mode
      stops reading as a bright spreadsheet grid. Light defaults; .dark below. */
   --pl-table-rule: rgba(63, 127, 168, 0.14);
-  --pl-table-header-bg: rgba(63, 127, 168, 0.07);
+  --pl-table-header-bg: rgba(63, 127, 168, 0.11);
   --pl-table-header-rule: rgba(177, 147, 79, 0.32);
   --pl-table-hover: rgba(63, 127, 168, 0.05);
 
@@ -640,6 +640,15 @@ article table[data-pl-table] :is(th, td) {
   border-bottom-color: var(--pl-table-rule);
 }
 
+/* Cell text is <td>/<th>, so the two-tier prose colour on :is(p, li) never
+   reaches it and cells fall back to the theme's cool gray ramp. Pull body
+   cells onto the muted body ink and headers onto the emphasis tier so tables
+   read in the same warm palette as the surrounding prose. */
+
+article table[data-pl-table] tbody td {
+  color: #43536b;
+}
+
 article table[data-pl-table] tbody tr,
 article table[data-pl-table] tbody tr:nth-child(even) {
   border-top-color: var(--pl-table-rule);
@@ -652,6 +661,7 @@ article table[data-pl-table] tbody tr:nth-child(even) {
 
 article table[data-pl-table] thead th {
   text-align: left;
+  color: var(--polaris-navy);
   background: var(--pl-table-header-bg);
   border-bottom: 1px solid var(--pl-table-header-rule);
 }
@@ -661,6 +671,7 @@ article table[data-pl-table] thead th {
 
 article table[data-pl-table] tbody td:first-child {
   font-weight: 500;
+  white-space: nowrap;
 }
 
 /* Row hover aids horizontal scanning across many columns. */
@@ -683,6 +694,10 @@ article table[data-pl-table] tbody tr:hover {
   border-bottom-color: var(--pl-table-rule);
 }
 
+.dark article table[data-pl-table] tbody td {
+  color: #e8dcc4;
+}
+
 .dark article table[data-pl-table] tbody tr,
 .dark article table[data-pl-table] tbody tr:nth-child(even) {
   border-top-color: var(--pl-table-rule);
@@ -690,6 +705,7 @@ article table[data-pl-table] tbody tr:hover {
 }
 
 .dark article table[data-pl-table] thead th {
+  color: var(--polaris-star-bright);
   border-bottom-color: var(--pl-table-header-rule);
 }
 
