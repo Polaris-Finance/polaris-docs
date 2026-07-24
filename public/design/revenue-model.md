@@ -12,7 +12,7 @@ Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 ---
 
-Polaris operates under the design philosophy that all value generated throughout the protocol should not leak externally. Protocol revenue is generated entirely from ecosystem activity, and in turn directed toward supporting ecosystem growth.
+Polaris operates under the design philosophy that all value generated throughout the protocol **should not leak externally**. Protocol revenue is generated entirely from ecosystem activity, and in turn directed toward supporting ecosystem growth.
 
 Creating pAssets, trading through the bonding curve, opening Reserve Loans, building on top of pETH and future protocol primitives all contribute to the same revenue engine.
 

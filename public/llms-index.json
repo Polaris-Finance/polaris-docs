@@ -258,7 +258,7 @@
       "url": "https://docs.polaris.finance/design/adaptive-peg-defence",
       "markdownUrl": "https://docs.polaris.finance/design/adaptive-peg-defence.md",
       "section": "Protocol Mechanics",
-      "title": "Adaptive Peg Defence",
+      "title": "Adaptive Peg Defense",
       "description": "Polaris incorporates permissionless minting and redemptions to help pAssets trade around their target price.",
       "keywords": [],
       "updated": null

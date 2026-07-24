@@ -51,7 +51,7 @@ Polaris uses a Medianiser to reduce reliance on a single oracle source where mul
 
 Earn Vaults provide yield by helping absorb liquidations in their pAsset market.
 
-When a position is liquidated, Earn Vault deposits may be burned to cancel debt, with the vault receiving pETH collateral in return. This can generate liquidation gains, but it also means Earn Vault depositors act as a first-loss backstop.
+When a position is liquidated, Earn Vault deposits may be burned to cancel debt, with the vault receiving pETH collateral in return. This can generate liquidation gains, but it also means Earn Vault depositors act as a **first-loss backstop**.
 
 Losses may occur if collateral value falls quickly, liquidations are delayed, oracle prices are wrong, or received collateral later falls in value.
 
@@ -67,7 +67,11 @@ Polaris runs on Ethereum and inherits Ethereum-related risks, including congesti
 
 Users may also interact with Polaris through third-party interfaces, vaults, markets or integrations. Those systems can introduce their own smart contract, admin, liquidity and frontend risks, even if Polaris itself operates as intended.
 
-Users should verify official contract addresses, review transaction details before signing and avoid unofficial links or support channels.
+Users should:
+
+- Verify official contract addresses
+- Review transaction details before signing
+- Avoid unofficial links or support channels
 
 Relevant app/search vocabulary: risk, risks, risk disclosure, smart contract risk, liquidation risk.
 
@@ -80,7 +84,7 @@ Markdown URL: https://docs.polaris.finance/risks/security-properties.md
 
 Polaris is designed to minimize trust wherever possible, although some sources of uncertainty remain unavoidable and are covered in the dedicated Risks section.
 
-Some considerations remain unavoidable and are covered in the dedicated Risks section. The architectural decisions below remove many of the trust assumptions commonly found in DeFi, allowing users to interact directly with transparent onchain mechanisms.
+The architectural decisions below remove many of the trust assumptions commonly found in DeFi, allowing users to interact directly with transparent onchain mechanisms.
 
 **The core protocol has no admin privileges.** Once deployed, no individual or organization can move user funds or change the protocol rules.
 

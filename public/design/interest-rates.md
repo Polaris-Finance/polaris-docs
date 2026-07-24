@@ -14,9 +14,16 @@ Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 Polaris uses two complementary interest rates to manage pAsset markets. Together, they help maintain the target price of each pAsset while protecting the overall health of the collateral system.
 
-The Peg Stability Rate is the primary interest rate paid by pAsset minters. It adjusts automatically according to minting and redemption activity and helps keep pAssets trading around their target price.
+The **Peg Stability Rate** is the primary interest rate paid by pAsset minters. It adjusts automatically according to minting and redemption activity and helps keep pAssets trading around their target price.
 
-The Protocol Safety Rate is a secondary interest rate that normally remains inactive. It only activates when the overall collateralization of a pAsset market falls below a predefined threshold, automatically paying interest from higher-leverage positions to lower-leverage or collateral-only positions.
+The **Protocol Safety Rate** is a secondary interest rate that normally remains inactive. It only activates when the overall collateralization of a pAsset market falls below a predefined threshold, automatically paying interest from higher-leverage positions to lower-leverage or collateral-only positions.
+
+Peg Stability Rate | Protocol Safety Rate
+
+Role | Primary borrowing cost for pAsset minters | Protects the market's overall collateral health
+When active | Always | Only when collateralization falls below a threshold
+Adjusts to | Minting vs redemption activity (automatic) | Aggregate collateral ratio
+Payments | Protocol revenue → Earn Vault + vePOLAR | Redistributed from higher- to lower-leverage positions (not protocol revenue)
 
 ## Peg Stability Rate
 

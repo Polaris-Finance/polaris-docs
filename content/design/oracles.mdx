@@ -9,7 +9,7 @@ Polaris is designed to rely on its own onchain mechanisms wherever possible, min
 
 However, pAssets require external reference prices. Polaris limits the oracle layer to those markets, with a design that can be reused across every future pAsset while minimizing oracle dependency and remaining resilient to oracle failures.
 
-To achieve this, Polaris routes every external price through a custom oracle aggregator called the Medianiser.
+To achieve this, Polaris routes every external price through a custom oracle aggregator called the **Medianiser**.
 
 The Medianiser is used wherever external reference prices are needed. For instance, USDp uses it for ETH/USD, while GOLDp uses it for both ETH/USD and XAU/USD. Future pAssets follow the same approach by using the reference feeds required for their own underlying asset.
 
@@ -36,5 +36,11 @@ As a result, Polaris can continue operating flexibly even if individual oracle f
 Although the protocol itself is immutable, oracle providers may evolve over time or become unavailable.
 
 Oracle sources can therefore be replaced through stewardship. A failed feed can be replaced immediately, while replacing a live feed or adding a new feed to an empty slot requires a timelock.
+
+| Action | Requires |
+| --- | --- |
+| Replace a failed feed | Immediate — no timelock |
+| Replace a live feed | Timelock |
+| Add a feed to an empty slot | Timelock |
 
 This allows Polaris to recover from oracle failures without giving stewards immediate discretionary control over active price sources.

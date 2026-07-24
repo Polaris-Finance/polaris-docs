@@ -12,7 +12,7 @@ Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 ---
 
-This one is where collateralized positions are created and managed.
+This is where collateralized positions are created and managed.
 
 Using pETH as collateral, you can mint USDp or GOLDp.
 

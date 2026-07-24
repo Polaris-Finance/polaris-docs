@@ -22,7 +22,7 @@ Flows are allocated to whitelisted contracts according to how much pETH or a spe
 
 In general, the larger their share of that asset, the larger the share of the corresponding flow they receive, with stewardship also able to apply additional weighting where appropriate.
 
-Flows can also include a temporary minimum allocation for selected recipients. This allows strategically important integrations or new markets to begin receiving meaningful flows before they have accumulated enough assets for the standard balance-based allocation to become effective.
+Flows can also include a **temporary minimum allocation** for selected recipients. This allows strategically important integrations or new markets to begin receiving meaningful flows before they have accumulated enough assets for the standard balance-based allocation to become effective.
 
 Because these minimum allocations distribute protocol value before a recipient has earned it through normal usage, they are managed through stewardship and should only be used where the recipient is expected to create value for Polaris.
 
@@ -36,10 +36,20 @@ Also, each pAsset market generates its own independent flow funded by the intere
 
 Unlike pETH flows, every pAsset market routes a protocol-defined minimum allocation of this flow to the corresponding Earn Vault and to vePOLAR. The remaining flow can then be distributed to approved recipients building around that pAsset, including liquidity pools, vaults, structured products and other integrations.
 
+Flow type | Funded by | Distribution
+
+pETH flows | pETH activity — bonding curve swap fees, Reserve Loan fees, pETH→POLAR conversions | Fees burned into the floor, then acquired pETH distributed via pETH flows
+pAsset flows | Interest paid by that pAsset's minters (e.g. USDp, GOLDp) | Protocol-defined minimum to the Earn Vault + vePOLAR; remainder to approved recipients
+
 ## Stewardship Role
 
 Once configured, flows operate automatically through immutable protocol rules.
 
-Stewardship determines which contracts are eligible to receive flows, which address receives them, any additional weighting applied to each recipient and whether a temporary minimum allocation should be used.
+Stewardship determines:
+
+- Which contracts are eligible to receive flows
+- Which address receives them
+- Any additional weighting applied to each recipient
+- Whether a temporary minimum allocation should be used
 
 Recipients are expected to create value for Polaris in return for flow support. That value may come through liquidity, integrations, revenue sharing or other forms of ecosystem growth.

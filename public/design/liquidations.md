@@ -12,7 +12,7 @@ Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 ---
 
-When a user mints a pAsset, they do so against pETH collateral. If the value of that collateral falls too far relative to the debt, the position can fall below the protocol's Minimum Collateral Ratio of 115% and become eligible for liquidation.
+When a user mints a pAsset, they do so against pETH collateral. If the value of that collateral falls too far relative to the debt, the position can fall below the protocol's Minimum Collateral Ratio of **115%** and become eligible for liquidation.
 
 Liquidations protect the solvency of each pAsset market by closing unsafe positions before they create losses for the wider system.
 
@@ -29,3 +29,8 @@ This liquidation mechanism is one source of protocol-native yield distributed to
 If the Earn Vault does not hold enough deposits to absorb the entire liquidation, the remaining debt and collateral are redistributed across the other open positions in the same pAsset market. As such, liquidations are always processed entirely within the protocol without relying on external auctions or discretionary intervention.
 
 Redistribution assigns each open position a proportional share of both the remaining debt and collateral. While intended only as a fallback mechanism, it ensures that liquidations can always occur even when the Earn Vault is temporarily unable to absorb the full position.
+
+Tier | When | What happens
+
+1 — Earn Vault | First backstop | Debt cancelled with vault pAssets; collateral moves to the vault; depositors receive liquidation gains
+2 — Redistribution | Only if the vault can't absorb the full position | Remaining debt and collateral spread proportionally across other open positions

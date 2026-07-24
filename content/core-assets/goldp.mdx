@@ -17,11 +17,11 @@ Because GOLDp exists entirely onchain, users can access digital gold without rel
 
 GOLDp is minted by depositing pETH as collateral and opening an overcollateralized debt position.
 
-Like USDp, GOLDp uses the same minting mechanism and minimum collateral ratio of 115%. In practice, this means every position must hold at least \$1.15 worth of pETH collateral for every \$1 worth of GOLDp.
+Like USDp, GOLDp uses the same minting mechanism and minimum collateral ratio of **115%**. In practice, this means every position must hold at least \$1.15 worth of pETH collateral for every \$1 worth of GOLDp.
 
 Once minted, GOLDp provides onchain exposure to the price of gold. It can be transferred freely on Ethereum, held as a digital gold asset or integrated into DeFi applications.
 
-On top of this, users who want to earn protocol-native yield can also deposit GOLDp into the GOLDp Earn Vault, which distributes both GOLDp and pETH from a portion of the interest paid by GOLDp minters and pETH liquidation gains. The mechanics of the Earn Vault are explained in the dedicated section of the documentation.
+On top of this, users who want to earn protocol-native yield can also deposit GOLDp into the **GOLDp Earn Vault**, which distributes both GOLDp and pETH from a portion of the interest paid by GOLDp minters and pETH liquidation gains. The mechanics of the Earn Vault are explained in the dedicated section of the documentation.
 
 Moreover, GOLDp can be used in different ways depending on the strategy. Users may hold it as digital gold, deposit it into the Earn Vault, provide liquidity alongside other gold assets or build other strategies on top of it. The resulting market exposure depends on how GOLDp is ultimately used.
 
@@ -33,6 +33,11 @@ When GOLDp trades above the market price of gold, new GOLDp can be minted 1:1 ag
 
 When GOLDp trades below the reference price of gold, market participants can redeem GOLDp for the underlying collateral, which removes GOLDp from circulation and reduces the circulating supply.
 
+| GOLDp market price | Arbitrage response | Effect on supply |
+| --- | --- | --- |
+| Above gold reference price | Mint 1:1 against pETH, sell into market | Supply rises → price pushed down |
+| Below gold reference price | Redeem GOLDp for underlying collateral | Supply falls → price pushed up |
+
 Together, these mechanisms continuously adjust the circulating supply in response to market conditions while every GOLDp remains backed by pETH collateral.
 
-Polaris builds on this foundation with an additional stability rate built into its CDP architecture. This mechanism applies to every asset issued through Polaris, including GOLDp. Later sections explain the stability rate in detail, but architecturally it automatically shifts collateral and debt from the most leveraged positions to the least, strengthening the peg during periods of market stress.
+Polaris builds on this foundation with an additional **stability rate** built into its CDP architecture. This mechanism applies to every asset issued through Polaris, including GOLDp. Later sections explain the stability rate in detail, but architecturally it automatically shifts collateral and debt from the most leveraged positions to the least, strengthening the peg during periods of market stress.

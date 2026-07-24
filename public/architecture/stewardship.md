@@ -12,7 +12,7 @@ Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 ---
 
-Polaris uses bounded stewardship instead of open-ended governance.
+Polaris uses **bounded stewardship** instead of open-ended governance.
 
 Governance can become a source of risk when it is capable of changing how a protocol operates or how value flows through the system after deployment. Users are then required to evaluate not only the protocol itself, but also the character and decision-making processes of those responsible for governing it.
 
@@ -20,7 +20,13 @@ Polaris is designed to minimize that reliance by enforcing as much of the protoc
 
 Stewardship is therefore limited to the few decisions that neither mechanism can address, leaving the core protocol immutable.
 
-Stewards cannot introduce new collateral to back pAssets, modify the bonding curve or change the liquidation mechanisms that underpin the system. Users interact with the same core architecture throughout the lifetime of the protocol, without governance being able to redefine its foundations after deployment.
+Stewards cannot:
+
+- Introduce new collateral to back pAssets
+- Modify the bonding curve
+- Change the liquidation mechanisms that underpin the system
+
+Users interact with the same core architecture throughout the lifetime of the protocol, without governance being able to redefine its foundations after deployment.
 
 ## Steward Responsibilities
 
@@ -33,7 +39,7 @@ This includes:
 - Interest rate splits
 - POLAR conversion parameters
 - Replacing faulty oracle feeds
-- Whitelisting or removing flow recipients.
+- Whitelisting or removing flow recipients
 - Adjusting flow weightings
 
 These decisions influence how value moves throughout the Polaris ecosystem without giving stewards the ability to modify the protocol itself.

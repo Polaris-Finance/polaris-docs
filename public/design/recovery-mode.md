@@ -24,8 +24,15 @@ The goal is to prevent the market from becoming weaker while still allowing part
 
 Recovery Mode also affects direct minting and redemptions. New direct minting is disabled because it would increase the outstanding debt to the affected market, while redemptions remain open because they reduce the circulating supply.
 
-If the market's collateral falls below full backing, redemption payouts become proportional to the collateral that remains available. This ensures every redeemer receives the same share of the remaining backing instead of rewarding the first participants to exit.
+If the market's collateral falls below full backing, redemption payouts become **proportional** to the collateral that remains available. This ensures every redeemer receives the same share of the remaining backing instead of rewarding the first participants to exit.
 
 Bonding curve swaps remain live throughout this whole process. The bonding curve is shared pETH infrastructure rather than part of any individual pAsset market, allowing pETH holders to continue using it even if a specific market enters Recovery Mode.
+
+Action | In Recovery Mode
+
+Add collateral / repay debt | Allowed — improves position health
+Redemptions | Allowed — reduces circulating supply
+Bonding curve swaps | Allowed — shared pETH infrastructure, unaffected
+Minting additional pAssets (direct minting) | Disabled — would increase the market's debt
 
 The mechanism is designed to help a stressed market deleverage in an orderly and isolated manner, without impacting the wider Polaris ecosystem.

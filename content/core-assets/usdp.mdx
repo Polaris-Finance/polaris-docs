@@ -15,11 +15,11 @@ It exists entirely onchain and is designed to remain censorship resistant. Anyon
 
 USDp is minted by depositing pETH as collateral and opening an overcollateralized debt position.
 
-Each position must maintain a minimum collateral ratio of 115%, meaning every USDp is backed by at least \$1.15 worth of pETH.
+Each position must maintain a minimum collateral ratio of **115%**, meaning every USDp is backed by at least \$1.15 worth of pETH.
 
 Once minted, USDp functions as a digital dollar that users fully own. It can be sent anywhere on Ethereum, used across DeFi applications or integrated into payment flows without relying on any centralized parties.
 
-On top of that, users who want to earn protocol-native yield can deposit USDp into the USDp Earn Vault, which distributes both USDp and pETH from a portion of the interest paid by USDp minters and pETH liquidation gains. The mechanics of the Earn Vault are explained in the dedicated section of the documentation.
+On top of that, users who want to earn protocol-native yield can deposit USDp into the **USDp Earn Vault**, which distributes both USDp and pETH from a portion of the interest paid by USDp minters and pETH liquidation gains. The mechanics of the Earn Vault are explained in the dedicated section of the documentation.
 
 ## Maintaining the Peg
 
@@ -29,6 +29,11 @@ When USDp trades above one dollar, new USDp can be minted 1:1 against pETH colla
 
 When USDp trades below one dollar, market participants can redeem USDp for the underlying collateral, which removes USDp from circulation and reduces the circulating supply.
 
+| USDp market price | Arbitrage response | Effect on supply |
+| --- | --- | --- |
+| Above \$1 | Mint 1:1 against pETH, sell into market | Supply rises → price pushed down |
+| Below \$1 | Redeem USDp for underlying collateral | Supply falls → price pushed up |
+
 Together, these mechanisms continuously adjust the circulating supply in response to peg conditions while every USDp remains backed by pETH collateral.
 
-Although permissionless 1:1 minting is a genuine innovation for decentralised stablecoins, Polaris builds on this foundation with an additional stability rate for debt positions. Later sections explain the stability rate in detail, but architecturally it automatically shifts collateral and debt from the most leveraged positions to the least, further strengthening the USDp peg during times of stress.
+Although permissionless 1:1 minting is a genuine innovation for decentralised stablecoins, Polaris builds on this foundation with an additional **stability rate** for debt positions. Later sections explain the stability rate in detail, but architecturally it automatically shifts collateral and debt from the most leveraged positions to the least, further strengthening the USDp peg during times of stress.

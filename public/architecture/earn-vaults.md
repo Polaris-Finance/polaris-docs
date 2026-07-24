@@ -20,7 +20,7 @@ This makes Earn Vaults the primary mechanism through which protocol-native yield
 
 ## Position Ownership
 
-Each Earn Vault deposit is represented by a transferable NFT that tracks its own rewards over time.
+Each Earn Vault deposit is represented by a **transferable NFT** that tracks its own rewards over time.
 
 Representing deposits as NFTs allows users to transfer ownership of an Earn Vault position without withdrawing its underlying assets or resetting its accounting.
 
@@ -28,8 +28,13 @@ In practice, users can transfer or sell an existing Earn Vault position without 
 
 ## Auto-Compounding Vaults
 
-For users who prefer a simpler experience, Polaris also supports auto-compounding vault wrappers represented as ERC-4626 tokens, such as sUSDp and sGOLDp.
+For users who prefer a simpler experience, Polaris also supports auto-compounding vault wrappers represented as ERC-4626 tokens, such as **sUSDp** and **sGOLDp**.
 
 These vaults automatically manage the underlying Earn Vault position while making deposits fungible and easier to integrate throughout the wider DeFi ecosystem. Users who prefer a more passive experience can simply hold the ERC-4626 vault token while continuing to accrue the same underlying yield.
 
 We expect assets such as sUSDp and sGOLDp to become the primary integration point for wallets, DeFi applications and other protocols building on top of Polaris.
+
+Holding form | Represented as | Suits
+
+Earn Vault position | Transferable NFT | Direct control; transfer or sell with accrued rewards
+Auto-compounding wrapper (sUSDp / sGOLDp) | ERC-4626 token (fungible) | Passive holders; DeFi integrations

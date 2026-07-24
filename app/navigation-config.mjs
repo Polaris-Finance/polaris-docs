@@ -113,7 +113,7 @@ export const NAVIGATION_GROUPS = [
           page(
             'adaptive-peg-defence',
             'adaptive-peg-defence',
-            'Adaptive Peg Defence',
+            'Adaptive Peg Defense',
             '/design/adaptive-peg-defence',
             'ShieldCheck'
           ),

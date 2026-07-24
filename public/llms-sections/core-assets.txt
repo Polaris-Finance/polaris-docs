@@ -25,14 +25,14 @@ While others may simply prefer holding the steadily growing floor without being 
 
 Splitting pETH makes that possible by transforming one pETH into two complementary assets:
 
-- fpETH, which represents the steadily growing floor component of pETH, where its protocol-native yield accumulates.
-- vpETH, which represents the volatile market premium of the bonding curve above the floor.
+- **fpETH**, which represents the steadily growing floor component of pETH, where its protocol-native yield accumulates.
+- **vpETH**, which represents the volatile market premium of the bonding curve above the floor.
 
 ## Splitting pETH
 
 Splitting pETH produces:
 
-1 pETH → 1 fpETH + 1 vpETH
+**1 pETH → 1 fpETH + 1 vpETH**
 
 The economic value remains the same before and after the split. What changes is that the floor and the premium become independent tokens, allowing each of them to develop its own use cases.
 
@@ -54,8 +54,10 @@ Six months later, the floor has increased from 0.75 ETH to 0.82 ETH as more acti
 
 Bob still holds 1 fpETH and Alice still holds 1 vpETH. Together, those two tokens continue to represent exactly 1 pETH, just as they did on the day of the split.
 
-At the split: 1 pETH = 0.75 ETH floor + 0.25 ETH premium = 1.00 ETH\
-Six months later: 1 pETH = 0.82 ETH floor + 0.23 ETH premium = 1.05 ETH
+Floor | Premium | pETH value
+
+At the split | 0.75 ETH | 0.25 ETH | 1.00 ETH
+Six months later | 0.82 ETH | 0.23 ETH | 1.05 ETH
 
 The difference is that 1 pETH is now worth 1.05 ETH, even though fpETH and vpETH still make up exactly one pETH. While the market premium has contracted, the steady growth of the floor has offset that decline, allowing pETH to continue appreciating over time.
 
@@ -81,7 +83,7 @@ The simplest way to use fpETH is to hold it as passive exposure to the long-term
 
 For users who already hold pETH, splitting it can also be a way to hedge part of its volatility by separating the steadily growing floor from the more volatile premium component.
 
-But fpETH also unlocks Reserve Loans, which are one of the core financial primitives introduced by Polaris.
+But fpETH also unlocks **Reserve Loans**, which are one of the core financial primitives introduced by Polaris.
 
 These Loans allow users to borrow ETH using fpETH as collateral.
 
@@ -112,11 +114,11 @@ Because GOLDp exists entirely onchain, users can access digital gold without rel
 
 GOLDp is minted by depositing pETH as collateral and opening an overcollateralized debt position.
 
-Like USDp, GOLDp uses the same minting mechanism and minimum collateral ratio of 115%. In practice, this means every position must hold at least \$1.15 worth of pETH collateral for every \$1 worth of GOLDp.
+Like USDp, GOLDp uses the same minting mechanism and minimum collateral ratio of **115%**. In practice, this means every position must hold at least \$1.15 worth of pETH collateral for every \$1 worth of GOLDp.
 
 Once minted, GOLDp provides onchain exposure to the price of gold. It can be transferred freely on Ethereum, held as a digital gold asset or integrated into DeFi applications.
 
-On top of this, users who want to earn protocol-native yield can also deposit GOLDp into the GOLDp Earn Vault, which distributes both GOLDp and pETH from a portion of the interest paid by GOLDp minters and pETH liquidation gains. The mechanics of the Earn Vault are explained in the dedicated section of the documentation.
+On top of this, users who want to earn protocol-native yield can also deposit GOLDp into the **GOLDp Earn Vault**, which distributes both GOLDp and pETH from a portion of the interest paid by GOLDp minters and pETH liquidation gains. The mechanics of the Earn Vault are explained in the dedicated section of the documentation.
 
 Moreover, GOLDp can be used in different ways depending on the strategy. Users may hold it as digital gold, deposit it into the Earn Vault, provide liquidity alongside other gold assets or build other strategies on top of it. The resulting market exposure depends on how GOLDp is ultimately used.
 
@@ -128,9 +130,14 @@ When GOLDp trades above the market price of gold, new GOLDp can be minted 1:1 ag
 
 When GOLDp trades below the reference price of gold, market participants can redeem GOLDp for the underlying collateral, which removes GOLDp from circulation and reduces the circulating supply.
 
+GOLDp market price | Arbitrage response | Effect on supply
+
+Above gold reference price | Mint 1:1 against pETH, sell into market | Supply rises → price pushed down
+Below gold reference price | Redeem GOLDp for underlying collateral | Supply falls → price pushed up
+
 Together, these mechanisms continuously adjust the circulating supply in response to market conditions while every GOLDp remains backed by pETH collateral.
 
-Polaris builds on this foundation with an additional stability rate built into its CDP architecture. This mechanism applies to every asset issued through Polaris, including GOLDp. Later sections explain the stability rate in detail, but architecturally it automatically shifts collateral and debt from the most leveraged positions to the least, strengthening the peg during periods of market stress.
+Polaris builds on this foundation with an additional **stability rate** built into its CDP architecture. This mechanism applies to every asset issued through Polaris, including GOLDp. Later sections explain the stability rate in detail, but architecturally it automatically shifts collateral and debt from the most leveraged positions to the least, strengthening the peg during periods of market stress.
 
 ---
 
@@ -171,13 +178,13 @@ As more activity takes place across the ecosystem, the value generated by that a
 
 ## Floor Price
 
-Unlike most ETH-denominated assets, pETH has both a market price and a mathematically guaranteed floor price.
+Unlike most ETH-denominated assets, pETH has both a **market price** and a mathematically guaranteed **floor price**.
 
 The market price is determined by supply and demand and can fluctuate over time, while the minimum amount of ETH backing each pETH determines the floor price. As Polaris grows, part of the value generated across the protocol is designed to strengthen that backing over time, allowing the pETH floor price to steadily increase together with the ecosystem.
 
 Because the market price and the floor price are separate, pETH can trade above its floor while the floor itself continues to reflect the minimum ETH backing beneath the asset.
 
-This distinction also makes it possible to have additional Polaris primitives around the two pETH components, called fpETH and vpETH, which are explored in the dedicated sections of the documentation.
+This distinction also makes it possible to have additional Polaris primitives around the two pETH components, called **fpETH** and **vpETH**, which are explored in the dedicated sections of the documentation.
 
 Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor price, pETH bonding curve, bonding curve, pETH floor.
 
@@ -198,11 +205,11 @@ POLAR is the utility token that provides the shared economic layer that allows t
 
 ## POLAR Design
 
-Unlike several governance tokens, POLAR is not designed around perpetual emissions that distribute new tokens simply because time passes. Following the initial allocation and its vesting schedule, the long-term growth of the supply is designed to happen through the Polaris conversion mechanism.
+Unlike several governance tokens, POLAR is not designed around perpetual emissions that distribute new tokens simply because time passes. Following the initial allocation and its vesting schedule, the long-term growth of the supply is designed to happen through the Polaris **conversion mechanism**.
 
 With this mechanism, users convert pETH into newly minted POLAR. The pETH used for the swap is burned, reducing its supply and directing the value generated by the conversion towards the pETH yield flows, which also increase the value backing every pETH in circulation.
 
-The conversion mechanism only works in one direction, from pETH to POLAR. Since POLAR cannot be converted back into pETH, the protocol never needs to reserve part of the conversion value for future redemptions. This allows the full value generated by every conversion to grow the pETH floor, where it becomes part of the protocol-native yield.
+The conversion mechanism only works in **one direction**, from pETH to POLAR. Since POLAR cannot be converted back into pETH, the protocol never needs to reserve part of the conversion value for future redemptions. This allows the full value generated by every conversion to grow the pETH floor, where it becomes part of the protocol-native yield.
 
 Therefore, the POLAR supply is set to grow thanks to activity inside Polaris without following a fixed emissions schedule. At the same time, every conversion strengthens pETH, the collateral asset supporting the rest of the protocol.
 
@@ -218,7 +225,7 @@ As more activity takes place across Polaris, the role of POLAR naturally expands
 
 ## vePOLAR
 
-The long-term utility of POLAR is expressed through vePOLAR.
+The long-term utility of POLAR is expressed through **vePOLAR**.
 
 Users receive vePOLAR by committing POLAR for a chosen period of time between 2 weeks and 4 years, aligning stewardship with participants who take a longer-term view of the ecosystem. In return, vePOLAR holders receive a share of the interest paid by USDp and GOLDp minters, with that value distributed directly in USDp and GOLDp. POLAR is not used to boost these returns through additional incentives.
 
@@ -245,11 +252,11 @@ It exists entirely onchain and is designed to remain censorship resistant. Anyon
 
 USDp is minted by depositing pETH as collateral and opening an overcollateralized debt position.
 
-Each position must maintain a minimum collateral ratio of 115%, meaning every USDp is backed by at least \$1.15 worth of pETH.
+Each position must maintain a minimum collateral ratio of **115%**, meaning every USDp is backed by at least \$1.15 worth of pETH.
 
 Once minted, USDp functions as a digital dollar that users fully own. It can be sent anywhere on Ethereum, used across DeFi applications or integrated into payment flows without relying on any centralized parties.
 
-On top of that, users who want to earn protocol-native yield can deposit USDp into the USDp Earn Vault, which distributes both USDp and pETH from a portion of the interest paid by USDp minters and pETH liquidation gains. The mechanics of the Earn Vault are explained in the dedicated section of the documentation.
+On top of that, users who want to earn protocol-native yield can deposit USDp into the **USDp Earn Vault**, which distributes both USDp and pETH from a portion of the interest paid by USDp minters and pETH liquidation gains. The mechanics of the Earn Vault are explained in the dedicated section of the documentation.
 
 ## Maintaining the Peg
 
@@ -259,9 +266,14 @@ When USDp trades above one dollar, new USDp can be minted 1:1 against pETH colla
 
 When USDp trades below one dollar, market participants can redeem USDp for the underlying collateral, which removes USDp from circulation and reduces the circulating supply.
 
+USDp market price | Arbitrage response | Effect on supply
+
+Above \$1 | Mint 1:1 against pETH, sell into market | Supply rises → price pushed down
+Below \$1 | Redeem USDp for underlying collateral | Supply falls → price pushed up
+
 Together, these mechanisms continuously adjust the circulating supply in response to peg conditions while every USDp remains backed by pETH collateral.
 
-Although permissionless 1:1 minting is a genuine innovation for decentralised stablecoins, Polaris builds on this foundation with an additional stability rate for debt positions. Later sections explain the stability rate in detail, but architecturally it automatically shifts collateral and debt from the most leveraged positions to the least, further strengthening the USDp peg during times of stress.
+Although permissionless 1:1 minting is a genuine innovation for decentralised stablecoins, Polaris builds on this foundation with an additional **stability rate** for debt positions. Later sections explain the stability rate in detail, but architecturally it automatically shifts collateral and debt from the most leveraged positions to the least, further strengthening the USDp peg during times of stress.
 
 ---
 
@@ -270,7 +282,7 @@ Although permissionless 1:1 minting is a genuine innovation for decentralised st
 URL: https://docs.polaris.finance/core-assets/vpeth
 Markdown URL: https://docs.polaris.finance/core-assets/vpeth.md
 
-Every time pETH trades above its mathematically-derived floor, the difference represents its market premium.
+Every time pETH trades above its mathematically-derived floor, the difference represents its **market premium**.
 
 That premium reflects what the market believes pETH is worth beyond its floor. It captures expectations about the future growth of Polaris, the utility of pETH across the ecosystem and the confidence participants place in its long-term development.
 
@@ -292,8 +304,10 @@ Suppose that six months later the floor has increased from 0.82 ETH to 0.90 ETH,
 
 Bob still owns one fpETH and Alice still owns one vpETH. Holding those two tokens together continues to make up exactly one pETH, but its composition has strongly changed since the day it was split.
 
-At the split: 1 pETH = 0.82 ETH floor + 0.23 ETH premium = 1.05 ETH\
-Six months later: 1 pETH = 0.90 ETH floor + 0.40 ETH premium = 1.30 ETH
+Floor | Premium | pETH value
+
+At the split | 0.82 ETH | 0.23 ETH | 1.05 ETH
+Six months later | 0.90 ETH | 0.40 ETH | 1.30 ETH
 
 The premium now accounts for a much larger share of pETH than before, allowing Alice's vpETH to capture most of that additional appreciation while Bob continues benefiting from the steady growth of the floor.
 
@@ -306,6 +320,11 @@ Users familiar with Pendle may recognize the idea of separating a single asset i
 Both Pendle and Polaris begin with a yield-bearing asset, but they isolate different components.
 
 Pendle separates future yield from principal, while Polaris keeps the yield mechanism unchanged and instead separates pETH into its steadily growing floor and the market premium above it.
+
+Protocol | Separates the yield-bearing asset into…
+
+Pendle | Future yield + principal
+Polaris | Steadily growing floor + market premium above it
 
 Although the mechanics and the economic exposure are entirely different, both systems allow users to isolate the component they want instead of just holding the merged asset.
 

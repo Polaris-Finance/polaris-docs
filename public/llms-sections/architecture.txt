@@ -29,15 +29,20 @@ Beyond bringing pETH into existence, the bonding curve also enables several of t
 
 The bonding curve is designed to behave consistently regardless of the amount of capital secured by the protocol.
 
-This scale-free design means that whether Polaris secures thousands of ETH or millions, the same mechanism continues to operate under the same rules, allowing the protocol to scale without changing the economic behavior of pETH as adoption increases.
+This **scale-free design** means that whether Polaris secures thousands of ETH or millions, the same mechanism continues to operate under the same rules, allowing the protocol to scale without changing the economic behavior of pETH as adoption increases.
 
 This also allows pETH to remain the shared collateral asset for a growing ecosystem of pAssets without fragmenting liquidity as new assets are introduced.
 
 ## The Role of β
 
-The main parameter defining the bonding curve is β (beta), which controls the concavity of the curve.
+The main parameter defining the bonding curve is **β (beta)**, which controls the concavity of the curve.
 
 β is easiest to understand by visualizing the shape of the bonding curve. A larger β produces a steeper curve, causing the market price of pETH to react more aggressively as capital enters or leaves the bonding curve. A smaller β produces a flatter curve, reducing the impact of those same capital flows while increasing the proportion of pETH represented by its floor price.
+
+β value | Curve shape | Effect on pETH
+
+Larger β | Steeper | Market price reacts more aggressively to capital flows
+Smaller β | Flatter | Smaller price impact; floor becomes a larger share of pETH
 
 Choosing β involves a trade-off between price responsiveness and collateral stability. Polaris was intentionally designed around the latter, with the goal of building a highly stable collateral asset while preserving enough price responsiveness to allow for protocol growth.
 
@@ -70,7 +75,7 @@ This makes Earn Vaults the primary mechanism through which protocol-native yield
 
 ## Position Ownership
 
-Each Earn Vault deposit is represented by a transferable NFT that tracks its own rewards over time.
+Each Earn Vault deposit is represented by a **transferable NFT** that tracks its own rewards over time.
 
 Representing deposits as NFTs allows users to transfer ownership of an Earn Vault position without withdrawing its underlying assets or resetting its accounting.
 
@@ -78,11 +83,16 @@ In practice, users can transfer or sell an existing Earn Vault position without 
 
 ## Auto-Compounding Vaults
 
-For users who prefer a simpler experience, Polaris also supports auto-compounding vault wrappers represented as ERC-4626 tokens, such as sUSDp and sGOLDp.
+For users who prefer a simpler experience, Polaris also supports auto-compounding vault wrappers represented as ERC-4626 tokens, such as **sUSDp** and **sGOLDp**.
 
 These vaults automatically manage the underlying Earn Vault position while making deposits fungible and easier to integrate throughout the wider DeFi ecosystem. Users who prefer a more passive experience can simply hold the ERC-4626 vault token while continuing to accrue the same underlying yield.
 
 We expect assets such as sUSDp and sGOLDp to become the primary integration point for wallets, DeFi applications and other protocols building on top of Polaris.
+
+Holding form | Represented as | Suits
+
+Earn Vault position | Transferable NFT | Direct control; transfer or sell with accrued rewards
+Auto-compounding wrapper (sUSDp / sGOLDp) | ERC-4626 token (fungible) | Passive holders; DeFi integrations
 
 Relevant app/search vocabulary: Earn, earn, yield, APR, Earn Vault, deposit, claim rewards, sUSDp, sGOLDp.
 
@@ -103,7 +113,7 @@ Flows are allocated to whitelisted contracts according to how much pETH or a spe
 
 In general, the larger their share of that asset, the larger the share of the corresponding flow they receive, with stewardship also able to apply additional weighting where appropriate.
 
-Flows can also include a temporary minimum allocation for selected recipients. This allows strategically important integrations or new markets to begin receiving meaningful flows before they have accumulated enough assets for the standard balance-based allocation to become effective.
+Flows can also include a **temporary minimum allocation** for selected recipients. This allows strategically important integrations or new markets to begin receiving meaningful flows before they have accumulated enough assets for the standard balance-based allocation to become effective.
 
 Because these minimum allocations distribute protocol value before a recipient has earned it through normal usage, they are managed through stewardship and should only be used where the recipient is expected to create value for Polaris.
 
@@ -117,11 +127,21 @@ Also, each pAsset market generates its own independent flow funded by the intere
 
 Unlike pETH flows, every pAsset market routes a protocol-defined minimum allocation of this flow to the corresponding Earn Vault and to vePOLAR. The remaining flow can then be distributed to approved recipients building around that pAsset, including liquidity pools, vaults, structured products and other integrations.
 
+Flow type | Funded by | Distribution
+
+pETH flows | pETH activity — bonding curve swap fees, Reserve Loan fees, pETH→POLAR conversions | Fees burned into the floor, then acquired pETH distributed via pETH flows
+pAsset flows | Interest paid by that pAsset's minters (e.g. USDp, GOLDp) | Protocol-defined minimum to the Earn Vault + vePOLAR; remainder to approved recipients
+
 ## Stewardship Role
 
 Once configured, flows operate automatically through immutable protocol rules.
 
-Stewardship determines which contracts are eligible to receive flows, which address receives them, any additional weighting applied to each recipient and whether a temporary minimum allocation should be used.
+Stewardship determines:
+
+- Which contracts are eligible to receive flows
+- Which address receives them
+- Any additional weighting applied to each recipient
+- Whether a temporary minimum allocation should be used
 
 Recipients are expected to create value for Polaris in return for flow support. That value may come through liquidity, integrations, revenue sharing or other forms of ecosystem growth.
 
@@ -134,13 +154,13 @@ Markdown URL: https://docs.polaris.finance/architecture/passet-markets.md
 
 pAssets are currencies and synthetic assets issued against pETH using the shared collateral infrastructure provided by Polaris. USDp and GOLDp are the first pAssets introduced by the protocol, but the underlying architecture is designed to support a much broader range of markets over time.
 
-Any asset with an oracle can become a pAsset. This includes fiat currencies, commodities, indices and many other onchain or offchain assets whose price can be reliably tracked. Every pAsset maintains its own accounting, oracle configuration, risk parameters and Earn Vault while relying on the same pETH collateral foundation.
+**Any asset with an oracle** can become a pAsset. This includes fiat currencies, commodities, indices and many other onchain or offchain assets whose price can be reliably tracked. Every pAsset maintains its own accounting, oracle configuration, risk parameters and Earn Vault while relying on the same pETH collateral foundation.
 
 Thus, new markets can benefit from the Polaris infrastructure without needing a separate collateral system for every asset.
 
 ## Launching a pAsset Market
 
-Polaris is designed as open-source infrastructure that anyone can build on. Launching a new pAsset market is permissionless, meaning builders can introduce new assets without approval from the protocol itself.
+Polaris is designed as open-source infrastructure that anyone can build on. Launching a new pAsset market is **permissionless**, meaning builders can introduce new assets without approval from the protocol itself.
 
 Beyond the underlying smart contracts, a successful pAsset market ultimately depends on adoption. Polaris provides the shared collateral infrastructure, so builders can focus on growing demand for their asset, expanding its liquidity and integrating it across DeFi without having to build the underlying infrastructure from scratch.
 
@@ -179,15 +199,21 @@ Markdown URL: https://docs.polaris.finance/architecture/reserve-loans.md
 
 Reserve Loans are a core financial primitive introduced by Polaris, allowing users to borrow ETH directly from the bonding curve reserve using fpETH as collateral.
 
-As described in the fpETH section, fpETH represents the steadily growing floor component of pETH. Since the fpETH price in ETH is guaranteed to only increase, changes in the ETH price cannot cause the position to become undercollateralized. This removes the need for liquidations and allows users to borrow up to 100% of the floor value represented by their fpETH.
+As described in the fpETH section, fpETH represents the steadily growing floor component of pETH. Since the fpETH price in ETH is guaranteed to only increase, changes in the ETH price cannot cause the position to become undercollateralized. This removes the need for liquidations and allows users to borrow up to **100%** of the floor value represented by their fpETH.
 
 With this feature, borrowers gain ETH liquidity without giving up fpETH yield, making highly capital-efficient looping strategies possible.
 
 ## Loan Mechanics
 
-Instead of paying a conventional borrowing interest rate, Reserve Loans apply a time-weighted performance fee, which is deducted directly from the increase in the fpETH floor price over the lifetime of the loan.
+Instead of paying a conventional borrowing interest rate, Reserve Loans apply a **time-weighted performance fee**, which is deducted directly from the increase in the fpETH floor price over the lifetime of the loan.
 
 This allows users to benefit from the growth of the fpETH floor while passively paying for the extra liquidity they access.
+
+Traditional lending | Reserve Loans
+
+Liquidations | Possible | None
+Max borrow | Overcollateralized (below 100%) | Up to 100% of floor value
+Cost | Borrowing interest rate | Time-weighted performance fee on floor growth
 
 As described in the dedicated Fee Router section, the fees generated by Reserve Loans are recycled back into the Polaris ecosystem, becoming part of the value distributed throughout the protocol.
 
@@ -200,7 +226,7 @@ Relevant app/search vocabulary: Reserve Loan, Reserve Loans, borrow ETH, non-liq
 URL: https://docs.polaris.finance/architecture/stewardship
 Markdown URL: https://docs.polaris.finance/architecture/stewardship.md
 
-Polaris uses bounded stewardship instead of open-ended governance.
+Polaris uses **bounded stewardship** instead of open-ended governance.
 
 Governance can become a source of risk when it is capable of changing how a protocol operates or how value flows through the system after deployment. Users are then required to evaluate not only the protocol itself, but also the character and decision-making processes of those responsible for governing it.
 
@@ -208,7 +234,13 @@ Polaris is designed to minimize that reliance by enforcing as much of the protoc
 
 Stewardship is therefore limited to the few decisions that neither mechanism can address, leaving the core protocol immutable.
 
-Stewards cannot introduce new collateral to back pAssets, modify the bonding curve or change the liquidation mechanisms that underpin the system. Users interact with the same core architecture throughout the lifetime of the protocol, without governance being able to redefine its foundations after deployment.
+Stewards cannot:
+
+- Introduce new collateral to back pAssets
+- Modify the bonding curve
+- Change the liquidation mechanisms that underpin the system
+
+Users interact with the same core architecture throughout the lifetime of the protocol, without governance being able to redefine its foundations after deployment.
 
 ## Steward Responsibilities
 
@@ -221,7 +253,7 @@ This includes:
 - Interest rate splits
 - POLAR conversion parameters
 - Replacing faulty oracle feeds
-- Whitelisting or removing flow recipients.
+- Whitelisting or removing flow recipients
 - Adjusting flow weightings
 
 These decisions influence how value moves throughout the Polaris ecosystem without giving stewards the ability to modify the protocol itself.
@@ -241,7 +273,7 @@ This section focuses on the economic principles behind POLAR.
 
 ## Supply
 
-POLAR will launch with an initial supply of 100 million tokens, distributed across the treasury, community, team and investors. Those tokens will gradually enter circulation according to their respective vesting schedules, while the long-term growth of the supply is entirely driven by organic demand, served by the conversion mechanism.
+POLAR will launch with an initial supply of **100 million tokens**, distributed across the treasury, community, team and investors. Those tokens will gradually enter circulation according to their respective vesting schedules, while the long-term growth of the supply is entirely driven by organic demand, served by the conversion mechanism.
 
 Every new POLAR outside the vesting schedule requires pETH to be permanently converted before it can enter circulation (see Conversions).
 
@@ -249,7 +281,7 @@ As the protocol grows, pETH grows alongside it by capturing protocol-native valu
 
 ## A Closed Economy
 
-Polaris is designed as a closed economic system where the value generated by protocol activity remains inside the ecosystem.
+Polaris is designed as a **closed economic system** where the value generated by protocol activity remains inside the ecosystem.
 
 Instead of relying on continuous token emissions to attract liquidity, value generated through the core protocol mechanisms is redistributed across the ecosystem according to the role of each asset.
 

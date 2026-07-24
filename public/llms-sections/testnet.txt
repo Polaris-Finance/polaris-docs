@@ -23,8 +23,7 @@ This section currently includes the following operations:
 
 - **Mint / Redeem**: Mint or redeem USDp and GOLDp directly against pETH whenever market prices create arbitrage opportunities that help restore the peg.
 - **SP Direct**: Deposit directly into the Stability Pool instead of the auto-compounding Earn Vault.
-- **Collateral Auctions** *(currently unavailable)*
- When a savings vault absorbs a liquidation, you can purchase pETH collateral from permissionless liquidation auctions. Most auctions are expected to be cleared by keeper bots, but anyone can participate.
+- **Collateral Auctions** *(currently unavailable)*: When a savings vault absorbs a liquidation, you can purchase pETH collateral from permissionless liquidation auctions. Most auctions are expected to be cleared by keeper bots, but anyone can participate.
 - **Conversions**: Convert pETH into POLAR directly through the protocol conversion mechanism.
 
 Image: The Advanced section with its Mint/Redeem, SP Direct, Auctions and Conversions operations
@@ -40,7 +39,7 @@ Markdown URL: https://docs.polaris.finance/testnet/analytics.md
 
 This section offers a real-time overview of protocol activity throughout the testnet.
 
-From here you can monitor the performance of every major Polaris components, with interactive visualizations and live metrics that make it easy to understand how the protocol evolves over time and how its different features interact.
+From here you can monitor the performance of every major Polaris component, with interactive visualizations and live metrics that make it easy to understand how the protocol evolves over time and how its different features interact.
 
 In particular, analytics are organized by protocol component, allowing you to explore the metrics that matter for each part of the system. Depending on the selected view, you'll find information such as yield, utilization, liquidity, issuance, lending activity, governance participation and other protocol-specific indicators.
 
@@ -128,7 +127,7 @@ Relevant app/search vocabulary: app, official app, testnet app, app.testnet.pola
 URL: https://docs.polaris.finance/testnet/mint
 Markdown URL: https://docs.polaris.finance/testnet/mint.md
 
-This one is where collateralized positions are created and managed.
+This is where collateralized positions are created and managed.
 
 Using pETH as collateral, you can mint USDp or GOLDp.
 

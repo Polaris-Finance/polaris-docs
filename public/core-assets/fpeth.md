@@ -22,14 +22,14 @@ While others may simply prefer holding the steadily growing floor without being 
 
 Splitting pETH makes that possible by transforming one pETH into two complementary assets:
 
-- fpETH, which represents the steadily growing floor component of pETH, where its protocol-native yield accumulates.
-- vpETH, which represents the volatile market premium of the bonding curve above the floor.
+- **fpETH**, which represents the steadily growing floor component of pETH, where its protocol-native yield accumulates.
+- **vpETH**, which represents the volatile market premium of the bonding curve above the floor.
 
 ## Splitting pETH
 
 Splitting pETH produces:
 
-1 pETH → 1 fpETH + 1 vpETH
+**1 pETH → 1 fpETH + 1 vpETH**
 
 The economic value remains the same before and after the split. What changes is that the floor and the premium become independent tokens, allowing each of them to develop its own use cases.
 
@@ -51,8 +51,10 @@ Six months later, the floor has increased from 0.75 ETH to 0.82 ETH as more acti
 
 Bob still holds 1 fpETH and Alice still holds 1 vpETH. Together, those two tokens continue to represent exactly 1 pETH, just as they did on the day of the split.
 
-At the split: 1 pETH = 0.75 ETH floor + 0.25 ETH premium = 1.00 ETH\
-Six months later: 1 pETH = 0.82 ETH floor + 0.23 ETH premium = 1.05 ETH
+Floor | Premium | pETH value
+
+At the split | 0.75 ETH | 0.25 ETH | 1.00 ETH
+Six months later | 0.82 ETH | 0.23 ETH | 1.05 ETH
 
 The difference is that 1 pETH is now worth 1.05 ETH, even though fpETH and vpETH still make up exactly one pETH. While the market premium has contracted, the steady growth of the floor has offset that decline, allowing pETH to continue appreciating over time.
 
@@ -78,7 +80,7 @@ The simplest way to use fpETH is to hold it as passive exposure to the long-term
 
 For users who already hold pETH, splitting it can also be a way to hedge part of its volatility by separating the steadily growing floor from the more volatile premium component.
 
-But fpETH also unlocks Reserve Loans, which are one of the core financial primitives introduced by Polaris.
+But fpETH also unlocks **Reserve Loans**, which are one of the core financial primitives introduced by Polaris.
 
 These Loans allow users to borrow ETH using fpETH as collateral.
 

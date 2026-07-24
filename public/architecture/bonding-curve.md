@@ -26,15 +26,20 @@ Beyond bringing pETH into existence, the bonding curve also enables several of t
 
 The bonding curve is designed to behave consistently regardless of the amount of capital secured by the protocol.
 
-This scale-free design means that whether Polaris secures thousands of ETH or millions, the same mechanism continues to operate under the same rules, allowing the protocol to scale without changing the economic behavior of pETH as adoption increases.
+This **scale-free design** means that whether Polaris secures thousands of ETH or millions, the same mechanism continues to operate under the same rules, allowing the protocol to scale without changing the economic behavior of pETH as adoption increases.
 
 This also allows pETH to remain the shared collateral asset for a growing ecosystem of pAssets without fragmenting liquidity as new assets are introduced.
 
 ## The Role of β
 
-The main parameter defining the bonding curve is β (beta), which controls the concavity of the curve.
+The main parameter defining the bonding curve is **β (beta)**, which controls the concavity of the curve.
 
 β is easiest to understand by visualizing the shape of the bonding curve. A larger β produces a steeper curve, causing the market price of pETH to react more aggressively as capital enters or leaves the bonding curve. A smaller β produces a flatter curve, reducing the impact of those same capital flows while increasing the proportion of pETH represented by its floor price.
+
+β value | Curve shape | Effect on pETH
+
+Larger β | Steeper | Market price reacts more aggressively to capital flows
+Smaller β | Flatter | Smaller price impact; floor becomes a larger share of pETH
 
 Choosing β involves a trade-off between price responsiveness and collateral stability. Polaris was intentionally designed around the latter, with the goal of building a highly stable collateral asset while preserving enough price responsiveness to allow for protocol growth.
 

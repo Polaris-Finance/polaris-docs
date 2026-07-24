@@ -5,7 +5,7 @@ description: "Every time pETH trades above its mathematically-derived floor, the
 
 # vpETH
 
-Every time pETH trades above its mathematically-derived floor, the difference represents its market premium.
+Every time pETH trades above its mathematically-derived floor, the difference represents its **market premium**.
 
 That premium reflects what the market believes pETH is worth beyond its floor. It captures expectations about the future growth of Polaris, the utility of pETH across the ecosystem and the confidence participants place in its long-term development.
 
@@ -27,8 +27,10 @@ Suppose that six months later the floor has increased from 0.82 ETH to 0.90 ETH,
 
 Bob still owns one fpETH and Alice still owns one vpETH. Holding those two tokens together continues to make up exactly one pETH, but its composition has strongly changed since the day it was split.
 
-At the split: 1 pETH = 0.82 ETH floor + 0.23 ETH premium = 1.05 ETH\
-Six months later: 1 pETH = 0.90 ETH floor + 0.40 ETH premium = 1.30 ETH
+| | Floor | Premium | pETH value |
+| --- | --- | --- | --- |
+| At the split | 0.82 ETH | 0.23 ETH | 1.05 ETH |
+| Six months later | 0.90 ETH | 0.40 ETH | 1.30 ETH |
 
 The premium now accounts for a much larger share of pETH than before, allowing Alice's vpETH to capture most of that additional appreciation while Bob continues benefiting from the steady growth of the floor.
 
@@ -41,6 +43,11 @@ Users familiar with Pendle may recognize the idea of separating a single asset i
 Both Pendle and Polaris begin with a yield-bearing asset, but they isolate different components.
 
 Pendle separates future yield from principal, while Polaris keeps the yield mechanism unchanged and instead separates pETH into its steadily growing floor and the market premium above it.
+
+| Protocol | Separates the yield-bearing asset into… |
+| --- | --- |
+| Pendle | Future yield + principal |
+| Polaris | Steadily growing floor + market premium above it |
 
 Although the mechanics and the economic exposure are entirely different, both systems allow users to isolate the component they want instead of just holding the merged asset.
 

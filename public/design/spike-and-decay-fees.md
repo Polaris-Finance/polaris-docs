@@ -12,7 +12,13 @@ Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 ---
 
-Several core mechanisms in Polaris use spike-and-decay pricing, such as bonding curve swaps, pAsset minting and redemptions, and pETH-to-POLAR conversions. In particular, the first two share the same design but use different parameters, while pETH-to-POLAR conversions use a Dutch auction mechanism.
+Several core mechanisms in Polaris use **spike-and-decay pricing**, such as bonding curve swaps, pAsset minting and redemptions, and pETH-to-POLAR conversions. In particular, the first two share the same design but use different parameters, while pETH-to-POLAR conversions use a Dutch auction mechanism.
+
+Mechanism | Pricing model
+
+Bonding curve swaps | Spike-and-decay
+pAsset minting & redemptions | Spike-and-decay (different parameters)
+pETH-to-POLAR conversions | Dutch auction
 
 Each of these mechanisms responds to a different type of market activity, but they all adjust their pricing according to the same market forces. The result is that higher demand for a particular action also increases its cost. As demand fades, that cost gradually decays until the action becomes attractive again.
 

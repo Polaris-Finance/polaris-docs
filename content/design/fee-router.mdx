@@ -17,6 +17,12 @@ That ETH is then immediately used to purchase newly minted pETH, which raises th
 
 Passing protocol revenue through the bonding curve allows the same value to strengthen the pETH floor before becoming rewards to be distributed throughout the ecosystem. And by the time those rewards reach their recipients, both the floor price and the market price of pETH have already benefited from protocol activity.
 
+In sequence:
+
+1. pETH collected as fees is **burned at the floor** — raising the floor price and releasing ETH from the reserve.
+2. That ETH immediately buys newly minted pETH — raising the bonding curve spot price.
+3. The newly minted pETH is distributed as rewards via pETH flows.
+
 ## A Shared Economic Engine
 
 The Fee Router collects protocol revenue denominated in pETH, processes it through the bonding curve and distributes the resulting pETH rewards according to the configured pETH flows.

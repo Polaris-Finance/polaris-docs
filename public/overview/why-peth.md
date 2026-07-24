@@ -18,7 +18,7 @@ Even if permissionless money could scale without relying on centralized issuers 
 
 Today, staking is the primary source of native ETH yield, as it plays a fundamental role in securing the network. But as DeFi continues to grow, staking should not be the only way for ETH to participate in that growth.
 
-Polaris is built on the observation that Ethereum's monetary layer and Ethereum's yield layer should not be separate systems.
+Polaris is built on the observation that **Ethereum's monetary layer and Ethereum's yield layer should not be separate systems**.
 
 Today, these two operate largely independently, with stablecoins generating enormous economic activity while the collateral supporting them rarely benefits from that activity. At the same time, ETH secures the network that makes this economy possible, yet captures relatively little of the value created above it.
 
