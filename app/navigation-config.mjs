@@ -51,12 +51,12 @@ export const NAVIGATION_GROUPS = [
         routePrefix: '/core-assets',
         icon: 'Coins',
         children: [
-          page('peth', 'peth', 'pETH', '/core-assets/peth', 'Hexagon'),
-          page('usdp', 'usdp', 'USDp', '/core-assets/usdp', 'CircleDollarSign'),
-          page('goldp', 'goldp', 'GOLDp', '/core-assets/goldp', 'Coins'),
-          page('polar', 'polar', 'POLAR', '/core-assets/polar', 'Orbit'),
-          page('fpeth', 'fpeth', 'fpETH', '/core-assets/fpeth', 'Layers3'),
-          page('vpeth-asset', 'vpeth', 'vpETH', '/core-assets/vpeth', 'Vote')
+          page('peth', 'peth', 'pETH', '/core-assets/peth', 'asset:peth'),
+          page('usdp', 'usdp', 'USDp', '/core-assets/usdp', 'asset:usdp'),
+          page('goldp', 'goldp', 'GOLDp', '/core-assets/goldp', 'asset:goldp'),
+          page('polar', 'polar', 'POLAR', '/core-assets/polar', 'asset:polar'),
+          page('fpeth', 'fpeth', 'fpETH', '/core-assets/fpeth', 'asset:fpeth'),
+          page('vpeth-asset', 'vpeth', 'vpETH', '/core-assets/vpeth', 'asset:vpeth')
         ]
       },
       {

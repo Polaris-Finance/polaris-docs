@@ -1208,6 +1208,20 @@ html {
   display: none;
 }
 
+/* pAsset logos in the nav rail: dampened at rest, full colour on
+   hover/focus/touch/active — mirrors the lucide icons' accent tint. */
+.pl-nav-icon-asset {
+  border-radius: 50%;
+  filter: grayscale(1) opacity(0.68);
+  transition: filter 0.15s ease;
+}
+
+/* The desaturated orbs sink into the dark sidebar; lift them to the same
+   visual weight as the grey lucide strokes. */
+.dark .pl-nav-icon-asset {
+  filter: grayscale(1) brightness(1.6) opacity(0.8);
+}
+
 @media (min-width: 768px) {
   .nextra-sidebar ~ article {
     padding-inline: var(--pl-shell-gap) !important;
@@ -1303,6 +1317,15 @@ html {
   .nextra-sidebar li.active > a .pl-nav-icon {
     color: var(--pl-active);
     stroke-width: 2.15;
+  }
+
+  .nextra-sidebar :is(a, button[data-href]):is(:hover, :focus-visible) .pl-nav-icon {
+    color: var(--pl-active);
+  }
+
+  .nextra-sidebar :is(a, button[data-href]):is(:hover, :focus-visible) .pl-nav-icon-asset,
+  .nextra-sidebar li.active > a .pl-nav-icon-asset {
+    filter: none;
   }
 
   .nextra-sidebar li:has(li.active) > button[data-href] {
@@ -1954,6 +1977,15 @@ button.pl-search-row {
 .pl-mobile-nav-row[aria-current='page'] .pl-nav-icon {
   color: var(--pl-active);
   stroke-width: 2.15;
+}
+
+.pl-mobile-nav-row:is(:hover, :focus-visible) .pl-nav-icon {
+  color: var(--pl-active);
+}
+
+.pl-mobile-nav-row:is(:hover, :focus-visible, :active) .pl-nav-icon-asset,
+.pl-mobile-nav-row[aria-current='page'] .pl-nav-icon-asset {
+  filter: none;
 }
 
 .pl-mobile-nav-row-main,
