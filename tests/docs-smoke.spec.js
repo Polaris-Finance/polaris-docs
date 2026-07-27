@@ -2,7 +2,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { expect, test } from '@playwright/test'
 import { allVisiblePageNodes, findTrailByRoute } from '../app/navigation-config.mjs'
-import { BASE_PATH, pathWithBase } from '../app/site-config.mjs'
+import { BASE_PATH, ORGANIZATION_URL, pathWithBase } from '../app/site-config.mjs'
 
 const contentDir = path.join(process.cwd(), 'content')
 
@@ -875,7 +875,7 @@ test('footer stays compact and uses correct external-link semantics', async ({ p
     pathWithBase('/llms.txt')
   )
   const website = footer.getByRole('link', { name: /Website,? opens in a new tab/i })
-  await expect(website).toHaveAttribute('href', 'https://polarisfinance.io')
+  await expect(website).toHaveAttribute('href', ORGANIZATION_URL)
   await expect(website).toHaveAttribute('target', '_blank')
 })
 

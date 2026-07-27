@@ -1,5 +1,7 @@
+import { ORGANIZATION_URL } from './site-config.mjs'
+
 export const EXTERNAL_LINKS = Object.freeze({
-  website: 'https://polarisfinance.io',
+  website: ORGANIZATION_URL,
   testnetApp: 'https://app.testnet.polarisfinance.io',
   github: 'https://github.com/Polaris-Finance',
   x: 'https://x.com/polarisfinance_'

@@ -111,7 +111,9 @@ export function NavIcon({ icon, className = '', size = 16, strokeWidth = 1.8 }) 
       'aria-hidden': 'true',
       alt: '',
       className: ['pl-nav-icon', 'pl-nav-icon-asset', className].filter(Boolean).join(' '),
+      decoding: 'async',
       height: size,
+      loading: 'lazy',
       src: pathWithBase(ASSET_ICONS[icon]),
       width: size
     })

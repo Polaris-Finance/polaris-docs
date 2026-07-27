@@ -4,6 +4,7 @@ import {
   absoluteUrl,
   BASE_PATH,
   OG_IMAGE_PATH,
+  ORGANIZATION_URL,
   SITE_BASE_URL,
   SITE_URL
 } from '../app/site-config.mjs'
@@ -129,6 +130,83 @@ function extractCanonical(html) {
   return /<link\s+rel=["']canonical["'][^>]*href=["']([^"']+)["']/i.exec(html)?.[1] ?? ''
 }
 
+function extractJsonLd(relativeFile, html) {
+  const items = []
+  const scripts = html.matchAll(
+    /<script\s+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi
+  )
+
+  for (const script of scripts) {
+    try {
+      items.push(JSON.parse(script[1]))
+    } catch (error) {
+      failures.push(`${relativeFile} has invalid JSON-LD: ${error.message}`)
+    }
+  }
+
+  return items.flatMap((item) => (Array.isArray(item) ? item : [item]))
+}
+
+function assertStructuredData(relativeFile, html, route) {
+  const items = extractJsonLd(relativeFile, html)
+  const organization = items.find((item) => item?.['@type'] === 'Organization')
+  const breadcrumbs = items.filter((item) => item?.['@type'] === 'BreadcrumbList')
+
+  if (!organization) {
+    failures.push(`${relativeFile} is missing Organization JSON-LD`)
+  } else if (organization.url !== ORGANIZATION_URL) {
+    failures.push(
+      `${relativeFile} Organization URL mismatch: expected ${ORGANIZATION_URL}, found ${
+        organization.url ?? '(missing)'
+      }`
+    )
+  }
+
+  if (route === '/') {
+    if (breadcrumbs.length) failures.push(`${relativeFile} should not advertise root breadcrumbs`)
+    return
+  }
+
+  if (breadcrumbs.length !== 1) {
+    failures.push(`${relativeFile} should contain exactly one BreadcrumbList`)
+    return
+  }
+
+  const elements = breadcrumbs[0].itemListElement
+  if (!Array.isArray(elements) || elements.length < 2) {
+    failures.push(`${relativeFile} BreadcrumbList must contain at least two ListItems`)
+    return
+  }
+
+  elements.forEach((element, index) => {
+    if (element.position !== index + 1) {
+      failures.push(
+        `${relativeFile} breadcrumb position ${element.position} is not sequential at item ${
+          index + 1
+        }`
+      )
+    }
+
+    if (index < elements.length - 1 && !element.item) {
+      failures.push(`${relativeFile} breadcrumb item ${index + 1} is missing its required URL`)
+    }
+
+    if (element.item) assertOutReferenceExists(relativeFile, element.item)
+  })
+}
+
+function assertNavigationAssets(relativeFile, html) {
+  if (/<link[^>]+rel=["']preload["'][^>]+\/asset-icons\//i.test(html)) {
+    failures.push(`${relativeFile} eagerly preloads navigation asset icons`)
+  }
+
+  for (const [tag] of html.matchAll(/<img\b[^>]*\bpl-nav-icon-asset\b[^>]*>/gi)) {
+    if (!/\bloading=["']lazy["']/i.test(tag)) {
+      failures.push(`${relativeFile} contains a navigation asset icon without lazy loading`)
+    }
+  }
+}
+
 function assertNoStaleHost(relativeFile, value) {
   for (const staleHost of staleHosts) {
     if (value.includes(staleHost)) {
@@ -188,6 +266,9 @@ function assertHtmlFile(file) {
         `${relativeFile} og:image mismatch: expected ${expectedOgImage}, found ${ogImage}`
       )
     }
+
+    assertStructuredData(relativeFile, html, route)
+    assertNavigationAssets(relativeFile, html)
   }
 
   for (const value of extractAttributeValues(html)) {

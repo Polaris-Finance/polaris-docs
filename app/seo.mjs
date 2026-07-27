@@ -9,6 +9,7 @@ import {
   markdownPathForRoute,
   ogImagePathForRoute,
   ORGANIZATION_NAME,
+  ORGANIZATION_URL,
   pathWithBase,
   SEARCH_URL_TEMPLATE,
   SITE_DESCRIPTION,
@@ -21,9 +22,8 @@ const organizationId = `${absoluteUrl('/')}#organization`
 const websiteId = `${absoluteUrl('/')}#website`
 
 // Real page routes derived from content/*.mdx the same way the router maps
-// files. Breadcrumb ListItems only link segments in this set; pageless
-// intermediates (e.g. /design) stay name-only, which schema.org permits,
-// instead of advertising URLs that 404.
+// files. Google requires every non-final Breadcrumb ListItem to have a real
+// item URL, so pageless folder segments are omitted from structured data.
 const CONTENT_ROUTES = collectContentRoutes()
 
 function collectContentRoutes() {
@@ -252,11 +252,11 @@ export function buildGlobalJsonLd() {
       name: ORGANIZATION_NAME,
       alternateName: 'Polaris',
       description: SITE_DESCRIPTION,
-      url: 'https://polarisfinance.io',
+      url: ORGANIZATION_URL,
       // Official profiles, so answer engines can disambiguate Polaris
       // from other projects named Polaris.
       sameAs: [
-        'https://polarisfinance.io',
+        ORGANIZATION_URL,
         'https://x.com/polarisfinance_',
         'https://t.me/polaris_ann',
         'https://github.com/Polaris-Finance'
@@ -274,6 +274,8 @@ export function buildGlobalJsonLd() {
 }
 
 export function buildBreadcrumbJsonLd(path, title) {
+  if (path === '/') return null
+
   const segments = path.split('/').filter(Boolean)
   const itemListElement = [
     {
@@ -287,12 +289,14 @@ export function buildBreadcrumbJsonLd(path, title) {
   segments.forEach((segment, index) => {
     const isCurrentPage = index === segments.length - 1
     const route = `/${segments.slice(0, index + 1).join('/')}`
+    if (!isCurrentPage && !CONTENT_ROUTES.has(route)) return
+
     const listItem = {
       '@type': 'ListItem',
-      position: index + 2,
+      position: itemListElement.length + 1,
       name: isCurrentPage ? title : readableSegment(segment)
     }
-    if (isCurrentPage || CONTENT_ROUTES.has(route)) listItem.item = absoluteUrl(route)
+    listItem.item = absoluteUrl(route)
     itemListElement.push(listItem)
   })
 

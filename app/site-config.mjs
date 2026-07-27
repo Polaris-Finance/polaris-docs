@@ -31,6 +31,7 @@ export const SITE_DESCRIPTION =
   'User documentation for Polaris, an onchain yield layer built around pETH, a yield-bearing reserve asset designed to collateralize censorship-resistant stablecoins and synthetic assets.'
 
 export const ORGANIZATION_NAME = 'Polaris'
+export const ORGANIZATION_URL = 'https://polaris.finance'
 export const OG_IMAGE_PATH = '/og-image.png'
 export const OG_IMAGE_ALT =
   'Polaris documentation for pETH, pAssets, minting, yield, and stewardship.'

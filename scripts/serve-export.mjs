@@ -1,6 +1,7 @@
 import { createReadStream, existsSync, statSync } from 'node:fs'
 import { createServer } from 'node:http'
 import path from 'node:path'
+import { createGzip } from 'node:zlib'
 import { BASE_PATH } from '../app/site-config.mjs'
 
 const root = process.cwd()
@@ -34,6 +35,23 @@ const contentTypes = new Map([
 function send(res, status, body, contentType = 'text/plain; charset=utf-8') {
   res.writeHead(status, { 'content-type': contentType })
   res.end(body)
+}
+
+function sendFile(req, res, status, file, contentType) {
+  const acceptsGzip = /\bgzip\b/.test(req.headers['accept-encoding'] ?? '')
+  const compressible = /^(application\/(javascript|json|xml)|text\/)/.test(contentType)
+  const headers = { 'content-type': contentType, vary: 'Accept-Encoding' }
+  const stream = createReadStream(file)
+
+  if (acceptsGzip && compressible) {
+    headers['content-encoding'] = 'gzip'
+    res.writeHead(status, headers)
+    stream.pipe(createGzip()).pipe(res)
+    return
+  }
+
+  res.writeHead(status, headers)
+  stream.pipe(res)
 }
 
 function publicPathForRequest(url) {
@@ -92,8 +110,7 @@ const server = createServer((req, res) => {
   if (!file) {
     const notFound = resolveFile('/404')
     if (notFound) {
-      res.writeHead(404, { 'content-type': 'text/html; charset=utf-8' })
-      createReadStream(notFound).pipe(res)
+      sendFile(req, res, 404, notFound, 'text/html; charset=utf-8')
       return
     }
     send(res, 404, 'Not found')
@@ -101,8 +118,7 @@ const server = createServer((req, res) => {
   }
 
   const contentType = contentTypes.get(path.extname(file)) ?? 'application/octet-stream'
-  res.writeHead(200, { 'content-type': contentType })
-  createReadStream(file).pipe(res)
+  sendFile(req, res, 200, file, contentType)
 })
 
 server.listen(port, host, () => {
