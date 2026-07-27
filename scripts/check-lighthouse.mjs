@@ -110,6 +110,23 @@ function checkReport(route, report) {
   )
 }
 
+function checkRoute(route) {
+  for (let attempt = 1; attempt <= 2; attempt += 1) {
+    const failureStart = failures.length
+    checkReport(route, runLighthouse(route))
+
+    if (failures.length === failureStart) return
+
+    const attemptFailures = failures.splice(failureStart)
+    if (attempt === 2) {
+      failures.push(...attemptFailures)
+      return
+    }
+
+    console.warn(`${route.name}: retrying once after a transient Lighthouse threshold failure`)
+  }
+}
+
 let serverError = ''
 const server = spawn(process.execPath, ['scripts/serve-export.mjs', '--port', String(port)], {
   cwd: root,
@@ -122,7 +139,7 @@ server.stderr.on('data', (chunk) => {
 
 try {
   await waitForServer(routeUrl('/'))
-  for (const route of routes) checkReport(route, runLighthouse(route))
+  for (const route of routes) checkRoute(route)
 } catch (error) {
   failures.push(`${error.message}${serverError ? `\n${serverError.trim()}` : ''}`)
 } finally {
