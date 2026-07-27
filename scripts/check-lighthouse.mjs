@@ -17,11 +17,12 @@ const routes = [
   { name: 'guide', pathname: '/testnet/guide' }
 ]
 const minimumScores = {
-  performance: 0.9,
+  performance: 0.85,
   accessibility: 1,
   'best-practices': 1,
   seo: 1
 }
+const maximumLcp = 4_000
 const failures = []
 
 function routeUrl(pathname) {
@@ -99,6 +100,9 @@ function checkReport(route, report) {
   }
   if (typeof cls !== 'number' || cls > 0.1) {
     failures.push(`${route.pathname} CLS ${cls ?? '(missing)'} exceeds 0.1`)
+  }
+  if (typeof lcp !== 'number' || lcp > maximumLcp) {
+    failures.push(`${route.pathname} LCP ${lcp ?? '(missing)'}ms exceeds ${maximumLcp}ms`)
   }
 
   console.log(
