@@ -2,6 +2,7 @@ import { Layout, Navbar } from 'nextra-theme-docs'
 import { Head } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
 import { Inter, Cormorant_Garamond } from 'next/font/google'
+import Script from 'next/script'
 import { A11yEnhancements } from '../components/A11yEnhancements'
 import { PolarisFooter } from '../components/PolarisFooter'
 import { NavbarActions } from '../components/navigation/NavbarActions'
@@ -22,6 +23,8 @@ import {
 } from './site-config.mjs'
 import 'nextra-theme-docs/style.css'
 import './globals.css'
+
+const GOOGLE_ANALYTICS_ID = 'G-JPV6PSJCVX'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -167,6 +170,20 @@ export default async function RootLayout({ children }) {
           {children}
         </Layout>
         <A11yEnhancements />
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            if (window.location.hostname === 'docs.polaris.finance') {
+              gtag('config', '${GOOGLE_ANALYTICS_ID}');
+            }
+          `}
+        </Script>
       </body>
     </html>
   )
