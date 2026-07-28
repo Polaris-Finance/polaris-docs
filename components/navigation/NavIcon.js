@@ -105,7 +105,9 @@ export function hasNavIcon(icon) {
   return Boolean(icon && (NAV_ICON_REGISTRY[icon] || ASSET_ICONS[icon]))
 }
 
-export function NavIcon({ icon, className = '', size = 16, strokeWidth = 1.8 }) {
+export function NavIcon({ icon, className = '', size = 16, strokeWidth = 1.8, tone }) {
+  const toneClass = tone ? `pl-icon-tone-${tone}` : ''
+
   if (ASSET_ICONS[icon]) {
     return createElement('img', {
       'aria-hidden': 'true',
@@ -122,7 +124,7 @@ export function NavIcon({ icon, className = '', size = 16, strokeWidth = 1.8 }) 
   const Icon = NAV_ICON_REGISTRY[icon] ?? FileText
   return createElement(Icon, {
     'aria-hidden': 'true',
-    className: ['pl-nav-icon', className].filter(Boolean).join(' '),
+    className: ['pl-nav-icon', toneClass, className].filter(Boolean).join(' '),
     focusable: 'false',
     size,
     strokeWidth

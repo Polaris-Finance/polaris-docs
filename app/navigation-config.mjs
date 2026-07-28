@@ -7,11 +7,18 @@ export const EXTERNAL_LINKS = Object.freeze({
   x: 'https://x.com/polarisfinance_'
 })
 
+/* Icon tones. Each nav group carries a hue, folders may override it, and pages
+   inherit from the nearest ancestor. The icon glyph still carries the meaning —
+   colour is decorative, so this does not encode meaning in colour alone. */
+
+export const NAV_TONES = Object.freeze(['gold', 'blue', 'violet', 'teal', 'green', 'rust'])
+
 export const NAVIGATION_GROUPS = [
   {
     id: 'introduction',
     type: 'group',
     label: 'Introduction',
+    tone: 'gold',
     children: [
       {
         id: 'docs-home',
@@ -44,6 +51,7 @@ export const NAVIGATION_GROUPS = [
     id: 'protocol',
     type: 'group',
     label: 'Protocol',
+    tone: 'violet',
     children: [
       {
         id: 'core-assets',
@@ -52,6 +60,7 @@ export const NAVIGATION_GROUPS = [
         label: 'Core Assets',
         routePrefix: '/core-assets',
         icon: 'Coins',
+        tone: 'blue',
         children: [
           page('peth', 'peth', 'pETH', '/core-assets/peth', 'asset:peth'),
           page('usdp', 'usdp', 'USDp', '/core-assets/usdp', 'asset:usdp'),
@@ -103,6 +112,7 @@ export const NAVIGATION_GROUPS = [
         label: 'Protocol Mechanics',
         routePrefix: '/design',
         icon: 'Cog',
+        tone: 'teal',
         children: [
           page('fee-router', 'fee-router', 'Fee Router', '/design/fee-router', 'Route'),
           page(
@@ -151,6 +161,7 @@ export const NAVIGATION_GROUPS = [
     id: 'use-polaris',
     type: 'group',
     label: 'Use Polaris',
+    tone: 'green',
     children: [
       {
         id: 'testnet',
@@ -194,6 +205,7 @@ export const NAVIGATION_GROUPS = [
     id: 'reference',
     type: 'group',
     label: 'Reference',
+    tone: 'rust',
     children: [
       {
         id: 'risks',
@@ -286,14 +298,44 @@ export function metaEntriesForDirectory(directory = '/') {
   if (normalized === '/') {
     return NAVIGATION_GROUPS.flatMap((group) => [
       { type: 'separator', metaKey: `---${group.id}`, label: group.label },
-      ...group.children
+      ...group.children.map((child) => withInheritedTone(child, group.tone))
     ])
   }
 
   const folder = allNavigationNodes().find(
     (node) => node.type === 'folder' && node.routePrefix === normalized
   )
-  return folder?.children ?? []
+  if (!folder) return []
+  return folder.children.map((child) => withInheritedTone(child, toneForNodeId(folder.id)))
+}
+
+function withInheritedTone(node, parentTone) {
+  return node.tone ? node : { ...node, tone: parentTone }
+}
+
+/* Nearest-ancestor tone lookup. Groups always carry a tone and folders may
+   override it, so a page inherits whichever sits closest to it. */
+
+export function toneForRoute(route) {
+  const normalized = normalizeRoute(route)
+  return resolveTone((node) => node.type === 'page' && node.route === normalized)
+}
+
+export function toneForNodeId(id) {
+  return resolveTone((node) => node.id === id)
+}
+
+function resolveTone(matches) {
+  let tone = null
+
+  walk(NAVIGATION_GROUPS, (node, ancestors) => {
+    if (!matches(node)) return true
+    // walk() hands back ancestors outermost-first, so the last tone wins.
+    tone = [...ancestors, node].reduce((current, entry) => entry.tone ?? current, null)
+    return false
+  })
+
+  return tone ?? 'gold'
 }
 
 export function routeBelongsToNode(route, node) {

@@ -10,20 +10,22 @@ import {
   TrendingUp
 } from 'lucide-react'
 import Link from 'next/link'
-import { EXTERNAL_LINKS } from '../app/navigation-config.mjs'
+import { EXTERNAL_LINKS, toneForRoute } from '../app/navigation-config.mjs'
 import { pathWithBase } from '../app/site-config.mjs'
 
+// Description lengths are deliberately uneven: a grid of equal-length blurbs is
+// most of what makes a landing page read as generated rather than written.
 const welcomeLinks = [
   {
     label: 'Polaris 101',
     description: 'An introduction to Polaris and the ideas behind it.',
     route: '/polaris-101',
-    icon: BookOpen,
-    featured: true
+    icon: BookOpen
   },
   {
     label: 'The bonding curve',
-    description: 'How ETH deposits mint pETH on a shared curve.',
+    description:
+      'How ETH deposits mint pETH on a curve that acts as the market between the two assets, with no external liquidity providers.',
     route: '/architecture/bonding-curve',
     icon: TrendingUp
   },
@@ -56,19 +58,21 @@ const trustLinks = [
   }
 ]
 
-function LandingLink({ className, item, iconSize = 19 }) {
+function LandingLink({ className, item, iconSize = 22, withArrow = true }) {
   const { label, description, route, icon: Icon } = item
 
   return (
     <Link className={className} href={pathWithBase(route)}>
-      <span className="pl-docs-link-icon" aria-hidden="true">
+      <span className={`pl-docs-link-icon pl-icon-tone-${toneForRoute(route)}`} aria-hidden="true">
         <Icon size={iconSize} strokeWidth={1.8} />
       </span>
       <span className="pl-docs-link-copy">
         <strong>{label}</strong>
         {description ? <span>{description}</span> : null}
       </span>
-      <ArrowRight className="pl-docs-link-arrow" aria-hidden="true" size={18} />
+      {withArrow ? (
+        <ArrowRight className="pl-docs-link-arrow" aria-hidden="true" size={18} />
+      ) : null}
     </Link>
   )
 }
@@ -76,7 +80,7 @@ function LandingLink({ className, item, iconSize = 19 }) {
 export function TestnetBanner() {
   return (
     <aside className="pl-testnet-banner" aria-label="Public Testnet 1">
-      <span className="pl-testnet-banner-icon" aria-hidden="true">
+      <span className="pl-testnet-banner-icon pl-icon-tone-green" aria-hidden="true">
         <FlaskConical size={22} strokeWidth={1.8} />
       </span>
       <span className="pl-testnet-banner-copy">
@@ -112,15 +116,9 @@ export function DocsLanding() {
           {welcomeLinks.map((item) => (
             <LandingLink
               key={item.route}
-              className={[
-                'pl-docs-card-link',
-                'pl-docs-welcome-link',
-                item.featured ? 'pl-docs-welcome-link-featured' : ''
-              ]
-                .filter(Boolean)
-                .join(' ')}
+              className="pl-docs-card-link pl-docs-welcome-link"
               item={item}
-              iconSize={item.featured ? 21 : 19}
+              withArrow={false}
             />
           ))}
         </div>

@@ -7,7 +7,9 @@ import {
   EXTERNAL_LINKS,
   findTrailByRoute,
   FOOTER_LINKS,
-  metaEntriesForDirectory
+  metaEntriesForDirectory,
+  NAV_TONES,
+  toneForRoute
 } from '../app/navigation-config.mjs'
 import { hasNavIcon } from '../components/navigation/NavIcon.js'
 import { routeForFile, walkMdx } from './lib/content.mjs'
@@ -103,6 +105,20 @@ for (const node of nodes) {
   }
   if ((node.type === 'group' || node.type === 'folder') && !node.children?.length) {
     addFailure(`${node.type} ${node.id} has no children`)
+  }
+  if (node.tone && !NAV_TONES.includes(node.tone)) {
+    addFailure(`${node.type} ${node.id} has an unknown icon tone: ${node.tone}`)
+  }
+  if (node.type === 'group' && !node.tone) {
+    addFailure(`group ${node.id} has no icon tone, so its pages cannot inherit one`)
+  }
+}
+
+// Every page must resolve a tone from its own node or an ancestor; a silent
+// fallback would leave one icon quietly off-palette.
+for (const page of pages) {
+  if (!NAV_TONES.includes(toneForRoute(page.route))) {
+    addFailure(`page ${page.id} does not resolve an icon tone`)
   }
 }
 

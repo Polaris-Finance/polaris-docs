@@ -2,11 +2,11 @@ import { createElement } from 'react'
 import { metaEntriesForDirectory } from '../../app/navigation-config.mjs'
 import { NavIcon } from './NavIcon.js'
 
-export function NavLabel({ children, icon }) {
+export function NavLabel({ children, icon, tone }) {
   return createElement(
     'span',
     { className: 'pl-nav-label' },
-    createElement(NavIcon, { icon }),
+    createElement(NavIcon, { icon, tone }),
     createElement('span', { className: 'pl-nav-text' }, children)
   )
 }
@@ -28,7 +28,11 @@ export function metaForDirectory(directory) {
         ]
       }
 
-      const title = createElement(NavLabel, { icon: entry.icon, key: entry.id }, entry.label)
+      const title = createElement(
+        NavLabel,
+        { icon: entry.icon, key: entry.id, tone: entry.tone },
+        entry.label
+      )
       if (entry.display) {
         return [entry.metaKey, { title, display: entry.display, theme: entry.theme }]
       }

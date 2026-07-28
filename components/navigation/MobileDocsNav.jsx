@@ -11,7 +11,8 @@ import {
   findTrailByRoute,
   NAVIGATION_GROUPS,
   normalizeRoute,
-  routeBelongsToNode
+  routeBelongsToNode,
+  toneForNodeId
 } from '../../app/navigation-config.mjs'
 import { NavThemeSwitch } from '../NavThemeSwitch'
 import { DocsOverlay } from './DocsOverlay'
@@ -47,6 +48,7 @@ export function MobileDocsNav({ open, onOpenChange }) {
   const items = (currentNode?.children ?? NAVIGATION_GROUPS).filter(
     (node) => node.display !== 'hidden'
   )
+  const parentTone = currentNode ? toneForNodeId(currentNode.id) : 'gold'
   const currentTrail = useMemo(() => findTrailByRoute(route), [route])
   const currentIds = useMemo(() => new Set(currentTrail.map((node) => node.id)), [currentTrail])
 
@@ -125,7 +127,10 @@ export function MobileDocsNav({ open, onOpenChange }) {
               const isCurrentBranch = isBranch
                 ? currentIds.has(node.id) || routeBelongsToNode(route, node)
                 : node.route === route
-              const leadingIcon = node.type === 'group' ? null : <NavIcon icon={node.icon} />
+              const leadingIcon =
+                node.type === 'group' ? null : (
+                  <NavIcon icon={node.icon} tone={node.tone ?? parentTone} />
+                )
 
               return (
                 <li key={node.id}>
