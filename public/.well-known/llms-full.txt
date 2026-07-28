@@ -225,7 +225,7 @@ Moreover, GOLDp can be used in different ways depending on the strategy. Users m
 
 ## Maintaining the Peg
 
-The GOLDp peg is supported by pETH overcollateralization and by market participants responding to arbitrage opportunities.
+The GOLDp peg is supported by pETH overcollateralization and by market participants using the protocol's peg mechanisms whenever arbitrage opportunities arise.
 
 When GOLDp trades above the market price of gold, new GOLDp can be minted 1:1 against pETH collateral and sold into the market. The additional supply creates downward pressure on the market price.
 
@@ -238,7 +238,9 @@ Below gold reference price | Redeem GOLDp for underlying collateral | Supply fal
 
 Together, these mechanisms continuously adjust the circulating supply in response to market conditions while every GOLDp remains backed by pETH collateral.
 
-Polaris builds on this foundation with an additional **stability rate** built into its CDP architecture. This mechanism applies to every asset issued through Polaris, including GOLDp. Later sections explain the stability rate in detail, but architecturally it automatically shifts collateral and debt from the most leveraged positions to the least, strengthening the peg during periods of market stress.
+Polaris builds on this foundation with an additional **stability rate** built into its CDP architecture. This mechanism applies to every asset issued through Polaris, including GOLDp.
+
+At the same time, borrowing mechanics are identical to those of USDp, including the distribution of protocol-generated value as pETH to borrowers and the preferential treatment of lower-LTV positions.
 
 ---
 
@@ -361,7 +363,7 @@ On top of that, users who want to earn protocol-native yield can deposit USDp in
 
 ## Maintaining the Peg
 
-The USDp peg is supported by pETH overcollateralization and by market participants responding to arbitrage opportunities.
+The USDp peg is supported by pETH overcollateralization and by market participants using the protocol's peg mechanisms whenever arbitrage opportunities arise.
 
 When USDp trades above one dollar, new USDp can be minted 1:1 against pETH collateral and sold into the market. The additional supply creates downward pressure on the market price.
 
@@ -374,7 +376,9 @@ Below \$1 | Redeem USDp for underlying collateral | Supply falls → price pushe
 
 Together, these mechanisms continuously adjust the circulating supply in response to peg conditions while every USDp remains backed by pETH collateral.
 
-Although permissionless 1:1 minting is a genuine innovation for decentralised stablecoins, Polaris builds on this foundation with an additional **stability rate** for debt positions. Later sections explain the stability rate in detail, but architecturally it automatically shifts collateral and debt from the most leveraged positions to the least, further strengthening the USDp peg during times of stress.
+Although permissionless 1:1 minting is a genuine innovation for decentralised stablecoins, Polaris builds on this foundation with an additional **stability rate** for debt positions. Architecturally, it automatically shifts collateral and debt from the most leveraged positions to the least, further strengthening the USDp peg during times of stress.
+
+At the same time, borrowing economics are structured so that the headline borrowing rate does not necessarily reflect the effective cost of borrowing, with a portion of protocol-generated value distributed back to borrowers as pETH and more favorable terms applied to lower-LTV positions.
 
 ---
 
@@ -401,14 +405,14 @@ Alice saw the opportunity differently, as she believed the market was underestim
 
 For instance, she expected more economic activity to take place across Polaris through higher borrowing volumes, more liquidations, new applications and stronger demand for pETH. If those expectations proved correct, the market would gradually attach a larger premium to pETH long before that additional value became reflected in its floor.
 
-Suppose that six months later the floor has increased from 0.82 ETH to 0.90 ETH, with stronger demand increasing the premium from 0.23 ETH to 0.40 ETH.
+Suppose that six months later the floor has increased from 0.75 ETH to 0.85 ETH, while stronger demand increased the premium from 0.25 ETH to 0.40 ETH.
 
 Bob still owns one fpETH and Alice still owns one vpETH. Holding those two tokens together continues to make up exactly one pETH, but its composition has strongly changed since the day it was split.
 
 Stage | Floor | Premium | pETH value
 
-At the split | 0.82 ETH | 0.23 ETH | 1.05 ETH
-Six months later | 0.90 ETH | 0.40 ETH | 1.30 ETH
+At the split | 0.75 ETH | 0.25 ETH | 1.00 ETH
+Six months later | 0.85 ETH | 0.40 ETH | 1.25 ETH
 
 The premium now accounts for a much larger share of pETH than before, allowing Alice's vpETH to capture most of that additional appreciation while Bob continues benefiting from the steady growth of the floor.
 
@@ -595,7 +599,7 @@ Thus, new markets can benefit from the Polaris infrastructure without needing a 
 
 ## Launching a pAsset Market
 
-Polaris is designed as open-source infrastructure that anyone can build on. Launching a new pAsset market is **permissionless**, meaning builders can introduce new assets without approval from the protocol itself.
+Polaris is designed as open-source infrastructure that anyone can build on. Launching a new pAsset market is **permissionless**, meaning builders can introduce new assets without approval from the protocol itself. Receiving pETH flows is a separate process, stewarded through vePOLAR and based on how each market contributes to the Polaris ecosystem.
 
 Beyond the underlying smart contracts, a successful pAsset market ultimately depends on adoption. Polaris provides the shared collateral infrastructure, so builders can focus on growing demand for their asset, expanding its liquidity and integrating it across DeFi without having to build the underlying infrastructure from scratch.
 
@@ -870,6 +874,8 @@ Polaris uses two complementary interest rates to manage pAsset markets. Together
 The **Peg Stability Rate** is the primary interest rate paid by pAsset minters. It adjusts automatically according to minting and redemption activity and helps keep pAssets trading around their target price.
 
 The **Protocol Safety Rate** is a secondary interest rate that normally remains inactive. It only activates when the overall collateralization of a pAsset market falls below a predefined threshold, automatically paying interest from higher-leverage positions to lower-leverage or collateral-only positions.
+
+Although the protocol's interest rates determine the nominal cost of borrowing, they do not necessarily represent its effective cost. Borrowers also receive protocol-generated value as pETH, while lower-leverage positions benefit from more favorable borrowing terms.
 
 Property | Peg Stability Rate | Protocol Safety Rate
 
