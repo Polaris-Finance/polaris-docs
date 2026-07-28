@@ -26,7 +26,7 @@
   </url>
   <url>
     <loc>https://docs.polaris.finance/architecture/passet-markets</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -56,7 +56,7 @@
   </url>
   <url>
     <loc>https://docs.polaris.finance/core-assets/goldp</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -74,13 +74,13 @@
   </url>
   <url>
     <loc>https://docs.polaris.finance/core-assets/usdp</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://docs.polaris.finance/core-assets/vpeth</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -104,7 +104,7 @@
   </url>
   <url>
     <loc>https://docs.polaris.finance/design/interest-rates</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-07-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
