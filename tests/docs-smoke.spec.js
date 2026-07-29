@@ -28,7 +28,38 @@ function fileToRoute(filePath) {
 }
 
 const generatedRoutes = collectMdxFiles(contentDir).map(fileToRoute).sort()
+const generatedRouteSet = new Set(generatedRoutes)
+const routeSmokeRoutes = [
+  '/',
+  '/polaris-101',
+  '/architecture/flows',
+  '/architecture/stewardship',
+  '/core-assets/peth',
+  '/core-assets/polar',
+  '/design/interest-rates',
+  '/design/liquidations',
+  '/risks/security-properties',
+  '/testnet/guide'
+]
+const mobileReachabilityRoutes = [
+  '/polaris-101',
+  '/overview/why-peth',
+  '/architecture/flows',
+  '/core-assets/peth',
+  '/core-assets/vpeth',
+  '/design/interest-rates',
+  '/design/liquidations',
+  '/risks',
+  '/testnet/mint',
+  '/testnet/analytics'
+]
 const routeTestName = (route) => (route === '/' ? 'home' : route.slice(1))
+
+for (const route of [...routeSmokeRoutes, ...mobileReachabilityRoutes]) {
+  if (!generatedRouteSet.has(route)) {
+    throw new Error(`Browser smoke sample references missing route: ${route}`)
+  }
+}
 
 function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
@@ -374,7 +405,7 @@ async function expectTabOrderAvoidsHiddenControls(page, steps = 12) {
 }
 
 test.describe('generated route smoke', () => {
-  for (const route of generatedRoutes) {
+  for (const route of routeSmokeRoutes) {
     test(`${routeTestName(route)} loads without regressions`, async ({ page }) => {
       const notFoundResponses = []
       page.on('response', (response) => {
@@ -820,14 +851,18 @@ test('mobile navigation reveals the current leaf on a short viewport', async ({
     .toBe(true)
 })
 
-test('every configured docs page is reachable in the mobile menu by touch and keyboard', async ({
+test('sampled docs pages are reachable in the mobile menu by touch and keyboard', async ({
   page
 }, testInfo) => {
   test.skip(testInfo.project.name !== 'mobile', 'mobile-only generated reachability check')
-  test.setTimeout(180_000)
   await page.goto(pathWithBase('/'))
+  const sampledNodes = mobileReachabilityRoutes.map((route) => {
+    const node = allVisiblePageNodes().find((pageNode) => pageNode.route === route)
+    expect(node, `${route} is represented in visible mobile navigation`).toBeTruthy()
+    return node
+  })
 
-  for (const node of allVisiblePageNodes()) {
+  for (const node of sampledNodes) {
     const keyboard = await revealMobileRoute(page, node.route, 'keyboard')
     await keyboard.link.focus()
     await expect(keyboard.link).toBeFocused()

@@ -33,11 +33,12 @@ npm run check:links:external  # also checks outbound links over the network
 npm run check:artifact         # smoke-check the generated ./out artifact
 npm run check:live-artifact    # smoke-check a deployed Pages URL
 npm run ci                    # PR-speed gate: source checks + build + artifact smoke
-npm run ci:full               # release gate: ci + Google Docs roundtrip + Lighthouse + e2e + prod audit
+npm run ci:full               # extended local gate: ci + Google Docs roundtrip + prod audit
+npm run ci:browser            # optional Lighthouse + sampled Playwright browser checks
 npm run local:push-gate       # optional pre-push fast gate
 ```
 
-Pull requests run the fast validation workflow in `.github/workflows/ci.yml`. The deploy workflow runs the full release gate before uploading `out/` to GitHub Pages.
+Pull requests and deploys run the fast validation workflow before uploading `out/` to GitHub Pages. Browser checks are manual/local-only; the deploy workflow still smoke-checks the live Pages URL after publishing.
 
 ## Local push gate
 
@@ -47,14 +48,14 @@ This repo includes an optional tracked pre-push hook in `.githooks/pre-push`. En
 git config core.hooksPath .githooks
 ```
 
-The hook runs the fast `npm run local:push-gate` before branch pushes. It does not run a clean install, browser install, Lighthouse, Playwright, production audit, or external-link check. Use `npm run local:push-gate:full` when you want the deploy-grade gate locally.
+The hook runs the fast `npm run local:push-gate` before branch pushes. It does not run a clean install, browser install, Lighthouse, Playwright, production audit, or external-link check. Use `npm run local:push-gate:full` when you want the extended local gate.
 
 Useful overrides:
 
 ```bash
 SKIP_LOCAL_PUSH_GATE=1 git push              # emergency bypass
-npm run local:push-gate:full                 # full release gate + external links
-npx playwright install chromium              # one-time browser install for local full gate
+npm run local:push-gate:full                 # extended local gate + external links
+npx playwright install chromium              # one-time browser install for ci:browser
 ```
 
 ## Important build constraints
@@ -78,7 +79,7 @@ Other notes:
 
 ## Deploy
 
-Pushing to `main` triggers `.github/workflows/deploy.yml` (`npm run ci:full`, non-blocking external links, Pages artifact upload, deploy, and a live smoke check).
+Pushing to `main` triggers `.github/workflows/deploy.yml` (`npm run ci`, non-blocking external links, Pages artifact upload, deploy, and a live smoke check).
 
 The site uses a custom domain on GitHub Pages. Keep these settings aligned:
 
