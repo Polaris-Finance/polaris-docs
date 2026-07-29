@@ -24,8 +24,7 @@ const welcomeLinks = [
   },
   {
     label: 'The Bonding Curve',
-    description:
-      'The journey from ETH to pETH',
+    description: 'The journey from ETH to pETH',
     route: '/architecture/bonding-curve',
     icon: TrendingUp
   },
