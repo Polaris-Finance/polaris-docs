@@ -764,9 +764,11 @@ test('mobile navigation is recursive, keyboard operable, and mutually exclusive 
 
   await page.keyboard.press('Control+K')
   await expect(dialog).toBeHidden()
-  await expect(page.getByRole('dialog', { name: 'Search Polaris documentation' })).toBeVisible()
-  await page.getByRole('button', { name: 'Close search' }).click()
-  await expect(page.getByRole('button', { name: 'Search documentation' })).toBeFocused()
+  const searchDialog = page.getByRole('dialog', { name: 'Search Polaris documentation' })
+  await expect(searchDialog).toBeVisible()
+  await expect(
+    searchDialog.getByRole('combobox', { name: 'Search the documentation' })
+  ).toBeFocused()
   await expectTabOrderAvoidsHiddenControls(page)
   await expectNoUnnamedVisibleControls(page)
 })
@@ -956,7 +958,7 @@ test('skip link and modal focus containment preserve keyboard orientation', asyn
     ).toBe(true)
   }
 
-  await page.locator('.pl-docs-overlay-backdrop').click({ position: { x: 5, y: 5 } })
+  await dialog.getByRole('button', { name: 'Close search' }).click()
   await expect(dialog).toBeHidden()
   await expect(page.getByRole('button', { name: 'Search documentation' })).toBeFocused()
 })

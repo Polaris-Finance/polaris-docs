@@ -15,7 +15,8 @@ User documentation for Polaris Finance (the pETH-powered yield layer for DeFi). 
 - `npm run dev` — http://localhost:3000/
 - `npm run build` — static export to `./out` + Pagefind index (must stay `next build --webpack`)
 - `npm run lint`, `npm run lint:content`, `npm run check:links`
-- `npm run ci` — full local gate
+- `npm run ci` — PR-speed gate: source checks + build + artifact smoke
+- `npm run ci:full` — deploy-grade gate with Google Docs roundtrip, Lighthouse, Playwright, and prod audit
 
 ## Deploy
 
