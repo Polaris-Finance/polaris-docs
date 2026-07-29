@@ -27,7 +27,7 @@ Moreover, GOLDp can be used in different ways depending on the strategy. Users m
 
 ## Maintaining the Peg
 
-The GOLDp peg is supported by pETH overcollateralization and by market participants responding to arbitrage opportunities.
+The GOLDp peg is supported by pETH overcollateralization and by market participants using the protocol's peg mechanisms whenever arbitrage opportunities arise.
 
 When GOLDp trades above the market price of gold, new GOLDp can be minted 1:1 against pETH collateral and sold into the market. The additional supply creates downward pressure on the market price.
 
@@ -40,4 +40,6 @@ When GOLDp trades below the reference price of gold, market participants can red
 
 Together, these mechanisms continuously adjust the circulating supply in response to market conditions while every GOLDp remains backed by pETH collateral.
 
-Polaris builds on this foundation with an additional **stability rate** built into its CDP architecture. This mechanism applies to every asset issued through Polaris, including GOLDp. Later sections explain the stability rate in detail, but architecturally it automatically shifts collateral and debt from the most leveraged positions to the least, strengthening the peg during periods of market stress.
+Polaris builds on this foundation with an additional **stability rate** built into its CDP architecture. This mechanism applies to every asset issued through Polaris, including GOLDp.
+
+At the same time, borrowing mechanics are identical to those of USDp, including the distribution of protocol-generated value as pETH to borrowers and the preferential treatment of lower-LTV positions.

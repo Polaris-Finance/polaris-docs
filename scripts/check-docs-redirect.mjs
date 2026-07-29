@@ -52,7 +52,7 @@ async function assertRedirect(pathname, search = '') {
   )
 }
 
-await assertRedirectUrl(sourceBaseUrl, targetBaseUrl)
+await assertRedirectUrl(sourceBaseUrl, urlAt(targetBaseUrl, '/'))
 await assertRedirect('/')
 await assertRedirect('/core-assets/peth', '?redirect_check=1')
 

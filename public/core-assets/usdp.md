@@ -30,7 +30,7 @@ On top of that, users who want to earn protocol-native yield can deposit USDp in
 
 ## Maintaining the Peg
 
-The USDp peg is supported by pETH overcollateralization and by market participants responding to arbitrage opportunities.
+The USDp peg is supported by pETH overcollateralization and by market participants using the protocol's peg mechanisms whenever arbitrage opportunities arise.
 
 When USDp trades above one dollar, new USDp can be minted 1:1 against pETH collateral and sold into the market. The additional supply creates downward pressure on the market price.
 
@@ -43,4 +43,6 @@ Below \$1 | Redeem USDp for underlying collateral | Supply falls → price pushe
 
 Together, these mechanisms continuously adjust the circulating supply in response to peg conditions while every USDp remains backed by pETH collateral.
 
-Although permissionless 1:1 minting is a genuine innovation for decentralised stablecoins, Polaris builds on this foundation with an additional **stability rate** for debt positions. Later sections explain the stability rate in detail, but architecturally it automatically shifts collateral and debt from the most leveraged positions to the least, further strengthening the USDp peg during times of stress.
+Although permissionless 1:1 minting is a genuine innovation for decentralised stablecoins, Polaris builds on this foundation with an additional **stability rate** for debt positions. Architecturally, it automatically shifts collateral and debt from the most leveraged positions to the least, further strengthening the USDp peg during times of stress.
+
+At the same time, borrowing economics are structured so that the headline borrowing rate does not necessarily reflect the effective cost of borrowing, with a portion of protocol-generated value distributed back to borrowers as pETH and more favorable terms applied to lower-LTV positions.

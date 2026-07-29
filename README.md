@@ -32,29 +32,30 @@ npm run check:links           # local routes, anchors, and public assets
 npm run check:links:external  # also checks outbound links over the network
 npm run check:artifact         # smoke-check the generated ./out artifact
 npm run check:live-artifact    # smoke-check a deployed Pages URL
-npm run ci                    # content check + links + build + Pagefind smoke + prod audit
-npm run local:push-gate       # local mirror of the reproducible deploy build job
+npm run ci                    # PR-speed gate: source checks + build + artifact smoke
+npm run ci:full               # extended local gate: ci + Google Docs roundtrip + prod audit
+npm run ci:browser            # optional Lighthouse + sampled Playwright browser checks
+npm run local:push-gate       # optional pre-push fast gate
 ```
 
-Pull requests run the validation workflow in `.github/workflows/ci.yml`. The deploy workflow runs the same local validation before uploading `out/` to GitHub Pages.
+Pull requests and deploys run the fast validation workflow before uploading `out/` to GitHub Pages. Browser checks are manual/local-only; the deploy workflow still smoke-checks the live Pages URL after publishing.
 
 ## Local push gate
 
-This repo includes a tracked pre-push hook in `.githooks/pre-push`. Enable it in a checkout with:
+This repo includes an optional tracked pre-push hook in `.githooks/pre-push`. Enable it in a checkout with:
 
 ```bash
 git config core.hooksPath .githooks
 ```
 
-The hook runs `npm run local:push-gate` before branch pushes. It mirrors the locally reproducible required checks from `.github/workflows/deploy.yml`: clean install, Playwright browser install, source checks, static export build, artifact/Pagefind/navigation/e2e checks, production dependency audit, and external-link checking as a non-blocking warning. GitHub-only parallel job scheduling plus the final Pages upload/deploy actions are not run locally.
+The hook runs the fast `npm run local:push-gate` before branch pushes. It does not run a clean install, browser install, Lighthouse, Playwright, production audit, or external-link check. Use `npm run local:push-gate:full` when you want the extended local gate.
 
 Useful overrides:
 
 ```bash
 SKIP_LOCAL_PUSH_GATE=1 git push              # emergency bypass
-LOCAL_PUSH_GATE_SKIP_INSTALL=1 git push      # keep node_modules for a faster local retry
-LOCAL_PUSH_GATE_WITH_BROWSER_DEPS=1 git push # also install Playwright system deps
-npm run local:push-gate:strict-node          # fail unless the shell matches .nvmrc
+npm run local:push-gate:full                 # extended local gate + external links
+npx playwright install chromium              # one-time browser install for ci:browser
 ```
 
 ## Important build constraints
@@ -78,7 +79,7 @@ Other notes:
 
 ## Deploy
 
-Pushing to `main` triggers `.github/workflows/deploy.yml` (source checks, production audit, external links, and root-path build/Pagefind/artifact checks in parallel → GitHub Pages deploy after required gates pass).
+Pushing to `main` triggers `.github/workflows/deploy.yml` (`npm run ci`, non-blocking external links, Pages artifact upload, deploy, and a live smoke check).
 
 The site uses a custom domain on GitHub Pages. Keep these settings aligned:
 

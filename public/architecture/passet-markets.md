@@ -20,7 +20,7 @@ Thus, new markets can benefit from the Polaris infrastructure without needing a 
 
 ## Launching a pAsset Market
 
-Polaris is designed as open-source infrastructure that anyone can build on. Launching a new pAsset market is **permissionless**, meaning builders can introduce new assets without approval from the protocol itself.
+Polaris is designed as open-source infrastructure that anyone can build on. Launching a new pAsset market is **permissionless**, meaning builders can introduce new assets without approval from the protocol itself. Receiving pETH flows is a separate process, stewarded through vePOLAR and based on how each market contributes to the Polaris ecosystem.
 
 Beyond the underlying smart contracts, a successful pAsset market ultimately depends on adoption. Polaris provides the shared collateral infrastructure, so builders can focus on growing demand for their asset, expanding its liquidity and integrating it across DeFi without having to build the underlying infrastructure from scratch.
 
