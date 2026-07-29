@@ -18,20 +18,19 @@ import { pathWithBase } from '../app/site-config.mjs'
 const welcomeLinks = [
   {
     label: 'Polaris 101',
-    description: 'An introduction to Polaris and the ideas behind it.',
+    description: 'Learn the basics',
     route: '/polaris-101',
     icon: BookOpen
   },
   {
-    label: 'The bonding curve',
-    description:
-      'How ETH deposits mint pETH on a curve that acts as the market between the two assets, with no external liquidity providers.',
+    label: 'The Bonding Curve',
+    description: 'The journey from ETH to pETH',
     route: '/architecture/bonding-curve',
     icon: TrendingUp
   },
   {
     label: 'pETH',
-    description: 'The native yield-bearing asset behind every pAsset.',
+    description: 'The native yield-bearing collateral',
     route: '/core-assets/peth',
     icon: Coins
   }
@@ -39,26 +38,26 @@ const welcomeLinks = [
 
 const trustLinks = [
   {
-    label: 'Security guarantees',
-    description: 'See what the protocol guarantees by construction.',
+    label: 'Security Guarantees',
+    description: 'Learn what is guaranteed',
     route: '/risks/security-properties',
     icon: ShieldCheck
   },
   {
-    label: 'Risks and trade-offs',
-    description: 'Evaluate the risks that remain before participating.',
+    label: 'Risks Overview',
+    description: 'Evaluate risks',
     route: '/risks',
     icon: ShieldAlert
   },
   {
     label: 'Stewardship',
-    description: 'See how bounded controls guide the protocol.',
+    description: 'Explore how growth is coordinated',
     route: '/architecture/stewardship',
     icon: Scale
   }
 ]
 
-function LandingLink({ className, item, iconSize = 22, withArrow = true }) {
+function LandingLink({ className, item, iconSize = 22, withArrow = false }) {
   const { label, description, route, icon: Icon } = item
 
   return (
@@ -84,8 +83,8 @@ export function TestnetBanner() {
         <FlaskConical size={22} strokeWidth={1.8} />
       </span>
       <span className="pl-testnet-banner-copy">
-        <strong>Public Testnet 1 is live on Sepolia</strong>
-        <span>Connect to the app and explore Polaris with test assets.</span>
+        <strong>Testnet v1 is Live</strong>
+        <span>Explore Polaris with test assets</span>
       </span>
       <span className="pl-testnet-banner-actions">
         <a
@@ -98,10 +97,6 @@ export function TestnetBanner() {
           <ExternalLink aria-hidden="true" size={15} strokeWidth={1.8} />
           <span className="pl-sr-only"> opens in a new tab</span>
         </a>
-        <Link className="pl-testnet-banner-secondary" href={pathWithBase('/testnet/guide')}>
-          View guide
-          <ArrowRight aria-hidden="true" size={15} strokeWidth={1.8} />
-        </Link>
       </span>
     </aside>
   )
