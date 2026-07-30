@@ -481,6 +481,27 @@ test('prev/next pagination follows the sidebar order', async ({ page }) => {
   ).toBeVisible()
 })
 
+test('next pagination title sits under its NEXT label', async ({ page }) => {
+  // The title lives in a flex box, so the link's text-align:end cannot reach it
+  // and it once packed against the middle of the row. It must trail its own
+  // link the way the previous title leads its own.
+  await page.goto(pathWithBase('/core-assets/goldp'))
+
+  const next = page.locator(`a[title="POLAR"][href="${pathWithBase('/core-assets/polar')}"]`)
+  const previous = page.locator(`a[title="USDp"][href="${pathWithBase('/core-assets/usdp')}"]`)
+
+  const nextBox = await next.boundingBox()
+  const nextTitleBox = await next.locator('.pl-nav-text').boundingBox()
+  const previousBox = await previous.boundingBox()
+  const previousTitleBox = await previous.locator('.pl-nav-text').boundingBox()
+
+  const trailingGap = nextBox.x + nextBox.width - (nextTitleBox.x + nextTitleBox.width)
+  const leadingGap = previousTitleBox.x - previousBox.x
+
+  expect(trailingGap).toBeLessThan(48)
+  expect(Math.abs(trailingGap - leadingGap)).toBeLessThan(4)
+})
+
 test('homepage renders with metadata and basic accessibility', async ({ page }) => {
   await page.goto(pathWithBase('/'))
 
