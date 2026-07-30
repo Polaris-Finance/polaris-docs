@@ -16,33 +16,35 @@ USDp is the native Polaris dollar.
 
 It tracks the value of the US dollar while being backed by pETH through overcollateralized debt positions.
 
-It exists entirely onchain and is designed to remain censorship resistant. Anyone can independently verify the collateral backing every USDp in circulation, while issuance and redemptions are only enforced by immutable code.
+It exists entirely onchain and is designed to remain censorship resistant. Anyone can independently verify the collateral backing every USDp in circulation, with immutable code enforicing minting and redemptions.
 
 ## Using USDp
 
 USDp is minted by depositing pETH as collateral and opening an overcollateralized debt position.
 
-Each position must maintain a minimum collateral ratio of **115%**, meaning every USDp is backed by at least \$1.15 worth of pETH.
+Each position must be opened at or above the minimum collateral ratio of **115%**, meaning every \$1 of USDp debt requires at least \$1.15 worth of pETH collateral at minting. Market movements can later reduce that ratio, making positions that fall below 115% eligible for [liquidation](https://docs.polaris.finance/design/liquidations).
 
 Once minted, USDp functions as a digital dollar that users fully own. It can be sent anywhere on Ethereum, used across DeFi applications or integrated into payment flows without relying on any centralized parties.
 
-On top of that, users who want to earn protocol-native yield can deposit USDp into the **USDp Earn Vault**, which distributes both USDp and pETH from a portion of the interest paid by USDp minters and pETH liquidation gains. The mechanics of the Earn Vault are explained in the dedicated section of the documentation.
+On top of that, users who want to earn protocol-native yield can deposit USDp into the USDp Earn Vault, which distributes both USDp and pETH from a portion of the interest paid by USDp minters and pETH liquidation gains. The mechanics are explained in the [Earn Vaults](https://docs.polaris.finance/architecture/earn-vaults) section.
 
 ## Maintaining the Peg
 
 The USDp peg is supported by pETH overcollateralization and by market participants using the protocol's peg mechanisms whenever arbitrage opportunities arise.
 
-When USDp trades above one dollar, new USDp can be minted 1:1 against pETH collateral and sold into the market. The additional supply creates downward pressure on the market price.
+When USDp trades above one dollar, new USDp can be minted at its \$1 target value against pETH collateral and sold into the market. The additional supply creates downward pressure on the market price.
 
 When USDp trades below one dollar, market participants can redeem USDp for the underlying collateral, which removes USDp from circulation and reduces the circulating supply.
 
 USDp market price | Arbitrage response | Effect on supply
 
-Above \$1 | Mint 1:1 against pETH, sell into market | Supply rises → price pushed down
+Above \$1 | Mint at the \$1 target value, sell into market | Supply rises → price pushed down
 Below \$1 | Redeem USDp for underlying collateral | Supply falls → price pushed up
 
-Together, these mechanisms continuously adjust the circulating supply in response to peg conditions while every USDp remains backed by pETH collateral.
+Together, these mechanisms adjust the circulating supply in response to peg conditions.
 
-Although permissionless 1:1 minting is a genuine innovation for decentralised stablecoins, Polaris builds on this foundation with an additional **stability rate** for debt positions. Architecturally, it automatically shifts collateral and debt from the most leveraged positions to the least, further strengthening the USDp peg during times of stress.
+These arbitrage paths operate through [Adaptive Peg Defense](https://docs.polaris.finance/design/adaptive-peg-defence), distributing the collateral, debt and fees created by direct minting and redemptions across open positions rather than concentrating them in a single position.
+
+Two interest-rate mechanisms complement it: the [Peg Stability Rate](https://docs.polaris.finance/design/interest-rates#peg-stability-rate) adjusts borrowing costs in response to minting and redemption activity, while the [Protocol Safety Rate](https://docs.polaris.finance/design/interest-rates#protocol-safety-rate) redistributes interest from higher-leverage positions to lower-leverage or collateral-only positions when aggregate collateralization falls below its threshold.
 
 At the same time, borrowing economics are structured so that the headline borrowing rate does not necessarily reflect the effective cost of borrowing, with a portion of protocol-generated value distributed back to borrowers as pETH and more favorable terms applied to lower-LTV positions.

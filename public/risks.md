@@ -20,9 +20,9 @@ The following risks are not exhaustive. Users should understand the protocol, th
 
 Polaris depends on smart contracts to manage pETH, pAsset markets, Earn Vaults, liquidations, conversions, Reserve Loans and other protocol mechanisms.
 
-Bugs, implementation errors or unexpected interactions between contracts could lead to loss of funds or incorrect protocol behaviour. Immutability also means that core contracts are not designed to be upgraded or paused after deployment which reduces admin-key risk but increases the importance of audits, testing and careful use.
+Bugs, implementation errors or unexpected interactions between contracts could lead to loss of funds or incorrect protocol behavior. Immutability also means that core contracts are not designed to be upgraded or paused after deployment which reduces admin-key risk but increases the importance of audits, testing and careful use.
 
-## Market And Collateral Risk
+## Market and Collateral Risk
 
 pETH is the shared collateral asset of Polaris. It has a market price and a mathematically derived floor price, but its market price can still move over time.
 
@@ -30,7 +30,7 @@ The premium above the pETH floor may expand or contract depending on demand, liq
 
 Users who mint pAssets against pETH collateral can be liquidated if their position becomes too risky.
 
-## Peg And Liquidity Risk
+## Peg and Liquidity Risk
 
 USDp, GOLDp and future pAssets are designed to track external reference values, but they may trade above or below those values during periods of volatility, low liquidity, oracle disruption or market stress.
 
@@ -44,7 +44,7 @@ If an oracle feed is stale, unavailable, manipulated or misconfigured, the proto
 
 Polaris uses a Medianiser to reduce reliance on a single oracle source where multiple feeds are available, but oracle risk cannot be fully removed.
 
-## Earn Vault And Liquidation Risk
+## Earn Vault and Liquidation Risk
 
 Earn Vaults provide yield by helping absorb liquidations in their pAsset market.
 

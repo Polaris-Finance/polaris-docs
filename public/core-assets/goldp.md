@@ -18,35 +18,37 @@ It is a synthetic asset designed to track the price of one ounce of gold while b
 
 Unlike traditional tokenized gold, no physical bullion is held on behalf of users. Anyone can independently verify the collateral backing every GOLDp in circulation, while issuance and redemptions are enforced by immutable smart contracts.
 
-Because GOLDp exists entirely onchain, users can access digital gold without relying on custodians or KYC requirements.
+Because GOLDp exists entirely onchain, users can access digital gold without KYC requirements or relying on custodians.
 
 ## Using GOLDp
 
 GOLDp is minted by depositing pETH as collateral and opening an overcollateralized debt position.
 
-Like USDp, GOLDp uses the same minting mechanism and minimum collateral ratio of **115%**. In practice, this means every position must hold at least \$1.15 worth of pETH collateral for every \$1 worth of GOLDp.
+Like USDp, GOLDp uses the same minting mechanism and minimum collateral ratio of 115%. In practice, this means every position requires at least \$1.15 worth of pETH collateral for every \$1 worth of GOLDp. Market movements can later reduce that ratio, making positions that fall below 115% eligible for [liquidation](https://docs.polaris.finance/design/liquidations)
 
 Once minted, GOLDp provides onchain exposure to the price of gold. It can be transferred freely on Ethereum, held as a digital gold asset or integrated into DeFi applications.
 
-On top of this, users who want to earn protocol-native yield can also deposit GOLDp into the **GOLDp Earn Vault**, which distributes both GOLDp and pETH from a portion of the interest paid by GOLDp minters and pETH liquidation gains. The mechanics of the Earn Vault are explained in the dedicated section of the documentation.
+On top of this, users who want to earn protocol-native yield can also deposit GOLDp into the **GOLDp Earn Vault**, which distributes both GOLDp and pETH from a portion of the interest paid by GOLDp minters and pETH liquidation gains. The mechanics are explained in the [Earn Vaults](https://docs.polaris.finance/architecture/earn-vaults) section.
 
-Moreover, GOLDp can be used in different ways depending on the strategy. Users may hold it as digital gold, deposit it into the Earn Vault, provide liquidity alongside other gold assets or build other strategies on top of it. The resulting market exposure depends on how GOLDp is ultimately used.
+Users may hold GOLDp as digital gold, deposit it into the Earn Vault, provide liquidity alongside other gold assets or build other strategies on top of it. The resulting market exposure depends on how GOLDp is ultimately used.
 
 ## Maintaining the Peg
 
 The GOLDp peg is supported by pETH overcollateralization and by market participants using the protocol's peg mechanisms whenever arbitrage opportunities arise.
 
-When GOLDp trades above the market price of gold, new GOLDp can be minted 1:1 against pETH collateral and sold into the market. The additional supply creates downward pressure on the market price.
+When GOLDp trades above the market price of gold, new GOLDp can be minted at gold reference value against pETH collateral and sold into the market. The additional supply creates downward pressure on the market price.
 
 When GOLDp trades below the reference price of gold, market participants can redeem GOLDp for the underlying collateral, which removes GOLDp from circulation and reduces the circulating supply.
 
 GOLDp market price | Arbitrage response | Effect on supply
 
-Above gold reference price | Mint 1:1 against pETH, sell into market | Supply rises → price pushed down
+Above gold reference price | Mint at gold reference value, sell into market | Supply rises → price pushed down
 Below gold reference price | Redeem GOLDp for underlying collateral | Supply falls → price pushed up
 
-Together, these mechanisms continuously adjust the circulating supply in response to market conditions while every GOLDp remains backed by pETH collateral.
+Together, these mechanisms adjust the circulating supply in response to market conditions.
 
-Polaris builds on this foundation with an additional **stability rate** built into its CDP architecture. This mechanism applies to every asset issued through Polaris, including GOLDp.
+These arbitrage paths operate through [Adaptive Peg Defense](https://docs.polaris.finance/design/adaptive-peg-defence), distributing the collateral, debt and fees created by direct minting and redemptions across open positions rather than concentrating them in a single position.
+
+Two interest-rate mechanisms complement it: the [Peg Stability Rate](https://docs.polaris.finance/design/interest-rates#peg-stability-rate) adjusts borrowing costs in response to minting and redemption activity, while the [Protocol Safety Rate](https://docs.polaris.finance/design/interest-rates#protocol-safety-rate) redistributes interest from higher-leverage positions to lower-leverage or collateral-only positions when aggregate collateralization falls below its threshold.
 
 At the same time, borrowing mechanics are identical to those of USDp, including the distribution of protocol-generated value as pETH to borrowers and the preferential treatment of lower-LTV positions.
