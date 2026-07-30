@@ -44,7 +44,34 @@
 
   /* One shared hover transition + lift for the card family. */
   --font-serif-stack: var(--font-serif), 'Cormorant Garamond', Georgia, serif;
-  --font-sans-stack: var(--font-sans), 'Inter', system-ui, sans-serif;
+
+  /* Designer stack (July 2026), verbatim after next/font's self-hosted Inter —
+     keeping var(--font-sans) first preserves the metric-matched fallback that
+     stops a layout shift on first paint. */
+  --font-sans-stack:
+    var(--font-sans), Inter, -apple-system, system-ui, 'Segoe UI', Helvetica, 'Apple Color Emoji',
+    Arial, sans-serif, 'Segoe UI Emoji', 'Segoe UI Symbol';
+  --pl-font-mono: 'SF Mono', SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+
+  /* ── Content type scale (designer spec, July 2026) ────────────────────────
+     Sizes are rem-equivalents of the spec's px values at the 16px root, so they
+     render pixel-identically while still honouring a reader's enlarged browser
+     default. Line heights are unitless ratios of the same px pairs; letter
+     spacing is in em so it tracks the size. No fluid typography: interior pages
+     hold these dimensions at every viewport.
+
+     Two colours are AA corrections the designer signed off on, because the
+     source values fail 4.5:1 on white and would drop Lighthouse a11y below 100:
+     caption #848281 (3.82) → #6d6b69 (5.31), link #1A6FF8 (4.49) → #1B6BEF
+     (4.78). The underline colour is the designer's #1A88F8 at 30%, unchanged. */
+  --pl-ink-heading: #343433;
+  --pl-ink-body: #474645;
+  --pl-ink-caption: #6d6b69;
+  --pl-ink-link: #1b6bef;
+  --pl-link-underline: rgba(26, 136, 248, 0.3);
+  --pl-measure: 710px;
+  --pl-rhythm-24: 1.5rem;
+  --pl-rhythm-32: 2rem;
 }
 
 .dark {
@@ -57,6 +84,15 @@
   --pl-table-header-bg: rgba(123, 165, 201, 0.18);
   --pl-table-header-rule: rgba(216, 201, 164, 0.3);
   --pl-table-hover: rgba(123, 165, 201, 0.09);
+
+  /* The type scale's structure is shared; only its inks are per-theme. Dark
+     keeps the star/navy palette it already shipped with — the designer specced
+     light only, and dark must still clear AA (the contrast e2e samples both). */
+  --pl-ink-heading: var(--polaris-star-bright);
+  --pl-ink-body: #e8dcc4;
+  --pl-ink-caption: #b9b19f;
+  --pl-ink-link: #d8c9a4;
+  --pl-link-underline: rgba(216, 201, 164, 0.35);
 
   --pl-icon-gold: #d8c9a4;
   --pl-icon-blue: #7ba5c9;
@@ -110,74 +146,145 @@ body {
   border: 0;
 }
 
-/* Editorial serif headings, matching the landing site. Explicit h1/h2 sizes
-   give the all-prose docs a clearer hierarchy than the theme's text-4xl/3xl
-   defaults; !important is needed where the theme sets the same property with
-   a utility class (font-bold, text-4xl/3xl, nextra-border). Weight is pinned
-   to 600 — the only Cormorant weight the layout loads. */
+/* ── Content type scale ───────────────────────────────────────────────────
+   Inter throughout the article (the serif is retired from content but keeps the
+   wordmark, footer identity and landing — designer Q6). !important is needed
+   wherever the theme states the same property through a utility class
+   (font-bold, text-4xl/3xl, mt-*, nextra-border).
 
-article h1,
-article h2,
-article h3 {
-  font-family: var(--font-serif-stack);
-  letter-spacing: 0.01em;
+   The gold rules that used to underline H1 and sit above H2 are gone (designer
+   Q4), which deliberately supersedes two July 2026 owner decisions. The 24/32
+   rhythm is therefore plain margins with no border or padding to compensate for.
+
+   Hierarchy comes from weight, line-height, colour and spacing — H3 is the same
+   16px as body text on purpose and must never be enlarged. */
+
+article :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--pl-ink-heading);
+  font-family: var(--font-sans-stack);
   text-wrap: balance;
 }
 
 article h1 {
+  margin-bottom: var(--pl-rhythm-24) !important;
+  padding-bottom: 0 !important;
+  border-bottom: 0 !important;
+  font-size: 2rem !important;
   font-weight: 600 !important;
-  font-size: clamp(1.85rem, 1.5rem + 1.2vw, 2.3rem) !important;
-  border-bottom: 1px solid rgba(177, 147, 79, 0.35);
-  padding-bottom: 0.7rem;
+  line-height: 1.25;
+  letter-spacing: -0.014em;
 }
-
-/* The section hairline sits ABOVE the heading (owner decision, July 2026):
-   it separates the new section from the previous one rather than underlining
-   the title. The theme's x:border-b utility needs the !important kill. */
 
 article h2 {
-  font-size: clamp(1.32rem, 1.2rem + 0.5vw, 1.68rem) !important;
+  margin-top: var(--pl-rhythm-32) !important;
+  margin-bottom: var(--pl-rhythm-24) !important;
+  padding-top: 0 !important;
+  border-top: 0 !important;
   border-bottom: 0 !important;
-  border-top: 1px solid rgba(177, 147, 79, 0.35);
-  padding-top: 1.75rem;
+  font-size: 1.25rem !important;
+  font-weight: 500 !important;
+  line-height: 1.1335;
+  letter-spacing: -0.014em;
 }
 
-.dark article h2 {
-  border-top-color: rgba(216, 201, 164, 0.3);
+article h3 {
+  margin-top: var(--pl-rhythm-32) !important;
+  margin-bottom: var(--pl-rhythm-24) !important;
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+  line-height: 1.1875;
+  letter-spacing: normal;
 }
 
-.dark article h1 {
-  border-bottom-color: rgba(216, 201, 164, 0.3);
+/* H4–H6 are not part of the specified hierarchy, so they take Body (designer
+   Q12). No content page uses them today. */
+
+article :is(h4, h5, h6) {
+  margin-top: var(--pl-rhythm-32) !important;
+  margin-bottom: var(--pl-rhythm-24) !important;
+  color: var(--pl-ink-body);
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+  line-height: 1.5;
+  letter-spacing: -0.011em;
 }
 
-/* ── Two-tier prose hierarchy ─────────────────────────────────────────
-   Muted body prose lets headings and emphasis anchor reader focus.
-   Dark body prose stays a touch below the star-bright headings/strong so
-   the hierarchy holds, but sits high enough (full star → ~14.6:1) to read
-   crisply on the near-black canvas. Contrast: light ~7.5:1. */
+/* Body. Paragraph rhythm is 24px trailing only: p→p collapses to 24, heading→p
+   uses the heading's 24 bottom margin, and p→heading collapses to the heading's
+   32 top margin. Declaring both a 32 trailing margin and a 32 leading one would
+   render 56. */
 
 article :is(p, li) {
-  color: #43536b;
+  color: var(--pl-ink-body);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.011em;
 }
 
-.dark article :is(p, li) {
-  color: #e8dcc4;
+article p {
+  margin-top: 0 !important;
+  margin-bottom: var(--pl-rhythm-24) !important;
 }
+
+/* Emphasis follows the existing principle — strong reads at heading ink. */
 
 article :is(strong, b) {
-  color: var(--polaris-navy);
+  color: var(--pl-ink-heading);
 }
 
-.dark article :is(strong, b) {
-  color: var(--polaris-star-bright);
+/* Body links: no underline at rest, weight 500, and an underline in the
+   designer's #1A88F8 at 30% on every interactive state. Scoped to prose so the
+   landing's card links keep their own treatment.
+
+   The weight is load-bearing for accessibility, not decoration. With no
+   rest-state underline, axe's link-in-text-block rule (WCAG 1.4.1, weight 7 in
+   Lighthouse's a11y score) passes only because the link's font-weight differs
+   from its parent block's — link-vs-body contrast is 2.10:1, far under the
+   rule's 3:1, and no colour can satisfy both 3:1 against body ink and 4.5:1
+   against white. Equalising link and body weight without restoring a rest
+   underline drops the a11y score below 100 and fails the deploy gate. */
+
+article :is(p, li, td, th, blockquote) a[href] {
+  color: var(--pl-ink-link);
+  font-weight: 500;
+  text-decoration: none;
 }
 
-article :is(h1, h2, h3, h4) {
-  color: var(--polaris-navy);
+article :is(p, li, td, th, blockquote) a[href]:is(:hover, :focus, :focus-visible, :active) {
+  text-decoration: underline;
+  text-decoration-color: var(--pl-link-underline);
 }
 
-.dark article :is(h1, h2, h3, h4) {
-  color: var(--polaris-star-bright);
+/* Small / caption. */
+
+article figcaption {
+  color: var(--pl-ink-caption);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.2143;
+  letter-spacing: normal;
+}
+
+/* Inline code and code blocks. !important beats the theme's .nextra-code rule,
+   which states font-size at class specificity. */
+
+article :not(pre) > code {
+  color: var(--pl-ink-body);
+  font-family: var(--pl-font-mono) !important;
+  font-size: 0.8125rem !important;
+  font-weight: 400;
+  /* .nextra-code states line-height at class specificity too. */
+  line-height: 1.2 !important;
+  letter-spacing: -0.0138em;
+}
+
+article :is(pre, pre code) {
+  font-family: var(--pl-font-mono) !important;
+  font-size: 0.875rem !important;
+  font-weight: 400;
+  line-height: 1.4 !important;
+  letter-spacing: normal;
 }
 
 /* Dark mode — the canonical Polaris surface */
@@ -251,11 +358,16 @@ article pre:focus-visible {
   outline-offset: 3px;
 }
 
-/* Keep prose at a readable measure inside the compact shell while figures,
-   diagrams, and tables retain the full article width. */
+/* The measure is the column, not the paragraph (designer Q9): text, images,
+   infographics and tables all live inside 710px. This retires the July decision
+   that let infographics break out wider than the prose.
 
-article :is(p, li) {
-  max-width: 72ch;
+   Capping the article rather than `main` keeps its siblings — the Copy-page
+   control and the prev/next row — aligned to the same column edge. The article's
+   inline padding is the 64px shell gap, so its content box lands on 710px. */
+
+article {
+  max-width: calc(var(--pl-measure) + var(--pl-shell-gap));
 }
 
 /* Curated docs entry point: pathways for learning, using, and evaluating the
@@ -376,12 +488,17 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
   height: auto;
 }
 
-/* The landing keeps the site-wide gold H1 rule: it is what makes the page read
-   as documentation rather than a landing page, and every other page has it. */
+/* The landing is out of scope for the July 2026 type spec (designer Q6 + Q11):
+   it keeps the editorial serif, its large responsive H1 and its own scale, so
+   the interior 32px Inter H1 rule is restated here in the old values. Only the
+   gold rule is gone, because Q4 removes that from every H1. */
 article:has(.pl-docs-home) main > h1:first-of-type {
   max-width: 100%;
-  margin: 0;
+  margin: 0 !important;
+  font-family: var(--font-serif-stack);
   font-size: clamp(2.15rem, 1.8rem + 1.2vw, 2.85rem) !important;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
 }
 
 /* Plain body size, not a lede — the I10 lede rule was removed by owner decision
@@ -1048,13 +1165,19 @@ article table[data-pl-table] :is(th, td) {
   border-bottom-color: var(--pl-table-rule);
 }
 
-/* Cell text is <td>/<th>, so the two-tier prose colour on :is(p, li) never
-   reaches it and cells fall back to the theme's cool gray ramp. Pull body
-   cells onto the muted body ink and headers onto the emphasis tier so tables
-   read in the same warm palette as the surrounding prose. */
+/* Cell text is <td>/<th>, so the body rule on :is(p, li) never reaches it and
+   cells fall back to the theme's cool gray ramp. Tables inherit Body typography
+   (designer Q12); their structure — rules, header band, hover, first-column
+   weight — is unchanged. Cells are already 16px, so only the ink, line-height
+   and tracking move. */
+
+article table[data-pl-table] :is(th, td) {
+  line-height: 1.5;
+  letter-spacing: -0.011em;
+}
 
 article table[data-pl-table] tbody td {
-  color: #43536b;
+  color: var(--pl-ink-body);
 }
 
 article table[data-pl-table] tbody tr,
@@ -1069,7 +1192,7 @@ article table[data-pl-table] tbody tr:nth-child(even) {
 
 article table[data-pl-table] thead th {
   text-align: left;
-  color: var(--polaris-navy);
+  color: var(--pl-ink-heading);
   background: var(--pl-table-header-bg);
   border-bottom: 1px solid var(--pl-table-header-rule);
 }
@@ -1103,7 +1226,7 @@ article table[data-pl-table] tbody tr:hover {
 }
 
 .dark article table[data-pl-table] tbody td {
-  color: #e8dcc4;
+  color: var(--pl-ink-body);
 }
 
 .dark article table[data-pl-table] tbody tr,
@@ -1113,7 +1236,7 @@ article table[data-pl-table] tbody tr:hover {
 }
 
 .dark article table[data-pl-table] thead th {
-  color: var(--polaris-star-bright);
+  color: var(--pl-ink-heading);
   border-bottom-color: var(--pl-table-header-rule);
 }
 
@@ -1168,29 +1291,20 @@ html:not(.dark) article img[data-nimg]:not([src$='.svg']):not([src*='/infographi
   box-shadow: 0 2px 14px rgba(13, 31, 60, 0.08);
 }
 
-/* Infographics carry fine detail (labels, curves, multi-node flows) that gets
-   cramped at the 72ch prose measure. Let them break out to the full content
-   column — noticeably wider than body text — capped so they stay sensible on
-   ultrawide screens. Screenshots keep their natural size. */
+/* Infographics fill the content column and stop there: the 710px measure applies
+   to every content element, not just to text (designer Q9), so the breakout that
+   used to give their fine detail extra room is retired. Screenshots keep their
+   natural size. */
 
 article img[src*='/infographics/'] {
   display: block;
   width: 100%;
-  max-width: 80rem;
   height: auto;
   margin-top: 1.5rem;
 }
 
 article figcaption {
-  max-width: 72ch;
   margin-top: 0.55rem;
-  color: rgba(58, 74, 90, 0.86);
-  font-size: 0.82rem;
-  line-height: 1.55;
-}
-
-.dark article figcaption {
-  color: rgba(232, 220, 196, 0.74);
 }
 
 /* ── Navbar logo ─────────────────────────────────────────────────────────── */
@@ -1211,9 +1325,9 @@ article figcaption {
     radial-gradient(circle at 50% 50%, rgba(250, 246, 238, 0.08), transparent 42%),
     var(--polaris-navy-dark);
   border: 1px solid rgba(177, 147, 79, 0.28);
-  box-shadow:
-    0 1px 2px rgba(5, 10, 20, 0.16),
-    0 0 0 1px rgba(250, 246, 238, 0.45);
+  /* The second ring used to be a cream halo lifting the mark off the cream
+     navbar; on white it would be invisible, so only the drop shadow remains. */
+  box-shadow: 0 1px 2px rgba(5, 10, 20, 0.16);
 }
 
 .dark .pl-logo-mark {
@@ -1263,7 +1377,7 @@ article [class*='overflow-x-auto']::after {
   right: 0;
   bottom: 0;
   width: 24px;
-  background: linear-gradient(90deg, transparent, rgba(250, 247, 240, 0.9));
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9));
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -1433,7 +1547,7 @@ article [class*='overflow-x-auto']:has(table)::after {
 
   article :is(p, li),
   article figcaption {
-    max-width: 72ch !important;
+    max-width: var(--pl-measure) !important;
   }
 
   article table[data-pl-table] {
@@ -1475,13 +1589,19 @@ article [class*='overflow-x-auto']:has(table)::after {
   /* Nextra interpolates this token into IntersectionObserver.rootMargin,
      which accepts px/% but rejects rem values. */
   --nextra-navbar-height: 70px !important;
-  --nextra-content-width: 1200px !important;
-  --pl-shell-max: 1200px;
-  --pl-rail-width: 224px;
-  --pl-shell-gap: clamp(24px, 3vw, 40px);
-  --pl-navbar-bg: #faf7f0;
-  --pl-overlay-bg: #fffdf8;
-  --pl-footer-bg: #f3efe7;
+
+  /* One content wrapper (designer Q10): 240px rail + 64px gap + 710px column =
+     1014px, centred, with the outer page padding outside that total. There is
+     deliberately no wider container behind it — a 1200px shell would leave dead
+     space to the right of a 710px column. */
+  --nextra-content-width: 1014px !important;
+  --pl-shell-max: 1014px;
+  --pl-rail-width: 240px;
+  --pl-shell-gap: 64px;
+  --pl-page-pad: clamp(16px, 2vw, 32px);
+  --pl-navbar-bg: #ffffff;
+  --pl-overlay-bg: #ffffff;
+  --pl-footer-bg: #ffffff;
   --pl-ui-ink: #0d1f3c;
   --pl-ui-muted: #4b5d73;
   --pl-ui-soft: rgba(13, 31, 60, 0.07);
@@ -1531,8 +1651,17 @@ html {
   backdrop-filter: none !important;
 }
 
+/* The navbar and the shell wrapper share one geometry: a 1014px inner column
+   plus the outer page padding, so the header, the rail and the content column
+   all sit on the same two vertical edges. */
+
+.nextra-navbar nav,
+div:has(> .nextra-sidebar) {
+  max-width: calc(var(--pl-shell-max) + 2 * var(--pl-page-pad)) !important;
+  padding-inline: var(--pl-page-pad) !important;
+}
+
 .nextra-navbar nav {
-  max-width: var(--pl-shell-max) !important;
   gap: 0.75rem !important;
 }
 
@@ -1635,8 +1764,10 @@ html {
 }
 
 @media (min-width: 768px) {
+  /* The gap belongs to the article's leading edge only; its trailing edge is the
+     wrapper's, so the content box lands on exactly 710px. */
   .nextra-sidebar ~ article {
-    padding-inline: var(--pl-shell-gap) !important;
+    padding-inline: var(--pl-shell-gap) 0 !important;
   }
 
   .nextra-sidebar {
@@ -1653,9 +1784,11 @@ html {
     gap: 0 !important;
   }
 
+  /* Nesting is communicated by 16px of indentation and nothing else — no size
+     step, no colour step, no extra vertical space (designer S17–S20, S26). */
   .nextra-sidebar ul ul {
     margin-inline-start: 0 !important;
-    padding-inline-start: 1.25rem !important;
+    padding-inline-start: 16px !important;
     padding-top: 0 !important;
   }
 
@@ -1663,10 +1796,12 @@ html {
     display: none !important;
   }
 
+  /* Group label row: 6px + 19px + 6px = 31px, with 24px of air above each group
+     and none above the first (the rail's own top padding covers that). */
   .nextra-sidebar li:has(> .pl-nav-group-label) {
-    margin-top: 2.65rem !important;
-    margin-bottom: 0.55rem !important;
-    padding: 0 0.45rem !important;
+    margin-top: 24px !important;
+    margin-bottom: 0 !important;
+    padding: 6px 0.45rem !important;
   }
 
   .nextra-sidebar li:has(> .pl-nav-group-label):first-child {
@@ -1674,28 +1809,45 @@ html {
   }
 
   .pl-nav-group-label {
-    color: var(--pl-ui-ink);
-    font-size: 0.84rem;
+    display: block;
+    color: var(--pl-ink-heading);
+    font-size: 0.75rem;
     font-weight: 600;
-    line-height: 1.3;
+    /* 19px at 12px — the fourth decimal is what makes the row measure exactly
+       31px rather than 30.98px. */
+    line-height: 1.5834;
+    letter-spacing: -0.001em;
+    text-transform: uppercase;
   }
 
+  /* Navigation rows: 22px of line inside 4px of padding = a 30px row, text
+     vertically centred, transparent at every state. Top-level and nested rows
+     are the same rule — only the indentation differs. */
   .nextra-sidebar a,
   .nextra-sidebar button[data-href] {
-    min-height: 32px !important;
-    padding: 0.28rem 0.4rem !important;
-    border-radius: 4px !important;
+    min-height: 30px !important;
+    align-items: center;
+    padding: 4px 0.4rem !important;
+    border-radius: 8px !important;
     background: transparent !important;
-    color: var(--pl-ui-muted) !important;
+    color: var(--pl-ink-caption) !important;
     font-size: 0.875rem !important;
-    font-weight: 450 !important;
-    line-height: 1.25;
+    font-weight: 400 !important;
+    line-height: 1.5714;
+    letter-spacing: -0.0064em;
+    cursor: pointer;
+    transition: color 180ms ease-out;
   }
 
+  /* Hover and active share one treatment; active simply persists once the
+     pointer leaves. `font-weight` is not an animatable property, so the 180ms
+     transition carries the colour and the weight snaps. */
   .nextra-sidebar a:hover,
-  .nextra-sidebar button[data-href]:hover {
+  .nextra-sidebar button[data-href]:hover,
+  .nextra-sidebar li.active > a {
     background: transparent !important;
-    color: var(--pl-ui-ink) !important;
+    color: var(--pl-ink-heading) !important;
+    font-weight: 500 !important;
   }
 
   .pl-nav-label {
@@ -1706,49 +1858,42 @@ html {
     gap: 0.5rem;
   }
 
+  /* Pinned to the resting ink rather than currentColor: the row's text changes
+     colour on hover and the icon must not follow it (designer S14). */
   .nextra-sidebar .pl-nav-icon {
     display: block;
     width: 18px;
     height: 18px;
     flex: 0 0 18px;
-    color: currentColor;
+    color: var(--pl-ink-caption);
   }
 
+  /* One line per row, so the 400→500 hover step can never rewrap a label and
+     break the fixed 30px rhythm. The label is left-aligned after a fixed-size
+     icon and the trailing chevron is placed by flex, so a slightly wider
+     weight-500 string moves neither the icon nor the row. */
   .pl-nav-text {
     min-width: 0;
-    overflow-wrap: anywhere;
-    white-space: normal;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
-  .nextra-sidebar li.active > a {
-    background: transparent !important;
-    color: var(--pl-ui-ink) !important;
-    font-weight: 650 !important;
-  }
-
-  /* Grey at rest, the group's own tone once active or pointed at — Aave's
-     sidebar model, in place of a single shared accent for every icon. The
-     glyph also rises a pixel and settles, so the state change is movement and
-     not only a colour swap. */
+  /* Icons hold still on hover (designer S14): the row's state change is text
+     only. The group tone and the 1px lift survive on the *active* row, where
+     they do wayfinding work rather than reacting to the pointer — the designer
+     relaxed S14 for the rail's token icons, and this is the same trade.
+     The pAsset PNGs keep the rest→hover treatment they shipped with (CEO
+     constraint, July 2026: that artwork is untouchable). */
   .nextra-sidebar li.active > a .pl-nav-icon {
     color: var(--pl-icon-tone, var(--pl-active));
     stroke-width: 2.15;
     transform: translateY(-1px);
   }
 
-  .nextra-sidebar :is(a, button[data-href]):is(:hover, :focus-visible) .pl-nav-icon {
-    color: var(--pl-icon-tone, var(--pl-active));
-    transform: translateY(-1px);
-  }
-
   .nextra-sidebar :is(a, button[data-href]):is(:hover, :focus-visible) .pl-nav-icon-asset,
   .nextra-sidebar li.active > a .pl-nav-icon-asset {
     filter: none;
-  }
-
-  .nextra-sidebar li:has(li.active) > button[data-href] {
-    color: var(--pl-ui-ink) !important;
-    font-weight: 600 !important;
   }
 
   /* Collapse chevron, bumped alongside the glyphs so the row stays optically
@@ -2480,9 +2625,12 @@ button.pl-search-row {
 
 /* Curated footer */
 
+/* White footer with the divider on the inner wrapper, so the rule spans exactly
+   the sidebar + content column (1014px) rather than the full viewport
+   (designer Q7). */
+
 .pl-footer {
   width: 100%;
-  border-top: 1px solid var(--pl-ui-hairline);
   background: var(--pl-footer-bg);
   color: var(--pl-ui-muted);
 }
@@ -2491,6 +2639,7 @@ button.pl-search-row {
   display: grid;
   width: 100%;
   max-width: var(--pl-shell-max);
+  border-top: 1px solid var(--pl-ui-hairline);
   grid-template-columns: minmax(0, 1fr) auto auto;
   align-items: center;
   gap: 1.5rem;

@@ -153,7 +153,7 @@ export default async function RootLayout({ children }) {
     >
       <Head
         color={{ hue: 41, saturation: 42, lightness: { dark: 76, light: 37 } }}
-        backgroundColor={{ dark: '#050a14', light: '#faf7f0' }}
+        backgroundColor={{ dark: '#050a14', light: '#ffffff' }}
       />
       <body>
         <JsonLd data={buildGlobalJsonLd()} />
@@ -165,7 +165,7 @@ export default async function RootLayout({ children }) {
           editLink={null}
           feedback={{ content: null }}
           sidebar={{ defaultMenuCollapseLevel: 1, toggleButton: false }}
-          nextThemes={{ defaultTheme: 'dark' }}
+          nextThemes={{ defaultTheme: 'light' }}
         >
           {children}
         </Layout>

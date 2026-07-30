@@ -637,27 +637,30 @@ test('search snippets avoid hidden vocabulary and table boilerplate', async ({ p
   expect(text).not.toMatch(/Search vocabulary|Table columns|Skip to content/i)
 })
 
-test('desktop theme menu can switch to light mode', async ({ page }, testInfo) => {
+// Light is the default theme (designer decision, July 2026), so these switch to
+// dark: picking the mode the page already renders would assert nothing.
+test('desktop theme menu can switch to dark mode', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'desktop', 'desktop-only theme check')
 
   await page.goto(pathWithBase('/'))
+  await expect(page.locator('html')).toHaveClass(/light/)
 
   await page.locator('button[title="Change theme"]:visible').first().click()
-  await page.getByRole('option', { name: /light/i }).click()
+  await page.getByRole('option', { name: /dark/i }).click()
 
-  await expect(page.locator('html')).toHaveClass(/light/)
+  await expect(page.locator('html')).toHaveClass(/dark/)
 })
 
-test('mobile menu theme control can switch to light mode', async ({ page }, testInfo) => {
+test('mobile menu theme control can switch to dark mode', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'mobile', 'mobile-only theme check')
 
   await page.goto(pathWithBase('/'))
   const dialog = await openMobileMenu(page)
 
   await dialog.locator('button[title="Change theme"]').click()
-  await page.getByRole('option', { name: /light/i }).click()
+  await page.getByRole('option', { name: /dark/i }).click()
 
-  await expect(page.locator('html')).toHaveClass(/light/)
+  await expect(page.locator('html')).toHaveClass(/dark/)
   await expect(dialog).toBeVisible()
 })
 

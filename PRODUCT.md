@@ -33,7 +33,7 @@ Emotional goal: **earned trust through clarity**. The reader should feel they ar
 This must NOT look or feel like any of:
 
 - **Generic DeFi degen** — neon-on-black, glowing gradients, APY-bait, rocket/moon hype, animated-coin gimmicks. The speculative-casino aesthetic is the opposite of the project's thesis.
-- **Sterile corporate fintech** — Stripe/Circle-style blue-and-white SaaS, stock illustration, marketing buzzwords, the "institutional T-bill desk" polish the protocol explicitly rejects.
+- **Sterile corporate fintech** — Stripe/Circle-style blue-and-white SaaS, stock illustration, marketing buzzwords, the "institutional T-bill desk" polish the protocol explicitly rejects. (The July 2026 type spec does put a saturated blue on prose links over a white content column; that single accent is sanctioned, the surrounding aesthetic is not.)
 - **Generic dev-docs template** — undifferentiated Docusaurus/GitBook grey: no identity, everything a card, flat hierarchy, "every docs site looks the same."
 - **Overwrought / cluttered** — decorative effects for their own sake, glassmorphism everywhere, busy backgrounds that fight the readability of dense technical content.
 
@@ -48,6 +48,8 @@ This must NOT look or feel like any of:
 ## Accessibility & Inclusion
 
 - **Target: WCAG 2.2 AA.** The project already invests here (a corrected light-mode focus-ring in `globals.css`; reduced-motion fallbacks on the timeline and card animations).
-- **Dark mode is canonical**, light mode is fully supported — both must meet AA. Body text uses Star (`#E8DCC4`), never pure white, and must clear 4.5:1 against its navy/cream surface; verify on tinted backgrounds where muted text tends to fail.
+- **Light mode is the default surface** (designer decision, July 2026): a pure white canvas with warm-neutral inks (`#343433` headings, `#474645` body, `#6D6B69` captions and sidebar rows). Dark mode stays fully supported and canonical to the brand — both must meet AA. Dark body text uses Star (`#E8DCC4`), never pure white. Verify every ink on tinted backgrounds, where muted text tends to fail.
+- **Two spec colours were darkened for contrast, and must not drift back**: the caption/sidebar grey `#848281` → `#6D6B69` (3.82:1 → 5.31:1 on white) and the link blue `#1A6FF8` → `#1B6BEF` (4.49:1 → 4.78:1). `scripts/check-lighthouse.mjs` requires accessibility = 100 and scores the *default* theme, so light-mode contrast is the gated path.
+- **Prose links carry weight 500 for accessibility, not style.** They have no rest-state underline (it appears on hover/focus), so axe's `link-in-text-block` rule passes only on the weight difference from surrounding body text — no colour can satisfy both 3:1 against body ink and 4.5:1 against white. Never equalise link and body weight without restoring a rest underline.
 - **Reduced motion is not optional** — the twinkle/halo and card-hover animations already gate on `prefers-reduced-motion`; any new motion must do the same.
 - **Don't encode meaning in color alone** — token colors (pUSD/pETH/POLAR) and status (done/now/forthcoming) must also read via label, shape, or text, for color-blind readers.
