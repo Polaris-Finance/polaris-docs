@@ -279,6 +279,14 @@ article :is(p, li) {
   border-top: 1px solid var(--pl-ui-hairline);
   border-bottom: 1px solid var(--pl-ui-hairline);
   color: var(--pl-ui-ink);
+  transition: border-color var(--pl-card-motion, 240ms ease-out);
+}
+
+/* Pointing at the strip warms its hairlines and brings the flask up to full
+   colour, matching the trust rows. It stays fill-free, border-free and
+   glow-free — the quiet element between the two card groups. */
+.pl-testnet-banner:hover {
+  border-color: color-mix(in srgb, var(--pl-card-accent) 62%, transparent);
 }
 
 .pl-testnet-banner-icon {
@@ -286,6 +294,12 @@ article :is(p, li) {
   align-items: center;
   justify-content: center;
   color: var(--pl-icon-tone, var(--pl-active));
+  opacity: 0.72;
+  transition: opacity var(--pl-card-motion, 240ms ease-out);
+}
+
+.pl-testnet-banner:hover .pl-testnet-banner-icon {
+  opacity: 0.95;
 }
 
 .pl-testnet-banner-copy {
@@ -400,6 +414,197 @@ article:has(.pl-docs-home) main > h1:first-of-type + p {
   text-decoration: none;
 }
 
+/* ── Landing card system ──────────────────────────────────────────────────
+   One recipe for every landing surface (CEO direction, July 2026): a fill
+   almost identical to the page and a hover grammar of lift + a glow that
+   breathes. The accent is whichever tone token the surface carries, so no new
+   palette enters the system, and every animated property is transform or
+   opacity.
+
+   The cards carry no outline at rest or on hover (colleague feedback, July
+   2026): a card should read as clickable because it moves and because its fill
+   differs slightly from the page, not because it is drawn as a box. Only the
+   featured hero keeps an edge-lit ring — that glassy edge is the point of it.
+   Accent strength is deliberately below the first pass, which read too bright. */
+
+.pl-docs-hero,
+.pl-docs-card-link,
+.pl-docs-row-link,
+.pl-testnet-banner {
+  --pl-card-accent: var(--pl-icon-tone, var(--pl-active));
+  --pl-card-motion: 240ms cubic-bezier(0.2, 0.7, 0.3, 1);
+  /* Icon parts move slower than the card they sit on: at glyph scale the same
+     duration reads as a twitch. */
+  --pl-glyph-motion: 420ms cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+/* The glow is a pre-rendered layer whose opacity is what moves; animating the
+   box-shadow itself would repaint the card every frame. */
+.pl-docs-hero::after,
+.pl-docs-card-link::after {
+  position: absolute;
+  z-index: -1;
+  border-radius: inherit;
+  content: '';
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--pl-card-motion);
+}
+
+/* Hero only: the ring brightens with the bloom. */
+.pl-docs-hero::after {
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--pl-card-accent) 55%, transparent),
+    0 10px 26px -12px color-mix(in srgb, var(--pl-card-accent) 60%, transparent);
+}
+
+/* Cards: a diffuse bloom with no hard edge, so nothing reads as a border. */
+.pl-docs-card-link::after {
+  box-shadow: 0 8px 22px -12px color-mix(in srgb, var(--pl-card-accent) 42%, transparent);
+}
+
+.pl-docs-hero:is(:hover, :focus-visible)::after,
+.pl-docs-card-link:is(:hover, :focus-visible)::after {
+  animation: pl-card-breathe 2600ms ease-in-out 280ms infinite alternate;
+  opacity: 1;
+}
+
+@keyframes pl-card-breathe {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.72;
+  }
+}
+
+/* Featured entry point. The oversized gradient layer drifts and breathes on
+   transform/opacity only — no blur, no canvas, no image, so it costs the
+   above-the-fold LCP nothing. */
+
+.pl-docs-hero {
+  /* Light mode mixes dark accents into a cream page, so the same wash strength
+     that reads as depth on the night canvas reads as mud on the day one. */
+  --pl-hero-wash: 0.28;
+
+  position: relative;
+  display: grid;
+  overflow: hidden;
+  align-items: center;
+  gap: 1.25rem;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  margin-bottom: 1.4rem;
+  padding: 1.7rem 1.6rem;
+  border-radius: 14px;
+  background-color: color-mix(in srgb, var(--pl-card-accent) 5%, transparent);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--pl-card-accent) 26%, transparent),
+    0 2px 6px rgba(13, 31, 60, 0.06);
+  color: var(--pl-ui-ink);
+  contain: paint;
+  text-decoration: none;
+  transition:
+    transform var(--pl-card-motion),
+    background-color var(--pl-card-motion);
+}
+
+.pl-docs-hero::before {
+  position: absolute;
+  z-index: -1;
+  background:
+    radial-gradient(
+      36% 58% at 24% 42%,
+      color-mix(in srgb, var(--pl-icon-gold) 19%, transparent),
+      transparent 68%
+    ),
+    radial-gradient(
+      32% 52% at 70% 58%,
+      color-mix(in srgb, var(--pl-icon-blue) 24%, transparent),
+      transparent 68%
+    ),
+    radial-gradient(
+      28% 46% at 52% 14%,
+      color-mix(in srgb, var(--pl-icon-violet) 16%, transparent),
+      transparent 70%
+    );
+  animation:
+    pl-hero-drift 32s ease-in-out infinite alternate,
+    pl-hero-breathe 6s ease-in-out infinite alternate;
+  content: '';
+  inset: -45%;
+  opacity: var(--pl-hero-wash);
+}
+
+.dark .pl-docs-hero {
+  --pl-hero-wash: 0.55;
+}
+
+@keyframes pl-hero-drift {
+  from {
+    transform: translate3d(-2.5%, -2%, 0);
+  }
+  to {
+    transform: translate3d(2.5%, 2%, 0);
+  }
+}
+
+@keyframes pl-hero-breathe {
+  from {
+    opacity: calc(var(--pl-hero-wash) * 0.84);
+  }
+  to {
+    opacity: calc(var(--pl-hero-wash) * 1.16);
+  }
+}
+
+.pl-docs-hero:is(:hover, :focus-visible) {
+  background-color: color-mix(in srgb, var(--pl-card-accent) 9%, transparent);
+  transform: translateY(-3px) scale(1.004);
+}
+
+.pl-docs-hero-icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  color: var(--pl-card-accent);
+}
+
+.pl-docs-hero-copy {
+  display: grid;
+  min-width: 0;
+  gap: 0.3rem;
+}
+
+.pl-docs-hero-copy strong {
+  color: var(--pl-ui-ink);
+  font: 600 1.3rem/1.25 var(--font-serif-stack);
+}
+
+.pl-docs-hero-copy > span {
+  color: var(--pl-ui-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+/* The affordance is the arrow, not a call-to-action label: the landing copy is
+   frozen, so the movement has to carry the "start here" cue. */
+.pl-docs-hero-arrow {
+  flex: none;
+  color: var(--pl-card-accent);
+  opacity: 0.75;
+  transition:
+    transform var(--pl-card-motion),
+    opacity var(--pl-card-motion);
+}
+
+.pl-docs-hero:is(:hover, :focus-visible) .pl-docs-hero-arrow {
+  opacity: 1;
+  transform: translateX(4px);
+}
+
 .pl-docs-welcome-grid,
 .pl-docs-action-grid,
 .pl-docs-trust-grid,
@@ -421,14 +626,17 @@ article:has(.pl-docs-home) main > h1:first-of-type + p {
   gap: 0.85rem;
 }
 
-/* Borderless: a tint, not a box. Aave's cards carry a fill and nothing else,
-   and no min-height, so rows size to their content and the grid stops reading
-   as one uniform system. */
+/* A tint, not a box: the fill is the only resting cue. No min-height, so rows
+   still size to their content. */
 .pl-docs-card-link {
+  position: relative;
   padding: 1.15rem 1.2rem;
-  border-radius: 10px;
-  background: var(--pl-ui-soft);
-  transition: background-color 0.18s ease-out;
+  border-radius: 11px;
+  background-color: color-mix(in srgb, var(--pl-card-accent) 4%, transparent);
+  isolation: isolate;
+  transition:
+    transform var(--pl-card-motion),
+    background-color var(--pl-card-motion);
 }
 
 .pl-docs-trust-grid {
@@ -436,11 +644,15 @@ article:has(.pl-docs-home) main > h1:first-of-type + p {
   column-gap: 1.5rem;
 }
 
+/* The trust row keeps its hairline structure and gains the card system's
+   accent and motion — same grammar, quieter dial. */
 .pl-docs-row-link {
   min-height: 118px;
   padding: 1.15rem 0.2rem;
   border-top: 1px solid var(--pl-ui-hairline);
-  transition: border-color 0.18s ease-out;
+  transition:
+    border-color var(--pl-card-motion),
+    transform var(--pl-card-motion);
 }
 
 .pl-docs-reference-grid {
@@ -462,18 +674,36 @@ article:has(.pl-docs-home) main > h1:first-of-type + p {
 }
 
 /* Free-standing glyph, no tile behind it — the tiles were six extra boxes and
-   were most of what made the icons read as emoji badges. Tone at rest, damped,
-   going full strength with a small lift on hover. */
+   were most of what made the icons read as emoji badges. Tone at rest, damped
+   further than the first pass so the accents stop shouting, going stronger on
+   hover; the movement belongs to the glyph's own parts (see the icon motion
+   block below), not to the glyph as a whole. */
 .pl-docs-link-icon {
   display: inline-flex;
   flex: none;
   align-items: center;
   justify-content: center;
   color: var(--pl-icon-tone, var(--pl-active));
-  opacity: 0.82;
-  transition:
-    opacity 0.18s ease-out,
-    transform 0.18s ease-out;
+  opacity: 0.72;
+  transition: opacity var(--pl-card-motion);
+}
+
+/* Token artwork is damped more lightly than the drawn glyphs — the logos are
+   filled orbs, so they carry far more weight than a line glyph at the same
+   opacity — but it is damped, because at full colour they were the loudest
+   thing on the page. Same rest-to-hover idea the nav rail already uses for
+   these PNGs; the artwork itself is untouched. */
+.pl-docs-link-logo {
+  display: block;
+  border-radius: 50%;
+}
+
+.pl-docs-link-icon:has(.pl-docs-link-logo) {
+  opacity: 0.85;
+}
+
+.pl-docs-card-link:is(:hover, :focus-visible) .pl-docs-link-icon:has(.pl-docs-link-logo) {
+  opacity: 1;
 }
 
 .pl-docs-link-copy {
@@ -513,36 +743,176 @@ article:has(.pl-docs-home) main > h1:first-of-type + p {
   margin-top: 0;
 }
 
-/* Row links keep the hairline cue; cards deepen their fill and nothing else. */
-.pl-docs-row-link:hover,
+/* Row links take the accent on their hairline; cards lift into their glow. */
+.pl-docs-row-link:is(:hover, :focus-visible) {
+  border-color: color-mix(in srgb, var(--pl-card-accent) 62%, transparent);
+  transform: translateY(-1px);
+}
+
 .pl-docs-reference-link:hover {
   border-color: var(--pl-active);
 }
 
-.pl-docs-card-link:hover {
-  background: color-mix(in srgb, var(--pl-ui-soft) 72%, var(--pl-active) 6%);
+.pl-docs-card-link:is(:hover, :focus-visible) {
+  background-color: color-mix(in srgb, var(--pl-card-accent) 7%, transparent);
+  transform: translateY(-2px) scale(1.01);
 }
 
-.pl-docs-card-link:hover .pl-docs-link-icon,
-.pl-docs-row-link:hover .pl-docs-link-icon,
-.pl-docs-card-link:focus-visible .pl-docs-link-icon,
-.pl-docs-row-link:focus-visible .pl-docs-link-icon {
-  opacity: 1;
-  transform: translateY(-1px);
+.pl-docs-card-link:is(:hover, :focus-visible) .pl-docs-link-icon,
+.pl-docs-row-link:is(:hover, :focus-visible) .pl-docs-link-icon {
+  opacity: 0.95;
 }
 
-.pl-docs-card-link:hover .pl-docs-link-arrow,
-.pl-docs-row-link:hover .pl-docs-link-arrow,
 .pl-docs-reference-link:hover .pl-docs-link-arrow {
   color: var(--pl-ui-ink);
   transform: translateX(3px);
 }
 
+.pl-docs-hero:focus-visible,
 .pl-docs-card-link:focus-visible,
 .pl-docs-row-link:focus-visible,
 .pl-docs-reference-link:focus-visible {
   outline: 2px solid var(--x-color-primary-600);
   outline-offset: 3px;
+}
+
+/* ── Glyph duotone + icon motion ──────────────────────────────────────────
+   Two tones per glyph give the icons the weight of product icons instead of
+   single-weight outlines. On hover the glyph restates its own concept with a
+   small mechanical movement of one part — a book cover opening, a curve
+   drawing itself — rather than scaling as a whole. Every rule below moves
+   transform, opacity or stroke-dashoffset only.
+
+   `.pl-motion` marks the surfaces that own both a glyph and a hover state;
+   sidebar glyphs deliberately stay out of it (thirty part-animations in a nav
+   rail is noise, not polish). */
+
+.pl-glyph [data-tone='soft'] {
+  opacity: 0.45;
+}
+
+.pl-glyph [data-part] {
+  transform-box: view-box;
+  transform-origin: center;
+  transition: transform var(--pl-glyph-motion, 420ms ease-out);
+}
+
+/* Polaris 101 — the cover opens a few degrees at the spine. */
+.pl-glyph [data-part='book-cover'] {
+  transform-origin: 12px 18px;
+}
+
+.pl-motion:is(:hover, :focus-visible) .pl-glyph [data-part='book-cover'] {
+  transform: rotate(-9deg);
+}
+
+/* Bonding curve — the curve redraws and the point rides up it. */
+.pl-glyph [data-part='curve-line'],
+.pl-glyph [data-part='shield-check'] {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 0;
+}
+
+.pl-motion:is(:hover, :focus-visible) .pl-glyph [data-part='curve-line'] {
+  animation: pl-glyph-draw 820ms cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+.pl-motion:is(:hover, :focus-visible) .pl-glyph [data-part='curve-dot'] {
+  animation: pl-glyph-curve-dot 820ms cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+@keyframes pl-glyph-draw {
+  from {
+    stroke-dashoffset: 100;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes pl-glyph-curve-dot {
+  0% {
+    opacity: 0;
+    transform: translate(-12px, 9.8px);
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+/* Reserve loans — the coin drops into the hand and settles. */
+.pl-glyph [data-part='loan-coin'] {
+  transition: transform 480ms cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+.pl-motion:is(:hover, :focus-visible) .pl-glyph [data-part='loan-coin'] {
+  transform: translateY(2.4px);
+}
+
+/* Security — the check draws in across the shield. */
+.pl-motion:is(:hover, :focus-visible) .pl-glyph [data-part='shield-check'] {
+  animation: pl-glyph-draw 700ms cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+/* Risks — the alert mark blinks once. No shake. */
+.pl-motion:is(:hover, :focus-visible) .pl-glyph [data-part='risk-mark'] {
+  animation: pl-glyph-blink 700ms ease-out;
+}
+
+@keyframes pl-glyph-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  45% {
+    opacity: 0.2;
+  }
+}
+
+/* Stewardship — the beam tilts, then rebalances. */
+.pl-glyph [data-part='scale-beam'] {
+  transform-origin: 12px 6.8px;
+}
+
+.pl-motion:is(:hover, :focus-visible) .pl-glyph [data-part='scale-beam'] {
+  animation: pl-glyph-rebalance 1300ms cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+@keyframes pl-glyph-rebalance {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  35% {
+    transform: rotate(-7deg);
+  }
+  70% {
+    transform: rotate(4deg);
+  }
+}
+
+/* Testnet — bubbles keep rising in the flask for as long as you point at the
+   strip. A single 1.4s bubble was too easy to miss (colleague feedback). */
+.pl-motion:is(:hover, :focus-visible) .pl-glyph [data-part='flask-bubble'] {
+  animation: pl-glyph-bubble 1900ms ease-out infinite;
+}
+
+@keyframes pl-glyph-bubble {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  25% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
 }
 
 @container docs-home (max-width: 48rem) {
@@ -559,6 +929,15 @@ article:has(.pl-docs-home) main > h1:first-of-type + p {
   .pl-docs-welcome-grid,
   .pl-docs-action-grid {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pl-docs-hero {
+    gap: 1rem;
+    padding: 1.35rem 1.15rem;
+  }
+
+  .pl-docs-hero-copy strong {
+    font-size: 1.18rem;
   }
 }
 
@@ -1235,7 +1614,9 @@ html {
 
 .pl-nav-icon {
   display: none;
-  transition: color 80ms ease-out;
+  transition:
+    color 80ms ease-out,
+    transform 180ms var(--pl-ease-out);
 }
 
 /* pAsset logos in the nav rail: dampened at rest, full colour on
@@ -1326,9 +1707,9 @@ html {
 
   .nextra-sidebar .pl-nav-icon {
     display: block;
-    width: 16px;
-    height: 16px;
-    flex: 0 0 16px;
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
     color: currentColor;
   }
 
@@ -1345,14 +1726,18 @@ html {
   }
 
   /* Grey at rest, the group's own tone once active or pointed at — Aave's
-     sidebar model, in place of a single shared accent for every icon. */
+     sidebar model, in place of a single shared accent for every icon. The
+     glyph also rises a pixel and settles, so the state change is movement and
+     not only a colour swap. */
   .nextra-sidebar li.active > a .pl-nav-icon {
     color: var(--pl-icon-tone, var(--pl-active));
     stroke-width: 2.15;
+    transform: translateY(-1px);
   }
 
   .nextra-sidebar :is(a, button[data-href]):is(:hover, :focus-visible) .pl-nav-icon {
     color: var(--pl-icon-tone, var(--pl-active));
+    transform: translateY(-1px);
   }
 
   .nextra-sidebar :is(a, button[data-href]):is(:hover, :focus-visible) .pl-nav-icon-asset,
@@ -1365,10 +1750,12 @@ html {
     font-weight: 600 !important;
   }
 
+  /* Collapse chevron, bumped alongside the glyphs so the row stays optically
+     balanced at the larger icon size. */
   .nextra-sidebar li > :is(a, button[data-href]) > svg:last-child {
-    width: 15px;
-    height: 15px;
-    flex: 0 0 15px;
+    width: 16px;
+    height: 16px;
+    flex: 0 0 16px;
   }
 
   .nextra-sidebar-footer {
@@ -2030,9 +2417,9 @@ button.pl-search-row {
 
 .pl-mobile-nav-row .pl-nav-icon {
   display: block;
-  width: 17px;
-  height: 17px;
-  flex: 0 0 17px;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
 }
 
 .pl-mobile-nav-row-label {

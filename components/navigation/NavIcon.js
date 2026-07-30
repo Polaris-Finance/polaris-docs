@@ -1,96 +1,9 @@
 import { createElement } from 'react'
 import { pathWithBase } from '../../app/site-config.mjs'
-import {
-  Activity,
-  ArrowLeftRight,
-  BadgeCheck,
-  BadgeDollarSign,
-  BookOpen,
-  ChartColumn,
-  ChartLine,
-  ChartPie,
-  CircleDollarSign,
-  Cog,
-  Coins,
-  Compass,
-  FileText,
-  FlaskConical,
-  Gavel,
-  Gem,
-  HandCoins,
-  Hexagon,
-  Landmark,
-  Layers3,
-  LayoutDashboard,
-  LifeBuoy,
-  Map as MapIcon,
-  Network,
-  Orbit,
-  Percent,
-  RadioTower,
-  RefreshCw,
-  Route as RouteIcon,
-  Scale,
-  ScrollText,
-  ShieldAlert,
-  ShieldCheck,
-  SlidersHorizontal,
-  Split as SplitIcon,
-  Stamp,
-  Telescope,
-  TrendingUp,
-  TriangleAlert,
-  Vault,
-  Vote,
-  Waves,
-  Workflow
-} from 'lucide-react'
+import { Glyph } from '../icons/Glyph.js'
+import { GLYPH_SHAPES } from '../icons/glyph-shapes.mjs'
 
-export const NAV_ICON_REGISTRY = Object.freeze({
-  Activity,
-  ArrowLeftRight,
-  BadgeCheck,
-  BadgeDollarSign,
-  BookOpen,
-  ChartColumn,
-  ChartLine,
-  ChartPie,
-  CircleDollarSign,
-  Cog,
-  Coins,
-  Compass,
-  FileText,
-  FlaskConical,
-  Gavel,
-  Gem,
-  HandCoins,
-  Hexagon,
-  Landmark,
-  Layers3,
-  LayoutDashboard,
-  LifeBuoy,
-  Map: MapIcon,
-  Network,
-  Orbit,
-  Percent,
-  RadioTower,
-  RefreshCw,
-  Route: RouteIcon,
-  Scale,
-  ScrollText,
-  ShieldAlert,
-  ShieldCheck,
-  SlidersHorizontal,
-  Split: SplitIcon,
-  Stamp,
-  Telescope,
-  TrendingUp,
-  TriangleAlert,
-  Vault,
-  Vote,
-  Waves,
-  Workflow
-})
+export const NAV_ICON_REGISTRY = GLYPH_SHAPES
 
 export const ASSET_ICONS = Object.freeze({
   'asset:peth': '/asset-icons/peth.png',
@@ -105,7 +18,7 @@ export function hasNavIcon(icon) {
   return Boolean(icon && (NAV_ICON_REGISTRY[icon] || ASSET_ICONS[icon]))
 }
 
-export function NavIcon({ icon, className = '', size = 16, strokeWidth = 1.8, tone }) {
+export function NavIcon({ icon, className = '', size = 18, strokeWidth = 1.8, tone }) {
   const toneClass = tone ? `pl-icon-tone-${tone}` : ''
 
   if (ASSET_ICONS[icon]) {
@@ -121,11 +34,9 @@ export function NavIcon({ icon, className = '', size = 16, strokeWidth = 1.8, to
     })
   }
 
-  const Icon = NAV_ICON_REGISTRY[icon] ?? FileText
-  return createElement(Icon, {
-    'aria-hidden': 'true',
+  return createElement(Glyph, {
     className: ['pl-nav-icon', toneClass, className].filter(Boolean).join(' '),
-    focusable: 'false',
+    name: icon,
     size,
     strokeWidth
   })
