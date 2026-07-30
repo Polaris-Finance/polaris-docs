@@ -16,7 +16,7 @@ Stablecoins are the largest monetary application built on blockchains today, and
 
 As the range of assets built on top of Polaris expands, that same collateral asset can support currencies, commodities and synthetic assets that all share the same infrastructure.
 
-Meanwhile, the reserve asset itself can scale and evolve alongside the ecosystem. One example is splitting pETH into fpETH and vpETH, allowing users to unlock entirely new financial strategies. Aadditional protocol primitives can then build on the same foundation, expanding what users can do with pETH as the reserve asset.
+Meanwhile, the reserve asset itself can scale and evolve alongside the ecosystem. One example is splitting pETH into fpETH and vpETH, allowing users to unlock entirely new financial strategies. Additional protocol primitives can then build on the same foundation, expanding what users can do with pETH as the reserve asset.
 
 The same principle applies to anything built on top of it, because **Polaris is designed as infrastructure**, with third-party builders able to permissionlessly issue their own stablecoins, synthetic assets and financial products.
 
