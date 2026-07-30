@@ -7,19 +7,19 @@ description: "USDp is the native Polaris dollar."
 
 USDp is the native Polaris dollar.
 
-It tracks the value of the US dollar while being backed by pETH through overcollateralized debt positions.
+It tracks the value of the US dollar using overcollateralized debt positions backed by pETH.
 
-It exists entirely onchain and is designed to remain censorship resistant. Anyone can independently verify the collateral backing every USDp in circulation, with immutable code enforicing minting and redemptions.
+It exists entirely onchain and is designed to remain censorship resistant. **Anyone can independently verify the collateral backing every USDp** in circulation, with immutable code enforicing minting and redemptions.
 
 ## Using USDp
 
 USDp is minted by depositing pETH as collateral and opening an overcollateralized debt position.
 
-Each position must be opened at or above the minimum collateral ratio of **115%**, meaning every \$1 of USDp debt requires at least \$1.15 worth of pETH collateral at minting. Market movements can later reduce that ratio, making positions that fall below 115% eligible for [liquidation](/design/liquidations).
+Each position must be opened at or above the **minimum collateral ratio of 115%**, meaning every \$1 of USDp debt requires at least \$1.15 worth of pETH collateral at minting. Market movements can later reduce that ratio, making positions that fall below 115% eligible for [liquidations](/design/liquidations).
 
 Once minted, USDp functions as a digital dollar that users fully own. It can be sent anywhere on Ethereum, used across DeFi applications or integrated into payment flows without relying on any centralized parties.
 
-On top of that, users who want to earn protocol-native yield can deposit USDp into the USDp Earn Vault, which distributes both USDp and pETH from a portion of the interest paid by USDp minters and pETH liquidation gains. The mechanics are explained in the [Earn Vaults](/architecture/earn-vaults) section.
+On top of that, users who want to earn protocol-native yield can deposit USDp into the **USDp Earn Vault**, which distributes both USDp and pETH from a portion of the interest paid by USDp minters and pETH liquidation gains. The exact mechanics are explained in the [Earn Vaults](/architecture/earn-vaults) section.
 
 ## Maintaining the Peg
 
@@ -31,7 +31,7 @@ When USDp trades below one dollar, market participants can redeem USDp for the u
 
 | USDp market price | Arbitrage response | Effect on supply |
 | --- | --- | --- |
-| Above \$1 | Mint at the \$1 target value, sell into market | Supply rises → price pushed down |
+| Above \$1 | Mint at \$1 target value, sell into market | Supply rises → price pushed down |
 | Below \$1 | Redeem USDp for underlying collateral | Supply falls → price pushed up |
 
 Together, these mechanisms adjust the circulating supply in response to peg conditions.
@@ -40,4 +40,4 @@ These arbitrage paths operate through [Adaptive Peg Defense](/design/adaptive-pe
 
 Two interest-rate mechanisms complement it: the [Peg Stability Rate](/design/interest-rates#peg-stability-rate) adjusts borrowing costs in response to minting and redemption activity, while the [Protocol Safety Rate](/design/interest-rates#protocol-safety-rate) redistributes interest from higher-leverage positions to lower-leverage or collateral-only positions when aggregate collateralization falls below its threshold.
 
-At the same time, borrowing economics are structured so that the headline borrowing rate does not necessarily reflect the effective cost of borrowing, with a portion of protocol-generated value distributed back to borrowers as pETH and more favorable terms applied to lower-LTV positions.
+At the same time, borrowing economics are structured so that **the headline borrowing rate does not necessarily reflect the effective cost of borrowing**, with borrowers receiving a portion of protocol-generated value as pETH and lower-LTV positions benefiting from more favorable borrowing terms.
