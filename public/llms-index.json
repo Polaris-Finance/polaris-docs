@@ -43,7 +43,7 @@
       "markdownUrl": "https://docs.polaris.finance/index.md",
       "section": "Introduction",
       "title": "Polaris Documentation",
-      "description": "Polaris is an onchain protocol built around pETH, a yield-bearing reserve asset that collateralizes decentralized stablecoins and synthetic assets.",
+      "description": "Polaris is onchain monetary infrastructure built on pETH, a shared, yield-bearing reserve asset for permissionless currencies, commodities and synthetic assets.",
       "keywords": [
         "app",
         "official app",
@@ -399,7 +399,7 @@
       "markdownUrl": "https://docs.polaris.finance/polaris-101.md",
       "section": "Introduction",
       "title": "Polaris 101",
-      "description": "An introduction to Polaris, the onchain yield layer built around pETH.",
+      "description": "An introduction to Polaris, the onchain monetary infrastructure built around pETH.",
       "keywords": [
         "app",
         "official app",

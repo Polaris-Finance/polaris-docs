@@ -11,13 +11,13 @@ That premium reflects what the market believes pETH is worth beyond its floor. I
 
 As shown in the previous page, splitting one pETH transforms it into one fpETH and one vpETH. Together they always reconstruct the original pETH, while allowing users to hold, trade and build strategies around two different sources of value.
 
-While fpETH isolates the steadily growing floor, vpETH isolates the component of pETH through which the market expresses its expectations for the future growth of Polaris
+While fpETH isolates the steadily growing floor, vpETH isolates the component of pETH through which the market expresses its expectations for the future growth of Polaris.
 
 ## Understanding vpETH
 
 Let's go back to Bob and Alice.
 
-When Bob split his original pETH, it was worth 1 ETH. At the time, pETH floor was 0.75 ETH, while the remaining 0.25 ETH represented the market premium. Bob kept fpETH because he wanted exposure to the steadily growing floor, while Alice bought vpETH.
+When Bob split his original pETH, it was worth 1 ETH. At the time, the pETH floor was 0.75 ETH, while the remaining 0.25 ETH represented the market premium. Bob kept fpETH because he wanted exposure to the steadily growing floor, while Alice bought vpETH.
 
 Alice saw the opportunity differently, as she believed the market was underestimating how much additional value Polaris would create as the ecosystem continued to grow, and how much of that value would eventually be reflected in the premium of pETH.
 
@@ -57,8 +57,10 @@ The simplest way to use vpETH is to gain direct exposure to the market premium o
 
 Some users may simply hold it because they believe the market is underestimating the future growth of Polaris. But others may actively trade it as the premium expands and contracts over time.
 
-Because vpETH represents the portion of pETH that trades above its bonding curve floor, it can also serve as a useful hedging tool. For example, users holding over-collateralised debt positions on Polaris may choose to short vpETH to reduce their exposure to changes in the premium while continuing to hold the underlying pETH position.
+Because vpETH represents the portion of pETH that trades above its bonding curve floor, it can also serve as a useful hedging tool. For example, users holding overcollateralized debt positions on Polaris may choose to short vpETH to reduce their exposure to changes in the premium while continuing to hold the underlying pETH position.
 
-This effectively leaves the user exposed only to the ETH/USD price, which also can be hedged on an external venue to remain completely delta-neutral, while still earning protocol-native yield.
+After the premium hedge, the remaining ETH/USD exposure can be hedged on an external venue to make the combined position delta-neutral with respect to ETH/USD while preserving exposure to growth in the pETH floor.
+
+Because the position and hedge values can change, maintaining neutrality may require rebalancing, while the strategy remains exposed to funding, basis, liquidation, liquidity, oracle and smart contract risk.
 
 As Polaris expands, additional applications may also build around vpETH.

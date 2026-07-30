@@ -23,9 +23,9 @@ The following risks are not exhaustive. Users should understand the protocol, th
 
 Polaris depends on smart contracts to manage pETH, pAsset markets, Earn Vaults, liquidations, conversions, Reserve Loans and other protocol mechanisms.
 
-Bugs, implementation errors or unexpected interactions between contracts could lead to loss of funds or incorrect protocol behaviour. Immutability also means that core contracts are not designed to be upgraded or paused after deployment which reduces admin-key risk but increases the importance of audits, testing and careful use.
+Bugs, implementation errors or unexpected interactions between contracts could lead to loss of funds or incorrect protocol behavior. Immutability also means that core contracts are not designed to be upgraded or paused after deployment, which reduces admin-key risk but increases the importance of audits, testing and careful use.
 
-## Market And Collateral Risk
+## Market and Collateral Risk
 
 pETH is the shared collateral asset of Polaris. It has a market price and a mathematically derived floor price, but its market price can still move over time.
 
@@ -33,7 +33,7 @@ The premium above the pETH floor may expand or contract depending on demand, liq
 
 Users who mint pAssets against pETH collateral can be liquidated if their position becomes too risky.
 
-## Peg And Liquidity Risk
+## Peg and Liquidity Risk
 
 USDp, GOLDp and future pAssets are designed to track external reference values, but they may trade above or below those values during periods of volatility, low liquidity, oracle disruption or market stress.
 
@@ -47,7 +47,7 @@ If an oracle feed is stale, unavailable, manipulated or misconfigured, the proto
 
 Polaris uses a Medianiser to reduce reliance on a single oracle source where multiple feeds are available, but oracle risk cannot be fully removed.
 
-## Earn Vault And Liquidation Risk
+## Earn Vault and Liquidation Risk
 
 Earn Vaults provide yield by helping absorb liquidations in their pAsset market.
 
@@ -61,7 +61,7 @@ Polaris uses bounded stewardship rather than open-ended governance. Stewards can
 
 However, stewardship can still influence certain parts of the ecosystem, including protocol parameters, oracle feed replacement, flow recipients and incentive programs. As a result, these decisions can shape liquidity, integrations, yields and other economic dynamics across Polaris.
 
-## Execution And Integration Risk
+## Execution and Integration Risk
 
 Polaris runs on Ethereum and inherits Ethereum-related risks, including congestion, high gas costs, transaction failure, MEV, reorgs and censorship by some validators.
 
@@ -84,9 +84,11 @@ Markdown URL: https://docs.polaris.finance/risks/security-properties.md
 
 Polaris is designed to minimize trust wherever possible, although some sources of uncertainty remain unavoidable and are covered in the dedicated Risks section.
 
+> **Note:** Polaris is currently on the Sepolia public testnet, so the properties below describe the architecture being tested rather than guarantees about undeployed mainnet contracts. Mainnet assurances must be verified against the final deployed contracts and their source code; testnet assets have no monetary value or claim on future production assets.
+
 The architectural decisions below remove many of the trust assumptions commonly found in DeFi, allowing users to interact directly with transparent onchain mechanisms.
 
-**The core protocol has no admin privileges.** Once deployed, no individual or organization can move user funds or change the protocol rules.
+**The core protocol has no admin privileges.** Once deployed, no administrator can move user funds through a privileged function or replace the core protocol logic.
 
 **The core protocol is immutable.** Its fundamental mechanics cannot be upgraded or replaced after deployment.
 
@@ -99,5 +101,9 @@ The architectural decisions below remove many of the trust assumptions commonly 
 **Every pAsset is fully collateralized at minting.** The protocol does not allow privileged actors, multisigs or administrators to create unbacked assets outside the normal minting process.
 
 **Stewardship remains bounded.** Ecosystem parameters can evolve over time without giving anyone the ability to rewrite the core protocol or introduce new collateral.
+
+Immutability applies to the core protocol mechanics. [Stewardship](https://docs.polaris.finance/architecture/stewardship) can update a limited set of ecosystem parameters within predefined boundaries, including interest rate splits, POLAR conversion parameters, oracle feed replacement, flow recipients and flow weightings. It cannot modify the bonding curve or liquidation mechanics, introduce new collateral or upgrade the core contracts.
+
+These properties reduce admin, upgrade and counterparty risk without removing the smart contract, market, oracle or integration risks covered in the [Risks](https://docs.polaris.finance/risks) section.
 
 Relevant app/search vocabulary: risk, risks, risk disclosure, smart contract risk, liquidation risk.

@@ -7,9 +7,11 @@ description: "Polaris is designed to minimize trust wherever possible, although 
 
 Polaris is designed to minimize trust wherever possible, although some sources of uncertainty remain unavoidable and are covered in the dedicated Risks section.
 
+> **Note:** Polaris is currently on the Sepolia public testnet, so the properties below describe the architecture being tested rather than guarantees about undeployed mainnet contracts. Mainnet assurances must be verified against the final deployed contracts and their source code; testnet assets have no monetary value or claim on future production assets.
+
 The architectural decisions below remove many of the trust assumptions commonly found in DeFi, allowing users to interact directly with transparent onchain mechanisms.
 
-**The core protocol has no admin privileges.** Once deployed, no individual or organization can move user funds or change the protocol rules.
+**The core protocol has no admin privileges.** Once deployed, no administrator can move user funds through a privileged function or replace the core protocol logic.
 
 **The core protocol is immutable.** Its fundamental mechanics cannot be upgraded or replaced after deployment.
 
@@ -22,3 +24,7 @@ The architectural decisions below remove many of the trust assumptions commonly 
 **Every pAsset is fully collateralized at minting.** The protocol does not allow privileged actors, multisigs or administrators to create unbacked assets outside the normal minting process.
 
 **Stewardship remains bounded.** Ecosystem parameters can evolve over time without giving anyone the ability to rewrite the core protocol or introduce new collateral.
+
+Immutability applies to the core protocol mechanics. [Stewardship](/architecture/stewardship) can update a limited set of ecosystem parameters within predefined boundaries, including interest rate splits, POLAR conversion parameters, oracle feed replacement, flow recipients and flow weightings. It cannot modify the bonding curve or liquidation mechanics, introduce new collateral or upgrade the core contracts.
+
+These properties reduce admin, upgrade and counterparty risk without removing the smart contract, market, oracle or integration risks covered in the [Risks](/risks) section.

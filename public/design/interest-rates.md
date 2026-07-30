@@ -31,7 +31,7 @@ Payments | Protocol revenue → Earn Vault + vePOLAR | Redistributed from higher
 
 The Peg Stability Rate is the standard borrowing cost paid by users who mint pAssets.
 
-Interest paid through the Peg Stability Rate becomes the primary yield source for that pAsset market and is distributed to the pAsset's Earn Vault and vePOLAR stakers, according to the market's configured flow allocation assigned.
+Interest paid through the Peg Stability Rate becomes the primary yield source for that pAsset market and is distributed to the pAsset's Earn Vault and vePOLAR stakers according to the market's configured flow allocation.
 
 A unique feature of the Peg Stability Rate is that it is not altered by governance or manual intervention. Instead, it adjusts automatically based on minting and redemption activity taking place inside the protocol.
 
