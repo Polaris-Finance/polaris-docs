@@ -1,4 +1,3 @@
-import { ArrowRight, ExternalLink } from 'lucide-react'
 import Link from 'next/link'
 import { EXTERNAL_LINKS } from '../app/navigation-config.mjs'
 import { pathWithBase } from '../app/site-config.mjs'
