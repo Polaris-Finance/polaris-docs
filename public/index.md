@@ -15,5 +15,3 @@ Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 Polaris is an onchain protocol built around pETH, a yield-bearing reserve asset that collateralizes decentralized stablecoins and synthetic assets.
 
 Users can unlock liquidity from their collateral and earn protocol-native yield in a system built on new onchain primitives.
-
-![Polaris flow from swapping ETH for pETH to minting pAssets, splitting pETH, and entering stewardship.](https://docs.polaris.finance/infographics/home.jpg)

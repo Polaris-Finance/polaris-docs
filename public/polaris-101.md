@@ -16,6 +16,8 @@ Polaris is an onchain yield layer built around pETH, **a yield-bearing reserve a
 
 ETH enters the system through the Polaris bonding curve and becomes pETH, the collateral asset at the center of the ecosystem. Stablecoins, commodities and synthetic assets are all issued against pETH, while economic activity within the protocol generates value that flows back into the system.
 
+![Polaris flow from swapping ETH for pETH to minting pAssets, splitting pETH, and entering stewardship.](https://docs.polaris.finance/infographics/home.jpg)
+
 Together, these mechanisms form a monetary system where protocol activity strengthens collateral, collateral supports liquidity, and liquidity drives further protocol activity, without relying on external counterparties or offchain dependencies.
 
 The flagship stablecoin of the Polaris ecosystem is USDp, a **fully decentralized and censorship-resistant** dollar backed by pETH.
