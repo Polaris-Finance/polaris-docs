@@ -12,7 +12,7 @@ Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 ---
 
-One of the unique properties of pETH is that it has both a market price and a mathematically-derived floor.
+One of the unique properties of pETH is that it has both a market price and **a mathematically-derived floor**.
 
 The floor gradually grows as more economic activity takes place across Polaris, while the market price remains free to fluctuate according to demand. As a result, pETH can and will trade above its floor, meaning every pETH combines two different sources of value: the steadily growing floor and the market premium that exists above it.
 
@@ -20,7 +20,7 @@ For many users, holding the original pETH exactly as it is makes perfect sense.
 
 While others may simply prefer holding the steadily growing floor without being exposed to the volatility of the market premium, or they may simply want to use those two components for entirely different strategies.
 
-Splitting pETH makes that possible by transforming one pETH into two complementary assets:
+Splitting pETH makes that possible by transforming **one pETH into two complementary assets**:
 
 - **fpETH**, which represents the steadily growing floor component of pETH, where its protocol-native yield accumulates.
 - **vpETH**, which represents the volatile market premium of the bonding curve above the floor.
@@ -31,9 +31,9 @@ Splitting pETH produces:
 
 **1 pETH → 1 fpETH + 1 vpETH**
 
-The economic value remains the same before and after the split. What changes is that the floor and the premium become independent tokens, allowing each of them to develop its own use cases.
+The economic value remains the same before and after the split. What changes is that **the floor and the premium become independent assets**, allowing each of them to develop its own use cases.
 
-Splitting pETH is a reversible action, allowing one fpETH and one vpETH to be merged back into one pETH at any time.
+**Splitting pETH is a reversible action**, allowing one fpETH plus one vpETH to be merged back into one pETH at any time.
 
 ![How fpETH isolates the floor component as the pETH supply and spot price change along the bonding curve.](https://docs.polaris.finance/infographics/fpeth.jpg)
 
@@ -43,9 +43,9 @@ To simplify, suppose Bob owns 1 pETH, currently worth 1 ETH.
 
 At that moment, the pETH floor is 0.75 ETH. The remaining 0.25 ETH is the market premium, representing the value at which pETH trades above its floor and reflecting demand for pETH, the pAssets built on top of it and the future growth of Polaris.
 
-Bob wants the steadier part of pETH. He mainly cares about the floor rising over time as Polaris activity routes value back into the collateral.
+**Bob wants the steadier part of pETH**. He mainly cares about the floor rising over time as Polaris activity routes value back into the collateral.
 
-Alice wants the more volatile part. She believes demand for pETH and pAssets will grow, pushing pETH further above its floor as the bonding curve expands.
+**Alice wants the more volatile part**. She believes demand for pETH and pAssets will grow, pushing pETH further above its floor as the bonding curve expands.
 
 So Bob splits his pETH, then keeps fpETH and sells vpETH.
 
@@ -53,28 +53,28 @@ Six months later, the floor has increased from 0.75 ETH to 0.82 ETH as more acti
 
 Bob still holds 1 fpETH and Alice still holds 1 vpETH. Together, those two tokens continue to represent exactly 1 pETH, just as they did on the day of the split.
 
-Stage | Floor | Premium | pETH value
+Time | fpETH (floor) | vpETH (premium) | pETH
 
 At the split | 0.75 ETH | 0.25 ETH | 1.00 ETH
 Six months later | 0.82 ETH | 0.23 ETH | 1.05 ETH
 
-The difference is that 1 pETH is now worth 1.05 ETH, even though fpETH and vpETH still make up exactly one pETH. While the market premium has contracted, the steady growth of the floor has offset that decline, allowing pETH to continue appreciating over time.
+The difference is that 1 pETH is now worth 1.05 ETH, even though **fpETH and vpETH still make up exactly one pETH**. While the market premium has contracted, the steady growth of the floor has offset that decline, allowing pETH to continue appreciating over time.
 
 Bob has benefited from the higher floor and the protocol-native ETH yield it represents, while Alice's position reflects the smaller premium the market now assigns to pETH.
 
-The two assets originated from the same pETH, but each gave its holder exposure to a completely different source of value.
+The two assets originated from the same pETH, **but each gave its holder exposure to a completely different source of value**.
 
 ## A Different Kind of ETH Asset
 
 fpETH remains an ETH-denominated asset, but its value grows for different reasons than most ETH-denominated assets.
 
-For instance, liquid staking tokens grow as validators earn staking rewards and lending strategies depend on borrowers paying interest.
+For instance, liquid staking tokens grow as validators earn staking rewards while lending strategies depend on borrowers paying interest.
 
-fpETH follows the growth of the pETH floor instead. As described in the pETH section, that floor strengthens through the protocol activity taking place across Polaris, without relying on validators or external yield sources.
+fpETH follows the growth of the pETH floor instead. As described in the [pETH](https://docs.polaris.finance/core-assets/peth) section, that **floor strengthens thanks to the protocol activity taking place across Polaris**, without relying on validators or external yield sources.
 
-Rather than being distributed separately, that protocol-native ETH yield is continuously reflected in the growth of the floor itself. This makes it natively yield-bearing while avoiding the volatility associated with the market premium of pETH.
+Rather than being distributed separately, that **protocol-native ETH yield is continuously reflected in the growth of the floor itself**. This makes it natively yield-bearing while avoiding the volatility associated with the market premium of pETH.
 
-Therefore, fpETH is designed to be the least volatile asset built around pETH, with its value following the ever-growing pETH floor.
+Therefore, **fpETH is designed to be the least volatile asset built around pETH**, with its value following the ever-growing pETH floor.
 
 ## Using fpETH
 
@@ -82,12 +82,12 @@ The simplest way to use fpETH is to hold it as passive exposure to the long-term
 
 For users who already hold pETH, splitting it can also be a way to hedge part of its volatility by separating the steadily growing floor from the more volatile premium component.
 
-But fpETH also unlocks **Reserve Loans**, which are one of the core financial primitives introduced by Polaris.
+But fpETH also unlocks **[Reserve Loans](https://docs.polaris.finance/architecture/reserve-loans)**, which are one of the core financial primitives introduced by Polaris.
 
-These Loans allow users to borrow ETH using fpETH as collateral.
+These loans **allow users to borrow ETH using fpETH as collateral**.
 
-Unlike traditional lending markets, these loans are not liquidatable. Therefore, since fpETH represents the floor component of pETH and both the collateral and the borrowed asset are ultimately denominated in ETH, movements in the ETH price cannot push the position below its collateral requirement.
+**Unlike traditional lending markets, these loans are not liquidatable**. Therefore, since fpETH represents the floor component of pETH and both the collateral and the borrowed asset are ultimately denominated in ETH, movements in the ETH price cannot push the position below its collateral requirement.
 
-As a result, users don't need to overcollateralize their ETH borrowing simply to protect themselves from liquidation. Instead, they can borrow up to 100% of the floor value represented by their fpETH, build capital-efficient ETH looping strategies or access liquidity while continuing to benefit from the growth of the pETH floor.
+As a result, users don't need to overcollateralize their ETH borrowing simply to protect themselves from liquidation. Instead, they **can borrow up to 100% of the floor value represented by their fpETH**, build capital-efficient ETH looping strategies or access liquidity while continuing to benefit from the growth of the pETH floor.
 
 As Polaris expands, additional applications may also build around fpETH as a protocol-native reserve asset.
