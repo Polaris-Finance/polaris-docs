@@ -38,6 +38,8 @@ The economic value remains the same before and after the split. What changes is 
 
 Splitting pETH is a reversible action, allowing one fpETH and one vpETH to be merged back into one pETH at any time.
 
+Image: How fpETH isolates the floor component as the pETH supply and spot price change along the bonding curve.
+
 ## Understanding fpETH
 
 To simplify, suppose Bob owns 1 pETH, currently worth 1 ETH.
@@ -186,6 +188,8 @@ The market price is determined by supply and demand and can fluctuate over time,
 
 Because the market price and the floor price are separate, pETH can trade above its floor while the floor itself continues to reflect the minimum ETH backing beneath the asset.
 
+Image: The pETH bonding curve at two supply levels, with each spot price separated into the fpETH floor component and vpETH market premium.
+
 This distinction also makes it possible to have additional Polaris primitives around the two pETH components, called **fpETH** and **vpETH**, which are explored in the dedicated sections of the documentation.
 
 Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor price, pETH bonding curve, bonding curve, pETH floor.
@@ -293,6 +297,8 @@ That premium reflects what the market believes pETH is worth beyond its floor. I
 As shown in the previous page, splitting one pETH transforms it into one fpETH and one vpETH. Together they always reconstruct the original pETH, while allowing users to hold, trade and build strategies around two different sources of value.
 
 While fpETH isolates the steadily growing floor, vpETH isolates the component of pETH through which the market expresses its expectations for the future growth of Polaris
+
+Image: How vpETH represents the changing premium share between the pETH spot price and floor price along the bonding curve.
 
 ## Understanding vpETH
 

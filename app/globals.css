@@ -1178,6 +1178,7 @@ article img[src*='/infographics/'] {
   width: 100%;
   max-width: 80rem;
   height: auto;
+  margin-top: 1.5rem;
 }
 
 article figcaption {
