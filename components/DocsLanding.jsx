@@ -125,7 +125,6 @@ function LandingHero() {
         <strong>{heroLink.label}</strong>
         <span>{heroLink.description}</span>
       </span>
-      <ArrowRight className="pl-docs-hero-arrow" aria-hidden="true" size={20} strokeWidth={1.8} />
     </Link>
   )
 }
