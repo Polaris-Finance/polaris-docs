@@ -3,6 +3,7 @@ import { EXTERNAL_LINKS } from '../app/navigation-config.mjs'
 import { pathWithBase } from '../app/site-config.mjs'
 import { Glyph } from './icons/Glyph.js'
 import { ASSET_ICONS } from './navigation/NavIcon.js'
+import { ExternalLink } from "lucide-react"
 
 // Polaris 101 is the featured entry point (CEO direction, July 2026): a
 // full-width block above the primary grid, carrying the same label, blurb and
