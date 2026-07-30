@@ -11,8 +11,12 @@ const ThemeTh = themeComponents.th ?? 'th'
 // Match both so the responsive-card data-label annotation actually applies.
 const ThemeTd = themeComponents.td ?? 'td'
 const ThemeTr = themeComponents.tr ?? 'tr'
+// Colour, weight and the hover/focus underline all come from globals.css (the
+// designer's July 2026 spec: no underline at rest). The two decoration utilities
+// stay because they keep the underline off the descenders — and off the text
+// metrics, so showing it on hover shifts nothing.
 const mdxAnchorClass =
-  'x:focus-visible:nextra-focus x:text-primary-600 x:underline x:hover:no-underline x:decoration-from-font x:[text-underline-position:from-font]'
+  'x:focus-visible:nextra-focus x:decoration-from-font x:[text-underline-position:from-font]'
 
 function hrefForMdxAnchor(href) {
   return hrefWithBase(href)
