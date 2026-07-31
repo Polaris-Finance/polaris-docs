@@ -4,6 +4,7 @@ import { getPageMap } from 'nextra/page-map'
 import { Inter, Cormorant_Garamond } from 'next/font/google'
 import Script from 'next/script'
 import { A11yEnhancements } from '../components/A11yEnhancements'
+import { ImageZoomEnhancements } from '../components/ImageZoomEnhancements'
 import { PolarisFooter } from '../components/PolarisFooter'
 import { NavbarActions } from '../components/navigation/NavbarActions'
 import { JsonLd } from './JsonLd'
@@ -158,6 +159,7 @@ export default async function RootLayout({ children }) {
           {children}
         </Layout>
         <A11yEnhancements />
+        <ImageZoomEnhancements />
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
           strategy="afterInteractive"

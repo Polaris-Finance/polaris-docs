@@ -34,6 +34,17 @@ function MdxAnchor({ href, className, rel, target, ...props }) {
   })
 }
 
+function MdxImage(props) {
+  return createElement(
+    // MDX emits standalone images inside a paragraph. A block-styled span keeps
+    // the structural wrapper without creating invalid <p><div> nesting during
+    // hydration.
+    'span',
+    { className: 'pl-content-image' },
+    createElement(Image, props)
+  )
+}
+
 function getTextContent(node) {
   if (node === null || node === undefined || typeof node === 'boolean') return ''
   if (typeof node === 'string' || typeof node === 'number') return String(node)
@@ -111,7 +122,7 @@ function AccessibleTable({ children, tabIndex = 0, ...props }) {
   const caption = headers.length ? `Table columns: ${headers.join(', ')}` : 'Data table'
   const isWide = headers.length >= 3
 
-  return createElement(
+  const table = createElement(
     ThemeTable,
     {
       tabIndex,
@@ -127,6 +138,8 @@ function AccessibleTable({ children, tabIndex = 0, ...props }) {
     ),
     annotateTableChildren(children, headers)
   )
+
+  return createElement('div', { className: 'pl-content-table' }, table)
 }
 
 // Merge Polaris-specific MDX component overrides into the docs theme components.
@@ -136,7 +149,7 @@ export function useMDXComponents(components) {
     // Plain image instead of Nextra's zoomable default: react-medium-image-zoom
     // stamps an aria-owns pointing at a modal that only exists once zoomed, which
     // fails axe's aria-valid-attr-value. `Image` keeps Pagefind alt/title indexing.
-    img: Image,
+    img: MdxImage,
     a: MdxAnchor,
     table: AccessibleTable,
     th: TableHeader,

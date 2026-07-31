@@ -929,15 +929,36 @@ test('footer stays compact and uses correct external-link semantics', async ({ p
 
   const footer = page.getByRole('contentinfo', { name: 'Footer' })
   await expect(footer).toBeVisible()
-  await expect(footer.getByText('The pETH-powered yield layer for all of DeFi')).toBeVisible()
+  const emblem = footer.locator('.pl-footer-emblem')
+  await expect(emblem).toBeVisible()
+  await expect(emblem).toHaveAttribute('viewBox', '0 0 28 28')
+  await expect(emblem).toHaveAttribute('width', '24')
+  await expect(emblem).toHaveAttribute('height', '24')
+  await expect(emblem.locator('.pl-footer-emblem-part')).toHaveCount(4)
   await expect(footer.locator('a')).toHaveCount(4)
-  await expect(footer.getByRole('link', { name: 'llms.txt', exact: true })).toHaveAttribute(
+  await expect(footer.getByRole('link', { name: 'Llms.txt', exact: true })).toHaveAttribute(
     'href',
     pathWithBase('/llms.txt')
   )
-  const website = footer.getByRole('link', { name: /Website,? opens in a new tab/i })
+  const website = footer.getByRole('link', { name: /Contact opens in a new tab/i })
   await expect(website).toHaveAttribute('href', ORGANIZATION_URL)
   await expect(website).toHaveAttribute('target', '_blank')
+
+  const footerLinks = footer.locator('a')
+  const positionsBeforeHover = await footerLinks.evaluateAll((links) =>
+    links.map((link) => {
+      const rect = link.getBoundingClientRect()
+      return { x: rect.x, width: rect.width }
+    })
+  )
+  await footer.getByRole('link', { name: /GitHub opens in a new tab/i }).hover()
+  const positionsAfterHover = await footerLinks.evaluateAll((links) =>
+    links.map((link) => {
+      const rect = link.getBoundingClientRect()
+      return { x: rect.x, width: rect.width }
+    })
+  )
+  expect(positionsAfterHover).toEqual(positionsBeforeHover)
 })
 
 test('shell switches exactly at the 767/768 breakpoint across representative viewports', async ({

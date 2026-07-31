@@ -3,10 +3,24 @@
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef } from 'react'
 
-function isOutsideScrollport(element, scrollport) {
-  const item = element.getBoundingClientRect()
-  const rail = scrollport.getBoundingClientRect()
-  return item.top < rail.top || item.bottom > rail.bottom
+function expandActiveSidebarTrail(sidebar, activeLink) {
+  // Search closes its dialog during navigation. Wait for the dialog cleanup to
+  // remove `inert`; synthetic clicks are intentionally suppressed inside an
+  // inert subtree.
+  if (sidebar.closest('[inert]')) return
+
+  const closedFolders = []
+  let ancestor = activeLink.parentElement
+
+  while (ancestor && ancestor !== sidebar) {
+    if (ancestor.matches('li:not(.open)')) {
+      const button = ancestor.querySelector(':scope > button[data-href]')
+      if (button) closedFolders.unshift(button)
+    }
+    ancestor = ancestor.parentElement
+  }
+
+  for (const button of closedFolders) button.click()
 }
 
 export function A11yEnhancements() {
@@ -35,6 +49,23 @@ export function A11yEnhancements() {
       }
     }
 
+    const alignCopyPageWithTitle = () => {
+      const article = document.querySelector('article')
+      const main = article?.querySelector(':scope > main')
+      if (!article || !main || main.querySelector('.pl-docs-home')) return
+      if (main.querySelector(':scope > .pl-article-heading-row')) return
+
+      const copyControl = article.querySelector(':scope > div[class*="x:float-end"]')
+      const heading = main.querySelector(':scope > h1:first-of-type')
+      if (!copyControl || !heading) return
+
+      const row = document.createElement('div')
+      row.className = 'pl-article-heading-row'
+      copyControl.classList.add('pl-copy-page-control')
+      main.insertBefore(row, heading)
+      row.append(heading, copyControl)
+    }
+
     const syncSidebarState = () => {
       const sidebar = document.querySelector('.nextra-sidebar')
       if (!sidebar) return
@@ -44,11 +75,8 @@ export function A11yEnhancements() {
 
       const activeLink = sidebar.querySelector('li.active > a[href]')
       if (activeLink) {
+        expandActiveSidebarTrail(sidebar, activeLink)
         activeLink.setAttribute('aria-current', 'page')
-        const scrollport = activeLink.closest('ul[class*="overflow-y-auto"]') ?? sidebar
-        if (isOutsideScrollport(activeLink, scrollport)) {
-          activeLink.scrollIntoView({ block: 'nearest' })
-        }
       }
 
       const folders = sidebar.querySelectorAll('button[data-href]')
@@ -68,6 +96,7 @@ export function A11yEnhancements() {
     const applyEnhancements = () => {
       labelLandmarks()
       labelCopyPageOptions()
+      alignCopyPageWithTitle()
       syncSidebarState()
     }
 
@@ -94,7 +123,14 @@ export function A11yEnhancements() {
     const observer = new MutationObserver(scheduleEnhancements)
     observer.observe(document.body, {
       attributes: true,
-      attributeFilter: ['class', 'style', 'data-headlessui-state', 'aria-expanded'],
+      attributeFilter: [
+        'class',
+        'style',
+        'data-headlessui-state',
+        'aria-expanded',
+        'aria-hidden',
+        'inert'
+      ],
       childList: true,
       subtree: true
     })
@@ -126,7 +162,7 @@ export function A11yEnhancements() {
         document.querySelector('main')
       if (!destination) return
       if (!destination.hasAttribute('tabindex')) destination.setAttribute('tabindex', '-1')
-      destination.focus({ preventScroll: false })
+      destination.focus({ preventScroll: true })
       if (hashTarget) hashTarget.scrollIntoView({ block: 'start' })
     }, 500)
     return () => window.clearTimeout(timeout)

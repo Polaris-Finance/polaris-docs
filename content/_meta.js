@@ -6,7 +6,8 @@ export default {
   '*': {
     theme: {
       breadcrumb: false,
-      toc: false
+      toc: false,
+      timestamp: false
     }
   },
   ...metaForDirectory('/')
