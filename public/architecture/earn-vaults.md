@@ -14,7 +14,7 @@ Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 Earn Vaults allow pAssets minted through Polaris to become yield-bearing assets.
 
-Users deposit a pAsset into its corresponding Earn Vault, where those deposits are used to absorb liquidations whenever positions exceed the maximum allowed LTV. In return, depositors receive a guaranteed minimum share of the interest paid by pAsset minters over time, along with any pETH liquidation gains.
+Users deposit a pAsset into its corresponding Earn Vault, where those deposits are used to absorb liquidations whenever positions exceed the maximum allowed LTV. In return, depositors receive a **guaranteed minimum share of the interest** paid by pAsset minters over time, along with any pETH liquidation gains.
 
 This makes Earn Vaults the primary mechanism through which protocol-native yield is distributed to pAsset holders. Since both minter interest and liquidation gains originate from activity inside Polaris, the resulting yield does not rely on external lending markets or offchain assets.
 
@@ -28,13 +28,13 @@ In practice, users can transfer or sell an existing Earn Vault position without 
 
 ## Auto-Compounding Vaults
 
-For users who prefer a simpler experience, Polaris also supports auto-compounding vault wrappers represented as ERC-4626 tokens, such as **sUSDp** and **sGOLDp**.
+For users who prefer a simpler experience, Polaris also supports auto-compounding vault wrappers represented as **ERC-4626 tokens**, such as sUSDp and sGOLDp.
 
-These vaults automatically manage the underlying Earn Vault position while making deposits fungible and easier to integrate throughout the wider DeFi ecosystem. Users who prefer a more passive experience can simply hold the ERC-4626 vault token while continuing to accrue the same underlying yield.
+These vaults automatically manage the underlying Earn Vault position and make deposits fungible and easier to integrate throughout the wider DeFi ecosystem.
 
-We expect assets such as sUSDp and sGOLDp to become the primary integration point for wallets, DeFi applications and other protocols building on top of Polaris.
+We expect assets such as **sUSDp and sGOLDp to become the primary integration point** for wallets, DeFi applications and other protocols building on top of Polaris.
 
-Holding form | Represented as | Suits
+Hold | Format | Best for
 
-Earn Vault position | Transferable NFT | Direct control; transfer or sell with accrued rewards
-Auto-compounding wrapper (sUSDp / sGOLDp) | ERC-4626 token (fungible) | Passive holders; DeFi integrations
+Earn Vault position | Transferable NFT | Active management
+Auto-compounding Vault | ERC-4626 Token | Passive holding & DeFi integrations

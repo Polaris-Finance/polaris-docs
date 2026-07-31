@@ -54,4 +54,4 @@ Sicne the market price and the floor price are separate, pETH can trade above it
 
 ![The pETH bonding curve at two supply levels, with each spot price separated into the fpETH floor component and vpETH market premium.](https://docs.polaris.finance/infographics/peth.jpg)
 
-This distinction also makes it possible to have additional Polaris primitives around the two pETH components, called *fpETH* and *vpETH*, which are explored in the dedicated sections of the documentation.
+This distinction also makes it possible to have additional Polaris primitives around the two elements of pETH, called *fpETH* (floor component) and *vpETH* (market premium), which are explored in the dedicated sections of the documentation.

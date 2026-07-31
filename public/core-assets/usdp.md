@@ -36,10 +36,10 @@ When USDp trades above one dollar, new USDp can be minted at its \$1 target valu
 
 When USDp trades below one dollar, market participants can redeem USDp for the underlying collateral, which removes USDp from circulation and reduces the circulating supply.
 
-USDp market price | Arbitrage response | Effect on supply
+USDp price | Arbitrage | Result
 
-Above \$1 | Mint at \$1 target value, sell into market | Supply rises → price pushed down
-Below \$1 | Redeem USDp for underlying collateral | Supply falls → price pushed up
+Above \$1 | Mint and sell USDp | Supply increases, and price returns toward \$1
+Below \$1 | Redeem USDp | Supply decreases, and price returns toward \$1
 
 Together, these mechanisms adjust the circulating supply in response to peg conditions.
 

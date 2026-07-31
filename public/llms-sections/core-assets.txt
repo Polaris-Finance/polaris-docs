@@ -132,10 +132,10 @@ When GOLDp trades above the market price of gold, new GOLDp can be minted at gol
 
 When GOLDp trades below the reference price of gold, market participants can redeem GOLDp for the underlying collateral, which removes GOLDp from circulation and reduces the circulating supply.
 
-GOLDp market price | Arbitrage response | Effect on supply
+GOLDp price | Arbitrage | Result
 
-Above gold reference price | Mint at gold reference value, sell into market | Supply rises → price pushed down
-Below gold reference price | Redeem GOLDp for underlying collateral | Supply falls → price pushed up
+Above gold price | Mint and sell GOLDp | Supply increases, and price returns toward the target
+Below gold price | Redeem GOLDp | Supply decreases, and price returns toward the target
 
 Together, these mechanisms adjust the circulating supply in response to market conditions.
 
@@ -194,7 +194,7 @@ Sicne the market price and the floor price are separate, pETH can trade above it
 
 Image: The pETH bonding curve at two supply levels, with each spot price separated into the fpETH floor component and vpETH market premium.
 
-This distinction also makes it possible to have additional Polaris primitives around the two pETH components, called *fpETH* and *vpETH*, which are explored in the dedicated sections of the documentation.
+This distinction also makes it possible to have additional Polaris primitives around the two elements of pETH, called *fpETH* (floor component) and *vpETH* (market premium), which are explored in the dedicated sections of the documentation.
 
 Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor price, pETH bonding curve, bonding curve, pETH floor.
 
@@ -276,10 +276,10 @@ When USDp trades above one dollar, new USDp can be minted at its \$1 target valu
 
 When USDp trades below one dollar, market participants can redeem USDp for the underlying collateral, which removes USDp from circulation and reduces the circulating supply.
 
-USDp market price | Arbitrage response | Effect on supply
+USDp price | Arbitrage | Result
 
-Above \$1 | Mint at \$1 target value, sell into market | Supply rises → price pushed down
-Below \$1 | Redeem USDp for underlying collateral | Supply falls → price pushed up
+Above \$1 | Mint and sell USDp | Supply increases, and price returns toward \$1
+Below \$1 | Redeem USDp | Supply decreases, and price returns toward \$1
 
 Together, these mechanisms adjust the circulating supply in response to peg conditions.
 

@@ -40,10 +40,10 @@ When GOLDp trades above the market price of gold, new GOLDp can be minted at gol
 
 When GOLDp trades below the reference price of gold, market participants can redeem GOLDp for the underlying collateral, which removes GOLDp from circulation and reduces the circulating supply.
 
-GOLDp market price | Arbitrage response | Effect on supply
+GOLDp price | Arbitrage | Result
 
-Above gold reference price | Mint at gold reference value, sell into market | Supply rises → price pushed down
-Below gold reference price | Redeem GOLDp for underlying collateral | Supply falls → price pushed up
+Above gold price | Mint and sell GOLDp | Supply increases, and price returns toward the target
+Below gold price | Redeem GOLDp | Supply decreases, and price returns toward the target
 
 Together, these mechanisms adjust the circulating supply in response to market conditions.
 
