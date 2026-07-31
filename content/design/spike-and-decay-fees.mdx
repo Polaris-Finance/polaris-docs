@@ -5,16 +5,20 @@ description: "Several core mechanisms in Polaris use spike-and-decay pricing."
 
 # Spike-and-Decay Fees
 
-Several core mechanisms in Polaris use **spike-and-decay pricing**, such as bonding curve swaps, pAsset minting and redemptions, and pETH-to-POLAR conversions. In particular, the first two share the same design but use different parameters, while pETH-to-POLAR conversions use a Dutch auction mechanism.
+Several core mechanisms in Polaris use spike-and-decay pricing, including bonding curve swaps, pAsset minting and redemptions, and pETH-to-POLAR conversions. 
+
+The first two follow the same underlying design with different parameters, whereas pETH-to-POLAR conversions rely on a Dutch auction mechanism.
 
 | Mechanism | Pricing model |
 | --- | --- |
 | Bonding curve swaps | Spike-and-decay |
-| pAsset minting & redemptions | Spike-and-decay (different parameters) |
+| pAsset minting & redemptions | Spike-and-decay (peg parameters) |
 | pETH-to-POLAR conversions | Dutch auction |
 
-Each of these mechanisms responds to a different type of market activity, but they all adjust their pricing according to the same market forces. The result is that higher demand for a particular action also increases its cost. As demand fades, that cost gradually decays until the action becomes attractive again.
+Each of these mechanisms responds to a different type of market activity, but they all adjust their pricing according to the same market forces. 
 
-This allows prices to continuously adapt as market conditions evolve, enabling Polaris to capture more value during periods of higher demand while naturally encouraging activity again as costs decline.
+The result is that **higher demand for a particular action also increases its cost**. As demand fades, that cost gradually decays until the action becomes attractive again.
 
-Once deployed, these mechanisms operate in an entirely immutable manner. Unlike parameters such as the conversion rebate, spike-and-decay pricing is not adjusted through stewardship and responds exclusively to market activity. The minimum and maximum fee ranges will be finalized closer to launch.
+Thus, prices can continuously adapt as market conditions evolve, capturing more value during periods of higher demand before naturally encouraging activity again as costs decline.
+
+Once deployed, **these mechanisms operate in an entirely immutable manner**. Unlike parameters such as the conversion rebate, spike-and-decay pricing is not adjusted through stewardship and responds exclusively to market activity. The minimum and maximum fee ranges will be finalized closer to launch.
