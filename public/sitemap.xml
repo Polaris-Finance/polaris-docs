@@ -86,19 +86,19 @@
   </url>
   <url>
     <loc>https://docs.polaris.finance/design/adaptive-peg-defence</loc>
-    <lastmod>2026-07-30</lastmod>
+    <lastmod>2026-07-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://docs.polaris.finance/design/conversions</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-07-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://docs.polaris.finance/design/fee-router</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-07-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -110,31 +110,31 @@
   </url>
   <url>
     <loc>https://docs.polaris.finance/design/liquidations</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-07-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://docs.polaris.finance/design/oracles</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-07-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://docs.polaris.finance/design/recovery-mode</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-07-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://docs.polaris.finance/design/revenue-model</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-07-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://docs.polaris.finance/design/spike-and-decay-fees</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-07-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -164,13 +164,13 @@
   </url>
   <url>
     <loc>https://docs.polaris.finance/risks</loc>
-    <lastmod>2026-07-30</lastmod>
+    <lastmod>2026-07-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://docs.polaris.finance/risks/security-properties</loc>
-    <lastmod>2026-07-30</lastmod>
+    <lastmod>2026-07-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

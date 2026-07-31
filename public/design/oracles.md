@@ -12,23 +12,23 @@ Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 ---
 
-Polaris is designed to rely on its own onchain mechanisms wherever possible, minimizing its dependence on external inputs. The price of pETH, for example, is determined entirely by the bonding curve and never depends on external price feeds.
+Polaris is designed to rely on its own onchain mechanisms wherever possible, minimizing its dependence on external inputs. For example, **the price of pETH is determined entirely by the bonding curve** and never depends on external price feeds.
 
-However, pAssets require external reference prices. Polaris limits the oracle layer to those markets, with a design that can be reused across every future pAsset while minimizing oracle dependency and remaining resilient to oracle failures.
+However, pAssets require external reference prices. Polaris limits the oracle layer to those markets through a reusable design for every pAsset market, keeping oracle dependency to a minimum without compromising resilience to oracle failures.
 
-To achieve this, Polaris routes every external price through a custom oracle aggregator called the **Medianiser**.
+To achieve this, Polaris routes every external price through a **custom oracle aggregator called the Medianizer**.
 
-The Medianiser is used wherever external reference prices are needed. For instance, USDp uses it for ETH/USD, while GOLDp uses it for both ETH/USD and XAU/USD. Future pAssets follow the same approach by using the reference feeds required for their own underlying asset.
+The Medianizer is used wherever external reference prices are needed. For instance, USDp uses it for ETH/USD, while GOLDp uses it for both ETH/USD and XAU/USD. Future pAssets follow the same approach by using the reference feeds required for their own underlying asset.
 
-This allows Polaris to keep pETH pricing internal to the bonding curve while using external oracles only where real-world reference pricing is unavoidable. It also means USDp does not require an external market-price oracle to maintain its peg, as its adaptive peg defence uses minting, redemptions and interest rate adjustments without the need to rely on an external pAsset price feed.
+This keeps Polaris pricing internal to the bonding curve and limits external oracles to markets that require real-world reference prices. USDp also does not require an external market-price oracle to maintain its peg, as its adaptive peg defence relies on minting, redemptions and interest rate adjustments instead of an external price feed.
 
-## The Medianiser
+## The Medianizer
 
-Each Medianiser is responsible for a single external price, such as ETH/USD or XAU/USD. A pAsset market may use one or more Medianisers to calculate the collateral value required for that asset.
+**Each Medianizer is responsible for a single external price**, such as ETH/USD or XAU/USD. A pAsset market may use one or more Medianizers to calculate the collateral value required for that asset.
 
-A Medianiser supports up to three independent oracle feeds. Only one feed is required, but additional feeds improve resilience whenever multiple high-quality data sources are available.
+**A Medianizer supports up to three independent oracle feeds**. Only one feed is required, but additional feeds improve resilience whenever multiple high-quality data sources are available.
 
-When more than one feed is configured, the Medianiser selects the price according to the feeds currently available:
+When more than one feed is configured, the Medianizer selects the price according to the feeds currently available:
 
 - If three valid feeds are available, it returns the median price.
 - If one or two valid feeds are available, it returns the first valid feed in the configured order.
@@ -42,12 +42,12 @@ As a result, Polaris can continue operating flexibly even if individual oracle f
 
 Although the protocol itself is immutable, oracle providers may evolve over time or become unavailable.
 
-Oracle sources can therefore be replaced through stewardship. A failed feed can be replaced immediately, while replacing a live feed or adding a new feed to an empty slot requires a timelock.
+Oracle sources can therefore be replaced through stewardship. **Failed feeds can be replaced immediately**, whereas replacing an active feed or populating an empty slot requires a timelock.
 
-Action | Requires
+Action | Approval
 
-Replace a failed feed | Immediate (no timelock)
-Replace a live feed | Timelock
-Add a feed to an empty slot | Timelock
+Replace failed feed | Immediate
+Replacelive feed | Timelock
+Fill empty slot | Timelock
 
-This allows Polaris to recover from oracle failures without giving stewards immediate discretionary control over active price sources.
+Polaris can therefore recover from oracle failures without giving stewards immediate discretionary control over active price sources.

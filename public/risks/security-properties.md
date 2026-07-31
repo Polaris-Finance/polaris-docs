@@ -16,16 +16,16 @@ Polaris is designed to minimize trust wherever possible, although some sources o
 
 The architectural decisions below remove many of the trust assumptions commonly found in DeFi, allowing users to interact directly with transparent onchain mechanisms.
 
-The core protocol has **no admin privileges.** Once deployed, no administrator can move user funds through a privileged function or replace the core protocol logic.
+**The core protocol has no admin privileges.** Once deployed, no administrator can move user funds through a privileged function or replace the core protocol logic.
 
-The core protocol is **immutable.** Its fundamental mechanics cannot be upgraded or replaced after deployment.
+**The core protocol is immutable.** Its fundamental mechanics cannot be upgraded or replaced after deployment.
 
 **Assets cannot be frozen.** Neither pETH nor any pAsset includes blacklist or freeze functionality, allowing users to retain control over their assets without depending on a centralized party.
 
 **All collateral remains onchain.** Every pAsset is backed by pETH, removing the need to trust banks or custodians to safeguard the assets supporting the protocol.
 
-**pAssets are issued directly by protocol rules.** USDp, GOLDp and every future pAsset are created according to transparent onchain mechanisms, without a company deciding when assets can be issued or redeemed.
+**pAssets are issued through transparent onchain rules**. USDp, GOLDp and every future pAsset are created according to transparent onchain mechanisms, without a company deciding when assets can be issued or redeemed.
 
-Every pAsset is **fully collateralized** at minting. The protocol does not allow privileged actors, multisigs or administrators to create unbacked assets outside the normal minting process.
+**Every pAsset is fully collateralized** at minting. The protocol does not allow privileged actors, multisigs or administrators to create unbacked assets outside the normal minting process.
 
-**Stewardship remains bounded.** [Stewardship](https://docs.polaris.finance/architecture/stewardship) can update a limited set of ecosystem parameters within predefined boundaries, including interest rate splits, POLAR conversion parameters, oracle feed replacement, flow recipients and flow weightings. It cannot modify the bonding curve or liquidation mechanics, introduce new collateral or upgrade the core contracts.
+**Stewardship remains bounded.** It can update a limited set of ecosystem parameters within predefined boundaries, including interest rate splits, POLAR conversion parameters, oracle feed replacement, flow recipients and flow weightings. It cannot modify the bonding curve or liquidation mechanics, introduce new collateral or upgrade the core contracts.

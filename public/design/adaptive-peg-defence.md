@@ -12,33 +12,33 @@ Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 ---
 
-Polaris incorporates permissionless minting and redemptions to help pAssets trade around their target price.
+Polaris incorporates **permissionless minting and redemptions** to help pAssets trade around their target price.
 
 Many collateralized asset systems are more effective at defending one side of the peg than the other, allowing supply to contract without providing an equally direct way to expand it under stress, or vice versa.
 
-Polaris supports both directions, allowing pAssets to be minted against pETH collateral or redeemed for pETH at their target value whenever market conditions create an arbitrage opportunity.
+Polaris supports both directions, allowing **pAssets to be minted against pETH collateral or redeemed for pETH at their target value** whenever market conditions create an arbitrage opportunity.
 
-Condition | Arbitrage action | Supply effect | Adaptive Peg Defense spreads…
+Condition | Arbitrage | Supply effect | Adaptive Peg Defense
 
-Above peg | Mint pAsset at par, sell into market | Expands → price pushed down | Collateral, debt & minting fees across all positions
-Below peg | Buy discounted pAsset, redeem at par for pETH | Contracts → price pushed up | Collateral removal, debt reduction & redemption fees across all positions
+Above peg | Mint at par, sell | Supply expands, reducing price | Collateral, debt and minting fees
+Below peg | Buy and redeem | Supply contracts, increasing price | Collateral removal, debt reduction and redemption fees
 
 ## Above Peg
 
-When a pAsset trades above its target price, market participants can mint new supply against pETH collateral and sell it into the market for a net profit.
+When a pAsset trades above its target price, market participants can **mint new supply against pETH collateral and sell it into the market** for a net profit.
 
 For example, if USDp trades above one dollar, an arbitrageur can deposit ETH into the bonding curve, receive pETH and immediately mint new USDp at par before selling it above one dollar. This increases the circulating supply and naturally pushes the market price back toward its target.
 
-Polaris extends this mechanism thanks to its **Adaptive Peg Defense** model, which distributes the collateral, debt and minting fees across all existing positions, preventing them from being concentrated in a single position.
+Polaris extends this mechanism thanks to its Adaptive Peg Defense model, which **distributes the collateral, debt and minting fees across all existing positions**, preventing them from being concentrated in a single position.
 
 This allows supply to expand in response to above-peg demand without pushing a single position toward liquidation. The expansion is shared across the market, allowing the protocol to respond to upward depegs through direct onchain minting.
 
 ## Below Peg
 
-When a pAsset trades below its target price, market participants can buy the discounted asset and redeem it through the protocol for pETH at its target price.
+When a pAsset trades below its target price, market participants can **buy the discounted asset and redeem it through the protocol for pETH at its target price**.
 
 For example, if USDp trades below one dollar, an arbitrageur can purchase USDp below peg, redeem it at par for pETH and capture the price difference. The redeemed USDp is burned, reducing the circulating supply and encouraging the market price to move back toward target.
 
-The same Adaptive Peg Defense model applies to redemptions: collateral removal, debt reduction and redemption fees are split across existing positions instead of concentrating on a single position.
+The same Adaptive Peg Defense model applies to redemptions: **collateral removal, debt reduction and redemption fees are split across existing positions** instead of concentrating on a single position.
 
 As a result, supply contracts without disproportionately affecting individual positions. The contraction is shared across the market, allowing the protocol to respond to downward depegs through direct onchain redemptions.
