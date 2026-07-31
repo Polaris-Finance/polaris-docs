@@ -69,6 +69,11 @@
   --pl-ink-caption: #6d6b69;
   --pl-ink-link: #1b6bef;
   --pl-link-underline: rgba(26, 136, 248, 0.3);
+
+  /* Section hairline under H1 and above H2 — the gold the site shipped with,
+     back at the alpha it used on the cream canvas. It is decorative (the
+     heading already carries the structure), so no contrast floor applies. */
+  --pl-section-rule: rgba(177, 147, 79, 0.35);
   --pl-measure: 710px;
   --pl-rhythm-24: 1.5rem;
   --pl-rhythm-32: 2rem;
@@ -93,6 +98,7 @@
   --pl-ink-caption: #b9b19f;
   --pl-ink-link: #d8c9a4;
   --pl-link-underline: rgba(216, 201, 164, 0.35);
+  --pl-section-rule: rgba(216, 201, 164, 0.3);
 
   --pl-icon-gold: #d8c9a4;
   --pl-icon-blue: #7ba5c9;
@@ -152,9 +158,12 @@ body {
    wherever the theme states the same property through a utility class
    (font-bold, text-4xl/3xl, mt-*, nextra-border).
 
-   The gold rules that used to underline H1 and sit above H2 are gone (designer
-   Q4), which deliberately supersedes two July 2026 owner decisions. The 24/32
-   rhythm is therefore plain margins with no border or padding to compensate for.
+   The gold rules under H1 and above H2 are back (owner ruling on Chilla's
+   July 2026 feedback, reinstating the two decisions designer Q4 had superseded):
+   without them the sections ran together. They keep the 24/32 rhythm on both
+   sides of the line — 32 from the previous paragraph to the rule and 32 from the
+   rule to an H2, 24 from an H1 to the rule and 24 on to the first paragraph — so
+   the spacing scale is intact and the rule sits inside it rather than beside it.
 
    Hierarchy comes from weight, line-height, colour and spacing — H3 is the same
    16px as body text on purpose and must never be enlarged. */
@@ -167,8 +176,8 @@ article :is(h1, h2, h3, h4, h5, h6) {
 
 article h1 {
   margin-bottom: var(--pl-rhythm-24) !important;
-  padding-bottom: 0 !important;
-  border-bottom: 0 !important;
+  padding-bottom: var(--pl-rhythm-24) !important;
+  border-bottom: 1px solid var(--pl-section-rule) !important;
   font-size: 2rem !important;
   font-weight: 600 !important;
   line-height: 1.25;
@@ -178,8 +187,8 @@ article h1 {
 article h2 {
   margin-top: var(--pl-rhythm-32) !important;
   margin-bottom: var(--pl-rhythm-24) !important;
-  padding-top: 0 !important;
-  border-top: 0 !important;
+  padding-top: var(--pl-rhythm-32) !important;
+  border-top: 1px solid var(--pl-section-rule) !important;
   border-bottom: 0 !important;
   font-size: 1.25rem !important;
   font-weight: 500 !important;
@@ -490,8 +499,9 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
 
 /* The landing is out of scope for the July 2026 type spec (designer Q6 + Q11):
    it keeps the editorial serif, its large responsive H1 and its own scale, so
-   the interior 32px Inter H1 rule is restated here in the old values. Only the
-   gold rule is gone, because Q4 removes that from every H1. */
+   the interior 32px Inter H1 rule is restated here in the old values. The gold
+   rule underneath is inherited from article h1, as it was before Q4 — it is
+   what makes the page read as the top of the documentation. */
 article:has(.pl-docs-home) main > h1:first-of-type {
   max-width: 100%;
   margin: 0 !important;
@@ -1591,13 +1601,33 @@ article [class*='overflow-x-auto']:has(table)::after {
   --nextra-navbar-height: 70px !important;
 
   /* One content wrapper (designer Q10): 240px rail + 64px gap + 710px column =
-     1014px, centred, with the outer page padding outside that total. There is
+     1014px, with the outer page padding outside that total. There is
      deliberately no wider container behind it — a 1200px shell would leave dead
-     space to the right of a 710px column. */
+     space to the right of a 710px column.
+
+     Centring that 1014px block put the rail's 304px entirely on one side of the
+     prose, so the column a reader actually looks at sat well right of centre
+     (630px of gutter to its left against 340px to its right at 1680px). The
+     shell therefore slides left by half the rail-plus-gap, which optically
+     centres the prose instead of the shell. The shift tapers with the available
+     gutter (see the margin rule) so narrow desktops never hug the viewport. */
   --nextra-content-width: 1014px !important;
   --pl-shell-max: 1014px;
   --pl-rail-width: 240px;
   --pl-shell-gap: 64px;
+  --pl-shell-shift: calc((var(--pl-rail-width) + var(--pl-shell-gap)) / 2);
+  /* The shell's leading margin: the centred gutter less half of itself, capped
+     at the shift, so the drift grows with the room available and stops once the
+     prose is optically centred. Zero once the viewport is narrower than the
+     shell, where the theme's own layout takes over. Percentages resolve against
+     the viewport for every element that uses this. */
+  --pl-shell-inset: max(
+    0px,
+    calc(
+      (100% - var(--pl-shell-max) - 2 * var(--pl-page-pad)) / 2 -
+        min(var(--pl-shell-shift), (100% - var(--pl-shell-max) - 2 * var(--pl-page-pad)) / 4)
+    )
+  );
   --pl-page-pad: clamp(16px, 2vw, 32px);
   --pl-navbar-bg: #ffffff;
   --pl-overlay-bg: #ffffff;
@@ -1659,6 +1689,7 @@ html {
 div:has(> .nextra-sidebar) {
   max-width: calc(var(--pl-shell-max) + 2 * var(--pl-page-pad)) !important;
   padding-inline: var(--pl-page-pad) !important;
+  margin-inline: var(--pl-shell-inset) auto !important;
 }
 
 .nextra-navbar nav {
@@ -1750,17 +1781,21 @@ div:has(> .nextra-sidebar) {
 }
 
 /* pAsset logos in the nav rail: dampened at rest, full colour on
-   hover/focus/touch/active — mirrors the lucide icons' accent tint. */
+   hover/focus/touch/active — mirrors the lucide icons' accent tint. The rest
+   state keeps its colour now that the glyphs beside it do (Chilla, July 2026);
+   desaturating every orb but the active one was what made that single logo read
+   as the only colour in the rail. Opacity alone still holds them below the
+   labels, and the artwork itself is untouched (CEO constraint, July 2026). */
 .pl-nav-icon-asset {
   border-radius: 50%;
-  filter: grayscale(1) opacity(0.68);
+  filter: opacity(0.82);
   transition: filter 0.15s ease;
 }
 
-/* The desaturated orbs sink into the dark sidebar; lift them to the same
-   visual weight as the grey lucide strokes. */
+/* The orbs sink into the dark sidebar; lift them to the same visual weight as
+   the lucide strokes. */
 .dark .pl-nav-icon-asset {
-  filter: grayscale(1) brightness(1.6) opacity(0.8);
+  filter: brightness(1.12) opacity(0.86);
 }
 
 @media (min-width: 768px) {
@@ -1858,14 +1893,18 @@ div:has(> .nextra-sidebar) {
     gap: 0.5rem;
   }
 
-  /* Pinned to the resting ink rather than currentColor: the row's text changes
-     colour on hover and the icon must not follow it (designer S14). */
+  /* Each glyph carries its navigation group's tone at rest, not the caption ink:
+     with the gold gone from the prose, a grey rail left the one active token
+     logo as the only colour on the page (Chilla, July 2026). Entries with no
+     tone assigned still fall back to the caption ink. It stays pinned rather
+     than currentColor so the row's hover colour never reaches the icon
+     (designer S14) — the rest state is now tone, so there is nothing to swap. */
   .nextra-sidebar .pl-nav-icon {
     display: block;
     width: 18px;
     height: 18px;
     flex: 0 0 18px;
-    color: var(--pl-ink-caption);
+    color: var(--pl-icon-tone, var(--pl-ink-caption));
   }
 
   /* One line per row, so the 400→500 hover step can never rewrap a label and
@@ -2627,7 +2666,9 @@ button.pl-search-row {
 
 /* White footer with the divider on the inner wrapper, so the rule spans exactly
    the sidebar + content column (1014px) rather than the full viewport
-   (designer Q7). */
+   (designer Q7). It follows the shell's leading inset — its own padding sits
+   inside the 1014px, so it needs the shell's inset plus the page padding to
+   land on the same two edges — clamped to the slack it actually has. */
 
 .pl-footer {
   width: 100%;
@@ -2643,7 +2684,12 @@ button.pl-search-row {
   grid-template-columns: minmax(0, 1fr) auto auto;
   align-items: center;
   gap: 1.5rem;
-  margin: 0 auto;
+  margin-block: 0;
+  margin-inline: min(
+      calc(var(--pl-shell-inset) + var(--pl-page-pad)),
+      max(0px, calc(100% - var(--pl-shell-max)))
+    )
+    auto;
   padding: 1.75rem max(1.5rem, env(safe-area-inset-right)) max(1.5rem, env(safe-area-inset-bottom))
     max(1.5rem, env(safe-area-inset-left));
 }
@@ -2777,6 +2823,17 @@ article > div[class*='x:print:hidden']:has(> a[title]) > a[title][class*='x:text
 
 article > div[class*='x:print:hidden']:has(> a[title]) > a[title][class*='x:text-end']::before {
   content: 'NEXT';
+}
+
+/* The title lives in a .pl-nav-label flex box, so the link's text-align:end
+   cannot reach it and the label packed against the middle of the row instead of
+   sitting under NEXT. Aligning the flex line is what mirrors the PREVIOUS side. */
+
+article
+  > div[class*='x:print:hidden']:has(> a[title])
+  > a[title][class*='x:text-end']
+  .pl-nav-label {
+  justify-content: flex-end;
 }
 
 article
