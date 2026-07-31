@@ -98,40 +98,28 @@ export const metadata = {
   }
 }
 
-// Own anchor (not Nextra's auto logo link) so the accessible name comes from the
-// visible "Polaris Docs" text — Nextra's hardcoded aria-label="Home page" would
-// otherwise trip axe's label-content-name-mismatch.
+// Own anchor (not Nextra's auto logo link) so the accessible name matches the
+// visible Polaris wordmark + "Docs" label. Nextra's hardcoded
+// aria-label="Home page" would otherwise trip axe's label-content-name-mismatch.
 const logo = (
-  <a
-    href={pathWithBase('/')}
-    className="pl-logo-link"
-    style={{
-      display: 'inline-flex',
-      alignItems: 'center',
-      gap: '0.55rem',
-      textDecoration: 'none',
-      color: 'inherit'
-    }}
-  >
-    <img
-      src={pathWithBase('/emblem.svg')}
-      alt=""
-      className="pl-logo-mark"
-      width={26}
-      height={26}
-      style={{ display: 'block' }}
-    />
-    <span
-      className="pl-logo-text"
-      style={{
-        fontFamily: 'var(--font-serif), Georgia, serif',
-        fontSize: '1.18rem',
-        fontWeight: 600,
-        letterSpacing: '0.04em'
-      }}
-    >
-      Polaris <span style={{ opacity: 0.56, fontWeight: 600 }}>Docs</span>
+  <a href={pathWithBase('/')} className="pl-logo-link" aria-label="Polaris Docs">
+    <span className="pl-logo-wordmark" aria-hidden="true">
+      <img
+        src={pathWithBase('/polaris-logo-black.svg')}
+        alt=""
+        className="pl-logo-image pl-logo-image-light"
+        width={91}
+        height={23}
+      />
+      <img
+        src={pathWithBase('/polaris-logo-white.svg')}
+        alt=""
+        className="pl-logo-image pl-logo-image-dark"
+        width={91}
+        height={23}
+      />
     </span>
+    <span className="pl-logo-docs">Docs</span>
   </a>
 )
 
