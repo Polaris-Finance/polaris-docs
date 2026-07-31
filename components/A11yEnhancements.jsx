@@ -3,26 +3,6 @@
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef } from 'react'
 
-function expandActiveSidebarTrail(sidebar, activeLink) {
-  // Search closes its dialog during navigation. Wait for the dialog cleanup to
-  // remove `inert`; synthetic clicks are intentionally suppressed inside an
-  // inert subtree.
-  if (sidebar.closest('[inert]')) return
-
-  const closedFolders = []
-  let ancestor = activeLink.parentElement
-
-  while (ancestor && ancestor !== sidebar) {
-    if (ancestor.matches('li:not(.open)')) {
-      const button = ancestor.querySelector(':scope > button[data-href]')
-      if (button) closedFolders.unshift(button)
-    }
-    ancestor = ancestor.parentElement
-  }
-
-  for (const button of closedFolders) button.click()
-}
-
 export function A11yEnhancements() {
   const pathname = usePathname()
   const previousPathname = useRef(pathname)
@@ -75,7 +55,6 @@ export function A11yEnhancements() {
 
       const activeLink = sidebar.querySelector('li.active > a[href]')
       if (activeLink) {
-        expandActiveSidebarTrail(sidebar, activeLink)
         activeLink.setAttribute('aria-current', 'page')
       }
 

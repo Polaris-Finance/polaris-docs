@@ -918,6 +918,13 @@ test('desktop navigation exposes icons, hierarchy state, and a single current pa
   await expect(mechanics).toHaveAttribute('aria-controls', /pl-sidebar-folder-/)
   await mechanics.click()
   await expect(mechanics).toHaveAttribute('aria-expanded', 'false')
+  // Closing the active branch must survive the accessibility observer's next
+  // synchronization frame instead of being immediately reopened by a
+  // synthetic click.
+  await page.evaluate(
+    () => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)))
+  )
+  await expect(mechanics).toHaveAttribute('aria-expanded', 'false')
   await mechanics.focus()
   await mechanics.press('Enter')
   await expect(mechanics).toHaveAttribute('aria-expanded', 'true')
