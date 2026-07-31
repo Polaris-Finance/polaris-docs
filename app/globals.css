@@ -1382,22 +1382,13 @@ html:not(.dark) article img[src$='.svg'] {
   box-shadow: 0 2px 14px rgba(13, 31, 60, 0.08);
 }
 
-/* data-nimg matches content images rendered through Nextra's Image pipeline,
-   whose bundled _next/static/media URLs no longer carry the source path. The
-   extension-based SVG exclusion still works against those final asset URLs;
-   infographics are excluded separately so their existing treatment is kept. */
-
-article img[src*='/screenshots/'],
-article img[data-nimg]:not([src$='.svg']):not([src*='/infographics/']) {
-  background: var(--pl-surface);
-  border: 1px solid var(--pl-card-border);
-  padding: 0.75rem;
-  border-radius: 8px;
-}
-
-html:not(.dark) article img[src*='/screenshots/'],
-html:not(.dark) article img[data-nimg]:not([src$='.svg']):not([src*='/infographics/']) {
-  box-shadow: 0 2px 14px rgba(13, 31, 60, 0.08);
+/* Returning focus after the lightbox closes used to leave a black outline
+   around the entire image. Keep zoomable image surfaces visually neutral; the
+   cursor continues to communicate that the full image can be enlarged. */
+article .pl-content-image > .pl-image-zoom-target:focus-visible {
+  outline: none !important;
+  outline-offset: 0 !important;
+  box-shadow: none !important;
 }
 
 /* Infographics fill the content column and stop there: the 710px measure applies
@@ -2087,6 +2078,7 @@ div:has(> .nextra-sidebar) {
   /* Keep the documentation rail scrollable while removing its visual chrome.
      Nextra's default 20px edge fades are extended by 50% at both ends. */
   .nextra-sidebar > .nextra-scrollbar.nextra-mask {
+    overflow-anchor: none;
     scrollbar-width: none;
     scrollbar-gutter: auto;
     -ms-overflow-style: none;
@@ -3091,15 +3083,15 @@ ul[role='listbox'][data-anchor] > li[role='option']:is(:hover, :focus, [data-foc
   }
 
   .pl-footer-identity:hover .pl-footer-emblem-part:nth-child(2) {
-    animation-delay: 15ms;
+    animation-delay: 200ms;
   }
 
   .pl-footer-identity:hover .pl-footer-emblem-part:nth-child(3) {
-    animation-delay: 30ms;
+    animation-delay: 400ms;
   }
 
   .pl-footer-identity:hover .pl-footer-emblem-part:nth-child(4) {
-    animation-delay: 45ms;
+    animation-delay: 600ms;
   }
 }
 

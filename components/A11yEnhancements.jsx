@@ -1,11 +1,81 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
-import { useEffect, useRef } from 'react'
+import { useEffect, useLayoutEffect, useRef } from 'react'
+
+const SIDEBAR_SCROLL_STORAGE_KEY = 'polaris-docs:sidebar-scroll-top'
+
+function getSidebarScrollport() {
+  return document.querySelector('.nextra-sidebar > .nextra-scrollbar.nextra-mask')
+}
+
+function readSidebarScrollTop() {
+  try {
+    const stored = window.sessionStorage.getItem(SIDEBAR_SCROLL_STORAGE_KEY)
+    if (stored === null) return null
+    const value = Number(stored)
+    return Number.isFinite(value) && value >= 0 ? value : null
+  } catch {
+    return null
+  }
+}
+
+function writeSidebarScrollTop(value) {
+  try {
+    window.sessionStorage.setItem(SIDEBAR_SCROLL_STORAGE_KEY, String(value))
+  } catch {
+    // Storage can be unavailable in privacy-restricted browsing contexts.
+  }
+}
 
 export function A11yEnhancements() {
   const pathname = usePathname()
   const previousPathname = useRef(pathname)
+  const restoringSidebarScroll = useRef(false)
+
+  useLayoutEffect(() => {
+    const scrollport = getSidebarScrollport()
+    const savedScrollTop = readSidebarScrollTop()
+    if (!scrollport || savedScrollTop === null) return
+
+    restoringSidebarScroll.current = true
+    const restore = () => {
+      const maximumScrollTop = Math.max(0, scrollport.scrollHeight - scrollport.clientHeight)
+      scrollport.scrollTop = Math.min(savedScrollTop, maximumScrollTop)
+    }
+
+    restore()
+    let secondFrame = 0
+    const firstFrame = window.requestAnimationFrame(() => {
+      restore()
+      secondFrame = window.requestAnimationFrame(() => {
+        restore()
+        restoringSidebarScroll.current = false
+      })
+    })
+
+    return () => {
+      window.cancelAnimationFrame(firstFrame)
+      if (secondFrame) window.cancelAnimationFrame(secondFrame)
+      restoringSidebarScroll.current = false
+    }
+  }, [pathname])
+
+  useEffect(() => {
+    const scrollport = getSidebarScrollport()
+    if (!scrollport) return
+
+    const saveScrollTop = () => {
+      if (!restoringSidebarScroll.current) writeSidebarScrollTop(scrollport.scrollTop)
+    }
+
+    scrollport.addEventListener('scroll', saveScrollTop, { passive: true })
+    scrollport.addEventListener('click', saveScrollTop, true)
+    return () => {
+      scrollport.removeEventListener('scroll', saveScrollTop)
+      scrollport.removeEventListener('click', saveScrollTop, true)
+    }
+  }, [pathname])
 
   useEffect(() => {
     let frame = 0

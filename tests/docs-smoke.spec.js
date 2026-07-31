@@ -931,6 +931,38 @@ test('desktop navigation exposes icons, hierarchy state, and a single current pa
   await expect(page.locator('main .pl-nav-icon')).toBeHidden()
 })
 
+test('desktop sidebar preserves its manual scroll position across routes', async ({
+  page
+}, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop', 'desktop-only sidebar persistence check')
+  await page.setViewportSize({ width: 1280, height: 520 })
+  await page.goto(pathWithBase('/risks'))
+
+  const sidebar = page.getByRole('navigation', { name: 'Documentation' })
+  const scrollport = sidebar.locator(':scope > .nextra-scrollbar.nextra-mask')
+  const scrollTopBeforeNavigation = await scrollport.evaluate((element) => {
+    element.scrollTop = element.scrollHeight
+    return element.scrollTop
+  })
+  expect(scrollTopBeforeNavigation).toBeGreaterThan(0)
+
+  const destination = sidebar.getByRole('link', { name: 'Security Guarantees', exact: true })
+  await expect(destination).toBeVisible()
+  await destination.click()
+  await expect(page).toHaveURL(
+    new RegExp(`${escapeRegExp(pathWithBase('/risks/security-properties'))}/?$`)
+  )
+  await page.evaluate(
+    () =>
+      new Promise((resolve) =>
+        requestAnimationFrame(() => requestAnimationFrame(() => requestAnimationFrame(resolve)))
+      )
+  )
+
+  const scrollTopAfterNavigation = await scrollport.evaluate((element) => element.scrollTop)
+  expect(Math.abs(scrollTopAfterNavigation - scrollTopBeforeNavigation)).toBeLessThanOrEqual(1)
+})
+
 test('footer stays compact and uses correct external-link semantics', async ({ page }) => {
   await page.goto(pathWithBase('/core-assets/peth'))
 
