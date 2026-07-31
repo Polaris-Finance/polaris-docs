@@ -58,6 +58,8 @@ export function ImageZoomEnhancements() {
 
       if (!wrapper) {
         wrapper = document.createElement('div')
+        // Keep literal and future non-MDX images on the same canonical media
+        // contract as images emitted by mdx-components.js.
         wrapper.className = 'pl-content-image pl-content-image--legacy'
         image.before(wrapper)
         wrapper.append(image)

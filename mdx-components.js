@@ -4,6 +4,7 @@ import { Image } from 'nextra/components'
 import { hrefWithBase, isExternalHref } from './app/site-config.mjs'
 
 const themeComponents = getThemeComponents()
+const ThemeP = themeComponents.p ?? 'p'
 const ThemeTable = themeComponents.table ?? 'table'
 const ThemeTh = themeComponents.th ?? 'th'
 // Nextra maps td/tr to Table.Td/Table.Tr components, so the cell/row elements
@@ -36,13 +37,23 @@ function MdxAnchor({ href, className, rel, target, ...props }) {
 
 function MdxImage(props) {
   return createElement(
-    // MDX emits standalone images inside a paragraph. A block-styled span keeps
-    // the structural wrapper without creating invalid <p><div> nesting during
-    // hydration.
-    'span',
-    { className: 'pl-content-image' },
+    'div',
+    { className: 'pl-content-image pl-content-image--legacy' },
     createElement(Image, props)
   )
+}
+
+function MdxParagraph({ children, ...props }) {
+  const nodes = Children.toArray(children)
+  const standaloneImage =
+    nodes.length === 1 && isValidElement(nodes[0]) && nodes[0].type === MdxImage
+
+  // Markdown images are normally emitted inside a paragraph. Promote an image
+  // that occupies the whole paragraph so its shared block-level wrapper stays
+  // valid HTML and can own the article's media rhythm.
+  if (standaloneImage) return nodes[0]
+
+  return createElement(ThemeP, props, children)
 }
 
 function getTextContent(node) {
@@ -150,6 +161,7 @@ export function useMDXComponents(components) {
     // stamps an aria-owns pointing at a modal that only exists once zoomed, which
     // fails axe's aria-valid-attr-value. `Image` keeps Pagefind alt/title indexing.
     img: MdxImage,
+    p: MdxParagraph,
     a: MdxAnchor,
     table: AccessibleTable,
     th: TableHeader,

@@ -73,8 +73,10 @@
   --pl-link-underline: rgba(26, 136, 248, 0.3);
 
   --pl-measure: 710px;
+  --pl-rhythm-16: 1rem;
   --pl-rhythm-24: 1.5rem;
   --pl-rhythm-32: 2rem;
+  --pl-rhythm-48: 3rem;
 }
 
 .dark {
@@ -176,9 +178,10 @@ article h1 {
 }
 
 article h2 {
-  margin-top: var(--pl-rhythm-32) !important;
-  margin-bottom: var(--pl-rhythm-24) !important;
+  margin-top: var(--pl-rhythm-48) !important;
+  margin-bottom: var(--pl-rhythm-16) !important;
   padding-top: 0 !important;
+  padding-bottom: 0 !important;
   border-top: 0 !important;
   border-bottom: 0 !important;
   font-size: 1.25rem !important;
@@ -189,7 +192,8 @@ article h2 {
 
 article h3 {
   margin-top: var(--pl-rhythm-32) !important;
-  margin-bottom: var(--pl-rhythm-24) !important;
+  margin-bottom: var(--pl-rhythm-16) !important;
+  padding-block: 0 !important;
   font-size: 1rem !important;
   font-weight: 500 !important;
   line-height: 1.1875;
@@ -201,7 +205,8 @@ article h3 {
 
 article :is(h4, h5, h6) {
   margin-top: var(--pl-rhythm-32) !important;
-  margin-bottom: var(--pl-rhythm-24) !important;
+  margin-bottom: var(--pl-rhythm-16) !important;
+  padding-block: 0 !important;
   color: var(--pl-ink-body);
   font-size: 1rem !important;
   font-weight: 400 !important;
@@ -209,10 +214,9 @@ article :is(h4, h5, h6) {
   letter-spacing: -0.011em;
 }
 
-/* Body. Paragraph rhythm is 24px trailing only: p→p collapses to 24, heading→p
-   uses the heading's 24 bottom margin, and p→heading collapses to the heading's
-   32 top margin. Declaring both a 32 trailing margin and a 32 leading one would
-   render 56. */
+/* Body. Paragraph rhythm is trailing-only: one element owns each gap, so two
+   adjacent margin zones never compete. Section headings use a larger leading
+   gap and a smaller trailing gap to bind them to the content they introduce. */
 
 article :is(p, li) {
   color: var(--pl-ink-body);
@@ -225,6 +229,24 @@ article :is(p, li) {
 article p {
   margin-top: 0 !important;
   margin-bottom: var(--pl-rhythm-24) !important;
+}
+
+/* Remove the preceding block's trailing margin whenever a section heading
+   follows. This prevents sibling margin collapsing and makes the heading's
+   leading value the single source of truth for the section boundary. */
+article main > *:has(+ :is(h2, h3, h4, h5, h6)) {
+  margin-bottom: 0 !important;
+}
+
+/* Media already reserves 48px below itself, so it fully owns the boundary
+   before a following heading. Tables reserve 32px and need only the remaining
+   16px to reach the same H2 section gap. */
+article main > .pl-content-image + :is(h2, h3, h4, h5, h6) {
+  margin-top: 0 !important;
+}
+
+article main > .pl-content-table + h2 {
+  margin-top: var(--pl-rhythm-16) !important;
 }
 
 /* Emphasis follows the existing principle — strong reads at heading ink. */
@@ -1280,13 +1302,14 @@ article blockquote {
   background: rgba(216, 201, 164, 0.05);
 }
 
-/* Every MDX image gets a structural wrapper from mdx-components.js. Keeping
-   the rhythm on the wrapper guarantees 32px of separation from surrounding
-   prose regardless of the image type or its intrinsic dimensions. */
+/* Golden article-media rule: every image uses the same structural div, with
+   24px before the media and 48px after it. Keeping the rhythm on the wrapper
+   makes existing and newly added images behave identically. */
 article .pl-content-image {
   position: relative;
   width: 100%;
-  padding-block: 2rem;
+  padding-top: 1.5rem;
+  padding-bottom: 3rem;
   border-radius: 8px;
 }
 
@@ -1403,13 +1426,13 @@ article img[src*='/infographics/'] {
   margin-top: 0;
 }
 
-/* Legacy MDX pages sometimes use a literal <img>, which MDX intentionally
-   bypasses in the component map. Give those direct images (and linked images)
-   the same 32px rhythm as the structural wrapper above. */
+/* Literal <img> elements briefly use matching fallback spacing until the
+   client enhancement moves them into the canonical wrapper above. */
 article main > img,
 article main > a:has(> img) {
   display: block;
-  margin-block: 2rem !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 3rem !important;
   border-radius: 8px !important;
 }
 
@@ -2063,10 +2086,11 @@ div:has(> .nextra-sidebar) {
 }
 
 @media (min-width: 768px) {
-  /* The gap belongs to the article's leading edge only; its trailing edge is the
-     wrapper's, so the content box lands on exactly 710px. */
+  /* The leading inset separates the article from the sidebar. The trailing
+     inset mirrors the header/footer optical compensation, so article content,
+     Copy Page, media, and pagination end on the header action's right edge. */
   .nextra-sidebar ~ article {
-    padding-inline: var(--pl-shell-gap) 0 !important;
+    padding-inline: var(--pl-shell-gap) var(--pl-shell-alignment-inset) !important;
   }
 
   .nextra-sidebar {
