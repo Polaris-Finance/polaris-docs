@@ -111,6 +111,16 @@
       "updated": null
     },
     {
+      "route": "/architecture/passet-minting",
+      "url": "https://docs.polaris.finance/architecture/passet-minting",
+      "markdownUrl": "https://docs.polaris.finance/architecture/passet-minting.md",
+      "section": "Core Architecture",
+      "title": "pAsset Minting",
+      "description": "Learn how pAssets are minted against pETH collateral.",
+      "keywords": [],
+      "updated": null
+    },
+    {
       "route": "/architecture/reserve-loans",
       "url": "https://docs.polaris.finance/architecture/reserve-loans",
       "markdownUrl": "https://docs.polaris.finance/architecture/reserve-loans.md",

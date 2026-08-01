@@ -650,6 +650,54 @@ Over time, Polaris develops into a single interconnected economy, where every ne
 
 ---
 
+## pAsset Minting
+
+URL: https://docs.polaris.finance/architecture/passet-minting
+Markdown URL: https://docs.polaris.finance/architecture/passet-minting.md
+
+Minting pAssets means creating new USDp, GOLDp, or future pAssets against pETH collateral.
+
+Every minted asset belongs to a specific pAsset market. The pAsset Markets section explains how each market functions, whereas this section focuses on the positions and mechanisms that bring those assets into circulation.
+
+In Polaris, new supply can enter circulation in two ways:
+
+- Users can mint pAssets by opening or adjusting a collateralized position backed by their own pETH.
+- Arbitrageurs can mint directly through the peg stability mechanism whenever an asset trades above its target price.
+
+Both paths create new pAssets against pETH collateral, but they are accounted for differently.
+
+## Why Mint pAssets
+
+Minting allows users to create onchain assets backed by their pETH without selling the underlying collateral.
+
+A user may mint USDp to access dollar liquidity, mint GOLDp to create gold exposure, or mint future pAssets for other strategies. The minted asset can then be held, used in DeFi, deposited into an Earn Vault, or combined with external money markets and other integrations.
+
+The cost of minting is determined by the relevant pAsset market’s interest-rate mechanics. However, the headline borrowing rate is not always the same as the effective cost of the position, because minters also receive protocol-generated value through pETH-related flows which are streamed to them in proportion to their overall minted position.
+
+Position minters may also benefit from the Protocol Safety Rate during periods of market stress, where positions with lower leverage or collateral-only positions receive additional interest paid by higher-leverage positions. This creates an economic incentive for healthier collateralization whenever the market requires it.
+
+## Position Minting
+
+Position minting is the standard way users create pAssets for their own use.
+
+A user deposits pETH as collateral and mints a pAsset against it. The resulting debt belongs to that user’s position, which must remain within the market’s collateral requirements.
+
+For example, a user who mints USDp needs to maintain enough pETH collateral to satisfy the USDp market’s minimum collateral ratio. If the position becomes too risky, it can be liquidated according to the liquidation rules of that market.
+
+This path is most relevant for users who want to access liquidity without giving up their pETH exposure.
+
+## Direct Arbitrage Minting
+
+Direct arbitrage minting serves a different purpose: when a pAsset trades above its target price, arbitrageurs can mint new supply and sell it into the market. This increases circulating supply and helps push the market price back toward its target.
+
+Unlike position minting, the arbitrageur does not need to open a normal collateralized position that remains in the system.  The newly created supply is instead incorporated into the existing pAsset market through Adaptive Peg Defense.
+
+The added collateral, debt and minting fees are distributed across every open position according to the protocol’s rules. Existing positions therefore participate directly in every arbitrage event, evolving continuously as supply expands through permissionless minting.
+
+As a result, each pAsset market can increase supply without concentrating the economic effects of arbitrage within newly created positions.
+
+---
+
 ## Reserve Loans
 
 URL: https://docs.polaris.finance/architecture/reserve-loans
