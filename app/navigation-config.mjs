@@ -86,6 +86,13 @@ export const NAVIGATION_GROUPS = [
             'ChartLine'
           ),
           page(
+            'passet-minting',
+            'passet-minting',
+            'pAsset Minting',
+            '/architecture/passet-minting',
+            'SlidersHorizontal'
+          ),
+          page(
             'passet-markets',
             'passet-markets',
             'pAsset Markets',
