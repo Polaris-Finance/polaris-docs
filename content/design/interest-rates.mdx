@@ -7,36 +7,36 @@ description: "Polaris uses two complementary interest rates to manage pAsset mar
 
 Polaris uses two complementary interest rates to manage pAsset markets. Together, they help maintain the target price of each pAsset while protecting the overall health of the collateral system.
 
-The **Peg Stability Rate** is the primary interest rate paid by pAsset minters. It adjusts automatically according to minting and redemption activity and helps keep pAssets trading around their target price.
+**The Peg Stability Rate is the primary interest rate paid by pAsset minters**. It adjusts automatically according to minting and redemption activity and helps keep pAssets around their target price.
 
-The **Protocol Safety Rate** is a secondary interest rate that normally remains inactive. It only activates when the overall collateralization of a pAsset market falls below a predefined threshold, automatically paying interest from higher-leverage positions to lower-leverage or collateral-only positions.
+**The Protocol Safety Rate is a secondary interest rate that normally remains inactive**. It only activates when the overall collateralization of a pAsset market falls below a predefined threshold, causing interest to flow automatically from higher-leverage positions to lower-leverage or collateral-only positions.
 
-Although the protocol's interest rates determine the nominal cost of borrowing, they do not necessarily represent its effective cost. Borrowers also receive protocol-generated value as pETH, while lower-leverage positions benefit from more favorable borrowing terms.
+Although the protocol's interest rates determine the nominal cost of borrowing, **they do not necessarily represent its effective cost**. Borrowers also receive protocol-generated value as pETH, while lower-leverage positions benefit from more favorable borrowing terms.
 
 | Property | Peg Stability Rate | Protocol Safety Rate |
 | --- | --- | --- |
-| Role | Primary borrowing cost for pAsset minters | Protects the market's overall collateral health |
-| When active | Always | Only when collateralization falls below a threshold |
-| Adjusts to | Minting vs redemption activity (automatic) | Aggregate collateral ratio |
-| Payments | Protocol revenue → Earn Vault + vePOLAR | Redistributed from higher- to lower-leverage positions (not protocol revenue) |
+| Purpose | Primary borrowing cost for pAsset minters | Protects aggregate collateral health |
+| When active | Always | Below collateralization threshold |
+| Responds to | Minting vs redemption activity| Aggregate collateralization |
+| Interest | Paid to Earn Vault and vePOLAR | Directly redistributed towards lower-leverage positions |
 
 ## Peg Stability Rate
 
 The Peg Stability Rate is the standard borrowing cost paid by users who mint pAssets.
 
-Interest paid through the Peg Stability Rate becomes the primary yield source for that pAsset market and is distributed to the pAsset's Earn Vault and vePOLAR stakers, according to the market's configured flow allocation assigned.
+**Interest paid through the Peg Stability Rate becomes the primary yield source for that pAsset market** and is distributed to the pAsset's Earn Vault and vePOLAR stakers, according to the market's configured flow allocation assigned.
 
-A unique feature of the Peg Stability Rate is that it is not altered by governance or manual intervention. Instead, it adjusts automatically based on minting and redemption activity taking place inside the protocol.
+A unique feature of the Peg Stability Rate is that it is not altered by governance or manual intervention. Instead, **it adjusts automatically based on minting and redemption activity** taking place inside the protocol.
 
-When a pAsset trades above its target price, arbitrage opportunities naturally encourage new minting. As net minting activity increases, the Peg Stability Rate responds to this signal by gradually decreasing, reducing the cost of creating new pAssets and allowing supply to expand more quickly.
+When a pAsset trades above its target price, arbitrage opportunities naturally encourage new minting. As net minting activity increases, the Peg Stability Rate responds to this signal by gradually decreasing toward its minimum base fee of 0.05%, reducing the cost of creating new pAssets and allowing supply to expand more quickly.
 
 Vice versa, when a pAsset trades below its target price, arbitrage opportunities encourage redemptions instead. As net redemption activity increases, the Peg Stability Rate gradually increases, making the creation of new debt positions less attractive while helping the circulating supply contract.
 
 ## Protocol Safety Rate
 
-The Protocol Safety Rate is designed to protect the overall collateral health of a pAsset market.
+The Protocol Safety Rate is **designed to protect the overall collateral health of a pAsset market**.
 
-Under normal market conditions it remains inactive and has no effect on user positions. It only activates when the market's aggregate collateral ratio falls below a predefined threshold. Once active, positions with higher leverage begin paying an additional interest rate, while lower-leverage or collateral-only positions receive those payments.
+Under normal market conditions it remains inactive and has no effect on user positions. **It only activates when the market's aggregate collateral ratio falls below a predefined threshold**. Once active, positions with higher leverage begin paying an additional interest rate, while lower-leverage or collateral-only positions receive those payments.
 
 This makes it profitable for healthier positions to enter or remain in the market during stressed conditions, while making high-leverage positions more expensive to maintain.
 
@@ -44,4 +44,4 @@ The goal is to improve the market's overall collateral health by increasing the 
 
 This encourages the market to return toward stronger overall collateralization without requiring liquidations or governance intervention.
 
-Unlike the Peg Stability Rate, the Protocol Safety Rate is not protocol revenue. Every payment made through the mechanism remains inside the same pAsset market and is redistributed directly between participants.
+**Unlike the Peg Stability Rate, the Protocol Safety Rate is not protocol revenue**. Every payment made through the mechanism remains inside the same pAsset market and is redistributed directly between participants.
