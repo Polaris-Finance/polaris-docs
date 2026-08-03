@@ -45,6 +45,18 @@ Six months later | 0.85 ETH | 0.40 ETH | 1.25 ETH
 
 The two assets still originate from the same pETH, but each responds to a different source of value as Polaris evolves. While fpETH follows the gradual growth of the floor, vpETH reflects how the market values everything beyond it.
 
+## Secondary Market Pricing
+
+vpETH represents the market premium of pETH above its floor, but that does not mean vpETH must always trade exactly at the current premium shown by the bonding curve.
+
+vpETH is likely to appeal to users who want direct exposure to the pETH premium and believe Polaris TVL, pETH demand, or pAsset demand will expand enough for that premium to grow. This can make vpETH attractive when a buyer expects the pETH premium to expand faster than the pETH floor rises.
+
+vpETH may also appeal to users who want to lend it to short sellers. Short sellers may borrow vpETH to hedge Polaris positions or build delta-neutral strategies, creating a potential lending market for vpETH holders.
+
+On secondary markets, vpETH can trade above or below the current premium shown by the bonding curve. However, because fpETH has access to the floor value through Reserve Loans, vpETH may often trade at a secondary-market discount to the current premium. Its price reflects expectations around future premium expansion, floor growth, liquidity, and volatility.
+
+This creates a linked pricing relationship: one fpETH plus one vpETH can always be merged back into one pETH, while the market price of each component reflects how traders value future floor growth and future premium volatility.
+
 ## A Familiar Mental Model
 
 Users familiar with Pendle may recognize the idea of separating a single asset into **two independently tradable components**.
