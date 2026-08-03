@@ -56,7 +56,7 @@
   </url>
   <url>
     <loc>https://docs.polaris.finance/core-assets/fpeth</loc>
-    <lastmod>2026-07-30</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -74,7 +74,7 @@
   </url>
   <url>
     <loc>https://docs.polaris.finance/core-assets/polar</loc>
-    <lastmod>2026-07-30</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -110,7 +110,7 @@
   </url>
   <url>
     <loc>https://docs.polaris.finance/design/interest-rates</loc>
-    <lastmod>2026-08-01</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
