@@ -2286,7 +2286,20 @@ div:has(> .nextra-sidebar) {
   }
 
   .nextra-sidebar ul {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    grid-template-columns: minmax(0, 1fr);
     gap: 0 !important;
+  }
+
+  /* Nextra centres the active row on both axes after hydration. Keep every
+     grid track and item inside the 208px rail content box so a long leaf label
+     cannot create a hidden horizontal scroll range and pull the whole menu
+     left. The text span already owns the one-line ellipsis treatment below. */
+  .nextra-sidebar li {
+    min-width: 0;
+    max-width: 100%;
   }
 
   /* Nesting is communicated by 16px of indentation and nothing else — no size
@@ -2325,9 +2338,9 @@ div:has(> .nextra-sidebar) {
     text-transform: uppercase;
   }
 
-  /* Navigation rows: 22px of line inside 4px of padding = a 30px row, text
-     vertically centred, transparent at every state. Top-level and nested rows
-     are the same rule — only the indentation differs. */
+  /* Navigation rows keep a 30px minimum while their 18px text line is centred
+     inside 4px of block padding. Long labels wrap and grow the row instead of
+     being clipped; top-level and nested rows differ only by indentation. */
   .nextra-sidebar a,
   .nextra-sidebar button[data-href] {
     min-height: 30px !important;
@@ -2338,7 +2351,7 @@ div:has(> .nextra-sidebar) {
     color: var(--pl-ink-caption) !important;
     font-size: 0.875rem !important;
     font-weight: 400 !important;
-    line-height: 1.5714;
+    line-height: 18px;
     letter-spacing: -0.0064em;
     cursor: pointer;
     transition: color 180ms ease-out;
@@ -2386,15 +2399,15 @@ div:has(> .nextra-sidebar) {
     color: var(--pl-icon-tone, var(--pl-ink-caption));
   }
 
-  /* One line per row, so the 400→500 hover step can never rewrap a label and
-     break the fixed 30px rhythm. The label is left-aligned after a fixed-size
-     icon and the trailing chevron is placed by flex, so a slightly wider
-     weight-500 string moves neither the icon nor the row. */
+  /* Labels use every available line inside the fixed-width rail. Breaking at
+     ordinary wrap opportunities keeps words intact; overflow-wrap is the
+     fallback for a future unbroken identifier that is wider than the row. */
   .pl-nav-text {
     min-width: 0;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    overflow: visible;
+    overflow-wrap: break-word;
+    white-space: normal;
+    text-overflow: clip;
   }
 
   /* Icons hold still across hover and active states (designer S14): the row's

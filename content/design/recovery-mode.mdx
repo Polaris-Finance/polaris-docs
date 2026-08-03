@@ -1,30 +1,34 @@
 ---
-title: "Recovery Mode"
-description: "Recovery Mode is the protective state a pAsset market enters when its overall collateralization falls below a critical threshold."
+title: "Defensive and Recovery Modes"
+description: "Defensive Mode and Recovery Mode are protective states for stressed pAsset markets."
 ---
 
-# Recovery Mode
+# Defensive and Recovery Modes
 
-Recovery Mode is the protective state a pAsset market enters when its **overall collateralization falls below a critical threshold**.
+Defensive Mode and Recovery Mode are protective states a pAsset market can enter when its overall collateralization weakens.
 
-Each pAsset market has its own Recovery Mode. Stress affecting one market does not automatically place every other market into the same state, so that USDp, GOLDp and future pAssets remain independent from one another.
+Each pAsset market has its own thresholds. Stress affecting one market does not automatically place every other market into the same state, so USDp, GOLDp and future pAssets remain independent from one another.
 
-Once active, the protocol continues operating normally and restricts only the actions that would further weaken the affected market. Users can still add collateral, repay debt and improve the health of their positions, although actions such as minting additional pAssets may become unavailable.
+The first threshold activates **Defensive Mode**. The market continues operating, but actions that would weaken collateral health can be restricted. Users can still add collateral, repay debt and improve their positions, while actions such as increasing debt or withdrawing collateral may become unavailable.
 
-The goal is to **prevent the market from weakening without restricting participants from repaying positions** and reducing debt. The normal liquidation threshold does not change, and positions are liquidated only after reaching the same maximum LTV that applies under normal market conditions.
+The second, more severe threshold activates **Recovery Mode**. Recovery Mode keeps the market open for deleveraging while applying stricter protections around minting and redemptions.
+
+The goal of both modes is to **prevent the market from weakening while preserving the ability to repay debt and reduce risk**. The normal liquidation threshold does not change, and positions are liquidated only after falling below the same minimum collateral ratio that applies under normal market conditions.
 
 ## Peg Stability
 
-Recovery Mode also affects direct minting and redemptions. **New direct minting is disabled** because it would increase the outstanding debt of the affected market, whereas direct redemptions remain available because they reduce the circulating supply.
+Defensive Mode and Recovery Mode also affect direct minting and redemptions. **New direct minting is disabled** because it would increase the outstanding debt of the affected market, whereas direct redemptions remain available because they reduce the circulating supply.
 
-If the market's collateral falls below full backing, **redemption payouts become proportional to the collateral that remains available**. This ensures every redeemer receives a proportional share of the remaining backing, eliminating any advantage for participants who exit first.
+If the market's collateral falls below full backing in Recovery Mode, **redemption payouts become proportional to the collateral that remains available**. This ensures every redeemer receives a proportional share of the remaining backing, eliminating any advantage for participants who exit first.
 
-Bonding curve swaps remain available during Recovery Mode. Since the bonding curve operates as **shared pETH infrastructure independent of any individual pAsset market**, pETH holders can continue using it even if a specific market enters Recovery Mode.
-| Action | Status | Why |
-| --- | --- | --- |
-| Add collateral / repay debt | Allowed | Improves position health |
-| Redemptions | Allowed | Reduces supply |
-| Bonding curve swaps | Allowed | Independent infrastructure |
-| Direct pAsset minting | Disabled | Would increase market debt |
+Bonding curve swaps remain available throughout both modes. Since the bonding curve operates as **shared pETH infrastructure independent of any individual pAsset market**, pETH holders can continue using it even if a specific market enters Defensive Mode or Recovery Mode.
 
-This mechanism is designed to help a stressed market deleverage in an orderly and isolated manner, with no impact on the wider Polaris ecosystem.
+| Action | Defensive Mode | Recovery Mode | Why |
+| --- | --- | --- | --- |
+| Add collateral / repay debt | Allowed | Allowed | Improves position health |
+| Withdraw collateral / increase debt | Restricted | Disabled | Would weaken market health |
+| Direct pAsset minting | Disabled | Disabled | Would increase market debt |
+| Redemptions | Allowed | Allowed, or proportional if below full backing | Reduces supply |
+| Bonding curve swaps | Allowed | Allowed | Independent infrastructure |
+
+These mechanisms are designed to help a stressed market deleverage in an orderly and isolated manner, without shutting down the wider Polaris ecosystem.

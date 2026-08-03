@@ -8,7 +8,7 @@
   </url>
   <url>
     <loc>https://docs.polaris.finance/architecture/bonding-curve</loc>
-    <lastmod>2026-07-31</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -20,7 +20,7 @@
   </url>
   <url>
     <loc>https://docs.polaris.finance/architecture/flows</loc>
-    <lastmod>2026-07-31</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -38,7 +38,7 @@
   </url>
   <url>
     <loc>https://docs.polaris.finance/architecture/reserve-loans</loc>
-    <lastmod>2026-07-31</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -50,13 +50,13 @@
   </url>
   <url>
     <loc>https://docs.polaris.finance/architecture/tokenomics</loc>
-    <lastmod>2026-07-31</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://docs.polaris.finance/core-assets/fpeth</loc>
-    <lastmod>2026-07-30</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -74,7 +74,7 @@
   </url>
   <url>
     <loc>https://docs.polaris.finance/core-assets/polar</loc>
-    <lastmod>2026-07-30</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -92,25 +92,25 @@
   </url>
   <url>
     <loc>https://docs.polaris.finance/design/adaptive-peg-defence</loc>
-    <lastmod>2026-07-31</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://docs.polaris.finance/design/conversions</loc>
-    <lastmod>2026-07-31</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://docs.polaris.finance/design/fee-router</loc>
-    <lastmod>2026-07-31</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://docs.polaris.finance/design/interest-rates</loc>
-    <lastmod>2026-08-01</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -128,7 +128,7 @@
   </url>
   <url>
     <loc>https://docs.polaris.finance/design/recovery-mode</loc>
-    <lastmod>2026-07-31</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -140,7 +140,7 @@
   </url>
   <url>
     <loc>https://docs.polaris.finance/design/spike-and-decay-fees</loc>
-    <lastmod>2026-07-31</lastmod>
+    <lastmod>2026-08-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

@@ -20,8 +20,8 @@ Polaris supports both directions, allowing **pAssets to be minted against pETH c
 
 Condition | Arbitrage | Supply effect | Adaptive Peg Defense
 
-Above peg | Mint at par, sell | Supply expands, reducing price | Collateral, debt and minting fees
-Below peg | Buy and redeem | Supply contracts, increasing price | Collateral removal, debt reduction and redemption fees
+Above peg | Mint at par, sell | Supply expands, reducing price | Existing positions are upsized
+Below peg | Buy and redeem | Supply contracts, increasing price | Existing positions are downsized
 
 ## Above Peg
 
@@ -29,9 +29,9 @@ When a pAsset trades above its target price, market participants can **mint new 
 
 For example, if USDp trades above one dollar, an arbitrageur can deposit ETH into the bonding curve, receive pETH and immediately mint new USDp at par before selling it above one dollar. This increases the circulating supply and naturally pushes the market price back toward its target.
 
-Polaris extends this mechanism thanks to its Adaptive Peg Defense model, which **distributes the collateral, debt and minting fees across all existing positions**, preventing them from being concentrated in a single position.
+Polaris extends this mechanism through Adaptive Peg Defense, which treats direct minting as an upsizing of the existing market. The added collateral, debt and minting fees are distributed across open positions according to protocol accounting.
 
-This allows supply to expand in response to above-peg demand without pushing a single position toward liquidation. The expansion is shared across the market, allowing the protocol to respond to upward depegs through direct onchain minting.
+This means the market can expand in response to above-peg demand without requiring the arbitrageur to maintain a long-lived position. Existing positions grow alongside the market and receive the associated minting fees.
 
 ## Below Peg
 
@@ -39,6 +39,6 @@ When a pAsset trades below its target price, market participants can **buy the d
 
 For example, if USDp trades below one dollar, an arbitrageur can purchase USDp below peg, redeem it at par for pETH and capture the price difference. The redeemed USDp is burned, reducing the circulating supply and encouraging the market price to move back toward target.
 
-The same Adaptive Peg Defense model applies to redemptions: **collateral removal, debt reduction and redemption fees are split across existing positions** instead of concentrating on a single position.
+The same Adaptive Peg Defense model applies to redemptions, but in the opposite direction. Redemptions downsize the existing market by distributing collateral removal, debt reduction and redemption fees across open positions according to protocol accounting.
 
-As a result, supply contracts without disproportionately affecting individual positions. The contraction is shared across the market, allowing the protocol to respond to downward depegs through direct onchain redemptions.
+As a result, supply contracts through the same shared accounting model. Existing positions shrink alongside the market and receive the associated redemption fees.
