@@ -50,7 +50,7 @@ Unlike most ETH-denominated assets, pETH has both a **market price** and a **mat
 
 The market price is determined by supply and demand and can fluctuate over time, while the minimum amount of ETH backing each pETH determines the floor price. As Polaris grows, part of the value generated across the protocol is designed to strengthen that backing over time, allowing the pETH floor price to steadily increase alongside ecosystem growth.
 
-Sicne the market price and the floor price are separate, pETH can trade above its floor while the floor itself continues to reflect the **minimum ETH backing** beneath the asset.
+Since the market price and the floor price are separate, pETH can trade above its floor while the floor itself continues to reflect the **minimum ETH backing** beneath the asset.
 
 ![The pETH bonding curve at two supply levels, with each spot price separated into the fpETH floor component and vpETH market premium.](https://docs.polaris.finance/infographics/peth.jpg)
 

@@ -14,7 +14,7 @@ Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 Earn Vaults allow pAssets minted through Polaris to become yield-bearing assets.
 
-Users deposit a pAsset into its corresponding Earn Vault, where those deposits are used to absorb liquidations whenever positions exceed the maximum allowed LTV. In return, depositors receive a **guaranteed minimum share of the interest** paid by pAsset minters over time, along with any pETH liquidation gains.
+Users deposit a pAsset into its corresponding Earn Vault, where those deposits are used to absorb liquidations whenever positions fall below the market's minimum collateral ratio. In return, depositors receive a **protocol-defined minimum share of the interest** paid by pAsset minters over time, along with any pETH liquidation gains.
 
 This makes Earn Vaults the primary mechanism through which protocol-native yield is distributed to pAsset holders. Since both minter interest and liquidation gains originate from activity inside Polaris, the resulting yield does not rely on external lending markets or offchain assets.
 

@@ -245,7 +245,7 @@ Below gold price | Redeem GOLDp | Supply decreases, and price returns toward the
 
 Together, these mechanisms adjust the circulating supply in response to market conditions.
 
-These arbitrage paths operate through [Adaptive Peg Defense](https://docs.polaris.finance/design/adaptive-peg-defence), distributing the collateral, debt and fees created by direct minting and redemptions across open positions rather than concentrating them in a single position.
+These arbitrage paths operate through [Adaptive Peg Defense](https://docs.polaris.finance/design/adaptive-peg-defence), which distributes the collateral, debt, and fees created by direct minting and redemptions across open positions.
 
 Two interest-rate mechanisms complement it: the [Peg Stability Rate](https://docs.polaris.finance/design/interest-rates#peg-stability-rate) adjusts borrowing costs in response to minting and redemption activity, while the [Protocol Safety Rate](https://docs.polaris.finance/design/interest-rates#protocol-safety-rate) redistributes interest from higher-leverage positions to lower-leverage or collateral-only positions when aggregate collateralization falls below its threshold.
 
@@ -296,7 +296,7 @@ Unlike most ETH-denominated assets, pETH has both a **market price** and a **mat
 
 The market price is determined by supply and demand and can fluctuate over time, while the minimum amount of ETH backing each pETH determines the floor price. As Polaris grows, part of the value generated across the protocol is designed to strengthen that backing over time, allowing the pETH floor price to steadily increase alongside ecosystem growth.
 
-Sicne the market price and the floor price are separate, pETH can trade above its floor while the floor itself continues to reflect the **minimum ETH backing** beneath the asset.
+Since the market price and the floor price are separate, pETH can trade above its floor while the floor itself continues to reflect the **minimum ETH backing** beneath the asset.
 
 Image: The pETH bonding curve at two supply levels, with each spot price separated into the fpETH floor component and vpETH market premium.
 
@@ -362,7 +362,7 @@ USDp is the native Polaris dollar.
 
 It tracks the value of the US dollar using overcollateralized debt positions backed by pETH.
 
-It exists entirely onchain and is designed to remain censorship resistant. **Anyone can independently verify the collateral backing every USDp** in circulation, with immutable code enforicing minting and redemptions.
+It exists entirely onchain and is designed to remain censorship resistant. **Anyone can independently verify the collateral backing every USDp** in circulation, with immutable code enforcing minting and redemptions.
 
 ## Using USDp
 
@@ -389,7 +389,7 @@ Below \$1 | Redeem USDp | Supply decreases, and price returns toward \$1
 
 Together, these mechanisms adjust the circulating supply in response to peg conditions.
 
-These arbitrage paths operate through [Adaptive Peg Defense](https://docs.polaris.finance/design/adaptive-peg-defence), distributing the collateral, debt and fees created by direct minting and redemptions across open positions rather than concentrating them in a single position.
+These arbitrage paths operate through [Adaptive Peg Defense](https://docs.polaris.finance/design/adaptive-peg-defence), which distributes the collateral, debt, and fees created by direct minting and redemptions across open positions.
 
 Two interest-rate mechanisms complement it: the [Peg Stability Rate](https://docs.polaris.finance/design/interest-rates#peg-stability-rate) adjusts borrowing costs in response to minting and redemption activity, while the [Protocol Safety Rate](https://docs.polaris.finance/design/interest-rates#protocol-safety-rate) redistributes interest from higher-leverage positions to lower-leverage or collateral-only positions when aggregate collateralization falls below its threshold.
 
@@ -431,7 +431,7 @@ Time | fpETH (floor) | vpETH (premium) | pETH
 At the split | 0.75 ETH | 0.25 ETH | 1.00 ETH
 Six months later | 0.85 ETH | 0.40 ETH | 1.25 ETH
 
-**The premium now accounts for a much larger share of pETH than befor**, allowing Alice's vpETH to capture most of that additional appreciation while Bob continues benefiting from the steady growth of the floor.
+**The premium now accounts for a much larger share of pETH than before**, allowing Alice's vpETH to capture most of that additional appreciation while Bob continues benefiting from the steady growth of the floor.
 
 The two assets still originate from the same pETH, but each responds to a different source of value as Polaris evolves. While fpETH follows the gradual growth of the floor, vpETH reflects how the market values everything beyond it.
 
@@ -527,7 +527,7 @@ Markdown URL: https://docs.polaris.finance/architecture/earn-vaults.md
 
 Earn Vaults allow pAssets minted through Polaris to become yield-bearing assets.
 
-Users deposit a pAsset into its corresponding Earn Vault, where those deposits are used to absorb liquidations whenever positions exceed the maximum allowed LTV. In return, depositors receive a **guaranteed minimum share of the interest** paid by pAsset minters over time, along with any pETH liquidation gains.
+Users deposit a pAsset into its corresponding Earn Vault, where those deposits are used to absorb liquidations whenever positions fall below the market's minimum collateral ratio. In return, depositors receive a **protocol-defined minimum share of the interest** paid by pAsset minters over time, along with any pETH liquidation gains.
 
 This makes Earn Vaults the primary mechanism through which protocol-native yield is distributed to pAsset holders. Since both minter interest and liquidation gains originate from activity inside Polaris, the resulting yield does not rely on external lending markets or offchain assets.
 
@@ -748,7 +748,7 @@ Stewardship is therefore bounded, and cannot:
 
 Some parts of the ecosystem still require ongoing coordination.
 
-Stewardship is responsible for certain parameters within predefined protocol boundarie, allowing the ecosystem to adapt to changing market conditions.
+Stewardship is responsible for certain parameters within predefined protocol boundaries, allowing the ecosystem to adapt to changing market conditions.
 
 This includes:
 
@@ -1445,7 +1445,7 @@ The architectural decisions below remove many of the trust assumptions commonly 
 
 **pAssets are issued through transparent onchain rules**. USDp, GOLDp and every future pAsset are created according to transparent onchain mechanisms, without a company deciding when assets can be issued or redeemed.
 
-**Every pAsset is fully collateralized** at minting. The protocol does not allow privileged actors, multisigs or administrators to create unbacked assets outside the normal minting process.
+**Every pAsset is minted against the required pETH collateral**. The protocol does not allow privileged actors, multisigs or administrators to create unbacked assets outside the normal minting process.
 
 **Stewardship remains bounded.** It can update a limited set of ecosystem parameters within predefined boundaries, including interest rate splits, POLAR conversion parameters, oracle feed replacement, flow recipients and flow weightings. It cannot modify the bonding curve or liquidation mechanics, introduce new collateral or upgrade the core contracts.
 
