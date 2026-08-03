@@ -1,7 +1,6 @@
 /* Polaris documentation overrides layered on top of nextra-theme-docs.
-   Light mode keeps the brand palette. Dark mode is deliberately monochrome:
-   neutral inks descend from white to black, with only the approved page and
-   tile surfaces retaining their near-black blue values. */
+   Light mode keeps the brand palette. Dark mode uses neutral surfaces and type,
+   reserving brand colour for semantic icons and links. */
 
 :root {
   --polaris-navy-darkest: #050a14;
@@ -80,8 +79,8 @@
 }
 
 .dark {
-  /* Approved dark surfaces. These are the only non-neutral values in the dark
-     theme; every ink, rule, accent and interaction state below is grayscale. */
+  /* Approved dark surfaces anchor the theme while semantic icons and links keep
+     their restrained brand colours. */
   --polaris-navy-darkest: #16171b;
   --polaris-navy-dark: #1b1c22;
   --polaris-navy: #242424;
@@ -90,9 +89,9 @@
   --polaris-star: #e0e0e0;
   --polaris-star-bright: #ffffff;
   --polaris-cream: #f2f2f2;
-  --polaris-pusd: #e0e0e0;
-  --polaris-peth: #b8b8b8;
-  --polaris-polar: #a3a3a3;
+  --polaris-pusd: #e8dcc4;
+  --polaris-peth: #7ba5c9;
+  --polaris-polar: #9b8fcf;
 
   --pl-surface: #1b1c22;
   --pl-card-border: rgba(255, 255, 255, 0.06);
@@ -104,22 +103,21 @@
   --pl-table-header-bg: var(--pl-tile-bg);
   --pl-table-header-rule: var(--pl-ui-hairline);
 
-  /* Text hierarchy comes from luminance only. Body and caption values retain
-     comfortable AA contrast on both approved dark surfaces. */
+  /* Text hierarchy comes from luminance; links use the established brand blue
+     with comfortable AA contrast on both approved dark surfaces. */
   --pl-ink-heading: #ffffff;
   --pl-ink-body: #e0e0e0;
   --pl-ink-caption: #a3a3a3;
-  --pl-ink-link: #ffffff;
-  --pl-link-underline: rgba(255, 255, 255, 0.35);
+  --pl-ink-link: #7ba5c9;
+  --pl-link-underline: rgba(123, 165, 201, 0.4);
 
-  /* Navigation groups keep their semantic classes, but no longer introduce
-     independent hues in dark mode. */
-  --pl-icon-gold: #b8b8b8;
-  --pl-icon-blue: #b8b8b8;
-  --pl-icon-violet: #b8b8b8;
-  --pl-icon-teal: #b8b8b8;
-  --pl-icon-green: #b8b8b8;
-  --pl-icon-rust: #b8b8b8;
+  /* Navigation groups retain their semantic brand tones in dark mode. */
+  --pl-icon-gold: #d8c9a4;
+  --pl-icon-blue: #7ba5c9;
+  --pl-icon-violet: #9b8fcf;
+  --pl-icon-teal: #74b3ad;
+  --pl-icon-green: #9dbd76;
+  --pl-icon-rust: #d08b62;
 }
 
 /* Resolve a tone class to the single custom property the icon rules read. */
@@ -834,10 +832,6 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
   border-radius: 50%;
 }
 
-.dark .pl-docs-link-logo {
-  filter: grayscale(1);
-}
-
 .pl-docs-link-icon:has(.pl-docs-link-logo) {
   opacity: 0.85;
 }
@@ -1329,20 +1323,30 @@ article .pl-content-image {
   border-radius: 8px;
 }
 
-article .pl-content-image > img {
+article .pl-content-image-frame {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+article .pl-content-image > img,
+article .pl-content-image-frame > img {
   display: block;
   max-width: 100%;
   margin-block: 0 !important;
   border-radius: 8px !important;
 }
 
-/* A one-pixel inner stroke separates media from the dark page without changing
-   the image box or introducing layout shift. The direct-child selectors cover
-   the brief pre-enhancement state before legacy images receive their wrapper. */
+/* The frame is the visual image component inside the spacing wrapper. Its
+   one-pixel outer ring separates media from the dark page without touching the
+   image pixels or affecting layout. Direct-image selectors cover the brief
+   pre-enhancement legacy state. */
+.dark article .pl-content-image-frame,
 .dark article .pl-content-image > img,
 .dark article main > img,
 .dark article main > a:has(> img) > img {
-  box-shadow: inset 0 0 0 1px #35363b !important;
+  box-shadow: 0 0 0 1px #35363b;
 }
 
 .pl-image-zoom-target {
@@ -1407,12 +1411,6 @@ article .pl-content-image > img {
   box-shadow: 0 24px 72px rgb(0 0 0 / 38%);
 }
 
-.dark .pl-image-lightbox > img {
-  box-shadow:
-    inset 0 0 0 1px #35363b,
-    0 24px 72px rgb(0 0 0 / 38%);
-}
-
 .pl-image-lightbox-close {
   position: fixed;
   top: max(1rem, env(safe-area-inset-top));
@@ -1439,14 +1437,15 @@ html:not(.dark) article img[src$='.svg'] {
 /* Returning focus after the lightbox closes used to leave a black outline
    around the entire image. Keep zoomable image surfaces visually neutral; the
    cursor continues to communicate that the full image can be enlarged. */
-article .pl-content-image > .pl-image-zoom-target:focus-visible {
+article .pl-content-image > .pl-image-zoom-target:focus-visible,
+article .pl-content-image-frame > .pl-image-zoom-target:focus-visible {
   outline: none !important;
   outline-offset: 0 !important;
   box-shadow: none !important;
 }
 
 .dark article .pl-content-image > .pl-image-zoom-target:focus-visible {
-  box-shadow: inset 0 0 0 1px #35363b !important;
+  box-shadow: 0 0 0 1px #35363b !important;
 }
 
 /* Infographics fill the content column and stop there: the 710px measure applies
@@ -2133,10 +2132,10 @@ div:has(> .nextra-sidebar) {
   transition: filter 0.15s ease;
 }
 
-/* Asset logos join the monochrome system in dark mode while preserving their
-   original artwork and silhouette. */
+/* Lift asset logos to the same visual weight as the coloured vector glyphs on
+   the dark sidebar while preserving their original artwork. */
 .dark .pl-nav-icon-asset {
-  filter: grayscale(1) brightness(1.12) opacity(0.86);
+  filter: brightness(1.12) opacity(0.86);
 }
 
 @media (min-width: 768px) {
@@ -2302,11 +2301,6 @@ div:has(> .nextra-sidebar) {
   .nextra-sidebar :is(a, button[data-href]):is(:hover, :focus-visible) .pl-nav-icon-asset,
   .nextra-sidebar li.active > a .pl-nav-icon-asset {
     filter: none;
-  }
-
-  .dark .nextra-sidebar :is(a, button[data-href]):is(:hover, :focus-visible) .pl-nav-icon-asset,
-  .dark .nextra-sidebar li.active > a .pl-nav-icon-asset {
-    filter: grayscale(1) brightness(1.2);
   }
 
   /* Collapse chevron, bumped alongside the glyphs so the row stays optically
@@ -3000,11 +2994,6 @@ ul[role='listbox'][data-anchor] > li[role='option']:is(:hover, :focus, [data-foc
 .pl-mobile-nav-row:is(:hover, :focus-visible, :active) .pl-nav-icon-asset,
 .pl-mobile-nav-row[aria-current='page'] .pl-nav-icon-asset {
   filter: none;
-}
-
-.dark .pl-mobile-nav-row:is(:hover, :focus-visible, :active) .pl-nav-icon-asset,
-.dark .pl-mobile-nav-row[aria-current='page'] .pl-nav-icon-asset {
-  filter: grayscale(1) brightness(1.2);
 }
 
 .pl-mobile-nav-row-main,
