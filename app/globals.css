@@ -1,5 +1,7 @@
-/* Polaris "Celestial Night Sky" brand overrides layered on top of nextra-theme-docs.
-   Palette + typography mirror polaris-landing (docs/design-system.md). */
+/* Polaris documentation overrides layered on top of nextra-theme-docs.
+   Light mode keeps the brand palette. Dark mode is deliberately monochrome:
+   neutral inks descend from white to black, with only the approved page and
+   tile surfaces retaining their near-black blue values. */
 
 :root {
   --polaris-navy-darkest: #050a14;
@@ -32,11 +34,9 @@
   --pl-table-header-bg: var(--pl-tile-bg);
   --pl-table-header-rule: var(--pl-ui-hairline);
 
-  /* Icon tones, one hue per navigation group (Aave gives every icon family its
-     own colour instead of a single shared accent). Muted on purpose — the
-     anti-reference is neon-on-black, not colour. Light values are darkened so
-     they stay legible on cream; .dark restores the brand values below.
-     Decorative only: the glyph still carries the meaning. */
+  /* Icon tones, one hue per navigation group in light mode. Dark mode resolves
+     the same semantic classes to a shared neutral, so the glyph — not colour —
+     carries the meaning. */
   --pl-icon-gold: #816515;
   --pl-icon-blue: #3d6f9c;
   --pl-icon-violet: #6355a6;
@@ -80,32 +80,46 @@
 }
 
 .dark {
-  --pl-surface: rgba(123, 165, 201, 0.06);
-  --pl-card-border: rgba(123, 165, 201, 0.06);
-  --pl-tile-bg: #0d1726;
-  --pl-tile-hover: #121e30;
-  --pl-prev-next-ink: #faf6ee;
+  /* Approved dark surfaces. These are the only non-neutral values in the dark
+     theme; every ink, rule, accent and interaction state below is grayscale. */
+  --polaris-navy-darkest: #16171b;
+  --polaris-navy-dark: #1b1c22;
+  --polaris-navy: #242424;
+  --polaris-navy-mid: #303030;
+  --polaris-navy-light: #414141;
+  --polaris-star: #e0e0e0;
+  --polaris-star-bright: #ffffff;
+  --polaris-cream: #f2f2f2;
+  --polaris-pusd: #e0e0e0;
+  --polaris-peth: #b8b8b8;
+  --polaris-polar: #a3a3a3;
 
-  /* Cool low-alpha hairline (~L 0.23) instead of the theme's gray-600 (~L 0.45),
-     and a header fill strong enough to read as a band over the near-black page. */
+  --pl-surface: #1b1c22;
+  --pl-card-border: rgba(255, 255, 255, 0.06);
+  --pl-tile-bg: #1b1c22;
+  --pl-tile-hover: #26272e;
+  --pl-prev-next-ink: #ffffff;
+
   --pl-table-rule: var(--pl-ui-hairline);
   --pl-table-header-bg: var(--pl-tile-bg);
   --pl-table-header-rule: var(--pl-ui-hairline);
 
-  /* The type scale's structure is shared; only its inks are per-theme. Dark
-     keeps the star/navy palette it already shipped with — the designer specced
-     light only, and dark must still clear AA (the contrast e2e samples both). */
-  --pl-ink-heading: var(--polaris-star-bright);
-  --pl-ink-body: #e8dcc4;
-  --pl-ink-caption: #b9b19f;
-  --pl-ink-link: #d8c9a4;
-  --pl-link-underline: rgba(216, 201, 164, 0.35);
-  --pl-icon-gold: #d8c9a4;
-  --pl-icon-blue: #7ba5c9;
-  --pl-icon-violet: #9b8fcf;
-  --pl-icon-teal: #74b3ad;
-  --pl-icon-green: #9dbd76;
-  --pl-icon-rust: #d08b62;
+  /* Text hierarchy comes from luminance only. Body and caption values retain
+     comfortable AA contrast on both approved dark surfaces. */
+  --pl-ink-heading: #ffffff;
+  --pl-ink-body: #e0e0e0;
+  --pl-ink-caption: #a3a3a3;
+  --pl-ink-link: #ffffff;
+  --pl-link-underline: rgba(255, 255, 255, 0.35);
+
+  /* Navigation groups keep their semantic classes, but no longer introduce
+     independent hues in dark mode. */
+  --pl-icon-gold: #b8b8b8;
+  --pl-icon-blue: #b8b8b8;
+  --pl-icon-violet: #b8b8b8;
+  --pl-icon-teal: #b8b8b8;
+  --pl-icon-green: #b8b8b8;
+  --pl-icon-rust: #b8b8b8;
 }
 
 /* Resolve a tone class to the single custom property the icon rules read. */
@@ -309,7 +323,12 @@ article :is(pre, pre code) {
   letter-spacing: normal;
 }
 
-/* Dark mode — the canonical Polaris surface */
+/* Preserve syntax luminance while removing hue from dark code tokens. */
+.dark article pre code span {
+  filter: grayscale(1);
+}
+
+/* Dark mode — the approved Polaris page surface. */
 
 .dark body {
   background-color: var(--polaris-navy-darkest);
@@ -815,6 +834,10 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
   border-radius: 50%;
 }
 
+.dark .pl-docs-link-logo {
+  filter: grayscale(1);
+}
+
 .pl-docs-link-icon:has(.pl-docs-link-logo) {
   opacity: 0.85;
 }
@@ -1180,7 +1203,7 @@ article :is(h1, h2, h3, h4):target {
 @keyframes pl-target-flash-dark {
   0%,
   30% {
-    background-color: rgba(216, 201, 164, 0.14);
+    background-color: rgba(255, 255, 255, 0.12);
   }
   100% {
     background-color: transparent;
@@ -1291,8 +1314,8 @@ article blockquote {
 }
 
 .dark article blockquote {
-  border-inline-start-color: #d8c9a4 !important;
-  background: rgba(216, 201, 164, 0.05);
+  border-inline-start-color: #b8b8b8 !important;
+  background: rgba(255, 255, 255, 0.04);
 }
 
 /* Golden article-media rule: every image uses the same structural div, with
@@ -1311,6 +1334,15 @@ article .pl-content-image > img {
   max-width: 100%;
   margin-block: 0 !important;
   border-radius: 8px !important;
+}
+
+/* A one-pixel inner stroke separates media from the dark page without changing
+   the image box or introducing layout shift. The direct-child selectors cover
+   the brief pre-enhancement state before legacy images receive their wrapper. */
+.dark article .pl-content-image > img,
+.dark article main > img,
+.dark article main > a:has(> img) > img {
+  box-shadow: inset 0 0 0 1px #35363b !important;
 }
 
 .pl-image-zoom-target {
@@ -1335,14 +1367,14 @@ article .pl-content-image > img {
 }
 
 .dark .pl-image-lightbox-close {
-  background: #242424;
+  background: #1b1c22;
   box-shadow:
     rgb(0 0 0 / 36%) 0 1px 1px,
     #414141 0 0 0 1px;
 }
 
 .dark .pl-image-lightbox-close:hover {
-  background: #303030;
+  background: #242424;
 }
 
 .pl-image-lightbox {
@@ -1358,7 +1390,7 @@ article .pl-content-image > img {
 .pl-image-lightbox-backdrop {
   position: absolute;
   border: 0;
-  background: rgb(5 10 20 / 82%);
+  background: rgb(0 0 0 / 82%);
   cursor: zoom-out;
   inset: 0;
 }
@@ -1373,6 +1405,12 @@ article .pl-content-image > img {
   border-radius: 8px;
   object-fit: contain;
   box-shadow: 0 24px 72px rgb(0 0 0 / 38%);
+}
+
+.dark .pl-image-lightbox > img {
+  box-shadow:
+    inset 0 0 0 1px #35363b,
+    0 24px 72px rgb(0 0 0 / 38%);
 }
 
 .pl-image-lightbox-close {
@@ -1405,6 +1443,10 @@ article .pl-content-image > .pl-image-zoom-target:focus-visible {
   outline: none !important;
   outline-offset: 0 !important;
   box-shadow: none !important;
+}
+
+.dark article .pl-content-image > .pl-image-zoom-target:focus-visible {
+  box-shadow: inset 0 0 0 1px #35363b !important;
 }
 
 /* Infographics fill the content column and stop there: the 710px measure applies
@@ -1535,7 +1577,7 @@ article > div[class*='x:float-end'] {
 }
 
 .dark .pl-copy-page-control {
-  background: #242424 !important;
+  background: #1b1c22 !important;
   box-shadow:
     rgb(0 0 0 / 36%) 0 1px 1px,
     #414141 0 0 0 1px !important;
@@ -1580,7 +1622,7 @@ article [class*='overflow-x-auto']::after {
 
 .dark article .overflow-x-auto::after,
 .dark article [class*='overflow-x-auto']::after {
-  background: linear-gradient(90deg, transparent, rgba(5, 10, 20, 0.9));
+  background: linear-gradient(90deg, transparent, rgba(22, 23, 27, 0.9));
 }
 
 /* Show fade when content overflows */
@@ -1637,7 +1679,7 @@ article [class*='overflow-x-auto']:has(table)::after {
   }
 
   .dark article table[data-pl-table][data-pl-wide='true'] td {
-    border-bottom-color: rgba(123, 165, 201, 0.1);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
   }
 
   article table[data-pl-table][data-pl-wide='true'] td:last-child {
@@ -1657,7 +1699,7 @@ article [class*='overflow-x-auto']:has(table)::after {
   }
 
   .dark article table[data-pl-table][data-pl-wide='true'] td[data-label]::before {
-    color: #9cc2e0;
+    color: #a3a3a3;
   }
 
   /* The first column is the row's subject: render it as the card title rather
@@ -1676,8 +1718,8 @@ article [class*='overflow-x-auto']:has(table)::after {
   }
 
   .dark article table[data-pl-table][data-pl-wide='true'] td:first-child {
-    border-bottom-color: rgba(123, 165, 201, 0.18);
-    color: var(--polaris-star-bright);
+    border-bottom-color: rgba(255, 255, 255, 0.18);
+    color: var(--pl-ink-heading);
   }
 
   article table[data-pl-table][data-pl-wide='true'] td:first-child::before {
@@ -1796,16 +1838,16 @@ article [class*='overflow-x-auto']:has(table)::after {
 }
 
 .dark {
-  --pl-navbar-bg: #050a14;
-  --pl-overlay-bg: #0a1628;
-  --pl-footer-bg: #08111f;
-  --pl-ui-ink: #faf6ee;
-  --pl-ui-muted: #b9b19f;
-  --pl-ui-soft: rgba(232, 220, 196, 0.075);
-  --pl-ui-hairline: rgba(232, 220, 196, 0.14);
+  --pl-navbar-bg: #16171b;
+  --pl-overlay-bg: #1b1c22;
+  --pl-footer-bg: #16171b;
+  --pl-ui-ink: #ffffff;
+  --pl-ui-muted: #a3a3a3;
+  --pl-ui-soft: rgba(255, 255, 255, 0.06);
+  --pl-ui-hairline: rgba(255, 255, 255, 0.12);
   --pl-shell-rule: var(--pl-ui-hairline);
-  --pl-focus-ring: #faf6ee;
-  --pl-active: #d8c9a4;
+  --pl-focus-ring: #ffffff;
+  --pl-active: #ffffff;
 }
 
 html {
@@ -1924,7 +1966,7 @@ div:has(> .nextra-sidebar) {
 }
 
 .dark .pl-navbar-search-trigger {
-  background: #242424;
+  background: #1b1c22;
   box-shadow:
     rgb(0 0 0 / 36%) 0 1px 1px,
     #414141 0 0 0 1px;
@@ -1962,7 +2004,7 @@ div:has(> .nextra-sidebar) {
 }
 
 .dark .pl-navbar-search-trigger kbd {
-  background: #303030;
+  background: #242424;
 }
 
 .pl-navbar-end {
@@ -1992,6 +2034,15 @@ div:has(> .nextra-sidebar) {
 
 .pl-nav-testnet:hover {
   background: color-mix(in srgb, #343433 88%, white 12%);
+}
+
+.dark .pl-nav-testnet {
+  background: #ffffff;
+  color: #000000;
+}
+
+.dark .pl-nav-testnet:hover {
+  background: #e0e0e0;
 }
 
 .pl-nav-testnet:active {
@@ -2082,10 +2133,10 @@ div:has(> .nextra-sidebar) {
   transition: filter 0.15s ease;
 }
 
-/* The orbs sink into the dark sidebar; lift them to the same visual weight as
-   the lucide strokes. */
+/* Asset logos join the monochrome system in dark mode while preserving their
+   original artwork and silhouette. */
 .dark .pl-nav-icon-asset {
-  filter: brightness(1.12) opacity(0.86);
+  filter: grayscale(1) brightness(1.12) opacity(0.86);
 }
 
 @media (min-width: 768px) {
@@ -2251,6 +2302,11 @@ div:has(> .nextra-sidebar) {
     filter: none;
   }
 
+  .dark .nextra-sidebar :is(a, button[data-href]):is(:hover, :focus-visible) .pl-nav-icon-asset,
+  .dark .nextra-sidebar li.active > a .pl-nav-icon-asset {
+    filter: grayscale(1) brightness(1.2);
+  }
+
   /* Collapse chevron, bumped alongside the glyphs so the row stays optically
      balanced at the larger icon size. */
   .nextra-sidebar li > :is(a, button[data-href]) > svg:last-child {
@@ -2343,7 +2399,7 @@ div:has(> .nextra-sidebar) {
 }
 
 .dark .pl-docs-overlay--search .pl-docs-overlay-panel {
-  background: #101722;
+  background: #1b1c22;
   box-shadow: 0 18px 44px rgb(0 0 0 / 42%);
 }
 
@@ -2408,16 +2464,16 @@ div:has(> .nextra-sidebar) {
 }
 
 .dark .pl-search-dialog-header {
-  border-color: #273244;
+  border-color: #333333;
 }
 
 .dark .pl-search-icon,
 .dark .pl-search-input {
-  color: #d7deea;
+  color: #e0e0e0;
 }
 
 .dark .pl-search-input::placeholder {
-  color: #7f8ba0;
+  color: #8a8a8a;
 }
 
 .pl-search-input:focus,
@@ -2454,11 +2510,11 @@ div:has(> .nextra-sidebar) {
 }
 
 .dark .pl-search-dialog-header > .pl-overlay-icon-button {
-  color: #a8b3c5;
+  color: #b8b8b8;
 }
 
 .dark .pl-search-dialog-header > .pl-overlay-icon-button:hover {
-  color: #f2f5fa;
+  color: #ffffff;
 }
 
 .pl-search-list {
@@ -2545,7 +2601,7 @@ button.pl-search-row {
 
 .dark .pl-search-row:hover,
 .dark .pl-search-row[data-active='true'] {
-  background: #172131;
+  background: var(--pl-tile-hover);
 }
 
 .pl-search-row[data-child='true'] {
@@ -2553,6 +2609,10 @@ button.pl-search-row {
   margin-inline-start: 1.25rem;
   border-inline-start: 1px solid #e3e7ee;
   border-radius: 0 4px 4px 0;
+}
+
+.dark .pl-search-row[data-child='true'] {
+  border-inline-start-color: #333333;
 }
 
 .pl-search-row[data-page='true'] .pl-search-row-title {
@@ -2626,12 +2686,16 @@ button.pl-search-row {
 .dark .pl-search-group-label,
 .dark .pl-search-context,
 .dark .pl-search-row-excerpt {
-  color: #8f9bb0;
+  color: #8a8a8a;
 }
 
 .dark .pl-search-row,
 .dark .pl-search-row-title {
-  color: #d7deea;
+  color: #e0e0e0;
+}
+
+.dark .pl-search-row-icon {
+  color: #b8b8b8;
 }
 
 .pl-search-row-excerpt mark {
@@ -2780,7 +2844,7 @@ article > div[class*='x:float-end'] button:is(:hover, :focus-visible) {
 }
 
 .dark .pl-copy-page-control button:is(:hover, :focus-visible, [data-headlessui-state*='open']) {
-  background: #303030 !important;
+  background: var(--pl-tile-hover) !important;
 }
 
 /* Copy Page and other anchored dropdowns share the same quiet tile hover as
@@ -2934,6 +2998,11 @@ ul[role='listbox'][data-anchor] > li[role='option']:is(:hover, :focus, [data-foc
 .pl-mobile-nav-row:is(:hover, :focus-visible, :active) .pl-nav-icon-asset,
 .pl-mobile-nav-row[aria-current='page'] .pl-nav-icon-asset {
   filter: none;
+}
+
+.dark .pl-mobile-nav-row:is(:hover, :focus-visible, :active) .pl-nav-icon-asset,
+.dark .pl-mobile-nav-row[aria-current='page'] .pl-nav-icon-asset {
+  filter: grayscale(1) brightness(1.2);
 }
 
 .pl-mobile-nav-row-main,
