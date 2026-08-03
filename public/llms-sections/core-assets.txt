@@ -120,7 +120,7 @@ Markdown URL: https://docs.polaris.finance/core-assets/goldp.md
 
 GOLDp is the Polaris digital gold.
 
-It is a synthetic asset designed to track the gold oracle reference price for one ounce of gold using overcollateralized minting positions backed by pETH.
+It is a synthetic asset designed to track the gold price using overcollateralized minting positions backed by pETH.
 
 Unlike traditional tokenized gold, **no physical bullion is held on behalf of users**. Anyone can independently verify the collateral backing every GOLDp in circulation, with minting and redemptions enforced by immutable smart contracts.
 
@@ -132,7 +132,7 @@ GOLDp is minted by depositing pETH as collateral and opening an overcollateraliz
 
 Like USDp, GOLDp uses the same minting mechanism and **minimum collateral ratio of 115%**. In practice, this means every position requires at least \$1.15 worth of pETH collateral for every \$1 worth of GOLDp. Market movements can later reduce that ratio, making positions that fall below 115% eligible for [liquidations](https://docs.polaris.finance/design/liquidations).
 
-The 115% minimum collateral ratio is a liquidation boundary, not a recommended operating level. Users should maintain a higher collateral ratio to reduce liquidation risk.
+The 115% minimum collateral ratio is the point at which a position becomes eligible for liquidation. Users should maintain a higher collateral ratio to provide a greater safety margin.
 
 Once minted, GOLDp provides onchain exposure to the price of gold. It can be transferred freely on Ethereum, held as a digital gold asset or integrated into DeFi applications.
 
@@ -144,14 +144,14 @@ Users may hold GOLDp as digital gold, deposit it into the Earn Vault, provide li
 
 The GOLDp peg is supported by pETH overcollateralization and by market participants using the protocol's peg mechanisms whenever arbitrage opportunities arise.
 
-When GOLDp trades above the gold oracle reference price, new GOLDp can be minted at gold reference value against pETH collateral and sold into the market. The additional supply creates downward pressure on the market price.
+When GOLDp trades above the gold oracle price, new GOLDp can be minted at gold reference value against pETH collateral and sold into the market. The additional supply creates downward pressure on the market price.
 
-When GOLDp trades below the reference price of gold, market participants can redeem GOLDp for the underlying collateral, which removes GOLDp from circulation and reduces the circulating supply.
+When GOLDp trades below the gold reference price, market participants can redeem GOLDp for the underlying collateral, which removes GOLDp from circulation and reduces the circulating supply.
 
 GOLDp price | Arbitrage | Result
 
-Above gold oracle reference price | Mint and sell GOLDp | Supply increases, and price returns toward the target
-Below gold oracle reference price | Redeem GOLDp | Supply decreases, and price returns toward the target
+Above gold oracle price | Mint and sell GOLDp | Supply increases, and price returns toward the target
+Below gold oracle price | Redeem GOLDp | Supply decreases, and price returns toward the target
 
 Together, these mechanisms adjust the circulating supply in response to market conditions.
 
@@ -235,17 +235,17 @@ The protocol is built around pETH and the pAssets minted against it. Together, t
 
 Around that foundation, liquidity develops across different products, applications integrate the protocol, and users build new strategies. POLAR gives long-term participants a way to share in that activity through vePOLAR and to help steer ecosystem incentives through bounded stewardship.
 
-POLAR is for participants who want exposure to the growth of Polaris and its pAsset markets, while also having a role in directing ecosystem incentives. The primary reason to hold POLAR is to commit it as vePOLAR and receive protocol-native value from supported pAsset markets.
+POLAR is the utility token that provides the shared economic layer to support liquidity, integrations, ecosystem incentives and long-term stewardship. The primary reason to hold POLAR is to commit it as vePOLAR and receive protocol-native value from supported pAsset markets.
 
 ## POLAR Design
 
 Unlike several governance tokens, **POLAR is not designed around perpetual emissions** that distribute new tokens simply because time passes. Following the set initial allocation and its vesting schedule, the long-term growth of the supply happens through the Polaris conversion mechanism.
 
-With this mechanism, users convert pETH into newly minted POLAR through a Dutch auction. The pETH used for the conversion is burned, ETH is released from the bonding curve reserve, and that released value is routed back into Polaris before being distributed through pETH flows.
+With this mechanism, users convert pETH into newly minted POLAR. The pETH used for the conversion is burned, ETH is released from the bonding curve reserve, and that released value is routed back into the protocol before being distributed through pETH flows.
 
 The conversion mechanism only works in one direction, **from pETH to POLAR**. Since POLAR cannot be converted back into pETH, the protocol never needs to reserve part of the conversion value for future redemptions. This allows **the full value generated by every conversion to grow the pETH floor**, where it becomes part of the protocol-native yield.
 
-Therefore, POLAR supply grows through pETH-to-POLAR conversions rather than a fixed emissions schedule. At the same time, every conversion strengthens pETH, the collateral asset supporting the rest of the protocol.
+Therefore, POLAR supply grows through pETH-to-POLAR conversions without following a fixed emissions schedule. At the same time, every conversion strengthens pETH, the collateral asset supporting the rest of the protocol.
 
 The [conversion](https://docs.polaris.finance/design/conversions) mechanism and its economic design are explained in detail in the dedicated section of the documentation.
 
@@ -275,6 +275,8 @@ For users, this means POLAR is the asset that connects long-term participation w
 The long-term utility of POLAR is expressed through vePOLAR.
 
 Users receive vePOLAR by committing POLAR for a chosen period of time between 2 weeks and 4 years, aligning stewardship with participants who take a longer-term view of the ecosystem. In return, **vePOLAR holders receive a share of the interest paid by USDp and GOLDp minters**, with that value distributed directly in USDp and GOLDp. Future pAsset markets may also choose to share revenue with vePOLAR as part of their alignment with Polaris and their case for receiving pETH flows.
+
+POLAR is not used to subsidize or boost these returns through additional token incentives.
 
 With vePOLAR, long-term participants can help coordinate how the ecosystem evolves by taking part in decisions around incentive distribution, integrations and other initiatives. The protocol itself continues to operate through immutable code, while vePOLAR provides **a structured stewardship layer that helps guide the development** of the ecosystem.
 

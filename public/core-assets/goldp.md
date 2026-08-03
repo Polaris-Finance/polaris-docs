@@ -14,7 +14,7 @@ Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 GOLDp is the Polaris digital gold.
 
-It is a synthetic asset designed to track the gold oracle reference price for one ounce of gold using overcollateralized minting positions backed by pETH.
+It is a synthetic asset designed to track the gold price using overcollateralized minting positions backed by pETH.
 
 Unlike traditional tokenized gold, **no physical bullion is held on behalf of users**. Anyone can independently verify the collateral backing every GOLDp in circulation, with minting and redemptions enforced by immutable smart contracts.
 
@@ -26,7 +26,7 @@ GOLDp is minted by depositing pETH as collateral and opening an overcollateraliz
 
 Like USDp, GOLDp uses the same minting mechanism and **minimum collateral ratio of 115%**. In practice, this means every position requires at least \$1.15 worth of pETH collateral for every \$1 worth of GOLDp. Market movements can later reduce that ratio, making positions that fall below 115% eligible for [liquidations](https://docs.polaris.finance/design/liquidations).
 
-The 115% minimum collateral ratio is a liquidation boundary, not a recommended operating level. Users should maintain a higher collateral ratio to reduce liquidation risk.
+The 115% minimum collateral ratio is the point at which a position becomes eligible for liquidation. Users should maintain a higher collateral ratio to provide a greater safety margin.
 
 Once minted, GOLDp provides onchain exposure to the price of gold. It can be transferred freely on Ethereum, held as a digital gold asset or integrated into DeFi applications.
 
@@ -38,14 +38,14 @@ Users may hold GOLDp as digital gold, deposit it into the Earn Vault, provide li
 
 The GOLDp peg is supported by pETH overcollateralization and by market participants using the protocol's peg mechanisms whenever arbitrage opportunities arise.
 
-When GOLDp trades above the gold oracle reference price, new GOLDp can be minted at gold reference value against pETH collateral and sold into the market. The additional supply creates downward pressure on the market price.
+When GOLDp trades above the gold oracle price, new GOLDp can be minted at gold reference value against pETH collateral and sold into the market. The additional supply creates downward pressure on the market price.
 
-When GOLDp trades below the reference price of gold, market participants can redeem GOLDp for the underlying collateral, which removes GOLDp from circulation and reduces the circulating supply.
+When GOLDp trades below the gold reference price, market participants can redeem GOLDp for the underlying collateral, which removes GOLDp from circulation and reduces the circulating supply.
 
 GOLDp price | Arbitrage | Result
 
-Above gold oracle reference price | Mint and sell GOLDp | Supply increases, and price returns toward the target
-Below gold oracle reference price | Redeem GOLDp | Supply decreases, and price returns toward the target
+Above gold oracle price | Mint and sell GOLDp | Supply increases, and price returns toward the target
+Below gold oracle price | Redeem GOLDp | Supply decreases, and price returns toward the target
 
 Together, these mechanisms adjust the circulating supply in response to market conditions.
 
