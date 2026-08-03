@@ -348,8 +348,8 @@
       "url": "https://docs.polaris.finance/design/recovery-mode",
       "markdownUrl": "https://docs.polaris.finance/design/recovery-mode.md",
       "section": "Protocol Mechanics",
-      "title": "Recovery Mode",
-      "description": "Recovery Mode is the protective state a pAsset market enters when its overall collateralization falls below a critical threshold.",
+      "title": "Defensive and Recovery Modes",
+      "description": "Defensive Mode and Recovery Mode are protective states for stressed pAsset markets.",
       "keywords": [],
       "updated": null
     },
@@ -368,7 +368,7 @@
       "url": "https://docs.polaris.finance/design/spike-and-decay-fees",
       "markdownUrl": "https://docs.polaris.finance/design/spike-and-decay-fees.md",
       "section": "Protocol Mechanics",
-      "title": "Spike-and-Decay Fees",
+      "title": "Spike-and-Decay Pricing",
       "description": "Several core mechanisms in Polaris use spike-and-decay pricing.",
       "keywords": [],
       "updated": null

@@ -15,7 +15,11 @@ With this feature, borrowers gain ETH liquidity **without giving up fpETH yield*
 
 Instead of paying a conventional borrowing interest rate, Reserve Loans apply a **time-weighted performance fee**, which is deducted directly from the increase in the fpETH floor price over the lifetime of the loan.
 
-This allows users to benefit from the growth of the fpETH floor while passively paying for the extra liquidity they access.
+This allows users to benefit from the growth of the fpETH floor while passively paying for the extra liquidity they access. The fee is applied when the user next touches the position, such as when they borrow additional ETH, repay, or close the loan.
+
+For example, suppose a user deposits 1 fpETH when the floor value is 1 ETH and borrows 1 ETH against it. Later, the fpETH floor has risen to 1.2 ETH, creating 0.2 ETH of additional floor value. If the performance fee is 1%, the user can access 0.198 ETH of that gain, while 0.002 ETH is paid as the fee.
+
+The performance fee is also utilization-based. As more ETH is borrowed through Reserve Loans, utilization of the bonding curve reserve increases and the fee rises. When utilization is lower, the fee can be lower.
 
 | Feature | Traditional lending | Reserve Loans |
 | --- | --- | --- |
