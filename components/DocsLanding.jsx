@@ -3,11 +3,10 @@ import { EXTERNAL_LINKS } from '../app/navigation-config.mjs'
 import { pathWithBase } from '../app/site-config.mjs'
 import { Glyph } from './icons/Glyph.js'
 import { ASSET_ICONS } from './navigation/NavIcon.js'
-import { ExternalLink } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 
-// Polaris 101 is the featured entry point (CEO direction, July 2026): a
-// full-width block above the primary grid, carrying the same label, blurb and
-// href the welcome card used to.
+// Polaris 101 is the featured entry point (CEO direction, July 2026), carrying
+// the same label, blurb and href the welcome card used to.
 const heroLink = {
   label: 'Polaris 101',
   description: 'Learn the basics',
@@ -119,7 +118,7 @@ function LandingHero() {
   return (
     <Link className="pl-docs-hero pl-motion pl-icon-tone-gold" href={pathWithBase(heroLink.route)}>
       <span className="pl-docs-hero-icon">
-        <Glyph name={heroLink.glyph} size={42} strokeWidth={1.5} />
+        <Glyph name={heroLink.glyph} size={32} strokeWidth={1.5} />
       </span>
       <span className="pl-docs-hero-copy">
         <strong>{heroLink.label}</strong>
@@ -136,19 +135,19 @@ export function TestnetBanner() {
       href={EXTERNAL_LINKS.testnetApp}
       target="_blank"
       rel="noreferrer"
-      aria-label="Open Public Testnet 1 in a new tab"
+      aria-label="Open Public Testnet in a new tab"
     >
       <span className="pl-testnet-banner-icon">
         <Glyph name="FlaskConical" size={24} />
       </span>
       <span className="pl-testnet-banner-copy">
-        <strong>Testnet v1 is Live</strong>
+        <strong>Testnet is Live</strong>
         <span>Explore Polaris with test assets</span>
       </span>
       <span className="pl-testnet-banner-actions">
         <span className="pl-testnet-banner-primary">
           Open App
-          <ExternalLink aria-hidden="true" size={15} strokeWidth={1.8} />
+          <ArrowUpRight aria-hidden="true" size={16} strokeWidth={2} />
           <span className="pl-sr-only"> opens in a new tab</span>
         </span>
       </span>
@@ -161,8 +160,8 @@ export function DocsLanding() {
     <div className="pl-docs-home">
       <nav className="pl-docs-home-section" aria-labelledby="pl-docs-welcome-title">
         <h2 id="pl-docs-welcome-title">Welcome to Polaris</h2>
-        <LandingHero />
         <div className="pl-docs-welcome-grid">
+          <LandingHero />
           {primaryLinks.map((item) => (
             <LandingLink key={item.route} className="pl-docs-card-link" item={item} />
           ))}

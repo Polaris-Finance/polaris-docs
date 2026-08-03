@@ -120,7 +120,7 @@ export function NavbarActions() {
           target="_blank"
           rel="noreferrer"
         >
-          Try Test Net
+          Try Testnet
           <span className="pl-sr-only"> opens in a new tab</span>
         </a>
         <button

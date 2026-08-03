@@ -468,18 +468,13 @@ article {
   align-items: center;
   gap: 0.4rem;
   padding: 0.35rem 0;
-  color: var(--pl-ui-ink);
+  color: var(--pl-ink-body);
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.2;
   text-decoration: none;
   white-space: nowrap;
   transition: color 0.18s ease-out;
-}
-
-.pl-testnet-banner-primary:hover,
-.pl-testnet-banner-secondary:hover {
-  color: var(--pl-active);
 }
 
 .pl-testnet-banner-primary:focus-visible,
@@ -613,8 +608,7 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
   align-items: center;
   gap: 0.85rem;
   grid-template-columns: auto minmax(0, 1fr) auto;
-  margin-bottom: 1.4rem;
-  padding: 1.15rem 1.2rem;
+  padding: 1rem;
   border-radius: 11px;
   background-color: color-mix(in srgb, var(--pl-card-accent) 5%, transparent);
   box-shadow:
@@ -754,7 +748,7 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
    still size to their content. */
 .pl-docs-card-link {
   position: relative;
-  padding: 1.15rem 1.2rem;
+  padding: 1rem;
   border-radius: 11px;
   background-color: color-mix(in srgb, var(--pl-card-accent) 4%, transparent);
   isolation: isolate;
@@ -1113,7 +1107,6 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
 
   .pl-docs-hero {
     gap: 1rem;
-    padding: 1.35rem 1.15rem;
   }
 
   .pl-docs-hero-copy strong {
@@ -1495,6 +1488,7 @@ article figcaption {
   font-weight: 500;
   line-height: 1.5714;
   letter-spacing: -0.0064em;
+  padding-bottom: 1px;
   white-space: nowrap;
 }
 
@@ -2022,6 +2016,15 @@ div:has(> .nextra-sidebar) {
   justify-content: center;
   padding-inline: 0.45rem;
   border-radius: 6px;
+}
+
+/* Headless UI restores focus to the trigger after a pointer theme selection,
+   which Chromium can incorrectly expose as :focus-visible. Its real keyboard
+   focus carries the `focus` state, so keep that ring and suppress only the
+   pointer-return artifact. */
+.pl-nav-theme > button:focus-visible:not([data-headlessui-state~='focus']) {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .pl-navbar-icon-button,
