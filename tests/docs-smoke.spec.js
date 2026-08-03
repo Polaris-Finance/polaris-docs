@@ -963,6 +963,54 @@ test('desktop sidebar preserves its manual scroll position across routes', async
   expect(Math.abs(scrollTopAfterNavigation - scrollTopBeforeNavigation)).toBeLessThanOrEqual(1)
 })
 
+test('desktop sidebar keeps long navigation labels inside the rail', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop', 'desktop-only sidebar geometry check')
+  const scenarios = [
+    { route: '/', currentPage: 'Overview' },
+    { route: '/design/recovery-mode', currentPage: 'Defensive and Recovery Modes' }
+  ]
+
+  for (const { route, currentPage } of scenarios) {
+    await page.goto(pathWithBase(route))
+
+    const sidebar = page.getByRole('navigation', { name: 'Documentation' })
+    const scrollport = sidebar.locator(':scope > .nextra-scrollbar.nextra-mask')
+    const current = sidebar.locator('a[aria-current="page"]')
+    await expect(current).toHaveCount(1)
+    await expect(current).toContainText(currentPage)
+    await expect(current).toBeVisible()
+
+    const horizontalGeometry = await scrollport.evaluate((element) => {
+      element.scrollLeft = element.scrollWidth
+      return {
+        clientWidth: element.clientWidth,
+        scrollLeft: element.scrollLeft,
+        scrollWidth: element.scrollWidth
+      }
+    })
+
+    expect(horizontalGeometry.scrollWidth).toBe(horizontalGeometry.clientWidth)
+    expect(horizontalGeometry.scrollLeft).toBe(0)
+
+    if (route === '/design/recovery-mode') {
+      const labelGeometry = await current.locator('.pl-nav-text').evaluate((element) => {
+        const style = getComputedStyle(element)
+        return {
+          height: element.getBoundingClientRect().height,
+          lineHeight: style.lineHeight,
+          textOverflow: style.textOverflow,
+          whiteSpace: style.whiteSpace
+        }
+      })
+
+      expect(labelGeometry.lineHeight).toBe('18px')
+      expect(labelGeometry.whiteSpace).toBe('normal')
+      expect(labelGeometry.textOverflow).toBe('clip')
+      expect(labelGeometry.height).toBeGreaterThan(18)
+    }
+  }
+})
+
 test('footer stays compact and uses correct external-link semantics', async ({ page }) => {
   await page.goto(pathWithBase('/core-assets/peth'))
 
