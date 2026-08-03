@@ -2,7 +2,7 @@ import { ORGANIZATION_URL } from './site-config.mjs'
 
 export const EXTERNAL_LINKS = Object.freeze({
   website: ORGANIZATION_URL,
-  testnetApp: 'https://app.testnet.polarisfinance.io',
+  testnetApp: 'https://testnet.polaris.finance/',
   github: 'https://github.com/Polaris-Finance',
   x: 'https://x.com/polarisfinance_'
 })
@@ -30,7 +30,7 @@ export const NAVIGATION_GROUPS = [
         theme: { copyPage: false, pagination: false },
         kind: 'concept'
       },
-      page('polaris-101', 'polaris-101', 'Polaris 101', '/polaris-101', 'BookOpen'),
+      page('polaris-101', 'polaris-101', 'Polaris TLDR', '/polaris-101', 'BookOpen'),
       {
         id: 'overview',
         type: 'folder',
