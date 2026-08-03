@@ -80,11 +80,11 @@ The pETH floor and premium describe how one pETH is composed inside the protocol
 
 fpETH is likely to appeal to users who want lower-volatility ETH-denominated yield, users who want Reserve Loan collateral, and users who want exposure to DeFi-driven yield while retaining access to the underlying floor value.
 
-That floor access comes through [Reserve Loans](/architecture/reserve-loans). A user can borrow ETH against fpETH up to the floor value represented by that fpETH, while the fpETH remains in the Reserve Loan position. This does not burn fpETH and does not require any additional accounting for the vpETH component.
+That floor access comes through [Reserve Loans](/architecture/reserve-loans). **A user can borrow ETH against fpETH up to the floor value** represented by that fpETH, while the fpETH remains in the Reserve Loan position. This does not burn fpETH and does not require any additional accounting for the vpETH component.
 
-Because of this floor access, secondary-market discounts to the current floor can be arbitraged, limiting how far below the floor fpETH is likely to trade.
+Because of this floor access, **secondary-market discounts to the current floor can be arbitraged**, limiting how far below the floor fpETH is likely to trade.
 
-fpETH may also trade above the current floor value. In that case, buyers are effectively paying upfront for expected future floor growth. The higher the premium paid, the more future yield is pulled forward into the purchase price, which means the attractiveness of fpETH depends heavily on the buyer's time horizon.
+fpETH may also trade above the current floor value. In that case, buyers are effectively paying upfront for **expected future floor growth**. The higher the premium paid, the more future yield is pulled forward into the purchase price, which means the attractiveness of fpETH depends heavily on the buyer's time horizon.
 
 At the same time, fpETH and vpETH remain connected through the ability to merge them back into pETH. This creates a natural relationship between the price of pETH, the price of fpETH, and the price of vpETH, even though each asset can trade independently.
 
