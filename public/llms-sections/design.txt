@@ -23,8 +23,8 @@ Polaris supports both directions, allowing **pAssets to be minted against pETH c
 
 Condition | Arbitrage | Supply effect | Adaptive Peg Defense
 
-Above peg | Mint at par, sell | Supply expands, reducing price | Collateral, debt and minting fees
-Below peg | Buy and redeem | Supply contracts, increasing price | Collateral removal, debt reduction and redemption fees
+Above peg | Mint at par, sell | Supply expands, reducing price | Existing positions are upsized
+Below peg | Buy and redeem | Supply contracts, increasing price | Existing positions are downsized
 
 ## Above Peg
 
@@ -32,9 +32,9 @@ When a pAsset trades above its target price, market participants can **mint new 
 
 For example, if USDp trades above one dollar, an arbitrageur can deposit ETH into the bonding curve, receive pETH and immediately mint new USDp at par before selling it above one dollar. This increases the circulating supply and naturally pushes the market price back toward its target.
 
-Polaris extends this mechanism thanks to its Adaptive Peg Defense model, which **distributes the collateral, debt and minting fees across all existing positions**, preventing them from being concentrated in a single position.
+Polaris extends this mechanism through Adaptive Peg Defense, which treats direct minting as an upsizing of the existing market. The added collateral, debt and minting fees are distributed across open positions according to protocol accounting.
 
-This allows supply to expand in response to above-peg demand without pushing a single position toward liquidation. The expansion is shared across the market, allowing the protocol to respond to upward depegs through direct onchain minting.
+This means the market can expand in response to above-peg demand without requiring the arbitrageur to maintain a long-lived position. Existing positions grow alongside the market and receive the associated minting fees.
 
 ## Below Peg
 
@@ -42,9 +42,9 @@ When a pAsset trades below its target price, market participants can **buy the d
 
 For example, if USDp trades below one dollar, an arbitrageur can purchase USDp below peg, redeem it at par for pETH and capture the price difference. The redeemed USDp is burned, reducing the circulating supply and encouraging the market price to move back toward target.
 
-The same Adaptive Peg Defense model applies to redemptions: **collateral removal, debt reduction and redemption fees are split across existing positions** instead of concentrating on a single position.
+The same Adaptive Peg Defense model applies to redemptions, but in the opposite direction. Redemptions downsize the existing market by distributing collateral removal, debt reduction and redemption fees across open positions according to protocol accounting.
 
-As a result, supply contracts without disproportionately affecting individual positions. The contraction is shared across the market, allowing the protocol to respond to downward depegs through direct onchain redemptions.
+As a result, supply contracts through the same shared accounting model. Existing positions shrink alongside the market and receive the associated redemption fees.
 
 ---
 
@@ -63,19 +63,21 @@ As a result, every expansion of the POLAR supply requires pETH to be converted, 
 
 Whenever a user converts pETH, **the converted amount is permanently burned** and an equivalent amount of new POLAR is minted.
 
-Burning pETH reduces its circulating supply and releases ETH from the bonding curve reserve. A portion of that ETH may be returned directly to the converter as a rebate, while the remaining value is ultimately routed back into the protocol through the Fee Router, where it contributes to the protocol-native yield reflected in the pETH spot price.
+Burning pETH reduces its circulating supply and releases ETH from the bonding curve reserve. A portion of that ETH may be returned directly to the converter as a rebate, while the remaining value is ultimately routed back into the protocol through the Fee Router, where it contributes to the protocol-native yield reflected in pETH.
 
-Each conversion therefore has two economic effects: it expands the POLAR supply and increases the value represented by every remaining unit of pETH.
+Each conversion therefore has three economic effects: it expands the POLAR supply, increases the value represented by every remaining unit of pETH, and creates pETH flows that can be distributed across the ecosystem.
 
 ## Conversion Pricing
 
-Conversions are permissionless and can take place at any time, but their **price is dynamic and set via **Dutch auction**.
+Conversions are permissionless and can take place at any time, but their **price is dynamic and set through a Dutch auction**.
 
 Whenever someone converts pETH into POLAR, the price immediately increases before decaying again over time. A conversion that mints a larger share of the supply pushes the price up much more aggressively than a smaller one because the price impact depends on the fraction of the existing POLAR supply minted during that conversion.
 
 This naturally encourages smaller and more frequent conversions over large supply-shocking events.
 
-As the price gradually falls, opportunities emerge whenever converting becomes more attractive than acquiring POLAR on the open market. Thus, PETH-to-POLAR conversions are expected to occur steadily over time in relatively small chunks.
+The spike-and-decay parameters that govern conversion pricing are stewarded within immutable bounds, allowing the mechanism to be tuned without changing its underlying design.
+
+As the price gradually falls, opportunities emerge whenever converting becomes more attractive than acquiring POLAR on the open market. Thus, pETH-to-POLAR conversions are expected to occur steadily over time in relatively small chunks.
 
 ## One-Way Only
 
@@ -114,9 +116,9 @@ Relevant app/search vocabulary: POLAR, convert, lock, vePOLAR, burn pETH, conver
 URL: https://docs.polaris.finance/design/fee-router
 Markdown URL: https://docs.polaris.finance/design/fee-router.md
 
-The Fee Router component **redirects value generated by Polaris back into the ecosystem**.
+The Fee Router is the infrastructure-level contract that **redirects pETH-denominated protocol revenue back into the ecosystem**.
 
-Its role is to collect protocol revenue denominated in pETH, process it through the bonding curve and distribute the resulting rewards according to the pETH flow logic.
+Its role is to collect pETH fees, process them through the bonding curve and send the resulting pETH rewards onward to pETH flows. pAsset flows, such as USDp minter interest, do not pass through the Fee Router and are distributed by their own market flow logic.
 
 ## Strengthening pETH First
 
@@ -130,7 +132,7 @@ In sequence:
 
 1. **pETH collected as fees is burned at the floor**, raising the floor price and releasing ETH from the reserve.
 2. That ETH immediately buys newly minted pETH, raising the bonding curve spot price.
-3. The newly minted pETH is distributed as rewards via pETH flows.
+3. The newly minted pETH is sent to pAsset markets and whitelisted recipients through pETH flows.
 
 ## A Shared Economic Engine
 
@@ -269,34 +271,38 @@ Relevant app/search vocabulary: oracle, oracles, Medianiser, price feed, ETH/USD
 
 ---
 
-## Recovery Mode
+## Defensive and Recovery Modes
 
 URL: https://docs.polaris.finance/design/recovery-mode
 Markdown URL: https://docs.polaris.finance/design/recovery-mode.md
 
-Recovery Mode is the protective state a pAsset market enters when its **overall collateralization falls below a critical threshold**.
+Defensive Mode and Recovery Mode are protective states a pAsset market can enter when its overall collateralization weakens.
 
-Each pAsset market has its own Recovery Mode. Stress affecting one market does not automatically place every other market into the same state, so that USDp, GOLDp and future pAssets remain independent from one another.
+Each pAsset market has its own thresholds. Stress affecting one market does not automatically place every other market into the same state, so USDp, GOLDp and future pAssets remain independent from one another.
 
-Once active, the protocol continues operating normally and restricts only the actions that would further weaken the affected market. Users can still add collateral, repay debt and improve the health of their positions, although actions such as minting additional pAssets may become unavailable.
+The first threshold activates **Defensive Mode**. The market continues operating, but actions that would weaken collateral health can be restricted. Users can still add collateral, repay debt and improve their positions, while actions such as increasing debt or withdrawing collateral may become unavailable.
 
-The goal is to **prevent the market from weakening without restricting participants from repaying positions** and reducing debt. The normal liquidation threshold does not change, and positions are liquidated only after reaching the same maximum LTV that applies under normal market conditions.
+The second, more severe threshold activates **Recovery Mode**. Recovery Mode keeps the market open for deleveraging while applying stricter protections around minting and redemptions.
+
+The goal of both modes is to **prevent the market from weakening while preserving the ability to repay debt and reduce risk**. The normal liquidation threshold does not change, and positions are liquidated only after falling below the same minimum collateral ratio that applies under normal market conditions.
 
 ## Peg Stability
 
-Recovery Mode also affects direct minting and redemptions. **New direct minting is disabled** because it would increase the outstanding debt of the affected market, whereas direct redemptions remain available because they reduce the circulating supply.
+Defensive Mode and Recovery Mode also affect direct minting and redemptions. **New direct minting is disabled** because it would increase the outstanding debt of the affected market, whereas direct redemptions remain available because they reduce the circulating supply.
 
-If the market's collateral falls below full backing, **redemption payouts become proportional to the collateral that remains available**. This ensures every redeemer receives a proportional share of the remaining backing, eliminating any advantage for participants who exit first.
+If the market's collateral falls below full backing in Recovery Mode, **redemption payouts become proportional to the collateral that remains available**. This ensures every redeemer receives a proportional share of the remaining backing, eliminating any advantage for participants who exit first.
 
-Bonding curve swaps remain available during Recovery Mode. Since the bonding curve operates as **shared pETH infrastructure independent of any individual pAsset market**, pETH holders can continue using it even if a specific market enters Recovery Mode.
-Action | Status | Why
+Bonding curve swaps remain available throughout both modes. Since the bonding curve operates as **shared pETH infrastructure independent of any individual pAsset market**, pETH holders can continue using it even if a specific market enters Defensive Mode or Recovery Mode.
 
-Add collateral / repay debt | Allowed | Improves position health
-Redemptions | Allowed | Reduces supply
-Bonding curve swaps | Allowed | Independent infrastructure
-Direct pAsset minting | Disabled | Would increase market debt
+Action | Defensive Mode | Recovery Mode | Why
 
-This mechanism is designed to help a stressed market deleverage in an orderly and isolated manner, with no impact on the wider Polaris ecosystem.
+Add collateral / repay debt | Allowed | Allowed | Improves position health
+Withdraw collateral / increase debt | Restricted | Disabled | Would weaken market health
+Direct pAsset minting | Disabled | Disabled | Would increase market debt
+Redemptions | Allowed | Allowed, or proportional if below full backing | Reduces supply
+Bonding curve swaps | Allowed | Allowed | Independent infrastructure
+
+These mechanisms are designed to help a stressed market deleverage in an orderly and isolated manner, without shutting down the wider Polaris ecosystem.
 
 ---
 
@@ -331,7 +337,7 @@ Since every vePOLAR holder earns protocol revenue through the same mechanism, St
 
 ---
 
-## Spike-and-Decay Fees
+## Spike-and-Decay Pricing
 
 URL: https://docs.polaris.finance/design/spike-and-decay-fees
 Markdown URL: https://docs.polaris.finance/design/spike-and-decay-fees.md
@@ -352,4 +358,6 @@ The result is that **higher demand for a particular action also increases its co
 
 Thus, prices can continuously adapt as market conditions evolve, capturing more value during periods of higher demand before naturally encouraging activity again as costs decline.
 
-Once deployed, **these mechanisms operate in an entirely immutable manner**. Unlike parameters such as the conversion rebate, spike-and-decay pricing is not adjusted through stewardship and responds exclusively to market activity. The minimum and maximum fee ranges will be finalized closer to launch.
+Once configured, **these mechanisms respond automatically to market activity**. Demand causes the price or fee to spike, while inactivity causes it to decay.
+
+Some parameters are stewarded within immutable bounds. For example, pETH-to-POLAR conversion spike-and-decay parameters can be adjusted through stewardship within their allowed ranges, while the mechanism itself continues operating according to protocol rules.

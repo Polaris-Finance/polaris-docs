@@ -918,10 +918,97 @@ test('desktop navigation exposes icons, hierarchy state, and a single current pa
   await expect(mechanics).toHaveAttribute('aria-controls', /pl-sidebar-folder-/)
   await mechanics.click()
   await expect(mechanics).toHaveAttribute('aria-expanded', 'false')
+  // Closing the active branch must survive the accessibility observer's next
+  // synchronization frame instead of being immediately reopened by a
+  // synthetic click.
+  await page.evaluate(
+    () => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)))
+  )
+  await expect(mechanics).toHaveAttribute('aria-expanded', 'false')
   await mechanics.focus()
   await mechanics.press('Enter')
   await expect(mechanics).toHaveAttribute('aria-expanded', 'true')
   await expect(page.locator('main .pl-nav-icon')).toBeHidden()
+})
+
+test('desktop sidebar preserves its manual scroll position across routes', async ({
+  page
+}, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop', 'desktop-only sidebar persistence check')
+  await page.setViewportSize({ width: 1280, height: 520 })
+  await page.goto(pathWithBase('/risks'))
+
+  const sidebar = page.getByRole('navigation', { name: 'Documentation' })
+  const scrollport = sidebar.locator(':scope > .nextra-scrollbar.nextra-mask')
+  const scrollTopBeforeNavigation = await scrollport.evaluate((element) => {
+    element.scrollTop = element.scrollHeight
+    return element.scrollTop
+  })
+  expect(scrollTopBeforeNavigation).toBeGreaterThan(0)
+
+  const destination = sidebar.getByRole('link', { name: 'Security Guarantees', exact: true })
+  await expect(destination).toBeVisible()
+  await destination.click()
+  await expect(page).toHaveURL(
+    new RegExp(`${escapeRegExp(pathWithBase('/risks/security-properties'))}/?$`)
+  )
+  await page.evaluate(
+    () =>
+      new Promise((resolve) =>
+        requestAnimationFrame(() => requestAnimationFrame(() => requestAnimationFrame(resolve)))
+      )
+  )
+
+  const scrollTopAfterNavigation = await scrollport.evaluate((element) => element.scrollTop)
+  expect(Math.abs(scrollTopAfterNavigation - scrollTopBeforeNavigation)).toBeLessThanOrEqual(1)
+})
+
+test('desktop sidebar keeps long navigation labels inside the rail', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop', 'desktop-only sidebar geometry check')
+  const scenarios = [
+    { route: '/', currentPage: 'Overview' },
+    { route: '/design/recovery-mode', currentPage: 'Defensive and Recovery Modes' }
+  ]
+
+  for (const { route, currentPage } of scenarios) {
+    await page.goto(pathWithBase(route))
+
+    const sidebar = page.getByRole('navigation', { name: 'Documentation' })
+    const scrollport = sidebar.locator(':scope > .nextra-scrollbar.nextra-mask')
+    const current = sidebar.locator('a[aria-current="page"]')
+    await expect(current).toHaveCount(1)
+    await expect(current).toContainText(currentPage)
+    await expect(current).toBeVisible()
+
+    const horizontalGeometry = await scrollport.evaluate((element) => {
+      element.scrollLeft = element.scrollWidth
+      return {
+        clientWidth: element.clientWidth,
+        scrollLeft: element.scrollLeft,
+        scrollWidth: element.scrollWidth
+      }
+    })
+
+    expect(horizontalGeometry.scrollWidth).toBe(horizontalGeometry.clientWidth)
+    expect(horizontalGeometry.scrollLeft).toBe(0)
+
+    if (route === '/design/recovery-mode') {
+      const labelGeometry = await current.locator('.pl-nav-text').evaluate((element) => {
+        const style = getComputedStyle(element)
+        return {
+          height: element.getBoundingClientRect().height,
+          lineHeight: style.lineHeight,
+          textOverflow: style.textOverflow,
+          whiteSpace: style.whiteSpace
+        }
+      })
+
+      expect(labelGeometry.lineHeight).toBe('18px')
+      expect(labelGeometry.whiteSpace).toBe('normal')
+      expect(labelGeometry.textOverflow).toBe('clip')
+      expect(labelGeometry.height).toBeGreaterThan(18)
+    }
+  }
 })
 
 test('footer stays compact and uses correct external-link semantics', async ({ page }) => {
@@ -929,15 +1016,36 @@ test('footer stays compact and uses correct external-link semantics', async ({ p
 
   const footer = page.getByRole('contentinfo', { name: 'Footer' })
   await expect(footer).toBeVisible()
-  await expect(footer.getByText('The pETH-powered yield layer for all of DeFi')).toBeVisible()
+  const emblem = footer.locator('.pl-footer-emblem')
+  await expect(emblem).toBeVisible()
+  await expect(emblem).toHaveAttribute('viewBox', '0 0 28 28')
+  await expect(emblem).toHaveAttribute('width', '24')
+  await expect(emblem).toHaveAttribute('height', '24')
+  await expect(emblem.locator('.pl-footer-emblem-part')).toHaveCount(4)
   await expect(footer.locator('a')).toHaveCount(4)
-  await expect(footer.getByRole('link', { name: 'llms.txt', exact: true })).toHaveAttribute(
+  await expect(footer.getByRole('link', { name: 'Llms.txt', exact: true })).toHaveAttribute(
     'href',
     pathWithBase('/llms.txt')
   )
-  const website = footer.getByRole('link', { name: /Website,? opens in a new tab/i })
+  const website = footer.getByRole('link', { name: /Contact opens in a new tab/i })
   await expect(website).toHaveAttribute('href', ORGANIZATION_URL)
   await expect(website).toHaveAttribute('target', '_blank')
+
+  const footerLinks = footer.locator('a')
+  const positionsBeforeHover = await footerLinks.evaluateAll((links) =>
+    links.map((link) => {
+      const rect = link.getBoundingClientRect()
+      return { x: rect.x, width: rect.width }
+    })
+  )
+  await footer.getByRole('link', { name: /GitHub opens in a new tab/i }).hover()
+  const positionsAfterHover = await footerLinks.evaluateAll((links) =>
+    links.map((link) => {
+      const rect = link.getBoundingClientRect()
+      return { x: rect.x, width: rect.width }
+    })
+  )
+  expect(positionsAfterHover).toEqual(positionsBeforeHover)
 })
 
 test('shell switches exactly at the 767/768 breakpoint across representative viewports', async ({

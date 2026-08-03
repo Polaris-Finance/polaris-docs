@@ -1,6 +1,6 @@
 'use client'
 
-import { ExternalLink, Menu, Search, X } from 'lucide-react'
+import { Menu, Search, X } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react'
 import { EXTERNAL_LINKS } from '../../app/navigation-config.mjs'
@@ -27,6 +27,7 @@ export function NavbarActions() {
   const previousPathname = useRef(pathname)
   const previousSurface = useRef(null)
   const searchTriggerRef = useRef(null)
+  const mobileSearchTriggerRef = useRef(null)
   const menuTriggerRef = useRef(null)
   const isMac = useSyncExternalStore(noopSubscribe, clientIsMac, serverIsMac)
   const shortcut = isMac ? 'Command+K' : 'Ctrl+K'
@@ -48,7 +49,11 @@ export function NavbarActions() {
     const timeout = window.setTimeout(() => {
       if (document.activeElement !== document.body) return
       const fallback =
-        closedSurface === 'search' ? searchTriggerRef.current : menuTriggerRef.current
+        closedSurface === 'search'
+          ? window.matchMedia('(min-width: 768px)').matches
+            ? searchTriggerRef.current
+            : mobileSearchTriggerRef.current
+          : menuTriggerRef.current
       fallback?.focus({ preventScroll: true })
     }, 400)
     return () => window.clearTimeout(timeout)
@@ -78,41 +83,74 @@ export function NavbarActions() {
 
   return (
     <div className="pl-navbar-actions">
-      <a href={EXTERNAL_LINKS.website} className="pl-nav-website" target="_blank" rel="noreferrer">
-        Website
-        <ExternalLink aria-hidden="true" size={14} strokeWidth={1.8} />
-        <span className="pl-sr-only"> opens in a new tab</span>
-      </a>
-      <span className="pl-nav-theme">
-        <NavThemeSwitch lite />
-      </span>
       <button
         ref={searchTriggerRef}
         type="button"
-        className="pl-navbar-icon-button"
+        className="pl-navbar-search-trigger"
         aria-label="Search documentation"
         title={`Search (${shortcut})`}
         aria-haspopup="dialog"
         aria-expanded={surface === 'search'}
         onClick={() => setSearchOpen(surface !== 'search')}
       >
-        <Search aria-hidden="true" size={19} strokeWidth={1.8} />
+        <svg
+          className="pl-navbar-search-glyph"
+          aria-hidden="true"
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fillRule="evenodd"
+            clipRule="evenodd"
+            d="M10.579 11.816a6 6 0 1 1 1.238-1.238l3.427 3.428a.875.875 0 1 1-1.238 1.238l-3.427-3.428ZM11.25 7a4.25 4.25 0 1 1-8.5 0 4.25 4.25 0 0 1 8.5 0Z"
+          />
+        </svg>
+        <span className="pl-navbar-search-label">Search</span>
+        <kbd aria-hidden="true">{isMac ? '⌘K' : 'Ctrl K'}</kbd>
       </button>
-      <button
-        ref={menuTriggerRef}
-        type="button"
-        className="pl-navbar-icon-button pl-nav-menu-trigger"
-        aria-label={surface === 'menu' ? 'Close navigation' : 'Open navigation'}
-        aria-haspopup="dialog"
-        aria-expanded={surface === 'menu'}
-        onClick={() => setMenuOpen(surface !== 'menu')}
-      >
-        {surface === 'menu' ? (
-          <X aria-hidden="true" size={20} strokeWidth={1.8} />
-        ) : (
-          <Menu aria-hidden="true" size={20} strokeWidth={1.8} />
-        )}
-      </button>
+
+      <div className="pl-navbar-end">
+        <span className="pl-nav-theme">
+          <NavThemeSwitch lite />
+        </span>
+        <a
+          href={EXTERNAL_LINKS.testnetApp}
+          className="pl-nav-testnet"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Try Testnet
+          <span className="pl-sr-only"> opens in a new tab</span>
+        </a>
+        <button
+          ref={mobileSearchTriggerRef}
+          type="button"
+          className="pl-navbar-icon-button pl-navbar-search-icon-button"
+          aria-label="Search documentation"
+          title={`Search (${shortcut})`}
+          aria-haspopup="dialog"
+          aria-expanded={surface === 'search'}
+          onClick={() => setSearchOpen(surface !== 'search')}
+        >
+          <Search aria-hidden="true" size={19} strokeWidth={1.8} />
+        </button>
+        <button
+          ref={menuTriggerRef}
+          type="button"
+          className="pl-navbar-icon-button pl-nav-menu-trigger"
+          aria-label={surface === 'menu' ? 'Close navigation' : 'Open navigation'}
+          aria-haspopup="dialog"
+          aria-expanded={surface === 'menu'}
+          onClick={() => setMenuOpen(surface !== 'menu')}
+        >
+          {surface === 'menu' ? (
+            <X aria-hidden="true" size={20} strokeWidth={1.8} />
+          ) : (
+            <Menu aria-hidden="true" size={20} strokeWidth={1.8} />
+          )}
+        </button>
+      </div>
 
       <PolarisSearch open={surface === 'search'} onOpenChange={setSearchOpen} />
       <MobileDocsNav

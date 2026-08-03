@@ -21,7 +21,7 @@ Relevant app/search vocabulary: app, official app, testnet, Sepolia, pETH, pAsse
 
 ---
 
-## Polaris 101
+## Polaris TLDR
 
 URL: https://docs.polaris.finance/polaris-101
 Markdown URL: https://docs.polaris.finance/polaris-101.md
@@ -123,7 +123,7 @@ Markdown URL: https://docs.polaris.finance/core-assets/fpeth.md
 
 fpETH is the floor component of pETH.
 
-The floor gradually grows as more economic activity takes place across Polaris, while the market price remains free to fluctuate according to demand. As a result, pETH can and will trade above its floor, meaning every pETH combines two different sources of value: the steadily growing floor and the market premium that exists above it.
+As explained in the pETH section, pETH has both a market price and a price floor that can only rise. The market price remains free to fluctuate according to demand, while the floor grows as protocol activity routes value back into pETH.
 
 Some users may want exposure to the full pETH asset. Others may prefer the steadier floor component without the volatility of the market premium, or may want to use the two components in different strategies.
 
@@ -141,6 +141,8 @@ Splitting pETH produces:
 The economic value remains the same before and after the split. What changes is that **the floor and the premium become independent assets**, allowing each of them to develop its own use cases.
 
 **Splitting pETH is a reversible action**, allowing one fpETH plus one vpETH to be merged back into one pETH at any time.
+
+Because the split can be reversed, one fpETH plus one vpETH should generally track the market value of one pETH. If the combined market price of fpETH and vpETH moves too far away from pETH, traders can split or merge pETH to arbitrage the difference.
 
 Image: How fpETH isolates the floor component as the pETH supply and spot price change along the bonding curve.
 
@@ -183,6 +185,20 @@ Rather than being distributed separately, that **protocol-native ETH yield is co
 
 Therefore, **fpETH is designed to be the least volatile asset built around pETH**, with its value following the ever-growing pETH floor.
 
+## Pricing the Components
+
+The pETH floor and premium describe how one pETH is composed inside the protocol. Secondary-market prices for fpETH and vpETH are different: they reflect how traders value those components over time.
+
+fpETH is likely to appeal to users who want lower-volatility ETH-denominated yield, users who want Reserve Loan collateral, and users who want exposure to DeFi-driven yield while retaining access to the underlying floor value.
+
+That floor access comes through [Reserve Loans](https://docs.polaris.finance/architecture/reserve-loans). A user can borrow ETH against fpETH up to the floor value represented by that fpETH, while the fpETH remains in the Reserve Loan position. This does not burn fpETH and does not require any additional accounting for the vpETH component.
+
+Because of this floor access, secondary-market discounts to the current floor can be arbitraged, limiting how far below the floor fpETH is likely to trade.
+
+fpETH may also trade above the current floor value. In that case, buyers are effectively paying upfront for expected future floor growth. The higher the premium paid, the more future yield is pulled forward into the purchase price, which means the attractiveness of fpETH depends heavily on the buyer's time horizon.
+
+At the same time, fpETH and vpETH remain connected through the ability to merge them back into pETH. This creates a natural relationship between the price of pETH, the price of fpETH, and the price of vpETH, even though each asset can trade independently.
+
 ## Using fpETH
 
 The simplest way to use fpETH is to hold it as passive exposure to the long-term growth of the pETH floor.
@@ -210,7 +226,7 @@ Markdown URL: https://docs.polaris.finance/core-assets/goldp.md
 
 GOLDp is the Polaris digital gold.
 
-It is a synthetic asset designed to track the gold reference price for one ounce of gold using overcollateralized minting positions backed by pETH.
+It is a synthetic asset designed to track the gold price using overcollateralized minting positions backed by pETH.
 
 Unlike traditional tokenized gold, **no physical bullion is held on behalf of users**. Anyone can independently verify the collateral backing every GOLDp in circulation, with minting and redemptions enforced by immutable smart contracts.
 
@@ -240,8 +256,8 @@ When GOLDp trades below the gold reference price, market participants can redeem
 
 GOLDp price | Arbitrage | Result
 
-Above gold reference price | Mint and sell GOLDp | Supply increases, and price returns toward the target
-Below gold reference price | Redeem GOLDp | Supply decreases, and price returns toward the target
+Above gold oracle price | Mint and sell GOLDp | Supply increases, and price returns toward the target
+Below gold oracle price | Redeem GOLDp | Supply decreases, and price returns toward the target
 
 Together, these mechanisms adjust the circulating supply in response to market conditions.
 
@@ -325,11 +341,11 @@ The protocol is built around pETH and the pAssets minted against it. Together, t
 
 Around that foundation, liquidity develops across different products, applications integrate the protocol, and users build new strategies. POLAR gives long-term participants a way to share in that activity through vePOLAR and to help steer ecosystem incentives through bounded stewardship.
 
-POLAR is the utility token that provides the shared economic layer to support liquidity, integrations, ecosystem incentives and long-term stewardship.
+POLAR is the utility token that provides the shared economic layer to support liquidity, integrations, ecosystem incentives and long-term stewardship. The primary reason to hold POLAR is to commit it as vePOLAR and receive protocol-native value from supported pAsset markets.
 
 ## POLAR Design
 
-Unlike several governance tokens, **POLAR is not designed around perpetual emissions** that distribute new tokens simply because time passes. Following the set initial allocation and its vesting schedule, the long-term growth of the supply is designed to happen through the Polaris conversion mechanism.
+Unlike several governance tokens, **POLAR is not designed around perpetual emissions** that distribute new tokens simply because time passes. Following the set initial allocation and its vesting schedule, the long-term growth of the supply happens through the Polaris conversion mechanism.
 
 With this mechanism, users convert pETH into newly minted POLAR. The pETH used for the conversion is burned, ETH is released from the bonding curve reserve, and that released value is routed back into the protocol before being distributed through pETH flows.
 
@@ -343,9 +359,22 @@ The [conversion](https://docs.polaris.finance/design/conversions) mechanism and 
 
 POLAR is designed to **support the development of the Polaris ecosystem**.
 
-As new applications are introduced, they can build around the same utility token to drive adoption and engage users. Liquidity programs can use POLAR as new products get introduced, while integrations and ecosystem initiatives can continue building on the same utility asset as Polaris expands. This allows different parts of the ecosystem to **coordinate around a common economic layer** without merely relying on incentives.
+For users, POLAR becomes active through vePOLAR. A user who wants long-term exposure to Polaris can acquire POLAR, commit it as vePOLAR and participate in the value generated by supported pAsset markets.
 
-As more activity takes place across Polaris, the role of POLAR naturally expands alongside it.
+This can also matter for active Polaris users. For example, a user who mints pAssets pays interest to the relevant pAsset market. If that same user also holds vePOLAR, their share of vePOLAR distributions can offset part of their effective minting cost.
+
+For builders, POLAR creates an alignment path. A new pAsset market or integration can build on Polaris, contribute liquidity, distribution or revenue, and seek flow support through vePOLAR stewardship.
+
+For stewards, vePOLAR helps direct ecosystem incentives, flow recipients and other bounded parameters. It does not control the immutable core protocol, meaning vePOLAR cannot change the bonding curve, introduce new collateral, alter liquidation logic or upgrade the core contracts.
+
+Participant | Why POLAR matters
+
+Long-term holders | Receive protocol-native value from supported pAsset markets through vePOLAR
+Polaris power users | Potentially offset part of their effective minting cost through vePOLAR distributions
+Builders and integrations | Align with Polaris and seek pETH flow support
+Stewards | Help direct ecosystem incentives within bounded parameters
+
+For users, this means POLAR is the asset that connects long-term participation with the growth of the Polaris ecosystem. It does not grant control over the immutable core protocol, but it does allow holders to participate in the parts of the system that remain stewarded.
 
 ## vePOLAR
 
@@ -380,7 +409,7 @@ USDp is minted by depositing pETH as collateral and opening an overcollateralize
 
 Each position must be opened at or above the **minimum collateral ratio of 115%**, meaning every \$1 of USDp debt requires at least \$1.15 worth of pETH collateral at minting. Market movements can later reduce that ratio, making positions that fall below 115% eligible for [liquidations](https://docs.polaris.finance/design/liquidations).
 
-Once minted, USDp functions as a digital dollar that users fully own. It can be sent anywhere on Ethereum, used across DeFi applications or integrated into payment flows without relying on any centralized parties.
+Once minted, USDp functions as a digital dollar that users fully own. It can be sent anywhere on Ethereum, used across DeFi applications or integrated into payment flows without relying on any centralized parties. Because USDp is issued by immutable contracts and does not include freeze or blacklist functions, it is designed to remain composable across DeFi.
 
 On top of that, users who want to earn protocol-native yield can deposit USDp into the **USDp Earn Vault**, which distributes both USDp and pETH from a portion of the interest paid by USDp minters and pETH liquidation gains. The exact mechanics are explained in the [Earn Vaults](https://docs.polaris.finance/architecture/earn-vaults) section.
 
@@ -449,6 +478,18 @@ Six months later | 0.85 ETH | 0.40 ETH | 1.25 ETH
 
 The two assets still originate from the same pETH, but each responds to a different source of value as Polaris evolves. While fpETH follows the gradual growth of the floor, vpETH reflects how the market values everything beyond it.
 
+## Secondary Market Pricing
+
+vpETH represents the market premium of pETH above its floor, but that does not mean vpETH must always trade exactly at the current premium shown by the bonding curve.
+
+vpETH is likely to appeal to users who want direct exposure to the pETH premium and believe Polaris TVL, pETH demand, or pAsset demand will expand enough for that premium to grow. This can make vpETH attractive when a buyer expects the pETH premium to expand faster than the pETH floor rises.
+
+vpETH may also appeal to users who want to lend it to short sellers. Short sellers may borrow vpETH to hedge Polaris positions or build delta-neutral strategies, creating a potential lending market for vpETH holders.
+
+On secondary markets, vpETH can trade above or below the current premium shown by the bonding curve. However, because fpETH has access to the floor value through Reserve Loans, vpETH may often trade at a secondary-market discount to the current premium. Its price reflects expectations around future premium expansion, floor growth, liquidity, and volatility.
+
+This creates a linked pricing relationship: one fpETH plus one vpETH can always be merged back into one pETH, while the market price of each component reflects how traders value future floor growth and future premium volatility.
+
 ## A Familiar Mental Model
 
 Users familiar with Pendle may recognize the idea of separating a single asset into **two independently tradable components**.
@@ -489,11 +530,11 @@ Bonding curves have been part of crypto for years, particularly in DEXs and laun
 
 Whenever ETH enters the bonding curve, new pETH is created. Returning pETH to the bonding curve simply reverses the process, burning the pETH and releasing the corresponding amount of ETH.
 
-Since the bonding curve itself acts as the market between ETH and pETH, users can always move between the two assets without relying on external liquidity providers. As more ETH enters Polaris, the liquidity available through the bonding curve grows together with the protocol itself, allowing every pAsset built on top of pETH to draw from **the same shared source of liquidity**.
+Since the bonding curve itself acts as the market between ETH and pETH, users can always move between the two assets without relying on external liquidity providers. As more ETH enters Polaris, the liquidity available through the bonding curve grows together with the protocol itself, giving every pAsset built on top of pETH access to the same protocol-native ETH liquidity.
 
 As such, value generated anywhere in Polaris flows back to the same collateral that backs the protocol, enabling new financial primitives to build on pETH while strengthening the same foundation that supports the whole protocol.
 
-Beyond bringing pETH into existence, the bonding curve also enables several of the properties that define Polaris: it sets the price of pETH, generates a **protocol-native source of yield** directly from onchain swaps and allows borrowing rates to emerge directly from market conditions.
+Beyond bringing pETH into existence, the bonding curve also enables several of the properties that define Polaris: it sets the price of pETH, generates a **protocol-native source of yield** directly from onchain swaps and allows minting rates to emerge directly from market conditions.
 
 ## A Scale-Free Design
 
@@ -505,9 +546,9 @@ This also allows pETH to remain the shared collateral for a growing ecosystem of
 
 ## The Role of β
 
-The main parameter defining the bonding curve is β (beta), which controls the concavity of the curve.
+The main parameter defining the bonding curve is β (beta), the exponent in the power-law curve. β determines the concavity of the curve, which controls how sharply the pETH price responds as ETH enters or leaves the bonding curve.
 
-β is easiest to understand by visualizing the shape of the bonding curve. A larger β produces a steeper curve, causing the market price of pETH to react more aggressively as capital enters or leaves the bonding curve.
+In plain terms, β defines the shape of the market. A larger β produces a steeper curve, causing the market price of pETH to react more aggressively as capital enters or leaves the bonding curve.
 
 A smaller β produces a flatter curve, reducing the impact of those same capital flows while increasing the proportion of pETH represented by its floor price.
 
@@ -518,7 +559,7 @@ Smaller β | Flatter | Lower price impact; higher floor ratio
 
 Choosing β involves a trade-off between price responsiveness and collateral stability. Polaris was intentionally designed around the latter, with the goal of building a **highly stable collateral asset** while preserving enough price responsiveness to allow for protocol growth.
 
-The chosen value of β is intended to enable the Polaris economic model, ensuring low volatility and a relatively high floor price ratio,  with the floor becoming an increasingly important component of pETH over time.
+The chosen value of β is intended to enable the Polaris economic model, ensuring low volatility and a relatively high floor price ratio, with the floor becoming an increasingly important component of pETH over time.
 
 ## The Economic Engine
 
@@ -528,7 +569,7 @@ All value generated through the protocol ultimately flows back to the same econo
 
 This growing floor is what makes pETH a protocol-native yield-bearing asset and also forms the basis of fpETH, which isolates that steadily growing component for users who prefer exposure to the floor without the volatility of the market premium. Users who instead want exposure to both components can simply hold pETH, while those interested in isolating the market premium can do so through vpETH.
 
-The role of the bonding curve therefore extends beyond just enabling pETH ↔ ETH swaps, as it provides the s**hared economic foundation** on which Polaris is built. As a result, it allows collateral, liquidity, protocol-native yield and future applications to expand around a single reserve asset without the need to compete for separate pools of capital.
+The role of the bonding curve therefore extends beyond just enabling pETH ↔ ETH swaps, as it provides the **shared economic foundation** on which Polaris is built. As a result, it allows collateral, liquidity, protocol-native yield and future applications to expand around a single reserve asset without the need to compete for separate pools of capital.
 
 Relevant app/search vocabulary: pETH, pETH bonding curve, bonding curve, pETH floor.
 
@@ -577,7 +618,11 @@ Markdown URL: https://docs.polaris.finance/architecture/flows.md
 
 Flows distribute protocol-generated value throughout the Polaris ecosystem.
 
-These incentive streams are funded by protocol activity and distributed in pETH or pAssets. Thus, ecosystem incentives are paid out **using assets directly connected to protocol activity**, without relying on inflationary POLAR emissions.
+These incentive streams sit one layer above the Fee Router. The Fee Router processes pETH-denominated protocol revenue through the bonding curve first; flows determine where the resulting pETH rewards are sent.
+
+pAsset flows operate separately. Interest paid by minters of assets such as USDp or GOLDp does not pass through the Fee Router, and is instead distributed through that pAsset market's own flow logic.
+
+Thus, ecosystem incentives are paid out **using assets directly connected to protocol activity**, without relying on inflationary POLAR emissions.
 
 ## Flow Allocation
 
@@ -593,16 +638,18 @@ Since these minimum allocations distribute protocol value before a recipient has
 
 **pETH flows are funded by pETH-denominated protocol activity**, including bonding curve swap fees, Reserve Loan fees and pETH-to-POLAR conversions.
 
-When these fees are processed, they are burned into the bonding curve floor, increasing the pETH floor. The resulting ETH released from the reserve is then used to purchase pETH through the bonding curve before being distributed through pETH flows.
+When these fees are processed, they pass through the [Fee Router](https://docs.polaris.finance/design/fee-router): pETH is burned at the floor, ETH is released from the reserve, that ETH buys newly minted pETH, and the resulting pETH is distributed through pETH flows.
 
 **Each pAsset market also generates its own independent flow** funded by the interest paid by users who mint that specific pAsset, such as USDp or GOLDp.
 
-Unlike pETH flows, every pAsset market routes a protocol-defined minimum allocation of this flow to the corresponding Earn Vault and to vePOLAR. The remaining flow can then be distributed to approved recipients building around that pAsset, including liquidity pools, vaults, structured products and other integrations.
+Unlike pETH flows, pAsset flows do not pass through the Fee Router. Each market routes a protocol-defined minimum allocation to its corresponding Earn Vault. For USDp and GOLDp, a share is also routed to vePOLAR. Future pAsset markets may choose to share revenue with vePOLAR as part of their alignment strategy and their case for receiving pETH flows.
+
+The remaining flow can then be distributed to approved recipients building around that pAsset, including liquidity pools, vaults, structured products and other integrations.
 
 Flow type | Funded by | Distribution
 
-pETH flows | Bonding curve swap fees, Reserve Loan fees, pETH→POLAR conversions | Fees burned into the floor, then redistributed as pETH
-pAsset flows | Interest paid by pAsset minters | Minimum to Earn Vault + vePOLAR; remainder to approved recipients
+pETH flows | Bonding curve swap fees, Reserve Loan fees, pETH→POLAR conversions | Processed by the Fee Router, then distributed as pETH
+pAsset flows | Interest paid by pAsset minters | Distributed by each pAsset market's flow logic
 
 ## Stewardship Role
 
@@ -678,7 +725,7 @@ In Polaris, new supply can enter circulation in two ways:
 - Users can mint pAssets by opening or adjusting a collateralized position backed by their own pETH.
 - Arbitrageurs can mint directly through the peg stability mechanism whenever an asset trades above its target price.
 
-Both paths create new pAssets against pETH collateral, but they are accounted for differently.
+Both paths create pAssets backed by pETH, but they follow different accounting paths. Position minting creates debt that belongs to a specific user position. Direct arbitrage minting does not create a normal long-lived position for the arbitrageur; instead, the collateral, debt, and fees created by the action are distributed across open positions in that pAsset market through Adaptive Peg Defense.
 
 ## Why Mint pAssets
 
@@ -686,9 +733,15 @@ Minting allows users to create onchain assets backed by their pETH without selli
 
 A user may mint USDp to access dollar liquidity, mint GOLDp to create gold exposure, or mint future pAssets for other strategies. The minted asset can then be held, used in DeFi, deposited into an Earn Vault, or combined with external money markets and other integrations.
 
-The cost of minting is determined by the relevant pAsset market’s interest-rate mechanics. However, the headline borrowing rate is not always the same as the effective cost of the position, because minters also receive protocol-generated value through pETH-related flows which are streamed to them in proportion to their overall minted position.
+Unlike many collateralized minting systems, the headline interest rate is not always the same as the effective cost of minting. The cost of a position is determined by the relevant pAsset market's interest-rate mechanics, but minters can also receive protocol-generated value that offsets the interest they pay.
 
-Position minters may also benefit from the Protocol Safety Rate during periods of market stress, where positions with lower leverage or collateral-only positions receive additional interest paid by higher-leverage positions. This creates an economic incentive for healthier collateralization whenever the market requires it.
+These offsets can include:
+
+- pETH-related flows distributed to minters in proportion to their debt.
+- Fees generated by direct arbitrage minting and redemptions, which are socialized across affected positions.
+- Protocol Safety Rate payments to lower-leverage and collateral-only positions, funded by higher-leverage positions.
+
+This means a position can experience a low, or even negative, effective rate when the value it receives exceeds the interest it pays. This is especially relevant for pAssets with lower interest-rate profiles, such as GOLDp and potential future assets like CHFp.
 
 ## Position Minting
 
@@ -698,17 +751,43 @@ A user deposits pETH as collateral and mints a pAsset against it. The resulting 
 
 For example, a user who mints USDp needs to maintain enough pETH collateral to satisfy the USDp market’s minimum collateral ratio. If the position becomes too risky, it can be liquidated according to the liquidation rules of that market.
 
-This path is most relevant for users who want to access liquidity without giving up their pETH exposure.
+This path is most relevant for users who want to access liquidity without giving up their pETH exposure. The position remains open over time, so the user continues to manage collateral, debt, interest, and liquidation risk.
+
+The economics of the position can also evolve over time. Minters receive pETH yield in proportion to their debt, and they receive fees from direct arbitrage minting and redemptions that are socialized across the market. These fees help offset the effect of Adaptive Peg Defense adjustments and can make those adjustments profitable for affected positions under certain market conditions.
+
+## Collateral-Only Positions
+
+Polaris also supports collateral-only positions.
+
+A user can deposit pETH into a pAsset market without minting that pAsset immediately. This creates a position with collateral but no initial debt.
+
+Collateral-only positions can receive fees from direct arbitrage minting and redemptions because those actions are distributed across the open positions in the market. They can also receive Protocol Safety Rate payments from higher-leverage positions.
+
+One way to understand this is as a pETH-backed liquidity position for a specific pAsset market. The position does not begin by creating pAsset debt, but it supports the market’s collateral base, participates in market-level minting and redemption activity, and can earn fees for doing so.
+
+The Protocol Safety Rate adds another source of yield. It is expected to be small during normal conditions, but it becomes more significant when the market's collateral health weakens and the protocol rewards lower-leverage or collateral-only positions.
 
 ## Direct Arbitrage Minting
 
 Direct arbitrage minting serves a different purpose: when a pAsset trades above its target price, arbitrageurs can mint new supply and sell it into the market. This increases circulating supply and helps push the market price back toward its target.
 
-Unlike position minting, the arbitrageur does not need to open a normal collateralized position that remains in the system.  The newly created supply is instead incorporated into the existing pAsset market through Adaptive Peg Defense.
+Unlike position minting, the arbitrageur does not need to open a normal collateralized position that remains in the system. The newly created supply is instead incorporated into the existing pAsset market through Adaptive Peg Defense.
 
-The added collateral, debt and minting fees are distributed across every open position according to the protocol’s rules. Existing positions therefore participate directly in every arbitrage event, evolving continuously as supply expands through permissionless minting.
+The added collateral, debt, and minting fees are distributed across every open position according to the protocol’s rules. Existing positions therefore participate directly in every arbitrage event, evolving continuously as supply expands through permissionless minting.
 
 As a result, each pAsset market can increase supply without concentrating the economic effects of arbitrage within newly created positions.
+
+## Adaptive Peg Defense and Position Effects
+
+Adaptive Peg Defense connects market-level arbitrage activity to existing positions.
+
+When direct minting expands supply, or redemptions contract supply, the resulting changes are distributed across the affected pAsset market instead of being isolated to the arbitrageur.
+
+This means position minters are not isolated from peg activity. Their collateral, debt, and fee balances can change as the market responds to price deviations.
+
+The fees generated by direct minting and redemptions are distributed to affected positions, helping compensate minters for the impact of those system-level adjustments. Under certain market conditions, this can make arbitrage-driven activity profitable for existing positions rather than purely dilutive.
+
+This design allows Polaris to defend both sides of a pAsset’s target price while distributing the effects of arbitrage activity across the market.
 
 ---
 
@@ -727,7 +806,11 @@ With this feature, borrowers gain ETH liquidity **without giving up fpETH yield*
 
 Instead of paying a conventional borrowing interest rate, Reserve Loans apply a **time-weighted performance fee**, which is deducted directly from the increase in the fpETH floor price over the lifetime of the loan.
 
-This allows users to benefit from the growth of the fpETH floor while passively paying for the extra liquidity they access.
+This allows users to benefit from the growth of the fpETH floor while passively paying for the extra liquidity they access. The fee is applied when the user next touches the position, such as when they borrow additional ETH, repay, or close the loan.
+
+For example, suppose a user deposits 1 fpETH when the floor value is 1 ETH and borrows 1 ETH against it. Later, the fpETH floor has risen to 1.2 ETH, creating 0.2 ETH of additional floor value. If the performance fee is 1%, the user can access 0.198 ETH of that gain, while 0.002 ETH is paid as the fee.
+
+The performance fee is also utilization-based. As more ETH is borrowed through Reserve Loans, utilization of the bonding curve reserve increases and the fee rises. When utilization is lower, the fee can be lower.
 
 Feature | Traditional lending | Reserve Loans
 
@@ -787,11 +870,15 @@ This section focuses on the economic principles behind POLAR.
 
 ## Supply
 
-POLAR will launch with an initial supply of 100 million tokens, distributed across the treasury, community, team and investors. Those tokens will gradually enter circulation according to their respective vesting schedules, while the long-term growth of the supply is **entirely driven by organic demand** through the conversion mechanism.
+POLAR will launch with an initial supply of 100 million tokens, distributed across the treasury, community, team and investors. This initial supply is not a maximum supply. POLAR supply is uncapped, but new supply beyond the initial allocation can only enter circulation through the conversion mechanism.
+
+Those initial tokens will gradually enter circulation according to their respective vesting schedules, while the long-term growth of the supply is driven by participants converting pETH into POLAR.
 
 Every new POLAR outside the vesting schedule requires pETH to be permanently converted before it can enter circulation (see [Conversions](https://docs.polaris.finance/design/conversions#conversions)).
 
-As the protocol grows, pETH grows alongside it by capturing protocol-native value. Since every additional POLAR entering circulation beyond the initial allocation is created from pETH, the POLAR supply can only grow **together with the expansion of the underlying Polaris ecosystem**, keeping the utility token economically connected to the ecosystem it serves.
+For example, if market participants want more POLAR than is available at attractive prices on secondary markets, they can convert pETH into newly minted POLAR through the protocol's Dutch auction. That conversion burns pETH, expands POLAR supply and routes value back into the pETH economy.
+
+As the protocol grows, pETH grows alongside it by capturing protocol-native value. Since every additional POLAR entering circulation beyond the initial allocation is created from pETH, the POLAR supply can only grow when demand leads participants to convert pETH within the protocol's conversion parameters, keeping the utility token economically connected to the system it serves.
 
 ## A Closed Economy
 
@@ -801,13 +888,17 @@ Polaris redistributes value generated by its core protocol mechanisms across the
 
 **Treasury-held POLAR participates through vePOLAR** alongside every other long-term holder, aligning incentives across the ecosystem.
 
+In practice, this means the Polaris treasury does not receive a privileged fee stream simply because the protocol is being used. If the treasury wants exposure to protocol revenue, it must commit POLAR as vePOLAR and participate through the same mechanism available to every other vePOLAR holder.
+
 ## vePOLAR
 
 Long-term participation in Polaris takes place through vePOLAR.
 
-Users commit POLAR for a chosen period of time to **align themselves with the long-term growth of the ecosystem**. In return, they receive a share of protocol-native value, including interest from deployed pAssets, together with stewardship rights.
+Users commit POLAR for a chosen period of time to **align themselves with the long-term growth of the ecosystem**. In return, they receive a share of protocol-native value from supported pAsset markets, together with stewardship rights.
 
-These returns are distributed through protocol activity itself, without the need of additional POLAR incentives.
+For example, a USDp minter pays interest to the USDp market. Part of that interest is distributed to vePOLAR holders. If the minter also holds vePOLAR, those distributions can offset part of the interest they pay, lowering their effective minting cost.
+
+These returns are distributed through protocol activity itself, without additional POLAR incentives.
 
 Relevant app/search vocabulary: POLAR, convert, lock, vePOLAR, burn pETH, conversion auction, POLAR token, POLAR staking, POLAR tokenomics.
 
@@ -826,8 +917,8 @@ Polaris supports both directions, allowing **pAssets to be minted against pETH c
 
 Condition | Arbitrage | Supply effect | Adaptive Peg Defense
 
-Above peg | Mint at par, sell | Supply expands, reducing price | Collateral, debt and minting fees
-Below peg | Buy and redeem | Supply contracts, increasing price | Collateral removal, debt reduction and redemption fees
+Above peg | Mint at par, sell | Supply expands, reducing price | Existing positions are upsized
+Below peg | Buy and redeem | Supply contracts, increasing price | Existing positions are downsized
 
 ## Above Peg
 
@@ -835,9 +926,9 @@ When a pAsset trades above its target price, market participants can **mint new 
 
 For example, if USDp trades above one dollar, an arbitrageur can deposit ETH into the bonding curve, receive pETH and immediately mint new USDp at par before selling it above one dollar. This increases the circulating supply and naturally pushes the market price back toward its target.
 
-Polaris extends this mechanism thanks to its Adaptive Peg Defense model, which **distributes the collateral, debt and minting fees across all existing positions**, preventing them from being concentrated in a single position.
+Polaris extends this mechanism through Adaptive Peg Defense, which treats direct minting as an upsizing of the existing market. The added collateral, debt and minting fees are distributed across open positions according to protocol accounting.
 
-This allows supply to expand in response to above-peg demand without pushing a single position toward liquidation. The expansion is shared across the market, allowing the protocol to respond to upward depegs through direct onchain minting.
+This means the market can expand in response to above-peg demand without requiring the arbitrageur to maintain a long-lived position. Existing positions grow alongside the market and receive the associated minting fees.
 
 ## Below Peg
 
@@ -845,9 +936,9 @@ When a pAsset trades below its target price, market participants can **buy the d
 
 For example, if USDp trades below one dollar, an arbitrageur can purchase USDp below peg, redeem it at par for pETH and capture the price difference. The redeemed USDp is burned, reducing the circulating supply and encouraging the market price to move back toward target.
 
-The same Adaptive Peg Defense model applies to redemptions: **collateral removal, debt reduction and redemption fees are split across existing positions** instead of concentrating on a single position.
+The same Adaptive Peg Defense model applies to redemptions, but in the opposite direction. Redemptions downsize the existing market by distributing collateral removal, debt reduction and redemption fees across open positions according to protocol accounting.
 
-As a result, supply contracts without disproportionately affecting individual positions. The contraction is shared across the market, allowing the protocol to respond to downward depegs through direct onchain redemptions.
+As a result, supply contracts through the same shared accounting model. Existing positions shrink alongside the market and receive the associated redemption fees.
 
 ---
 
@@ -866,19 +957,21 @@ As a result, every expansion of the POLAR supply requires pETH to be converted, 
 
 Whenever a user converts pETH, **the converted amount is permanently burned** and an equivalent amount of new POLAR is minted.
 
-Burning pETH reduces its circulating supply and releases ETH from the bonding curve reserve. A portion of that ETH may be returned directly to the converter as a rebate, while the remaining value is ultimately routed back into the protocol through the Fee Router, where it contributes to the protocol-native yield reflected in the pETH spot price.
+Burning pETH reduces its circulating supply and releases ETH from the bonding curve reserve. A portion of that ETH may be returned directly to the converter as a rebate, while the remaining value is ultimately routed back into the protocol through the Fee Router, where it contributes to the protocol-native yield reflected in pETH.
 
-Each conversion therefore has two economic effects: it expands the POLAR supply and increases the value represented by every remaining unit of pETH.
+Each conversion therefore has three economic effects: it expands the POLAR supply, increases the value represented by every remaining unit of pETH, and creates pETH flows that can be distributed across the ecosystem.
 
 ## Conversion Pricing
 
-Conversions are permissionless and can take place at any time, but their **price is dynamic and set via **Dutch auction**.
+Conversions are permissionless and can take place at any time, but their **price is dynamic and set through a Dutch auction**.
 
 Whenever someone converts pETH into POLAR, the price immediately increases before decaying again over time. A conversion that mints a larger share of the supply pushes the price up much more aggressively than a smaller one because the price impact depends on the fraction of the existing POLAR supply minted during that conversion.
 
 This naturally encourages smaller and more frequent conversions over large supply-shocking events.
 
-As the price gradually falls, opportunities emerge whenever converting becomes more attractive than acquiring POLAR on the open market. Thus, PETH-to-POLAR conversions are expected to occur steadily over time in relatively small chunks.
+The spike-and-decay parameters that govern conversion pricing are stewarded within immutable bounds, allowing the mechanism to be tuned without changing its underlying design.
+
+As the price gradually falls, opportunities emerge whenever converting becomes more attractive than acquiring POLAR on the open market. Thus, pETH-to-POLAR conversions are expected to occur steadily over time in relatively small chunks.
 
 ## One-Way Only
 
@@ -917,9 +1010,9 @@ Relevant app/search vocabulary: POLAR, convert, lock, vePOLAR, burn pETH, conver
 URL: https://docs.polaris.finance/design/fee-router
 Markdown URL: https://docs.polaris.finance/design/fee-router.md
 
-The Fee Router component **redirects value generated by Polaris back into the ecosystem**.
+The Fee Router is the infrastructure-level contract that **redirects pETH-denominated protocol revenue back into the ecosystem**.
 
-Its role is to collect protocol revenue denominated in pETH, process it through the bonding curve and distribute the resulting rewards according to the pETH flow logic.
+Its role is to collect pETH fees, process them through the bonding curve and send the resulting pETH rewards onward to pETH flows. pAsset flows, such as USDp minter interest, do not pass through the Fee Router and are distributed by their own market flow logic.
 
 ## Strengthening pETH First
 
@@ -933,7 +1026,7 @@ In sequence:
 
 1. **pETH collected as fees is burned at the floor**, raising the floor price and releasing ETH from the reserve.
 2. That ETH immediately buys newly minted pETH, raising the bonding curve spot price.
-3. The newly minted pETH is distributed as rewards via pETH flows.
+3. The newly minted pETH is sent to pAsset markets and whitelisted recipients through pETH flows.
 
 ## A Shared Economic Engine
 
@@ -1072,34 +1165,38 @@ Relevant app/search vocabulary: oracle, oracles, Medianiser, price feed, ETH/USD
 
 ---
 
-## Recovery Mode
+## Defensive and Recovery Modes
 
 URL: https://docs.polaris.finance/design/recovery-mode
 Markdown URL: https://docs.polaris.finance/design/recovery-mode.md
 
-Recovery Mode is the protective state a pAsset market enters when its **overall collateralization falls below a critical threshold**.
+Defensive Mode and Recovery Mode are protective states a pAsset market can enter when its overall collateralization weakens.
 
-Each pAsset market has its own Recovery Mode. Stress affecting one market does not automatically place every other market into the same state, so that USDp, GOLDp and future pAssets remain independent from one another.
+Each pAsset market has its own thresholds. Stress affecting one market does not automatically place every other market into the same state, so USDp, GOLDp and future pAssets remain independent from one another.
 
-Once active, the protocol continues operating normally and restricts only the actions that would further weaken the affected market. Users can still add collateral, repay debt and improve the health of their positions, although actions such as minting additional pAssets may become unavailable.
+The first threshold activates **Defensive Mode**. The market continues operating, but actions that would weaken collateral health can be restricted. Users can still add collateral, repay debt and improve their positions, while actions such as increasing debt or withdrawing collateral may become unavailable.
 
-The goal is to **prevent the market from weakening without restricting participants from repaying positions** and reducing debt. The normal liquidation threshold does not change, and positions are liquidated only after reaching the same maximum LTV that applies under normal market conditions.
+The second, more severe threshold activates **Recovery Mode**. Recovery Mode keeps the market open for deleveraging while applying stricter protections around minting and redemptions.
+
+The goal of both modes is to **prevent the market from weakening while preserving the ability to repay debt and reduce risk**. The normal liquidation threshold does not change, and positions are liquidated only after falling below the same minimum collateral ratio that applies under normal market conditions.
 
 ## Peg Stability
 
-Recovery Mode also affects direct minting and redemptions. **New direct minting is disabled** because it would increase the outstanding debt of the affected market, whereas direct redemptions remain available because they reduce the circulating supply.
+Defensive Mode and Recovery Mode also affect direct minting and redemptions. **New direct minting is disabled** because it would increase the outstanding debt of the affected market, whereas direct redemptions remain available because they reduce the circulating supply.
 
-If the market's collateral falls below full backing, **redemption payouts become proportional to the collateral that remains available**. This ensures every redeemer receives a proportional share of the remaining backing, eliminating any advantage for participants who exit first.
+If the market's collateral falls below full backing in Recovery Mode, **redemption payouts become proportional to the collateral that remains available**. This ensures every redeemer receives a proportional share of the remaining backing, eliminating any advantage for participants who exit first.
 
-Bonding curve swaps remain available during Recovery Mode. Since the bonding curve operates as **shared pETH infrastructure independent of any individual pAsset market**, pETH holders can continue using it even if a specific market enters Recovery Mode.
-Action | Status | Why
+Bonding curve swaps remain available throughout both modes. Since the bonding curve operates as **shared pETH infrastructure independent of any individual pAsset market**, pETH holders can continue using it even if a specific market enters Defensive Mode or Recovery Mode.
 
-Add collateral / repay debt | Allowed | Improves position health
-Redemptions | Allowed | Reduces supply
-Bonding curve swaps | Allowed | Independent infrastructure
-Direct pAsset minting | Disabled | Would increase market debt
+Action | Defensive Mode | Recovery Mode | Why
 
-This mechanism is designed to help a stressed market deleverage in an orderly and isolated manner, with no impact on the wider Polaris ecosystem.
+Add collateral / repay debt | Allowed | Allowed | Improves position health
+Withdraw collateral / increase debt | Restricted | Disabled | Would weaken market health
+Direct pAsset minting | Disabled | Disabled | Would increase market debt
+Redemptions | Allowed | Allowed, or proportional if below full backing | Reduces supply
+Bonding curve swaps | Allowed | Allowed | Independent infrastructure
+
+These mechanisms are designed to help a stressed market deleverage in an orderly and isolated manner, without shutting down the wider Polaris ecosystem.
 
 ---
 
@@ -1134,7 +1231,7 @@ Since every vePOLAR holder earns protocol revenue through the same mechanism, St
 
 ---
 
-## Spike-and-Decay Fees
+## Spike-and-Decay Pricing
 
 URL: https://docs.polaris.finance/design/spike-and-decay-fees
 Markdown URL: https://docs.polaris.finance/design/spike-and-decay-fees.md
@@ -1155,7 +1252,9 @@ The result is that **higher demand for a particular action also increases its co
 
 Thus, prices can continuously adapt as market conditions evolve, capturing more value during periods of higher demand before naturally encouraging activity again as costs decline.
 
-Once deployed, **these mechanisms operate in an entirely immutable manner**. Unlike parameters such as the conversion rebate, spike-and-decay pricing is not adjusted through stewardship and responds exclusively to market activity. The minimum and maximum fee ranges will be finalized closer to launch.
+Once configured, **these mechanisms respond automatically to market activity**. Demand causes the price or fee to spike, while inactivity causes it to decay.
+
+Some parameters are stewarded within immutable bounds. For example, pETH-to-POLAR conversion spike-and-decay parameters can be adjusted through stewardship within their allowed ranges, while the mechanism itself continues operating according to protocol rules.
 
 ---
 

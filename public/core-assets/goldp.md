@@ -14,7 +14,7 @@ Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 GOLDp is the Polaris digital gold.
 
-It is a synthetic asset designed to track the gold reference price for one ounce of gold using overcollateralized minting positions backed by pETH.
+It is a synthetic asset designed to track the gold price using overcollateralized minting positions backed by pETH.
 
 Unlike traditional tokenized gold, **no physical bullion is held on behalf of users**. Anyone can independently verify the collateral backing every GOLDp in circulation, with minting and redemptions enforced by immutable smart contracts.
 
@@ -38,14 +38,14 @@ Users may hold GOLDp as digital gold, deposit it into the Earn Vault, provide li
 
 The GOLDp peg is supported by pETH overcollateralization and by market participants using the protocol's peg mechanisms whenever arbitrage opportunities arise.
 
-When GOLDp trades above the gold reference price, new GOLDp can be minted at gold reference value against pETH collateral and sold into the market. The additional supply creates downward pressure on the market price.
+When GOLDp trades above the gold oracle price, new GOLDp can be minted at gold reference value against pETH collateral and sold into the market. The additional supply creates downward pressure on the market price.
 
 When GOLDp trades below the gold reference price, market participants can redeem GOLDp for the underlying collateral, which removes GOLDp from circulation and reduces the circulating supply.
 
 GOLDp price | Arbitrage | Result
 
-Above gold reference price | Mint and sell GOLDp | Supply increases, and price returns toward the target
-Below gold reference price | Redeem GOLDp | Supply decreases, and price returns toward the target
+Above gold oracle price | Mint and sell GOLDp | Supply increases, and price returns toward the target
+Below gold oracle price | Redeem GOLDp | Supply decreases, and price returns toward the target
 
 Together, these mechanisms adjust the circulating supply in response to market conditions.
 

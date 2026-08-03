@@ -7,7 +7,7 @@ description: "GOLDp is the Polaris digital gold."
 
 GOLDp is the Polaris digital gold.
 
-It is a synthetic asset designed to track the gold reference price for one ounce of gold using overcollateralized minting positions backed by pETH.
+It is a synthetic asset designed to track the gold price using overcollateralized minting positions backed by pETH.
 
 Unlike traditional tokenized gold, **no physical bullion is held on behalf of users**. Anyone can independently verify the collateral backing every GOLDp in circulation, with minting and redemptions enforced by immutable smart contracts.
 
@@ -37,8 +37,8 @@ When GOLDp trades below the gold reference price, market participants can redeem
 
 | GOLDp price | Arbitrage | Result |
 | --- | --- | --- |
-| Above gold reference price | Mint and sell GOLDp | Supply increases, and price returns toward the target |
-| Below gold reference price | Redeem GOLDp | Supply decreases, and price returns toward the target |
+| Above gold oracle price | Mint and sell GOLDp | Supply increases, and price returns toward the target |
+| Below gold oracle price | Redeem GOLDp | Supply decreases, and price returns toward the target |
 
 Together, these mechanisms adjust the circulating supply in response to market conditions.
 

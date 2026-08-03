@@ -4,6 +4,7 @@ import { getPageMap } from 'nextra/page-map'
 import { Inter, Cormorant_Garamond } from 'next/font/google'
 import Script from 'next/script'
 import { A11yEnhancements } from '../components/A11yEnhancements'
+import { ImageZoomEnhancements } from '../components/ImageZoomEnhancements'
 import { PolarisFooter } from '../components/PolarisFooter'
 import { NavbarActions } from '../components/navigation/NavbarActions'
 import { JsonLd } from './JsonLd'
@@ -98,40 +99,28 @@ export const metadata = {
   }
 }
 
-// Own anchor (not Nextra's auto logo link) so the accessible name comes from the
-// visible "Polaris Docs" text — Nextra's hardcoded aria-label="Home page" would
-// otherwise trip axe's label-content-name-mismatch.
+// Own anchor (not Nextra's auto logo link) so the accessible name matches the
+// visible Polaris wordmark + "Docs" label. Nextra's hardcoded
+// aria-label="Home page" would otherwise trip axe's label-content-name-mismatch.
 const logo = (
-  <a
-    href={pathWithBase('/')}
-    className="pl-logo-link"
-    style={{
-      display: 'inline-flex',
-      alignItems: 'center',
-      gap: '0.55rem',
-      textDecoration: 'none',
-      color: 'inherit'
-    }}
-  >
-    <img
-      src={pathWithBase('/emblem.svg')}
-      alt=""
-      className="pl-logo-mark"
-      width={26}
-      height={26}
-      style={{ display: 'block' }}
-    />
-    <span
-      className="pl-logo-text"
-      style={{
-        fontFamily: 'var(--font-serif), Georgia, serif',
-        fontSize: '1.18rem',
-        fontWeight: 600,
-        letterSpacing: '0.04em'
-      }}
-    >
-      Polaris <span style={{ opacity: 0.56, fontWeight: 600 }}>Docs</span>
+  <a href={pathWithBase('/')} className="pl-logo-link" aria-label="Polaris Docs">
+    <span className="pl-logo-wordmark" aria-hidden="true">
+      <img
+        src={pathWithBase('/polaris-logo-black.svg')}
+        alt=""
+        className="pl-logo-image pl-logo-image-light"
+        width={91}
+        height={23}
+      />
+      <img
+        src={pathWithBase('/polaris-logo-white.svg')}
+        alt=""
+        className="pl-logo-image pl-logo-image-dark"
+        width={91}
+        height={23}
+      />
     </span>
+    <span className="pl-logo-docs">Docs</span>
   </a>
 )
 
@@ -152,8 +141,12 @@ export default async function RootLayout({ children }) {
       className={`${inter.variable} ${cormorant.variable}`}
     >
       <Head
-        color={{ hue: 41, saturation: 42, lightness: { dark: 76, light: 37 } }}
-        backgroundColor={{ dark: '#050a14', light: '#ffffff' }}
+        color={{
+          hue: { dark: 0, light: 41 },
+          saturation: { dark: 0, light: 42 },
+          lightness: { dark: 76, light: 37 }
+        }}
+        backgroundColor={{ dark: '#16171b', light: '#ffffff' }}
       />
       <body>
         <JsonLd data={buildGlobalJsonLd()} />
@@ -170,6 +163,7 @@ export default async function RootLayout({ children }) {
           {children}
         </Layout>
         <A11yEnhancements />
+        <ImageZoomEnhancements />
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
           strategy="afterInteractive"

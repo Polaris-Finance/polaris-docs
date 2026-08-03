@@ -14,7 +14,7 @@ Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 fpETH is the floor component of pETH.
 
-The floor gradually grows as more economic activity takes place across Polaris, while the market price remains free to fluctuate according to demand. As a result, pETH can and will trade above its floor, meaning every pETH combines two different sources of value: the steadily growing floor and the market premium that exists above it.
+As explained in the pETH section, pETH has both a market price and a price floor that can only rise. The market price remains free to fluctuate according to demand, while the floor grows as protocol activity routes value back into pETH.
 
 Some users may want exposure to the full pETH asset. Others may prefer the steadier floor component without the volatility of the market premium, or may want to use the two components in different strategies.
 
@@ -32,6 +32,8 @@ Splitting pETH produces:
 The economic value remains the same before and after the split. What changes is that **the floor and the premium become independent assets**, allowing each of them to develop its own use cases.
 
 **Splitting pETH is a reversible action**, allowing one fpETH plus one vpETH to be merged back into one pETH at any time.
+
+Because the split can be reversed, one fpETH plus one vpETH should generally track the market value of one pETH. If the combined market price of fpETH and vpETH moves too far away from pETH, traders can split or merge pETH to arbitrage the difference.
 
 ![How fpETH isolates the floor component as the pETH supply and spot price change along the bonding curve.](https://docs.polaris.finance/infographics/fpeth.jpg)
 
@@ -73,6 +75,20 @@ fpETH follows the growth of the pETH floor instead. As described in the [pETH](h
 Rather than being distributed separately, that **protocol-native ETH yield is continuously reflected in the growth of the floor itself**. This makes it natively yield-bearing while avoiding the volatility associated with the market premium of pETH.
 
 Therefore, **fpETH is designed to be the least volatile asset built around pETH**, with its value following the ever-growing pETH floor.
+
+## Pricing the Components
+
+The pETH floor and premium describe how one pETH is composed inside the protocol. Secondary-market prices for fpETH and vpETH are different: they reflect how traders value those components over time.
+
+fpETH is likely to appeal to users who want lower-volatility ETH-denominated yield, users who want Reserve Loan collateral, and users who want exposure to DeFi-driven yield while retaining access to the underlying floor value.
+
+That floor access comes through [Reserve Loans](https://docs.polaris.finance/architecture/reserve-loans). A user can borrow ETH against fpETH up to the floor value represented by that fpETH, while the fpETH remains in the Reserve Loan position. This does not burn fpETH and does not require any additional accounting for the vpETH component.
+
+Because of this floor access, secondary-market discounts to the current floor can be arbitraged, limiting how far below the floor fpETH is likely to trade.
+
+fpETH may also trade above the current floor value. In that case, buyers are effectively paying upfront for expected future floor growth. The higher the premium paid, the more future yield is pulled forward into the purchase price, which means the attractiveness of fpETH depends heavily on the buyer's time horizon.
+
+At the same time, fpETH and vpETH remain connected through the ability to merge them back into pETH. This creates a natural relationship between the price of pETH, the price of fpETH, and the price of vpETH, even though each asset can trade independently.
 
 ## Using fpETH
 

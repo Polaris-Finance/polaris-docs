@@ -1,7 +1,8 @@
 import {
   navigationKindForRoute,
   navigationSectionForRoute,
-  normalizeRoute
+  normalizeRoute,
+  toneForRoute
 } from './navigation-config.mjs'
 
 export function sectionForPath(path) {
@@ -10,4 +11,8 @@ export function sectionForPath(path) {
 
 export function kindForPath(path) {
   return navigationKindForRoute(normalizeRoute(path))
+}
+
+export function toneForPath(path) {
+  return toneForRoute(normalizeRoute(path))
 }

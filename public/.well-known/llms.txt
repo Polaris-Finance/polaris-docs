@@ -25,7 +25,7 @@
 ## Introduction
 
 - [Polaris Documentation](https://docs.polaris.finance/index.md): Polaris is a permissionless onchain infrastructure built on pETH, a yield-bearing asset that collateralizes decentralized stablecoins and synthetic assets. Canonical: https://docs.polaris.finance/
-- [Polaris 101](https://docs.polaris.finance/polaris-101.md): An introduction to Polaris, the onchain yield layer built around pETH. Canonical: https://docs.polaris.finance/polaris-101
+- [Polaris TLDR](https://docs.polaris.finance/polaris-101.md): An introduction to Polaris, the onchain yield layer built around pETH. Canonical: https://docs.polaris.finance/polaris-101
 
 ## Overview
 
@@ -61,9 +61,9 @@
 - [Interest Rates](https://docs.polaris.finance/design/interest-rates.md): Polaris uses two complementary interest rates to manage pAsset markets. Canonical: https://docs.polaris.finance/design/interest-rates
 - [Liquidations](https://docs.polaris.finance/design/liquidations.md): When a user mints a pAsset, they do so against pETH collateral. Canonical: https://docs.polaris.finance/design/liquidations
 - [Oracles](https://docs.polaris.finance/design/oracles.md): Polaris is designed to rely on its own onchain mechanisms wherever possible, minimizing its dependence on external inputs. Canonical: https://docs.polaris.finance/design/oracles
-- [Recovery Mode](https://docs.polaris.finance/design/recovery-mode.md): Recovery Mode is the protective state a pAsset market enters when its overall collateralization falls below a critical threshold. Canonical: https://docs.polaris.finance/design/recovery-mode
+- [Defensive and Recovery Modes](https://docs.polaris.finance/design/recovery-mode.md): Defensive Mode and Recovery Mode are protective states for stressed pAsset markets. Canonical: https://docs.polaris.finance/design/recovery-mode
 - [Revenue Model](https://docs.polaris.finance/design/revenue-model.md): Polaris operates under the design philosophy that all value generated throughout the protocol should not leak externally. Canonical: https://docs.polaris.finance/design/revenue-model
-- [Spike-and-Decay Fees](https://docs.polaris.finance/design/spike-and-decay-fees.md): Several core mechanisms in Polaris use spike-and-decay pricing. Canonical: https://docs.polaris.finance/design/spike-and-decay-fees
+- [Spike-and-Decay Pricing](https://docs.polaris.finance/design/spike-and-decay-fees.md): Several core mechanisms in Polaris use spike-and-decay pricing. Canonical: https://docs.polaris.finance/design/spike-and-decay-fees
 
 ## Using the Testnet
 

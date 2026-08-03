@@ -2,7 +2,7 @@ import { ORGANIZATION_URL } from './site-config.mjs'
 
 export const EXTERNAL_LINKS = Object.freeze({
   website: ORGANIZATION_URL,
-  testnetApp: 'https://app.testnet.polarisfinance.io',
+  testnetApp: 'https://testnet.polaris.finance/',
   github: 'https://github.com/Polaris-Finance',
   x: 'https://x.com/polarisfinance_'
 })
@@ -24,19 +24,18 @@ export const NAVIGATION_GROUPS = [
         id: 'docs-home',
         type: 'page',
         metaKey: 'index',
-        label: 'Polaris Documentation',
+        label: 'Overview',
         route: '/',
         icon: 'FileText',
-        display: 'hidden',
         theme: { copyPage: false, pagination: false },
         kind: 'concept'
       },
-      page('polaris-101', 'polaris-101', 'Polaris 101', '/polaris-101', 'BookOpen'),
+      page('polaris-101', 'polaris-101', 'Polaris TLDR', '/polaris-101', 'BookOpen'),
       {
         id: 'overview',
         type: 'folder',
         metaKey: 'overview',
-        label: 'Overview',
+        label: 'Foundation',
         routePrefix: '/overview',
         icon: 'Compass',
         children: [
@@ -139,7 +138,7 @@ export const NAVIGATION_GROUPS = [
           page(
             'spike-and-decay-fees',
             'spike-and-decay-fees',
-            'Spike-and-Decay Fees',
+            'Spike-and-Decay Pricing',
             '/design/spike-and-decay-fees',
             'Activity'
           ),
@@ -153,7 +152,7 @@ export const NAVIGATION_GROUPS = [
           page(
             'recovery-mode',
             'recovery-mode',
-            'Recovery Mode',
+            'Defensive and Recovery Modes',
             '/design/recovery-mode',
             'LifeBuoy'
           ),
@@ -238,8 +237,10 @@ export const NAVIGATION_GROUPS = [
 ]
 
 export const FOOTER_LINKS = [
-  { type: 'external', label: 'Website', href: EXTERNAL_LINKS.website },
-  { type: 'artifact', label: 'llms.txt', href: '/llms.txt' }
+  { type: 'artifact', label: 'Llms.txt', href: '/llms.txt' },
+  { type: 'external', label: 'GitHub', href: EXTERNAL_LINKS.github },
+  { type: 'external', label: 'X.com', href: EXTERNAL_LINKS.x },
+  { type: 'external', label: 'Contact', href: EXTERNAL_LINKS.website }
 ]
 
 function page(id, metaKey, label, route, icon, kind = 'concept') {
