@@ -30,7 +30,7 @@ export const NAVIGATION_GROUPS = [
         theme: { copyPage: false, pagination: false },
         kind: 'concept'
       },
-      page('polaris-101', 'polaris-101', 'Polaris 101', '/polaris-101', 'BookOpen'),
+      page('polaris-101', 'polaris-101', 'Polaris TLDR', '/polaris-101', 'BookOpen'),
       {
         id: 'overview',
         type: 'folder',

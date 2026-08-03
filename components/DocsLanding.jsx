@@ -5,10 +5,10 @@ import { Glyph } from './icons/Glyph.js'
 import { ASSET_ICONS } from './navigation/NavIcon.js'
 import { ArrowUpRight } from 'lucide-react'
 
-// Polaris 101 is the featured entry point (CEO direction, July 2026), carrying
+// Polaris TLDR is the featured entry point (CEO direction, July 2026), carrying
 // the same label, blurb and href the welcome card used to.
 const heroLink = {
-  label: 'Polaris 101',
+  label: 'Polaris TLDR',
   description: 'Learn the basics',
   route: '/polaris-101',
   glyph: 'BookOpen'
