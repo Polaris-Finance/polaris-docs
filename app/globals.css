@@ -21,14 +21,16 @@
      July 2026): slightly stronger fill, near-invisible border. */
   --pl-surface: rgba(44, 74, 110, 0.045);
   --pl-card-border: rgba(44, 74, 110, 0.05);
+  --pl-tile-bg: #fcfbfb;
+  --pl-tile-hover: #f7f6f6;
+  --pl-prev-next-ink: #343433;
 
   /* Table roles, theme-aware. Tables inherit Nextra's neutral-gray defaults;
      these tokens pull rules/header/hover onto the brand palette so dark mode
      stops reading as a bright spreadsheet grid. Light defaults; .dark below. */
-  --pl-table-rule: rgba(63, 127, 168, 0.14);
-  --pl-table-header-bg: rgba(63, 127, 168, 0.11);
-  --pl-table-header-rule: rgba(177, 147, 79, 0.32);
-  --pl-table-hover: rgba(63, 127, 168, 0.05);
+  --pl-table-rule: var(--pl-ui-hairline);
+  --pl-table-header-bg: var(--pl-tile-bg);
+  --pl-table-header-rule: var(--pl-ui-hairline);
 
   /* Icon tones, one hue per navigation group (Aave gives every icon family its
      own colour instead of a single shared accent). Muted on purpose — the
@@ -70,25 +72,25 @@
   --pl-ink-link: #1b6bef;
   --pl-link-underline: rgba(26, 136, 248, 0.3);
 
-  /* Section hairline under H1 and above H2 — the gold the site shipped with,
-     back at the alpha it used on the cream canvas. It is decorative (the
-     heading already carries the structure), so no contrast floor applies. */
-  --pl-section-rule: rgba(177, 147, 79, 0.35);
   --pl-measure: 710px;
+  --pl-rhythm-16: 1rem;
   --pl-rhythm-24: 1.5rem;
   --pl-rhythm-32: 2rem;
+  --pl-rhythm-48: 3rem;
 }
 
 .dark {
   --pl-surface: rgba(123, 165, 201, 0.06);
   --pl-card-border: rgba(123, 165, 201, 0.06);
+  --pl-tile-bg: #0d1726;
+  --pl-tile-hover: #121e30;
+  --pl-prev-next-ink: #faf6ee;
 
   /* Cool low-alpha hairline (~L 0.23) instead of the theme's gray-600 (~L 0.45),
      and a header fill strong enough to read as a band over the near-black page. */
-  --pl-table-rule: rgba(123, 165, 201, 0.14);
-  --pl-table-header-bg: rgba(123, 165, 201, 0.18);
-  --pl-table-header-rule: rgba(216, 201, 164, 0.3);
-  --pl-table-hover: rgba(123, 165, 201, 0.09);
+  --pl-table-rule: var(--pl-ui-hairline);
+  --pl-table-header-bg: var(--pl-tile-bg);
+  --pl-table-header-rule: var(--pl-ui-hairline);
 
   /* The type scale's structure is shared; only its inks are per-theme. Dark
      keeps the star/navy palette it already shipped with — the designer specced
@@ -98,8 +100,6 @@
   --pl-ink-caption: #b9b19f;
   --pl-ink-link: #d8c9a4;
   --pl-link-underline: rgba(216, 201, 164, 0.35);
-  --pl-section-rule: rgba(216, 201, 164, 0.3);
-
   --pl-icon-gold: #d8c9a4;
   --pl-icon-blue: #7ba5c9;
   --pl-icon-violet: #9b8fcf;
@@ -158,13 +158,6 @@ body {
    wherever the theme states the same property through a utility class
    (font-bold, text-4xl/3xl, mt-*, nextra-border).
 
-   The gold rules under H1 and above H2 are back (owner ruling on Chilla's
-   July 2026 feedback, reinstating the two decisions designer Q4 had superseded):
-   without them the sections ran together. They keep the 24/32 rhythm on both
-   sides of the line — 32 from the previous paragraph to the rule and 32 from the
-   rule to an H2, 24 from an H1 to the rule and 24 on to the first paragraph — so
-   the spacing scale is intact and the rule sits inside it rather than beside it.
-
    Hierarchy comes from weight, line-height, colour and spacing — H3 is the same
    16px as body text on purpose and must never be enlarged. */
 
@@ -176,8 +169,8 @@ article :is(h1, h2, h3, h4, h5, h6) {
 
 article h1 {
   margin-bottom: var(--pl-rhythm-24) !important;
-  padding-bottom: var(--pl-rhythm-24) !important;
-  border-bottom: 1px solid var(--pl-section-rule) !important;
+  padding-bottom: 0 !important;
+  border-bottom: 0 !important;
   font-size: 2rem !important;
   font-weight: 600 !important;
   line-height: 1.25;
@@ -185,10 +178,11 @@ article h1 {
 }
 
 article h2 {
-  margin-top: var(--pl-rhythm-32) !important;
-  margin-bottom: var(--pl-rhythm-24) !important;
-  padding-top: var(--pl-rhythm-32) !important;
-  border-top: 1px solid var(--pl-section-rule) !important;
+  margin-top: var(--pl-rhythm-48) !important;
+  margin-bottom: var(--pl-rhythm-16) !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  border-top: 0 !important;
   border-bottom: 0 !important;
   font-size: 1.25rem !important;
   font-weight: 500 !important;
@@ -198,7 +192,8 @@ article h2 {
 
 article h3 {
   margin-top: var(--pl-rhythm-32) !important;
-  margin-bottom: var(--pl-rhythm-24) !important;
+  margin-bottom: var(--pl-rhythm-16) !important;
+  padding-block: 0 !important;
   font-size: 1rem !important;
   font-weight: 500 !important;
   line-height: 1.1875;
@@ -210,7 +205,8 @@ article h3 {
 
 article :is(h4, h5, h6) {
   margin-top: var(--pl-rhythm-32) !important;
-  margin-bottom: var(--pl-rhythm-24) !important;
+  margin-bottom: var(--pl-rhythm-16) !important;
+  padding-block: 0 !important;
   color: var(--pl-ink-body);
   font-size: 1rem !important;
   font-weight: 400 !important;
@@ -218,10 +214,9 @@ article :is(h4, h5, h6) {
   letter-spacing: -0.011em;
 }
 
-/* Body. Paragraph rhythm is 24px trailing only: p→p collapses to 24, heading→p
-   uses the heading's 24 bottom margin, and p→heading collapses to the heading's
-   32 top margin. Declaring both a 32 trailing margin and a 32 leading one would
-   render 56. */
+/* Body. Paragraph rhythm is trailing-only: one element owns each gap, so two
+   adjacent margin zones never compete. Section headings use a larger leading
+   gap and a smaller trailing gap to bind them to the content they introduce. */
 
 article :is(p, li) {
   color: var(--pl-ink-body);
@@ -234,6 +229,24 @@ article :is(p, li) {
 article p {
   margin-top: 0 !important;
   margin-bottom: var(--pl-rhythm-24) !important;
+}
+
+/* Remove the preceding block's trailing margin whenever a section heading
+   follows. This prevents sibling margin collapsing and makes the heading's
+   leading value the single source of truth for the section boundary. */
+article main > *:has(+ :is(h2, h3, h4, h5, h6)) {
+  margin-bottom: 0 !important;
+}
+
+/* Media already reserves 48px below itself, so it fully owns the boundary
+   before a following heading. Tables reserve 32px and need only the remaining
+   16px to reach the same H2 section gap. */
+article main > .pl-content-image + :is(h2, h3, h4, h5, h6) {
+  margin-top: 0 !important;
+}
+
+article main > .pl-content-table + h2 {
+  margin-top: var(--pl-rhythm-16) !important;
 }
 
 /* Emphasis follows the existing principle — strong reads at heading ink. */
@@ -302,17 +315,6 @@ article :is(pre, pre code) {
   background-color: var(--polaris-navy-darkest);
 }
 
-/* Accessibility: WCAG 2.2 AA focus indicator (1.4.11 / 2.4.11).
-   The theme's keyboard-focus ring uses primary-200, a pale gold that only
-   reaches ~1.4:1 against the light cream canvas. Darken the ring color in
-   light mode to the primary accent (~4.6:1) so the focus indicator stays
-   visible. Dark mode already exceeds 3:1 and is left untouched. */
-
-html:not(.dark) .x\:nextra-focus:focus-visible,
-html:not(.dark) .x\:focus-visible\:nextra-focus:focus-visible {
-  --tw-ring-color: var(--x-color-primary-600);
-}
-
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -353,8 +355,8 @@ article table[data-pl-table] {
 }
 
 article table[data-pl-table]:focus-visible {
-  outline: 2px solid var(--x-color-primary-600);
-  outline-offset: 3px;
+  outline: 1px solid var(--pl-focus-ring);
+  outline-offset: 2px;
 }
 
 article pre {
@@ -363,8 +365,8 @@ article pre {
 }
 
 article pre:focus-visible {
-  outline: 2px solid var(--x-color-primary-600);
-  outline-offset: 3px;
+  outline: 1px solid var(--pl-focus-ring);
+  outline-offset: 2px;
 }
 
 /* The measure is the column, not the paragraph (designer Q9): text, images,
@@ -394,12 +396,15 @@ article {
   max-width: 60rem;
   grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
-  gap: 1rem;
+  gap: 0.85rem;
   margin: 0 0 2.75rem;
-  padding: 1.15rem 0.2rem;
+  padding: 1.15rem 1.2rem;
   border-top: 1px solid var(--pl-ui-hairline);
   border-bottom: 1px solid var(--pl-ui-hairline);
+  border-radius: 11px;
   color: var(--pl-ui-ink);
+  text-decoration: none;
+  cursor: pointer;
   transition: border-color var(--pl-card-motion, 240ms ease-out);
 }
 
@@ -426,20 +431,25 @@ article {
 .pl-testnet-banner-copy {
   display: grid;
   min-width: 0;
-  gap: 0.2rem;
+  gap: 0.1rem;
 }
 
 .pl-testnet-banner-copy strong {
-  color: var(--pl-ui-ink);
-  font-size: 0.98rem;
-  font-weight: 650;
-  line-height: 1.35;
+  color: var(--pl-ink-heading);
+  font-family: var(--font-sans-stack);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: -0.011em;
 }
 
 .pl-testnet-banner-copy > span {
-  color: var(--pl-ui-muted);
-  font-size: 0.83rem;
-  line-height: 1.5;
+  color: var(--pl-ink-caption);
+  font-family: var(--font-sans-stack);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5714;
+  letter-spacing: -0.0064em;
   text-wrap: pretty;
 }
 
@@ -474,8 +484,8 @@ article {
 
 .pl-testnet-banner-primary:focus-visible,
 .pl-testnet-banner-secondary:focus-visible {
-  outline: 2px solid var(--x-color-primary-600);
-  outline-offset: 3px;
+  outline: 1px solid var(--pl-focus-ring);
+  outline-offset: 2px;
 }
 
 .pl-docs-home {
@@ -497,28 +507,6 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
   height: auto;
 }
 
-/* The landing is out of scope for the July 2026 type spec (designer Q6 + Q11):
-   it keeps the editorial serif, its large responsive H1 and its own scale, so
-   the interior 32px Inter H1 rule is restated here in the old values. The gold
-   rule underneath is inherited from article h1, as it was before Q4 — it is
-   what makes the page read as the top of the documentation. */
-article:has(.pl-docs-home) main > h1:first-of-type {
-  max-width: 100%;
-  margin: 0 !important;
-  font-family: var(--font-serif-stack);
-  font-size: clamp(2.15rem, 1.8rem + 1.2vw, 2.85rem) !important;
-  line-height: 1.15;
-  letter-spacing: 0.01em;
-}
-
-/* Plain body size, not a lede — the I10 lede rule was removed by owner decision
-   in feedback wave 4 and must not come back through the landing. */
-article:has(.pl-docs-home) main > h1:first-of-type + p {
-  margin: 1.15rem 0 0;
-  line-height: 1.7;
-  text-wrap: pretty;
-}
-
 .pl-docs-home-section + .pl-docs-home-section {
   margin-top: 3.5rem;
 }
@@ -528,10 +516,14 @@ article:has(.pl-docs-home) main > h1:first-of-type + p {
 }
 
 .pl-docs-home .pl-docs-home-section h2 {
-  margin: 0 0 1rem;
+  margin: 0 0 var(--pl-rhythm-24) !important;
   padding: 0 !important;
   border: 0 !important;
-  font: 600 1.42rem/1.3 var(--font-serif-stack) !important;
+  font-family: var(--font-sans-stack) !important;
+  font-size: 1.25rem !important;
+  font-weight: 500 !important;
+  line-height: 1.1335 !important;
+  letter-spacing: -0.014em !important;
 }
 
 .pl-docs-card-link,
@@ -619,11 +611,11 @@ article:has(.pl-docs-home) main > h1:first-of-type + p {
   display: grid;
   overflow: hidden;
   align-items: center;
-  gap: 1.25rem;
+  gap: 0.85rem;
   grid-template-columns: auto minmax(0, 1fr) auto;
   margin-bottom: 1.4rem;
-  padding: 1.7rem 1.6rem;
-  border-radius: 14px;
+  padding: 1.15rem 1.2rem;
+  border-radius: 11px;
   background-color: color-mix(in srgb, var(--pl-card-accent) 5%, transparent);
   box-shadow:
     inset 0 0 0 1px color-mix(in srgb, var(--pl-card-accent) 26%, transparent),
@@ -701,18 +693,22 @@ article:has(.pl-docs-home) main > h1:first-of-type + p {
 .pl-docs-hero-copy {
   display: grid;
   min-width: 0;
-  gap: 0.3rem;
+  gap: 0.1rem;
 }
 
 .pl-docs-hero-copy strong {
-  color: var(--pl-ui-ink);
-  font: 600 1.3rem/1.25 var(--font-serif-stack);
+  color: var(--pl-ink-heading);
+  font: 500 1rem/1.5 var(--font-sans-stack);
+  letter-spacing: -0.011em;
 }
 
 .pl-docs-hero-copy > span {
-  color: var(--pl-ui-muted);
-  font-size: 0.9rem;
-  line-height: 1.5;
+  color: var(--pl-ink-caption);
+  font-family: var(--font-sans-stack);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5714;
+  letter-spacing: -0.0064em;
   text-wrap: pretty;
 }
 
@@ -740,7 +736,8 @@ article:has(.pl-docs-home) main > h1:first-of-type + p {
 }
 
 .pl-docs-welcome-grid,
-.pl-docs-action-grid {
+.pl-docs-action-grid,
+.pl-docs-trust-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.9rem 1rem;
 }
@@ -749,7 +746,7 @@ article:has(.pl-docs-home) main > h1:first-of-type + p {
 .pl-docs-row-link {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
-  align-items: start;
+  align-items: center;
   gap: 0.85rem;
 }
 
@@ -767,16 +764,14 @@ article:has(.pl-docs-home) main > h1:first-of-type + p {
 }
 
 .pl-docs-trust-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  column-gap: 1.5rem;
+  align-items: stretch;
 }
 
-/* The trust row keeps its hairline structure and gains the card system's
-   accent and motion — same grammar, quieter dial. */
+/* Trust destinations use the same tile geometry as the Welcome cards. */
 .pl-docs-row-link {
-  min-height: 118px;
-  padding: 1.15rem 0.2rem;
-  border-top: 1px solid var(--pl-ui-hairline);
+  min-height: 0;
+  padding: 1.15rem 1.2rem;
+  border-radius: 11px;
   transition:
     border-color var(--pl-card-motion),
     transform var(--pl-card-motion);
@@ -789,12 +784,13 @@ article:has(.pl-docs-home) main > h1:first-of-type + p {
 
 .pl-docs-reference-link {
   display: grid;
-  min-height: 66px;
+  min-height: 0;
   grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.75rem 0.2rem;
-  border-top: 1px solid var(--pl-ui-hairline);
+  padding: 1.15rem 1.2rem;
+  border-radius: 11px;
+  border-top: 0;
   transition:
     color 0.18s ease-out,
     border-color 0.18s ease-out;
@@ -836,25 +832,30 @@ article:has(.pl-docs-home) main > h1:first-of-type + p {
 .pl-docs-link-copy {
   display: grid;
   min-width: 0;
-  gap: 0.3rem;
+  gap: 0.1rem;
 }
 
 .pl-docs-link-copy strong {
-  color: var(--pl-ui-ink);
-  font-size: 0.94rem;
-  font-weight: 650;
-  line-height: 1.35;
+  color: var(--pl-ink-heading);
+  font-family: var(--font-sans-stack);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: -0.011em;
 }
 
 .pl-docs-link-copy > span {
-  color: var(--pl-ui-muted);
-  font-size: 0.82rem;
-  line-height: 1.55;
+  color: var(--pl-ink-caption);
+  font-family: var(--font-sans-stack);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5714;
+  letter-spacing: -0.0064em;
   text-wrap: pretty;
 }
 
 .pl-docs-link-arrow {
-  margin-top: 0.5rem;
+  margin-top: 0;
   color: var(--pl-ui-muted);
   transition:
     color 0.18s ease-out,
@@ -895,12 +896,43 @@ article:has(.pl-docs-home) main > h1:first-of-type + p {
   transform: translateX(3px);
 }
 
+/* Simplified article tiles: one quiet fill and one hover fill. Decorative
+   borders, glow, shadow, and lift are intentionally removed. */
+.pl-docs-hero,
+.pl-docs-card-link,
+.pl-docs-row-link,
+.pl-docs-reference-link,
+.pl-testnet-banner {
+  border: 0 !important;
+  background: var(--pl-tile-bg) !important;
+  box-shadow: none !important;
+  transform: none !important;
+  transition: background-color 160ms ease !important;
+}
+
+.pl-docs-hero:is(:hover, :focus-visible),
+.pl-docs-card-link:is(:hover, :focus-visible),
+.pl-docs-row-link:is(:hover, :focus-visible),
+.pl-docs-reference-link:is(:hover, :focus-visible),
+.pl-testnet-banner:is(:hover, :focus-within) {
+  background: var(--pl-tile-hover) !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.pl-docs-hero::before,
+.pl-docs-hero::after,
+.pl-docs-card-link::after {
+  display: none;
+}
+
 .pl-docs-hero:focus-visible,
 .pl-docs-card-link:focus-visible,
 .pl-docs-row-link:focus-visible,
-.pl-docs-reference-link:focus-visible {
-  outline: 2px solid var(--x-color-primary-600);
-  outline-offset: 3px;
+.pl-docs-reference-link:focus-visible,
+.pl-testnet-banner:focus-visible {
+  outline: 1px solid var(--pl-focus-ring);
+  outline-offset: 2px;
 }
 
 /* ── Glyph duotone + icon motion ──────────────────────────────────────────
@@ -924,13 +956,43 @@ article:has(.pl-docs-home) main > h1:first-of-type + p {
   transition: transform var(--pl-glyph-motion, 420ms ease-out);
 }
 
-/* Polaris 101 — the cover opens a few degrees at the spine. */
-.pl-glyph [data-part='book-cover'] {
-  transform-origin: 12px 18px;
+/* Polaris 101 — keep the book contour stable and draw fine text lines onto
+   its pages. Rotating the cover distorted the curved stroke at intermediate
+   frames and produced hairline artifacts. */
+.pl-glyph [data-part='book-lines'][data-tone='soft'] {
+  opacity: 0;
+  transition: opacity 140ms ease-out;
 }
 
-.pl-motion:is(:hover, :focus-visible) .pl-glyph [data-part='book-cover'] {
-  transform: rotate(-9deg);
+.pl-glyph [data-part='book-lines'] path {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+}
+
+.pl-motion:is(:hover, :focus-visible) .pl-glyph [data-part='book-lines'][data-tone='soft'] {
+  opacity: 0.55;
+}
+
+.pl-motion:is(:hover, :focus-visible) .pl-glyph [data-part='book-lines'] path {
+  animation: pl-book-line-draw 520ms var(--pl-ease-out) both;
+}
+
+.pl-motion:is(:hover, :focus-visible) .pl-glyph [data-part='book-lines'] path:nth-child(2) {
+  animation-delay: 60ms;
+}
+
+.pl-motion:is(:hover, :focus-visible) .pl-glyph [data-part='book-lines'] path:nth-child(3) {
+  animation-delay: 120ms;
+}
+
+.pl-motion:is(:hover, :focus-visible) .pl-glyph [data-part='book-lines'] path:nth-child(4) {
+  animation-delay: 180ms;
+}
+
+@keyframes pl-book-line-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 /* Bonding curve — the curve redraws and the point rides up it. */
@@ -1042,19 +1104,10 @@ article:has(.pl-docs-home) main > h1:first-of-type + p {
   }
 }
 
-@container docs-home (max-width: 48rem) {
-  .pl-docs-trust-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .pl-docs-row-link {
-    min-height: 96px;
-  }
-}
-
 @container docs-home (max-width: 40rem) {
   .pl-docs-welcome-grid,
-  .pl-docs-action-grid {
+  .pl-docs-action-grid,
+  .pl-docs-trust-grid {
     grid-template-columns: minmax(0, 1fr);
   }
 
@@ -1145,16 +1198,8 @@ article :is(h1, h2, h3, h4):target {
    Interior pages are otherwise stock theme prose. These brand touches add
    character without competing with the content. */
 
-/* Section rule echoing the timeline meridian: a thin brand gradient. */
-
 article hr {
-  border: 0 !important;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(177, 147, 79, 0.28) 50%, transparent);
-}
-
-.dark article hr {
-  background: linear-gradient(90deg, transparent, rgba(216, 201, 164, 0.25) 50%, transparent);
+  display: none;
 }
 
 /* ── Tables: editorial rules, not a spreadsheet grid ────────────────────────
@@ -1215,21 +1260,10 @@ article table[data-pl-table] tbody td:first-child {
   white-space: nowrap;
 }
 
-/* Row hover aids horizontal scanning across many columns. */
-
-article table[data-pl-table] tbody tr {
-  transition: background-color 0.12s ease;
-}
-
-article table[data-pl-table] tbody tr:hover {
-  background: var(--pl-table-hover);
-}
-
 /* Dark's theme utilities are .dark-scoped (an extra class), so the row colours,
-   header rule, and hover need .dark-prefixed overrides to win specificity. The
+   and header rule need .dark-prefixed overrides to win specificity. The
    values still come from the shared --pl-table-* tokens (which carry the dark
-   variant), so this block is structural, not a second set of colours. The
-   :hover rule stays last so it beats the even-row zebra reset on hover. */
+   variant), so this block is structural, not a second set of colours. */
 
 .dark article table[data-pl-table] :is(th, td) {
   border-bottom-color: var(--pl-table-rule);
@@ -1250,10 +1284,6 @@ article table[data-pl-table] tbody tr:hover {
   border-bottom-color: var(--pl-table-header-rule);
 }
 
-.dark article table[data-pl-table] tbody tr:hover {
-  background: var(--pl-table-hover);
-}
-
 /* Blockquotes read as a deliberate aside, not default-theme gray: brand the
    rule and add a faint tint. (The <blockquote> left rule is conventional
    quotation typography, not a decorative side-stripe card.) The theme sets
@@ -1272,8 +1302,100 @@ article blockquote {
   background: rgba(216, 201, 164, 0.05);
 }
 
+/* Golden article-media rule: every image uses the same structural div, with
+   24px before the media and 48px after it. Keeping the rhythm on the wrapper
+   makes existing and newly added images behave identically. */
+article .pl-content-image {
+  position: relative;
+  width: 100%;
+  padding-top: 1.5rem;
+  padding-bottom: 3rem;
+  border-radius: 8px;
+}
+
+article .pl-content-image > img {
+  display: block;
+  max-width: 100%;
+  margin-block: 0 !important;
+  border-radius: 8px !important;
+}
+
+.pl-image-zoom-target {
+  cursor: zoom-in;
+}
+
+.pl-image-lightbox-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: #ffffff;
+  box-shadow:
+    rgb(16 17 26 / 16%) 0 1px 1px,
+    #e1e1e1 0 0 0 1px;
+  color: var(--pl-ink-body);
+  cursor: pointer;
+}
+
+.pl-image-lightbox-close:hover {
+  background: #f7f6f6;
+}
+
+.dark .pl-image-lightbox-close {
+  background: #242424;
+  box-shadow:
+    rgb(0 0 0 / 36%) 0 1px 1px,
+    #414141 0 0 0 1px;
+}
+
+.dark .pl-image-lightbox-close:hover {
+  background: #303030;
+}
+
+.pl-image-lightbox {
+  position: fixed;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 4vw, 4rem);
+  inset: 0;
+}
+
+.pl-image-lightbox-backdrop {
+  position: absolute;
+  border: 0;
+  background: rgb(5 10 20 / 82%);
+  cursor: zoom-out;
+  inset: 0;
+}
+
+.pl-image-lightbox > img {
+  position: relative;
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 8px;
+  object-fit: contain;
+  box-shadow: 0 24px 72px rgb(0 0 0 / 38%);
+}
+
+.pl-image-lightbox-close {
+  position: fixed;
+  top: max(1rem, env(safe-area-inset-top));
+  right: max(1rem, env(safe-area-inset-right));
+  z-index: 1;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
 article img[src$='.svg'] {
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
 /* Infographics are intentional dark panels; frame them so they read as
@@ -1283,22 +1405,13 @@ html:not(.dark) article img[src$='.svg'] {
   box-shadow: 0 2px 14px rgba(13, 31, 60, 0.08);
 }
 
-/* data-nimg matches content images rendered through Nextra's Image pipeline,
-   whose bundled _next/static/media URLs no longer carry the source path. The
-   extension-based SVG exclusion still works against those final asset URLs;
-   infographics are excluded separately so their existing treatment is kept. */
-
-article img[src*='/screenshots/'],
-article img[data-nimg]:not([src$='.svg']):not([src*='/infographics/']) {
-  background: var(--pl-surface);
-  border: 1px solid var(--pl-card-border);
-  padding: 0.75rem;
-  border-radius: 12px;
-}
-
-html:not(.dark) article img[src*='/screenshots/'],
-html:not(.dark) article img[data-nimg]:not([src$='.svg']):not([src*='/infographics/']) {
-  box-shadow: 0 2px 14px rgba(13, 31, 60, 0.08);
+/* Returning focus after the lightbox closes used to leave a black outline
+   around the entire image. Keep zoomable image surfaces visually neutral; the
+   cursor continues to communicate that the full image can be enlarged. */
+article .pl-content-image > .pl-image-zoom-target:focus-visible {
+  outline: none !important;
+  outline-offset: 0 !important;
+  box-shadow: none !important;
 }
 
 /* Infographics fill the content column and stop there: the 710px measure applies
@@ -1310,7 +1423,25 @@ article img[src*='/infographics/'] {
   display: block;
   width: 100%;
   height: auto;
-  margin-top: 1.5rem;
+  margin-top: 0;
+}
+
+/* Literal <img> elements briefly use matching fallback spacing until the
+   client enhancement moves them into the canonical wrapper above. */
+article main > img,
+article main > a:has(> img) {
+  display: block;
+  margin-top: 1.5rem !important;
+  margin-bottom: 3rem !important;
+  border-radius: 8px !important;
+}
+
+/* Tables receive a structural wrapper from mdx-components.js so every table,
+   including compact reference tables, keeps 32px of space before following
+   prose without changing the table's own scroll or row layout. */
+article .pl-content-table {
+  width: 100%;
+  padding-bottom: 2rem;
 }
 
 article figcaption {
@@ -1320,33 +1451,50 @@ article figcaption {
 /* ── Navbar logo ─────────────────────────────────────────────────────────── */
 
 .pl-logo-link {
-  transition: opacity 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 150ms ease;
 }
 
 .pl-logo-link:hover {
   opacity: 0.75;
 }
 
-.pl-logo-mark {
-  box-sizing: content-box;
-  padding: 4px;
-  border-radius: 999px;
-  background:
-    radial-gradient(circle at 50% 50%, rgba(250, 246, 238, 0.08), transparent 42%),
-    var(--polaris-navy-dark);
-  border: 1px solid rgba(177, 147, 79, 0.28);
-  /* The second ring used to be a cream halo lifting the mark off the cream
-     navbar; on white it would be invisible, so only the drop shadow remains. */
-  box-shadow: 0 1px 2px rgba(5, 10, 20, 0.16);
+.pl-logo-wordmark {
+  display: inline-grid;
+  height: 23px;
+  flex: none;
+  align-items: center;
 }
 
-.dark .pl-logo-mark {
-  background: transparent;
-  border-color: transparent;
-  box-shadow: none;
+.pl-logo-image {
+  display: block;
+  grid-area: 1 / 1;
+  width: auto;
+  height: 23px;
 }
 
-.pl-logo-text {
+.pl-logo-image-dark {
+  display: none;
+}
+
+.dark .pl-logo-image-light {
+  display: none;
+}
+
+.dark .pl-logo-image-dark {
+  display: block;
+}
+
+.pl-logo-docs {
+  color: var(--pl-ink-caption);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5714;
+  letter-spacing: -0.0064em;
   white-space: nowrap;
 }
 
@@ -1360,6 +1508,49 @@ article .subheading-anchor {
 
 article > div[class*='x:float-end'] {
   margin-bottom: 0.5rem;
+}
+
+.pl-article-heading-row {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: var(--pl-rhythm-24);
+}
+
+.pl-article-heading-row > h1 {
+  min-width: 0;
+  flex: 1 1 auto;
+  margin-bottom: 0 !important;
+}
+
+.pl-copy-page-control {
+  display: inline-flex !important;
+  flex: none;
+  float: none !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  background: #ffffff !important;
+  box-shadow:
+    rgb(16 17 26 / 16%) 0 1px 1px,
+    #e1e1e1 0 0 0 1px !important;
+  color: var(--pl-ink-body) !important;
+  overflow: hidden;
+}
+
+.dark .pl-copy-page-control {
+  background: #242424 !important;
+  box-shadow:
+    rgb(0 0 0 / 36%) 0 1px 1px,
+    #414141 0 0 0 1px !important;
+}
+
+/* The overview is a curated entry page, so the article-level Copy Page action
+   is unnecessary there. Keep it available on regular documentation pages. */
+article:has(.pl-docs-home) > div[class*='x:float-end'] {
+  display: none;
 }
 
 article main > h1:first-of-type {
@@ -1501,23 +1692,6 @@ article [class*='overflow-x-auto']:has(table)::after {
 }
 
 @media (max-width: 767px) {
-  /* Collapse the "Copy page" button to just its icon so the page title
-     reclaims the horizontal space. The label is a bare text node beside the
-     icon (no wrapper to target), so zero the button font-size; the icon keeps
-     its explicit 16px size. The chevron Select button (2nd child) is untouched. */
-
-  article [class*='x:float-end'] > button:first-child {
-    font-size: 0;
-    gap: 0;
-    justify-content: center;
-    padding-inline: 0;
-  }
-
-  article [class*='x:float-end'] > button:first-child svg {
-    width: 16px;
-    height: 16px;
-  }
-
   /* Let long tokens — contract addresses, URLs, inline code — break inside
      table cells instead of forcing the whole table to scroll horizontally.
      overflow-wrap:anywhere (not break-word) lowers the cell's intrinsic width
@@ -1598,36 +1772,18 @@ article [class*='overflow-x-auto']:has(table)::after {
 :root {
   /* Nextra interpolates this token into IntersectionObserver.rootMargin,
      which accepts px/% but rejects rem values. */
-  --nextra-navbar-height: 70px !important;
+  --nextra-navbar-height: 64px !important;
 
-  /* One content wrapper (designer Q10): 240px rail + 64px gap + 710px column =
-     1014px, with the outer page padding outside that total. There is
-     deliberately no wider container behind it — a 1200px shell would leave dead
-     space to the right of a 710px column.
-
-     Centring that 1014px block put the rail's 304px entirely on one side of the
-     prose, so the column a reader actually looks at sat well right of centre
-     (630px of gutter to its left against 340px to its right at 1680px). The
-     shell therefore slides left by half the rail-plus-gap, which optically
-     centres the prose instead of the shell. The shift tapers with the available
-     gutter (see the margin rule) so narrow desktops never hug the viewport. */
+  /* One centred content wrapper: 240px rail + 64px gap + 710px article =
+     1014px, with the same responsive page padding shared by the header, body,
+     and footer. */
   --nextra-content-width: 1014px !important;
   --pl-shell-max: 1014px;
   --pl-rail-width: 240px;
   --pl-shell-gap: 64px;
-  --pl-shell-shift: calc((var(--pl-rail-width) + var(--pl-shell-gap)) / 2);
-  /* The shell's leading margin: the centred gutter less half of itself, capped
-     at the shift, so the drift grows with the room available and stops once the
-     prose is optically centred. Zero once the viewport is narrower than the
-     shell, where the theme's own layout takes over. Percentages resolve against
-     the viewport for every element that uses this. */
-  --pl-shell-inset: max(
-    0px,
-    calc(
-      (100% - var(--pl-shell-max) - 2 * var(--pl-page-pad)) / 2 -
-        min(var(--pl-shell-shift), (100% - var(--pl-shell-max) - 2 * var(--pl-page-pad)) / 4)
-    )
-  );
+  /* 1rem reaches the sidebar row; the extra 0.4rem compensates its internal
+     link padding so header/footer emblems align with the glyph artwork. */
+  --pl-shell-alignment-inset: 1.4rem;
   --pl-page-pad: clamp(16px, 2vw, 32px);
   --pl-navbar-bg: #ffffff;
   --pl-overlay-bg: #ffffff;
@@ -1636,7 +1792,8 @@ article [class*='overflow-x-auto']:has(table)::after {
   --pl-ui-muted: #4b5d73;
   --pl-ui-soft: rgba(13, 31, 60, 0.07);
   --pl-ui-hairline: rgba(13, 31, 60, 0.12);
-  --pl-focus: #816515;
+  --pl-shell-rule: #f0f0f0;
+  --pl-focus-ring: #343433;
   --pl-active: #816515;
   --pl-z-sticky: 30;
   --pl-z-backdrop: 70;
@@ -1652,7 +1809,8 @@ article [class*='overflow-x-auto']:has(table)::after {
   --pl-ui-muted: #b9b19f;
   --pl-ui-soft: rgba(232, 220, 196, 0.075);
   --pl-ui-hairline: rgba(232, 220, 196, 0.14);
-  --pl-focus: #d8c9a4;
+  --pl-shell-rule: var(--pl-ui-hairline);
+  --pl-focus-ring: #faf6ee;
   --pl-active: #d8c9a4;
 }
 
@@ -1660,9 +1818,29 @@ html {
   scroll-padding-top: calc(var(--nextra-navbar-height) + 1rem);
 }
 
-:is(a, button, input, [tabindex]):focus-visible {
-  outline: 2px solid var(--pl-focus);
-  outline-offset: 3px;
+:where(
+  a,
+  button,
+  input,
+  select,
+  textarea,
+  summary,
+  [tabindex],
+  [role='button'],
+  [role='option'],
+  [role='menuitem'],
+  [contenteditable='true']
+):focus-visible {
+  outline: 1px solid var(--pl-focus-ring) !important;
+  outline-offset: 2px !important;
+}
+
+/* Nextra's focus utility draws its own Tailwind ring with box-shadow. Replace
+   it explicitly so it cannot stack a gold ring underneath the shared outline. */
+.x\:nextra-focus:focus-visible,
+.x\:focus-visible\:nextra-focus:focus-visible {
+  outline: none !important;
+  box-shadow: 0 0 0 1px var(--pl-focus-ring) !important;
 }
 
 :is(a, button, input, [tabindex]) {
@@ -1676,24 +1854,35 @@ html {
 }
 
 .nextra-navbar-blur {
-  border-color: var(--pl-ui-hairline) !important;
+  border-color: transparent !important;
   background: var(--pl-navbar-bg) !important;
   backdrop-filter: none !important;
 }
 
-/* The navbar and the shell wrapper share one geometry: a 1014px inner column
-   plus the outer page padding, so the header, the rail and the content column
-   all sit on the same two vertical edges. */
+/* Header and body share a centred 1014px inner column plus matching page
+   padding, so their outer and inner edges stay aligned. */
 
 .nextra-navbar nav,
 div:has(> .nextra-sidebar) {
   max-width: calc(var(--pl-shell-max) + 2 * var(--pl-page-pad)) !important;
   padding-inline: var(--pl-page-pad) !important;
-  margin-inline: var(--pl-shell-inset) auto !important;
+  margin-inline: auto !important;
 }
 
 .nextra-navbar nav {
+  position: relative;
   gap: 0.75rem !important;
+}
+
+.nextra-navbar nav::after {
+  position: absolute;
+  right: var(--pl-page-pad);
+  bottom: 0;
+  left: var(--pl-page-pad);
+  height: 1px;
+  background: var(--pl-shell-rule);
+  content: '';
+  pointer-events: none;
 }
 
 .pl-logo-link {
@@ -1703,39 +1892,133 @@ div:has(> .nextra-sidebar) {
 
 .pl-navbar-actions {
   display: flex;
+  min-width: 0;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.3rem;
+}
+
+.pl-navbar-search-trigger {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: inline-flex;
+  width: 210px;
+  height: 32px;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 6px 2px 8px;
+  transform: translate(-50%, -50%);
+  border: 0;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow:
+    rgb(16 17 26 / 16%) 0 1px 1px,
+    #e1e1e1 0 0 0 1px;
+  color: #979797;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  cursor: pointer;
+  transition: color 160ms ease;
+}
+
+.pl-navbar-search-trigger:hover {
+  color: color-mix(in srgb, #979797 82%, white 18%);
+}
+
+.dark .pl-navbar-search-trigger {
+  background: #242424;
+  box-shadow:
+    rgb(0 0 0 / 36%) 0 1px 1px,
+    #414141 0 0 0 1px;
+}
+
+.pl-navbar-search-glyph {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  fill: currentColor;
+}
+
+.pl-navbar-search-label {
+  min-width: 0;
+  flex: 1 1 0;
+  text-align: left;
+}
+
+.pl-navbar-search-trigger kbd {
+  display: inline-flex;
+  min-width: 30px;
+  height: 18px;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 4px;
+  border: 0;
+  border-radius: 4px;
+  background: #f0f0f0;
+  color: #979797;
+  font-family: system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 14px;
+}
+
+.dark .pl-navbar-search-trigger kbd {
+  background: #303030;
+}
+
+.pl-navbar-end {
+  display: flex;
   align-items: center;
   gap: 0.3rem;
 }
 
-.pl-nav-website {
+.pl-nav-testnet {
   display: inline-flex;
-  min-height: 36px;
+  height: 32px;
+  min-height: 32px;
   align-items: center;
-  gap: 0.35rem;
-  padding: 0 0.55rem;
-  border-radius: 6px;
-  color: var(--pl-ui-muted);
+  justify-content: center;
+  padding: 0 0.9rem;
+  border-radius: 8px;
+  background: #343433;
+  color: #ffffff;
   font-size: 0.875rem;
-  font-weight: 550;
+  font-weight: 500;
+  line-height: 1;
   text-decoration: none;
+  transition:
+    transform 140ms var(--pl-ease-out),
+    background-color 160ms ease;
 }
 
-.pl-nav-website:hover {
-  background: var(--pl-ui-soft);
-  color: var(--pl-ui-ink);
+.pl-nav-testnet:hover {
+  background: color-mix(in srgb, #343433 88%, white 12%);
+}
+
+.pl-nav-testnet:active {
+  transform: scale(0.97);
 }
 
 .pl-nav-theme {
   display: inline-flex;
-  min-width: 36px;
-  min-height: 36px;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  min-height: 32px;
   align-items: center;
   justify-content: center;
 }
 
 .pl-nav-theme > button {
-  min-width: 36px;
-  min-height: 36px;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  min-height: 32px;
   justify-content: center;
   padding-inline: 0.45rem;
   border-radius: 6px;
@@ -1763,8 +2046,12 @@ div:has(> .nextra-sidebar) {
 
 .pl-navbar-icon-button:hover,
 .pl-overlay-icon-button:hover {
-  background: var(--pl-ui-soft);
+  background: var(--pl-tile-hover);
   color: var(--pl-ui-ink);
+}
+
+.pl-navbar-search-icon-button {
+  display: none;
 }
 
 .pl-nav-menu-trigger {
@@ -1799,16 +2086,35 @@ div:has(> .nextra-sidebar) {
 }
 
 @media (min-width: 768px) {
-  /* The gap belongs to the article's leading edge only; its trailing edge is the
-     wrapper's, so the content box lands on exactly 710px. */
+  /* The leading inset separates the article from the sidebar. The trailing
+     inset mirrors the header/footer optical compensation, so article content,
+     Copy Page, media, and pagination end on the header action's right edge. */
   .nextra-sidebar ~ article {
-    padding-inline: var(--pl-shell-gap) 0 !important;
+    padding-inline: var(--pl-shell-gap) var(--pl-shell-alignment-inset) !important;
   }
 
   .nextra-sidebar {
     width: var(--pl-rail-width) !important;
     min-width: var(--pl-rail-width) !important;
     max-width: var(--pl-rail-width) !important;
+  }
+
+  /* Keep the documentation rail scrollable while removing its visual chrome.
+     Nextra's default 20px edge fades are extended by 50% at both ends. */
+  .nextra-sidebar > .nextra-scrollbar.nextra-mask {
+    overflow-anchor: none;
+    scrollbar-width: none;
+    scrollbar-gutter: auto;
+    -ms-overflow-style: none;
+    mask-image:
+      linear-gradient(to bottom, transparent, #000 30px, transparent 100%),
+      linear-gradient(to top, transparent, #000 30px, transparent 100%);
+  }
+
+  .nextra-sidebar > .nextra-scrollbar.nextra-mask::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
   }
 
   .nextra-sidebar > ul {
@@ -1885,6 +2191,15 @@ div:has(> .nextra-sidebar) {
     font-weight: 500 !important;
   }
 
+  /* Nextra's default focus utility draws a wide gold ring. Keep sidebar focus
+     deliberately neutral in every row state: one pixel in the same colour as
+     the menu item's text (black in the light theme, light ink in dark mode). */
+  .nextra-sidebar :is(a, button[data-href]):focus-visible {
+    outline: none !important;
+    color: var(--pl-ink-heading) !important;
+    box-shadow: 0 0 0 1px currentColor !important;
+  }
+
   .pl-nav-label {
     display: inline-flex;
     min-width: 0;
@@ -1918,16 +2233,14 @@ div:has(> .nextra-sidebar) {
     text-overflow: ellipsis;
   }
 
-  /* Icons hold still on hover (designer S14): the row's state change is text
-     only. The group tone and the 1px lift survive on the *active* row, where
-     they do wayfinding work rather than reacting to the pointer — the designer
-     relaxed S14 for the rail's token icons, and this is the same trade.
+  /* Icons hold still across hover and active states (designer S14): the row's
+     state change is text only. The group tone survives on the active row, where
+     it does wayfinding work without shifting the glyph out of alignment.
      The pAsset PNGs keep the rest→hover treatment they shipped with (CEO
      constraint, July 2026: that artwork is untouchable). */
   .nextra-sidebar li.active > a .pl-nav-icon {
     color: var(--pl-icon-tone, var(--pl-active));
     stroke-width: 2.15;
-    transform: translateY(-1px);
   }
 
   .nextra-sidebar :is(a, button[data-href]):is(:hover, :focus-visible) .pl-nav-icon-asset,
@@ -2016,27 +2329,48 @@ div:has(> .nextra-sidebar) {
   display: none;
 }
 
+.pl-docs-overlay--search .pl-docs-overlay-frame {
+  padding-top: calc((var(--nextra-navbar-height) - 32px) / 2);
+}
+
+.pl-docs-overlay--search .pl-docs-overlay-panel {
+  background: #ffffff;
+  box-shadow: 0 16px 40px rgb(15 23 42 / 16%);
+  transition: none;
+}
+
+.dark .pl-docs-overlay--search .pl-docs-overlay-panel {
+  background: #101722;
+  box-shadow: 0 18px 44px rgb(0 0 0 / 42%);
+}
+
+.pl-docs-overlay--search .pl-docs-overlay-panel[data-closed] {
+  transform: none;
+}
+
 /* Search dialog */
 
 .pl-search-dialog {
   display: flex;
-  height: min(28rem, 70vh);
-  max-height: min(28rem, 70vh);
+  height: min(26.875rem, 70vh);
+  max-height: min(26.875rem, 70vh);
   flex-direction: column;
 }
 
 .pl-search-dialog-header {
   display: flex;
+  min-height: 46px;
   flex: 0 0 auto;
   align-items: center;
-  gap: 0.55rem;
-  padding: 0.75rem;
-  border-bottom: 1px solid var(--pl-ui-hairline);
+  gap: 0;
+  padding: 0 2px 0 0;
+  border-bottom: 1px solid #e3e7ee;
 }
 
 .pl-search-field {
   position: relative;
   display: flex;
+  height: 45px;
   min-width: 0;
   flex: 1 1 auto;
   align-items: center;
@@ -2044,159 +2378,84 @@ div:has(> .nextra-sidebar) {
 
 .pl-search-icon {
   position: absolute;
-  left: 0.85rem;
+  left: 13px;
   z-index: 1;
-  color: var(--pl-ui-muted);
+  width: 16px;
+  height: 16px;
+  color: #3f4b60;
   pointer-events: none;
 }
 
 .pl-search-input {
+  appearance: none;
+  -webkit-appearance: none;
   width: 100%;
-  height: 48px;
-  padding: 0 3.35rem 0 2.65rem;
-  border: 1px solid var(--pl-ui-hairline);
-  border-radius: 7px;
-  background: var(--pl-ui-soft);
-  color: var(--pl-ui-ink);
-  font: 500 0.96rem/1.2 var(--font-sans-stack);
+  height: 45px;
+  padding: 0 2.5rem 0 32px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #4f5b70;
+  font: 400 1rem/1.3 var(--font-sans-stack);
 }
 
 .pl-search-input::placeholder {
-  color: var(--pl-ui-muted);
+  color: #a5afc0;
   opacity: 1;
 }
 
+.dark .pl-search-dialog-header {
+  border-color: #273244;
+}
+
+.dark .pl-search-icon,
+.dark .pl-search-input {
+  color: #d7deea;
+}
+
+.dark .pl-search-input::placeholder {
+  color: #7f8ba0;
+}
+
+.pl-search-input:focus,
 .pl-search-input:focus-visible {
-  border-color: var(--pl-focus);
-  outline: 2px solid color-mix(in srgb, var(--pl-focus) 68%, transparent);
-  outline-offset: 1px;
+  border-color: transparent !important;
+  outline: none !important;
+  outline-offset: 0 !important;
+  box-shadow: none !important;
 }
 
 .pl-search-input::-webkit-search-cancel-button {
   appearance: none;
 }
 
-.pl-search-clear {
-  position: absolute;
-  right: 0.2rem;
-  display: inline-flex;
+.pl-search-kbd {
+  display: none;
+}
+
+.pl-search-dialog-header > .pl-overlay-icon-button {
   width: 42px;
-  height: 42px;
+  height: 44px;
   min-width: 42px;
-  min-height: 42px;
+  min-height: 44px;
   align-items: center;
   justify-content: center;
-  padding: 0;
-  border: 0;
-  border-radius: 6px;
+  border-radius: 0;
   background: transparent;
-  color: var(--pl-ui-muted);
-  cursor: pointer;
+  color: #566176;
 }
 
-.pl-search-clear:hover {
-  background: var(--pl-ui-soft);
-  color: var(--pl-ui-ink);
-}
-
-.pl-search-kbd {
-  position: absolute;
-  right: 0.65rem;
-  display: inline-flex;
-  height: 1.35rem;
-  align-items: center;
-  padding: 0 0.38rem;
-  border: 1px solid var(--pl-ui-hairline);
-  border-radius: 4px;
-  color: var(--pl-ui-muted);
-  font: 500 0.68rem/1 var(--font-sans-stack);
-  pointer-events: none;
-}
-
-.pl-search-toolbar {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex: 0 0 auto;
-  justify-content: flex-end;
-  padding: 0.45rem 0.75rem;
-  border-bottom: 1px solid var(--pl-ui-hairline);
-}
-
-.pl-search-filter {
-  position: relative;
-}
-
-.pl-search-filter-button {
-  display: inline-flex;
-  min-height: 34px;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0 0.55rem;
-  border: 0;
-  border-radius: 5px;
+.pl-search-dialog-header > .pl-overlay-icon-button:hover {
   background: transparent;
-  color: var(--pl-ui-muted);
-  font: 550 0.78rem/1.2 var(--font-sans-stack);
-  cursor: pointer;
+  color: #252f42;
 }
 
-.pl-search-filter-button:hover,
-.pl-search-filter-button[data-open] {
-  background: var(--pl-ui-soft);
-  color: var(--pl-ui-ink);
+.dark .pl-search-dialog-header > .pl-overlay-icon-button {
+  color: #a8b3c5;
 }
 
-.pl-search-filter-panel {
-  position: absolute;
-  top: calc(100% + 0.4rem);
-  right: 0;
-  z-index: 4;
-  width: 15rem;
-  max-height: max(5.5rem, min(18rem, calc(70vh - 7.5rem)));
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  padding: 0.35rem;
-  border-radius: 7px;
-  background: var(--pl-overlay-bg);
-  box-shadow: 0 8px 24px rgba(13, 31, 60, 0.2);
-  transition:
-    opacity 0.14s ease-out,
-    transform 0.14s ease-out;
-}
-
-.dark .pl-search-filter-panel {
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.46);
-}
-
-.pl-search-filter-panel[data-closed] {
-  opacity: 0;
-  transform: translateY(-0.25rem);
-}
-
-.pl-search-filter-panel button {
-  display: flex;
-  width: 100%;
-  min-height: 36px;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.4rem 0.55rem;
-  border: 0;
-  border-radius: 5px;
-  background: transparent;
-  color: var(--pl-ui-muted);
-  font: 500 0.8rem/1.2 var(--font-sans-stack);
-  cursor: pointer;
-}
-
-.pl-search-filter-panel button:hover,
-.pl-search-filter-panel button[aria-pressed='true'] {
-  background: var(--pl-ui-soft);
-  color: var(--pl-ui-ink);
-}
-
-.pl-search-filter-panel button[aria-pressed='true'] {
-  font-weight: 650;
+.dark .pl-search-dialog-header > .pl-overlay-icon-button:hover {
+  color: #f2f5fa;
 }
 
 .pl-search-list {
@@ -2204,28 +2463,28 @@ div:has(> .nextra-sidebar) {
   min-height: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
-  padding: 0.45rem 0.5rem 0.75rem;
+  padding: 0.75rem 0.5rem 1rem;
   scrollbar-width: thin;
   scrollbar-color: color-mix(in srgb, var(--pl-ui-muted) 35%, transparent) transparent;
 }
 
 .pl-search-group + .pl-search-group {
-  margin-top: 0.5rem;
+  margin-top: 0.65rem;
 }
 
 .pl-search-group-label-row {
   display: flex;
-  min-height: 30px;
+  min-height: 32px;
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  padding: 0.25rem 0.65rem;
+  padding: 0.2rem 0.1rem;
 }
 
 .pl-search-group-label {
-  color: var(--pl-ui-muted);
-  font-size: 0.73rem;
-  font-weight: 650;
+  color: #68758a;
+  font-size: 0.8125rem;
+  font-weight: 600;
   line-height: 1.2;
 }
 
@@ -2249,18 +2508,19 @@ div:has(> .nextra-sidebar) {
 }
 
 .pl-search-row {
+  position: relative;
   display: flex;
   width: 100%;
-  min-height: 42px;
+  min-height: 45px;
   flex-direction: column;
   justify-content: center;
-  gap: 0.12rem;
-  margin: 0.05rem 0;
-  padding: 0.52rem 0.65rem;
+  gap: 2px;
+  margin: 0;
+  padding: 5px 10px 5px 41px;
   border: 0;
-  border-radius: 6px;
+  border-radius: 4px;
   background: transparent;
-  color: var(--pl-ui-ink);
+  color: #4f5b70;
   text-align: left;
   text-decoration: none;
   cursor: pointer;
@@ -2270,79 +2530,105 @@ button.pl-search-row {
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+  gap: 1rem;
+  padding-left: 10px;
   font: inherit;
 }
 
 .pl-search-row:hover,
 .pl-search-row[data-active='true'] {
-  background: var(--pl-ui-soft);
+  background: #f5f7fa;
 }
 
-.pl-search-row[data-active='true'] {
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--pl-active) 48%, transparent);
+.dark .pl-search-row:hover,
+.dark .pl-search-row[data-active='true'] {
+  background: #172131;
 }
 
 .pl-search-row[data-child='true'] {
   width: calc(100% - 1.25rem);
   margin-inline-start: 1.25rem;
-  border-inline-start: 1px solid var(--pl-ui-hairline);
-  border-radius: 0 6px 6px 0;
+  border-inline-start: 1px solid #e3e7ee;
+  border-radius: 0 4px 4px 0;
 }
 
 .pl-search-row[data-page='true'] .pl-search-row-title {
-  font-family: var(--font-serif-stack);
-  font-size: 1rem;
+  font-family: var(--font-sans-stack);
+  font-size: 0.875rem;
 }
 
 .pl-search-row-title {
   display: block;
   min-width: 0;
-  color: var(--pl-ui-ink);
-  font-size: 0.88rem;
-  font-weight: 620;
-  line-height: 1.3;
+  order: 1;
+  color: #4f5b70;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.35;
   overflow-wrap: anywhere;
 }
 
 .pl-search-row-icon {
   display: inline-flex;
-  color: var(--pl-ui-muted);
+  flex: none;
+  color: #635bff;
 }
 
 .pl-search-context {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
-  color: var(--pl-ui-muted);
-  font-size: 0.7rem;
-  font-weight: 550;
-  line-height: 1.2;
+  order: 2;
+  gap: 0.4rem;
+  color: #718097;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1.3;
 }
 
 .pl-search-dot {
-  width: 0.42rem;
-  height: 0.42rem;
-  flex: 0 0 0.42rem;
-  border-radius: 50%;
-  background: var(--pl-active);
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  width: 14px;
+  height: 16px;
+  transform: translateY(-50%);
+  border: 1.5px solid var(--pl-icon-tone, var(--pl-active));
+  border-radius: 2px;
+  background: transparent !important;
+  color: var(--pl-icon-tone, var(--pl-active));
 }
 
-.pl-search-context[data-kind='app'] .pl-search-dot {
-  background: var(--polaris-peth);
-}
-
-.pl-search-context[data-kind='reference'] .pl-search-dot {
-  background: var(--polaris-polar);
+.pl-search-dot::after {
+  position: absolute;
+  top: 5px;
+  left: 3px;
+  width: 6px;
+  height: 1px;
+  background: currentColor;
+  box-shadow: 0 3px 0 currentColor;
+  content: '';
 }
 
 .pl-search-row-excerpt {
   display: -webkit-box;
   overflow: hidden;
-  color: var(--pl-ui-muted);
-  font-size: 0.8rem;
-  line-height: 1.42;
+  order: 3;
+  color: #718097;
+  font-size: 0.8125rem;
+  line-height: 1.35;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+}
+
+.dark .pl-search-group-label,
+.dark .pl-search-context,
+.dark .pl-search-row-excerpt {
+  color: #8f9bb0;
+}
+
+.dark .pl-search-row,
+.dark .pl-search-row-title {
+  color: #d7deea;
 }
 
 .pl-search-row-excerpt mark {
@@ -2436,7 +2722,97 @@ button.pl-search-row {
 }
 
 .pl-search-message-actions button:hover {
-  background: var(--pl-ui-soft);
+  background: var(--pl-tile-hover);
+}
+
+/* Neutral secondary controls use the same surface contract as article tiles.
+   Primary actions keep their stronger treatment. */
+.pl-nav-theme > button,
+.pl-mobile-nav-theme button,
+.pl-navbar-icon-button,
+.pl-overlay-icon-button,
+.pl-search-message-actions button,
+.pl-footer-social-link,
+article > div[class*='x:float-end'] button {
+  border-color: transparent !important;
+  background: var(--pl-tile-bg) !important;
+  box-shadow: none !important;
+  transition:
+    color 150ms ease,
+    background-color 160ms ease !important;
+}
+
+.pl-copy-page-control button {
+  border-color: transparent !important;
+  background: transparent !important;
+  color: var(--pl-ink-body) !important;
+  box-shadow: none !important;
+  transition:
+    color 160ms ease,
+    background-color 160ms ease !important;
+}
+
+/* Headless UI returns focus to the chevron after the listbox closes. The
+   shared outline is then clipped by the segmented control's overflow and
+   appears as a stray divider between its two buttons. Keep this composite
+   control visually whole; its persistent outer hairline remains visible. */
+.pl-copy-page-control button:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.pl-nav-theme > button:is(:hover, :focus-visible),
+.pl-mobile-nav-theme button:is(:hover, :focus-visible),
+.pl-navbar-icon-button:is(:hover, :focus-visible),
+.pl-overlay-icon-button:is(:hover, :focus-visible),
+.pl-search-message-actions button:is(:hover, :focus-visible),
+.pl-footer-social-link:is(:hover, :focus-visible),
+article > div[class*='x:float-end'] button:is(:hover, :focus-visible) {
+  background: var(--pl-tile-hover) !important;
+}
+
+.pl-copy-page-control button:is(:hover, :focus-visible, [data-headlessui-state*='open']) {
+  background: #f7f6f6 !important;
+  color: var(--pl-ink-body) !important;
+}
+
+.dark .pl-copy-page-control button:is(:hover, :focus-visible, [data-headlessui-state*='open']) {
+  background: #303030 !important;
+}
+
+/* Copy Page and other anchored dropdowns share the same quiet tile hover as
+   Previous/Next and neutral icon controls. */
+ul[role='listbox'][data-anchor] {
+  background: var(--pl-tile-bg) !important;
+  backdrop-filter: none !important;
+}
+
+/* The listbox receives focus as soon as it opens. Restore its normal Nextra
+   elevation instead of turning that programmatic focus into a black ring. */
+ul[role='listbox'][data-anchor]:focus-visible {
+  outline: none !important;
+  box-shadow:
+    0 10px 15px -3px rgb(0 0 0 / 10%),
+    0 4px 6px -4px rgb(0 0 0 / 10%) !important;
+}
+
+ul[role='listbox'][data-anchor] > li[role='option'] {
+  margin-inline: 0.25rem;
+  border-radius: 5px;
+  background: var(--pl-tile-bg) !important;
+  color: var(--pl-ui-ink) !important;
+}
+
+ul[role='listbox'][data-anchor] > li[role='option'] span[class*='x:font-medium'] {
+  color: var(--pl-ink-heading) !important;
+}
+
+ul[role='listbox'][data-anchor] > li[role='option'] span[class*='x:text-xs'] {
+  color: var(--pl-ink-body) !important;
+}
+
+ul[role='listbox'][data-anchor] > li[role='option']:is(:hover, :focus, [data-focus]) {
+  background: var(--pl-tile-hover) !important;
 }
 
 .pl-search-empty-lead {
@@ -2448,41 +2824,6 @@ button.pl-search-row {
 
 .pl-search-empty-lead strong {
   color: var(--pl-ui-ink);
-}
-
-.pl-search-footer {
-  display: flex;
-  min-height: 40px;
-  flex: 0 0 auto;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  padding: 0.45rem 0.8rem;
-  border-top: 1px solid var(--pl-ui-hairline);
-  color: var(--pl-ui-muted);
-  font-size: 0.7rem;
-}
-
-.pl-search-count {
-  font-variant-numeric: tabular-nums;
-}
-
-.pl-search-legend {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.28rem;
-}
-
-.pl-search-legend kbd {
-  display: inline-flex;
-  min-width: 1.1rem;
-  height: 1.1rem;
-  align-items: center;
-  justify-content: center;
-  padding: 0 0.2rem;
-  border: 1px solid var(--pl-ui-hairline);
-  border-radius: 3px;
-  font: 500 0.64rem/1 var(--font-sans-stack);
 }
 
 /* Mobile documentation drill-down */
@@ -2664,11 +3005,8 @@ button.pl-search-row {
 
 /* Curated footer */
 
-/* White footer with the divider on the inner wrapper, so the rule spans exactly
-   the sidebar + content column (1014px) rather than the full viewport
-   (designer Q7). It follows the shell's leading inset — its own padding sits
-   inside the 1014px, so it needs the shell's inset plus the page padding to
-   land on the same two edges — clamped to the slack it actually has. */
+/* The footer uses the exact same centred outer width and page padding as the
+   header and body. */
 
 .pl-footer {
   width: 100%;
@@ -2677,103 +3015,122 @@ button.pl-search-row {
 }
 
 .pl-footer-inner {
-  display: grid;
+  display: flex;
   width: 100%;
-  max-width: var(--pl-shell-max);
-  border-top: 1px solid var(--pl-ui-hairline);
-  grid-template-columns: minmax(0, 1fr) auto auto;
-  align-items: center;
-  gap: 1.5rem;
+  max-width: calc(var(--pl-shell-max) + 2 * var(--pl-page-pad));
+  flex-direction: column;
   margin-block: 0;
-  margin-inline: min(
-      calc(var(--pl-shell-inset) + var(--pl-page-pad)),
-      max(0px, calc(100% - var(--pl-shell-max)))
-    )
-    auto;
-  padding: 1.75rem max(1.5rem, env(safe-area-inset-right)) max(1.5rem, env(safe-area-inset-bottom))
-    max(1.5rem, env(safe-area-inset-left));
+  margin-inline: auto;
+  padding: 64px max(var(--pl-page-pad), env(safe-area-inset-right))
+    max(32px, env(safe-area-inset-bottom)) max(var(--pl-page-pad), env(safe-area-inset-left));
+}
+
+@media (min-width: 768px) {
+  .nextra-navbar nav {
+    padding-inline: calc(var(--pl-page-pad) + var(--pl-shell-alignment-inset)) !important;
+  }
+
+  .pl-footer-inner {
+    padding-right: max(
+      calc(var(--pl-page-pad) + var(--pl-shell-alignment-inset)),
+      env(safe-area-inset-right)
+    );
+    padding-left: max(
+      calc(var(--pl-page-pad) + var(--pl-shell-alignment-inset)),
+      env(safe-area-inset-left)
+    );
+  }
+}
+
+.pl-footer-top {
+  display: flex;
+  width: 100%;
+  height: 28px;
+  flex: 0 0 28px;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .pl-footer-links {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
+  display: flex;
+  flex: none;
+  align-items: flex-start;
+  gap: 16px;
 }
 
 .pl-footer-link {
-  display: inline-flex;
-  min-height: 36px;
+  display: flex;
+  height: 28px;
+  flex: 0 0 28px;
   align-items: center;
-  gap: 0.35rem;
-  padding: 0 0.55rem;
-  border-radius: 5px;
-  color: var(--pl-ui-muted);
-  font-size: 0.8rem;
-  font-weight: 550;
-  line-height: 1.35;
+  padding: 0;
+  border-radius: 8px;
+  color: var(--pl-ink-caption);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.0714;
+  letter-spacing: -0.0064em;
   text-decoration: none;
+  transition: color 180ms ease-out;
 }
 
-.pl-footer-link:hover {
-  background: var(--pl-ui-soft);
-  color: var(--pl-ui-ink);
+.pl-footer-link:is(:hover, :focus-visible) {
+  color: var(--pl-ink-heading);
 }
 
 .pl-footer-identity {
   display: flex;
-  min-width: 0;
-  align-items: center;
-  gap: 0.7rem;
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  color: var(--pl-ink-caption);
 }
 
-.pl-footer-identity img {
-  box-sizing: content-box;
+.pl-footer-emblem {
+  display: block;
+  width: 24px;
+  height: 24px;
   flex: none;
+  overflow: visible;
+  pointer-events: none;
 }
 
-html:not(.dark) .pl-footer-identity img {
-  padding: 4px;
-  border-radius: 999px;
-  background: var(--polaris-navy-dark);
+.pl-footer-emblem-part {
+  fill: currentColor;
+  transform-box: fill-box;
+  transform-origin: center;
 }
 
-.pl-footer-identity strong {
-  color: var(--pl-ui-ink);
-  font: 600 1.05rem/1.2 var(--font-serif-stack);
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .pl-footer-identity:hover .pl-footer-emblem-part {
+    animation: pl-footer-emblem-scale 400ms cubic-bezier(0.77, 0, 0.175, 1) both;
+  }
+
+  .pl-footer-identity:hover .pl-footer-emblem-part:nth-child(2) {
+    animation-delay: 200ms;
+  }
+
+  .pl-footer-identity:hover .pl-footer-emblem-part:nth-child(3) {
+    animation-delay: 400ms;
+  }
+
+  .pl-footer-identity:hover .pl-footer-emblem-part:nth-child(4) {
+    animation-delay: 600ms;
+  }
 }
 
-.pl-footer-identity p {
-  margin: 0.18rem 0 0;
-  color: var(--pl-ui-muted);
-  font-size: 0.78rem;
-  line-height: 1.35;
-}
+@keyframes pl-footer-emblem-scale {
+  0% {
+    transform: scale(1);
+  }
 
-.pl-footer-social-link {
-  display: inline-flex;
-  width: 36px;
-  height: 36px;
-  align-items: center;
-  justify-content: center;
-  border-radius: 5px;
-  color: var(--pl-ui-muted);
-  text-decoration: none;
-}
+  50% {
+    transform: scale(0.8);
+  }
 
-.pl-footer-social-link:hover {
-  background: var(--pl-ui-soft);
-  color: var(--pl-ui-ink);
-}
-
-.pl-footer-copyright {
-  color: var(--pl-ui-muted);
-  font-size: 0.74rem;
-  white-space: nowrap;
-}
-
-.pl-footer-x-glyph {
-  font-size: 0.82rem;
-  font-weight: 700;
+  100% {
+    transform: scale(1);
+  }
 }
 
 /* Previous/next becomes a quiet continuation, not a nested card surface. */
@@ -2782,9 +3139,9 @@ article > div[class*='x:print:hidden']:has(> a[title]) {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: stretch;
-  gap: 1.5rem;
+  gap: 8px;
   margin-top: 4rem;
-  border-top: 1px solid var(--pl-ui-hairline);
+  border-top: 0;
 }
 
 article > div[class*='x:print:hidden']:has(> a[title]) > a[title] {
@@ -2796,23 +3153,28 @@ article > div[class*='x:print:hidden']:has(> a[title]) > a[title] {
   align-items: center;
   column-gap: 0.5rem;
   row-gap: 0.35rem;
-  padding: 1rem 0 !important;
+  padding: 1rem !important;
   border: 0 !important;
-  border-radius: 0 !important;
-  background: transparent !important;
+  border-radius: 5px !important;
+  background: var(--pl-tile-bg) !important;
+  color: var(--pl-prev-next-ink) !important;
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+  line-height: 1.5 !important;
   box-shadow: none !important;
   transform: none !important;
+  transition: background-color 160ms ease !important;
 }
 
 article > div[class*='x:print:hidden']:has(> a[title]) > a[title]::before {
-  content: 'PREVIOUS';
+  content: 'Previous';
   grid-column: 1 / -1;
-  color: var(--pl-ui-muted);
-  font-size: 0.68rem;
-  font-weight: 650;
-  line-height: 1;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  color: var(--pl-ink-caption);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5714;
+  letter-spacing: -0.0064em;
+  text-transform: none;
 }
 
 article > div[class*='x:print:hidden']:has(> a[title]) > a[title][class*='x:text-end'] {
@@ -2822,7 +3184,15 @@ article > div[class*='x:print:hidden']:has(> a[title]) > a[title][class*='x:text
 }
 
 article > div[class*='x:print:hidden']:has(> a[title]) > a[title][class*='x:text-end']::before {
-  content: 'NEXT';
+  content: 'Next';
+}
+
+article > div[class*='x:print:hidden']:has(> a[title]) > a[title] .pl-nav-text {
+  color: var(--pl-prev-next-ink);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: -0.011em;
 }
 
 /* The title lives in a .pl-nav-label flex box, so the link's text-align:end
@@ -2836,32 +3206,37 @@ article
   justify-content: flex-end;
 }
 
-article
-  > div[class*='x:print:hidden']:has(> a[title])
-  > a[title]:not([class*='x:text-end']):only-child {
-  grid-column: 1;
-}
-
-article > div[class*='x:print:hidden']:has(> a[title]) > a[title][class*='x:text-end']:only-child {
-  grid-column: 2;
+/* At the beginning or end of the sequence there is only one destination.
+   Let that single tile span the complete navigation row while preserving its
+   previous/next text alignment. */
+article > div[class*='x:print:hidden']:has(> a[title]) > a[title]:only-child {
+  grid-column: 1 / -1;
 }
 
 article > div[class*='x:print:hidden']:has(> a[title]) > a[title]:hover {
   color: var(--pl-ui-ink);
+  background: var(--pl-tile-hover) !important;
   transform: none !important;
 }
 
-@media (max-width: 900px) {
-  .pl-footer-inner {
-    grid-template-columns: minmax(0, 1fr) auto;
-  }
-
-  .pl-footer-copyright {
-    grid-column: 1 / -1;
-  }
-}
-
 @media (max-width: 767px) {
+  .pl-article-heading-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .pl-copy-page-control {
+    width: 100%;
+    align-self: stretch;
+    margin-top: 0 !important;
+  }
+
+  .pl-copy-page-control > button:first-child {
+    flex: 1 1 auto;
+    justify-content: flex-start;
+  }
+
   .nextra-mobile-nav,
   .nextra-hamburger {
     display: none !important;
@@ -2874,33 +3249,25 @@ article > div[class*='x:print:hidden']:has(> a[title]) > a[title]:hover {
 
   .pl-logo-link {
     min-width: 0;
-    gap: 0.45rem !important;
+    gap: 8px !important;
   }
 
-  .pl-logo-mark {
-    width: 22px;
-    height: 22px;
-    flex: none;
-  }
-
-  .pl-logo-text {
-    min-width: 0;
-    overflow: hidden;
-    font-size: 1.05rem !important;
-    text-overflow: ellipsis;
-  }
-
-  .pl-logo-text > span {
-    display: none;
-  }
-
-  .pl-nav-website,
+  .pl-navbar-search-trigger,
+  .pl-nav-testnet,
   .pl-nav-theme {
     display: none;
   }
 
   .pl-navbar-actions {
     gap: 0.1rem;
+  }
+
+  .pl-navbar-end {
+    gap: 0.1rem;
+  }
+
+  .pl-navbar-search-icon-button {
+    display: inline-flex;
   }
 
   .pl-navbar-icon-button,
@@ -2929,6 +3296,15 @@ article > div[class*='x:print:hidden']:has(> a[title]) > a[title]:hover {
     height: 100dvh;
     min-height: 0;
     padding: 0;
+  }
+
+  .pl-docs-overlay--search .pl-docs-overlay-frame {
+    padding: 0;
+  }
+
+  .pl-docs-overlay--search .pl-docs-overlay-panel,
+  .dark .pl-docs-overlay--search .pl-docs-overlay-panel {
+    background: transparent;
   }
 
   .pl-docs-overlay-panel {
@@ -2968,34 +3344,6 @@ article > div[class*='x:print:hidden']:has(> a[title]) > a[title]:hover {
     background: var(--pl-overlay-bg);
   }
 
-  .pl-search-toolbar {
-    display: block;
-    padding: 0.4rem max(0.75rem, env(safe-area-inset-right)) 0.4rem
-      max(0.75rem, env(safe-area-inset-left));
-  }
-
-  .pl-search-filter-button {
-    width: 100%;
-    min-height: 42px;
-    justify-content: flex-start;
-  }
-
-  .pl-search-filter-button svg:last-child {
-    margin-inline-start: auto;
-  }
-
-  .pl-search-filter-panel {
-    position: static;
-    width: 100%;
-    max-height: max(5.5rem, calc(100dvh - var(--nextra-navbar-height) - 7.5rem));
-    margin-top: 0.3rem;
-    box-shadow: none;
-  }
-
-  .pl-search-filter-panel button {
-    min-height: 44px;
-  }
-
   .pl-search-list {
     padding-inline: max(0.5rem, env(safe-area-inset-left)) max(0.5rem, env(safe-area-inset-right));
   }
@@ -3004,28 +3352,8 @@ article > div[class*='x:print:hidden']:has(> a[title]) > a[title]:hover {
     min-height: 48px;
   }
 
-  .pl-search-footer {
-    padding-bottom: calc(0.45rem + env(safe-area-inset-bottom));
-  }
-
-  .pl-search-legend {
-    display: none;
-  }
-
-  .pl-footer-inner {
-    align-items: flex-start;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 1rem;
-    padding-top: 1.5rem;
-  }
-
   .pl-footer-links {
-    flex-wrap: wrap;
-    margin-inline-start: -0.55rem;
-  }
-
-  .pl-footer-copyright {
-    grid-column: 1;
+    gap: clamp(8px, 3vw, 16px);
   }
 
   article > div[class*='x:print:hidden']:has(> a[title]) {
@@ -3033,7 +3361,7 @@ article > div[class*='x:print:hidden']:has(> a[title]) > a[title]:hover {
   }
 
   article > div[class*='x:print:hidden']:has(> a[title]) > a[title]:only-child {
-    grid-column: 1;
+    grid-column: 1 / -1;
   }
 }
 
@@ -3060,13 +3388,12 @@ article > div[class*='x:print:hidden']:has(> a[title]) > a[title]:hover {
 }
 
 @media (pointer: coarse) {
-  .pl-nav-website,
+  .pl-navbar-search-trigger,
+  .pl-nav-testnet,
   .pl-nav-theme > button,
   .pl-navbar-icon-button,
   .pl-overlay-icon-button,
-  .pl-search-clear,
   .pl-search-clear-recent,
-  .pl-search-filter-button,
   .pl-search-message-actions button,
   .pl-footer-link,
   .pl-footer-social-link,
@@ -3086,9 +3413,13 @@ article > div[class*='x:print:hidden']:has(> a[title]) > a[title]:hover {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .pl-footer-emblem-part {
+    animation: none !important;
+    transform: none !important;
+  }
+
   .pl-docs-overlay-backdrop,
-  .pl-docs-overlay-panel,
-  .pl-search-filter-panel {
+  .pl-docs-overlay-panel {
     transition: none;
   }
 

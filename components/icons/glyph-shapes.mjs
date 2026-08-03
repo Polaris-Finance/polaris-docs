@@ -50,9 +50,14 @@ export const GLYPH_SHAPES = Object.freeze({
   BookOpen: [
     ['path', { 'data-tone': 'soft', d: 'M12 7.4v12.2' }],
     ['path', { d: 'M12 7.4C10.3 5.9 7.7 5.2 4 5.4V17.3c3.7-.2 6.3.5 8 2.3' }],
+    ['path', { d: 'M12 7.4C13.7 5.9 16.3 5.2 20 5.4V17.3c-3.7-.2-6.3.5-8 2.3' }],
     [
-      'path',
-      { 'data-part': 'book-cover', d: 'M12 7.4C13.7 5.9 16.3 5.2 20 5.4V17.3c-3.7-.2-6.3.5-8 2.3' }
+      'g',
+      { 'data-part': 'book-lines', 'data-tone': 'soft' },
+      ['path', { d: 'M6.2 9.2c1.4 0 2.6.25 3.7.75', pathLength: 100, strokeWidth: 1.1 }],
+      ['path', { d: 'M6.2 12c1.4 0 2.6.25 3.7.75', pathLength: 100, strokeWidth: 1.1 }],
+      ['path', { d: 'M14.1 10c1.1-.5 2.3-.75 3.7-.75', pathLength: 100, strokeWidth: 1.1 }],
+      ['path', { d: 'M14.1 12.8c1.1-.5 2.3-.75 3.7-.75', pathLength: 100, strokeWidth: 1.1 }]
     ]
   ],
 
