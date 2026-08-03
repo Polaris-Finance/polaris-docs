@@ -41,7 +41,7 @@ Time | fpETH (floor) | vpETH (premium) | pETH
 At the split | 0.75 ETH | 0.25 ETH | 1.00 ETH
 Six months later | 0.85 ETH | 0.40 ETH | 1.25 ETH
 
-**The premium now accounts for a much larger share of pETH than befor**, allowing Alice's vpETH to capture most of that additional appreciation while Bob continues benefiting from the steady growth of the floor.
+**The premium now accounts for a much larger share of pETH than before**, allowing Alice's vpETH to capture most of that additional appreciation while Bob continues benefiting from the steady growth of the floor.
 
 The two assets still originate from the same pETH, but each responds to a different source of value as Polaris evolves. While fpETH follows the gradual growth of the floor, vpETH reflects how the market values everything beyond it.
 

@@ -16,7 +16,7 @@ USDp is the native Polaris dollar.
 
 It tracks the value of the US dollar using overcollateralized debt positions backed by pETH.
 
-It exists entirely onchain and is designed to remain censorship resistant. **Anyone can independently verify the collateral backing every USDp** in circulation, with immutable code enforicing minting and redemptions.
+It exists entirely onchain and is designed to remain censorship resistant. **Anyone can independently verify the collateral backing every USDp** in circulation, with immutable code enforcing minting and redemptions.
 
 ## Using USDp
 
@@ -43,7 +43,7 @@ Below \$1 | Redeem USDp | Supply decreases, and price returns toward \$1
 
 Together, these mechanisms adjust the circulating supply in response to peg conditions.
 
-These arbitrage paths operate through [Adaptive Peg Defense](https://docs.polaris.finance/design/adaptive-peg-defence), distributing the collateral, debt and fees created by direct minting and redemptions across open positions rather than concentrating them in a single position.
+These arbitrage paths operate through [Adaptive Peg Defense](https://docs.polaris.finance/design/adaptive-peg-defence), which distributes the collateral, debt, and fees created by direct minting and redemptions across open positions.
 
 Two interest-rate mechanisms complement it: the [Peg Stability Rate](https://docs.polaris.finance/design/interest-rates#peg-stability-rate) adjusts borrowing costs in response to minting and redemption activity, while the [Protocol Safety Rate](https://docs.polaris.finance/design/interest-rates#protocol-safety-rate) redistributes interest from higher-leverage positions to lower-leverage or collateral-only positions when aggregate collateralization falls below its threshold.
 
