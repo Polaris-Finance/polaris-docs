@@ -14,7 +14,7 @@ Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 GOLDp is the Polaris digital gold.
 
-It is a synthetic asset designed to track the price of one ounce of gold using overcollateralized debt positions backed by pETH.
+It is a synthetic asset designed to track the gold reference price for one ounce of gold using overcollateralized minting positions backed by pETH.
 
 Unlike traditional tokenized gold, **no physical bullion is held on behalf of users**. Anyone can independently verify the collateral backing every GOLDp in circulation, with minting and redemptions enforced by immutable smart contracts.
 
@@ -22,9 +22,11 @@ Since GOLDp exists entirely onchain, **users can freely access digital gold with
 
 ## Using GOLDp
 
-GOLDp is minted by depositing pETH as collateral and opening an overcollateralized debt position.
+GOLDp is minted by depositing pETH as collateral and opening an overcollateralized minting position.
 
 Like USDp, GOLDp uses the same minting mechanism and **minimum collateral ratio of 115%**. In practice, this means every position requires at least \$1.15 worth of pETH collateral for every \$1 worth of GOLDp. Market movements can later reduce that ratio, making positions that fall below 115% eligible for [liquidations](https://docs.polaris.finance/design/liquidations).
+
+The 115% minimum collateral ratio is the point at which a position becomes eligible for liquidation. Users should maintain a higher collateral ratio to provide a greater safety margin.
 
 Once minted, GOLDp provides onchain exposure to the price of gold. It can be transferred freely on Ethereum, held as a digital gold asset or integrated into DeFi applications.
 
@@ -36,19 +38,23 @@ Users may hold GOLDp as digital gold, deposit it into the Earn Vault, provide li
 
 The GOLDp peg is supported by pETH overcollateralization and by market participants using the protocol's peg mechanisms whenever arbitrage opportunities arise.
 
-When GOLDp trades above the market price of gold, new GOLDp can be minted at gold reference value against pETH collateral and sold into the market. The additional supply creates downward pressure on the market price.
+When GOLDp trades above the gold reference price, new GOLDp can be minted at gold reference value against pETH collateral and sold into the market. The additional supply creates downward pressure on the market price.
 
-When GOLDp trades below the reference price of gold, market participants can redeem GOLDp for the underlying collateral, which removes GOLDp from circulation and reduces the circulating supply.
+When GOLDp trades below the gold reference price, market participants can redeem GOLDp for the underlying collateral, which removes GOLDp from circulation and reduces the circulating supply.
 
 GOLDp price | Arbitrage | Result
 
-Above gold price | Mint and sell GOLDp | Supply increases, and price returns toward the target
-Below gold price | Redeem GOLDp | Supply decreases, and price returns toward the target
+Above gold reference price | Mint and sell GOLDp | Supply increases, and price returns toward the target
+Below gold reference price | Redeem GOLDp | Supply decreases, and price returns toward the target
 
 Together, these mechanisms adjust the circulating supply in response to market conditions.
 
 These arbitrage paths operate through [Adaptive Peg Defense](https://docs.polaris.finance/design/adaptive-peg-defence), which distributes the collateral, debt, and fees created by direct minting and redemptions across open positions.
 
-Two interest-rate mechanisms complement it: the [Peg Stability Rate](https://docs.polaris.finance/design/interest-rates#peg-stability-rate) adjusts borrowing costs in response to minting and redemption activity, while the [Protocol Safety Rate](https://docs.polaris.finance/design/interest-rates#protocol-safety-rate) redistributes interest from higher-leverage positions to lower-leverage or collateral-only positions when aggregate collateralization falls below its threshold.
+Two interest-rate mechanisms complement this peg design.
 
-At the same time, **borrowing mechanics are identical to those of USDp**, including the distribution of protocol-generated value as pETH to borrowers and the preferential treatment of lower-LTV positions.
+The [Peg Stability Rate](https://docs.polaris.finance/design/interest-rates#peg-stability-rate) is the main interest rate paid by GOLDp minters. It adjusts in response to minting and redemption activity, helping the market expand when GOLDp demand is high and contract when redemption demand is high.
+
+The [Protocol Safety Rate](https://docs.polaris.finance/design/interest-rates#protocol-safety-rate) is an always-active market-internal redistribution mechanism. It moves value from higher-leverage positions to lower-leverage or collateral-only positions, rewarding positions that strengthen the market's collateral health.
+
+At the same time, **minting mechanics are identical to those of USDp**, including the distribution of protocol-generated value as pETH to minters. For lower-interest assets such as GOLDp, these offsets can make the effective cost of minting meaningfully lower than the headline rate.

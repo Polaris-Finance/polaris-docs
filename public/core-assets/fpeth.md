@@ -12,13 +12,11 @@ Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 ---
 
-One of the unique properties of pETH is that it has both a market price and **a mathematically-derived floor**.
+fpETH is the floor component of pETH.
 
 The floor gradually grows as more economic activity takes place across Polaris, while the market price remains free to fluctuate according to demand. As a result, pETH can and will trade above its floor, meaning every pETH combines two different sources of value: the steadily growing floor and the market premium that exists above it.
 
-For many users, holding the original pETH exactly as it is makes perfect sense.
-
-While others may simply prefer holding the steadily growing floor without being exposed to the volatility of the market premium, or they may simply want to use those two components for entirely different strategies.
+Some users may want exposure to the full pETH asset. Others may prefer the steadier floor component without the volatility of the market premium, or may want to use the two components in different strategies.
 
 Splitting pETH makes that possible by transforming **one pETH into two complementary assets**:
 
