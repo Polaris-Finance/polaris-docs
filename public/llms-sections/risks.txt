@@ -96,7 +96,7 @@ The architectural decisions below remove many of the trust assumptions commonly 
 
 **pAssets are issued through transparent onchain rules**. USDp, GOLDp and every future pAsset are created according to transparent onchain mechanisms, without a company deciding when assets can be issued or redeemed.
 
-**Every pAsset is fully collateralized** at minting. The protocol does not allow privileged actors, multisigs or administrators to create unbacked assets outside the normal minting process.
+**Every pAsset is minted against the required pETH collateral**. The protocol does not allow privileged actors, multisigs or administrators to create unbacked assets outside the normal minting process.
 
 **Stewardship remains bounded.** It can update a limited set of ecosystem parameters within predefined boundaries, including interest rate splits, POLAR conversion parameters, oracle feed replacement, flow recipients and flow weightings. It cannot modify the bonding curve or liquidation mechanics, introduce new collateral or upgrade the core contracts.
 
