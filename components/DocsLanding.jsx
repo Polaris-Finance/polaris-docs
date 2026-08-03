@@ -51,10 +51,7 @@ function LandingCard({ item }) {
   const { label, description, route, glyph, tone } = item
 
   return (
-    <Link
-      className={`pl-docs-card-link pl-motion pl-icon-tone-${tone}`}
-      href={pathWithBase(route)}
-    >
+    <Link className={`pl-docs-card-link pl-motion pl-icon-tone-${tone}`} href={pathWithBase(route)}>
       <span className="pl-docs-link-icon">
         <Glyph name={glyph} size={32} />
       </span>
