@@ -39,7 +39,7 @@ function MdxImage(props) {
   return createElement(
     'div',
     { className: 'pl-content-image pl-content-image--legacy' },
-    createElement(Image, props)
+    createElement('span', { className: 'pl-content-image-frame' }, createElement(Image, props))
   )
 }
 

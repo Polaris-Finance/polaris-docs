@@ -55,6 +55,8 @@ export function ImageZoomEnhancements() {
 
       let wrapper = image.closest('.pl-content-image')
       let legacyWrapper = false
+      let frame = image.closest('.pl-content-image-frame')
+      let legacyFrame = false
 
       if (!wrapper) {
         wrapper = document.createElement('div')
@@ -64,6 +66,14 @@ export function ImageZoomEnhancements() {
         image.before(wrapper)
         wrapper.append(image)
         legacyWrapper = true
+      }
+
+      if (!frame) {
+        frame = document.createElement('span')
+        frame.className = 'pl-content-image-frame'
+        image.before(frame)
+        frame.append(image)
+        legacyFrame = true
       }
 
       if (image.classList.contains('pl-image-zoom-target')) continue
@@ -78,6 +88,7 @@ export function ImageZoomEnhancements() {
       cleanups.push(() => {
         cleanupTarget()
         if (legacyWrapper && wrapper.isConnected) wrapper.replaceWith(image)
+        else if (legacyFrame && frame.isConnected) frame.replaceWith(image)
       })
     }
 

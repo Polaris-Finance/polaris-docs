@@ -91,25 +91,38 @@ export const GLYPH_SHAPES = Object.freeze({
 
   Cog: [
     ['circle', { cx: 12, cy: 12, r: 3.3 }],
-    ['circle', { 'data-tone': 'soft', cx: 12, cy: 12, r: 7.4 }],
     [
-      'path',
-      {
-        'data-tone': 'soft',
-        d: 'M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.4 5.4l1.5 1.5M17.1 17.1l1.5 1.5M18.6 5.4l-1.5 1.5M6.9 17.1l-1.5 1.5'
-      }
+      'g',
+      { 'data-part': 'cog-wheel', 'data-tone': 'soft' },
+      ['circle', { cx: 12, cy: 12, r: 7.4 }],
+      [
+        'path',
+        {
+          d: 'M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.4 5.4l1.5 1.5M17.1 17.1l1.5 1.5M18.6 5.4l-1.5 1.5M6.9 17.1l-1.5 1.5'
+        }
+      ]
     ]
   ],
 
   Coins: [
     ['path', { d: 'M4.6 8.4v7c0 1.9 3.3 3.4 7.4 3.4s7.4-1.5 7.4-3.4v-7' }],
-    ['ellipse', { 'data-tone': 'soft', cx: 12, cy: 8.4, rx: 7.4, ry: 3.4 }],
-    ['path', { 'data-tone': 'soft', d: 'M4.6 11.9c0 1.9 3.3 3.4 7.4 3.4s7.4-1.5 7.4-3.4' }]
+    [
+      'ellipse',
+      { 'data-part': 'coin-top', 'data-tone': 'soft', cx: 12, cy: 8.4, rx: 7.4, ry: 3.4 }
+    ],
+    [
+      'path',
+      {
+        'data-part': 'coin-layer',
+        'data-tone': 'soft',
+        d: 'M4.6 11.9c0 1.9 3.3 3.4 7.4 3.4s7.4-1.5 7.4-3.4'
+      }
+    ]
   ],
 
   Compass: [
     ['circle', { 'data-tone': 'soft', cx: 12, cy: 12, r: 9 }],
-    ['path', { d: 'm15.6 8.4-2 5.2-5.2 2 2-5.2z' }]
+    ['path', { 'data-part': 'compass-needle', d: 'm15.6 8.4-2 5.2-5.2 2 2-5.2z' }]
   ],
 
   FileText: [
@@ -191,8 +204,30 @@ export const GLYPH_SHAPES = Object.freeze({
 
   Network: [
     ['rect', { height: 5, rx: 1.5, width: 6, x: 9, y: 2.6 }],
-    ['rect', { 'data-tone': 'soft', height: 5, rx: 1.5, width: 6, x: 2.6, y: 16.4 }],
-    ['rect', { 'data-tone': 'soft', height: 5, rx: 1.5, width: 6, x: 15.4, y: 16.4 }],
+    [
+      'rect',
+      {
+        'data-part': 'network-node-left',
+        'data-tone': 'soft',
+        height: 5,
+        rx: 1.5,
+        width: 6,
+        x: 2.6,
+        y: 16.4
+      }
+    ],
+    [
+      'rect',
+      {
+        'data-part': 'network-node-right',
+        'data-tone': 'soft',
+        height: 5,
+        rx: 1.5,
+        width: 6,
+        x: 15.4,
+        y: 16.4
+      }
+    ],
     ['path', { 'data-tone': 'soft', d: 'M12 7.6V12M5.6 16.4V12h12.8v4.4' }]
   ],
 
@@ -262,8 +297,12 @@ export const GLYPH_SHAPES = Object.freeze({
         d: 'M12 2.8 4.6 5.6v6.1c0 4.4 3 7.7 7.4 9.5 4.4-1.8 7.4-5.1 7.4-9.5V5.6z'
       }
     ],
-    ['path', { d: 'M12 8.2v4.4' }],
-    ['circle', { cx: 12, cy: 16.2, fill: 'currentColor', r: 1, stroke: 'none' }]
+    [
+      'g',
+      { 'data-part': 'risk-mark' },
+      ['path', { d: 'M12 8.2v4.4' }],
+      ['circle', { cx: 12, cy: 16.2, fill: 'currentColor', r: 1, stroke: 'none' }]
+    ]
   ],
 
   ShieldCheck: [

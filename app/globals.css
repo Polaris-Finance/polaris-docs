@@ -1,5 +1,6 @@
-/* Polaris "Celestial Night Sky" brand overrides layered on top of nextra-theme-docs.
-   Palette + typography mirror polaris-landing (docs/design-system.md). */
+/* Polaris documentation overrides layered on top of nextra-theme-docs.
+   Light mode keeps the brand palette. Dark mode uses neutral surfaces and type,
+   reserving brand colour for semantic icons and links. */
 
 :root {
   --polaris-navy-darkest: #050a14;
@@ -32,11 +33,9 @@
   --pl-table-header-bg: var(--pl-tile-bg);
   --pl-table-header-rule: var(--pl-ui-hairline);
 
-  /* Icon tones, one hue per navigation group (Aave gives every icon family its
-     own colour instead of a single shared accent). Muted on purpose — the
-     anti-reference is neon-on-black, not colour. Light values are darkened so
-     they stay legible on cream; .dark restores the brand values below.
-     Decorative only: the glyph still carries the meaning. */
+  /* Icon tones, one hue per navigation group in light mode. Dark mode resolves
+     the same semantic classes to a shared neutral, so the glyph — not colour —
+     carries the meaning. */
   --pl-icon-gold: #816515;
   --pl-icon-blue: #3d6f9c;
   --pl-icon-violet: #6355a6;
@@ -80,26 +79,39 @@
 }
 
 .dark {
-  --pl-surface: rgba(123, 165, 201, 0.06);
-  --pl-card-border: rgba(123, 165, 201, 0.06);
-  --pl-tile-bg: #0d1726;
-  --pl-tile-hover: #121e30;
-  --pl-prev-next-ink: #faf6ee;
+  /* Approved dark surfaces anchor the theme while semantic icons and links keep
+     their restrained brand colours. */
+  --polaris-navy-darkest: #16171b;
+  --polaris-navy-dark: #1b1c22;
+  --polaris-navy: #242424;
+  --polaris-navy-mid: #303030;
+  --polaris-navy-light: #414141;
+  --polaris-star: #e0e0e0;
+  --polaris-star-bright: #ffffff;
+  --polaris-cream: #f2f2f2;
+  --polaris-pusd: #e8dcc4;
+  --polaris-peth: #7ba5c9;
+  --polaris-polar: #9b8fcf;
 
-  /* Cool low-alpha hairline (~L 0.23) instead of the theme's gray-600 (~L 0.45),
-     and a header fill strong enough to read as a band over the near-black page. */
+  --pl-surface: #1b1c22;
+  --pl-card-border: rgba(255, 255, 255, 0.06);
+  --pl-tile-bg: #1b1c22;
+  --pl-tile-hover: #26272e;
+  --pl-prev-next-ink: #ffffff;
+
   --pl-table-rule: var(--pl-ui-hairline);
   --pl-table-header-bg: var(--pl-tile-bg);
   --pl-table-header-rule: var(--pl-ui-hairline);
 
-  /* The type scale's structure is shared; only its inks are per-theme. Dark
-     keeps the star/navy palette it already shipped with — the designer specced
-     light only, and dark must still clear AA (the contrast e2e samples both). */
-  --pl-ink-heading: var(--polaris-star-bright);
-  --pl-ink-body: #e8dcc4;
-  --pl-ink-caption: #b9b19f;
-  --pl-ink-link: #d8c9a4;
-  --pl-link-underline: rgba(216, 201, 164, 0.35);
+  /* Text hierarchy comes from luminance; links use the established brand blue
+     with comfortable AA contrast on both approved dark surfaces. */
+  --pl-ink-heading: #ffffff;
+  --pl-ink-body: #e0e0e0;
+  --pl-ink-caption: #a3a3a3;
+  --pl-ink-link: #7ba5c9;
+  --pl-link-underline: rgba(123, 165, 201, 0.4);
+
+  /* Navigation groups retain their semantic brand tones in dark mode. */
   --pl-icon-gold: #d8c9a4;
   --pl-icon-blue: #7ba5c9;
   --pl-icon-violet: #9b8fcf;
@@ -309,7 +321,12 @@ article :is(pre, pre code) {
   letter-spacing: normal;
 }
 
-/* Dark mode — the canonical Polaris surface */
+/* Preserve syntax luminance while removing hue from dark code tokens. */
+.dark article pre code span {
+  filter: grayscale(1);
+}
+
+/* Dark mode — the approved Polaris page surface. */
 
 .dark body {
   background-color: var(--polaris-navy-darkest);
@@ -381,10 +398,7 @@ article {
   max-width: calc(var(--pl-measure) + var(--pl-shell-gap));
 }
 
-/* Curated docs entry point: pathways for learning, using, and evaluating the
-   protocol, with the live-testnet note sitting between them. Distinct link
-   treatments keep the denser page scannable without turning every destination
-   into a card. */
+/* Curated docs entry points for learning and evaluating the protocol. */
 
 /* The testnet note is a quiet inline strip, not a promotional banner (owner
    decision, July 2026): hairlines instead of a filled box, and text links
@@ -468,18 +482,13 @@ article {
   align-items: center;
   gap: 0.4rem;
   padding: 0.35rem 0;
-  color: var(--pl-ui-ink);
+  color: var(--pl-ink-body);
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.2;
   text-decoration: none;
   white-space: nowrap;
   transition: color 0.18s ease-out;
-}
-
-.pl-testnet-banner-primary:hover,
-.pl-testnet-banner-secondary:hover {
-  color: var(--pl-active);
 }
 
 .pl-testnet-banner-primary:focus-visible,
@@ -613,8 +622,7 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
   align-items: center;
   gap: 0.85rem;
   grid-template-columns: auto minmax(0, 1fr) auto;
-  margin-bottom: 1.4rem;
-  padding: 1.15rem 1.2rem;
+  padding: 1rem;
   border-radius: 11px;
   background-color: color-mix(in srgb, var(--pl-card-accent) 5%, transparent);
   box-shadow:
@@ -728,6 +736,7 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
   transform: translateX(4px);
 }
 
+.pl-docs-entry-grid,
 .pl-docs-welcome-grid,
 .pl-docs-action-grid,
 .pl-docs-trust-grid,
@@ -735,6 +744,7 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
   display: grid;
 }
 
+.pl-docs-entry-grid,
 .pl-docs-welcome-grid,
 .pl-docs-action-grid,
 .pl-docs-trust-grid {
@@ -750,11 +760,16 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
   gap: 0.85rem;
 }
 
-/* A tint, not a box: the fill is the only resting cue. No min-height, so rows
-   still size to their content. */
+/* Homepage cards follow the reference's vertical rhythm: icon, heading, then
+   one short supporting sentence. */
 .pl-docs-card-link {
   position: relative;
-  padding: 1.15rem 1.2rem;
+  min-height: 10rem;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: start;
+  align-items: start;
+  gap: 0;
+  padding: 1rem;
   border-radius: 11px;
   background-color: color-mix(in srgb, var(--pl-card-accent) 4%, transparent);
   isolation: isolate;
@@ -809,6 +824,11 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
   color: var(--pl-icon-tone, var(--pl-active));
   opacity: 0.72;
   transition: opacity var(--pl-card-motion);
+}
+
+.pl-docs-card-link .pl-docs-link-icon {
+  justify-self: start;
+  margin-bottom: 0.75rem;
 }
 
 /* Token artwork is damped more lightly than the drawn glyphs — the logos are
@@ -897,13 +917,22 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
 }
 
 /* Simplified article tiles: one quiet fill and one hover fill. Decorative
-   borders, glow, shadow, and lift are intentionally removed. */
+   glow, shadow, and lift are intentionally removed. */
 .pl-docs-hero,
-.pl-docs-card-link,
 .pl-docs-row-link,
 .pl-docs-reference-link,
 .pl-testnet-banner {
   border: 0 !important;
+  background: var(--pl-tile-bg) !important;
+  box-shadow: none !important;
+  transform: none !important;
+  transition: background-color 160ms ease !important;
+}
+
+.pl-docs-card-link {
+  /* Match the navbar rule in both themes, keeping the outline quieter than the
+     icon while still giving the six entry points a clear shared structure. */
+  border: 1px solid var(--pl-shell-rule) !important;
   background: var(--pl-tile-bg) !important;
   box-shadow: none !important;
   transform: none !important;
@@ -995,6 +1024,96 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
   }
 }
 
+/* Homepage entry points follow the TLDR card's motion grammar: the glyph
+   contour stays still while one meaningful internal part responds once. */
+
+/* Foundation — the needle finds north, then settles without spinning. */
+.pl-glyph [data-part='compass-needle'] {
+  transform-origin: 12px 12px;
+}
+
+.pl-motion:is(:hover, :focus-visible) .pl-glyph [data-part='compass-needle'] {
+  animation: pl-compass-settle 520ms var(--pl-ease-out) both;
+}
+
+@keyframes pl-compass-settle {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  48% {
+    transform: rotate(-10deg);
+  }
+  72% {
+    transform: rotate(3deg);
+  }
+}
+
+/* Core assets — the two visible layers lift and settle in a short cascade. */
+.pl-motion:is(:hover, :focus-visible) .pl-glyph [data-part='coin-top'] {
+  animation: pl-coin-top-settle 520ms var(--pl-ease-out) both;
+}
+
+.pl-motion:is(:hover, :focus-visible) .pl-glyph [data-part='coin-layer'] {
+  animation: pl-coin-layer-settle 460ms var(--pl-ease-out) 60ms both;
+}
+
+@keyframes pl-coin-top-settle {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  48% {
+    transform: translateY(-1.15px);
+  }
+}
+
+@keyframes pl-coin-layer-settle {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  48% {
+    transform: translateY(-0.55px);
+  }
+}
+
+/* Core architecture — pulse the two downstream nodes in sequence, returning
+   both to their resting tone within TLDR's 520ms curve. The connector geometry
+   never moves or redraws. */
+.pl-glyph [data-part='network-node-left'],
+.pl-glyph [data-part='network-node-right'] {
+  transition: opacity 140ms ease-out;
+}
+
+.pl-motion:is(:hover, :focus-visible) .pl-glyph [data-part='network-node-left'],
+.pl-motion:is(:hover, :focus-visible) .pl-glyph [data-part='network-node-right'] {
+  animation: pl-network-node-highlight 520ms var(--pl-ease-out) both;
+}
+
+.pl-motion:is(:hover, :focus-visible) .pl-glyph [data-part='network-node-right'] {
+  animation-delay: 60ms;
+}
+
+@keyframes pl-network-node-highlight {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  48% {
+    opacity: 0.95;
+  }
+}
+
+/* Protocol mechanics — a partial turn communicates motion without looping. */
+.pl-glyph [data-part='cog-wheel'] {
+  transform-origin: 12px 12px;
+}
+
+.pl-motion:is(:hover, :focus-visible) .pl-glyph [data-part='cog-wheel'] {
+  transform: rotate(24deg);
+}
+
 /* Bonding curve — the curve redraws and the point rides up it. */
 .pl-glyph [data-part='curve-line'],
 .pl-glyph [data-part='shield-check'] {
@@ -1049,7 +1168,7 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
 
 /* Risks — the alert mark blinks once. No shake. */
 .pl-motion:is(:hover, :focus-visible) .pl-glyph [data-part='risk-mark'] {
-  animation: pl-glyph-blink 700ms ease-out;
+  animation: pl-glyph-blink 520ms var(--pl-ease-out);
 }
 
 @keyframes pl-glyph-blink {
@@ -1058,7 +1177,7 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
     opacity: 1;
   }
   45% {
-    opacity: 0.2;
+    opacity: 0.32;
   }
 }
 
@@ -1105,6 +1224,7 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
 }
 
 @container docs-home (max-width: 40rem) {
+  .pl-docs-entry-grid,
   .pl-docs-welcome-grid,
   .pl-docs-action-grid,
   .pl-docs-trust-grid {
@@ -1113,7 +1233,6 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
 
   .pl-docs-hero {
     gap: 1rem;
-    padding: 1.35rem 1.15rem;
   }
 
   .pl-docs-hero-copy strong {
@@ -1187,7 +1306,7 @@ article :is(h1, h2, h3, h4):target {
 @keyframes pl-target-flash-dark {
   0%,
   30% {
-    background-color: rgba(216, 201, 164, 0.14);
+    background-color: rgba(255, 255, 255, 0.12);
   }
   100% {
     background-color: transparent;
@@ -1298,8 +1417,8 @@ article blockquote {
 }
 
 .dark article blockquote {
-  border-inline-start-color: #d8c9a4 !important;
-  background: rgba(216, 201, 164, 0.05);
+  border-inline-start-color: #b8b8b8 !important;
+  background: rgba(255, 255, 255, 0.04);
 }
 
 /* Golden article-media rule: every image uses the same structural div, with
@@ -1313,11 +1432,30 @@ article .pl-content-image {
   border-radius: 8px;
 }
 
-article .pl-content-image > img {
+article .pl-content-image-frame {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+article .pl-content-image > img,
+article .pl-content-image-frame > img {
   display: block;
   max-width: 100%;
   margin-block: 0 !important;
   border-radius: 8px !important;
+}
+
+/* The frame is the visual image component inside the spacing wrapper. Its
+   one-pixel outer ring separates media from the dark page without touching the
+   image pixels or affecting layout. Direct-image selectors cover the brief
+   pre-enhancement legacy state. */
+.dark article .pl-content-image-frame,
+.dark article .pl-content-image > img,
+.dark article main > img,
+.dark article main > a:has(> img) > img {
+  box-shadow: 0 0 0 1px #35363b;
 }
 
 .pl-image-zoom-target {
@@ -1342,14 +1480,14 @@ article .pl-content-image > img {
 }
 
 .dark .pl-image-lightbox-close {
-  background: #242424;
+  background: #1b1c22;
   box-shadow:
     rgb(0 0 0 / 36%) 0 1px 1px,
     #414141 0 0 0 1px;
 }
 
 .dark .pl-image-lightbox-close:hover {
-  background: #303030;
+  background: #242424;
 }
 
 .pl-image-lightbox {
@@ -1365,7 +1503,7 @@ article .pl-content-image > img {
 .pl-image-lightbox-backdrop {
   position: absolute;
   border: 0;
-  background: rgb(5 10 20 / 82%);
+  background: rgb(0 0 0 / 82%);
   cursor: zoom-out;
   inset: 0;
 }
@@ -1408,10 +1546,15 @@ html:not(.dark) article img[src$='.svg'] {
 /* Returning focus after the lightbox closes used to leave a black outline
    around the entire image. Keep zoomable image surfaces visually neutral; the
    cursor continues to communicate that the full image can be enlarged. */
-article .pl-content-image > .pl-image-zoom-target:focus-visible {
+article .pl-content-image > .pl-image-zoom-target:focus-visible,
+article .pl-content-image-frame > .pl-image-zoom-target:focus-visible {
   outline: none !important;
   outline-offset: 0 !important;
   box-shadow: none !important;
+}
+
+.dark article .pl-content-image > .pl-image-zoom-target:focus-visible {
+  box-shadow: 0 0 0 1px #35363b !important;
 }
 
 /* Infographics fill the content column and stop there: the 710px measure applies
@@ -1495,6 +1638,7 @@ article figcaption {
   font-weight: 500;
   line-height: 1.5714;
   letter-spacing: -0.0064em;
+  padding-bottom: 1px;
   white-space: nowrap;
 }
 
@@ -1541,7 +1685,7 @@ article > div[class*='x:float-end'] {
 }
 
 .dark .pl-copy-page-control {
-  background: #242424 !important;
+  background: #1b1c22 !important;
   box-shadow:
     rgb(0 0 0 / 36%) 0 1px 1px,
     #414141 0 0 0 1px !important;
@@ -1586,7 +1730,7 @@ article [class*='overflow-x-auto']::after {
 
 .dark article .overflow-x-auto::after,
 .dark article [class*='overflow-x-auto']::after {
-  background: linear-gradient(90deg, transparent, rgba(5, 10, 20, 0.9));
+  background: linear-gradient(90deg, transparent, rgba(22, 23, 27, 0.9));
 }
 
 /* Show fade when content overflows */
@@ -1643,7 +1787,7 @@ article [class*='overflow-x-auto']:has(table)::after {
   }
 
   .dark article table[data-pl-table][data-pl-wide='true'] td {
-    border-bottom-color: rgba(123, 165, 201, 0.1);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
   }
 
   article table[data-pl-table][data-pl-wide='true'] td:last-child {
@@ -1663,7 +1807,7 @@ article [class*='overflow-x-auto']:has(table)::after {
   }
 
   .dark article table[data-pl-table][data-pl-wide='true'] td[data-label]::before {
-    color: #9cc2e0;
+    color: #a3a3a3;
   }
 
   /* The first column is the row's subject: render it as the card title rather
@@ -1682,8 +1826,8 @@ article [class*='overflow-x-auto']:has(table)::after {
   }
 
   .dark article table[data-pl-table][data-pl-wide='true'] td:first-child {
-    border-bottom-color: rgba(123, 165, 201, 0.18);
-    color: var(--polaris-star-bright);
+    border-bottom-color: rgba(255, 255, 255, 0.18);
+    color: var(--pl-ink-heading);
   }
 
   article table[data-pl-table][data-pl-wide='true'] td:first-child::before {
@@ -1802,16 +1946,16 @@ article [class*='overflow-x-auto']:has(table)::after {
 }
 
 .dark {
-  --pl-navbar-bg: #050a14;
-  --pl-overlay-bg: #0a1628;
-  --pl-footer-bg: #08111f;
-  --pl-ui-ink: #faf6ee;
-  --pl-ui-muted: #b9b19f;
-  --pl-ui-soft: rgba(232, 220, 196, 0.075);
-  --pl-ui-hairline: rgba(232, 220, 196, 0.14);
+  --pl-navbar-bg: #16171b;
+  --pl-overlay-bg: #1b1c22;
+  --pl-footer-bg: #16171b;
+  --pl-ui-ink: #ffffff;
+  --pl-ui-muted: #a3a3a3;
+  --pl-ui-soft: rgba(255, 255, 255, 0.06);
+  --pl-ui-hairline: rgba(255, 255, 255, 0.12);
   --pl-shell-rule: var(--pl-ui-hairline);
-  --pl-focus-ring: #faf6ee;
-  --pl-active: #d8c9a4;
+  --pl-focus-ring: #ffffff;
+  --pl-active: #ffffff;
 }
 
 html {
@@ -1930,7 +2074,7 @@ div:has(> .nextra-sidebar) {
 }
 
 .dark .pl-navbar-search-trigger {
-  background: #242424;
+  background: #1b1c22;
   box-shadow:
     rgb(0 0 0 / 36%) 0 1px 1px,
     #414141 0 0 0 1px;
@@ -1968,7 +2112,7 @@ div:has(> .nextra-sidebar) {
 }
 
 .dark .pl-navbar-search-trigger kbd {
-  background: #303030;
+  background: #242424;
 }
 
 .pl-navbar-end {
@@ -2000,6 +2144,15 @@ div:has(> .nextra-sidebar) {
   background: color-mix(in srgb, #343433 88%, white 12%);
 }
 
+.dark .pl-nav-testnet {
+  background: #ffffff;
+  color: #000000;
+}
+
+.dark .pl-nav-testnet:hover {
+  background: #e0e0e0;
+}
+
 .pl-nav-testnet:active {
   transform: scale(0.97);
 }
@@ -2022,6 +2175,15 @@ div:has(> .nextra-sidebar) {
   justify-content: center;
   padding-inline: 0.45rem;
   border-radius: 6px;
+}
+
+/* Headless UI restores focus to the trigger after a pointer theme selection,
+   which Chromium can incorrectly expose as :focus-visible. Its real keyboard
+   focus carries the `focus` state, so keep that ring and suppress only the
+   pointer-return artifact. */
+.pl-nav-theme > button:focus-visible:not([data-headlessui-state~='focus']) {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .pl-navbar-icon-button,
@@ -2079,8 +2241,8 @@ div:has(> .nextra-sidebar) {
   transition: filter 0.15s ease;
 }
 
-/* The orbs sink into the dark sidebar; lift them to the same visual weight as
-   the lucide strokes. */
+/* Lift asset logos to the same visual weight as the coloured vector glyphs on
+   the dark sidebar while preserving their original artwork. */
 .dark .pl-nav-icon-asset {
   filter: brightness(1.12) opacity(0.86);
 }
@@ -2090,6 +2252,7 @@ div:has(> .nextra-sidebar) {
      inset mirrors the header/footer optical compensation, so article content,
      Copy Page, media, and pagination end on the header action's right edge. */
   .nextra-sidebar ~ article {
+    padding-top: 2rem !important;
     padding-inline: var(--pl-shell-gap) var(--pl-shell-alignment-inset) !important;
   }
 
@@ -2103,6 +2266,7 @@ div:has(> .nextra-sidebar) {
      Nextra's default 20px edge fades are extended by 50% at both ends. */
   .nextra-sidebar > .nextra-scrollbar.nextra-mask {
     overflow-anchor: none;
+    padding-top: 2rem !important;
     scrollbar-width: none;
     scrollbar-gutter: auto;
     -ms-overflow-style: none;
@@ -2118,7 +2282,7 @@ div:has(> .nextra-sidebar) {
   }
 
   .nextra-sidebar > ul {
-    padding: 1.4rem 0.85rem 2rem !important;
+    padding: 2rem 0.85rem 2rem !important;
   }
 
   .nextra-sidebar ul {
@@ -2340,7 +2504,7 @@ div:has(> .nextra-sidebar) {
 }
 
 .dark .pl-docs-overlay--search .pl-docs-overlay-panel {
-  background: #101722;
+  background: #1b1c22;
   box-shadow: 0 18px 44px rgb(0 0 0 / 42%);
 }
 
@@ -2405,16 +2569,16 @@ div:has(> .nextra-sidebar) {
 }
 
 .dark .pl-search-dialog-header {
-  border-color: #273244;
+  border-color: #333333;
 }
 
 .dark .pl-search-icon,
 .dark .pl-search-input {
-  color: #d7deea;
+  color: #e0e0e0;
 }
 
 .dark .pl-search-input::placeholder {
-  color: #7f8ba0;
+  color: #8a8a8a;
 }
 
 .pl-search-input:focus,
@@ -2451,11 +2615,11 @@ div:has(> .nextra-sidebar) {
 }
 
 .dark .pl-search-dialog-header > .pl-overlay-icon-button {
-  color: #a8b3c5;
+  color: #b8b8b8;
 }
 
 .dark .pl-search-dialog-header > .pl-overlay-icon-button:hover {
-  color: #f2f5fa;
+  color: #ffffff;
 }
 
 .pl-search-list {
@@ -2542,7 +2706,7 @@ button.pl-search-row {
 
 .dark .pl-search-row:hover,
 .dark .pl-search-row[data-active='true'] {
-  background: #172131;
+  background: var(--pl-tile-hover);
 }
 
 .pl-search-row[data-child='true'] {
@@ -2550,6 +2714,10 @@ button.pl-search-row {
   margin-inline-start: 1.25rem;
   border-inline-start: 1px solid #e3e7ee;
   border-radius: 0 4px 4px 0;
+}
+
+.dark .pl-search-row[data-child='true'] {
+  border-inline-start-color: #333333;
 }
 
 .pl-search-row[data-page='true'] .pl-search-row-title {
@@ -2623,12 +2791,16 @@ button.pl-search-row {
 .dark .pl-search-group-label,
 .dark .pl-search-context,
 .dark .pl-search-row-excerpt {
-  color: #8f9bb0;
+  color: #8a8a8a;
 }
 
 .dark .pl-search-row,
 .dark .pl-search-row-title {
-  color: #d7deea;
+  color: #e0e0e0;
+}
+
+.dark .pl-search-row-icon {
+  color: #b8b8b8;
 }
 
 .pl-search-row-excerpt mark {
@@ -2777,7 +2949,7 @@ article > div[class*='x:float-end'] button:is(:hover, :focus-visible) {
 }
 
 .dark .pl-copy-page-control button:is(:hover, :focus-visible, [data-headlessui-state*='open']) {
-  background: #303030 !important;
+  background: var(--pl-tile-hover) !important;
 }
 
 /* Copy Page and other anchored dropdowns share the same quiet tile hover as

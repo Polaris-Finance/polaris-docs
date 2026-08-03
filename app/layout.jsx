@@ -141,8 +141,12 @@ export default async function RootLayout({ children }) {
       className={`${inter.variable} ${cormorant.variable}`}
     >
       <Head
-        color={{ hue: 41, saturation: 42, lightness: { dark: 76, light: 37 } }}
-        backgroundColor={{ dark: '#050a14', light: '#ffffff' }}
+        color={{
+          hue: { dark: 0, light: 41 },
+          saturation: { dark: 0, light: 42 },
+          lightness: { dark: 76, light: 37 }
+        }}
+        backgroundColor={{ dark: '#16171b', light: '#ffffff' }}
       />
       <body>
         <JsonLd data={buildGlobalJsonLd()} />
