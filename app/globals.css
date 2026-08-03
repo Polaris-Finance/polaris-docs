@@ -398,10 +398,7 @@ article {
   max-width: calc(var(--pl-measure) + var(--pl-shell-gap));
 }
 
-/* Curated docs entry point: pathways for learning, using, and evaluating the
-   protocol, with the live-testnet note sitting between them. Distinct link
-   treatments keep the denser page scannable without turning every destination
-   into a card. */
+/* Curated docs entry points for learning and evaluating the protocol. */
 
 /* The testnet note is a quiet inline strip, not a promotional banner (owner
    decision, July 2026): hairlines instead of a filled box, and text links
@@ -739,6 +736,7 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
   transform: translateX(4px);
 }
 
+.pl-docs-entry-grid,
 .pl-docs-welcome-grid,
 .pl-docs-action-grid,
 .pl-docs-trust-grid,
@@ -746,6 +744,7 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
   display: grid;
 }
 
+.pl-docs-entry-grid,
 .pl-docs-welcome-grid,
 .pl-docs-action-grid,
 .pl-docs-trust-grid {
@@ -761,10 +760,15 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
   gap: 0.85rem;
 }
 
-/* A tint, not a box: the fill is the only resting cue. No min-height, so rows
-   still size to their content. */
+/* Homepage cards follow the reference's vertical rhythm: icon, heading, then
+   one short supporting sentence. */
 .pl-docs-card-link {
   position: relative;
+  min-height: 10rem;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: start;
+  align-items: start;
+  gap: 0;
   padding: 1rem;
   border-radius: 11px;
   background-color: color-mix(in srgb, var(--pl-card-accent) 4%, transparent);
@@ -820,6 +824,11 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
   color: var(--pl-icon-tone, var(--pl-active));
   opacity: 0.72;
   transition: opacity var(--pl-card-motion);
+}
+
+.pl-docs-card-link .pl-docs-link-icon {
+  justify-self: start;
+  margin-bottom: 0.75rem;
 }
 
 /* Token artwork is damped more lightly than the drawn glyphs — the logos are
@@ -908,13 +917,22 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
 }
 
 /* Simplified article tiles: one quiet fill and one hover fill. Decorative
-   borders, glow, shadow, and lift are intentionally removed. */
+   glow, shadow, and lift are intentionally removed. */
 .pl-docs-hero,
-.pl-docs-card-link,
 .pl-docs-row-link,
 .pl-docs-reference-link,
 .pl-testnet-banner {
   border: 0 !important;
+  background: var(--pl-tile-bg) !important;
+  box-shadow: none !important;
+  transform: none !important;
+  transition: background-color 160ms ease !important;
+}
+
+.pl-docs-card-link {
+  /* Match the navbar rule in both themes, keeping the outline quieter than the
+     icon while still giving the six entry points a clear shared structure. */
+  border: 1px solid var(--pl-shell-rule) !important;
   background: var(--pl-tile-bg) !important;
   box-shadow: none !important;
   transform: none !important;
@@ -1006,6 +1024,96 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
   }
 }
 
+/* Homepage entry points follow the TLDR card's motion grammar: the glyph
+   contour stays still while one meaningful internal part responds once. */
+
+/* Foundation — the needle finds north, then settles without spinning. */
+.pl-glyph [data-part='compass-needle'] {
+  transform-origin: 12px 12px;
+}
+
+.pl-motion:is(:hover, :focus-visible) .pl-glyph [data-part='compass-needle'] {
+  animation: pl-compass-settle 520ms var(--pl-ease-out) both;
+}
+
+@keyframes pl-compass-settle {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  48% {
+    transform: rotate(-10deg);
+  }
+  72% {
+    transform: rotate(3deg);
+  }
+}
+
+/* Core assets — the two visible layers lift and settle in a short cascade. */
+.pl-motion:is(:hover, :focus-visible) .pl-glyph [data-part='coin-top'] {
+  animation: pl-coin-top-settle 520ms var(--pl-ease-out) both;
+}
+
+.pl-motion:is(:hover, :focus-visible) .pl-glyph [data-part='coin-layer'] {
+  animation: pl-coin-layer-settle 460ms var(--pl-ease-out) 60ms both;
+}
+
+@keyframes pl-coin-top-settle {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  48% {
+    transform: translateY(-1.15px);
+  }
+}
+
+@keyframes pl-coin-layer-settle {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  48% {
+    transform: translateY(-0.55px);
+  }
+}
+
+/* Core architecture — pulse the two downstream nodes in sequence, returning
+   both to their resting tone within TLDR's 520ms curve. The connector geometry
+   never moves or redraws. */
+.pl-glyph [data-part='network-node-left'],
+.pl-glyph [data-part='network-node-right'] {
+  transition: opacity 140ms ease-out;
+}
+
+.pl-motion:is(:hover, :focus-visible) .pl-glyph [data-part='network-node-left'],
+.pl-motion:is(:hover, :focus-visible) .pl-glyph [data-part='network-node-right'] {
+  animation: pl-network-node-highlight 520ms var(--pl-ease-out) both;
+}
+
+.pl-motion:is(:hover, :focus-visible) .pl-glyph [data-part='network-node-right'] {
+  animation-delay: 60ms;
+}
+
+@keyframes pl-network-node-highlight {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  48% {
+    opacity: 0.95;
+  }
+}
+
+/* Protocol mechanics — a partial turn communicates motion without looping. */
+.pl-glyph [data-part='cog-wheel'] {
+  transform-origin: 12px 12px;
+}
+
+.pl-motion:is(:hover, :focus-visible) .pl-glyph [data-part='cog-wheel'] {
+  transform: rotate(24deg);
+}
+
 /* Bonding curve — the curve redraws and the point rides up it. */
 .pl-glyph [data-part='curve-line'],
 .pl-glyph [data-part='shield-check'] {
@@ -1060,7 +1168,7 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
 
 /* Risks — the alert mark blinks once. No shake. */
 .pl-motion:is(:hover, :focus-visible) .pl-glyph [data-part='risk-mark'] {
-  animation: pl-glyph-blink 700ms ease-out;
+  animation: pl-glyph-blink 520ms var(--pl-ease-out);
 }
 
 @keyframes pl-glyph-blink {
@@ -1069,7 +1177,7 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
     opacity: 1;
   }
   45% {
-    opacity: 0.2;
+    opacity: 0.32;
   }
 }
 
@@ -1116,6 +1224,7 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
 }
 
 @container docs-home (max-width: 40rem) {
+  .pl-docs-entry-grid,
   .pl-docs-welcome-grid,
   .pl-docs-action-grid,
   .pl-docs-trust-grid {

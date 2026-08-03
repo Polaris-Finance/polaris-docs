@@ -2,11 +2,38 @@
 
 import { usePathname } from 'next/navigation'
 import { useEffect, useLayoutEffect, useRef } from 'react'
+import { findTrailByRoute, normalizeRoute } from '../app/navigation-config.mjs'
+import { BASE_PATH } from '../app/site-config.mjs'
 
 const SIDEBAR_SCROLL_STORAGE_KEY = 'polaris-docs:sidebar-scroll-top'
 
 function getSidebarScrollport() {
   return document.querySelector('.nextra-sidebar > .nextra-scrollbar.nextra-mask')
+}
+
+function routeFromPathname(pathname) {
+  const withoutBase =
+    BASE_PATH && pathname.startsWith(BASE_PATH) ? pathname.slice(BASE_PATH.length) : pathname
+  return normalizeRoute(withoutBase || '/')
+}
+
+function expandActiveSidebarFolder(pathname) {
+  const activeFolder = [...findTrailByRoute(routeFromPathname(pathname))]
+    .reverse()
+    .find((node) => node.type === 'folder')
+  if (!activeFolder) return
+
+  const sidebar = document.querySelector('.nextra-sidebar')
+  const folderButton = Array.from(sidebar?.querySelectorAll('button[data-href]') ?? []).find(
+    (button) => normalizeRoute(button.getAttribute('data-href') ?? '') === activeFolder.routePrefix
+  )
+  const folderItem = folderButton?.closest('li')
+
+  // Nextra remembers a manually collapsed folder across client-side route
+  // changes. Use its own toggle so its internal tree state stays authoritative.
+  if (folderButton && folderItem && !folderItem.classList.contains('open')) {
+    folderButton.click()
+  }
 }
 
 function readSidebarScrollTop() {
@@ -34,6 +61,8 @@ export function A11yEnhancements() {
   const restoringSidebarScroll = useRef(false)
 
   useLayoutEffect(() => {
+    expandActiveSidebarFolder(pathname)
+
     const scrollport = getSidebarScrollport()
     const savedScrollTop = readSidebarScrollTop()
     if (!scrollport || savedScrollTop === null) return
