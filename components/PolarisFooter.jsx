@@ -61,7 +61,6 @@ export function PolarisFooter() {
             ))}
           </nav>
         </div>
-
       </div>
     </footer>
   )
