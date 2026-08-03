@@ -2144,6 +2144,7 @@ div:has(> .nextra-sidebar) {
      inset mirrors the header/footer optical compensation, so article content,
      Copy Page, media, and pagination end on the header action's right edge. */
   .nextra-sidebar ~ article {
+    padding-top: 2rem !important;
     padding-inline: var(--pl-shell-gap) var(--pl-shell-alignment-inset) !important;
   }
 
@@ -2157,6 +2158,7 @@ div:has(> .nextra-sidebar) {
      Nextra's default 20px edge fades are extended by 50% at both ends. */
   .nextra-sidebar > .nextra-scrollbar.nextra-mask {
     overflow-anchor: none;
+    padding-top: 2rem !important;
     scrollbar-width: none;
     scrollbar-gutter: auto;
     -ms-overflow-style: none;
@@ -2172,7 +2174,7 @@ div:has(> .nextra-sidebar) {
   }
 
   .nextra-sidebar > ul {
-    padding: 1.4rem 0.85rem 2rem !important;
+    padding: 2rem 0.85rem 2rem !important;
   }
 
   .nextra-sidebar ul {
