@@ -1,7 +1,7 @@
 'use client'
 
-import { DialogTitle, Popover, PopoverButton, PopoverPanel } from '@headlessui/react'
-import { ChevronDown, Clock3, Filter, Info, RotateCw, Search, Trash2, X } from 'lucide-react'
+import { DialogTitle } from '@headlessui/react'
+import { Clock3, Info, RotateCw, Search, Trash2, X } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import {
   useCallback,
@@ -13,7 +13,7 @@ import {
   useSyncExternalStore
 } from 'react'
 import { hrefWithBase, pathWithBase } from '../app/site-config.mjs'
-import { kindForPath, sectionForPath } from '../app/search-taxonomy.mjs'
+import { kindForPath, sectionForPath, toneForPath } from '../app/search-taxonomy.mjs'
 import { DocsOverlay } from './navigation/DocsOverlay'
 
 const PLACEHOLDER = 'Search the docs...'
@@ -21,12 +21,17 @@ const MAX_PAGES = 8
 const MAX_CANDIDATE_PAGES = 24
 const MAX_SUBRESULTS = 5
 const SEARCH_OPTIONS = { excerptLength: 14 }
-const MAX_FACETS = 8
 const RECENT_KEY = 'polaris-docs:recent-searches'
 const MAX_RECENT = 5
 
 function curate(title, url) {
-  return { title, url, section: sectionForPath(url), kind: kindForPath(url) }
+  return {
+    title,
+    url,
+    section: sectionForPath(url),
+    kind: kindForPath(url),
+    tone: toneForPath(url)
+  }
 }
 
 const START_HERE = [
@@ -81,7 +86,6 @@ function loadPagefind() {
         /* webpackIgnore: true */ pathWithBase('/_pagefind/pagefind.js')
       )
       await pagefind.options({ baseUrl: '/' })
-      await pagefind.filters()
       return pagefind
     })()
   }
@@ -191,8 +195,6 @@ export function PolarisSearch({ open, onOpenChange }) {
   const [error, setError] = useState('')
   const [pages, setPages] = useState([])
   const [resultTotal, setResultTotal] = useState(0)
-  const [facets, setFacets] = useState([])
-  const [section, setSection] = useState(null)
   const [active, setActive] = useState(-1)
   const [retryToken, setRetryToken] = useState(0)
   const [recent, setRecent] = useState([])
@@ -221,7 +223,6 @@ export function PolarisSearch({ open, onOpenChange }) {
         setStatus('idle')
         setPages([])
         setResultTotal(0)
-        setFacets([])
         setError('')
         return
       }
@@ -231,10 +232,7 @@ export function PolarisSearch({ open, onOpenChange }) {
 
       try {
         const pagefind = await loadPagefind()
-        const options = section
-          ? { ...SEARCH_OPTIONS, filters: { section: [section] } }
-          : SEARCH_OPTIONS
-        const response = await pagefind.debouncedSearch(term, options)
+        const response = await pagefind.debouncedSearch(term, SEARCH_OPTIONS)
         if (cancelled || !response) return
 
         const data = await Promise.all(
@@ -248,25 +246,19 @@ export function PolarisSearch({ open, onOpenChange }) {
             title: page.meta?.title ?? 'Untitled',
             section: page.meta?.section ?? '',
             kind: page.meta?.kind ?? 'concept',
+            tone: toneForPath(cleanUrl(page.url)),
             subResults: (page.sub_results ?? []).slice(0, MAX_SUBRESULTS).map((subResult) => ({
               url: cleanUrl(subResult.url),
               title: subResult.title,
-              excerpt: cleanExcerpt(subResult.excerpt)
+              excerpt: cleanExcerpt(subResult.excerpt),
+              tone: toneForPath(cleanUrl(subResult.url))
             }))
           })),
           term
         )
 
-        const sectionFacet = response.totalFilters?.section ?? response.filters?.section ?? {}
-        const nextFacets = Object.entries(sectionFacet)
-          .filter(([, count]) => count > 0)
-          .map(([value, count]) => ({ value, count }))
-          .sort((a, b) => b.count - a.count)
-          .slice(0, MAX_FACETS)
-
         setPages(nextPages)
         setResultTotal(response.results.length)
-        setFacets(nextFacets)
         setActive(-1)
         setStatus(nextPages.length ? 'ready' : 'empty')
       } catch {
@@ -282,20 +274,12 @@ export function PolarisSearch({ open, onOpenChange }) {
     return () => {
       cancelled = true
     }
-  }, [deferredQuery, retryToken, section])
+  }, [deferredQuery, retryToken])
 
   const close = useCallback(() => {
     setActive(-1)
     onOpenChange(false)
   }, [onOpenChange])
-
-  const clearQuery = useCallback(() => {
-    setQuery('')
-    setSection(null)
-    setActive(-1)
-    setError('')
-    inputRef.current?.focus({ preventScroll: true })
-  }, [])
 
   const retry = useCallback(() => {
     pagefindPromise = null
@@ -375,7 +359,6 @@ export function PolarisSearch({ open, onOpenChange }) {
     (item) => {
       if (item.query != null) {
         setQuery(item.query)
-        setSection(null)
         setActive(-1)
         inputRef.current?.focus({ preventScroll: true })
       } else if (item.url) {
@@ -436,7 +419,9 @@ export function PolarisSearch({ open, onOpenChange }) {
   const recoveryRows = RECOVERY.map((item, index) => ({ ...item, index: recoveryOffset + index }))
   const countLabel =
     status === 'ready'
-      ? `${resultTotal > pages.length ? `Top ${pages.length} of ${resultTotal}` : `${pages.length} shown`}${section ? ` in ${section}` : ''}`
+      ? resultTotal > pages.length
+        ? `Top ${pages.length} of ${resultTotal}`
+        : `${pages.length} shown`
       : status === 'idle'
         ? 'Type to search'
         : status === 'empty'
@@ -490,26 +475,16 @@ export function PolarisSearch({ open, onOpenChange }) {
               aria-describedby={`${id}-help`}
               onChange={(event) => {
                 setQuery(event.target.value)
-                setSection(null)
                 setActive(-1)
               }}
               onFocus={() => loadPagefind().catch(() => {})}
               onKeyDown={onKeyDown}
             />
-            {query ? (
-              <button
-                type="button"
-                className="pl-search-clear"
-                aria-label="Clear search"
-                onClick={clearQuery}
-              >
-                <X aria-hidden="true" size={18} strokeWidth={1.8} />
-              </button>
-            ) : (
+            {!query ? (
               <kbd className="pl-search-kbd" aria-hidden="true">
                 {isMac ? '⌘K' : 'Ctrl K'}
               </kbd>
-            )}
+            ) : null}
           </div>
           <button
             type="button"
@@ -520,46 +495,6 @@ export function PolarisSearch({ open, onOpenChange }) {
             <X aria-hidden="true" size={20} strokeWidth={1.8} />
           </button>
         </div>
-
-        {facets.length > 1 && status !== 'idle' ? (
-          <div className="pl-search-toolbar">
-            <Popover className="pl-search-filter">
-              <PopoverButton
-                className="pl-search-filter-button"
-                aria-label={`Filter search results by section: ${section ?? 'All sections'}`}
-              >
-                <Filter aria-hidden="true" size={15} strokeWidth={1.8} />
-                {section ?? 'All sections'}
-                <ChevronDown aria-hidden="true" size={14} strokeWidth={1.8} />
-              </PopoverButton>
-              <PopoverPanel
-                transition
-                className="pl-search-filter-panel"
-                aria-label="Filter by section"
-              >
-                <button
-                  type="button"
-                  aria-pressed={section === null}
-                  onClick={() => setSection(null)}
-                >
-                  <span>All sections</span>
-                  <span>{resultTotal}</span>
-                </button>
-                {facets.map((facet) => (
-                  <button
-                    key={facet.value}
-                    type="button"
-                    aria-pressed={section === facet.value}
-                    onClick={() => setSection(facet.value)}
-                  >
-                    <span>{facet.value}</span>
-                    <span>{facet.count}</span>
-                  </button>
-                ))}
-              </PopoverPanel>
-            </Popover>
-          </div>
-        ) : null}
 
         <div ref={listRef} className="pl-search-list">
           {status === 'error' ? (
@@ -638,6 +573,7 @@ export function PolarisSearch({ open, onOpenChange }) {
                       title={row.title}
                       section={row.section}
                       kind={row.kind}
+                      tone={row.tone}
                       active={active === row.index}
                       onActivate={() => onItem({ url: row.url })}
                       onHover={() => setActive(row.index)}
@@ -674,6 +610,7 @@ export function PolarisSearch({ open, onOpenChange }) {
                       section={page.section}
                       kind={page.kind}
                       page
+                      tone={page.tone}
                       active={active === headIndex}
                       onActivate={() => onItem({ url: page.url })}
                       onHover={() => setActive(headIndex)}
@@ -686,6 +623,7 @@ export function PolarisSearch({ open, onOpenChange }) {
                         title={row.title}
                         excerpt={row.excerpt}
                         child
+                        tone={row.tone}
                         active={active === row.index}
                         onActivate={() => onItem({ url: row.url })}
                         onHover={() => setActive(row.index)}
@@ -719,6 +657,7 @@ export function PolarisSearch({ open, onOpenChange }) {
                       title={row.title}
                       section={row.section}
                       kind={row.kind}
+                      tone={row.tone}
                       active={active === row.index}
                       onActivate={() => onItem({ url: row.url })}
                       onHover={() => setActive(row.index)}
@@ -728,14 +667,6 @@ export function PolarisSearch({ open, onOpenChange }) {
               </>
             ) : null}
           </div>
-        </div>
-
-        <div className="pl-search-footer">
-          <span className="pl-search-count">{countLabel}</span>
-          <span className="pl-search-legend" aria-hidden="true">
-            <kbd>↑</kbd>
-            <kbd>↓</kbd> navigate <kbd>↵</kbd> open <kbd>esc</kbd> close
-          </span>
         </div>
       </div>
     </DocsOverlay>
@@ -785,7 +716,8 @@ function SearchLinkOption({
   onHover,
   page,
   section,
-  title
+  title,
+  tone
 }) {
   return (
     <a
@@ -797,7 +729,7 @@ function SearchLinkOption({
       data-active={active ? 'true' : undefined}
       data-child={child ? 'true' : undefined}
       data-page={page ? 'true' : undefined}
-      className="pl-search-row pl-search-row--link"
+      className={`pl-search-row pl-search-row--link pl-icon-tone-${tone}`}
       onMouseEnter={onHover}
       onClick={(event) => {
         event.preventDefault()

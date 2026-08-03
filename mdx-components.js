@@ -4,6 +4,7 @@ import { Image } from 'nextra/components'
 import { hrefWithBase, isExternalHref } from './app/site-config.mjs'
 
 const themeComponents = getThemeComponents()
+const ThemeP = themeComponents.p ?? 'p'
 const ThemeTable = themeComponents.table ?? 'table'
 const ThemeTh = themeComponents.th ?? 'th'
 // Nextra maps td/tr to Table.Td/Table.Tr components, so the cell/row elements
@@ -32,6 +33,27 @@ function MdxAnchor({ href, className, rel, target, ...props }) {
     rel: external ? (rel ?? 'noreferrer') : rel,
     target: external ? (target ?? '_blank') : target
   })
+}
+
+function MdxImage(props) {
+  return createElement(
+    'div',
+    { className: 'pl-content-image pl-content-image--legacy' },
+    createElement(Image, props)
+  )
+}
+
+function MdxParagraph({ children, ...props }) {
+  const nodes = Children.toArray(children)
+  const standaloneImage =
+    nodes.length === 1 && isValidElement(nodes[0]) && nodes[0].type === MdxImage
+
+  // Markdown images are normally emitted inside a paragraph. Promote an image
+  // that occupies the whole paragraph so its shared block-level wrapper stays
+  // valid HTML and can own the article's media rhythm.
+  if (standaloneImage) return nodes[0]
+
+  return createElement(ThemeP, props, children)
 }
 
 function getTextContent(node) {
@@ -111,7 +133,7 @@ function AccessibleTable({ children, tabIndex = 0, ...props }) {
   const caption = headers.length ? `Table columns: ${headers.join(', ')}` : 'Data table'
   const isWide = headers.length >= 3
 
-  return createElement(
+  const table = createElement(
     ThemeTable,
     {
       tabIndex,
@@ -127,6 +149,8 @@ function AccessibleTable({ children, tabIndex = 0, ...props }) {
     ),
     annotateTableChildren(children, headers)
   )
+
+  return createElement('div', { className: 'pl-content-table' }, table)
 }
 
 // Merge Polaris-specific MDX component overrides into the docs theme components.
@@ -136,7 +160,8 @@ export function useMDXComponents(components) {
     // Plain image instead of Nextra's zoomable default: react-medium-image-zoom
     // stamps an aria-owns pointing at a modal that only exists once zoomed, which
     // fails axe's aria-valid-attr-value. `Image` keeps Pagefind alt/title indexing.
-    img: Image,
+    img: MdxImage,
+    p: MdxParagraph,
     a: MdxAnchor,
     table: AccessibleTable,
     th: TableHeader,

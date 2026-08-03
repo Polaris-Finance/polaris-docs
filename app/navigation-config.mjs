@@ -24,10 +24,9 @@ export const NAVIGATION_GROUPS = [
         id: 'docs-home',
         type: 'page',
         metaKey: 'index',
-        label: 'Polaris Documentation',
+        label: 'Overview',
         route: '/',
         icon: 'FileText',
-        display: 'hidden',
         theme: { copyPage: false, pagination: false },
         kind: 'concept'
       },
@@ -36,7 +35,7 @@ export const NAVIGATION_GROUPS = [
         id: 'overview',
         type: 'folder',
         metaKey: 'overview',
-        label: 'Overview',
+        label: 'Foundation',
         routePrefix: '/overview',
         icon: 'Compass',
         children: [
@@ -238,8 +237,10 @@ export const NAVIGATION_GROUPS = [
 ]
 
 export const FOOTER_LINKS = [
-  { type: 'external', label: 'Website', href: EXTERNAL_LINKS.website },
-  { type: 'artifact', label: 'llms.txt', href: '/llms.txt' }
+  { type: 'artifact', label: 'Llms.txt', href: '/llms.txt' },
+  { type: 'external', label: 'GitHub', href: EXTERNAL_LINKS.github },
+  { type: 'external', label: 'X.com', href: EXTERNAL_LINKS.x },
+  { type: 'external', label: 'Contact', href: EXTERNAL_LINKS.website }
 ]
 
 function page(id, metaKey, label, route, icon, kind = 'concept') {

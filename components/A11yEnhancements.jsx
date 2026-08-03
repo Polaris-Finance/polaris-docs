@@ -1,17 +1,81 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
-import { useEffect, useRef } from 'react'
+import { useEffect, useLayoutEffect, useRef } from 'react'
 
-function isOutsideScrollport(element, scrollport) {
-  const item = element.getBoundingClientRect()
-  const rail = scrollport.getBoundingClientRect()
-  return item.top < rail.top || item.bottom > rail.bottom
+const SIDEBAR_SCROLL_STORAGE_KEY = 'polaris-docs:sidebar-scroll-top'
+
+function getSidebarScrollport() {
+  return document.querySelector('.nextra-sidebar > .nextra-scrollbar.nextra-mask')
+}
+
+function readSidebarScrollTop() {
+  try {
+    const stored = window.sessionStorage.getItem(SIDEBAR_SCROLL_STORAGE_KEY)
+    if (stored === null) return null
+    const value = Number(stored)
+    return Number.isFinite(value) && value >= 0 ? value : null
+  } catch {
+    return null
+  }
+}
+
+function writeSidebarScrollTop(value) {
+  try {
+    window.sessionStorage.setItem(SIDEBAR_SCROLL_STORAGE_KEY, String(value))
+  } catch {
+    // Storage can be unavailable in privacy-restricted browsing contexts.
+  }
 }
 
 export function A11yEnhancements() {
   const pathname = usePathname()
   const previousPathname = useRef(pathname)
+  const restoringSidebarScroll = useRef(false)
+
+  useLayoutEffect(() => {
+    const scrollport = getSidebarScrollport()
+    const savedScrollTop = readSidebarScrollTop()
+    if (!scrollport || savedScrollTop === null) return
+
+    restoringSidebarScroll.current = true
+    const restore = () => {
+      const maximumScrollTop = Math.max(0, scrollport.scrollHeight - scrollport.clientHeight)
+      scrollport.scrollTop = Math.min(savedScrollTop, maximumScrollTop)
+    }
+
+    restore()
+    let secondFrame = 0
+    const firstFrame = window.requestAnimationFrame(() => {
+      restore()
+      secondFrame = window.requestAnimationFrame(() => {
+        restore()
+        restoringSidebarScroll.current = false
+      })
+    })
+
+    return () => {
+      window.cancelAnimationFrame(firstFrame)
+      if (secondFrame) window.cancelAnimationFrame(secondFrame)
+      restoringSidebarScroll.current = false
+    }
+  }, [pathname])
+
+  useEffect(() => {
+    const scrollport = getSidebarScrollport()
+    if (!scrollport) return
+
+    const saveScrollTop = () => {
+      if (!restoringSidebarScroll.current) writeSidebarScrollTop(scrollport.scrollTop)
+    }
+
+    scrollport.addEventListener('scroll', saveScrollTop, { passive: true })
+    scrollport.addEventListener('click', saveScrollTop, true)
+    return () => {
+      scrollport.removeEventListener('scroll', saveScrollTop)
+      scrollport.removeEventListener('click', saveScrollTop, true)
+    }
+  }, [pathname])
 
   useEffect(() => {
     let frame = 0
@@ -35,6 +99,23 @@ export function A11yEnhancements() {
       }
     }
 
+    const alignCopyPageWithTitle = () => {
+      const article = document.querySelector('article')
+      const main = article?.querySelector(':scope > main')
+      if (!article || !main || main.querySelector('.pl-docs-home')) return
+      if (main.querySelector(':scope > .pl-article-heading-row')) return
+
+      const copyControl = article.querySelector(':scope > div[class*="x:float-end"]')
+      const heading = main.querySelector(':scope > h1:first-of-type')
+      if (!copyControl || !heading) return
+
+      const row = document.createElement('div')
+      row.className = 'pl-article-heading-row'
+      copyControl.classList.add('pl-copy-page-control')
+      main.insertBefore(row, heading)
+      row.append(heading, copyControl)
+    }
+
     const syncSidebarState = () => {
       const sidebar = document.querySelector('.nextra-sidebar')
       if (!sidebar) return
@@ -45,10 +126,6 @@ export function A11yEnhancements() {
       const activeLink = sidebar.querySelector('li.active > a[href]')
       if (activeLink) {
         activeLink.setAttribute('aria-current', 'page')
-        const scrollport = activeLink.closest('ul[class*="overflow-y-auto"]') ?? sidebar
-        if (isOutsideScrollport(activeLink, scrollport)) {
-          activeLink.scrollIntoView({ block: 'nearest' })
-        }
       }
 
       const folders = sidebar.querySelectorAll('button[data-href]')
@@ -68,6 +145,7 @@ export function A11yEnhancements() {
     const applyEnhancements = () => {
       labelLandmarks()
       labelCopyPageOptions()
+      alignCopyPageWithTitle()
       syncSidebarState()
     }
 
@@ -94,7 +172,14 @@ export function A11yEnhancements() {
     const observer = new MutationObserver(scheduleEnhancements)
     observer.observe(document.body, {
       attributes: true,
-      attributeFilter: ['class', 'style', 'data-headlessui-state', 'aria-expanded'],
+      attributeFilter: [
+        'class',
+        'style',
+        'data-headlessui-state',
+        'aria-expanded',
+        'aria-hidden',
+        'inert'
+      ],
       childList: true,
       subtree: true
     })
@@ -126,7 +211,7 @@ export function A11yEnhancements() {
         document.querySelector('main')
       if (!destination) return
       if (!destination.hasAttribute('tabindex')) destination.setAttribute('tabindex', '-1')
-      destination.focus({ preventScroll: false })
+      destination.focus({ preventScroll: true })
       if (hashTarget) hashTarget.scrollIntoView({ block: 'start' })
     }, 500)
     return () => window.clearTimeout(timeout)

@@ -131,7 +131,13 @@ function LandingHero() {
 
 export function TestnetBanner() {
   return (
-    <aside className="pl-testnet-banner pl-motion pl-icon-tone-green" aria-label="Public Testnet 1">
+    <a
+      className="pl-testnet-banner pl-motion pl-icon-tone-green"
+      href={EXTERNAL_LINKS.testnetApp}
+      target="_blank"
+      rel="noreferrer"
+      aria-label="Open Public Testnet 1 in a new tab"
+    >
       <span className="pl-testnet-banner-icon">
         <Glyph name="FlaskConical" size={24} />
       </span>
@@ -140,18 +146,13 @@ export function TestnetBanner() {
         <span>Explore Polaris with test assets</span>
       </span>
       <span className="pl-testnet-banner-actions">
-        <a
-          className="pl-testnet-banner-primary"
-          href={EXTERNAL_LINKS.testnetApp}
-          target="_blank"
-          rel="noreferrer"
-        >
+        <span className="pl-testnet-banner-primary">
           Open App
           <ExternalLink aria-hidden="true" size={15} strokeWidth={1.8} />
           <span className="pl-sr-only"> opens in a new tab</span>
-        </a>
+        </span>
       </span>
-    </aside>
+    </a>
   )
 }
 
