@@ -963,7 +963,7 @@ Each conversion therefore has three economic effects: it expands the POLAR suppl
 
 ## Conversion Pricing
 
-Conversions are permissionless and can take place at any time, but their **price is dynamic and set through a Dutch auction**.
+Conversions are permissionless and can take place at any time, but their **price is dynamic and set via **Dutch auction**.
 
 Whenever someone converts pETH into POLAR, the price immediately increases before decaying again over time. A conversion that mints a larger share of the supply pushes the price up much more aggressively than a smaller one because the price impact depends on the fraction of the existing POLAR supply minted during that conversion.
 
