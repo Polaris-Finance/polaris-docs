@@ -16,20 +16,20 @@ Polaris uses two complementary interest rates to manage pAsset markets. Together
 
 **The Peg Stability Rate is the primary interest rate paid by pAsset minters**. It adjusts automatically according to minting and redemption activity and helps keep pAssets around their target price.
 
-**The Protocol Safety Rate is a secondary interest rate that normally remains inactive**. It only activates when the overall collateralization of a pAsset market falls below a predefined threshold, causing interest to flow automatically from higher-leverage positions to lower-leverage or collateral-only positions.
+**The Protocol Safety Rate is an always-active market-internal redistribution mechanism**. It moves value from higher-leverage positions to lower-leverage or collateral-only positions, helping reward positions that improve market collateral health.
 
-Although the protocol's interest rates determine the nominal cost of borrowing, **they do not necessarily represent its effective cost**. Borrowers also receive protocol-generated value as pETH, while lower-leverage positions benefit from more favorable borrowing terms.
+Although the protocol's interest rates determine the nominal cost of minting, **they do not necessarily represent its effective cost**. Minters can receive protocol-generated value as pETH, while lower-leverage and collateral-only positions can benefit from more favorable rate flows.
 
 Property | Peg Stability Rate | Protocol Safety Rate
 
-Purpose | Primary borrowing cost for pAsset minters | Protects aggregate collateral health
-When active | Always | Below collateralization threshold
-Responds to | Minting vs redemption activity | Aggregate collateralization
+Purpose | Primary minting cost for pAsset minters | Protects aggregate collateral health
+When active | Always | Always
+Responds to | Minting vs redemption activity | Position leverage and aggregate collateral health
 Interest | Paid to Earn Vault and vePOLAR | Directly redistributed towards lower-leverage positions
 
 ## Peg Stability Rate
 
-The Peg Stability Rate is the standard borrowing cost paid by users who mint pAssets.
+The Peg Stability Rate is the standard minting cost paid by users who mint pAssets.
 
 **Interest paid through the Peg Stability Rate becomes the primary yield source for that pAsset market** and is distributed to the pAsset's Earn Vault and vePOLAR stakers, according to the market's configured flow allocation assigned.
 
@@ -37,15 +37,15 @@ A unique feature of the Peg Stability Rate is that it is not altered by governan
 
 When a pAsset trades above its target price, arbitrage opportunities naturally encourage new minting. As net minting activity increases, the Peg Stability Rate responds to this signal by gradually decreasing toward its minimum base fee of 0.05%, reducing the cost of creating new pAssets and allowing supply to expand more quickly.
 
-Vice versa, when a pAsset trades below its target price, arbitrage opportunities encourage redemptions instead. As net redemption activity increases, the Peg Stability Rate gradually increases, making the creation of new debt positions less attractive while helping the circulating supply contract.
+Vice versa, when a pAsset trades below its target price, arbitrage opportunities encourage redemptions instead. As net redemption activity increases, the Peg Stability Rate gradually increases, making new minting less attractive while helping the circulating supply contract.
 
 ## Protocol Safety Rate
 
 The Protocol Safety Rate is **designed to protect the overall collateral health of a pAsset market**.
 
-Under normal market conditions it remains inactive and has no effect on user positions. **It only activates when the market's aggregate collateral ratio falls below a predefined threshold**. Once active, positions with higher leverage begin paying an additional interest rate, while lower-leverage or collateral-only positions receive those payments.
+It is active at all times and affects positions according to their relative leverage. Positions with higher leverage pay the rate, while lower-leverage or collateral-only positions receive it.
 
-This makes it profitable for healthier positions to enter or remain in the market during stressed conditions, while making high-leverage positions more expensive to maintain.
+In normal market conditions this effect may be small. When collateral health weakens, it can become more significant, making it profitable for healthier positions to enter or remain in the market while making high-leverage positions more expensive to maintain.
 
 The goal is to improve the market's overall collateral health by increasing the cost of higher leverage while rewarding more conservative collateralization.
 

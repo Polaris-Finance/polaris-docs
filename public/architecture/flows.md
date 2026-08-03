@@ -14,7 +14,11 @@ Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 Flows distribute protocol-generated value throughout the Polaris ecosystem.
 
-These incentive streams are funded by protocol activity and distributed in pETH or pAssets. Thus, ecosystem incentives are paid out **using assets directly connected to protocol activity**, without relying on inflationary POLAR emissions.
+These incentive streams sit one layer above the Fee Router. The Fee Router processes pETH-denominated protocol revenue through the bonding curve first; flows determine where the resulting pETH rewards are sent.
+
+pAsset flows operate separately. Interest paid by minters of assets such as USDp or GOLDp does not pass through the Fee Router, and is instead distributed through that pAsset market's own flow logic.
+
+Thus, ecosystem incentives are paid out **using assets directly connected to protocol activity**, without relying on inflationary POLAR emissions.
 
 ## Flow Allocation
 
@@ -30,16 +34,18 @@ Since these minimum allocations distribute protocol value before a recipient has
 
 **pETH flows are funded by pETH-denominated protocol activity**, including bonding curve swap fees, Reserve Loan fees and pETH-to-POLAR conversions.
 
-When these fees are processed, they are burned into the bonding curve floor, increasing the pETH floor. The resulting ETH released from the reserve is then used to purchase pETH through the bonding curve before being distributed through pETH flows.
+When these fees are processed, they pass through the [Fee Router](https://docs.polaris.finance/design/fee-router): pETH is burned at the floor, ETH is released from the reserve, that ETH buys newly minted pETH, and the resulting pETH is distributed through pETH flows.
 
 **Each pAsset market also generates its own independent flow** funded by the interest paid by users who mint that specific pAsset, such as USDp or GOLDp.
 
-Unlike pETH flows, every pAsset market routes a protocol-defined minimum allocation of this flow to the corresponding Earn Vault and to vePOLAR. The remaining flow can then be distributed to approved recipients building around that pAsset, including liquidity pools, vaults, structured products and other integrations.
+Unlike pETH flows, pAsset flows do not pass through the Fee Router. Each market routes a protocol-defined minimum allocation to its corresponding Earn Vault. For USDp and GOLDp, a share is also routed to vePOLAR. Future pAsset markets may choose to share revenue with vePOLAR as part of their alignment strategy and their case for receiving pETH flows.
+
+The remaining flow can then be distributed to approved recipients building around that pAsset, including liquidity pools, vaults, structured products and other integrations.
 
 Flow type | Funded by | Distribution
 
-pETH flows | Bonding curve swap fees, Reserve Loan fees, pETH→POLAR conversions | Fees burned into the floor, then redistributed as pETH
-pAsset flows | Interest paid by pAsset minters | Minimum to Earn Vault + vePOLAR; remainder to approved recipients
+pETH flows | Bonding curve swap fees, Reserve Loan fees, pETH→POLAR conversions | Processed by the Fee Router, then distributed as pETH
+pAsset flows | Interest paid by pAsset minters | Distributed by each pAsset market's flow logic
 
 ## Stewardship Role
 

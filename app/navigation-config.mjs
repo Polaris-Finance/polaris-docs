@@ -138,7 +138,7 @@ export const NAVIGATION_GROUPS = [
           page(
             'spike-and-decay-fees',
             'spike-and-decay-fees',
-            'Spike-and-Decay Fees',
+            'Spike-and-Decay Pricing',
             '/design/spike-and-decay-fees',
             'Activity'
           ),
@@ -152,7 +152,7 @@ export const NAVIGATION_GROUPS = [
           page(
             'recovery-mode',
             'recovery-mode',
-            'Recovery Mode',
+            'Defensive and Recovery Modes',
             '/design/recovery-mode',
             'LifeBuoy'
           ),

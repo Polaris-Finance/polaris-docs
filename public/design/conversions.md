@@ -22,19 +22,21 @@ As a result, every expansion of the POLAR supply requires pETH to be converted, 
 
 Whenever a user converts pETH, **the converted amount is permanently burned** and an equivalent amount of new POLAR is minted.
 
-Burning pETH reduces its circulating supply and releases ETH from the bonding curve reserve. A portion of that ETH may be returned directly to the converter as a rebate, while the remaining value is ultimately routed back into the protocol through the Fee Router, where it contributes to the protocol-native yield reflected in the pETH spot price.
+Burning pETH reduces its circulating supply and releases ETH from the bonding curve reserve. A portion of that ETH may be returned directly to the converter as a rebate, while the remaining value is ultimately routed back into the protocol through the Fee Router, where it contributes to the protocol-native yield reflected in pETH.
 
-Each conversion therefore has two economic effects: it expands the POLAR supply and increases the value represented by every remaining unit of pETH.
+Each conversion therefore has three economic effects: it expands the POLAR supply, increases the value represented by every remaining unit of pETH, and creates pETH flows that can be distributed across the ecosystem.
 
 ## Conversion Pricing
 
-Conversions are permissionless and can take place at any time, but their **price is dynamic and set via **Dutch auction**.
+Conversions are permissionless and can take place at any time, but their **price is dynamic and set through a Dutch auction**.
 
 Whenever someone converts pETH into POLAR, the price immediately increases before decaying again over time. A conversion that mints a larger share of the supply pushes the price up much more aggressively than a smaller one because the price impact depends on the fraction of the existing POLAR supply minted during that conversion.
 
 This naturally encourages smaller and more frequent conversions over large supply-shocking events.
 
-As the price gradually falls, opportunities emerge whenever converting becomes more attractive than acquiring POLAR on the open market. Thus, PETH-to-POLAR conversions are expected to occur steadily over time in relatively small chunks.
+The spike-and-decay parameters that govern conversion pricing are stewarded within immutable bounds, allowing the mechanism to be tuned without changing its underlying design.
+
+As the price gradually falls, opportunities emerge whenever converting becomes more attractive than acquiring POLAR on the open market. Thus, pETH-to-POLAR conversions are expected to occur steadily over time in relatively small chunks.
 
 ## One-Way Only
 
