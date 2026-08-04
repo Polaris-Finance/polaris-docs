@@ -9,7 +9,7 @@ Polaris is designed to rely on its own onchain mechanisms wherever possible, min
 
 However, pAssets require external reference prices. Polaris limits the oracle layer to those markets through a reusable design for every pAsset market, keeping oracle dependency to a minimum without compromising resilience to oracle failures.
 
-To achieve this, Polaris routes every external price through a **custom oracle aggregator called the Medianizer**.
+To achieve this, **Polaris routes every external price through a custom oracle aggregator called the Medianizer**.
 
 The Medianizer is used wherever external reference prices are needed. For instance, USDp uses it for ETH/USD, while GOLDp uses it for both ETH/USD and XAU/USD. Future pAssets follow the same approach by using the reference feeds required for their own underlying asset.
 

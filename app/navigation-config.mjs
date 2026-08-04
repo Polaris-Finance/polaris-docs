@@ -164,7 +164,7 @@ export const NAVIGATION_GROUPS = [
             'recovery-mode',
             'Recovery Mode',
             '/design/recovery-mode',
-            'Activity'
+            'LifeBuoy'
           )
         ]
       }
