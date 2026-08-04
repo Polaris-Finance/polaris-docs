@@ -149,16 +149,23 @@ export const NAVIGATION_GROUPS = [
             '/design/interest-rates',
             'Percent'
           ),
+          page('conversions', 'conversions', 'Conversions', '/design/conversions', 'RefreshCw'),
+          page('liquidations', 'liquidations', 'Liquidations', '/design/liquidations', 'Gavel'),
+          page('oracles', 'oracles', 'Oracles', '/design/oracles', 'RadioTower'),
+          page(
+            'defensive-mode',
+            'defensive-mode',
+            'Defensive Mode',
+            '/design/defensive-mode',
+            'ShieldAlert'
+          ),
           page(
             'recovery-mode',
             'recovery-mode',
-            'Defensive and Recovery Modes',
+            'Recovery Mode',
             '/design/recovery-mode',
-            'LifeBuoy'
-          ),
-          page('conversions', 'conversions', 'Conversions', '/design/conversions', 'RefreshCw'),
-          page('liquidations', 'liquidations', 'Liquidations', '/design/liquidations', 'Gavel'),
-          page('oracles', 'oracles', 'Oracles', '/design/oracles', 'RadioTower')
+            'Activity'
+          )
         ]
       }
     ]

@@ -51,3 +51,7 @@ Replacelive feed | Timelock
 Fill empty slot | Timelock
 
 Polaris can therefore recover from oracle failures without giving stewards immediate discretionary control over active price sources.
+
+##
+
+**Note:** The set of oracle feeds used at launch will be finalized closer to the mainnet launch.

@@ -1,0 +1,33 @@
+---
+title: "Defensive Mode"
+description: "Defensive Mode is the first protective state a pAsset market enters when its collateralization becomes stressed."
+---
+
+# Defensive Mode
+
+Defensive Mode is the first protective state a pAsset market enters. It begins when the market's **reserve-to-debt ratio falls below 110%**, while backing is still above 100%. Its purpose is to stop the market weakening further while there is still room to recover.
+
+In practice this state should be rare. The [Protocol Safety Rate](/design/interest-rates#protocol-safety-rate) makes leverage progressively more expensive as collateral health weakens, discouraging positions from pushing a market toward Defensive Mode in the first place.
+
+Each [pAsset market](/architecture/passet-markets) has its own thresholds. Stress affecting one market does not automatically place every other market into the same state, so [USDp](/core-assets/usdp), [GOLDp](/core-assets/goldp) and future pAssets remain independent from one another.
+
+## Restrictions
+
+While active, the market continues operating and **restricts only the actions that would weaken collateral health**. Users can still add collateral, repay debt and improve their positions. Any modification that increases risk, such as increasing debt or withdrawing collateral, is only allowed if it leaves the position at a collateral ratio of at least 150% and does not lower the position's ratio.
+
+| Action | Status | Notes |
+| --- | --- | --- |
+| Add collateral | Allowed | Improves position health |
+| Repay debt | Allowed | Improves position health |
+| Withdraw collateral | Restricted | Allowed only if the position stays at 150% or above and its ratio does not fall |
+| Increase debt | Restricted | Allowed only if the position stays at 150% or above and its ratio does not fall |
+| Close position | Restricted | Would lower market backing |
+| Direct pAsset minting | Restricted | Would increase market debt |
+
+If a market's collateralization keeps weakening past full backing, it enters [Recovery Mode](/design/recovery-mode).
+
+---
+
+<br />
+
+**Note:** Defensive Mode is a feature of individual pAsset markets. It does not affect the [bonding curve](/architecture/bonding-curve), which continues to function normally regardless of the state of any pAsset market.
