@@ -14,14 +14,18 @@ Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 Polaris is an onchain yield layer built around pETH, **a yield-bearing reserve asset** designed to collateralize censorship-resistant stablecoins and synthetic assets.
 
-ETH enters the system through the Polaris bonding curve and becomes pETH, the collateral asset at the center of the ecosystem. Stablecoins, commodities and synthetic assets are all issued against pETH, while economic activity within the protocol generates value that flows back into the system.
+ETH enters the system through the Polaris bonding curve and becomes pETH, the collateral asset at the center of the ecosystem. Stablecoins, commodities and synthetic assets are all issued against pETH, with the economic activity they generate flowing back into the ecosystem.
 
 ![Polaris flow from swapping ETH for pETH to minting pAssets, splitting pETH, and entering stewardship.](https://docs.polaris.finance/infographics/home.jpg)
 
+The flagship market of the Polaris ecosystem is USDp, a fully decentralized and censorship-resistant dollar backed by pETH. Built on the same infrastructure, GOLDp is the first permissionless onchain market, with many more currencies, commodities, and synthetic assets coming to expand the ecosystem over time under the same framework and collateral asset.
+
+Beyond collateralizing markets, pETH can also be split into fpETH and vpETH: fpETH represents the ever-rising floor price of pETH as a standalone yield-bearing asset, while vpETH isolates its market premium and volatility.
+
+The **primitives introduced throughout Polaris can be combined in different ways**, enabling non-liquidatable ETH loans, carry trades that turn traditionally non-yield-bearing assets into yield-bearing ones, capital-efficient DeFi looping, and entirely new strategies built on top of the protocol.
+
 Together, these mechanisms form a monetary system where protocol activity strengthens collateral, collateral supports liquidity, and liquidity drives further protocol activity, without relying on external counterparties or offchain dependencies.
 
-The flagship stablecoin of the Polaris ecosystem is USDp, a **fully decentralized and censorship-resistant** dollar backed by pETH.
+**Everything happening within the protocol contributes to the same underlying economy**. Bonding curve fees, borrowing demand, conversions, liquidations, and other protocol activity generate revenue that is redistributed across the ecosystem through native yield, strengthening its assets and the users who hold them.
 
-USDp maintains its peg through overcollateralization and the protocol mechanisms described throughout this documentation, with **protocol yield generated through onchain activity**, including bonding curve fees, borrowing demand, conversions, and other protocol mechanisms.
-
-This allows value created within Polaris to remain within Polaris.
+This enables value created within Polaris to remain within Polaris.

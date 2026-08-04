@@ -12,7 +12,7 @@ Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 ---
 
-The evolution of stablecoins revealed **another structural problem**.
+The evolution of stablecoins revealed another structural problem.
 
 Even if permissionless money could scale without relying on centralized issuers or opaque sources of yield, Ethereum would still face a different challenge. The network secures one of the largest financial ecosystems in the world, yet very little of the economic activity taking place on top of it meaningfully strengthens ETH itself.
 
