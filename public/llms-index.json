@@ -291,6 +291,16 @@
       "updated": null
     },
     {
+      "route": "/design/defensive-mode",
+      "url": "https://docs.polaris.finance/design/defensive-mode",
+      "markdownUrl": "https://docs.polaris.finance/design/defensive-mode.md",
+      "section": "Protocol Mechanics",
+      "title": "Defensive Mode",
+      "description": "Defensive Mode is the first protective state a pAsset market enters when its collateralization becomes stressed.",
+      "keywords": [],
+      "updated": null
+    },
+    {
       "route": "/design/fee-router",
       "url": "https://docs.polaris.finance/design/fee-router",
       "markdownUrl": "https://docs.polaris.finance/design/fee-router.md",
@@ -348,8 +358,8 @@
       "url": "https://docs.polaris.finance/design/recovery-mode",
       "markdownUrl": "https://docs.polaris.finance/design/recovery-mode.md",
       "section": "Protocol Mechanics",
-      "title": "Defensive and Recovery Modes",
-      "description": "Defensive Mode and Recovery Mode are protective states for stressed pAsset markets.",
+      "title": "Recovery Mode",
+      "description": "Recovery Mode is the protective state a pAsset market enters when its backing falls below full collateralization.",
       "keywords": [],
       "updated": null
     },
