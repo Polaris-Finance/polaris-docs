@@ -1009,6 +1009,38 @@ Relevant app/search vocabulary: POLAR, convert, lock, vePOLAR, burn pETH, conver
 
 ---
 
+## Defensive Mode
+
+URL: https://docs.polaris.finance/design/defensive-mode
+Markdown URL: https://docs.polaris.finance/design/defensive-mode.md
+
+Defensive Mode is the first protective state a pAsset market enters. It begins when the market's **reserve-to-debt ratio falls below 110%**, while backing is still above 100%. Its purpose is to stop the market weakening further while there is still room to recover.
+
+In practice this state should be rare. The [Protocol Safety Rate](https://docs.polaris.finance/design/interest-rates#protocol-safety-rate) makes leverage progressively more expensive as collateral health weakens, discouraging positions from pushing a market toward Defensive Mode in the first place.
+
+Each [pAsset market](https://docs.polaris.finance/architecture/passet-markets) has its own thresholds. Stress affecting one market does not automatically place every other market into the same state, so [USDp](https://docs.polaris.finance/core-assets/usdp), [GOLDp](https://docs.polaris.finance/core-assets/goldp) and future pAssets remain independent from one another.
+
+## Restrictions
+
+While active, the market continues operating and **restricts only the actions that would weaken collateral health**. Users can still add collateral, repay debt and improve their positions. Any modification that increases risk, such as increasing debt or withdrawing collateral, is only allowed if it leaves the position at a collateral ratio of at least 150% and does not lower the position's ratio.
+
+Action | Status | Notes
+
+Add collateral | Allowed | Improves position health
+Repay debt | Allowed | Improves position health
+Withdraw collateral | Restricted | Allowed only if the position stays at 150% or above and its ratio does not fall
+Increase debt | Restricted | Allowed only if the position stays at 150% or above and its ratio does not fall
+Close position | Restricted | Would lower market backing
+Direct pAsset minting | Restricted | Would increase market debt
+
+If a market's collateralization keeps weakening past full backing, it enters [Recovery Mode](https://docs.polaris.finance/design/recovery-mode).
+
+---
+
+**Note:** Defensive Mode is a feature of individual pAsset markets. It does not affect the [bonding curve](https://docs.polaris.finance/architecture/bonding-curve), which continues to function normally regardless of the state of any pAsset market.
+
+---
+
 ## Fee Router
 
 URL: https://docs.polaris.finance/design/fee-router
@@ -1169,38 +1201,50 @@ Relevant app/search vocabulary: oracle, oracles, Medianiser, price feed, ETH/USD
 
 ---
 
-## Defensive and Recovery Modes
+## Recovery Mode
 
 URL: https://docs.polaris.finance/design/recovery-mode
 Markdown URL: https://docs.polaris.finance/design/recovery-mode.md
 
-Defensive Mode and Recovery Mode are protective states a pAsset market can enter when its overall collateralization weakens.
+Recovery Mode is the protective state a [pAsset market](https://docs.polaris.finance/architecture/passet-markets) enters when its **reserve-to-debt ratio falls below 100%**, meaning the collateral in the market no longer fully covers its outstanding debt.
 
-Each pAsset market has its own thresholds. Stress affecting one market does not automatically place every other market into the same state, so USDp, GOLDp and future pAssets remain independent from one another.
+Polaris is built to **operate indefinitely**, and a system with that goal has to define how it behaves in every state it could reach. That includes the rare one where a market's collateral no longer fully covers its debt. Rather than halt or unwind, Polaris specifies how the market keeps running and works its way back.
 
-The first threshold activates **Defensive Mode**. The market continues operating, but actions that would weaken collateral health can be restricted. Users can still add collateral, repay debt and improve their positions, while actions such as increasing debt or withdrawing collateral may become unavailable.
+Reaching Recovery Mode is exceedingly unlikely. A market only falls below full backing after its earlier defences have been overrun: the restrictions of Defensive Mode, the pressure of the Protocol Safety Rate, and the liquidations and redemptions that restore backing along the way. Crossing the line would take a collateral crash fast and deep enough to outpace all of them at once. Designing for that case is what lets the protocol endure it.
 
-The second, more severe threshold activates **Recovery Mode**. Recovery Mode keeps the market open for deleveraging while applying stricter protections around minting and redemptions.
+Recovery Mode keeps every restriction of Defensive Mode and adds two protections:
+- Redemptions are paid in proportion to the collateral that remains.
+- Liquidations can only hold or improve the backing that is left.
 
-The goal of both modes is to **prevent the market from weakening while preserving the ability to repay debt and reduce risk**. The normal liquidation threshold does not change, and positions are liquidated only after falling below the same minimum collateral ratio that applies under normal market conditions.
+## Proportional redemptions
 
-## Peg Stability
+Above full backing, a redemption returns collateral at face value. Below full backing, paying face value would let the first redeemers take the whole reserve while later ones receive nothing.
 
-Defensive Mode and Recovery Mode also affect direct minting and redemptions. **New direct minting is disabled** because it would increase the outstanding debt of the affected market, whereas direct redemptions remain available because they reduce the circulating supply.
+Recovery Mode prevents this. Every redemption is scaled by the market's current backing, so a market backed at 80% pays 80% of face value, to everyone, in the same proportion.
 
-If the market's collateral falls below full backing in Recovery Mode, **redemption payouts become proportional to the collateral that remains available**. This ensures every redeemer receives a proportional share of the remaining backing, eliminating any advantage for participants who exit first.
+Because every redeemer takes the same cut, the backing ratio is preserved as redemptions happen. There is no advantage to exiting first and no penalty for exiting later. This is what lets the market keep operating honestly below full backing instead of freezing.
 
-Bonding curve swaps remain available throughout both modes. Since the bonding curve operates as **shared pETH infrastructure independent of any individual pAsset market**, pETH holders can continue using it even if a specific market enters Defensive Mode or Recovery Mode.
+## Liquidations
 
-Action | Defensive Mode | Recovery Mode | Why
+**Liquidation by redistribution is disabled.** Redistribution spreads a liquidated position's debt across the remaining borrowers. In a fully backed market that cleanly clears a bad position, because the collateral behind it still covers the debt. Below full backing the same step becomes ambiguous: it pushes more debt onto positions that are themselves under-backed, weakening all of them at once. Repeated, it can collapse the market onto a single borrower, and none of it helps the market recover.
 
-Add collateral / repay debt | Allowed | Allowed | Improves position health
-Withdraw collateral / increase debt | Restricted | Disabled | Would weaken market health
-Direct pAsset minting | Disabled | Disabled | Would increase market debt
-Redemptions | Allowed | Allowed, or proportional if below full backing | Reduces supply
-Bonding curve swaps | Allowed | Allowed | Independent infrastructure
+**Liquidations must hold or improve the market's collateralization.** A liquidation that would push backing further down is not carried out, so the market's health can only move in the right direction while it recovers.
 
-These mechanisms are designed to help a stressed market deleverage in an orderly and isolated manner, without shutting down the wider Polaris ecosystem.
+## Leaving Recovery Mode
+
+A market leaves Recovery Mode when its backing rises back above full collateralization. Once backing recovers past the [Defensive Mode](https://docs.polaris.finance/design/defensive-mode) threshold, the market returns to normal operation.
+
+Backing recovers as:
+
+- **The collateral price rises.** A market usually enters Recovery Mode after a sharp fall in the collateral price, so a recovery in that price is the largest and most direct lever back.
+- **Borrowers strengthen their positions.** Adding collateral and repaying debt stay open throughout, and both lift the market's backing.
+- **Yield streams keep flowing.** The protocol's yield sources continue through Recovery Mode, strengthening collateral ratios over time.
+- **Weak positions are liquidated.** Every liquidation that proceeds can only hold or improve the ratio, so clearing the weakest positions moves backing in the right direction.
+- **The Protocol Safety Rate keeps pushing.** It rewards conservative and collateral-only positions and taxes high leverage, steadily nudging the market back toward stronger backing.
+
+---
+
+**Note:** Recovery Mode is a feature of individual pAsset markets. It does not affect the [bonding curve](https://docs.polaris.finance/architecture/bonding-curve), which continues to function normally regardless of the state of any pAsset market.
 
 ---
 
