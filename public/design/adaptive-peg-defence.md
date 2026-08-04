@@ -12,7 +12,7 @@ Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 ---
 
-Polaris incorporates **permissionless minting and redemptions** to help pAssets trade around their target price.
+Polaris incorporates **direct minting and redemptions** to help pAssets trade around their target price.
 
 Many collateralized asset systems are more effective at defending one side of the peg than the other, allowing supply to contract without providing an equally direct way to expand it under stress, or vice versa.
 
@@ -29,7 +29,7 @@ When a pAsset trades above its target price, market participants can **mint new 
 
 For example, if USDp trades above one dollar, an arbitrageur can deposit ETH into the bonding curve, receive pETH and immediately mint new USDp at par before selling it above one dollar. This increases the circulating supply and naturally pushes the market price back toward its target.
 
-Polaris extends this mechanism through Adaptive Peg Defense, which treats direct minting as an upsizing of the existing market. The added collateral, debt and minting fees are distributed across open positions according to protocol accounting.
+Polaris extends this mechanism through the Adaptive Peg Defense, which treats direct minting as an upsizing of the existing market. The added collateral, debt and minting fees are distributed across open positions according to protocol accounting.
 
 This means the market can expand in response to above-peg demand without requiring the arbitrageur to maintain a long-lived position. Existing positions grow alongside the market and receive the associated minting fees.
 

@@ -18,7 +18,7 @@ Its role is to collect pETH fees, process them through the bonding curve and sen
 
 ## Strengthening pETH First
 
-When pETH collected as protocol fees reaches the Fee Router, it is first burned at the pETH floor. This permanently removes the accumulated pETH from circulation, increasing the floor price of every remaining pETH while releasing the corresponding ETH from the bonding curve reserve.
+When pETH collected as protocol fees reaches the Fee Router, **it is first burned at the pETH floor**. This permanently removes the accumulated pETH from circulation, increasing the floor price of every remaining pETH while releasing the corresponding ETH from the bonding curve reserve.
 
 That ETH is then immediately used to purchase newly minted pETH, which raises the bonding curve spot price. Only then are the newly minted pETH distributed as rewards.
 
@@ -26,7 +26,7 @@ Passing protocol revenue through the bonding curve enables the same value to str
 
 In sequence:
 
-1. **pETH collected as fees is burned at the floor**, raising the floor price and releasing ETH from the reserve.
+1. pETH collected as fees is burned at the floor, raising the floor price and releasing ETH from the reserve.
 2. That ETH immediately buys newly minted pETH, raising the bonding curve spot price.
 3. The newly minted pETH is sent to pAsset markets and whitelisted recipients through pETH flows.
 
@@ -34,4 +34,4 @@ In sequence:
 
 The Fee Router collects protocol revenue denominated in pETH, processes it through the bonding curve and distributes the resulting pETH rewards according to the configured pETH flows.
 
-This means every pETH reward distributed by the **Fee Router has already contributed to strengthening both the floor price and the spot price of pETH before reaching its final destination**.
+This means every pETH reward distributed by the Fee Router has already contributed to **strengthening both the floor price and the spot price of pETH** before reaching its final destination.

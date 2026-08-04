@@ -12,29 +12,29 @@ Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 ---
 
-Bonding curves have been part of crypto for years, particularly in DEXs and launchpads, where they provide asset pricing and exchange. Polaris uses a bonding curve for a different purpose: creating a shared collateral for decentralized currencies and synthetic assets across the protocol.
+Bonding curves have been part of crypto for years, particularly in DEXs and launchpads, where they provide asset pricing and exchange. Polaris uses a bonding curve for a different purpose: creating a shared collateral for censorship-resistant currencies and synthetic assets across the protocol.
 
 Whenever ETH enters the bonding curve, new pETH is created. Returning pETH to the bonding curve simply reverses the process, burning the pETH and releasing the corresponding amount of ETH.
 
-Since the bonding curve itself acts as the market between ETH and pETH, users can always move between the two assets without relying on external liquidity providers. As more ETH enters Polaris, the liquidity available through the bonding curve grows together with the protocol itself, giving every pAsset built on top of pETH access to the same protocol-native ETH liquidity.
+Since the bonding curve itself acts as the market between ETH and pETH, users can always move between the two assets without relying on external liquidity providers. As more ETH enters Polaris, **the bonding curve provides deeper liquidity to the whole ecosystem**, giving every pAsset built on top of pETH access to the same protocol-native ETH liquidity.
 
 As such, value generated anywhere in Polaris flows back to the same collateral that backs the protocol, enabling new financial primitives to build on pETH while strengthening the same foundation that supports the whole protocol.
 
-Beyond bringing pETH into existence, the bonding curve also enables several of the properties that define Polaris: it sets the price of pETH, generates a **protocol-native source of yield** directly from onchain swaps and allows minting rates to emerge directly from market conditions.
+Beyond bringing pETH into existence, the bonding curve also enables several of the properties that define Polaris: it sets the price of pETH, generates a protocol-native source of yield directly from onchain swaps and allows minting rates to emerge directly from market conditions.
 
 ## A Scale-Free Design
 
 The bonding curve is designed to behave consistently regardless of the amount of capital secured by the protocol.
 
-This scale-free design means that whether Polaris secures thousands of ETH or millions, the same mechanism continues to operate under the same rules, allowing the protocol to **scale without changing the economic behavior of pETH** as adoption increases.
+This scale-free design means that whether Polaris secures thousands of ETH or millions, the same mechanism continues to operate under the same rules, enabling the protocol to **scale without changing the economic behavior of pETH** as adoption increases.
 
-This also allows pETH to remain the shared collateral for a growing ecosystem of pAssets without fragmenting liquidity as new assets are introduced.
+This keeps pETH as the shared collateral for a growing ecosystem of pAssets without fragmenting liquidity as new ones are introduced.
 
 ## The Role of β
 
-The main parameter defining the bonding curve is β (beta), the exponent in the power-law curve. β determines the concavity of the curve, which controls how sharply the pETH price responds as ETH enters or leaves the bonding curve.
+The main parameter defining the bonding curve is β (*beta*), the exponent in the power-law curve. β determines the concavity of the curve, which controls how sharply the pETH price responds as ETH enters or leaves the bonding curve.
 
-In plain terms, β defines the shape of the market. A larger β produces a steeper curve, causing the market price of pETH to react more aggressively as capital enters or leaves the bonding curve.
+In plain terms, **β defines the shape of the market**. A larger β produces a steeper curve, causing the market price of pETH to react more aggressively as capital enters or leaves the bonding curve.
 
 A smaller β produces a flatter curve, reducing the impact of those same capital flows while increasing the proportion of pETH represented by its floor price.
 
@@ -49,7 +49,7 @@ The chosen value of β is intended to enable the Polaris economic model, ensurin
 
 ## The Economic Engine
 
-Unlike most collateral assets, one of the defining characteristics of pETH is that the **value generated throughout Polaris strengthens its floor price**.
+Unlike most collateral assets, one of the defining characteristics of pETH is that **value generated throughout Polaris strengthens its floor price**.
 
 All value generated through the protocol ultimately flows back to the same economic system built around pETH, which allows its floor price to steadily grow as the protocol expands.
 

@@ -24,13 +24,13 @@ Since GOLDp exists entirely onchain, **users can freely access digital gold with
 
 GOLDp is minted by depositing pETH as collateral and opening an overcollateralized minting position.
 
-Like USDp, GOLDp uses the same minting mechanism and **minimum collateral ratio of 115%**. In practice, this means every position requires at least \$1.15 worth of pETH collateral for every \$1 worth of GOLDp. Market movements can later reduce that ratio, making positions that fall below 115% eligible for [liquidations](https://docs.polaris.finance/design/liquidations).
+Like USDp, GOLDp uses the same minting mechanism and minimum collateral ratio of 115%. In practice, this means every position requires at least \$1.15 worth of pETH collateral for every \$1 worth of GOLDp. Market movements can later reduce that ratio, making positions that fall below 115% eligible for [liquidations](https://docs.polaris.finance/design/liquidations).
 
 The 115% minimum collateral ratio is the point at which a position becomes eligible for liquidation. Users should maintain a higher collateral ratio to provide a greater safety margin.
 
 Once minted, GOLDp provides onchain exposure to the price of gold. It can be transferred freely on Ethereum, held as a digital gold asset or integrated into DeFi applications.
 
-On top of this, users who want to earn protocol-native yield can deposit GOLDp into the **GOLDp Earn Vault**, which distributes both GOLDp and pETH from a portion of the interest paid by GOLDp minters and pETH liquidation gains. The exact mechanics are explained in the [Earn Vaults](https://docs.polaris.finance/architecture/earn-vaults) section.
+On top of this, users who want **to earn protocol-native yield can deposit GOLDp into the GOLDp Earn Vault**, which distributes both GOLDp and pETH from a portion of the interest paid by GOLDp minters and pETH liquidation gains. The exact mechanics are explained in the [Earn Vaults](https://docs.polaris.finance/architecture/earn-vaults) section.
 
 Users may hold GOLDp as digital gold, deposit it into the Earn Vault, provide liquidity alongside other gold assets or build other strategies on top of it. The resulting market exposure depends on how GOLDp is ultimately used.
 

@@ -12,7 +12,7 @@ Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 ---
 
-Polaris is an onchain yield layer built around pETH, a yield-bearing reserve asset designed to collateralize censorship-resistant stablecoins and synthetic assets.
+Polaris is aa permissionless onchain ecosystem built around pETH, a yield-bearing reserve asset designed to collateralize censorship-resistant stablecoins and synthetic assets.
 
 ETH enters the system through the Polaris bonding curve and becomes pETH, the collateral asset at the center of the ecosystem. Stablecoins, commodities and synthetic assets are all issued against pETH, with the economic activity they generate flowing back into the ecosystem.
 

@@ -12,13 +12,13 @@ Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 ---
 
-Every time pETH trades above its mathematically-derived floor, **the difference is the market premium**.
+Every time pETH trades above its mathematically-derived floor, the difference is the market premium.
 
-That premium reflects what the market believes pETH is worth beyond its floor. It captures expectations about the future growth of Polaris, the utility of pETH across the ecosystem and the confidence participants place in its long-term development.
+That premium reflects what the market believes pETH is worth beyond its floor. **It captures expectations about the future growth of Polaris**, the utility of pETH across the ecosystem and the confidence participants place in its long-term development.
 
 As shown in the previous page, splitting one pETH transforms it into one fpETH and one vpETH. Together they always reconstruct the original pETH, while allowing users to hold, trade and build strategies around two different sources of value.
 
-While fpETH isolates the steadily growing floor, vpETH represents the component of pETH through which **the market expresses its expectations for the future growth of Polaris**.
+While fpETH isolates the steadily growing floor, vpETH represents the component of pETH through which the market expresses its expectations for the future growth of Polaris.
 
 ![How vpETH represents the changing premium share between the pETH spot price and floor price along the bonding curve.](https://docs.polaris.finance/infographics/vpeth.jpg)
 
@@ -49,17 +49,17 @@ The two assets still originate from the same pETH, but each responds to a differ
 
 vpETH represents the market premium of pETH above its floor, but that does not mean vpETH must always trade exactly at the current premium shown by the bonding curve.
 
-vpETH is likely to appeal to users who want direct exposure to the pETH premium and believe Polaris TVL, pETH demand, or pAsset demand will expand enough for that premium to grow. This **can make vpETH attractive when a buyer expects the pETH premium to expand faster than the pETH floor rises**.
+vpETH is likely to appeal to users who want direct exposure to the pETH premium and believe Polaris TVL, pETH demand, or pAsset demand will expand enough for that premium to grow. **This can make vpETH attractive when a buyer expects the pETH premium to expand faster than the pETH floor rises**.
 
 vpETH may also appeal to users who want to lend it to short sellers. Short sellers may borrow vpETH to hedge Polaris positions or build delta-neutral strategies, creating a potential **lending market for vpETH holders**.
 
-On secondary markets, vpETH can trade above or below the current premium shown by the bonding curve. However, because fpETH has access to the floor value through Reserve Loans, vpETH may often trade at **a secondary-market discount to the current premium**. Its price reflects expectations around future premium expansion, floor growth, liquidity, and volatility.
+On secondary markets, vpETH can trade above or below the current premium shown by the bonding curve. However, because fpETH has access to the floor value through Reserve Loans, vpETH may often trade at a secondary-market discount to the current premium. Its price reflects expectations around future premium expansion, floor growth, liquidity, and volatility.
 
 This creates a linked pricing relationship: one fpETH plus one vpETH can always be merged back into one pETH, while the market price of each component reflects how traders value future floor growth and future premium volatility.
 
 ## A Familiar Mental Model
 
-Users familiar with Pendle may recognize the idea of separating a single asset into **two independently tradable components**.
+Users familiar with Pendle may recognize the idea of separating a single asset into two independently tradable components.
 
 Both Pendle and Polaris begin with a yield-bearing asset, but they isolate different components.
 
@@ -78,8 +78,8 @@ The simplest way to use vpETH is to gain direct exposure to the market premium o
 
 Some users may simply hold it because they believe the market is underestimating the future growth of Polaris. But others **may actively trade it as the premium expands and contracts over time**.
 
-Since vpETH represents the portion of pETH that trades above its bonding curve floor, it **can also serve as a useful hedging tool**. For example, users holding overcollateralized minting positions on Polaris may choose to short vpETH on a secondary market **to reduce exposure to changes in the premium while continuing to hold the underlying pETH position**.
+Since vpETH represents the portion of pETH that trades above its bonding curve floor, **it can also serve as a useful hedging tool**. For example, users holding overcollateralized minting positions on Polaris may choose to short vpETH on a secondary market **to reduce exposure to changes in the premium while continuing to hold the underlying pETH position**.
 
 This effectively leaves the user exposed only to the ETH/USD price, which also can be hedged on an external venue to make the position delta-neutral, while preserving exposure to growth in the pETH floor. Because the position and hedge values can change, maintaining neutrality may still require rebalancing, while the strategy remains exposed to risks external to Polaris.
 
-As the protocol expands, additional applications may also build around vpETH.
+As the protocol expands, additional applications can also build around vpETH.

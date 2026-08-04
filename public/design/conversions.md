@@ -14,7 +14,7 @@ Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 As introduced in the [POLAR](https://docs.polaris.finance/core-assets/polar#polar-design) section, the long-term supply of POLAR does not grow through perpetual emissions. Beyond the initial allocation, additional POLAR may only be created via the Polaris conversion mechanism.
 
-This approach ensures that **the supply doesn't simply expand due to time passing or because the protocol needs new incentives**. Every new POLAR token exists because someone has chosen to convert pETH, meaning that growth in the utility token is directly tied to demand for the reserve asset and the economic expansion of the Polaris ecosystem.
+This approach ensures that **supply doesn't simply expand due to time passing or because the protocol needs new incentives**. Every new POLAR token exists because someone has chosen to convert pETH, meaning that growth in the utility token is directly tied to demand for the reserve asset and the economic expansion of the Polaris ecosystem.
 
 As a result, every expansion of the POLAR supply requires pETH to be converted, creating a direct economic relationship between the two assets.
 
@@ -24,17 +24,21 @@ Whenever a user converts pETH, **the converted amount is permanently burned** an
 
 Burning pETH reduces its circulating supply and releases ETH from the bonding curve reserve. A portion of that ETH may be returned directly to the converter as a rebate, while the remaining value is ultimately routed back into the protocol through the Fee Router, where it contributes to the protocol-native yield reflected in pETH.
 
-Each conversion therefore has three economic effects: it expands the POLAR supply, increases the value represented by every remaining unit of pETH, and creates pETH flows that can be distributed across the ecosystem.
+Each conversion therefore has three economic effects:
+
+- Expanding the POLAR supply,
+- Increasing the value represented by every remaining unit of pETH
+- Creating pETH flows that can be distributed across the ecosystem.
 
 ## Conversion Pricing
 
-Conversions are permissionless and can take place at any time, but their **price is dynamic and set via **Dutch auction**.
+Conversions are permissionless and can take place at any time, but their **price is dynamic and set via Dutch auction**.
 
 Whenever someone converts pETH into POLAR, the price immediately increases before decaying again over time. A conversion that mints a larger share of the supply pushes the price up much more aggressively than a smaller one because the price impact depends on the fraction of the existing POLAR supply minted during that conversion.
 
 This naturally encourages smaller and more frequent conversions over large supply-shocking events.
 
-The spike-and-decay parameters that govern conversion pricing are stewarded within immutable bounds, allowing the mechanism to be tuned without changing its underlying design.
+The spike-and-decay parameters that govern conversion pricing are stewarded within immutable bounds, so the mechanism can be tuned without changing its underlying design.
 
 As the price gradually falls, opportunities emerge whenever converting becomes more attractive than acquiring POLAR on the open market. Thus, pETH-to-POLAR conversions are expected to occur steadily over time in relatively small chunks.
 
@@ -62,6 +66,6 @@ The rebate changes how the released ETH is distributed, but does not affect the 
 
 Although conversions are permissionless, most users are unlikely to interact with the mechanism directly.
 
-In practice, conversions are primarily performed by arbitrageurs, keepers and other market participants whenever the conversion price, together with any available rebate, becomes more attractive than acquiring POLAR on the open market.
+In practice, conversions are primarily performed by arbitrageurs whenever the conversion price, together with any available rebate, becomes more attractive than acquiring POLAR on the open market.
 
 Most users will simply buy POLAR through secondary markets without ever interacting with the conversion mechanism themselves.

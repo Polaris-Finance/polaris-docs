@@ -12,7 +12,7 @@ Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 ---
 
-Decentralized finance was built on the idea that **money should not depend on trusted intermediaries**. A permissionless financial layer open to everybody, built on transparent and verifiable rules.
+Decentralized finance was built on the idea that money should not depend on trusted intermediaries. A permissionless financial layer open to everybody, built on transparent and verifiable rules.
 
 Over the years, stablecoins have become the foundation of the onchain economy, allowing value to move across decentralized markets.
 

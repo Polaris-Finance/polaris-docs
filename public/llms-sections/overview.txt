@@ -15,7 +15,7 @@
 URL: https://docs.polaris.finance/overview/manifesto
 Markdown URL: https://docs.polaris.finance/overview/manifesto.md
 
-Decentralized finance was built on the idea that **money should not depend on trusted intermediaries**. A permissionless financial layer open to everybody, built on transparent and verifiable rules.
+Decentralized finance was built on the idea that money should not depend on trusted intermediaries. A permissionless financial layer open to everybody, built on transparent and verifiable rules.
 
 Over the years, stablecoins have become the foundation of the onchain economy, allowing value to move across decentralized markets.
 
@@ -53,7 +53,7 @@ If this model succeeds, **ETH itself can begin to play a broader role within Eth
 
 By introducing a native yield layer, pETH gives ETH a direct role in the expansion of Ethereum’s monetary system, creating a new way for holders and stakers to put ETH to work.
 
-In that future, **Ethereum's growth and its monetary infrastructure no longer evolve independently**. The more the ecosystem grows, the stronger its reserve foundation becomes. And the stronger that foundation becomes, the more it can support the next generation of DeFi applications.
+In that future, Ethereum's growth and its monetary infrastructure no longer evolve independently. The more the ecosystem grows, the stronger its reserve foundation becomes. And the stronger that foundation becomes, the more it can support the next generation of DeFi applications.
 
 ---
 
@@ -68,7 +68,7 @@ Even if permissionless money could scale without relying on centralized issuers 
 
 Today, staking is the primary source of native ETH yield, as it plays a fundamental role in securing the network. But as DeFi continues to grow, staking should not be the only way for ETH to participate in that growth.
 
-Polaris is built on the observation that **Ethereum's monetary layer and Ethereum's yield layer should not be separate systems**.
+Polaris is built on the observation that **Ethereum’s monetary layer should not be separate from its yield layer**.
 
 Today, these two operate largely independently, with stablecoins generating enormous economic activity while the collateral supporting them rarely benefits from that activity. At the same time, ETH secures the network that makes this economy possible, yet captures relatively little of the value created above it.
 
