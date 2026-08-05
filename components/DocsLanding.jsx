@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { ChevronRight } from 'lucide-react'
 import { pathWithBase } from '../app/site-config.mjs'
 import { Glyph } from './icons/Glyph.js'
 import { LiquidMetalSymbol } from './LiquidMetalSymbol.jsx'
@@ -64,7 +65,10 @@ function LandingCard({ item }) {
         <Glyph name={glyph} size={32} />
       </span>
       <span className="pl-docs-link-copy">
-        <strong className="pl-docs-card-title">{label}</strong>
+        <strong className="pl-docs-card-title">
+          {label}
+          <ChevronRight aria-hidden="true" className="pl-docs-title-chevron" />
+        </strong>
         <span>{description}</span>
       </span>
     </Link>
@@ -77,7 +81,10 @@ function FeaturedLandingCard({ item }) {
   return (
     <Link className="pl-docs-card-link pl-docs-featured-card" href={pathWithBase(route)}>
       <span className="pl-docs-featured-copy">
-        <h2 className="pl-docs-card-title">{label}</h2>
+        <h2 className="pl-docs-card-title">
+          {label}
+          <ChevronRight aria-hidden="true" className="pl-docs-title-chevron" />
+        </h2>
         <p>{description}</p>
       </span>
       <LiquidMetalSymbol image={pathWithBase('/symbol-fallback.png')} />
