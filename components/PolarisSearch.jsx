@@ -37,7 +37,7 @@ function curate(title, url) {
 const START_HERE = [
   curate('Why pETH', '/overview/why-peth'),
   curate('pETH', '/core-assets/peth'),
-  curate('Using the Testnet', '/testnet/guide')
+  curate('Testnet Guide', '/testnet/guide')
 ]
 
 const RECOVERY = [

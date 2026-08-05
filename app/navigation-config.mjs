@@ -181,7 +181,7 @@ export const NAVIGATION_GROUPS = [
         id: 'testnet',
         type: 'folder',
         metaKey: 'testnet',
-        label: 'Using the Testnet',
+        label: 'Testnet Guide',
         routePrefix: '/testnet',
         icon: 'FlaskConical',
         children: [
