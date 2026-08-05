@@ -592,12 +592,6 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
   box-shadow: 0 8px 22px -12px color-mix(in srgb, var(--pl-card-accent) 42%, transparent);
 }
 
-.pl-docs-hero:is(:hover, :focus-visible)::after,
-.pl-docs-card-link:is(:hover, :focus-visible)::after {
-  animation: pl-card-breathe 2600ms ease-in-out 280ms infinite alternate;
-  opacity: 1;
-}
-
 @keyframes pl-card-breathe {
   from {
     opacity: 1;
@@ -771,11 +765,15 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
   gap: 1rem;
   padding: 1.25rem 1rem;
   border-radius: 12px;
-  background-color: color-mix(in srgb, var(--pl-card-accent) 4%, transparent);
+  background-color: var(--pl-tile-bg);
   isolation: isolate;
-  transition:
-    transform var(--pl-card-motion),
-    background-color var(--pl-card-motion);
+  transition: background-color 160ms ease;
+}
+
+.pl-docs-card-link:is(:hover, :focus-visible) {
+    background: var(--pl-tile-hover) !important;
+    border: 0 !important;
+    transform: none !important;
 }
 
 .pl-docs-trust-grid {
@@ -1018,7 +1016,7 @@ article .pl-docs-featured-copy p {
 .pl-docs-card-link {
   /* Match the navbar rule in both themes, keeping the outline quieter than the
      icon while still giving the six entry points a clear shared structure. */
-  border: 1px solid var(--pl-shell-rule) !important;
+  border: 0 !important;
   background: var(--pl-tile-bg) !important;
   box-shadow: none !important;
   transform: none !important;
