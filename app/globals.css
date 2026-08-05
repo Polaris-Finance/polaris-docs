@@ -760,17 +760,17 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
   gap: 0.85rem;
 }
 
-/* Homepage cards follow the reference's vertical rhythm: icon, heading, then
-   one short supporting sentence. */
+/* Compact homepage cards follow the Paper reference: a 32px glyph beside a
+   tight two-line copy stack. Their grid placement remains unchanged. */
 .pl-docs-card-link {
   position: relative;
-  min-height: 10rem;
-  grid-template-columns: minmax(0, 1fr);
-  align-content: start;
-  align-items: start;
-  gap: 0;
+  min-height: 5.125rem;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  align-content: center;
+  align-items: center;
+  gap: 1rem;
   padding: 1rem;
-  border-radius: 11px;
+  border-radius: 12px;
   background-color: color-mix(in srgb, var(--pl-card-accent) 4%, transparent);
   isolation: isolate;
   transition:
@@ -828,7 +828,6 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
 
 .pl-docs-card-link .pl-docs-link-icon {
   justify-self: start;
-  margin-bottom: 0.75rem;
 }
 
 /* Token artwork is damped more lightly than the drawn glyphs — the logos are
@@ -853,6 +852,7 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
   display: grid;
   min-width: 0;
   gap: 0.1rem;
+  padding-inline-end: 8px;
 }
 
 .pl-docs-link-copy strong {
@@ -872,6 +872,95 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
   line-height: 1.5714;
   letter-spacing: -0.0064em;
   text-wrap: pretty;
+}
+
+/* The featured destination mirrors the Paper composition: quiet copy on the
+   left and a fixed 100px liquid-metal symbol on the right. It spans the full
+   two-column grid while keeping the same 160px height as the cards below. */
+
+.pl-docs-card-link.pl-docs-featured-card {
+  min-height: 10rem;
+  overflow: hidden;
+  grid-column: 1 / -1;
+  grid-template-columns: minmax(0, 1fr) 100px;
+  align-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.8125rem 2rem;
+}
+
+.pl-docs-featured-copy {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  min-width: 0;
+  gap: 0.15rem;
+}
+
+article .pl-docs-featured-copy h2 {
+  margin: 0 !important;
+}
+
+article .pl-docs-featured-copy p {
+  margin: 0 !important;
+}
+
+.pl-docs-liquid-metal {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: 100px;
+  height: 100px;
+  align-items: center;
+  justify-content: center;
+  justify-self: end;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.pl-docs-liquid-metal::before {
+  position: absolute;
+  z-index: 0;
+  background-image: var(--pl-liquid-metal-fallback);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 61%;
+  content: '';
+  inset: 0;
+  opacity: 0.5;
+  transition: opacity 1s ease;
+}
+
+.pl-docs-liquid-metal[data-shader-ready]::before {
+  opacity: 0;
+}
+
+.pl-docs-liquid-metal-canvas {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  width: 100px !important;
+  height: 100px !important;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.pl-docs-liquid-metal[data-shader-ready] .pl-docs-liquid-metal-canvas {
+  opacity: 1;
+}
+
+.pl-docs-card-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--pl-ink-heading);
+}
+
+.pl-docs-title-chevron {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  color: currentColor;
 }
 
 .pl-docs-link-arrow {
@@ -899,11 +988,6 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
 
 .pl-docs-reference-link:hover {
   border-color: var(--pl-active);
-}
-
-.pl-docs-card-link:is(:hover, :focus-visible) {
-  background-color: color-mix(in srgb, var(--pl-card-accent) 7%, transparent);
-  transform: translateY(-2px) scale(1.01);
 }
 
 .pl-docs-card-link:is(:hover, :focus-visible) .pl-docs-link-icon,
@@ -940,7 +1024,6 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
 }
 
 .pl-docs-hero:is(:hover, :focus-visible),
-.pl-docs-card-link:is(:hover, :focus-visible),
 .pl-docs-row-link:is(:hover, :focus-visible),
 .pl-docs-reference-link:is(:hover, :focus-visible),
 .pl-testnet-banner:is(:hover, :focus-within) {
@@ -1237,6 +1320,25 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
 
   .pl-docs-hero-copy strong {
     font-size: 1.18rem;
+  }
+
+  .pl-docs-card-link.pl-docs-featured-card {
+    padding: 1rem;
+  }
+
+  article .pl-docs-featured-copy h2 {
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    line-height: 1.5;
+    letter-spacing: -0.011em;
+  }
+
+  article .pl-docs-featured-copy p {
+    color: var(--pl-ink-caption);
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.5714;
+    letter-spacing: -0.0064em;
   }
 }
 
