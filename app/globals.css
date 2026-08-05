@@ -771,9 +771,9 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
 }
 
 .pl-docs-card-link:is(:hover, :focus-visible) {
-    background: var(--pl-tile-hover) !important;
-    border: 0 !important;
-    transform: none !important;
+  background: var(--pl-tile-hover) !important;
+  border: 0 !important;
+  transform: none !important;
 }
 
 .pl-docs-trust-grid {
