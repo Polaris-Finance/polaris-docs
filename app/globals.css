@@ -1306,6 +1306,58 @@ article .pl-docs-featured-copy p {
   }
 }
 
+/* Below the tablet breakpoint, match the compact Paper composition: the
+   100px symbol sits above a centered, full-width copy block. */
+@media (max-width: 48rem) {
+  .pl-docs-card-link.pl-docs-featured-card {
+    display: flex;
+    min-height: 12.125rem;
+    flex-direction: column-reverse;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0.5rem 1rem 1.25rem;
+  }
+
+  .pl-docs-featured-copy {
+    display: flex;
+    width: 100%;
+    flex: none;
+    flex-direction: column;
+    align-items: center;
+    align-self: stretch;
+    justify-content: center;
+    gap: 0.125rem;
+    text-align: center;
+  }
+
+  .pl-docs-liquid-metal {
+    flex: none;
+    align-self: center;
+  }
+
+  article .pl-docs-featured-copy h2 {
+    width: 100%;
+    justify-content: center;
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    line-height: 1.5;
+    letter-spacing: -0.011em;
+  }
+
+  article .pl-docs-featured-copy p {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    color: var(--pl-ink-caption);
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.5714;
+    letter-spacing: -0.0064em;
+    text-align: center;
+  }
+}
+
 @container docs-home (max-width: 40rem) {
   .pl-docs-entry-grid,
   .pl-docs-welcome-grid,
@@ -1320,25 +1372,6 @@ article .pl-docs-featured-copy p {
 
   .pl-docs-hero-copy strong {
     font-size: 1.18rem;
-  }
-
-  .pl-docs-card-link.pl-docs-featured-card {
-    padding: 1.25rem 1rem;
-  }
-
-  article .pl-docs-featured-copy h2 {
-    font-size: 1rem !important;
-    font-weight: 500 !important;
-    line-height: 1.5;
-    letter-spacing: -0.011em;
-  }
-
-  article .pl-docs-featured-copy p {
-    color: var(--pl-ink-caption);
-    font-size: 0.875rem;
-    font-weight: 400;
-    line-height: 1.5714;
-    letter-spacing: -0.0064em;
   }
 }
 
