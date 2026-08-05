@@ -1016,9 +1016,7 @@ article .pl-docs-featured-copy p {
 }
 
 .pl-docs-card-link {
-  /* Match the navbar rule in both themes, keeping the outline quieter than the
-     icon while still giving the six entry points a clear shared structure. */
-  border: 1px solid var(--pl-shell-rule) !important;
+  border: 0 !important;
   background: var(--pl-tile-bg) !important;
   box-shadow: none !important;
   transform: none !important;
