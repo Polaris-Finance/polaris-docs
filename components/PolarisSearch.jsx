@@ -41,7 +41,7 @@ const START_HERE = [
 ]
 
 const RECOVERY = [
-  curate('Polaris TLDR', '/polaris-101'),
+  curate('Polaris 101', '/polaris-101'),
   curate('Risks', '/risks'),
   curate('Browse the full docs (llms.txt)', '/llms.txt')
 ]

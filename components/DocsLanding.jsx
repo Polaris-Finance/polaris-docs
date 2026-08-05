@@ -4,7 +4,7 @@ import { Glyph } from './icons/Glyph.js'
 
 const entryPoints = [
   {
-    label: 'TLDR',
+    label: 'Polaris 101',
     description: 'Get the protocol essentials in a few minutes.',
     route: '/polaris-101',
     glyph: 'BookOpen',
