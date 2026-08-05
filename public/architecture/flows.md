@@ -14,15 +14,15 @@ Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 Flows distribute protocol-generated value throughout the Polaris ecosystem.
 
-These incentive streams sit one layer above the Fee Router. The Fee Router processes pETH-denominated protocol revenue through the bonding curve first; flows determine where the resulting pETH rewards are sent.
+These incentive streams sit one layer above the [Fee Router](https://docs.polaris.finance/design/fee-router), which first processes pETH-denominated protocol revenue through the bonding curve. Flows then determine where the resulting pETH rewards are sent.
 
-pAsset flows operate separately. Interest paid by minters of assets such as USDp or GOLDp does not pass through the Fee Router, and is instead distributed through that pAsset market's own flow logic.
+Instead, pAsset flows operate separately. Interest paid by minters of assets such as USDp or GOLDp does not pass through the Fee Router, and is instead distributed through that pAsset market's own flow logic.
 
-Thus, ecosystem incentives are paid out **using assets directly connected to protocol activity**, without relying on inflationary POLAR emissions.
+Thus, **ecosystem incentives are paid out using assets directly connected to protocol activity**, without relying on inflationary POLAR emissions.
 
 ## Flow Allocation
 
-Flows are allocated to whitelisted contracts according to **how much pETH or a specific pAsset they hold**.
+Flows are allocated to whitelisted contracts **according to how much pETH or a specific pAsset they hold**.
 
 In general, assets receive flows in proportion to their share of the corresponding asset, with stewardship able to apply additional weighting where appropriate.
 
@@ -34,7 +34,7 @@ Since these minimum allocations distribute protocol value before a recipient has
 
 **pETH flows are funded by pETH-denominated protocol activity**, including bonding curve swap fees, Reserve Loan fees and pETH-to-POLAR conversions.
 
-When these fees are processed, they pass through the [Fee Router](https://docs.polaris.finance/design/fee-router): pETH is burned at the floor, ETH is released from the reserve, that ETH buys newly minted pETH, and the resulting pETH is distributed through pETH flows.
+When these fees are processed, they pass through the Fee Router: pETH is first burned at the floor price, releasing ETH from the reserve. That ETH is then used to purchase newly minted pETH, which is finally distributed through pETH flows.
 
 **Each pAsset market also generates its own independent flow** funded by the interest paid by users who mint that specific pAsset, such as USDp or GOLDp.
 

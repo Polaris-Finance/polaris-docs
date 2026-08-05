@@ -14,14 +14,14 @@ const entryPoints = [
   },
   {
     label: 'The Foundation',
-    description: 'Learn the ideas behind the design',
+    description: 'Learn about the principles',
     route: '/overview/manifesto',
     glyph: 'Compass',
     tone: 'gold'
   },
   {
     label: 'Core Assets',
-    description: 'Explore what each asset does',
+    description: 'Explore each asset',
     route: '/core-assets/peth',
     glyph: 'Coins',
     tone: 'blue'

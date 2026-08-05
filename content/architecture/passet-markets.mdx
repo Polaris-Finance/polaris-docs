@@ -5,11 +5,13 @@ description: "pAssets are currencies and synthetic assets issued against pETH us
 
 # pAsset Markets
 
-pAssets are currencies and synthetic assets issued against pETH using the shared collateral infrastructure provided by Polaris. USDp and GOLDp are the first pAssets introduced by the protocol, but the underlying architecture is designed to support a much broader range of markets over time.
+pAssets are currencies and other synthetic assets minted against pETH using the same shared collateral infrastructure. 
 
-**Any asset with an oracle can become a pAsset**. This includes fiat currencies, commodities, indices and many other onchain or offchain assets whose price can be reliably tracked. Every pAsset maintains its own accounting, oracle configuration, risk parameters and Earn Vault while relying on the same pETH collateral foundation.
+USDp and GOLDp are the first pAssets introduced by the protocol, but the underlying architecture is designed to support a much broader range of markets over time.
 
-Thus, new markets can benefit from the Polaris infrastructure without needing a separate collateral system for every asset.
+**Any asset with an oracle can become a pAsset**. This includes fiat currencies, commodities, indices and many other onchain or offchain assets whose price can be reliably tracked. 
+
+Every pAsset maintains its own accounting, oracle configuration, risk parameters and Earn Vault while relying on the same pETH collateral foundation. Thus, new markets can benefit from the Polaris infrastructure without needing a separate collateral system for every asset.
 
 ## Launching a pAsset Market
 
@@ -21,24 +23,28 @@ Each pAsset market may evolve independently, as builders can design their own re
 
 ## Aligning with Polaris
 
-One of the main benefits of building a pAsset market on Polaris is access to pETH flows, which direct protocol incentives towards markets that create lasting value for the ecosystem. **Markets that naturally strengthen Polaris** through adoption, distribution, liquidity or revenue sharing are most likely to benefit from these flows.
+One of the main benefits of building a pAsset market on Polaris is access to pETH flows, which direct protocol incentives towards markets that create lasting value for the ecosystem. 
+
+Markets that naturally strengthen Polaris through adoption, distribution, liquidity or revenue sharing are most likely to benefit from these flows.
 
 Access to pETH flows is stewarded through vePOLAR. Builders present their market and explain how it contributes to the broader Polaris ecosystem, while stewards determine which markets receive pETH flows and how those incentives are allocated. Markets that expand demand for pETH and pAssets, with clear value flowing back to Polaris, will naturally be the strongest candidates for alignment.
 
 Different markets may contribute in different ways: some may choose to share part of their issuer interest with vePOLAR holders, while others may focus on distribution, liquidity, strategic integrations, or strengthening other parts of the Polaris ecosystem.
 
-With this approach, anyone can launch a new pAsset market, and Polaris can direct protocol incentives towards builders who contribute to the long-term growth of the ecosystem.
+With this approach, anyone can launch a new pAsset market, and **Polaris can direct protocol incentives towards builders who contribute to the long-term growth of the ecosystem**.
 
 ## Builder Economics
 
-Every pAsset market is required to **route a minimum share of its primary interest to its own Earn Vault**. This boosts the overall protocol safety by ensuring that every market continuously supports the vault responsible for absorbing liquidation losses during periods of market stress.
+Every pAsset market is required **to route a minimum share of its primary interest to its own Earn Vault**. This boosts the overall protocol safety by ensuring that every market continuously supports the vault responsible for absorbing liquidation losses during periods of market stress.
 
 Beyond this required allocation, builders are free to determine how the remaining revenue is distributed. Depending on the objectives of the market, it may support the builder directly, incentivize liquidity, fund integrations, reward ecosystem partners or be shared with vePOLAR as part of a broader alignment strategy.
 
-This flexibility means every pAsset market can develop its own business model on top of the shared foundation provided by Polaris.
+This flexibility means **every pAsset market can develop its own business model on top of the shared foundation** provided by Polaris.
 
 ## Unified Growth
 
-Each new market expands the range of assets available through Polaris while building on the same collateral and liquidity already supporting the protocol. **Every new pAsset joins the same economic system** from the moment it launches, reinforcing a common foundation as the protocol grows. 
+Each new market expands the range of assets available across Polaris while building on the same collateral and liquidity already supporting the protocol. 
+
+**Every new pAsset joins the same economic system** from the moment it launches, reinforcing a common foundation as the protocol grows. 
 
 Over time, Polaris develops into a single interconnected economy, where every new market expands the capabilities of the network.
