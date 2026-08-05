@@ -32,7 +32,7 @@ export const SITE_DESCRIPTION =
 
 export const ORGANIZATION_NAME = 'Polaris'
 export const ORGANIZATION_URL = 'https://polaris.finance'
-export const OG_IMAGE_PATH = '/og-image-2026-07-30.png'
+export const OG_IMAGE_PATH = '/og-image-2026-08-05.png'
 export const OG_IMAGE_ALT = 'Polaris Docs on a starry dark background.'
 export const OG_IMAGE_WIDTH = 1200
 export const OG_IMAGE_HEIGHT = 630
