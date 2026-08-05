@@ -21,7 +21,7 @@ Relevant app/search vocabulary: app, official app, testnet, Sepolia, pETH, pAsse
 
 ---
 
-## Polaris TLDR
+## Polaris 101
 
 URL: https://docs.polaris.finance/polaris-101
 Markdown URL: https://docs.polaris.finance/polaris-101.md
@@ -588,6 +588,8 @@ Users deposit a pAsset into its corresponding Earn Vault, where those deposits a
 
 This makes Earn Vaults the primary mechanism through which protocol-native yield is distributed to pAsset holders. Since both minter interest and liquidation gains originate from activity inside Polaris, the resulting yield does not rely on external lending markets or offchain assets.
 
+Image: How Earn Vaults combine minter interest and liquidation gains across direct and auto-compounding deposits
+
 ## Position Ownership
 
 Each Earn Vault deposit is represented by a **transferable NFT** that tracks its own rewards over time.
@@ -916,6 +918,8 @@ Polaris incorporates **direct minting and redemptions** to help pAssets trade ar
 Many collateralized asset systems are more effective at defending one side of the peg than the other, allowing supply to contract without providing an equally direct way to expand it under stress, or vice versa.
 
 Polaris supports both directions, allowing **pAssets to be minted against pETH collateral or redeemed for pETH at their target value** whenever market conditions create an arbitrage opportunity.
+
+Image: How Adaptive Peg Defence adjusts minting and redemption incentives to move pAssets back toward their target price
 
 Condition | Arbitrage | Supply effect | Adaptive Peg Defense
 
