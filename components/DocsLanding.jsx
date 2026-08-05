@@ -75,10 +75,7 @@ function FeaturedLandingCard({ item }) {
   const { label, description, route } = item
 
   return (
-    <Link
-      className="pl-docs-card-link pl-docs-featured-card"
-      href={pathWithBase(route)}
-    >
+    <Link className="pl-docs-card-link pl-docs-featured-card" href={pathWithBase(route)}>
       <span className="pl-docs-featured-copy">
         <h2 className="pl-docs-card-title">{label}</h2>
         <p>{description}</p>
