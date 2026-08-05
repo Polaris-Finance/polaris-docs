@@ -539,6 +539,36 @@ test('homepage renders with metadata and basic accessibility', async ({ page }) 
   await expectNoUnnamedVisibleControls(page)
 })
 
+test('homepage card labels keep their responsive hierarchy', async ({ page }, testInfo) => {
+  await page.goto(pathWithBase('/'))
+
+  const featuredCopy = page.locator('.pl-docs-featured-copy')
+  const featuredDescription = featuredCopy.locator('p')
+  const standardDescription = page.locator('.pl-docs-link-copy > span').first()
+  const chevrons = page.locator('.pl-docs-title-chevron')
+  const isMobile = testInfo.project.name === 'mobile'
+
+  const [featuredColor, standardColor] = await Promise.all([
+    featuredDescription.evaluate((element) => getComputedStyle(element).color),
+    standardDescription.evaluate((element) => getComputedStyle(element).color)
+  ])
+
+  expect(featuredColor).toBe(standardColor)
+  await expect(chevrons).toHaveCount(7)
+
+  if (isMobile) {
+    await expect(featuredCopy).toHaveCSS('gap', '2px')
+    for (const chevron of await chevrons.all()) await expect(chevron).toBeVisible()
+  } else {
+    await expect(featuredCopy).toHaveCSS('gap', '6px')
+    for (const chevron of await chevrons.all()) await expect(chevron).toBeHidden()
+
+    await page.setViewportSize({ width: 600, height: 900 })
+    await expect(featuredCopy).toHaveCSS('gap', '6px')
+    for (const chevron of await chevrons.all()) await expect(chevron).toBeVisible()
+  }
+})
+
 test('search opens, returns useful results, and fits its surface', async ({ page }, testInfo) => {
   await page.goto(pathWithBase('/'))
 
