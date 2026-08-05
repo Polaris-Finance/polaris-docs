@@ -17,7 +17,7 @@ Markdown URL: https://docs.polaris.finance/index.md
 
 Polaris is a permissionless onchain infrastructure built around pETH, a yield-bearing reserve asset that collateralizes decentralized stablecoins and synthetic assets.
 
-Users can unlock liquidity from their collateral and earn protocol-native yield in a system built on new onchain primitives.
+Users can unlock liquidity from their collateral and earn protocol-native yield across an ecosystem built on new onchain primitives.
 
 Relevant app/search vocabulary: app, official app, testnet, Sepolia, pETH, pAssets, USDp.
 
