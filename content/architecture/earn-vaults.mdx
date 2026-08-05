@@ -7,25 +7,25 @@ description: "Earn Vaults allow pAssets minted through Polaris to become yield-b
 
 Earn Vaults allow pAssets minted through Polaris to become yield-bearing assets.
 
-Users deposit a pAsset into its corresponding Earn Vault, where those deposits are used to absorb liquidations whenever positions fall below the market's minimum collateral ratio. In return, depositors receive a **protocol-defined minimum share of the interest** paid by pAsset minters over time, along with any pETH liquidation gains.
+Users deposit a pAsset into its corresponding Earn Vault, where those deposits are used to absorb liquidations whenever positions fall below the market's minimum collateral ratio. In return, **depositors receive a protocol-defined minimum share of the interest** paid by pAsset minters over time, along with any pETH liquidation gains.
 
 This makes Earn Vaults the primary mechanism through which protocol-native yield is distributed to pAsset holders. Since both minter interest and liquidation gains originate from activity inside Polaris, the resulting yield does not rely on external lending markets or offchain assets.
 
 ## Position Ownership
 
-Each Earn Vault deposit is represented by a **transferable NFT** that tracks its own rewards over time.
+Each Earn Vault deposit is **represented by a transferable NFT** that tracks its own rewards over time.
 
-Representing deposits as NFTs allows users to transfer ownership of an Earn Vault position without withdrawing its underlying assets or resetting its accounting.
+Tokenizing deposits as NFTs enables users to transfer ownership of an Earn Vault position without withdrawing its underlying assets or resetting its accounting.
 
 In practice, users can transfer or sell an existing Earn Vault position without first withdrawing their deposit. Whoever receives the NFT also receives the position exactly as it exists at that moment, including its accumulated rewards and future liquidation exposure.
 
 ## Auto-Compounding Vaults
 
-For users who prefer a simpler experience, Polaris also supports auto-compounding vault wrappers represented as **ERC-4626 tokens**, such as sUSDp and sGOLDp.
+For users who prefer a simpler experience, Polaris also supports auto-compounding vault wrappers **represented as ERC-4626 tokens**, such as sUSDp and sGOLDp.
 
-These vaults automatically manage the underlying Earn Vault position and make deposits fungible and easier to integrate throughout the wider DeFi ecosystem.
+These vaults automatically manage the underlying Earn Vault position, making deposits fungible and easier to integrate throughout the wider DeFi ecosystem.
 
-We expect assets such as **sUSDp and sGOLDp to become the primary integration point** for wallets, DeFi applications and other protocols building on top of Polaris.
+Assets such as **sUSDp and sGOLDp are expected to become the primary integration point** for wallets, DeFi applications and other protocols building on top of Polaris.
 
 | Hold | Format | Best for |
 | --- | --- | --- |
