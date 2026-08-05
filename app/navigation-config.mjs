@@ -2,6 +2,7 @@ import { ORGANIZATION_URL } from './site-config.mjs'
 
 export const EXTERNAL_LINKS = Object.freeze({
   website: ORGANIZATION_URL,
+  contact: 'https://calendly.com/robert-denarilabs/polaris-website-enquiry?month=2026-08',
   testnetApp: 'https://testnet.polaris.finance/',
   github: 'https://github.com/Polaris-Finance',
   x: 'https://x.com/polarisfinance_'
@@ -247,7 +248,7 @@ export const FOOTER_LINKS = [
   { type: 'artifact', label: 'Llms.txt', href: '/llms.txt' },
   { type: 'external', label: 'GitHub', href: EXTERNAL_LINKS.github },
   { type: 'external', label: 'X.com', href: EXTERNAL_LINKS.x },
-  { type: 'external', label: 'Contact', href: EXTERNAL_LINKS.website }
+  { type: 'external', label: 'Contact', href: EXTERNAL_LINKS.contact }
 ]
 
 function page(id, metaKey, label, route, icon, kind = 'concept') {
