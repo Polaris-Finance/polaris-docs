@@ -75,6 +75,8 @@ Users deposit a pAsset into its corresponding Earn Vault, where those deposits a
 
 This makes Earn Vaults the primary mechanism through which protocol-native yield is distributed to pAsset holders. Since both minter interest and liquidation gains originate from activity inside Polaris, the resulting yield does not rely on external lending markets or offchain assets.
 
+Image: How Earn Vaults combine minter interest and liquidation gains across direct and auto-compounding deposits
+
 ## Position Ownership
 
 Each Earn Vault deposit is represented by a **transferable NFT** that tracks its own rewards over time.

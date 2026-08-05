@@ -769,7 +769,7 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
   align-content: center;
   align-items: center;
   gap: 1rem;
-  padding: 1rem;
+  padding: 1.25rem 1rem;
   border-radius: 12px;
   background-color: color-mix(in srgb, var(--pl-card-accent) 4%, transparent);
   isolation: isolate;
@@ -886,7 +886,7 @@ div:has(> article .pl-docs-home) > .nextra-sidebar {
   align-content: center;
   align-items: center;
   gap: 1rem;
-  padding: 1.8125rem 2rem;
+  padding: 1.25rem 2rem;
 }
 
 .pl-docs-featured-copy {
@@ -1323,7 +1323,7 @@ article .pl-docs-featured-copy p {
   }
 
   .pl-docs-card-link.pl-docs-featured-card {
-    padding: 1rem;
+    padding: 1.25rem 1rem;
   }
 
   article .pl-docs-featured-copy h2 {

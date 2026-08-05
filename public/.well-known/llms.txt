@@ -25,7 +25,7 @@
 ## Introduction
 
 - [Polaris Documentation](https://docs.polaris.finance/index.md): Polaris is a permissionless onchain infrastructure built on pETH, a yield-bearing asset that collateralizes decentralized stablecoins and synthetic assets. Canonical: https://docs.polaris.finance/
-- [Polaris TLDR](https://docs.polaris.finance/polaris-101.md): An introduction to Polaris, the onchain yield layer built around pETH. Canonical: https://docs.polaris.finance/polaris-101
+- [Polaris 101](https://docs.polaris.finance/polaris-101.md): An introduction to Polaris, the onchain yield layer built around pETH. Canonical: https://docs.polaris.finance/polaris-101
 
 ## Overview
 

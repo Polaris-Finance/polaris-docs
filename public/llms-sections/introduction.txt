@@ -23,7 +23,7 @@ Relevant app/search vocabulary: app, official app, testnet, Sepolia, pETH, pAsse
 
 ---
 
-## Polaris TLDR
+## Polaris 101
 
 URL: https://docs.polaris.finance/polaris-101
 Markdown URL: https://docs.polaris.finance/polaris-101.md
