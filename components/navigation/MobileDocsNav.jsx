@@ -1,12 +1,11 @@
 'use client'
 
 import { DialogTitle } from '@headlessui/react'
-import { ArrowLeft, ChevronRight, ExternalLink, X } from 'lucide-react'
+import { ArrowLeft, ChevronRight, Search, X } from 'lucide-react'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { BASE_PATH, pathWithBase } from '../../app/site-config.mjs'
 import {
-  EXTERNAL_LINKS,
   findNodeById,
   findTrailByRoute,
   NAVIGATION_GROUPS,
@@ -14,7 +13,7 @@ import {
   routeBelongsToNode,
   toneForNodeId
 } from '../../app/navigation-config.mjs'
-import { NavThemeSwitch } from '../NavThemeSwitch'
+import { PolarisFooter } from '../PolarisFooter'
 import { DocsOverlay } from './DocsOverlay'
 import { NavIcon } from './NavIcon.js'
 
@@ -33,7 +32,7 @@ function focusDocumentHeading() {
   }, 500)
 }
 
-export function MobileDocsNav({ open, onOpenChange }) {
+export function MobileDocsNav({ open, onOpenChange, onSearchRequest }) {
   const pathname = usePathname()
   const router = useRouter()
   const route = routeFromPathname(pathname)
@@ -93,6 +92,23 @@ export function MobileDocsNav({ open, onOpenChange }) {
 
   return (
     <DocsOverlay kind="menu" open={open} onClose={close} initialFocus={currentItemRef}>
+      <button
+        type="button"
+        className="pl-overlay-icon-button pl-overlay-navbar-control pl-overlay-navbar-control--before-end"
+        aria-label="Search documentation"
+        aria-haspopup="dialog"
+        onClick={onSearchRequest}
+      >
+        <Search aria-hidden="true" size={19} strokeWidth={1.8} />
+      </button>
+      <button
+        type="button"
+        className="pl-overlay-icon-button pl-overlay-navbar-control pl-overlay-navbar-control--end"
+        aria-label="Close navigation"
+        onClick={close}
+      >
+        <X aria-hidden="true" size={20} strokeWidth={1.8} />
+      </button>
       <div className="pl-mobile-nav-shell">
         <header className="pl-mobile-nav-header">
           {stack.length ? (
@@ -110,14 +126,7 @@ export function MobileDocsNav({ open, onOpenChange }) {
           <DialogTitle className="pl-mobile-nav-title">
             {currentNode?.label ?? 'Documentation'}
           </DialogTitle>
-          <button
-            type="button"
-            className="pl-overlay-icon-button"
-            aria-label="Close navigation"
-            onClick={close}
-          >
-            <X aria-hidden="true" size={20} strokeWidth={1.8} />
-          </button>
+          <span className="pl-mobile-nav-header-spacer" aria-hidden="true" />
         </header>
 
         <nav className="pl-mobile-nav-body" aria-label="Mobile documentation">
@@ -177,21 +186,7 @@ export function MobileDocsNav({ open, onOpenChange }) {
           </ul>
         </nav>
 
-        <div className="pl-mobile-nav-utilities">
-          <a
-            href={EXTERNAL_LINKS.website}
-            className="pl-mobile-nav-utility"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Website
-            <ExternalLink aria-hidden="true" size={15} strokeWidth={1.8} />
-            <span className="pl-sr-only"> opens in a new tab</span>
-          </a>
-          <div className="pl-mobile-nav-theme">
-            <NavThemeSwitch lite />
-          </div>
-        </div>
+        <PolarisFooter className="pl-mobile-nav-footer" />
       </div>
     </DocsOverlay>
   )

@@ -1,7 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { expect, test } from '@playwright/test'
-import { allVisiblePageNodes, findTrailByRoute } from '../app/navigation-config.mjs'
+import { allVisiblePageNodes, findTrailByRoute, FOOTER_LINKS } from '../app/navigation-config.mjs'
 import { BASE_PATH, ORGANIZATION_URL, pathWithBase } from '../app/site-config.mjs'
 
 const contentDir = path.join(process.cwd(), 'content')
@@ -469,6 +469,30 @@ test('page chrome removals hold: no breadcrumbs, no TOC panel', async ({ page })
   await expect(page.locator('script[type="application/ld+json"]').first()).toBeAttached()
 })
 
+test('mobile articles use the shell gutter only once', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'mobile', 'mobile-only article gutter check')
+  await page.goto(pathWithBase('/design/interest-rates'))
+
+  const metrics = await page.locator('article').evaluate((article) => {
+    const articleRect = article.getBoundingClientRect()
+    const headingRect = article.querySelector('h1').getBoundingClientRect()
+    const style = getComputedStyle(article)
+    return {
+      articleLeft: articleRect.left,
+      articleRight: innerWidth - articleRect.right,
+      headingLeft: headingRect.left,
+      paddingLeft: Number.parseFloat(style.paddingLeft),
+      paddingRight: Number.parseFloat(style.paddingRight)
+    }
+  })
+
+  expect(metrics.paddingLeft).toBe(0)
+  expect(metrics.paddingRight).toBe(0)
+  expect(metrics.articleLeft).toBeCloseTo(16, 0)
+  expect(metrics.articleRight).toBeCloseTo(16, 0)
+  expect(metrics.headingLeft).toBeCloseTo(metrics.articleLeft, 0)
+})
+
 test('prev/next pagination follows the sidebar order', async ({ page }) => {
   // core-assets/_meta.js orders … usdp, goldp, polar …; the footer pagination
   // anchors carry the neighbor title.
@@ -519,27 +543,38 @@ test('search opens, returns useful results, and fits its surface', async ({ page
   await page.goto(pathWithBase('/'))
 
   const { dialog, input } = await openSearch(page)
+  const inputPalette = await input.evaluate((element) => {
+    const resolveColor = (token) => {
+      const probe = document.createElement('span')
+      probe.style.color = `var(${token})`
+      element.parentElement.append(probe)
+      const color = getComputedStyle(probe).color
+      probe.remove()
+      return color
+    }
+    const inputStyle = getComputedStyle(element)
+    return {
+      color: inputStyle.color,
+      expectedColor: resolveColor('--pl-ink-body'),
+      expectedPlaceholder: resolveColor('--pl-ink-caption'),
+      paddingLeft: inputStyle.paddingLeft,
+      placeholder: getComputedStyle(element, '::placeholder').color
+    }
+  })
+  await expect(dialog.locator('.lucide-search')).toHaveCount(0)
+  expect(inputPalette.paddingLeft).toBe('16px')
+  expect(inputPalette.color).toBe(inputPalette.expectedColor)
+  expect(inputPalette.placeholder).toBe(inputPalette.expectedPlaceholder)
   await input.fill('trove')
 
   const results = dialog.getByRole('listbox', { name: 'Search results' })
   await expect(results).toBeVisible()
   await expect(results).toContainText(/Mint/i)
-  await expect(results).toContainText(/Using the Testnet/i)
-  await expect(dialog.locator('.pl-search-count')).toContainText(/Top \d+ of \d+|\d+ shown/)
+  await expect(results).toContainText(/Testnet Guide/i)
+  await expect(dialog.locator('[aria-live="polite"]')).toContainText(/Top \d+ of \d+|\d+ shown/)
   await expect(input).toHaveAttribute('aria-autocomplete', 'list')
   await expect(input).toHaveAttribute('aria-expanded', 'true')
   await expect(input).toHaveAttribute('aria-controls', /.+-listbox$/)
-
-  await input.fill('pETH')
-  const filter = dialog.getByRole('button', {
-    name: 'Filter search results by section: All sections'
-  })
-  await expect(filter).toBeVisible()
-  await filter.click()
-  const sectionChip = page.getByRole('button', { name: /Core Assets/ }).last()
-  await sectionChip.click()
-  await expect(dialog.locator('.pl-search-filter-button')).toContainText('Core Assets')
-  await expect(dialog.locator('.pl-search-count')).toContainText(/in Core Assets/)
 
   const inputBox = await input.boundingBox()
   const surface = dialog.locator(
@@ -554,14 +589,15 @@ test('search opens, returns useful results, and fits its surface', async ({ page
     const viewport = page.viewportSize()
     expect(Math.abs(resultsBox.width - viewport.width)).toBeLessThanOrEqual(2)
     expect(resultsBox.x).toBeLessThanOrEqual(2)
-    expect(resultsBox.y).toBeGreaterThanOrEqual(68)
+    expect(Math.abs(resultsBox.y - 64)).toBeLessThanOrEqual(1)
     expect(resultsBox.y + resultsBox.height).toBeLessThanOrEqual(viewport.height + 2)
   } else {
-    // Desktop search stays centered and compact enough for rapid scanning.
+    // Desktop search stays centered, aligned to the navbar, and compact enough
+    // for rapid scanning.
     const viewport = page.viewportSize()
     expect(resultsBox.width).toBeLessThanOrEqual(642)
     expect(Math.abs(resultsBox.x - (viewport.width - resultsBox.width) / 2)).toBeLessThanOrEqual(2)
-    expect(resultsBox.y).toBeGreaterThanOrEqual(90)
+    expect(Math.abs(resultsBox.y - 16)).toBeLessThanOrEqual(1)
   }
 
   await input.fill('risk')
@@ -672,17 +708,18 @@ test('desktop theme menu can switch to dark mode', async ({ page }, testInfo) =>
   await expect(page.locator('html')).toHaveClass(/dark/)
 })
 
-test('mobile menu theme control can switch to dark mode', async ({ page }, testInfo) => {
-  test.skip(testInfo.project.name !== 'mobile', 'mobile-only theme check')
+test('mobile menu reuses the desktop footer with compact links', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'mobile', 'mobile-only footer check')
 
   await page.goto(pathWithBase('/'))
   const dialog = await openMobileMenu(page)
+  const footer = dialog.locator('.pl-mobile-nav-footer')
+  const links = footer.locator('.pl-footer-link')
 
-  await dialog.locator('button[title="Change theme"]').click()
-  await page.getByRole('option', { name: /dark/i }).click()
-
-  await expect(page.locator('html')).toHaveClass(/dark/)
-  await expect(dialog).toBeVisible()
+  await expect(footer.locator('.pl-footer-emblem')).toBeVisible()
+  await expect(links).toHaveCount(FOOTER_LINKS.length)
+  await expect(links).toContainText(FOOTER_LINKS.map((link) => link.label))
+  for (const link of await links.all()) await expect(link).toHaveCSS('font-size', '12px')
 })
 
 test('sampled article text meets contrast in dark and light themes', async ({ page }, testInfo) => {
@@ -781,13 +818,13 @@ test('docs controls meet 44px touch targets where scoped', async ({ page }, test
     await openMobileMenu(page)
     await expectTouchTargets(
       page,
-      '.pl-mobile-nav-body a, .pl-mobile-nav-body button, .pl-mobile-nav-utilities a, .pl-mobile-nav-utilities button',
+      '.pl-mobile-nav-body a, .pl-mobile-nav-body button, .pl-mobile-nav-footer a',
       'mobile navigation controls'
     )
   }
 })
 
-test('mobile navigation is recursive, keyboard operable, and mutually exclusive with search', async ({
+test('mobile navigation is recursive, keyboard operable, and switches directly to search', async ({
   page
 }, testInfo) => {
   test.skip(testInfo.project.name !== 'mobile', 'mobile-only navigation check')
@@ -817,7 +854,7 @@ test('mobile navigation is recursive, keyboard operable, and mutually exclusive 
   await dialog.getByRole('button', { name: 'Back to Documentation' }).click()
   await expect(dialog.getByRole('button', { name: /^Protocol/ })).toBeVisible()
 
-  await page.keyboard.press('Control+K')
+  await dialog.getByRole('button', { name: 'Search documentation' }).click()
   await expect(dialog).toBeHidden()
   const searchDialog = page.getByRole('dialog', { name: 'Search Polaris documentation' })
   await expect(searchDialog).toBeVisible()
@@ -828,9 +865,15 @@ test('mobile navigation is recursive, keyboard operable, and mutually exclusive 
   await expectNoUnnamedVisibleControls(page)
 })
 
-test('mobile navbar strip does not act as an outside-dismiss scrim', async ({ page }, testInfo) => {
+test('mobile navbar controls switch directly between menu and search', async ({
+  page
+}, testInfo) => {
   test.skip(testInfo.project.name !== 'mobile', 'mobile-only overlay boundary check')
   await page.goto(pathWithBase('/'))
+
+  const navbar = page.locator('.nextra-navbar nav')
+  await expect(navbar).toHaveCSS('padding-left', '16px')
+  await expect(navbar).toHaveCSS('padding-right', '16px')
 
   const searchBox = await page.getByRole('button', { name: 'Search documentation' }).boundingBox()
   const menuBox = await page.getByRole('button', { name: 'Open navigation' }).boundingBox()
@@ -838,16 +881,47 @@ test('mobile navbar strip does not act as an outside-dismiss scrim', async ({ pa
   expect(menuBox).not.toBeNull()
 
   const menuDialog = await openMobileMenu(page)
-  await page.mouse.click(searchBox.x + searchBox.width / 2, searchBox.y + searchBox.height / 2)
-  await expect(menuDialog).toBeVisible()
-  await expect(page.getByRole('dialog', { name: 'Search Polaris documentation' })).toBeHidden()
-  await expect(page.locator('.pl-navbar-actions')).toHaveCSS('opacity', '0.42')
-  await menuDialog.getByRole('button', { name: 'Close navigation' }).click()
+  const menuHeader = menuDialog.locator('.pl-mobile-nav-header')
+  const menuSeparator = await menuHeader.evaluate((header) => {
+    const style = getComputedStyle(header, '::after')
+    return {
+      backgroundColor: style.backgroundColor,
+      left: Number.parseFloat(style.left),
+      right: Number.parseFloat(style.right)
+    }
+  })
+  const navbarSeparatorColor = await navbar.evaluate(
+    (header) => getComputedStyle(header, '::after').backgroundColor
+  )
+  expect(menuSeparator.left).toBe(16)
+  expect(menuSeparator.right).toBe(16)
+  expect(menuSeparator.backgroundColor).toBe(navbarSeparatorColor)
+  const closeButton = menuDialog.getByRole('button', { name: 'Close navigation' })
+  const closeBox = await closeButton.boundingBox()
+  expect(closeBox).not.toBeNull()
+  expect(Math.abs(closeBox.x - menuBox.x)).toBeLessThanOrEqual(1)
+  expect(Math.abs(closeBox.y - menuBox.y)).toBeLessThanOrEqual(1)
+  await expect(menuHeader.getByRole('button', { name: 'Close navigation' })).toHaveCount(0)
+  const overlaySearchButton = menuDialog.getByRole('button', { name: 'Search documentation' })
+  const overlaySearchBox = await overlaySearchButton.boundingBox()
+  expect(overlaySearchBox).not.toBeNull()
+  expect(Math.abs(overlaySearchBox.x - searchBox.x)).toBeLessThanOrEqual(1)
+  expect(Math.abs(overlaySearchBox.y - searchBox.y)).toBeLessThanOrEqual(1)
 
-  const { dialog: searchDialog } = await openSearch(page)
-  await page.mouse.click(menuBox.x + menuBox.width / 2, menuBox.y + menuBox.height / 2)
+  await page.mouse.click(searchBox.x + searchBox.width / 2, searchBox.y + searchBox.height / 2)
+  await expect(menuDialog).toBeHidden()
+  const searchDialog = page.getByRole('dialog', { name: 'Search Polaris documentation' })
   await expect(searchDialog).toBeVisible()
-  await expect(page.locator('.pl-docs-overlay--menu')).toBeHidden()
+  const overlayMenuButton = searchDialog.getByRole('button', { name: 'Open navigation' })
+  const overlayMenuBox = await overlayMenuButton.boundingBox()
+  expect(overlayMenuBox).not.toBeNull()
+  expect(Math.abs(overlayMenuBox.x - menuBox.x)).toBeLessThanOrEqual(1)
+  expect(Math.abs(overlayMenuBox.y - menuBox.y)).toBeLessThanOrEqual(1)
+
+  await page.mouse.click(menuBox.x + menuBox.width / 2, menuBox.y + menuBox.height / 2)
+  await expect(searchDialog).toBeHidden()
+  await expect(menuDialog).toBeVisible()
+  await menuDialog.getByRole('button', { name: 'Close navigation' }).click()
 })
 
 test('mobile navigation reveals the current leaf on a short viewport', async ({

@@ -1,49 +1,57 @@
 import Link from 'next/link'
 import { pathWithBase } from '../app/site-config.mjs'
 import { Glyph } from './icons/Glyph.js'
+import { LiquidMetalSymbol } from './LiquidMetalSymbol.jsx'
 
 const entryPoints = [
   {
-    label: 'TLDR',
-    description: 'Get the protocol essentials in a few minutes.',
+    label: 'Polaris 101',
+    description: 'An intro to the ecosystem',
     route: '/polaris-101',
     glyph: 'BookOpen',
     tone: 'gold'
   },
   {
     label: 'The Foundation',
-    description: 'Understand the ideas and purpose behind Polaris.',
+    description: 'Learn the ideas behind the design',
     route: '/overview/manifesto',
     glyph: 'Compass',
     tone: 'gold'
   },
   {
     label: 'Core Assets',
-    description: 'Meet the assets at the heart of the protocol.',
+    description: 'Explore what each asset does',
     route: '/core-assets/peth',
     glyph: 'Coins',
     tone: 'blue'
   },
   {
     label: 'Core Architecture',
-    description: 'See how the core systems fit together.',
+    description: 'Understand the structure',
     route: '/architecture/bonding-curve',
     glyph: 'Network',
     tone: 'violet'
   },
   {
     label: 'Protocol Mechanics',
-    description: 'Explore the mechanisms that keep Polaris working.',
+    description: 'Learn how the system works',
     route: '/design/fee-router',
     glyph: 'Cog',
     tone: 'teal'
   },
   {
     label: 'Risks',
-    description: 'Review the protocol assumptions, guarantees, and risks.',
+    description: 'Review guarantees and risks',
     route: '/risks',
     glyph: 'ShieldAlert',
     tone: 'rust'
+  },
+  {
+    label: 'Use Polaris',
+    description: 'Learn to use the testnet',
+    route: '/testnet/guide',
+    glyph: 'FlaskConical',
+    tone: 'green'
   }
 ]
 
@@ -56,18 +64,35 @@ function LandingCard({ item }) {
         <Glyph name={glyph} size={32} />
       </span>
       <span className="pl-docs-link-copy">
-        <strong>{label}</strong>
+        <strong className="pl-docs-card-title">{label}</strong>
         <span>{description}</span>
       </span>
     </Link>
   )
 }
 
+function FeaturedLandingCard({ item }) {
+  const { label, description, route } = item
+
+  return (
+    <Link className="pl-docs-card-link pl-docs-featured-card" href={pathWithBase(route)}>
+      <span className="pl-docs-featured-copy">
+        <h2 className="pl-docs-card-title">{label}</h2>
+        <p>{description}</p>
+      </span>
+      <LiquidMetalSymbol image={pathWithBase('/symbol-fallback.png')} />
+    </Link>
+  )
+}
+
 export function DocsLanding() {
+  const [featuredEntryPoint, ...entryPointCards] = entryPoints
+
   return (
     <nav className="pl-docs-home" aria-label="Explore Polaris documentation">
       <div className="pl-docs-entry-grid">
-        {entryPoints.map((item) => (
+        <FeaturedLandingCard item={featuredEntryPoint} />
+        {entryPointCards.map((item) => (
           <LandingCard key={item.route} item={item} />
         ))}
       </div>
