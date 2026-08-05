@@ -26,7 +26,7 @@ Relevant app/search vocabulary: app, official app, testnet, Sepolia, pETH, pAsse
 URL: https://docs.polaris.finance/polaris-101
 Markdown URL: https://docs.polaris.finance/polaris-101.md
 
-Polaris is aa permissionless onchain ecosystem built around pETH, a yield-bearing reserve asset designed to collateralize censorship-resistant stablecoins and synthetic assets.
+Polaris is a permissionless onchain infrastructure built around pETH, a yield-bearing reserve asset designed to collateralize censorship-resistant stablecoins and synthetic assets.
 
 ETH enters the system through the Polaris bonding curve and becomes pETH, the collateral asset at the center of the ecosystem. Stablecoins, commodities and synthetic assets are all issued against pETH, with the economic activity they generate flowing back into the ecosystem.
 
@@ -584,7 +584,7 @@ Markdown URL: https://docs.polaris.finance/architecture/earn-vaults.md
 
 Earn Vaults allow pAssets minted through Polaris to become yield-bearing assets.
 
-Users deposit a pAsset into its corresponding Earn Vault, where those deposits are used to absorb liquidations whenever positions fall below the market's minimum collateral ratio. In return, depositors receive a **protocol-defined minimum share of the interest** paid by pAsset minters over time, along with any pETH liquidation gains.
+Users deposit a pAsset into its corresponding Earn Vault, where those deposits are used to absorb liquidations whenever positions fall below the market's minimum collateral ratio. In return, **depositors receive a protocol-defined minimum share of the interest** paid by pAsset minters over time, along with any pETH liquidation gains.
 
 This makes Earn Vaults the primary mechanism through which protocol-native yield is distributed to pAsset holders. Since both minter interest and liquidation gains originate from activity inside Polaris, the resulting yield does not rely on external lending markets or offchain assets.
 
@@ -592,19 +592,19 @@ Image: How Earn Vaults combine minter interest and liquidation gains across dire
 
 ## Position Ownership
 
-Each Earn Vault deposit is represented by a **transferable NFT** that tracks its own rewards over time.
+Each Earn Vault deposit is **represented by a transferable NFT** that tracks its own rewards over time.
 
-Representing deposits as NFTs allows users to transfer ownership of an Earn Vault position without withdrawing its underlying assets or resetting its accounting.
+Tokenizing deposits as NFTs enables users to transfer ownership of an Earn Vault position without withdrawing its underlying assets or resetting its accounting.
 
 In practice, users can transfer or sell an existing Earn Vault position without first withdrawing their deposit. Whoever receives the NFT also receives the position exactly as it exists at that moment, including its accumulated rewards and future liquidation exposure.
 
 ## Auto-Compounding Vaults
 
-For users who prefer a simpler experience, Polaris also supports auto-compounding vault wrappers represented as **ERC-4626 tokens**, such as sUSDp and sGOLDp.
+For users who prefer a simpler experience, Polaris also supports auto-compounding vault wrappers **represented as ERC-4626 tokens**, such as sUSDp and sGOLDp.
 
-These vaults automatically manage the underlying Earn Vault position and make deposits fungible and easier to integrate throughout the wider DeFi ecosystem.
+These vaults automatically manage the underlying Earn Vault position, making deposits fungible and easier to integrate throughout the wider DeFi ecosystem.
 
-We expect assets such as **sUSDp and sGOLDp to become the primary integration point** for wallets, DeFi applications and other protocols building on top of Polaris.
+Assets such as **sUSDp and sGOLDp are expected to become the primary integration point** for wallets, DeFi applications and other protocols building on top of Polaris.
 
 Hold | Format | Best for
 
@@ -622,15 +622,15 @@ Markdown URL: https://docs.polaris.finance/architecture/flows.md
 
 Flows distribute protocol-generated value throughout the Polaris ecosystem.
 
-These incentive streams sit one layer above the Fee Router. The Fee Router processes pETH-denominated protocol revenue through the bonding curve first; flows determine where the resulting pETH rewards are sent.
+These incentive streams sit one layer above the [Fee Router](https://docs.polaris.finance/design/fee-router), which first processes pETH-denominated protocol revenue through the bonding curve. Flows then determine where the resulting pETH rewards are sent.
 
-pAsset flows operate separately. Interest paid by minters of assets such as USDp or GOLDp does not pass through the Fee Router, and is instead distributed through that pAsset market's own flow logic.
+Instead, pAsset flows operate separately. Interest paid by minters of assets such as USDp or GOLDp does not pass through the Fee Router, and is instead distributed through that pAsset market's own flow logic.
 
-Thus, ecosystem incentives are paid out **using assets directly connected to protocol activity**, without relying on inflationary POLAR emissions.
+Thus, **ecosystem incentives are paid out using assets directly connected to protocol activity**, without relying on inflationary POLAR emissions.
 
 ## Flow Allocation
 
-Flows are allocated to whitelisted contracts according to **how much pETH or a specific pAsset they hold**.
+Flows are allocated to whitelisted contracts **according to how much pETH or a specific pAsset they hold**.
 
 In general, assets receive flows in proportion to their share of the corresponding asset, with stewardship able to apply additional weighting where appropriate.
 
@@ -642,7 +642,7 @@ Since these minimum allocations distribute protocol value before a recipient has
 
 **pETH flows are funded by pETH-denominated protocol activity**, including bonding curve swap fees, Reserve Loan fees and pETH-to-POLAR conversions.
 
-When these fees are processed, they pass through the [Fee Router](https://docs.polaris.finance/design/fee-router): pETH is burned at the floor, ETH is released from the reserve, that ETH buys newly minted pETH, and the resulting pETH is distributed through pETH flows.
+When these fees are processed, they pass through the Fee Router: pETH is first burned at the floor price, releasing ETH from the reserve. That ETH is then used to purchase newly minted pETH, which is finally distributed through pETH flows.
 
 **Each pAsset market also generates its own independent flow** funded by the interest paid by users who mint that specific pAsset, such as USDp or GOLDp.
 
@@ -675,11 +675,13 @@ Recipients are expected to create value for Polaris in return for flow support. 
 URL: https://docs.polaris.finance/architecture/passet-markets
 Markdown URL: https://docs.polaris.finance/architecture/passet-markets.md
 
-pAssets are currencies and synthetic assets issued against pETH using the shared collateral infrastructure provided by Polaris. USDp and GOLDp are the first pAssets introduced by the protocol, but the underlying architecture is designed to support a much broader range of markets over time.
+pAssets are currencies and other synthetic assets minted against pETH using the same shared collateral infrastructure.
 
-**Any asset with an oracle can become a pAsset**. This includes fiat currencies, commodities, indices and many other onchain or offchain assets whose price can be reliably tracked. Every pAsset maintains its own accounting, oracle configuration, risk parameters and Earn Vault while relying on the same pETH collateral foundation.
+USDp and GOLDp are the first pAssets introduced by the protocol, but the underlying architecture is designed to support a much broader range of markets over time.
 
-Thus, new markets can benefit from the Polaris infrastructure without needing a separate collateral system for every asset.
+**Any asset with an oracle can become a pAsset**. This includes fiat currencies, commodities, indices and many other onchain or offchain assets whose price can be reliably tracked.
+
+Every pAsset maintains its own accounting, oracle configuration, risk parameters and Earn Vault while relying on the same pETH collateral foundation. Thus, new markets can benefit from the Polaris infrastructure without needing a separate collateral system for every asset.
 
 ## Launching a pAsset Market
 
@@ -691,25 +693,29 @@ Each pAsset market may evolve independently, as builders can design their own re
 
 ## Aligning with Polaris
 
-One of the main benefits of building a pAsset market on Polaris is access to pETH flows, which direct protocol incentives towards markets that create lasting value for the ecosystem. **Markets that naturally strengthen Polaris** through adoption, distribution, liquidity or revenue sharing are most likely to benefit from these flows.
+One of the main benefits of building a pAsset market on Polaris is access to pETH flows, which direct protocol incentives towards markets that create lasting value for the ecosystem.
+
+Markets that naturally strengthen Polaris through adoption, distribution, liquidity or revenue sharing are most likely to benefit from these flows.
 
 Access to pETH flows is stewarded through vePOLAR. Builders present their market and explain how it contributes to the broader Polaris ecosystem, while stewards determine which markets receive pETH flows and how those incentives are allocated. Markets that expand demand for pETH and pAssets, with clear value flowing back to Polaris, will naturally be the strongest candidates for alignment.
 
 Different markets may contribute in different ways: some may choose to share part of their issuer interest with vePOLAR holders, while others may focus on distribution, liquidity, strategic integrations, or strengthening other parts of the Polaris ecosystem.
 
-With this approach, anyone can launch a new pAsset market, and Polaris can direct protocol incentives towards builders who contribute to the long-term growth of the ecosystem.
+With this approach, anyone can launch a new pAsset market, and **Polaris can direct protocol incentives towards builders who contribute to the long-term growth of the ecosystem**.
 
 ## Builder Economics
 
-Every pAsset market is required to **route a minimum share of its primary interest to its own Earn Vault**. This boosts the overall protocol safety by ensuring that every market continuously supports the vault responsible for absorbing liquidation losses during periods of market stress.
+Every pAsset market is required **to route a minimum share of its primary interest to its own Earn Vault**. This boosts the overall protocol safety by ensuring that every market continuously supports the vault responsible for absorbing liquidation losses during periods of market stress.
 
 Beyond this required allocation, builders are free to determine how the remaining revenue is distributed. Depending on the objectives of the market, it may support the builder directly, incentivize liquidity, fund integrations, reward ecosystem partners or be shared with vePOLAR as part of a broader alignment strategy.
 
-This flexibility means every pAsset market can develop its own business model on top of the shared foundation provided by Polaris.
+This flexibility means **every pAsset market can develop its own business model on top of the shared foundation** provided by Polaris.
 
 ## Unified Growth
 
-Each new market expands the range of assets available through Polaris while building on the same collateral and liquidity already supporting the protocol. **Every new pAsset joins the same economic system** from the moment it launches, reinforcing a common foundation as the protocol grows.
+Each new market expands the range of assets available across Polaris while building on the same collateral and liquidity already supporting the protocol.
+
+**Every new pAsset joins the same economic system** from the moment it launches, reinforcing a common foundation as the protocol grows.
 
 Over time, Polaris develops into a single interconnected economy, where every new market expands the capabilities of the network.
 
@@ -722,14 +728,16 @@ Markdown URL: https://docs.polaris.finance/architecture/passet-minting.md
 
 Minting pAssets means creating new USDp, GOLDp, or future pAssets against pETH collateral.
 
-Every minted asset belongs to a specific pAsset market. The pAsset Markets section explains how each market functions, whereas this section focuses on the positions and mechanisms that bring those assets into circulation.
+Every minted asset belongs to a specific pAsset market. The [pAsset Markets](https://docs.polaris.finance/architecture/passet-markets) section explains how each market functions, whereas this section focuses on the positions and mechanisms that bring those assets into circulation.
 
-In Polaris, new supply can enter circulation in two ways:
+In Polaris, **there are two ways new supply can enter circulation**:
 
 - Users can mint pAssets by opening or adjusting a collateralized position backed by their own pETH.
 - Arbitrageurs can mint directly through the peg stability mechanism whenever an asset trades above its target price.
 
-Both paths create pAssets backed by pETH, but they follow different accounting paths. Position minting creates debt that belongs to a specific user position. Direct arbitrage minting does not create a normal long-lived position for the arbitrageur; instead, the collateral, debt, and fees created by the action are distributed across open positions in that pAsset market through Adaptive Peg Defense.
+Both paths create pAssets backed by pETH, but they follow different accounting models.
+
+Self minting creates debt that belongs to a specific user position. Direct arbitrage minting does not create a normal long-lived position for the arbitrageur; instead, the resulting collateral, debt, and fees are distributed across all open positions in that pAsset market through the [Adaptive Peg Defense](https://docs.polaris.finance/design/adaptive-peg-defence).
 
 ## Why Mint pAssets
 
@@ -737,7 +745,7 @@ Minting allows users to create onchain assets backed by their pETH without selli
 
 A user may mint USDp to access dollar liquidity, mint GOLDp to create gold exposure, or mint future pAssets for other strategies. The minted asset can then be held, used in DeFi, deposited into an Earn Vault, or combined with external money markets and other integrations.
 
-Unlike many collateralized minting systems, the headline interest rate is not always the same as the effective cost of minting. The cost of a position is determined by the relevant pAsset market's interest-rate mechanics, but minters can also receive protocol-generated value that offsets the interest they pay.
+Unlike many other collateralized minting systems, the headline interest rate is not always the same as the effective cost of minting. The cost of a position is determined by the relevant pAsset market's interest-rate mechanics, but minters can also receive protocol-generated value that offsets the interest they pay.
 
 These offsets can include:
 
@@ -745,39 +753,39 @@ These offsets can include:
 - Fees generated by direct arbitrage minting and redemptions, which are socialized across affected positions.
 - Protocol Safety Rate payments to lower-leverage and collateral-only positions, funded by higher-leverage positions.
 
-This means a position can experience a low, or even negative, effective rate when the value it receives exceeds the interest it pays. This is especially relevant for pAssets with lower interest-rate profiles, such as GOLDp and potential future assets like CHFp.
+This means **a position can experience a low, or even negative, effective rate** when the value it receives exceeds the interest it pays. This is especially relevant for pAssets with lower interest-rate profiles, such as GOLDp and potential future assets like CHFp.
 
-## Position Minting
+## Self Minting
 
-Position minting is the standard way users create pAssets for their own use.
+Self minting is the standard way to mint pAssets by opening a collateralized position, and use it across DeFi.
 
 A user deposits pETH as collateral and mints a pAsset against it. The resulting debt belongs to that user’s position, which must remain within the market’s collateral requirements.
 
 For example, a user who mints USDp needs to maintain enough pETH collateral to satisfy the USDp market’s minimum collateral ratio. If the position becomes too risky, it can be liquidated according to the liquidation rules of that market.
 
-This path is most relevant for users who want to access liquidity without giving up their pETH exposure. The position remains open over time, so the user continues to manage collateral, debt, interest, and liquidation risk.
+This path is most relevant **for users who want to access liquidity without giving up their pETH exposure**. The position remains open over time, so the user continues to manage collateral, debt, interest, and liquidation risk.
 
-The economics of the position can also evolve over time. Minters receive pETH yield in proportion to their debt, and they receive fees from direct arbitrage minting and redemptions that are socialized across the market. These fees help offset the effect of Adaptive Peg Defense adjustments and can make those adjustments profitable for affected positions under certain market conditions.
+The economics of the position can also evolve over time. Minters receive pETH yield in proportion to their debt, and they receive fees from direct arbitrage minting and redemptions that are socialized across the market. These fees help offset the effect of Adaptive Peg Defense adjustments and can make the resulting changes profitable for affected positions under certain market conditions.
 
 ## Collateral-Only Positions
 
-Polaris also supports collateral-only positions.
+Unlike conventional minting protocols, **Polaris also supports collateral-only positions**.
 
 A user can deposit pETH into a pAsset market without minting that pAsset immediately. This creates a position with collateral but no initial debt.
 
-Collateral-only positions can receive fees from direct arbitrage minting and redemptions because those actions are distributed across the open positions in the market. They can also receive Protocol Safety Rate payments from higher-leverage positions.
+Collateral-only positions can receive fees from direct arbitrage minting and redemptions because those actions are distributed across the open positions in the market. They can also receive [Protocol Safety Rate](https://docs.polaris.finance/design/interest-rates#protocol-safety-rate) payments from higher-leverage positions.
 
 One way to understand this is as a pETH-backed liquidity position for a specific pAsset market. The position does not begin by creating pAsset debt, but it supports the market’s collateral base, participates in market-level minting and redemption activity, and can earn fees for doing so.
 
-The Protocol Safety Rate adds another source of yield. It is expected to be small during normal conditions, but it becomes more significant when the market's collateral health weakens and the protocol rewards lower-leverage or collateral-only positions.
+**The Protocol Safety Rate adds another source of yield**. It is expected to be small during normal conditions, but it becomes more significant when the market's collateral health weakens and the protocol rewards lower-leverage or collateral-only positions.
 
 ## Direct Arbitrage Minting
 
 Direct arbitrage minting serves a different purpose: when a pAsset trades above its target price, arbitrageurs can mint new supply and sell it into the market. This increases circulating supply and helps push the market price back toward its target.
 
-Unlike position minting, the arbitrageur does not need to open a normal collateralized position that remains in the system. The newly created supply is instead incorporated into the existing pAsset market through Adaptive Peg Defense.
+Unlike self minting, the arbitrageur does not need to open a normal collateralized position that remains in the system. The newly created supply is instead incorporated into the existing pAsset market through the Adaptive Peg Defense.
 
-The added collateral, debt, and minting fees are distributed across every open position according to the protocol’s rules. Existing positions therefore participate directly in every arbitrage event, evolving continuously as supply expands through permissionless minting.
+**The added collateral, debt, and minting fees are distributed across every open position** according to the protocol’s rules. Existing positions therefore participate directly in every arbitrage event, evolving continuously as supply expands through permissionless minting.
 
 As a result, each pAsset market can increase supply without concentrating the economic effects of arbitrage within newly created positions.
 
@@ -787,11 +795,11 @@ Adaptive Peg Defense connects market-level arbitrage activity to existing positi
 
 When direct minting expands supply, or redemptions contract supply, the resulting changes are distributed across the affected pAsset market instead of being isolated to the arbitrageur.
 
-This means position minters are not isolated from peg activity. Their collateral, debt, and fee balances can change as the market responds to price deviations.
+This means self minters are not isolated from peg activity. Their collateral, debt, and fee balances can change as the market responds to price deviations.
 
-The fees generated by direct minting and redemptions are distributed to affected positions, helping compensate minters for the impact of those system-level adjustments. Under certain market conditions, this can make arbitrage-driven activity profitable for existing positions rather than purely dilutive.
+The fees generated by direct minting and redemptions are distributed to affected positions, helping compensate minters for the impact of those system-level adjustments. Under certain market conditions, this can make arbitrage-driven activity profitable for existing positions instead of being purely dilutive.
 
-This design allows Polaris to defend both sides of a pAsset’s target price while distributing the effects of arbitrage activity across the market.
+As a result, **both sides of a pAsset’s target price are defended**, with the effects of arbitrage activity distributed across the market.
 
 ---
 
@@ -800,17 +808,19 @@ This design allows Polaris to defend both sides of a pAsset’s target price whi
 URL: https://docs.polaris.finance/architecture/reserve-loans
 Markdown URL: https://docs.polaris.finance/architecture/reserve-loans.md
 
-Reserve Loans are a core financial primitive introduced by Polaris, allowing users to **borrow ETH directly from the bonding curve reserve** using fpETH as collateral.
+Reserve Loans are a core financial primitive introduced by Polaris, enabling users to borrow ETH directly from the bonding curve reserve using fpETH as collateral.
 
-As described in the fpETH section, fpETH represents the steadily growing floor component of pETH. Since the fpETH price in ETH is guaranteed to only increase, changes in the ETH price cannot cause the position to become undercollateralized. This removes the need for liquidations and allows users to **borrow up to 100% of the floor value** represented by their fpETH.
+As described in the fpETH section, fpETH represents the steadily growing floor component of pETH.
 
-With this feature, borrowers gain ETH liquidity **without giving up fpETH yield**, making highly capital-efficient looping strategies possible.
+Since the fpETH price in ETH is guaranteed to only increase, changes in the ETH price cannot cause the position to become undercollateralized. This removes the need for liquidations and makes it possible for users **to borrow up to 100% of the floor value** represented by their fpETH.
+
+With this feature, **borrowers gain ETH liquidity without giving up fpETH yield**, making highly capital-efficient looping strategies possible.
 
 ## Loan Mechanics
 
-Instead of paying a conventional borrowing interest rate, Reserve Loans apply a **time-weighted performance fee**, which is deducted directly from the increase in the fpETH floor price over the lifetime of the loan.
+Instead of paying a conventional borrowing interest rate, **reserve loans apply a time-weighted performance fee**, which is deducted directly from the increase in the fpETH floor price over the lifetime of the loan.
 
-This allows users to benefit from the growth of the fpETH floor while passively paying for the extra liquidity they access. The fee is applied when the user next touches the position, such as when they borrow additional ETH, repay, or close the loan.
+This helps users benefit from the growth of the fpETH floor while passively paying for the extra liquidity they access. The fee is applied when the user next touches the position, such as when they borrow additional ETH, repay, or close the loan.
 
 For example, suppose a user deposits 1 fpETH when the floor value is 1 ETH and borrows 1 ETH against it. Later, the fpETH floor has risen to 1.2 ETH, creating 0.2 ETH of additional floor value. If the performance fee is 1%, the user can access 0.198 ETH of that gain, while 0.002 ETH is paid as the fee.
 
@@ -819,7 +829,7 @@ The performance fee is also utilization-based. As more ETH is borrowed through R
 Feature | Traditional lending | Reserve Loans
 
 Liquidation Risk | Yes | None
-Borrow Limit | Below 100% LTV | Up to 100% of floor value (fpETH)
+Borrow Limit | Below 100% LTV | Up to 100% of fpETH
 Borrowing Cost | Interest rate | Time-weighted fee on floor growth
 
 As described in the dedicated [Fee Router](https://docs.polaris.finance/design/fee-router) section, the fees generated by Reserve Loans are recycled back into the Polaris ecosystem, becoming part of the value distributed throughout the protocol.
@@ -849,7 +859,7 @@ Stewardship is therefore bounded, and cannot:
 
 Some parts of the ecosystem still require ongoing coordination.
 
-Stewardship is responsible for certain parameters within predefined protocol boundaries, allowing the ecosystem to adapt to changing market conditions.
+Stewardship is responsible for certain parameters within predefined protocol boundaries, making sure the ecosystem adapts to changing market conditions.
 
 This includes:
 
@@ -874,15 +884,13 @@ This section focuses on the economic principles behind POLAR.
 
 ## Supply
 
-POLAR will launch with an initial supply of 100 million tokens, distributed across the treasury, community, team and investors. This initial supply is not a maximum supply. POLAR supply is uncapped, but new supply beyond the initial allocation can only enter circulation through the conversion mechanism.
+POLAR will launch with an initial supply of 100 million tokens, allocated across the treasury, community, team, and investors.
 
-Those initial tokens will gradually enter circulation according to their respective vesting schedules, while the long-term growth of the supply is driven by participants converting pETH into POLAR.
-
-Every new POLAR outside the vesting schedule requires pETH to be permanently converted before it can enter circulation (see [Conversions](https://docs.polaris.finance/design/conversions#conversions)).
+Beyond this initial allocation entering circulation gradually according to its vesting schedules, new POLAR can only be created through the [Conversions](https://docs.polaris.finance/design/conversions) mechanism. As a result, every new POLAR requires pETH to be permanently converted before entering circulation.
 
 For example, if market participants want more POLAR than is available at attractive prices on secondary markets, they can convert pETH into newly minted POLAR through the protocol's Dutch auction. That conversion burns pETH, expands POLAR supply and routes value back into the pETH economy.
 
-As the protocol grows, pETH grows alongside it by capturing protocol-native value. Since every additional POLAR entering circulation beyond the initial allocation is created from pETH, the POLAR supply can only grow when demand leads participants to convert pETH within the protocol's conversion parameters, keeping the utility token economically connected to the system it serves.
+As the protocol grows, pETH grows alongside it by capturing protocol-native value. Since every additional POLAR entering circulation beyond the initial allocation is created from pETH, the POLAR supply can only grow when demand leads participants to convert pETH within the protocol's conversion parameters, so that **the utility token remains economically connected to the system it serves**.
 
 ## A Closed Economy
 
@@ -890,7 +898,7 @@ Polaris is designed as a closed economic system where the value generated by pro
 
 Polaris redistributes value generated by its core protocol mechanisms across the ecosystem based on the role each asset plays, **without relying on continuous token emissions**.
 
-**Treasury-held POLAR participates through vePOLAR** alongside every other long-term holder, aligning incentives across the ecosystem.
+**Treasury-held POLAR participates through vePOLAR alongside every other long-term holder**, aligning incentives across the ecosystem.
 
 In practice, this means the Polaris treasury does not receive a privileged fee stream simply because the protocol is being used. If the treasury wants exposure to protocol revenue, it must commit POLAR as vePOLAR and participate through the same mechanism available to every other vePOLAR holder.
 
@@ -898,7 +906,7 @@ In practice, this means the Polaris treasury does not receive a privileged fee s
 
 Long-term participation in Polaris takes place through vePOLAR.
 
-Users commit POLAR for a chosen period of time to **align themselves with the long-term growth of the ecosystem**. In return, they receive a share of protocol-native value from supported pAsset markets, together with stewardship rights.
+Users commit POLAR for a chosen period of time **to align with the long-term growth of the ecosystem**. In return, they receive a share of protocol-native value from supported pAsset markets, together with stewardship rights.
 
 For example, a USDp minter pays interest to the USDp market. Part of that interest is distributed to vePOLAR holders. If the minter also holds vePOLAR, those distributions can offset part of the interest they pay, lowering their effective minting cost.
 
@@ -1265,7 +1273,7 @@ Markdown URL: https://docs.polaris.finance/design/revenue-model.md
 
 Polaris operates under the design philosophy that **all value generated throughout the protocol should not leak externally**. Protocol revenue is generated entirely from ecosystem activity, and in turn directed toward ecosystem growth.
 
-Creating pAssets, trading through the bonding curve, borrowing through Reserve Loans and building on Polaris all contribute to the same revenue engine.
+Creating pAssets, trading through the bonding curve, borrowing through reserve loans and building on Polaris all contribute to the same revenue engine.
 
 The fees generated by these activities are routed back through the bonding curve to strengthen pETH, increase its floor and distribute yield. Fees generated by the protocol first strengthen the collateral layer before being distributed across the ecosystem.
 
@@ -1285,7 +1293,7 @@ Protocol revenue is not routed directly to the team through privileged fee strea
 
 This aligns the team's incentives with the protocol's long-term sustainability, with the team only benefiting when Polaris generates value for the ecosystem as a whole.
 
-Since every vePOLAR holder earns protocol revenue through the same mechanism, Stewardship naturally rewards decisions that strengthen the protocol over time.
+Since every vePOLAR holder earns protocol revenue through the same mechanism, [Stewardship](https://docs.polaris.finance/architecture/stewardship) naturally rewards decisions that strengthen the protocol over time.
 
 ---
 
