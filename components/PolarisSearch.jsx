@@ -1,7 +1,7 @@
 'use client'
 
 import { DialogTitle } from '@headlessui/react'
-import { Clock3, Info, RotateCw, Search, Trash2, X } from 'lucide-react'
+import { Clock3, Info, Menu, RotateCw, Trash2, X } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import {
   useCallback,
@@ -184,7 +184,7 @@ function focusDestination(hash) {
   }, 500)
 }
 
-export function PolarisSearch({ open, onOpenChange }) {
+export function PolarisSearch({ open, onOpenChange, onMenuRequest }) {
   const router = useRouter()
   const id = useId()
   const inputRef = useRef(null)
@@ -444,6 +444,15 @@ export function PolarisSearch({ open, onOpenChange }) {
 
   return (
     <DocsOverlay kind="search" open={open} onClose={close} initialFocus={inputRef}>
+      <button
+        type="button"
+        className="pl-overlay-icon-button pl-overlay-navbar-control pl-overlay-navbar-control--end"
+        aria-label="Open navigation"
+        aria-haspopup="dialog"
+        onClick={onMenuRequest}
+      >
+        <Menu aria-hidden="true" size={20} strokeWidth={1.8} />
+      </button>
       <div className="pl-search-dialog">
         <DialogTitle className="pl-sr-only">Search Polaris documentation</DialogTitle>
         <span id={`${id}-status`} className="pl-sr-only" aria-live="polite" aria-atomic="true">
@@ -457,7 +466,6 @@ export function PolarisSearch({ open, onOpenChange }) {
 
         <div className="pl-search-dialog-header">
           <div className="pl-search-field">
-            <Search className="pl-search-icon" aria-hidden="true" size={19} strokeWidth={1.8} />
             <input
               ref={inputRef}
               type="search"
@@ -590,7 +598,6 @@ export function PolarisSearch({ open, onOpenChange }) {
                     <SearchOption
                       id={`${id}-item-0`}
                       title={`Search for “${aliasSuggestion}”`}
-                      icon={<Search aria-hidden="true" size={15} strokeWidth={1.8} />}
                       active={active === 0}
                       onActivate={() => onItem({ query: aliasSuggestion })}
                       onHover={() => setActive(0)}
@@ -641,7 +648,6 @@ export function PolarisSearch({ open, onOpenChange }) {
                     <SearchOption
                       id={`${id}-item-0`}
                       title={`Search for “${aliasSuggestion}”`}
-                      icon={<Search aria-hidden="true" size={15} strokeWidth={1.8} />}
                       active={active === 0}
                       onActivate={() => onItem({ query: aliasSuggestion })}
                       onHover={() => setActive(0)}

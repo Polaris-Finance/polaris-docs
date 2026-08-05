@@ -1,6 +1,6 @@
 'use client'
 
-import { Menu, Search, X } from 'lucide-react'
+import { Menu, Search } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react'
 import { EXTERNAL_LINKS } from '../../app/navigation-config.mjs'
@@ -135,28 +135,33 @@ export function NavbarActions() {
         >
           <Search aria-hidden="true" size={19} strokeWidth={1.8} />
         </button>
-        <button
-          ref={menuTriggerRef}
-          type="button"
-          className="pl-navbar-icon-button pl-nav-menu-trigger"
-          aria-label={surface === 'menu' ? 'Close navigation' : 'Open navigation'}
-          aria-haspopup="dialog"
-          aria-expanded={surface === 'menu'}
-          onClick={() => setMenuOpen(surface !== 'menu')}
-        >
-          {surface === 'menu' ? (
-            <X aria-hidden="true" size={20} strokeWidth={1.8} />
-          ) : (
+        {surface === 'menu' ? (
+          <span className="pl-navbar-icon-button pl-nav-menu-trigger" aria-hidden="true" />
+        ) : (
+          <button
+            ref={menuTriggerRef}
+            type="button"
+            className="pl-navbar-icon-button pl-nav-menu-trigger"
+            aria-label="Open navigation"
+            aria-haspopup="dialog"
+            aria-expanded="false"
+            onClick={() => setMenuOpen(true)}
+          >
             <Menu aria-hidden="true" size={20} strokeWidth={1.8} />
-          )}
-        </button>
+          </button>
+        )}
       </div>
 
-      <PolarisSearch open={surface === 'search'} onOpenChange={setSearchOpen} />
+      <PolarisSearch
+        open={surface === 'search'}
+        onOpenChange={setSearchOpen}
+        onMenuRequest={() => setSurface('menu')}
+      />
       <MobileDocsNav
         key={surface === 'menu' ? 'menu-open' : 'menu-closed'}
         open={surface === 'menu'}
         onOpenChange={setMenuOpen}
+        onSearchRequest={() => setSurface('search')}
       />
     </div>
   )

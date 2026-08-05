@@ -46,9 +46,9 @@ function FooterLink({ link }) {
   )
 }
 
-export function PolarisFooter() {
+export function PolarisFooter({ className = '' }) {
   return (
-    <footer className="pl-footer" aria-label="Footer">
+    <footer className={`pl-footer${className ? ` ${className}` : ''}`} aria-label="Footer">
       <div className="pl-footer-inner">
         <div className="pl-footer-top">
           <div className="pl-footer-identity">
