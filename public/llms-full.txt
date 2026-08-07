@@ -34,7 +34,9 @@ Image: Polaris flow from swapping ETH for pETH to minting pAssets, splitting pET
 
 The flagship market of the Polaris ecosystem is USDp, a fully decentralized and censorship-resistant dollar backed by pETH. Built on the same infrastructure, GOLDp is the first permissionless onchain market, with many more currencies, commodities, and synthetic assets coming to expand the ecosystem over time under the same framework and collateral asset.
 
-Beyond collateralizing markets, pETH can also be split into fpETH and vpETH: fpETH represents the ever-rising floor price of pETH, while vpETH isolates its market premium and volatility.
+Beyond collateralizing markets, pETH can also be split into fpETH and vpETH.
+
+*pETH = fpETH + vpETH*, where fpETH represents the ever-rising floor price of pETH, while vpETH isolates its market premium and volatility.
 
 The primitives introduced throughout Polaris can be combined in different ways, enabling non-liquidatable ETH loans, carry trades that turn traditionally non-yield-bearing assets into yield-bearing ones, capital-efficient DeFi looping, and entirely new strategies built on top of the protocol.
 
