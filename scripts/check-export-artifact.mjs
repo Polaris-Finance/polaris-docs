@@ -1,5 +1,6 @@
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
 import path from 'node:path'
+import { LEGACY_REDIRECTS } from '../app/legacy-redirects.mjs'
 import {
   absoluteUrl,
   BASE_PATH,
@@ -231,6 +232,35 @@ function assertHtmlFile(file) {
 
   assertNoStaleHost(relativeFile, html)
 
+  if (route && Object.hasOwn(LEGACY_REDIRECTS, route)) {
+    const target = LEGACY_REDIRECTS[route]
+    const expectedCanonical = absoluteUrl(target)
+    const canonical = extractCanonical(html)
+    const refresh = /<meta\s+http-equiv=["']refresh["'][^>]*content=["']([^"']+)["']/i.exec(
+      html
+    )?.[1]
+
+    if (!urlsMatch(canonical, expectedCanonical)) {
+      failures.push(
+        `${relativeFile} redirect canonical mismatch: expected ${expectedCanonical}, found ${
+          canonical || '(missing)'
+        }`
+      )
+    }
+    if (refresh !== `0;url=${expectedCanonical}`) {
+      failures.push(
+        `${relativeFile} refresh mismatch: expected 0;url=${expectedCanonical}, found ${
+          refresh || '(missing)'
+        }`
+      )
+    }
+    if (Object.hasOwn(LEGACY_REDIRECTS, target)) {
+      failures.push(`${relativeFile} redirects through another legacy route: ${target}`)
+    }
+    assertOutReferenceExists(relativeFile, expectedCanonical)
+    return
+  }
+
   if (route) {
     const expectedCanonical = absoluteUrl(route)
     const canonical = extractCanonical(html)
@@ -449,6 +479,13 @@ const htmlFiles = walk(outDir).filter((file) => file.endsWith('.html'))
 if (!htmlFiles.length) failures.push('out/ contains no HTML files')
 
 for (const file of htmlFiles) assertHtmlFile(file)
+
+for (const source of Object.keys(LEGACY_REDIRECTS)) {
+  const relativePath = `${source.slice(1)}.html`
+  if (!existsSync(path.join(outDir, relativePath))) {
+    failures.push(`out/${relativePath} legacy redirect is missing`)
+  }
+}
 
 const sitemap = readOut('sitemap.xml')
 const robots = readOut('robots.txt')

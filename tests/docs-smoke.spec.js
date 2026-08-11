@@ -444,10 +444,11 @@ test('unknown routes serve the recovery 404 and legacy routes redirect', async (
   await expect(page.getByRole('contentinfo', { name: 'Footer' })).toBeVisible()
   await expect(page.locator('main')).toHaveCount(1)
 
-  // A route deleted by the July 2026 rewrite recovers via the 404 redirect
-  // map, preserving the fragment across the hop.
-  await page.goto(`${pathWithBase('/using-app/issue')}#fees`)
-  await expect(page).toHaveURL(new RegExp(`${escapeRegExp(pathWithBase('/testnet/mint'))}/?#fees$`))
+  // Generated legacy endpoints preserve the query and fragment across the hop.
+  await page.goto(`${pathWithBase('/using-app/issue')}?ref=legacy#fees`)
+  await expect(page).toHaveURL(
+    new RegExp(`${escapeRegExp(pathWithBase('/testnet/mint'))}/?\\?ref=legacy#fees$`)
+  )
   await expect(page.getByRole('heading', { level: 1 }).first()).toBeVisible()
 
   // A page merged away by the July 2026 feedback pass redirects to its new home.
