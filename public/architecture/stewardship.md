@@ -6,6 +6,7 @@
 Canonical URL: https://docs.polaris.finance/architecture/stewardship
 Markdown URL: https://docs.polaris.finance/architecture/stewardship.md
 Section: Core Architecture
+Updated: 2026-08-05
 
 Documentation index: https://docs.polaris.finance/llms.txt
 Full documentation bundle: https://docs.polaris.finance/llms-full.txt

@@ -6,6 +6,7 @@
 Canonical URL: https://docs.polaris.finance/risks
 Markdown URL: https://docs.polaris.finance/risks.md
 Section: Risks
+Updated: 2026-07-31
 
 Documentation index: https://docs.polaris.finance/llms.txt
 Full documentation bundle: https://docs.polaris.finance/llms-full.txt

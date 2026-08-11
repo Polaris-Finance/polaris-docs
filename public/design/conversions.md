@@ -6,6 +6,7 @@
 Canonical URL: https://docs.polaris.finance/design/conversions
 Markdown URL: https://docs.polaris.finance/design/conversions.md
 Section: Protocol Mechanics
+Updated: 2026-08-04
 
 Documentation index: https://docs.polaris.finance/llms.txt
 Full documentation bundle: https://docs.polaris.finance/llms-full.txt

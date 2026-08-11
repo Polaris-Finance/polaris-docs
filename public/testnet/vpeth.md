@@ -6,6 +6,7 @@
 Canonical URL: https://docs.polaris.finance/testnet/vpeth
 Markdown URL: https://docs.polaris.finance/testnet/vpeth.md
 Section: Using the Testnet
+Updated: 2026-07-18
 
 Documentation index: https://docs.polaris.finance/llms.txt
 Full documentation bundle: https://docs.polaris.finance/llms-full.txt

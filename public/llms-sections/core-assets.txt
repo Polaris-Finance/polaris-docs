@@ -107,8 +107,6 @@ As a result, users don't need to overcollateralize their ETH borrowing simply to
 
 As Polaris expands, additional applications can also build around fpETH as a protocol-native reserve asset.
 
-Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor price.
-
 ---
 
 ## GOLDp
@@ -218,8 +216,6 @@ Image: The pETH bonding curve at two supply levels, with each spot price separat
 
 The floor and premium can also be separated through the fpETH and vpETH primitives, which are explored in their dedicated sections.
 
-Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor price, pETH bonding curve, bonding curve, pETH floor.
-
 ---
 
 ## POLAR
@@ -279,8 +275,6 @@ The goal of POLAR is not to subsidize or boost returns through additional token 
 With vePOLAR, long-term participants can help coordinate how the ecosystem evolves by taking part in decisions around incentive distribution, integrations and other initiatives. The protocol itself continues to operate through immutable code, while **vePOLAR provides a structured stewardship layer that helps guide the development** of the ecosystem.
 
 The [stewardship](https://docs.polaris.finance/architecture/stewardship) model and the [tokenomics](https://docs.polaris.finance/architecture/tokenomics) of POLAR are explained in the dedicated sections of the documentation.
-
-Relevant app/search vocabulary: POLAR, convert, lock, vePOLAR, burn pETH, conversion auction, POLAR token, POLAR staking, POLAR tokenomics.
 
 ---
 
@@ -408,5 +402,3 @@ Since vpETH represents the portion of pETH that trades above its bonding curve f
 This effectively leaves the user exposed only to the ETH/USD price, which also can be hedged on an external venue to make the position delta-neutral, while preserving exposure to growth in the pETH floor. Because the position and hedge values can change, maintaining neutrality may still require rebalancing, while the strategy remains exposed to risks external to Polaris.
 
 As the protocol expands, additional applications can also build around vpETH.
-
-Relevant app/search vocabulary: Swap, swap, Split, fpETH, vpETH, pETH, floor price.

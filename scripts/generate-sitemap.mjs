@@ -1,8 +1,7 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
-import { execFileSync } from 'node:child_process'
 import path from 'node:path'
 import { absoluteUrl } from '../app/site-config.mjs'
-import { routeForFile, walkMdx } from './lib/content.mjs'
+import { lastModifiedForFile, routeForFile, walkMdx } from './lib/content.mjs'
 
 const root = process.cwd()
 const contentDir = path.join(root, 'content')
@@ -15,72 +14,6 @@ function xmlEscape(value) {
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
-}
-
-function frontmatterUpdated(fullPath) {
-  const text = readFileSync(fullPath, 'utf8')
-  if (!text.startsWith('---\n')) return null
-  const end = text.indexOf('\n---', 4)
-  if (end === -1) return null
-  const frontmatter = text.slice(4, end)
-  return extractFrontmatterDate(frontmatter, ['updated', 'lastUpdated', 'date'])
-}
-
-const monthNumbers = new Map([
-  ['january', '01'],
-  ['february', '02'],
-  ['march', '03'],
-  ['april', '04'],
-  ['may', '05'],
-  ['june', '06'],
-  ['july', '07'],
-  ['august', '08'],
-  ['september', '09'],
-  ['october', '10'],
-  ['november', '11'],
-  ['december', '12']
-])
-
-function normalizeDate(value) {
-  const iso = /\b(\d{4}-\d{2}-\d{2})\b/.exec(value)
-  if (iso) return iso[1]
-
-  const written = /\b([A-Za-z]+)\s+(\d{1,2}),\s+(\d{4})\b/.exec(value)
-  if (!written) return null
-
-  const month = monthNumbers.get(written[1].toLowerCase())
-  if (!month) return null
-
-  return `${written[3]}-${month}-${written[2].padStart(2, '0')}`
-}
-
-function extractFrontmatterDate(frontmatter, names) {
-  for (const name of names) {
-    const match = new RegExp(`^${name}:\\s*["']?([^"']+)["']?\\s*$`, 'im').exec(frontmatter)
-    if (!match) continue
-    const date = normalizeDate(match[1])
-    if (date) return date
-  }
-  return null
-}
-
-function gitLastModified(fullPath) {
-  try {
-    const relativePath = path.relative(root, fullPath)
-    const value = execFileSync('git', ['log', '-1', '--format=%cI', '--', relativePath], {
-      cwd: root,
-      encoding: 'utf8',
-      stdio: ['ignore', 'pipe', 'ignore']
-    }).trim()
-
-    return value ? value.slice(0, 10) : null
-  } catch {
-    return null
-  }
-}
-
-function lastModified(fullPath) {
-  return frontmatterUpdated(fullPath) ?? gitLastModified(fullPath)
 }
 
 function sitemapPolicy(route) {
@@ -126,7 +59,7 @@ const urls = walkMdx(contentDir)
     const route = routeForFile(contentDir, fullPath)
     return {
       loc: absoluteUrl(route),
-      lastmod: lastModified(fullPath),
+      lastmod: lastModifiedForFile(fullPath),
       ...sitemapPolicy(route)
     }
   })

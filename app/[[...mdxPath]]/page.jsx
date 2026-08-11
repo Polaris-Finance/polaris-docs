@@ -23,8 +23,7 @@ export default async function Page(props) {
       <JsonLd
         data={buildPageJsonLd({
           metadata,
-          path,
-          sourceCode
+          path
         })}
       />
       <MDXContent {...props} params={params} />

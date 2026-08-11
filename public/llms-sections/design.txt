@@ -113,8 +113,6 @@ In practice, conversions are primarily performed by arbitrageurs whenever the co
 
 Most users will simply buy POLAR through secondary markets without ever interacting with the conversion mechanism themselves.
 
-Relevant app/search vocabulary: POLAR, convert, lock, vePOLAR, burn pETH, conversion auction.
-
 ---
 
 ## Defensive Mode
@@ -256,8 +254,6 @@ Step | Applies | Outcome
 Earn Vault | Always first | Debt cancelled by the vault, and depositors receive liquidation gains
 Redistribution | If the vault cannot absorb the full position | Remaining debt and collateral redistributed to open positions
 
-Relevant app/search vocabulary: liquidation, liquidations, liquidate, liquidated, liquidation penalty.
-
 ---
 
 ## Oracles
@@ -308,8 +304,6 @@ Polaris can therefore recover from oracle failures without giving stewards immed
 ##
 
 **Note:** The set of oracle feeds used at launch will be finalized closer to the mainnet launch.
-
-Relevant app/search vocabulary: oracle, oracles, Medianiser, price feed, ETH/USD, XAU/USD.
 
 ---
 

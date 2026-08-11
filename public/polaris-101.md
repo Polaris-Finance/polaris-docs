@@ -6,6 +6,7 @@
 Canonical URL: https://docs.polaris.finance/polaris-101
 Markdown URL: https://docs.polaris.finance/polaris-101.md
 Section: Introduction
+Updated: 2026-08-07
 
 Documentation index: https://docs.polaris.finance/llms.txt
 Full documentation bundle: https://docs.polaris.finance/llms-full.txt

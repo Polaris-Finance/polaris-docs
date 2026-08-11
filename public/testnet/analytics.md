@@ -6,6 +6,7 @@
 Canonical URL: https://docs.polaris.finance/testnet/analytics
 Markdown URL: https://docs.polaris.finance/testnet/analytics.md
 Section: Using the Testnet
+Updated: 2026-07-24
 
 Documentation index: https://docs.polaris.finance/llms.txt
 Full documentation bundle: https://docs.polaris.finance/llms-full.txt

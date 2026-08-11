@@ -6,6 +6,7 @@
 Canonical URL: https://docs.polaris.finance/risks/security-properties
 Markdown URL: https://docs.polaris.finance/risks/security-properties.md
 Section: Risks
+Updated: 2026-08-03
 
 Documentation index: https://docs.polaris.finance/llms.txt
 Full documentation bundle: https://docs.polaris.finance/llms-full.txt

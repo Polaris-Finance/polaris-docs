@@ -6,6 +6,7 @@
 Canonical URL: https://docs.polaris.finance/core-assets/fpeth
 Markdown URL: https://docs.polaris.finance/core-assets/fpeth.md
 Section: Core Assets
+Updated: 2026-08-04
 
 Documentation index: https://docs.polaris.finance/llms.txt
 Full documentation bundle: https://docs.polaris.finance/llms-full.txt

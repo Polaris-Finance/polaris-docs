@@ -73,8 +73,6 @@ Users may also interact with Polaris through third-party interfaces, vaults, mar
 - Review transaction details before signing
 - Avoid unofficial links or support channels
 
-Relevant app/search vocabulary: risk, risks, risk disclosure, smart contract risk, liquidation risk.
-
 ---
 
 ## Security Guarantees
@@ -99,5 +97,3 @@ The architectural decisions below remove many of the trust assumptions commonly 
 **Every pAsset is minted against the required pETH collateral**. The protocol does not allow privileged actors, multisigs or administrators to create unbacked assets outside the normal minting process.
 
 **Stewardship remains bounded.** It can update a limited set of ecosystem parameters within predefined boundaries, including interest rate splits, POLAR conversion parameters, oracle feed replacement, flow recipients and flow weightings. It cannot modify the bonding curve or liquidation mechanics, introduce new collateral or upgrade the core contracts.
-
-Relevant app/search vocabulary: risk, risks, risk disclosure, smart contract risk, liquidation risk.

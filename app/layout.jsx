@@ -62,11 +62,8 @@ export const metadata = {
     canonical: pathWithBase('/'),
     types: {
       'text/markdown': [
-        { url: pathWithBase(markdownPathForRoute('/')), title: 'Markdown: Polaris Documentation' },
-        { url: pathWithBase('/llms.txt'), title: 'llms.txt' },
-        { url: pathWithBase('/llms-full.txt'), title: 'llms-full.txt' }
-      ],
-      'application/json': [{ url: pathWithBase('/llms-index.json'), title: 'LLM docs index' }]
+        { url: pathWithBase(markdownPathForRoute('/')), title: 'Markdown: Polaris Documentation' }
+      ]
     }
   },
   applicationName: SITE_NAME,

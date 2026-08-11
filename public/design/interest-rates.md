@@ -6,6 +6,7 @@
 Canonical URL: https://docs.polaris.finance/design/interest-rates
 Markdown URL: https://docs.polaris.finance/design/interest-rates.md
 Section: Protocol Mechanics
+Updated: 2026-08-04
 
 Documentation index: https://docs.polaris.finance/llms.txt
 Full documentation bundle: https://docs.polaris.finance/llms-full.txt

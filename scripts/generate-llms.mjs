@@ -11,7 +11,7 @@ import {
 import path from 'node:path'
 import { absoluteUrl, markdownPathForRoute } from '../app/site-config.mjs'
 import { searchVocabulary } from '../app/search-vocabulary.mjs'
-import { routeForFile, walkMdx } from './lib/content.mjs'
+import { lastModifiedForFile, routeForFile, walkMdx } from './lib/content.mjs'
 
 const root = process.cwd()
 const contentDir = path.join(root, 'content')
@@ -41,7 +41,7 @@ function parsePage(fullPath) {
     title: titleMatch ? stripQuotes(titleMatch[1]) : 'Untitled',
     description: descMatch ? stripQuotes(descMatch[1]) : '',
     keywords,
-    updated: extractPageDate(frontmatter, ['updated', 'lastUpdated', 'date']),
+    updated: lastModifiedForFile(fullPath),
     body: sanitizeMdxForLlms(body, route),
     bodyMarkdown: sanitizeMdxForMarkdownMirror(body, route)
   }
@@ -96,12 +96,6 @@ function normalizeTables(value) {
     .join('\n')
 }
 
-function appendVocabulary(body, route) {
-  const keywords = vocabularyForRoute(route)
-  if (!keywords.length) return body
-  return `${body.trim()}\n\nRelevant app/search vocabulary: ${keywords.join(', ')}.`
-}
-
 function absolutizeMarkdownLinks(value, route) {
   return value
     .replace(/\]\((#[^)]+)\)/g, (_match, hash) => `](${absoluteUrl(`${route}${hash}`)})`)
@@ -118,14 +112,10 @@ function cleanupEntities(value) {
 }
 
 function sanitizeMdxForLlms(body, route) {
-  return cleanupEntities(
-    appendVocabulary(absolutizeMarkdownLinks(normalizeTables(stripJsxTags(body)), route), route)
-  )
+  return cleanupEntities(absolutizeMarkdownLinks(normalizeTables(stripJsxTags(body)), route))
 }
 
-// Markdown mirror variant for the human-readable /*.md files: keep real
-// ![alt](url) image markdown and omit the appended search-vocabulary line. The
-// Image:/vocabulary conventions stay only in the machine llms*.txt bundles.
+// Markdown mirrors keep real ![alt](url) image syntax; bundles use Image: alt.
 function sanitizeMdxForMarkdownMirror(body, route) {
   return cleanupEntities(
     absolutizeMarkdownLinks(normalizeTables(stripJsxTags(body, { markdown: true })), route)
@@ -173,48 +163,6 @@ function vocabularyForRoute(route) {
     }
   }
   return [...terms]
-}
-
-const monthNumbers = new Map([
-  ['january', '01'],
-  ['february', '02'],
-  ['march', '03'],
-  ['april', '04'],
-  ['may', '05'],
-  ['june', '06'],
-  ['july', '07'],
-  ['august', '08'],
-  ['september', '09'],
-  ['october', '10'],
-  ['november', '11'],
-  ['december', '12']
-])
-
-function normalizeDate(value) {
-  const iso = /\b(\d{4}-\d{2}-\d{2})\b/.exec(value)
-  if (iso) return iso[1]
-
-  const written = /\b([A-Za-z]+)\s+(\d{1,2}),\s+(\d{4})\b/.exec(value)
-  if (!written) return null
-
-  const month = monthNumbers.get(written[1].toLowerCase())
-  if (!month) return null
-
-  return `${written[3]}-${month}-${written[2].padStart(2, '0')}`
-}
-
-function extractPageDate(frontmatter, names) {
-  for (const name of names) {
-    const frontmatterMatch = new RegExp(`^${name}:\\s*["']?([^"']+)["']?\\s*$`, 'im').exec(
-      frontmatter
-    )
-    if (frontmatterMatch) {
-      const date = normalizeDate(frontmatterMatch[1])
-      if (date) return date
-    }
-  }
-
-  return null
 }
 
 function markdownRelativePathForRoute(route) {

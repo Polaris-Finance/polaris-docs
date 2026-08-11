@@ -6,6 +6,7 @@
 Canonical URL: https://docs.polaris.finance/design/revenue-model
 Markdown URL: https://docs.polaris.finance/design/revenue-model.md
 Section: Protocol Mechanics
+Updated: 2026-08-05
 
 Documentation index: https://docs.polaris.finance/llms.txt
 Full documentation bundle: https://docs.polaris.finance/llms-full.txt

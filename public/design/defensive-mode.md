@@ -6,6 +6,7 @@
 Canonical URL: https://docs.polaris.finance/design/defensive-mode
 Markdown URL: https://docs.polaris.finance/design/defensive-mode.md
 Section: Protocol Mechanics
+Updated: 2026-08-04
 
 Documentation index: https://docs.polaris.finance/llms.txt
 Full documentation bundle: https://docs.polaris.finance/llms-full.txt

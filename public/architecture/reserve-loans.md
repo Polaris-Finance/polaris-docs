@@ -6,6 +6,7 @@
 Canonical URL: https://docs.polaris.finance/architecture/reserve-loans
 Markdown URL: https://docs.polaris.finance/architecture/reserve-loans.md
 Section: Core Architecture
+Updated: 2026-08-05
 
 Documentation index: https://docs.polaris.finance/llms.txt
 Full documentation bundle: https://docs.polaris.finance/llms-full.txt

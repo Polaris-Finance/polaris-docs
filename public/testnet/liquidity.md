@@ -6,6 +6,7 @@
 Canonical URL: https://docs.polaris.finance/testnet/liquidity
 Markdown URL: https://docs.polaris.finance/testnet/liquidity.md
 Section: Using the Testnet
+Updated: 2026-07-17
 
 Documentation index: https://docs.polaris.finance/llms.txt
 Full documentation bundle: https://docs.polaris.finance/llms-full.txt

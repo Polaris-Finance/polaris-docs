@@ -1,5 +1,6 @@
 import fs from 'node:fs'
 import path from 'node:path'
+import { fileForRoute, lastModifiedForFile } from '../scripts/lib/content.mjs'
 import {
   absoluteUrl,
   OG_IMAGE_ALT,
@@ -20,6 +21,7 @@ import {
 
 const organizationId = `${absoluteUrl('/')}#organization`
 const websiteId = `${absoluteUrl('/')}#website`
+const contentDir = path.join(process.cwd(), 'content')
 
 // Real page routes derived from content/*.mdx the same way the router maps
 // files. Google requires every non-final Breadcrumb ListItem to have a real
@@ -81,79 +83,8 @@ function readableSegment(segment) {
     .join(' ')
 }
 
-const monthNumbers = new Map([
-  ['january', '01'],
-  ['february', '02'],
-  ['march', '03'],
-  ['april', '04'],
-  ['may', '05'],
-  ['june', '06'],
-  ['july', '07'],
-  ['august', '08'],
-  ['september', '09'],
-  ['october', '10'],
-  ['november', '11'],
-  ['december', '12']
-])
-
-function normalizeDate(value) {
-  if (!value) return null
-  const iso = /\b(\d{4}-\d{2}-\d{2})\b/.exec(String(value))
-  if (iso) return iso[1]
-
-  const written = /\b([A-Za-z]+)\s+(\d{1,2}),\s+(\d{4})\b/.exec(String(value))
-  if (!written) return null
-
-  const month = monthNumbers.get(written[1].toLowerCase())
-  if (!month) return null
-
-  return `${written[3]}-${month}-${written[2].padStart(2, '0')}`
-}
-
-function metadataDate(metadata, names) {
-  for (const name of names) {
-    const date = normalizeDate(metadata?.[name])
-    if (date) return date
-  }
-  return null
-}
-
-function frontmatterDate(sourceCode, names) {
-  if (!sourceCode?.startsWith('---\n')) return null
-  const end = sourceCode.indexOf('\n---', 4)
-  if (end === -1) return null
-  const frontmatter = sourceCode.slice(4, end)
-
-  for (const name of names) {
-    const match = new RegExp(`^${name}:\\s*["']?([^"']+)["']?\\s*$`, 'im').exec(frontmatter)
-    if (!match) continue
-    const date = normalizeDate(match[1])
-    if (date) return date
-  }
-
-  return null
-}
-
-function timestampDate(metadata) {
-  const timestamp = Number(metadata?.timestamp)
-  if (!Number.isFinite(timestamp)) return null
-  return new Date(timestamp).toISOString().slice(0, 10)
-}
-
-function pageFreshness(metadata, sourceCode) {
-  const published =
-    metadataDate(metadata, ['date', 'published', 'datePublished']) ??
-    frontmatterDate(sourceCode, ['date', 'published', 'datePublished'])
-
-  const modified =
-    metadataDate(metadata, ['updated', 'lastUpdated', 'dateModified']) ??
-    frontmatterDate(sourceCode, ['updated', 'lastUpdated', 'dateModified']) ??
-    timestampDate(metadata)
-
-  return {
-    datePublished: published,
-    dateModified: modified
-  }
+function pageModified(pathname) {
+  return lastModifiedForFile(fileForRoute(contentDir, pathname))
 }
 
 function crawlableSearchTemplate(value) {
@@ -193,11 +124,8 @@ export function buildPageMetadata(metadata, path) {
       canonical: pathWithBase(path),
       types: {
         'text/markdown': [
-          { url: pathWithBase(markdownPathForRoute(path)), title: `Markdown: ${title}` },
-          { url: pathWithBase('/llms.txt'), title: 'llms.txt' },
-          { url: pathWithBase('/llms-full.txt'), title: 'llms-full.txt' }
-        ],
-        'application/json': [{ url: pathWithBase('/llms-index.json'), title: 'LLM docs index' }]
+          { url: pathWithBase(markdownPathForRoute(path)), title: `Markdown: ${title}` }
+        ]
       }
     },
     openGraph: {
@@ -308,11 +236,10 @@ export function buildBreadcrumbJsonLd(path, title) {
   }
 }
 
-export function buildTechArticleJsonLd({ metadata, path, sourceCode }) {
+export function buildTechArticleJsonLd({ metadata, path }) {
   const title = titleFromMetadata(metadata)
   const description = descriptionFromMetadata(metadata)
   const pageUrl = absoluteUrl(path)
-  const freshness = pageFreshness(metadata, sourceCode)
   const article = {
     '@context': 'https://schema.org',
     '@id': `${pageUrl}#techarticle`,
@@ -325,11 +252,9 @@ export function buildTechArticleJsonLd({ metadata, path, sourceCode }) {
     author: { '@id': organizationId },
     publisher: { '@id': organizationId },
     image: jsonLdImage(),
-    isPartOf: { '@id': websiteId }
+    isPartOf: { '@id': websiteId },
+    dateModified: pageModified(path)
   }
-
-  if (freshness.datePublished) article.datePublished = freshness.datePublished
-  if (freshness.dateModified) article.dateModified = freshness.dateModified
 
   const section = path.split('/').filter(Boolean)[0]
   if (section) article.articleSection = readableSegment(section)
@@ -337,12 +262,28 @@ export function buildTechArticleJsonLd({ metadata, path, sourceCode }) {
   return article
 }
 
-export function buildPageJsonLd({ metadata, path, sourceCode }) {
+function buildCollectionPageJsonLd(metadata) {
+  return {
+    '@context': 'https://schema.org',
+    '@id': `${absoluteUrl('/')}#webpage`,
+    '@type': 'CollectionPage',
+    name: titleFromMetadata(metadata),
+    description: descriptionFromMetadata(metadata),
+    url: absoluteUrl('/'),
+    inLanguage: 'en',
+    publisher: { '@id': organizationId },
+    image: jsonLdImage(),
+    isPartOf: { '@id': websiteId },
+    dateModified: pageModified('/')
+  }
+}
+
+export function buildPageJsonLd({ metadata, path }) {
   const title = titleFromMetadata(metadata)
 
   return [
     buildBreadcrumbJsonLd(path, title),
-    buildTechArticleJsonLd({ metadata, path, sourceCode })
+    path === '/' ? buildCollectionPageJsonLd(metadata) : buildTechArticleJsonLd({ metadata, path })
   ].filter(Boolean)
 }
 

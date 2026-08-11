@@ -6,6 +6,7 @@
 Canonical URL: https://docs.polaris.finance/testnet/guide
 Markdown URL: https://docs.polaris.finance/testnet/guide.md
 Section: Using the Testnet
+Updated: 2026-07-22
 
 Documentation index: https://docs.polaris.finance/llms.txt
 Full documentation bundle: https://docs.polaris.finance/llms-full.txt

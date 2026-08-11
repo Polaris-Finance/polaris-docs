@@ -6,15 +6,24 @@ import {
   BASE_PATH,
   OG_IMAGE_PATH,
   ORGANIZATION_URL,
+  markdownPathForRoute,
   SITE_BASE_URL,
   SITE_URL
 } from '../app/site-config.mjs'
+import { lastModifiedForFile, routeForFile, walkMdx } from './lib/content.mjs'
 
 const root = process.cwd()
 const outDir = path.join(root, 'out')
+const contentDir = path.join(root, 'content')
 const failures = []
 const staleHosts = ['docs.polarisfinance.io', 'tokenbrice.github.io', 'polaris-finance.github.io']
 const expectedHost = new URL(SITE_URL).host
+const expectedPages = new Map(
+  walkMdx(contentDir).map((fullPath) => {
+    const route = routeForFile(contentDir, fullPath)
+    return [route, { modified: lastModifiedForFile(fullPath) }]
+  })
+)
 
 function walk(dir) {
   const entries = []
@@ -131,6 +140,39 @@ function extractCanonical(html) {
   return /<link\s+rel=["']canonical["'][^>]*href=["']([^"']+)["']/i.exec(html)?.[1] ?? ''
 }
 
+function tagAttribute(tag, name) {
+  const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  return new RegExp(`\\b${escaped}=["']([^"']*)["']`, 'i').exec(tag)?.[1] ?? ''
+}
+
+function alternateLinks(html) {
+  return [...html.matchAll(/<link\b[^>]*>/gi)]
+    .map((match) => match[0])
+    .filter((tag) => tagAttribute(tag, 'rel').toLowerCase() === 'alternate')
+    .map((tag) => ({ href: tagAttribute(tag, 'href'), type: tagAttribute(tag, 'type') }))
+}
+
+function assertPageAlternate(relativeFile, html, route) {
+  const alternates = alternateLinks(html)
+  const expected = absoluteUrl(markdownPathForRoute(route))
+
+  if (alternates.length !== 1) {
+    failures.push(
+      `${relativeFile} has ${alternates.length} alternates; expected one Markdown mirror`
+    )
+    return
+  }
+
+  const alternate = alternates[0]
+  if (alternate.type !== 'text/markdown' || !urlsMatch(alternate.href, expected)) {
+    failures.push(
+      `${relativeFile} alternate mismatch: expected text/markdown ${expected}, found ${
+        alternate.type || '(missing type)'
+      } ${alternate.href || '(missing href)'}`
+    )
+  }
+}
+
 function extractJsonLd(relativeFile, html) {
   const items = []
   const scripts = html.matchAll(
@@ -152,6 +194,12 @@ function assertStructuredData(relativeFile, html, route) {
   const items = extractJsonLd(relativeFile, html)
   const organization = items.find((item) => item?.['@type'] === 'Organization')
   const breadcrumbs = items.filter((item) => item?.['@type'] === 'BreadcrumbList')
+  const pageItems = items.filter((item) =>
+    ['CollectionPage', 'TechArticle'].includes(item?.['@type'])
+  )
+  const expectedType = route === '/' ? 'CollectionPage' : 'TechArticle'
+  const pageItem = pageItems.find((item) => item['@type'] === expectedType)
+  const expectedModified = expectedPages.get(route)?.modified
 
   if (!organization) {
     failures.push(`${relativeFile} is missing Organization JSON-LD`)
@@ -161,6 +209,21 @@ function assertStructuredData(relativeFile, html, route) {
         organization.url ?? '(missing)'
       }`
     )
+  }
+
+  if (pageItems.length !== 1 || !pageItem) {
+    failures.push(`${relativeFile} must contain exactly one ${expectedType} page entity`)
+  } else {
+    if (pageItem.dateModified !== expectedModified) {
+      failures.push(
+        `${relativeFile} dateModified mismatch: expected ${expectedModified}, found ${
+          pageItem.dateModified ?? '(missing)'
+        }`
+      )
+    }
+    if ('datePublished' in pageItem) {
+      failures.push(`${relativeFile} must not infer datePublished from repository history`)
+    }
   }
 
   if (route === '/') {
@@ -262,6 +325,11 @@ function assertHtmlFile(file) {
   }
 
   if (route) {
+    if (!expectedPages.has(route)) {
+      failures.push(`${relativeFile} is neither a canonical content route nor a legacy redirect`)
+      return
+    }
+
     const expectedCanonical = absoluteUrl(route)
     const canonical = extractCanonical(html)
     if (!urlsMatch(canonical, expectedCanonical)) {
@@ -298,6 +366,7 @@ function assertHtmlFile(file) {
     }
 
     assertStructuredData(relativeFile, html, route)
+    assertPageAlternate(relativeFile, html, route)
     assertNavigationAssets(relativeFile, html)
   }
 
@@ -329,13 +398,21 @@ function assertGeneratedTextArtifact(relativePath, text) {
   if (BASE_PATH === '' && text.includes('/polaris-docs/')) {
     failures.push(`out/${relativePath} contains stale project-page path references`)
   }
+  if (text.includes('Relevant app/search vocabulary:')) {
+    failures.push(`out/${relativePath} contains generated search vocabulary prose`)
+  }
 }
 
 function assertSitemap(sitemap) {
-  const sitemapLocations = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => match[1])
+  const entries = [...sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)].map((match) => ({
+    loc: /<loc>(.*?)<\/loc>/.exec(match[1])?.[1] ?? '',
+    lastmod: /<lastmod>(.*?)<\/lastmod>/.exec(match[1])?.[1] ?? ''
+  }))
+  const sitemapPages = new Map(entries.map((entry) => [entry.loc, entry.lastmod]))
+  const sitemapLocations = entries.map((entry) => entry.loc)
 
-  if (!sitemapLocations.length) {
-    failures.push('out/sitemap.xml has no <loc> entries')
+  if (entries.length !== expectedPages.size) {
+    failures.push(`out/sitemap.xml has ${entries.length} URLs; expected ${expectedPages.size}`)
   }
 
   for (const loc of sitemapLocations) {
@@ -346,6 +423,19 @@ function assertSitemap(sitemap) {
       failures.push(`out/sitemap.xml location is missing BASE_PATH=${BASE_PATH}: ${loc}`)
     }
     assertOutReferenceExists('out/sitemap.xml', loc)
+  }
+
+  for (const [route, { modified }] of expectedPages) {
+    const url = absoluteUrl(route)
+    if (!sitemapPages.has(url)) {
+      failures.push(`out/sitemap.xml is missing canonical route ${route}`)
+    } else if (sitemapPages.get(url) !== modified) {
+      failures.push(
+        `out/sitemap.xml lastmod mismatch for ${route}: expected ${modified}, found ${
+          sitemapPages.get(url) || '(missing)'
+        }`
+      )
+    }
   }
 }
 
@@ -392,7 +482,19 @@ function assertLlmsIndex(text) {
     return
   }
 
+  if (parsed.pages.length !== expectedPages.size) {
+    failures.push(
+      `out/llms-index.json has ${parsed.pages.length} pages; expected ${expectedPages.size}`
+    )
+  }
+
   for (const page of parsed.pages) {
+    const expected = expectedPages.get(page.route)
+    if (!expected) {
+      failures.push(`out/llms-index.json contains unexpected route ${page.route}`)
+      continue
+    }
+
     if (typeof page.url !== 'string' || !page.url.startsWith(SITE_BASE_URL)) {
       failures.push(`out/llms-index.json page URL does not match SITE_URL/BASE_PATH: ${page.url}`)
       continue
@@ -406,6 +508,29 @@ function assertLlmsIndex(text) {
       continue
     }
     assertOutReferenceExists('out/llms-index.json', page.markdownUrl)
+
+    const expectedMarkdownUrl = absoluteUrl(markdownPathForRoute(page.route))
+    if (!urlsMatch(page.markdownUrl, expectedMarkdownUrl)) {
+      failures.push(
+        `out/llms-index.json Markdown URL mismatch for ${page.route}: expected ${expectedMarkdownUrl}, found ${page.markdownUrl}`
+      )
+    }
+    if (page.updated !== expected.modified) {
+      failures.push(
+        `out/llms-index.json updated mismatch for ${page.route}: expected ${expected.modified}, found ${page.updated ?? '(missing)'}`
+      )
+    }
+
+    const markdownPath = markdownPathForRoute(page.route).replace(/^\//, '')
+    const markdown = readOut(markdownPath)
+    const markdownUpdated = /^Updated:\s*(\d{4}-\d{2}-\d{2})\s*$/m.exec(markdown)?.[1]
+    if (markdownUpdated !== expected.modified) {
+      failures.push(
+        `out/${markdownPath} Updated mismatch: expected ${expected.modified}, found ${
+          markdownUpdated ?? '(missing)'
+        }`
+      )
+    }
   }
 
   const sections = parsed.artifacts?.sections ?? []

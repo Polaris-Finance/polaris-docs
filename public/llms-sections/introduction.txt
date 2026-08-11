@@ -19,8 +19,6 @@ Polaris is a permissionless onchain infrastructure built around pETH, a yield-be
 
 Users can unlock liquidity from their collateral and earn protocol-native yield across an ecosystem built on new onchain primitives.
 
-Relevant app/search vocabulary: app, official app, testnet, Sepolia, pETH, pAssets, USDp.
-
 ---
 
 ## Polaris 101
@@ -47,5 +45,3 @@ Together, these mechanisms form a monetary system where protocol activity streng
 Everything happening within the protocol contributes to the same underlying economy. Bonding curve fees, borrowing demand, conversions, liquidations, and other protocol activity generate revenue that is redistributed across the ecosystem through native yield, strengthening its assets and the users who hold them.
 
 This enables value created within Polaris to remain within Polaris.
-
-Relevant app/search vocabulary: app, official app, testnet, Sepolia, pETH, pAssets, USDp.

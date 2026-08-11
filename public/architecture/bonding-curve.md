@@ -6,6 +6,7 @@
 Canonical URL: https://docs.polaris.finance/architecture/bonding-curve
 Markdown URL: https://docs.polaris.finance/architecture/bonding-curve.md
 Section: Core Architecture
+Updated: 2026-08-04
 
 Documentation index: https://docs.polaris.finance/llms.txt
 Full documentation bundle: https://docs.polaris.finance/llms-full.txt
