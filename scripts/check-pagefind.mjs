@@ -1,8 +1,10 @@
 import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import path from 'node:path'
+import { walkMdx } from './lib/content.mjs'
 
 const root = process.cwd()
 const failures = []
+const expectedPageCount = walkMdx(path.join(root, 'content')).length
 
 function validatePagefindDir(directory) {
   const relativeDirectory = path.relative(root, directory)
@@ -34,8 +36,10 @@ function validatePagefindDir(directory) {
   const hasMeta = files.some((file) => file.endsWith('.pf_meta'))
   const hasWasm = files.some((file) => file.endsWith('.pagefind'))
 
-  if (pageCount < 30) {
-    directoryFailures.push(`${relativeDirectory} indexed ${pageCount} pages; expected at least 30`)
+  if (pageCount !== expectedPageCount) {
+    directoryFailures.push(
+      `${relativeDirectory} indexed ${pageCount} pages; expected ${expectedPageCount}`
+    )
   }
   if (!hasMeta) {
     directoryFailures.push(`${relativeDirectory} metadata shard is missing`)
@@ -49,6 +53,19 @@ function validatePagefindDir(directory) {
 
 validatePagefindDir(path.join(root, 'out', '_pagefind'))
 validatePagefindDir(path.join(root, 'public', '_pagefind'))
+
+for (const fullPath of walkMdx(path.join(root, 'content'))) {
+  const relativePath = path.relative(path.join(root, 'content'), fullPath).replace(/\\/g, '/')
+  const htmlPath = path.join(
+    root,
+    'out',
+    relativePath === 'index.mdx' ? 'index.html' : relativePath.replace(/\.mdx$/, '.html')
+  )
+  if (!existsSync(htmlPath)) continue
+  if (readFileSync(htmlPath, 'utf8').includes('data-polaris-pagefind-only')) {
+    failures.push(`${path.relative(root, htmlPath)} contains Pagefind-only search markup`)
+  }
+}
 
 if (failures.length) {
   console.error('Pagefind smoke test failed:\n')

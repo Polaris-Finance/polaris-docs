@@ -1,7 +1,5 @@
-// Curated Pagefind search synonyms per route. Indexed but heavily down-weighted
-// so they aid recall without outranking real prose. Consumed by the page shell
-// (app/[[...mdxPath]]/page.jsx) and by scripts/generate-llms.mjs for the
-// machine-readable llms*.txt vocabulary lines — import it, never regex it out.
+// Curated Pagefind search synonyms per route. The postbuild indexer adds them
+// only to its in-memory HTML so they aid recall without shipping as hidden text.
 export const searchVocabulary = [
   {
     match: /^\/(?:polaris-101)?$/,
