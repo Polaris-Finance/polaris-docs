@@ -22,7 +22,7 @@ As such, value generated anywhere in Polaris flows back to the same collateral t
 
 Beyond bringing pETH into existence, the bonding curve also enables several of the properties that define Polaris: it sets the price of pETH, generates a protocol-native source of yield directly from onchain swaps and allows minting rates to emerge directly from market conditions.
 
-![Bonding Curve](/infographics/bonding-curve.jpg)
+![Bonding Curve](https://docs.polaris.finance/infographics/bonding-curve.jpg)
 
 ## A Scale-Free Design
 
