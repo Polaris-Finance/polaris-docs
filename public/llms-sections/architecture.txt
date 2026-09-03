@@ -305,6 +305,8 @@ Since the fpETH price in ETH is guaranteed to only increase, changes in the ETH 
 
 With this feature, **borrowers gain ETH liquidity without giving up fpETH yield**, making highly capital-efficient looping strategies possible.
 
+Image: Reserve Loans
+
 ## Loan Mechanics
 
 Instead of paying a conventional borrowing interest rate, **reserve loans apply a time-weighted performance fee**, which is deducted directly from the increase in the fpETH floor price over the lifetime of the loan.
