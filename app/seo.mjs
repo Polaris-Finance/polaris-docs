@@ -257,7 +257,7 @@ export function buildGlobalJsonLd() {
       // from other projects named Polaris.
       sameAs: [
         ORGANIZATION_URL,
-        'https://x.com/polarisfinance_',
+        'https://x.com/polarisfnd',
         'https://t.me/polaris_ann',
         'https://github.com/Polaris-Finance'
       ],
