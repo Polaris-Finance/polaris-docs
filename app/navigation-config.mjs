@@ -246,8 +246,7 @@ export const NAVIGATION_GROUPS = [
 export const FOOTER_LINKS = [
   { type: 'artifact', label: 'Llms.txt', href: '/llms.txt' },
   { type: 'external', label: 'GitHub', href: EXTERNAL_LINKS.github },
-  { type: 'external', label: 'X', href: EXTERNAL_LINKS.x },
-  { type: 'external', label: 'Contact', href: EXTERNAL_LINKS.contact }
+  { type: 'external', label: 'X', href: EXTERNAL_LINKS.x }
 ]
 
 function page(id, metaKey, label, route, icon, kind = 'concept') {
