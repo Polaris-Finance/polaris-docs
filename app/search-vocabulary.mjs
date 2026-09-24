@@ -13,7 +13,7 @@ export const searchVocabulary = [
       'app',
       'official app',
       'testnet app',
-      'app.testnet.polarisfinance.io',
+      'testnet.polaris.finance',
       'connect wallet',
       'testnet',
       'Sepolia',

@@ -8,4 +8,4 @@ For problems with the site itself — broken pages, incorrect rendering, stale g
 
 ## Protocol vulnerabilities
 
-**Do not open a public issue for vulnerabilities in the Polaris protocol or its smart contracts.** Report them privately to the team through the official channels listed at [polarisfinance.io](https://polarisfinance.io). Documentation errors that could mislead users about security-relevant behavior (for example, wrong risk numbers) may be reported as regular documentation-error issues.
+**Do not open a public issue for vulnerabilities in the Polaris protocol or its smart contracts.** Report them privately to the team through the official channels listed at [polaris.finance](https://polaris.finance). Documentation errors that could mislead users about security-relevant behavior (for example, wrong risk numbers) may be reported as regular documentation-error issues.
