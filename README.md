@@ -1,6 +1,6 @@
 # Polaris Documentation
 
-User documentation for [Polaris](https://polarisfinance.io) - the onchain yield layer built around pETH. Built with [Nextra 4](https://nextra.site) (Next.js App Router), statically exported and deployed to GitHub Pages at **docs.polaris.finance**.
+User documentation for [Polaris](https://polaris.finance) - the onchain yield layer built around pETH. Built with [Nextra 4](https://nextra.site) (Next.js App Router), statically exported and deployed to GitHub Pages at **docs.polaris.finance**.
 
 Content lives as MDX in [`content/`](./content); the sidebar is driven by `_meta.js` files. No SaaS backend - the docs are fully git-native.
 
