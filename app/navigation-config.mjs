@@ -244,7 +244,7 @@ export const NAVIGATION_GROUPS = [
 ]
 
 export const FOOTER_LINKS = [
-  { type: 'artifact', label: 'Llms.txt', href: '/llms.txt' },
+  { type: 'artifact', label: 'LLMs.txt', href: '/llms.txt' },
   { type: 'external', label: 'GitHub', href: EXTERNAL_LINKS.github },
   { type: 'external', label: 'X', href: EXTERNAL_LINKS.x }
 ]
