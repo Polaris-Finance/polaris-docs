@@ -8,13 +8,13 @@
   </url>
   <url>
     <loc>https://docs.polaris.finance/architecture/bonding-curve</loc>
-    <lastmod>2026-09-02</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://docs.polaris.finance/architecture/earn-vaults</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -38,7 +38,7 @@
   </url>
   <url>
     <loc>https://docs.polaris.finance/architecture/reserve-loans</loc>
-    <lastmod>2026-09-03</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -56,7 +56,7 @@
   </url>
   <url>
     <loc>https://docs.polaris.finance/core-assets/fpeth</loc>
-    <lastmod>2026-08-04</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -68,7 +68,7 @@
   </url>
   <url>
     <loc>https://docs.polaris.finance/core-assets/peth</loc>
-    <lastmod>2026-08-04</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -86,13 +86,13 @@
   </url>
   <url>
     <loc>https://docs.polaris.finance/core-assets/vpeth</loc>
-    <lastmod>2026-08-04</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://docs.polaris.finance/design/adaptive-peg-defence</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -170,7 +170,7 @@
   </url>
   <url>
     <loc>https://docs.polaris.finance/polaris-101</loc>
-    <lastmod>2026-08-07</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
