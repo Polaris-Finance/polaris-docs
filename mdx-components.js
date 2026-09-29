@@ -1,6 +1,7 @@
 import { Children, cloneElement, createElement, isValidElement } from 'react'
 import { useMDXComponents as getThemeComponents } from 'nextra-theme-docs'
 import { Image } from 'nextra/components'
+import { ClickToPlayVideo } from './components/ClickToPlayVideo'
 import { hrefWithBase, isExternalHref } from './app/site-config.mjs'
 
 const themeComponents = getThemeComponents()
@@ -165,6 +166,7 @@ export function useMDXComponents(components) {
     a: MdxAnchor,
     table: AccessibleTable,
     th: TableHeader,
+    ClickToPlayVideo,
     ...components
   }
 }

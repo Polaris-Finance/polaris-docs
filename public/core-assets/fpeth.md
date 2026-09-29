@@ -35,7 +35,7 @@ Splitting pETH is a reversible action, allowing one fpETH plus one vpETH to be m
 
 Because the split can be reversed, one fpETH plus one vpETH should generally track the market value of one pETH. If the combined market price of fpETH and vpETH moves too far away from pETH, traders can split or merge pETH to arbitrage the difference.
 
-![How fpETH isolates the floor component as the pETH supply and spot price change along the bonding curve.](https://docs.polaris.finance/infographics/fpeth.jpg)
+![How fpETH isolates the floor component as the pETH supply and spot price change along the bonding curve.](https://docs.polaris.finance/videos/fpeth-poster.jpg)
 
 ## Understanding fpETH
 

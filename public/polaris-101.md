@@ -16,7 +16,7 @@ Polaris is a permissionless onchain infrastructure built around pETH, a yield-be
 
 ETH enters the system through the Polaris bonding curve and becomes pETH, the collateral asset at the center of the ecosystem. Stablecoins, commodities and synthetic assets are all issued against pETH, with the economic activity they generate flowing back into the ecosystem.
 
-![Polaris flow from swapping ETH for pETH to minting pAssets, splitting pETH, and entering stewardship.](https://docs.polaris.finance/infographics/home.jpg)
+![Polaris flow from swapping ETH for pETH to minting pAssets, splitting pETH, and entering stewardship.](https://docs.polaris.finance/videos/home-poster.jpg)
 
 The flagship market of the Polaris ecosystem is USDp, a fully decentralized and censorship-resistant dollar backed by pETH. Built on the same infrastructure, GOLDp is the first permissionless onchain market, with many more currencies, commodities, and synthetic assets coming to expand the ecosystem over time under the same framework and collateral asset.
 

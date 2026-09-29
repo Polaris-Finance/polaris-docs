@@ -61,10 +61,24 @@ function renderImageAlt(props, { markdown = false } = {}) {
   return alt ? `Image: ${alt}` : ''
 }
 
+// <ClickToPlayVideo> stands in for an infographic: describe it like an image and,
+// in the markdown mirror, point at its poster still.
+function renderVideoAlt(props, { markdown = false } = {}) {
+  const alt = propValue(props, 'alt')
+  if (markdown) {
+    const poster = propValue(props, 'poster')
+    return poster ? `![${alt}](${poster})` : alt ? `*${alt}*` : ''
+  }
+  return alt ? `Image: ${alt}` : ''
+}
+
 function stripJsxTags(value, { markdown = false } = {}) {
   return value
     .replace(/<img\s+([^>]*?)\/?>/gi, (_match, props) => renderImageAlt(props, { markdown }))
     .replace(/<Image\s+([^>]*?)\/?>/g, (_match, props) => renderImageAlt(props, { markdown }))
+    .replace(/<ClickToPlayVideo\s+([^>]*?)\/?>/g, (_match, props) =>
+      renderVideoAlt(props, { markdown })
+    )
     .replace(/!\[([^\]]*)]\([^)]+\)/g, (match, alt) =>
       markdown ? match : alt ? `Image: ${alt}` : ''
     )

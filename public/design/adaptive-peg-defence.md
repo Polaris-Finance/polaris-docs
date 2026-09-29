@@ -18,7 +18,7 @@ Many collateralized asset systems are more effective at defending one side of th
 
 Polaris supports both directions, allowing **pAssets to be minted against pETH collateral or redeemed for pETH at their target value** whenever market conditions create an arbitrage opportunity.
 
-![How Adaptive Peg Defence adjusts minting and redemption incentives to move pAssets back toward their target price](https://docs.polaris.finance/infographics/adaptive-peg-defence.jpg)
+![How Adaptive Peg Defence adjusts minting and redemption incentives to move pAssets back toward their target price](https://docs.polaris.finance/videos/adaptive-peg-defence-poster.jpg)
 
 Condition | Arbitrage | Supply effect | Adaptive Peg Defense
 
