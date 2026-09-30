@@ -15,38 +15,40 @@
 URL: https://docs.polaris.finance/design/adaptive-peg-defence
 Markdown URL: https://docs.polaris.finance/design/adaptive-peg-defence.md
 
-Polaris incorporates **direct minting and redemptions** to help pAssets trade around their target price.
+Polaris incorporates **buying and redeeming at peg** to help pAssets trade around their target price.
 
 Many collateralized asset systems are more effective at defending one side of the peg than the other, allowing supply to contract without providing an equally direct way to expand it under stress, or vice versa.
 
-Polaris supports both directions, allowing **pAssets to be minted against pETH collateral or redeemed for pETH at their target value** whenever market conditions create an arbitrage opportunity.
+Polaris supports both directions, allowing **pAssets to be bought with pETH or redeemed for pETH at their target value** whenever market conditions create an arbitrage opportunity. Every buy and redemption at peg pays a fee, also referred to as peg arbitrage fee, which is distributed across the market's positions, both mint and collateral-only.
 
 Image: How Adaptive Peg Defence adjusts minting and redemption incentives to move pAssets back toward their target price
 
 Condition | Arbitrage | Supply effect | Adaptive Peg Defense
 
-Above peg | Mint at par, sell | Supply expands, reducing price | Existing positions are upsized
-Below peg | Buy and redeem | Supply contracts, increasing price | Existing positions are downsized
+Above peg | Buy at peg, sell | Supply expands, reducing price | Existing positions are upsized
+Below peg | Buy, redeem at peg | Supply contracts, increasing price | Existing positions are downsized
 
 ## Above Peg
 
-When a pAsset trades above its target price, market participants can **mint new supply against pETH collateral and sell it into the market** for a net profit.
+When a pAsset trades above its target price, market participants can **buy newly minted supply at peg and sell it into the market** for a net profit.
 
-For example, if USDp trades above one dollar, an arbitrageur can deposit ETH into the bonding curve, receive pETH and immediately mint new USDp at par before selling it above one dollar. This increases the circulating supply and naturally pushes the market price back toward its target.
+For example, if USDp trades above one dollar, a peg buyer can deposit ETH into the bonding curve, receive pETH and immediately buy newly minted USDp at peg before selling it above one dollar. This increases the circulating supply and naturally pushes the market price back toward its target.
 
-Polaris extends this mechanism through the Adaptive Peg Defense, which treats direct minting as an upsizing of the existing market. The added collateral, debt and minting fees are distributed across open positions according to protocol accounting.
+Polaris extends this mechanism through the Adaptive Peg Defense, which treats buying at peg as an upsizing of the existing market. The added collateral, debt and fees are distributed across open positions according to protocol accounting.
 
-This means the market can expand in response to above-peg demand without requiring the arbitrageur to maintain a long-lived position. Existing positions grow alongside the market and receive the associated minting fees.
+This means the market can expand in response to above-peg demand without the peg buyer opening a position. Existing positions grow alongside the market and receive the fees from peg buys.
 
 ## Below Peg
 
 When a pAsset trades below its target price, market participants can **buy the discounted asset and redeem it through the protocol for pETH at its target price**.
 
-For example, if USDp trades below one dollar, an arbitrageur can purchase USDp below peg, redeem it at par for pETH and capture the price difference. The redeemed USDp is burned, reducing the circulating supply and encouraging the market price to move back toward target.
+For example, if USDp trades below one dollar, a peg redeemer can purchase USDp below peg, redeem it at peg for pETH and capture the price difference. The redeemed USDp is burned, reducing the circulating supply and encouraging the market price to move back toward target.
 
 The same Adaptive Peg Defense model applies to redemptions, but in the opposite direction. Redemptions downsize the existing market by distributing collateral removal, debt reduction and redemption fees across open positions according to protocol accounting.
 
-As a result, supply contracts through the same shared accounting model. Existing positions shrink alongside the market and receive the associated redemption fees.
+As a result, supply contracts through the same shared accounting model. Existing positions shrink alongside the market and receive the fees from peg redemptions.
+
+Relevant app/search vocabulary: peg, peg arbitrage, peg arbitrage fees, fees from peg buys and redemptions, buy at peg, redeem at peg, peg buyer, peg redeemer, redemption, redeem, arbitrage, Peg Stability Module, PSM, direct minting.
 
 ---
 
@@ -139,7 +141,7 @@ Repay debt | Allowed | Improves position health
 Withdraw collateral | Restricted | Allowed only if the position stays at 150% or above and its ratio does not fall
 Increase debt | Restricted | Allowed only if the position stays at 150% or above and its ratio does not fall
 Close position | Restricted | Would lower market backing
-Direct pAsset minting | Restricted | Would increase market debt
+Buying at peg | Restricted | Would increase market debt
 
 If a market's collateralization keeps weakening past full backing, it enters [Recovery Mode](https://docs.polaris.finance/design/recovery-mode).
 
@@ -198,13 +200,15 @@ Property | Peg Stability Rate | Protocol Safety Rate
 Purpose | Primary minting cost for pAsset minters | Protects aggregate collateral health
 When active | Always | Always
 Responds to | Minting vs redemption activity | Position leverage and aggregate collateral health
-Interest | Paid to Earn Vault and vePOLAR | Directly redistributed towards lower-leverage positions
+Interest | Paid to Earn Pool and vePOLAR | Directly redistributed towards lower-leverage positions
 
 ## Peg Stability Rate
 
 The Peg Stability Rate is the standard minting cost paid by users who mint pAssets.
 
-**Interest paid through the Peg Stability Rate becomes the primary yield source for that pAsset market** and is distributed to the pAsset's Earn Vault and vePOLAR stakers, according to the market's configured flow allocation assigned.
+**Interest paid through the Peg Stability Rate becomes the primary yield source for that pAsset market** and is distributed to the pAsset's Earn Pool and vePOLAR stakers, according to the market's configured flow allocation assigned.
+
+Interest is denominated in the pAsset and accrues to the position's debt. Accrued interest is periodically minted as new pAssets and distributed to the Earn Pool and vePOLAR.
 
 A unique feature of the Peg Stability Rate is that it is not altered by governance or manual intervention. Instead, **it adjusts automatically based on minting and redemption activity** taking place inside the protocol.
 
@@ -226,6 +230,8 @@ This encourages the market to return toward stronger overall collateralization w
 
 **Unlike the Peg Stability Rate, the Protocol Safety Rate is not protocol revenue**. Every payment made through the mechanism remains inside the same pAsset market and is redistributed directly between participants.
 
+Relevant app/search vocabulary: interest rate, Peg Stability Rate, Protocol Safety Rate, minter interest, borrow rate.
+
 ---
 
 ## Liquidations
@@ -239,22 +245,22 @@ Liquidations protect the solvency of each pAsset market by closing unsafe positi
 
 ## Liquidation Process
 
-**Each pAsset market has its own Earn Vault**, which acts as the first line of defense during liquidations. Depositors supply the pAsset to the Earn Vault, and those deposits can be used to cancel the debt of liquidated positions.
+**Each pAsset market has its own Earn Pool**, which acts as the first line of defense during liquidations. Depositors supply the pAsset to the Earn Pool, and those deposits can be used to cancel the debt of liquidated positions.
 
-When a liquidation occurs, the position's debt is cancelled using pAssets from the Earn Vault, while the corresponding pETH collateral is transferred to the vault. Earn Vault depositors therefore receive liquidation gains in exchange for acting as the first backstop for the market.
+When a liquidation occurs, the position's debt is cancelled using pAssets from the Earn Pool, while the corresponding pETH collateral is transferred to the pool. Earn Pool depositors therefore receive liquidation gains in exchange for acting as the first backstop for the market.
 
 This liquidation mechanism is one source of protocol-native yield distributed to Earn Pool depositors and is explained in greater detail in the dedicated [Earn Pools](https://docs.polaris.finance/architecture/earn-pools) section.
 
 ## Fallback Redistribution
 
-If the Earn Vault does not hold enough deposits to absorb the entire liquidation, the remaining debt and collateral are redistributed across the other open positions in the same pAsset market. As such, liquidations are always processed entirely within the protocol without relying on external auctions or discretionary intervention.
+If the Earn Pool does not hold enough deposits to absorb the entire liquidation, the remaining debt and collateral are redistributed across the other open positions in the same pAsset market. As such, liquidations are always processed entirely within the protocol without relying on external auctions or discretionary intervention.
 
-Redistribution assigns each open position a proportional share of both the remaining debt and collateral. While intended only as a fallback mechanism, it ensures that **liquidations can always occur even when the Earn Vault is temporarily unable to absorb the full position**.
+Redistribution assigns each open position a proportional share of both the remaining debt and collateral. While intended only as a fallback mechanism, it ensures that **liquidations can always occur even when the Earn Pool is temporarily unable to absorb the full position**.
 
 Step | Applies | Outcome
 
-Earn Vault | Always first | Debt cancelled by the vault, and depositors receive liquidation gains
-Redistribution | If the vault cannot absorb the full position | Remaining debt and collateral redistributed to open positions
+Earn Pool | Always first | Debt cancelled by the pool, and depositors receive liquidation gains
+Redistribution | If the pool cannot absorb the full position | Remaining debt and collateral redistributed to open positions
 
 Relevant app/search vocabulary: liquidation, liquidations, liquidate, liquidated, liquidation penalty.
 
@@ -338,7 +344,7 @@ Because every redeemer takes the same cut, the backing ratio is preserved as red
 
 ## Liquidations
 
-**Liquidation by redistribution is disabled.** Redistribution spreads a liquidated position's debt across the remaining borrowers. In a fully backed market that cleanly clears a bad position, because the collateral behind it still covers the debt. Below full backing the same step becomes ambiguous: it pushes more debt onto positions that are themselves under-backed, weakening all of them at once. Repeated, it can collapse the market onto a single borrower, and none of it helps the market recover.
+**Liquidation by redistribution is disabled.** Redistribution spreads a liquidated position's debt across the remaining open positions. In a fully backed market that cleanly clears a bad position, because the collateral behind it still covers the debt. Below full backing the same step becomes ambiguous: it pushes more debt onto positions that are themselves under-backed, weakening all of them at once. Repeated, it can collapse the market onto a single position, and none of it helps the market recover.
 
 **Liquidations must hold or improve the market's collateralization.** A liquidation that would push backing further down is not carried out, so the market's health can only move in the right direction while it recovers.
 
@@ -349,7 +355,7 @@ A market leaves Recovery Mode when its backing rises back above full collaterali
 Backing recovers as:
 
 - **The collateral price rises.** A market usually enters Recovery Mode after a sharp fall in the collateral price, so a recovery in that price is the largest and most direct lever back.
-- **Borrowers strengthen their positions.** Adding collateral and repaying debt stay open throughout, and both lift the market's backing.
+- **Minters strengthen their positions.** Adding collateral and repaying debt stay open throughout, and both lift the market's backing.
 - **Yield streams keep flowing.** The protocol's yield sources continue through Recovery Mode, strengthening collateral ratios over time.
 - **Weak positions are liquidated.** Every liquidation that proceeds can only hold or improve the ratio, so clearing the weakest positions moves backing in the right direction.
 - **The Protocol Safety Rate keeps pushing.** It rewards conservative and collateral-only positions and taxes high leverage, steadily nudging the market back toward stronger backing.

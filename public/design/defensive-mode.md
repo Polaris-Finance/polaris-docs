@@ -29,7 +29,7 @@ Repay debt | Allowed | Improves position health
 Withdraw collateral | Restricted | Allowed only if the position stays at 150% or above and its ratio does not fall
 Increase debt | Restricted | Allowed only if the position stays at 150% or above and its ratio does not fall
 Close position | Restricted | Would lower market backing
-Direct pAsset minting | Restricted | Would increase market debt
+Buying at peg | Restricted | Would increase market debt
 
 If a market's collateralization keeps weakening past full backing, it enters [Recovery Mode](https://docs.polaris.finance/design/recovery-mode).
 

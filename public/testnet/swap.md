@@ -14,7 +14,7 @@ Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 Swap lets you exchange supported assets across Polaris, which currently are the Core Assets.
 
-All pETH swaps are executed through the Polaris bonding curve, while additional trading routes may be available depending on the assets involved.
+All pETH swaps are executed through the Polaris bonding curve, while additional trading routes may be available depending on the assets involved. Swaps involving USDp or GOLDp automatically route through buying or redeeming at peg whenever it gives a better price than the market.
 
 Before confirming a swap, review the quoted output, price impact, fees and minimum received.
 

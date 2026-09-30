@@ -25,7 +25,7 @@ Because every redeemer takes the same cut, the backing ratio is preserved as red
 
 ## Liquidations
 
-**Liquidation by redistribution is disabled.** Redistribution spreads a liquidated position's debt across the remaining borrowers. In a fully backed market that cleanly clears a bad position, because the collateral behind it still covers the debt. Below full backing the same step becomes ambiguous: it pushes more debt onto positions that are themselves under-backed, weakening all of them at once. Repeated, it can collapse the market onto a single borrower, and none of it helps the market recover.
+**Liquidation by redistribution is disabled.** Redistribution spreads a liquidated position's debt across the remaining open positions. In a fully backed market that cleanly clears a bad position, because the collateral behind it still covers the debt. Below full backing the same step becomes ambiguous: it pushes more debt onto positions that are themselves under-backed, weakening all of them at once. Repeated, it can collapse the market onto a single position, and none of it helps the market recover.
 
 **Liquidations must hold or improve the market's collateralization.** A liquidation that would push backing further down is not carried out, so the market's health can only move in the right direction while it recovers.
 
@@ -36,7 +36,7 @@ A market leaves Recovery Mode when its backing rises back above full collaterali
 Backing recovers as:
 
 - **The collateral price rises.** A market usually enters Recovery Mode after a sharp fall in the collateral price, so a recovery in that price is the largest and most direct lever back.
-- **Borrowers strengthen their positions.** Adding collateral and repaying debt stay open throughout, and both lift the market's backing.
+- **Minters strengthen their positions.** Adding collateral and repaying debt stay open throughout, and both lift the market's backing.
 - **Yield streams keep flowing.** The protocol's yield sources continue through Recovery Mode, strengthening collateral ratios over time.
 - **Weak positions are liquidated.** Every liquidation that proceeds can only hold or improve the ratio, so clearing the weakest positions moves backing in the right direction.
 - **The Protocol Safety Rate keeps pushing.** It rewards conservative and collateral-only positions and taxes high leverage, steadily nudging the market back toward stronger backing.

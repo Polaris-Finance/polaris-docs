@@ -13,7 +13,7 @@ It exists entirely onchain and is designed to remain censorship resistant. **Any
 
 ## Using USDp
 
-USDp is minted by depositing pETH as collateral and opening an overcollateralized minting position.
+USDp is minted by depositing pETH as collateral and opening an overcollateralized mint position.
 
 Each position must be opened at or above the minimum collateral ratio of 115%, meaning every \$1 of USDp debt requires at least \$1.15 worth of pETH collateral at minting. Market movements can later reduce that ratio, making positions that fall below 115% eligible for [liquidations](/design/liquidations).
 
@@ -25,18 +25,18 @@ On top of that, users who want to earn protocol-native yield **can deposit USDp 
 
 The USDp peg is supported by pETH overcollateralization and by market participants using the protocol's peg mechanisms whenever arbitrage opportunities arise.
 
-When USDp trades above one dollar, new USDp can be minted at its \$1 target value against pETH collateral and sold into the market. The additional supply creates downward pressure on the market price.
+When USDp trades above one dollar, anyone can buy newly minted USDp at its \$1 target value with pETH and sell it into the market. The additional supply creates downward pressure on the market price.
 
-When USDp trades below one dollar, market participants can redeem USDp for the underlying collateral, which removes USDp from circulation and reduces the circulating supply.
+When USDp trades below one dollar, market participants can redeem USDp at peg for the underlying collateral, which removes USDp from circulation and reduces the circulating supply.
 
 | USDp price | Arbitrage | Result |
 | --- | --- | --- |
-| Above \$1 | Mint and sell USDp | Supply increases, and price returns toward \$1 |
-| Below \$1 | Redeem USDp | Supply decreases, and price returns toward \$1 |
+| Above \$1 | Buy at peg and sell | Supply increases, and price returns toward \$1 |
+| Below \$1 | Redeem at peg | Supply decreases, and price returns toward \$1 |
 
 Together, these mechanisms adjust the circulating supply in response to peg conditions.
 
-These arbitrage paths operate through [Adaptive Peg Defense](/design/adaptive-peg-defence), which distributes the collateral, debt, and fees created by direct minting and redemptions across open positions.
+These arbitrage paths operate through [Adaptive Peg Defense](/design/adaptive-peg-defence), which distributes the collateral, debt, and fees created by buying and redeeming at peg across open positions.
 
 Two interest-rate mechanisms complement this peg design.
 

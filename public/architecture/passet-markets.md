@@ -18,7 +18,7 @@ USDp and GOLDp are the first pAssets introduced by the protocol, but the underly
 
 **Any asset with an oracle can become a pAsset**. This includes fiat currencies, commodities, indices and many other onchain or offchain assets whose price can be reliably tracked.
 
-Every pAsset maintains its own accounting, oracle configuration, risk parameters and Earn Vault while relying on the same pETH collateral foundation. Thus, new markets can benefit from the Polaris infrastructure without needing a separate collateral system for every asset.
+Every pAsset maintains its own accounting, oracle configuration, risk parameters and Earn Pool while relying on the same pETH collateral foundation. Thus, new markets can benefit from the Polaris infrastructure without needing a separate collateral system for every asset.
 
 ## Launching a pAsset Market
 
@@ -36,13 +36,13 @@ Markets that naturally strengthen Polaris through adoption, distribution, liquid
 
 Access to pETH flows is stewarded through vePOLAR. Builders present their market and explain how it contributes to the broader Polaris ecosystem, while stewards determine which markets receive pETH flows and how those incentives are allocated. Markets that expand demand for pETH and pAssets, with clear value flowing back to Polaris, will naturally be the strongest candidates for alignment.
 
-Different markets may contribute in different ways: some may choose to share part of their issuer interest with vePOLAR holders, while others may focus on distribution, liquidity, strategic integrations, or strengthening other parts of the Polaris ecosystem.
+Different markets may contribute in different ways: some may choose to share part of their minter interest with vePOLAR holders, while others may focus on distribution, liquidity, strategic integrations, or strengthening other parts of the Polaris ecosystem.
 
 With this approach, anyone can launch a new pAsset market, and **Polaris can direct protocol incentives towards builders who contribute to the long-term growth of the ecosystem**.
 
 ## Builder Economics
 
-Every pAsset market is required **to route a minimum share of its primary interest to its own Earn Vault**. This boosts the overall protocol safety by ensuring that every market continuously supports the vault responsible for absorbing liquidation losses during periods of market stress.
+Every pAsset market is required **to route a minimum share of its primary interest to its own Earn Pool**. This boosts the overall protocol safety by ensuring that every market continuously supports the pool responsible for absorbing liquidation losses during periods of market stress.
 
 Beyond this required allocation, builders are free to determine how the remaining revenue is distributed. Depending on the objectives of the market, it may support the builder directly, incentivize liquidity, fund integrations, reward ecosystem partners or be shared with vePOLAR as part of a broader alignment strategy.
 

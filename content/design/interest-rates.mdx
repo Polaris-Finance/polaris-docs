@@ -18,13 +18,15 @@ Although the protocol's interest rates determine the nominal cost of minting, **
 | Purpose | Primary minting cost for pAsset minters | Protects aggregate collateral health |
 | When active | Always | Always |
 | Responds to | Minting vs redemption activity | Position leverage and aggregate collateral health |
-| Interest | Paid to Earn Vault and vePOLAR | Directly redistributed towards lower-leverage positions |
+| Interest | Paid to Earn Pool and vePOLAR | Directly redistributed towards lower-leverage positions |
 
 ## Peg Stability Rate
 
 The Peg Stability Rate is the standard minting cost paid by users who mint pAssets.
 
-**Interest paid through the Peg Stability Rate becomes the primary yield source for that pAsset market** and is distributed to the pAsset's Earn Vault and vePOLAR stakers, according to the market's configured flow allocation assigned.
+**Interest paid through the Peg Stability Rate becomes the primary yield source for that pAsset market** and is distributed to the pAsset's Earn Pool and vePOLAR stakers, according to the market's configured flow allocation assigned.
+
+Interest is denominated in the pAsset and accrues to the position's debt. Accrued interest is periodically minted as new pAssets and distributed to the Earn Pool and vePOLAR.
 
 A unique feature of the Peg Stability Rate is that it is not altered by governance or manual intervention. Instead, **it adjusts automatically based on minting and redemption activity** taking place inside the protocol.
 

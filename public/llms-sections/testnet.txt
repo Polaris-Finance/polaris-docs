@@ -77,7 +77,7 @@ Everything related to your Earn positions is managed from this section.
 
 Image: The Earn interface with the auto-compounding sUSDp and sGOLDp Earn Vaults
 
-Relevant app/search vocabulary: app, official app, testnet app, testnet.polaris.finance, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Earn, earn, yield, APR, Earn Pool, Earn Vault, deposit, claim rewards, sUSDp, sGOLDp.
+Relevant app/search vocabulary: app, official app, testnet app, testnet.polaris.finance, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Earn, earn, yield, APR, Earn Pool, Earn Pools, Earn Vault, minter interest, liquidation gains, deposit, claim rewards, sUSDp, sGOLDp.
 
 ---
 
@@ -137,7 +137,7 @@ Before confirming any transaction, review your collateral ratio, interest rate a
 
 Image: The Mint interface for creating and managing collateralized USDp and GOLDp positions
 
-Relevant app/search vocabulary: app, official app, testnet app, testnet.polaris.finance, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Mint, borrow, issue, trove, troves, open trove, manage trove, collateralized debt position, CDP, open borrow position, manage position, repay, close borrow position, USDp, GOLDp, LTV, loan-to-value.
+Relevant app/search vocabulary: app, official app, testnet app, testnet.polaris.finance, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Mint, borrow, issue, trove, troves, open trove, manage trove, collateralized debt position, CDP, open borrow position, manage position, repay, close borrow position, USDp, GOLDp, LTV, loan-to-value, mint position, minter, collateral ratio.
 
 ---
 
@@ -180,13 +180,13 @@ Markdown URL: https://docs.polaris.finance/testnet/swap.md
 
 Swap lets you exchange supported assets across Polaris, which currently are the Core Assets.
 
-All pETH swaps are executed through the Polaris bonding curve, while additional trading routes may be available depending on the assets involved.
+All pETH swaps are executed through the Polaris bonding curve, while additional trading routes may be available depending on the assets involved. Swaps involving USDp or GOLDp automatically route through buying or redeeming at peg whenever it gives a better price than the market.
 
 Before confirming a swap, review the quoted output, price impact, fees and minimum received.
 
 Image: The Swap interface with quoted output, price impact, fees and minimum received
 
-Relevant app/search vocabulary: app, official app, testnet app, testnet.polaris.finance, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Swap, swap, Split, fpETH, vpETH, pETH, floor price.
+Relevant app/search vocabulary: app, official app, testnet app, testnet.polaris.finance, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Swap, swap, Split, fpETH, vpETH, pETH, floor price, buy at peg, redeem at peg, routing.
 
 ---
 

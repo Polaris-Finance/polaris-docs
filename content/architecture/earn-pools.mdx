@@ -9,7 +9,7 @@ Earn Pools allow pAssets minted through Polaris to become yield-bearing.
 
 Each pAsset market has its own Earn Pool, such as the USDp Earn Pool and the GOLDp Earn Pool.
 
-Users deposit the pAsset into its Earn Pool, where those deposits are used to absorb liquidations whenever positions exceed the market's maximum LTV. In return, **depositors receive a protocol-defined minimum share of the interest** paid by pAsset minters over time, along with any pETH liquidation gains.
+Users deposit the pAsset into its Earn Pool, where those deposits are used to absorb liquidations whenever positions fall below the market's minimum collateral ratio. In return, **depositors receive a protocol-defined minimum share of the interest** paid by pAsset minters over time, along with any pETH liquidation gains.
 
 Earn Pools are the primary mechanism through which protocol-native yield is distributed to pAsset holders. Since both minter interest and liquidation gains originate from activity inside Polaris, the resulting yield does not rely on external lending markets or offchain assets.
 

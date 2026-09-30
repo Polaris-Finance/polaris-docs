@@ -83,7 +83,10 @@
         "yield",
         "APR",
         "Earn Pool",
+        "Earn Pools",
         "Earn Vault",
+        "minter interest",
+        "liquidation gains",
         "deposit",
         "claim rewards",
         "sUSDp",
@@ -118,7 +121,27 @@
       "section": "Core Architecture",
       "title": "pAsset Minting",
       "description": "Learn how pAssets are minted against pETH collateral.",
-      "keywords": [],
+      "keywords": [
+        "peg",
+        "peg arbitrage",
+        "peg arbitrage fees",
+        "fees from peg buys and redemptions",
+        "buy at peg",
+        "redeem at peg",
+        "peg buyer",
+        "peg redeemer",
+        "redemption",
+        "redeem",
+        "arbitrage",
+        "Peg Stability Module",
+        "PSM",
+        "direct minting",
+        "mint",
+        "minter",
+        "mint position",
+        "collateral-only position",
+        "CDP"
+      ],
       "updated": null
     },
     {
@@ -271,7 +294,22 @@
       "section": "Protocol Mechanics",
       "title": "Adaptive Peg Defense",
       "description": "Polaris incorporates permissionless minting and redemptions to help pAssets trade around their target price.",
-      "keywords": [],
+      "keywords": [
+        "peg",
+        "peg arbitrage",
+        "peg arbitrage fees",
+        "fees from peg buys and redemptions",
+        "buy at peg",
+        "redeem at peg",
+        "peg buyer",
+        "peg redeemer",
+        "redemption",
+        "redeem",
+        "arbitrage",
+        "Peg Stability Module",
+        "PSM",
+        "direct minting"
+      ],
       "updated": null
     },
     {
@@ -318,7 +356,13 @@
       "section": "Protocol Mechanics",
       "title": "Interest Rates",
       "description": "Polaris uses two complementary interest rates to manage pAsset markets.",
-      "keywords": [],
+      "keywords": [
+        "interest rate",
+        "Peg Stability Rate",
+        "Protocol Safety Rate",
+        "minter interest",
+        "borrow rate"
+      ],
       "updated": null
     },
     {
@@ -555,7 +599,10 @@
         "yield",
         "APR",
         "Earn Pool",
+        "Earn Pools",
         "Earn Vault",
+        "minter interest",
+        "liquidation gains",
         "deposit",
         "claim rewards",
         "sUSDp",
@@ -639,7 +686,10 @@
         "USDp",
         "GOLDp",
         "LTV",
-        "loan-to-value"
+        "loan-to-value",
+        "mint position",
+        "minter",
+        "collateral ratio"
       ],
       "updated": null
     },
@@ -721,7 +771,10 @@
         "fpETH",
         "vpETH",
         "pETH",
-        "floor price"
+        "floor price",
+        "buy at peg",
+        "redeem at peg",
+        "routing"
       ],
       "updated": null
     },

@@ -238,7 +238,7 @@ Since GOLDp exists entirely onchain, **users can freely access digital gold with
 
 ## Using GOLDp
 
-GOLDp is minted by depositing pETH as collateral and opening an overcollateralized minting position.
+GOLDp is minted by depositing pETH as collateral and opening an overcollateralized mint position.
 
 Like USDp, GOLDp uses the same minting mechanism and minimum collateral ratio of 115%. In practice, this means every position requires at least \$1.15 worth of pETH collateral for every \$1 worth of GOLDp. Market movements can later reduce that ratio, making positions that fall below 115% eligible for [liquidations](https://docs.polaris.finance/design/liquidations).
 
@@ -248,24 +248,24 @@ Once minted, GOLDp provides onchain exposure to the price of gold. It can be tra
 
 On top of this, users who want **to earn protocol-native yield can deposit GOLDp into the GOLDp Earn Pool**, which distributes both GOLDp and pETH from a portion of the interest paid by GOLDp minters and pETH liquidation gains. The exact mechanics are explained in the [Earn Pools](https://docs.polaris.finance/architecture/earn-pools) section.
 
-Users may hold GOLDp as digital gold, deposit it into the Earn Vault, provide liquidity alongside other gold assets or build other strategies on top of it. The resulting market exposure depends on how GOLDp is ultimately used.
+Users may hold GOLDp as digital gold, deposit it into the Earn Pool, provide liquidity alongside other gold assets or build other strategies on top of it. The resulting market exposure depends on how GOLDp is ultimately used.
 
 ## Maintaining the Peg
 
 The GOLDp peg is supported by pETH overcollateralization and by market participants using the protocol's peg mechanisms whenever arbitrage opportunities arise.
 
-When GOLDp trades above the gold reference price, new GOLDp can be minted at gold reference value against pETH collateral and sold into the market. The additional supply creates downward pressure on the market price.
+When GOLDp trades above the gold reference price, anyone can buy newly minted GOLDp at gold reference value with pETH and sell it into the market. The additional supply creates downward pressure on the market price.
 
 When GOLDp trades below the gold reference price, market participants can redeem GOLDp for the underlying collateral, which removes GOLDp from circulation and reduces the circulating supply.
 
 GOLDp price | Arbitrage | Result
 
-Above gold oracle price | Mint and sell GOLDp | Supply increases, and price returns toward the target
-Below gold oracle price | Redeem GOLDp | Supply decreases, and price returns toward the target
+Above gold oracle price | Buy at peg and sell | Supply increases, and price returns toward the target
+Below gold oracle price | Redeem at peg | Supply decreases, and price returns toward the target
 
 Together, these mechanisms adjust the circulating supply in response to market conditions.
 
-These arbitrage paths operate through [Adaptive Peg Defense](https://docs.polaris.finance/design/adaptive-peg-defence), which distributes the collateral, debt, and fees created by direct minting and redemptions across open positions.
+These arbitrage paths operate through [Adaptive Peg Defense](https://docs.polaris.finance/design/adaptive-peg-defence), which distributes the collateral, debt, and fees created by buying and redeeming at peg across open positions.
 
 Two interest-rate mechanisms complement this peg design.
 
@@ -273,7 +273,7 @@ The [Peg Stability Rate](https://docs.polaris.finance/design/interest-rates#peg-
 
 The [Protocol Safety Rate](https://docs.polaris.finance/design/interest-rates#protocol-safety-rate) is an always-active market-internal redistribution mechanism. It moves value from higher-leverage positions to lower-leverage or collateral-only positions, rewarding positions that strengthen the market's collateral health.
 
-At the same time, **minting mechanics are identical to those of USDp**, including the distribution of protocol-generated value as pETH to minters. For lower-interest assets such as GOLDp, these offsets can make the effective cost of minting meaningfully lower than the headline rate.
+At the same time, **minting mechanics are identical to those of USDp**, including the distribution of protocol-generated value as pETH to minters. For lower-interest assets such as GOLDp, this yield can make the effective cost of minting meaningfully lower than the headline rate.
 
 ---
 
@@ -409,7 +409,7 @@ It exists entirely onchain and is designed to remain censorship resistant. **Any
 
 ## Using USDp
 
-USDp is minted by depositing pETH as collateral and opening an overcollateralized minting position.
+USDp is minted by depositing pETH as collateral and opening an overcollateralized mint position.
 
 Each position must be opened at or above the minimum collateral ratio of 115%, meaning every \$1 of USDp debt requires at least \$1.15 worth of pETH collateral at minting. Market movements can later reduce that ratio, making positions that fall below 115% eligible for [liquidations](https://docs.polaris.finance/design/liquidations).
 
@@ -421,18 +421,18 @@ On top of that, users who want to earn protocol-native yield **can deposit USDp 
 
 The USDp peg is supported by pETH overcollateralization and by market participants using the protocol's peg mechanisms whenever arbitrage opportunities arise.
 
-When USDp trades above one dollar, new USDp can be minted at its \$1 target value against pETH collateral and sold into the market. The additional supply creates downward pressure on the market price.
+When USDp trades above one dollar, anyone can buy newly minted USDp at its \$1 target value with pETH and sell it into the market. The additional supply creates downward pressure on the market price.
 
-When USDp trades below one dollar, market participants can redeem USDp for the underlying collateral, which removes USDp from circulation and reduces the circulating supply.
+When USDp trades below one dollar, market participants can redeem USDp at peg for the underlying collateral, which removes USDp from circulation and reduces the circulating supply.
 
 USDp price | Arbitrage | Result
 
-Above \$1 | Mint and sell USDp | Supply increases, and price returns toward \$1
-Below \$1 | Redeem USDp | Supply decreases, and price returns toward \$1
+Above \$1 | Buy at peg and sell | Supply increases, and price returns toward \$1
+Below \$1 | Redeem at peg | Supply decreases, and price returns toward \$1
 
 Together, these mechanisms adjust the circulating supply in response to peg conditions.
 
-These arbitrage paths operate through [Adaptive Peg Defense](https://docs.polaris.finance/design/adaptive-peg-defence), which distributes the collateral, debt, and fees created by direct minting and redemptions across open positions.
+These arbitrage paths operate through [Adaptive Peg Defense](https://docs.polaris.finance/design/adaptive-peg-defence), which distributes the collateral, debt, and fees created by buying and redeeming at peg across open positions.
 
 Two interest-rate mechanisms complement this peg design.
 
@@ -590,7 +590,7 @@ Earn Pools allow pAssets minted through Polaris to become yield-bearing.
 
 Each pAsset market has its own Earn Pool, such as the USDp Earn Pool and the GOLDp Earn Pool.
 
-Users deposit the pAsset into its Earn Pool, where those deposits are used to absorb liquidations whenever positions exceed the market's maximum LTV. In return, **depositors receive a protocol-defined minimum share of the interest** paid by pAsset minters over time, along with any pETH liquidation gains.
+Users deposit the pAsset into its Earn Pool, where those deposits are used to absorb liquidations whenever positions fall below the market's minimum collateral ratio. In return, **depositors receive a protocol-defined minimum share of the interest** paid by pAsset minters over time, along with any pETH liquidation gains.
 
 Earn Pools are the primary mechanism through which protocol-native yield is distributed to pAsset holders. Since both minter interest and liquidation gains originate from activity inside Polaris, the resulting yield does not rely on external lending markets or offchain assets.
 
@@ -623,7 +623,7 @@ To ensure the stability of the system, auto-compounding vaults are not part of t
 
 These vaults are operated by third parties and can carry their own smart contract and strategy risks in addition to those of the underlying Earn Pool.
 
-Relevant app/search vocabulary: Earn, earn, yield, APR, Earn Pool, Earn Vault, deposit, claim rewards, sUSDp, sGOLDp.
+Relevant app/search vocabulary: Earn, earn, yield, APR, Earn Pool, Earn Pools, Earn Vault, minter interest, liquidation gains, deposit, claim rewards, sUSDp, sGOLDp.
 
 ---
 
@@ -658,7 +658,7 @@ When these fees are processed, they pass through the Fee Router: pETH is first b
 
 **Each pAsset market also generates its own independent flow** funded by the interest paid by users who mint that specific pAsset, such as USDp or GOLDp.
 
-Unlike pETH flows, pAsset flows do not pass through the Fee Router. Each market routes a protocol-defined minimum allocation to its corresponding Earn Vault. For USDp and GOLDp, a share is also routed to vePOLAR. Future pAsset markets may choose to share revenue with vePOLAR as part of their alignment strategy and their case for receiving pETH flows.
+Unlike pETH flows, pAsset flows do not pass through the Fee Router. Each market routes a protocol-defined minimum allocation to its corresponding Earn Pool. For USDp and GOLDp, a share is also routed to vePOLAR. Future pAsset markets may choose to share revenue with vePOLAR as part of their alignment strategy and their case for receiving pETH flows.
 
 The remaining flow can then be distributed to approved recipients building around that pAsset, including liquidity pools, vaults, structured products and other integrations.
 
@@ -693,7 +693,7 @@ USDp and GOLDp are the first pAssets introduced by the protocol, but the underly
 
 **Any asset with an oracle can become a pAsset**. This includes fiat currencies, commodities, indices and many other onchain or offchain assets whose price can be reliably tracked.
 
-Every pAsset maintains its own accounting, oracle configuration, risk parameters and Earn Vault while relying on the same pETH collateral foundation. Thus, new markets can benefit from the Polaris infrastructure without needing a separate collateral system for every asset.
+Every pAsset maintains its own accounting, oracle configuration, risk parameters and Earn Pool while relying on the same pETH collateral foundation. Thus, new markets can benefit from the Polaris infrastructure without needing a separate collateral system for every asset.
 
 ## Launching a pAsset Market
 
@@ -711,13 +711,13 @@ Markets that naturally strengthen Polaris through adoption, distribution, liquid
 
 Access to pETH flows is stewarded through vePOLAR. Builders present their market and explain how it contributes to the broader Polaris ecosystem, while stewards determine which markets receive pETH flows and how those incentives are allocated. Markets that expand demand for pETH and pAssets, with clear value flowing back to Polaris, will naturally be the strongest candidates for alignment.
 
-Different markets may contribute in different ways: some may choose to share part of their issuer interest with vePOLAR holders, while others may focus on distribution, liquidity, strategic integrations, or strengthening other parts of the Polaris ecosystem.
+Different markets may contribute in different ways: some may choose to share part of their minter interest with vePOLAR holders, while others may focus on distribution, liquidity, strategic integrations, or strengthening other parts of the Polaris ecosystem.
 
 With this approach, anyone can launch a new pAsset market, and **Polaris can direct protocol incentives towards builders who contribute to the long-term growth of the ecosystem**.
 
 ## Builder Economics
 
-Every pAsset market is required **to route a minimum share of its primary interest to its own Earn Vault**. This boosts the overall protocol safety by ensuring that every market continuously supports the vault responsible for absorbing liquidation losses during periods of market stress.
+Every pAsset market is required **to route a minimum share of its primary interest to its own Earn Pool**. This boosts the overall protocol safety by ensuring that every market continuously supports the pool responsible for absorbing liquidation losses during periods of market stress.
 
 Beyond this required allocation, builders are free to determine how the remaining revenue is distributed. Depending on the objectives of the market, it may support the builder directly, incentivize liquidity, fund integrations, reward ecosystem partners or be shared with vePOLAR as part of a broader alignment strategy.
 
@@ -745,31 +745,29 @@ Every minted asset belongs to a specific pAsset market. The [pAsset Markets](htt
 In Polaris, **there are two ways new supply can enter circulation**:
 
 - Users can mint pAssets by opening or adjusting a collateralized position backed by their own pETH.
-- Arbitrageurs can mint directly through the peg stability mechanism whenever an asset trades above its target price.
+- Anyone can buy newly minted supply at peg, without opening a position, whenever an asset trades above its target price.
 
 Both paths create pAssets backed by pETH, but they follow different accounting models.
 
-Self minting creates debt that belongs to a specific user position. Direct arbitrage minting does not create a normal long-lived position for the arbitrageur; instead, the resulting collateral, debt, and fees are distributed across all open positions in that pAsset market through the [Adaptive Peg Defense](https://docs.polaris.finance/design/adaptive-peg-defence).
+Minting creates debt that belongs to a specific position. Buying at peg does not create a position; instead, the resulting collateral, debt, and fees are distributed across all open positions in that pAsset market through the [Adaptive Peg Defense](https://docs.polaris.finance/design/adaptive-peg-defence).
 
 ## Why Mint pAssets
 
 Minting allows users to create onchain assets backed by their pETH without selling the underlying collateral.
 
-A user may mint USDp to access dollar liquidity, mint GOLDp to create gold exposure, or mint future pAssets for other strategies. The minted asset can then be held, used in DeFi, deposited into an Earn Vault, or combined with external money markets and other integrations.
+A user may mint USDp to access dollar liquidity, mint GOLDp to create gold exposure, or mint future pAssets for other strategies. The minted asset can then be held, used in DeFi, deposited into an Earn Pool, or combined with external money markets and other integrations.
 
-Unlike many other collateralized minting systems, the headline interest rate is not always the same as the effective cost of minting. The cost of a position is determined by the relevant pAsset market's interest-rate mechanics, but minters can also receive protocol-generated value that offsets the interest they pay.
-
-These offsets can include:
+Unlike many other collateralized minting systems, the headline interest rate is not always the same as the effective cost of minting. Minters pay interest in the pAsset they mint, and earn yield that can include:
 
 - pETH-related flows distributed to minters in proportion to their debt.
-- Fees generated by direct arbitrage minting and redemptions, which are socialized across affected positions.
+- Fees from peg buys and redemptions, which are socialized across affected positions.
 - Protocol Safety Rate payments to lower-leverage and collateral-only positions, funded by higher-leverage positions.
 
-This means **a position can experience a low, or even negative, effective rate** when the value it receives exceeds the interest it pays. This is especially relevant for pAssets with lower interest-rate profiles, such as GOLDp and potential future assets like CHFp.
+Because interest is paid in the pAsset and pETH yield is earned in pETH, a position's net rate also moves with the ETH price. This means **a position can experience a low, or even negative, effective rate** when the yield it earns exceeds the interest it pays. This is especially relevant for pAssets with lower interest-rate profiles, such as GOLDp and potential future assets like CHFp.
 
-## Self Minting
+## Opening a Mint Position
 
-Self minting is the standard way to mint pAssets by opening a collateralized position, and use it across DeFi.
+Opening a mint position is the standard way to mint pAssets and use them across DeFi.
 
 A user deposits pETH as collateral and mints a pAsset against it. The resulting debt belongs to that user’s position, which must remain within the market’s collateral requirements.
 
@@ -777,7 +775,7 @@ For example, a user who mints USDp needs to maintain enough pETH collateral to s
 
 This path is most relevant **for users who want to access liquidity without giving up their pETH exposure**. The position remains open over time, so the user continues to manage collateral, debt, interest, and liquidation risk.
 
-The economics of the position can also evolve over time. Minters receive pETH yield in proportion to their debt, and they receive fees from direct arbitrage minting and redemptions that are socialized across the market. These fees help offset the effect of Adaptive Peg Defense adjustments and can make the resulting changes profitable for affected positions under certain market conditions.
+The economics of the position can also evolve over time. Minters receive pETH yield in proportion to their debt, and they receive fees from peg buys and redemptions that are socialized across the market. These fees help offset the effect of [Adaptive Peg Defense](https://docs.polaris.finance/design/adaptive-peg-defence) adjustments and can make the resulting changes profitable for affected positions under certain market conditions.
 
 ## Collateral-Only Positions
 
@@ -785,33 +783,35 @@ Unlike conventional minting protocols, **Polaris also supports collateral-only p
 
 A user can deposit pETH into a pAsset market without minting that pAsset immediately. This creates a position with collateral but no initial debt.
 
-Collateral-only positions can receive fees from direct arbitrage minting and redemptions because those actions are distributed across the open positions in the market. They can also receive [Protocol Safety Rate](https://docs.polaris.finance/design/interest-rates#protocol-safety-rate) payments from higher-leverage positions.
+Collateral-only positions can receive fees from peg buys and redemptions because those actions are distributed across the open positions in the market. They can also receive [Protocol Safety Rate](https://docs.polaris.finance/design/interest-rates#protocol-safety-rate) payments from higher-leverage positions.
 
-One way to understand this is as a pETH-backed liquidity position for a specific pAsset market. The position does not begin by creating pAsset debt, but it supports the market’s collateral base, participates in market-level minting and redemption activity, and can earn fees for doing so.
+One way to understand this is as a pETH-backed liquidity position for a specific pAsset market. The position does not begin by creating pAsset debt, but it supports the market’s collateral base, participates in peg buys and redemptions across the market, and can earn fees for doing so.
 
 **The Protocol Safety Rate adds another source of yield**. It is expected to be small during normal conditions, but it becomes more significant when the market's collateral health weakens and the protocol rewards lower-leverage or collateral-only positions.
 
-## Direct Arbitrage Minting
+## Buying at Peg
 
-Direct arbitrage minting serves a different purpose: when a pAsset trades above its target price, arbitrageurs can mint new supply and sell it into the market. This increases circulating supply and helps push the market price back toward its target.
+Buying at peg serves a different purpose: when a pAsset trades above its target price, anyone can buy newly minted supply at the target price with pETH and sell it into the market. This increases circulating supply and helps push the market price back toward its target.
 
-Unlike self minting, the arbitrageur does not need to open a normal collateralized position that remains in the system. The newly created supply is instead incorporated into the existing pAsset market through the Adaptive Peg Defense.
+**Peg buyers don't open a position.** The new supply is added to existing positions, which take on the debt and collateral and earn the fee, according to the protocol’s rules. Existing positions therefore participate directly in every peg buy, evolving continuously as supply expands.
 
-**The added collateral, debt, and minting fees are distributed across every open position** according to the protocol’s rules. Existing positions therefore participate directly in every arbitrage event, evolving continuously as supply expands through permissionless minting.
+The most common reason to buy at peg is arbitrage: when USDp trades above \$1, buy at peg and sell on the market. Swap also routes through buying and redeeming at peg whenever it gives a better price than the market.
 
-As a result, each pAsset market can increase supply without concentrating the economic effects of arbitrage within newly created positions.
+As a result, each pAsset market can increase supply without concentrating the economic effects of peg activity within newly created positions.
 
 ## Adaptive Peg Defense and Position Effects
 
-Adaptive Peg Defense connects market-level arbitrage activity to existing positions.
+Adaptive Peg Defense connects market-level peg activity to existing positions.
 
-When direct minting expands supply, or redemptions contract supply, the resulting changes are distributed across the affected pAsset market instead of being isolated to the arbitrageur.
+When buying at peg expands supply, or redeeming at peg contracts it, the resulting changes are distributed across the affected pAsset market instead of being isolated to the peg buyer or redeemer.
 
-This means self minters are not isolated from peg activity. Their collateral, debt, and fee balances can change as the market responds to price deviations.
+This means minters are not isolated from peg activity. Their collateral, debt, and fee balances can change as the market responds to price deviations.
 
-The fees generated by direct minting and redemptions are distributed to affected positions, helping compensate minters for the impact of those system-level adjustments. Under certain market conditions, this can make arbitrage-driven activity profitable for existing positions instead of being purely dilutive.
+Fees from peg buys and redemptions are distributed to affected positions, helping compensate minters for the impact of those system-level adjustments. Under certain market conditions, this can make peg activity profitable for existing positions instead of being purely dilutive.
 
-As a result, **both sides of a pAsset’s target price are defended**, with the effects of arbitrage activity distributed across the market.
+As a result, **both sides of a pAsset’s target price are defended**, with the effects of peg activity distributed across the market.
+
+Relevant app/search vocabulary: peg, peg arbitrage, peg arbitrage fees, fees from peg buys and redemptions, buy at peg, redeem at peg, peg buyer, peg redeemer, redemption, redeem, arbitrage, Peg Stability Module, PSM, direct minting, mint, minter, mint position, collateral-only position, CDP.
 
 ---
 
@@ -937,38 +937,40 @@ Relevant app/search vocabulary: POLAR, convert, lock, vePOLAR, burn pETH, conver
 URL: https://docs.polaris.finance/design/adaptive-peg-defence
 Markdown URL: https://docs.polaris.finance/design/adaptive-peg-defence.md
 
-Polaris incorporates **direct minting and redemptions** to help pAssets trade around their target price.
+Polaris incorporates **buying and redeeming at peg** to help pAssets trade around their target price.
 
 Many collateralized asset systems are more effective at defending one side of the peg than the other, allowing supply to contract without providing an equally direct way to expand it under stress, or vice versa.
 
-Polaris supports both directions, allowing **pAssets to be minted against pETH collateral or redeemed for pETH at their target value** whenever market conditions create an arbitrage opportunity.
+Polaris supports both directions, allowing **pAssets to be bought with pETH or redeemed for pETH at their target value** whenever market conditions create an arbitrage opportunity. Every buy and redemption at peg pays a fee, also referred to as peg arbitrage fee, which is distributed across the market's positions, both mint and collateral-only.
 
 Image: How Adaptive Peg Defence adjusts minting and redemption incentives to move pAssets back toward their target price
 
 Condition | Arbitrage | Supply effect | Adaptive Peg Defense
 
-Above peg | Mint at par, sell | Supply expands, reducing price | Existing positions are upsized
-Below peg | Buy and redeem | Supply contracts, increasing price | Existing positions are downsized
+Above peg | Buy at peg, sell | Supply expands, reducing price | Existing positions are upsized
+Below peg | Buy, redeem at peg | Supply contracts, increasing price | Existing positions are downsized
 
 ## Above Peg
 
-When a pAsset trades above its target price, market participants can **mint new supply against pETH collateral and sell it into the market** for a net profit.
+When a pAsset trades above its target price, market participants can **buy newly minted supply at peg and sell it into the market** for a net profit.
 
-For example, if USDp trades above one dollar, an arbitrageur can deposit ETH into the bonding curve, receive pETH and immediately mint new USDp at par before selling it above one dollar. This increases the circulating supply and naturally pushes the market price back toward its target.
+For example, if USDp trades above one dollar, a peg buyer can deposit ETH into the bonding curve, receive pETH and immediately buy newly minted USDp at peg before selling it above one dollar. This increases the circulating supply and naturally pushes the market price back toward its target.
 
-Polaris extends this mechanism through the Adaptive Peg Defense, which treats direct minting as an upsizing of the existing market. The added collateral, debt and minting fees are distributed across open positions according to protocol accounting.
+Polaris extends this mechanism through the Adaptive Peg Defense, which treats buying at peg as an upsizing of the existing market. The added collateral, debt and fees are distributed across open positions according to protocol accounting.
 
-This means the market can expand in response to above-peg demand without requiring the arbitrageur to maintain a long-lived position. Existing positions grow alongside the market and receive the associated minting fees.
+This means the market can expand in response to above-peg demand without the peg buyer opening a position. Existing positions grow alongside the market and receive the fees from peg buys.
 
 ## Below Peg
 
 When a pAsset trades below its target price, market participants can **buy the discounted asset and redeem it through the protocol for pETH at its target price**.
 
-For example, if USDp trades below one dollar, an arbitrageur can purchase USDp below peg, redeem it at par for pETH and capture the price difference. The redeemed USDp is burned, reducing the circulating supply and encouraging the market price to move back toward target.
+For example, if USDp trades below one dollar, a peg redeemer can purchase USDp below peg, redeem it at peg for pETH and capture the price difference. The redeemed USDp is burned, reducing the circulating supply and encouraging the market price to move back toward target.
 
 The same Adaptive Peg Defense model applies to redemptions, but in the opposite direction. Redemptions downsize the existing market by distributing collateral removal, debt reduction and redemption fees across open positions according to protocol accounting.
 
-As a result, supply contracts through the same shared accounting model. Existing positions shrink alongside the market and receive the associated redemption fees.
+As a result, supply contracts through the same shared accounting model. Existing positions shrink alongside the market and receive the fees from peg redemptions.
+
+Relevant app/search vocabulary: peg, peg arbitrage, peg arbitrage fees, fees from peg buys and redemptions, buy at peg, redeem at peg, peg buyer, peg redeemer, redemption, redeem, arbitrage, Peg Stability Module, PSM, direct minting.
 
 ---
 
@@ -1061,7 +1063,7 @@ Repay debt | Allowed | Improves position health
 Withdraw collateral | Restricted | Allowed only if the position stays at 150% or above and its ratio does not fall
 Increase debt | Restricted | Allowed only if the position stays at 150% or above and its ratio does not fall
 Close position | Restricted | Would lower market backing
-Direct pAsset minting | Restricted | Would increase market debt
+Buying at peg | Restricted | Would increase market debt
 
 If a market's collateralization keeps weakening past full backing, it enters [Recovery Mode](https://docs.polaris.finance/design/recovery-mode).
 
@@ -1120,13 +1122,15 @@ Property | Peg Stability Rate | Protocol Safety Rate
 Purpose | Primary minting cost for pAsset minters | Protects aggregate collateral health
 When active | Always | Always
 Responds to | Minting vs redemption activity | Position leverage and aggregate collateral health
-Interest | Paid to Earn Vault and vePOLAR | Directly redistributed towards lower-leverage positions
+Interest | Paid to Earn Pool and vePOLAR | Directly redistributed towards lower-leverage positions
 
 ## Peg Stability Rate
 
 The Peg Stability Rate is the standard minting cost paid by users who mint pAssets.
 
-**Interest paid through the Peg Stability Rate becomes the primary yield source for that pAsset market** and is distributed to the pAsset's Earn Vault and vePOLAR stakers, according to the market's configured flow allocation assigned.
+**Interest paid through the Peg Stability Rate becomes the primary yield source for that pAsset market** and is distributed to the pAsset's Earn Pool and vePOLAR stakers, according to the market's configured flow allocation assigned.
+
+Interest is denominated in the pAsset and accrues to the position's debt. Accrued interest is periodically minted as new pAssets and distributed to the Earn Pool and vePOLAR.
 
 A unique feature of the Peg Stability Rate is that it is not altered by governance or manual intervention. Instead, **it adjusts automatically based on minting and redemption activity** taking place inside the protocol.
 
@@ -1148,6 +1152,8 @@ This encourages the market to return toward stronger overall collateralization w
 
 **Unlike the Peg Stability Rate, the Protocol Safety Rate is not protocol revenue**. Every payment made through the mechanism remains inside the same pAsset market and is redistributed directly between participants.
 
+Relevant app/search vocabulary: interest rate, Peg Stability Rate, Protocol Safety Rate, minter interest, borrow rate.
+
 ---
 
 ## Liquidations
@@ -1161,22 +1167,22 @@ Liquidations protect the solvency of each pAsset market by closing unsafe positi
 
 ## Liquidation Process
 
-**Each pAsset market has its own Earn Vault**, which acts as the first line of defense during liquidations. Depositors supply the pAsset to the Earn Vault, and those deposits can be used to cancel the debt of liquidated positions.
+**Each pAsset market has its own Earn Pool**, which acts as the first line of defense during liquidations. Depositors supply the pAsset to the Earn Pool, and those deposits can be used to cancel the debt of liquidated positions.
 
-When a liquidation occurs, the position's debt is cancelled using pAssets from the Earn Vault, while the corresponding pETH collateral is transferred to the vault. Earn Vault depositors therefore receive liquidation gains in exchange for acting as the first backstop for the market.
+When a liquidation occurs, the position's debt is cancelled using pAssets from the Earn Pool, while the corresponding pETH collateral is transferred to the pool. Earn Pool depositors therefore receive liquidation gains in exchange for acting as the first backstop for the market.
 
 This liquidation mechanism is one source of protocol-native yield distributed to Earn Pool depositors and is explained in greater detail in the dedicated [Earn Pools](https://docs.polaris.finance/architecture/earn-pools) section.
 
 ## Fallback Redistribution
 
-If the Earn Vault does not hold enough deposits to absorb the entire liquidation, the remaining debt and collateral are redistributed across the other open positions in the same pAsset market. As such, liquidations are always processed entirely within the protocol without relying on external auctions or discretionary intervention.
+If the Earn Pool does not hold enough deposits to absorb the entire liquidation, the remaining debt and collateral are redistributed across the other open positions in the same pAsset market. As such, liquidations are always processed entirely within the protocol without relying on external auctions or discretionary intervention.
 
-Redistribution assigns each open position a proportional share of both the remaining debt and collateral. While intended only as a fallback mechanism, it ensures that **liquidations can always occur even when the Earn Vault is temporarily unable to absorb the full position**.
+Redistribution assigns each open position a proportional share of both the remaining debt and collateral. While intended only as a fallback mechanism, it ensures that **liquidations can always occur even when the Earn Pool is temporarily unable to absorb the full position**.
 
 Step | Applies | Outcome
 
-Earn Vault | Always first | Debt cancelled by the vault, and depositors receive liquidation gains
-Redistribution | If the vault cannot absorb the full position | Remaining debt and collateral redistributed to open positions
+Earn Pool | Always first | Debt cancelled by the pool, and depositors receive liquidation gains
+Redistribution | If the pool cannot absorb the full position | Remaining debt and collateral redistributed to open positions
 
 Relevant app/search vocabulary: liquidation, liquidations, liquidate, liquidated, liquidation penalty.
 
@@ -1260,7 +1266,7 @@ Because every redeemer takes the same cut, the backing ratio is preserved as red
 
 ## Liquidations
 
-**Liquidation by redistribution is disabled.** Redistribution spreads a liquidated position's debt across the remaining borrowers. In a fully backed market that cleanly clears a bad position, because the collateral behind it still covers the debt. Below full backing the same step becomes ambiguous: it pushes more debt onto positions that are themselves under-backed, weakening all of them at once. Repeated, it can collapse the market onto a single borrower, and none of it helps the market recover.
+**Liquidation by redistribution is disabled.** Redistribution spreads a liquidated position's debt across the remaining open positions. In a fully backed market that cleanly clears a bad position, because the collateral behind it still covers the debt. Below full backing the same step becomes ambiguous: it pushes more debt onto positions that are themselves under-backed, weakening all of them at once. Repeated, it can collapse the market onto a single position, and none of it helps the market recover.
 
 **Liquidations must hold or improve the market's collateralization.** A liquidation that would push backing further down is not carried out, so the market's health can only move in the right direction while it recovers.
 
@@ -1271,7 +1277,7 @@ A market leaves Recovery Mode when its backing rises back above full collaterali
 Backing recovers as:
 
 - **The collateral price rises.** A market usually enters Recovery Mode after a sharp fall in the collateral price, so a recovery in that price is the largest and most direct lever back.
-- **Borrowers strengthen their positions.** Adding collateral and repaying debt stay open throughout, and both lift the market's backing.
+- **Minters strengthen their positions.** Adding collateral and repaying debt stay open throughout, and both lift the market's backing.
 - **Yield streams keep flowing.** The protocol's yield sources continue through Recovery Mode, strengthening collateral ratios over time.
 - **Weak positions are liquidated.** Every liquidation that proceeds can only hold or improve the ratio, so clearing the weakest positions moves backing in the right direction.
 - **The Protocol Safety Rate keeps pushing.** It rewards conservative and collateral-only positions and taxes high leverage, steadily nudging the market back toward stronger backing.
@@ -1407,7 +1413,7 @@ Everything related to your Earn positions is managed from this section.
 
 Image: The Earn interface with the auto-compounding sUSDp and sGOLDp Earn Vaults
 
-Relevant app/search vocabulary: app, official app, testnet app, testnet.polaris.finance, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Earn, earn, yield, APR, Earn Pool, Earn Vault, deposit, claim rewards, sUSDp, sGOLDp.
+Relevant app/search vocabulary: app, official app, testnet app, testnet.polaris.finance, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Earn, earn, yield, APR, Earn Pool, Earn Pools, Earn Vault, minter interest, liquidation gains, deposit, claim rewards, sUSDp, sGOLDp.
 
 ---
 
@@ -1467,7 +1473,7 @@ Before confirming any transaction, review your collateral ratio, interest rate a
 
 Image: The Mint interface for creating and managing collateralized USDp and GOLDp positions
 
-Relevant app/search vocabulary: app, official app, testnet app, testnet.polaris.finance, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Mint, borrow, issue, trove, troves, open trove, manage trove, collateralized debt position, CDP, open borrow position, manage position, repay, close borrow position, USDp, GOLDp, LTV, loan-to-value.
+Relevant app/search vocabulary: app, official app, testnet app, testnet.polaris.finance, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Mint, borrow, issue, trove, troves, open trove, manage trove, collateralized debt position, CDP, open borrow position, manage position, repay, close borrow position, USDp, GOLDp, LTV, loan-to-value, mint position, minter, collateral ratio.
 
 ---
 
@@ -1510,13 +1516,13 @@ Markdown URL: https://docs.polaris.finance/testnet/swap.md
 
 Swap lets you exchange supported assets across Polaris, which currently are the Core Assets.
 
-All pETH swaps are executed through the Polaris bonding curve, while additional trading routes may be available depending on the assets involved.
+All pETH swaps are executed through the Polaris bonding curve, while additional trading routes may be available depending on the assets involved. Swaps involving USDp or GOLDp automatically route through buying or redeeming at peg whenever it gives a better price than the market.
 
 Before confirming a swap, review the quoted output, price impact, fees and minimum received.
 
 Image: The Swap interface with quoted output, price impact, fees and minimum received
 
-Relevant app/search vocabulary: app, official app, testnet app, testnet.polaris.finance, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Swap, swap, Split, fpETH, vpETH, pETH, floor price.
+Relevant app/search vocabulary: app, official app, testnet app, testnet.polaris.finance, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Swap, swap, Split, fpETH, vpETH, pETH, floor price, buy at peg, redeem at peg, routing.
 
 ---
 
@@ -1565,7 +1571,7 @@ The following risks are not exhaustive. Users should understand the protocol, th
 
 ## Smart Contract Risk
 
-Polaris depends on smart contracts to manage pETH, pAsset markets, Earn Vaults, liquidations, conversions, Reserve Loans and other protocol mechanisms.
+Polaris depends on smart contracts to manage pETH, pAsset markets, Earn Pools, liquidations, conversions, Reserve Loans and other protocol mechanisms.
 
 **Bugs, implementation errors or unexpected interactions between contracts could lead to loss of funds or incorrect protocol behavior**. Immutability also means that core contracts are not designed to be upgraded or paused after deployment which reduces admin-key risk but increases the importance of audits, testing and careful use.
 
@@ -1591,11 +1597,11 @@ If an oracle feed is stale, unavailable, manipulated or misconfigured, **the pro
 
 Polaris uses a Medianizer to reduce reliance on a single oracle source where multiple feeds are available, but oracle risk cannot be fully removed.
 
-## Earn Vault and Liquidation Risk
+## Earn Pool and Liquidation Risk
 
-Earn Vaults provide yield by helping absorb liquidations in their pAsset market.
+Earn Pools provide yield by helping absorb liquidations in their pAsset market.
 
-When a position is liquidated, Earn Vault deposits may be burned to cancel debt, with the vault receiving pETH collateral in return. This can generate liquidation gains, but it also means **Earn Vault depositors act as a first-loss backstop**.
+When a position is liquidated, Earn Pool deposits may be burned to cancel debt, with the pool receiving pETH collateral in return. This can generate liquidation gains, but it also means **Earn Pool depositors act as a first-loss backstop**.
 
 Losses may occur if collateral value falls quickly, liquidations are delayed, oracle prices are wrong, or received collateral later falls in value.
 

@@ -11,7 +11,7 @@ The following risks are not exhaustive. Users should understand the protocol, th
 
 ## Smart Contract Risk
 
-Polaris depends on smart contracts to manage pETH, pAsset markets, Earn Vaults, liquidations, conversions, Reserve Loans and other protocol mechanisms.
+Polaris depends on smart contracts to manage pETH, pAsset markets, Earn Pools, liquidations, conversions, Reserve Loans and other protocol mechanisms.
 
 **Bugs, implementation errors or unexpected interactions between contracts could lead to loss of funds or incorrect protocol behavior**. Immutability also means that core contracts are not designed to be upgraded or paused after deployment which reduces admin-key risk but increases the importance of audits, testing and careful use.
 
@@ -37,11 +37,11 @@ If an oracle feed is stale, unavailable, manipulated or misconfigured, **the pro
 
 Polaris uses a Medianizer to reduce reliance on a single oracle source where multiple feeds are available, but oracle risk cannot be fully removed.
 
-## Earn Vault and Liquidation Risk
+## Earn Pool and Liquidation Risk
 
-Earn Vaults provide yield by helping absorb liquidations in their pAsset market.
+Earn Pools provide yield by helping absorb liquidations in their pAsset market.
 
-When a position is liquidated, Earn Vault deposits may be burned to cancel debt, with the vault receiving pETH collateral in return. This can generate liquidation gains, but it also means **Earn Vault depositors act as a first-loss backstop**.
+When a position is liquidated, Earn Pool deposits may be burned to cancel debt, with the pool receiving pETH collateral in return. This can generate liquidation gains, but it also means **Earn Pool depositors act as a first-loss backstop**.
 
 Losses may occur if collateral value falls quickly, liquidations are delayed, oracle prices are wrong, or received collateral later falls in value.
 

@@ -41,7 +41,10 @@ export const searchVocabulary = [
       'USDp',
       'GOLDp',
       'LTV',
-      'loan-to-value'
+      'loan-to-value',
+      'mint position',
+      'minter',
+      'collateral ratio'
     ],
     priorityTerms: [
       'borrow position',
@@ -62,7 +65,10 @@ export const searchVocabulary = [
       'yield',
       'APR',
       'Earn Pool',
+      'Earn Pools',
       'Earn Vault',
+      'minter interest',
+      'liquidation gains',
       'deposit',
       'claim rewards',
       'sUSDp',
@@ -99,6 +105,46 @@ export const searchVocabulary = [
   {
     match: /^\/design\/oracles$/,
     terms: ['oracle', 'oracles', 'Medianiser', 'price feed', 'ETH/USD', 'XAU/USD']
+  },
+  {
+    match: /^\/design\/adaptive-peg-defence$|^\/architecture\/passet-minting$/,
+    terms: [
+      'peg',
+      'peg arbitrage',
+      'peg arbitrage fees',
+      'fees from peg buys and redemptions',
+      'buy at peg',
+      'redeem at peg',
+      'peg buyer',
+      'peg redeemer',
+      'redemption',
+      'redeem',
+      'arbitrage',
+      'Peg Stability Module',
+      'PSM',
+      'direct minting'
+    ],
+    priorityTerms: ['peg arbitrage fees', 'buy at peg', 'redeem at peg']
+  },
+  {
+    match: /^\/architecture\/passet-minting$/,
+    terms: ['mint', 'minter', 'mint position', 'collateral-only position', 'CDP'],
+    priorityTerms: ['mint position', 'collateral-only position']
+  },
+  {
+    match: /^\/design\/interest-rates$/,
+    terms: [
+      'interest rate',
+      'Peg Stability Rate',
+      'Protocol Safety Rate',
+      'minter interest',
+      'borrow rate'
+    ],
+    priorityTerms: ['Peg Stability Rate', 'Protocol Safety Rate']
+  },
+  {
+    match: /^\/testnet\/swap$/,
+    terms: ['buy at peg', 'redeem at peg', 'routing']
   },
   {
     match: /^\/testnet\/advanced$/,
