@@ -22,7 +22,7 @@ Liquidations protect the solvency of each pAsset market by closing unsafe positi
 
 When a liquidation occurs, the position's debt is cancelled using pAssets from the Earn Vault, while the corresponding pETH collateral is transferred to the vault. Earn Vault depositors therefore receive liquidation gains in exchange for acting as the first backstop for the market.
 
-This liquidation mechanism is one source of protocol-native yield distributed to Earn Vault depositors and is explained in greater detail in the dedicated [Earn Vaults](https://docs.polaris.finance/architecture/earn-vaults) section.
+This liquidation mechanism is one source of protocol-native yield distributed to Earn Pool depositors and is explained in greater detail in the dedicated [Earn Pools](https://docs.polaris.finance/architecture/earn-pools) section.
 
 ## Fallback Redistribution
 

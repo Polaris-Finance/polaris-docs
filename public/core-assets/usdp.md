@@ -26,7 +26,7 @@ Each position must be opened at or above the minimum collateral ratio of 115%, m
 
 Once minted, **USDp functions as a digital dollar that users fully own**. It can be sent anywhere on Ethereum, used across DeFi applications or integrated into payment flows without relying on any centralized parties. Because USDp is issued by immutable contracts and does not include freeze or blacklist functions, it is designed to remain composable across DeFi.
 
-On top of that, users who want to earn protocol-native yield **can deposit USDp into the USDp Earn Vault**, which distributes both USDp and pETH from a portion of the interest paid by USDp minters and pETH liquidation gains. The exact mechanics are explained in the [Earn Vaults](https://docs.polaris.finance/architecture/earn-vaults) section.
+On top of that, users who want to earn protocol-native yield **can deposit USDp into the USDp Earn Pool**, which distributes both USDp and pETH from a portion of the interest paid by USDp minters and pETH liquidation gains. The exact mechanics are explained in the [Earn Pools](https://docs.polaris.finance/architecture/earn-pools) section.
 
 ## Maintaining the Peg
 

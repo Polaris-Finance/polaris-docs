@@ -359,6 +359,16 @@ article table[data-pl-table] {
   scroll-margin-top: 5rem;
 }
 
+/* Tables span the full content width on desktop, even when their content is
+   short, so every table lines up with the text column. On narrow screens the
+   theme's block display stays, so wide tables still scroll horizontally. */
+
+@media (min-width: 768px) {
+  article table[data-pl-table] {
+    display: table;
+  }
+}
+
 .pl-table-caption {
   position: absolute;
   width: 1px;

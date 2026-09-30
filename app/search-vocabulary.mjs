@@ -55,12 +55,13 @@ export const searchVocabulary = [
     ]
   },
   {
-    match: /^\/testnet\/earn$|^\/architecture\/earn-vaults$/,
+    match: /^\/testnet\/earn$|^\/architecture\/earn-pools$/,
     terms: [
       'Earn',
       'earn',
       'yield',
       'APR',
+      'Earn Pool',
       'Earn Vault',
       'deposit',
       'claim rewards',

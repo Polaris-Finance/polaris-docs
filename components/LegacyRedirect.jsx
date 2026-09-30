@@ -50,9 +50,10 @@ const LEGACY_REDIRECTS = {
   '/using-app/swap': '/testnet/swap',
   '/using-app/zap': '/testnet/zap',
   '/using-app/advanced': '/testnet/advanced',
-  '/yield': '/architecture/earn-vaults',
+  '/architecture/earn-vaults': '/architecture/earn-pools',
+  '/yield': '/architecture/earn-pools',
   '/yield/yield-sources': '/design/revenue-model',
-  '/yield/strategies': '/architecture/earn-vaults'
+  '/yield/strategies': '/architecture/earn-pools'
 }
 
 export function LegacyRedirect() {

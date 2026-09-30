@@ -77,7 +77,7 @@ Everything related to your Earn positions is managed from this section.
 
 Image: The Earn interface with the auto-compounding sUSDp and sGOLDp Earn Vaults
 
-Relevant app/search vocabulary: app, official app, testnet app, testnet.polaris.finance, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Earn, earn, yield, APR, Earn Vault, deposit, claim rewards, sUSDp, sGOLDp.
+Relevant app/search vocabulary: app, official app, testnet app, testnet.polaris.finance, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Earn, earn, yield, APR, Earn Pool, Earn Vault, deposit, claim rewards, sUSDp, sGOLDp.
 
 ---
 

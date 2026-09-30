@@ -1,0 +1,47 @@
+---
+title: "Earn Pools"
+description: "Earn Pools allow pAssets minted through Polaris to become yield-bearing."
+---
+
+# Earn Pools
+
+Earn Pools allow pAssets minted through Polaris to become yield-bearing.
+
+Each pAsset market has its own Earn Pool, such as the USDp Earn Pool and the GOLDp Earn Pool.
+
+Users deposit the pAsset into its Earn Pool, where those deposits are used to absorb liquidations whenever positions exceed the market's maximum LTV. In return, **depositors receive a protocol-defined minimum share of the interest** paid by pAsset minters over time, along with any pETH liquidation gains.
+
+Earn Pools are the primary mechanism through which protocol-native yield is distributed to pAsset holders. Since both minter interest and liquidation gains originate from activity inside Polaris, the resulting yield does not rely on external lending markets or offchain assets.
+
+<ClickToPlayVideo
+  src="/videos/earn-pools.mp4"
+  poster="/videos/earn-pools-poster.jpg"
+  alt="How Earn Pools combine minter interest and liquidation gains"
+/>
+
+## How Deposits Evolve
+
+Over time, an Earn Pool deposit earns two kinds of rewards: a share of minter interest, paid in the pool's pAsset, and liquidation gains, paid in pETH.
+
+Earn Pools are the first line of defense of their pAsset market. When a position is liquidated, part of the pool's pAssets is used to cancel its debt, and the position's pETH collateral goes to the pool. Because positions are liquidated while still overcollateralized, the pETH received is normally worth more than the pAssets used.
+
+As a result, the deposited pAsset balance decreases while the pETH balance increases, so **Earn Pool deposits gain ETH exposure** as liquidations occur.
+
+| Yield source | Paid in |
+| --- | --- |
+| Minter interest | The pool's pAsset (USDp, GOLDp) |
+| Liquidation gains | pETH |
+
+## Position Ownership
+
+Each Earn Pool deposit is **represented by a transferable NFT** that tracks its own rewards over time. Rewards are not compounded automatically and must be claimed by the depositor.
+
+Tokenizing deposits as NFTs enables users to transfer ownership of an Earn Pool position without withdrawing its underlying assets or resetting its accounting.
+
+In practice, users can transfer or sell an existing Earn Pool position without first withdrawing their deposit. Whoever receives the NFT also receives the position exactly as it exists at that moment, including its unclaimed rewards and future liquidation exposure.
+
+## Auto-Compounding Vaults
+
+To ensure the stability of the system, auto-compounding vaults are not part of the core protocol. They are built by ecosystem partners on top of Earn Pool positions, managing the underlying position and issuing fungible tokens (such as ERC-4626) that are easier to integrate across wallets and DeFi applications.
+
+These vaults are operated by third parties and can carry their own smart contract and strategy risks in addition to those of the underlying Earn Pool.

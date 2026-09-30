@@ -98,7 +98,7 @@ export const NAVIGATION_GROUPS = [
             '/architecture/passet-markets',
             'Landmark'
           ),
-          page('earn-vaults', 'earn-vaults', 'Earn Vaults', '/architecture/earn-vaults', 'Vault'),
+          page('earn-pools', 'earn-pools', 'Earn Pools', '/architecture/earn-pools', 'Vault'),
           page(
             'reserve-loans',
             'reserve-loans',
