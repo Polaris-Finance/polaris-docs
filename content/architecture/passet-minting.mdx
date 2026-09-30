@@ -9,14 +9,16 @@ Minting pAssets means creating new USDp, GOLDp, or future pAssets against pETH c
 
 Every minted asset belongs to a specific pAsset market. The [pAsset Markets](/architecture/passet-markets) section explains how each market functions, whereas this section focuses on the positions and mechanisms that bring those assets into circulation.
 
-In Polaris, **there are two ways new supply can enter circulation**:
+In Polaris, **there are two main ways new supply can enter circulation**:
 
 - Users can mint pAssets by opening or adjusting a collateralized position backed by their own pETH.
-- Anyone can buy newly minted supply at peg, without opening a position, whenever an asset trades above its target price.
+- Users can also buy newly minted supply at peg, without opening a position, whenever an asset trades above its target price.
 
 Both paths create pAssets backed by pETH, but they follow different accounting models.
 
 Minting creates debt that belongs to a specific position. Buying at peg does not create a position; instead, the resulting collateral, debt, and fees are distributed across all open positions in that pAsset market through the [Adaptive Peg Defense](/design/adaptive-peg-defence).
+
+Polaris also introduces a third, less common path. When a collateral-only position whose debt has turned negative through market activity is closed, the protocol mints the corresponding pAsset to settle that balance.
 
 ## Why Mint pAssets
 
