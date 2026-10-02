@@ -1786,6 +1786,7 @@ article .pl-video-scrub:focus-visible {
 }
 
 article .pl-video-scrub {
+  --pl-video-accent: #5a96d7; /* same sky blue as the video backgrounds */
   flex: 1;
   min-width: 0;
   height: 16px;
@@ -1807,7 +1808,7 @@ article .pl-video-scrub::-webkit-slider-runnable-track {
   border-radius: 999px;
   background: linear-gradient(
     to right,
-    var(--pl-icon-teal) var(--pl-video-progress, 0%),
+    var(--pl-video-accent) var(--pl-video-progress, 0%),
     color-mix(in srgb, var(--pl-ink-caption) 30%, transparent) var(--pl-video-progress, 0%)
   );
 }
@@ -1818,7 +1819,7 @@ article .pl-video-scrub::-webkit-slider-thumb {
   margin-top: -4px;
   border: 0;
   border-radius: 999px;
-  background: var(--pl-icon-teal);
+  background: var(--pl-video-accent);
   appearance: none;
   -webkit-appearance: none;
 }
@@ -1832,7 +1833,7 @@ article .pl-video-scrub::-moz-range-track {
 article .pl-video-scrub::-moz-range-progress {
   height: 4px;
   border-radius: 999px;
-  background: var(--pl-icon-teal);
+  background: var(--pl-video-accent);
 }
 
 article .pl-video-scrub::-moz-range-thumb {
@@ -1840,7 +1841,7 @@ article .pl-video-scrub::-moz-range-thumb {
   height: 12px;
   border: 0;
   border-radius: 999px;
-  background: var(--pl-icon-teal);
+  background: var(--pl-video-accent);
 }
 
 article .pl-video-time {
