@@ -1786,7 +1786,7 @@ article .pl-video-scrub:focus-visible {
 }
 
 article .pl-video-scrub {
-  --pl-video-accent: #5a96d7; /* same sky blue as the video backgrounds */
+  --pl-video-accent: #3b6ba5; /* darker tone of the sky blue in the video backgrounds */
   flex: 1;
   min-width: 0;
   height: 16px;
