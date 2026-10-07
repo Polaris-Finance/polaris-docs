@@ -20,7 +20,7 @@ As shown in the previous page, splitting one pETH transforms it into one fpETH a
 
 While fpETH isolates the steadily growing floor, vpETH represents the component of pETH through which the market expresses its expectations for the future growth of Polaris.
 
-![How vpETH represents the changing premium share between the pETH spot price and floor price along the bonding curve.](https://docs.polaris.finance/videos/vpeth-poster.jpg)
+![How vpETH represents the changing market premium between the pETH spot price and floor price along the bonding curve.](https://docs.polaris.finance/videos/vpeth-poster.jpg)
 
 ## Understanding vpETH
 
