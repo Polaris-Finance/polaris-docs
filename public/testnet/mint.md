@@ -20,4 +20,4 @@ Existing positions can also be adjusted from this page by adding collateral, rep
 
 Before confirming any transaction, review your collateral ratio, interest rate and the resulting position.
 
-![The Mint interface for creating and managing collateralized USDp and GOLDp positions](https://docs.polaris.finance/screenshots/testnet/mint.png)
+![A walkthrough of minting USDp against pETH collateral, from approval to an open mint position.](https://docs.polaris.finance/videos/testnet/mint-poster.jpg)

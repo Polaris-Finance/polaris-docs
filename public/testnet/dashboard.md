@@ -16,4 +16,4 @@ The Dashboard provides a complete overview of your activity across Polaris. From
 
 It is designed to be the starting point of the application, allowing you to quickly understand the current state of your portfolio without navigating through every individual section.
 
-![The Polaris testnet Dashboard, showing balances, active positions, Earn deposits and recent transactions](https://docs.polaris.finance/screenshots/testnet/dashboard.png)
+![A walkthrough of the testnet Dashboard, showing balances and positions grouped by type.](https://docs.polaris.finance/videos/testnet/dashboard-poster.jpg)

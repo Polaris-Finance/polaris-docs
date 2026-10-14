@@ -16,4 +16,4 @@ Reserve Loans enable you to borrow ETH by using fpETH as collateral. From here y
 
 It is designed to provide a clear overview of your Reserve Loans and the actions available to manage them.
 
-![The Reserve Loan interface for opening and managing non-liquidatable ETH loans against fpETH](https://docs.polaris.finance/screenshots/testnet/reserve-loan.png)
+![A walkthrough of opening a Reserve Loan, borrowing ETH against fpETH collateral.](https://docs.polaris.finance/videos/testnet/reserve-loan-poster.jpg)

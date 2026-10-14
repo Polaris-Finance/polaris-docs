@@ -18,4 +18,4 @@ From here you can create and manage your staked positions, monitor your voting p
 
 Each position is created independently, letting you choose a different amount and staking period for every position.
 
-![The sPOLAR interface for creating and managing staked POLAR positions](https://docs.polaris.finance/screenshots/testnet/vepolar.png)
+![A walkthrough of staking POLAR into a new sPOLAR position.](https://docs.polaris.finance/videos/testnet/spolar-poster.jpg)

@@ -20,4 +20,4 @@ In particular, analytics are organized by protocol component, allowing you to ex
 
 On the right, the Fee Flows visualization provides an interactive view of how value moves throughout Polaris. Multiple visualization modes are available to explore fee distribution, APR sources and the relationships between protocol components from different perspectives.
 
-![The Fee Flows visualization showing how value moves between Polaris components](https://docs.polaris.finance/screenshots/testnet/fee-flows.png)
+![A walkthrough of the analytics Overview, exploring how value flows through Polaris.](https://docs.polaris.finance/videos/testnet/analytics-poster.jpg)

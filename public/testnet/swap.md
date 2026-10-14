@@ -18,4 +18,4 @@ All pETH swaps are executed through the Polaris bonding curve, while additional 
 
 Before confirming a swap, review the quoted output, price impact, fees and minimum received.
 
-![The Swap interface with quoted output, price impact, fees and minimum received](https://docs.polaris.finance/screenshots/testnet/swap.png)
+![A walkthrough of a swap from ETH to pETH, from approval to confirmation.](https://docs.polaris.finance/videos/testnet/swap-poster.jpg)

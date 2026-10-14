@@ -18,4 +18,4 @@ Borrowed vpETH can be sold to create a hedged position, helping reduce exposure 
 
 From here you can supply or withdraw vpETH, manage collateral and debt, and monitor key market metrics including utilization, available liquidity, maximum LTV, and the current vpETH price.
 
-![The vpETH Lending Market interface for supplying vpETH and borrowing against ETH collateral](https://docs.polaris.finance/screenshots/testnet/vpeth.png)
+![A walkthrough of supplying vpETH to the vpETH Lending Market, then the Borrow & Hedge actions on the same page.](https://docs.polaris.finance/videos/testnet/vpeth-poster.jpg)

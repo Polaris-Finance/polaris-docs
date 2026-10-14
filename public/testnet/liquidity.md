@@ -25,4 +25,4 @@ Polaris currently offers the following liquidity pools:
 - GOLD Pool (GOLDp–ETH)
 - Split TriPool (pETH–fpETH–vpETH)
 
-![The Liquidity interface listing Polaris pools with liquidity, APR and pool share](https://docs.polaris.finance/screenshots/testnet/liquidity.png)
+![A walkthrough of adding liquidity to the USDp/ETH pool, approving each token first.](https://docs.polaris.finance/videos/testnet/liquidity-poster.jpg)

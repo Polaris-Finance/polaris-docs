@@ -18,9 +18,8 @@ These tools are primarily intended for arbitrageurs and experienced users who wa
 
 This section currently includes the following operations:
 
-- **Mint / Redeem**: Mint or redeem USDp and GOLDp directly against pETH whenever market prices create arbitrage opportunities that help restore the peg.
-- **SP Direct**: Deposit directly into the Stability Pool instead of the auto-compounding Earn Vault.
-- **Collateral Auctions** *(currently unavailable)*: When a savings vault absorbs a liquidation, you can purchase pETH collateral from permissionless liquidation auctions. Most auctions are expected to be cleared by keeper bots, but anyone can participate.
+- **Buy/Redeem at Peg**: Buy USDp and GOLDp with pETH, or redeem them for pETH, at their target value whenever market prices create an arbitrage opportunity that helps restore the peg.
+- **Earn Pool**: Deposit directly into the USDp or GOLDp Earn Pool instead of the auto-compounding vault.
 - **Conversions**: Convert pETH into POLAR directly through the protocol conversion mechanism.
 
-![The Advanced section with its Mint/Redeem, SP Direct, Auctions and Conversions operations](https://docs.polaris.finance/screenshots/testnet/advanced.png)
+![A walkthrough of the Advanced section, buying USDp at peg with pETH.](https://docs.polaris.finance/videos/testnet/advanced-poster.jpg)

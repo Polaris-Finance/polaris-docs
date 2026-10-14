@@ -1357,12 +1357,11 @@ These tools are primarily intended for arbitrageurs and experienced users who wa
 
 This section currently includes the following operations:
 
-- **Mint / Redeem**: Mint or redeem USDp and GOLDp directly against pETH whenever market prices create arbitrage opportunities that help restore the peg.
-- **SP Direct**: Deposit directly into the Stability Pool instead of the auto-compounding Earn Vault.
-- **Collateral Auctions** *(currently unavailable)*: When a savings vault absorbs a liquidation, you can purchase pETH collateral from permissionless liquidation auctions. Most auctions are expected to be cleared by keeper bots, but anyone can participate.
+- **Buy/Redeem at Peg**: Buy USDp and GOLDp with pETH, or redeem them for pETH, at their target value whenever market prices create an arbitrage opportunity that helps restore the peg.
+- **Earn Pool**: Deposit directly into the USDp or GOLDp Earn Pool instead of the auto-compounding vault.
 - **Conversions**: Convert pETH into POLAR directly through the protocol conversion mechanism.
 
-Image: The Advanced section with its Mint/Redeem, SP Direct, Auctions and Conversions operations
+Image: A walkthrough of the Advanced section, buying USDp at peg with pETH.
 
 Relevant app/search vocabulary: app, official app, testnet app, testnet.polaris.finance, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Peg Stability Module, PSM, redeem, convert pETH to POLAR, arbitrage.
 
@@ -1381,7 +1380,7 @@ In particular, analytics are organized by protocol component, allowing you to ex
 
 On the right, the Fee Flows visualization provides an interactive view of how value moves throughout Polaris. Multiple visualization modes are available to explore fee distribution, APR sources and the relationships between protocol components from different perspectives.
 
-Image: The Fee Flows visualization showing how value moves between Polaris components
+Image: A walkthrough of the analytics Overview, exploring how value flows through Polaris.
 
 Relevant app/search vocabulary: app, official app, testnet app, testnet.polaris.finance, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet.
 
@@ -1396,7 +1395,7 @@ The Dashboard provides a complete overview of your activity across Polaris. From
 
 It is designed to be the starting point of the application, allowing you to quickly understand the current state of your portfolio without navigating through every individual section.
 
-Image: The Polaris testnet Dashboard, showing balances, active positions, Earn deposits and recent transactions
+Image: A walkthrough of the testnet Dashboard, showing balances and positions grouped by type.
 
 Relevant app/search vocabulary: app, official app, testnet app, testnet.polaris.finance, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet.
 
@@ -1428,7 +1427,7 @@ It is designed to accompany your exploration of Polaris, making it easier to und
 
 Each of the following pages also include explanations for the actions available in that section, providing additional context while you interact with the protocol.
 
-Image: The in-app Guide's "What to do on Polaris?" view, with recommended actions filtered by token
+Image: A walkthrough of the in-app Guide, filtering recommended actions by goal.
 
 Relevant app/search vocabulary: app, official app, testnet app, testnet.polaris.finance, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet.
 
@@ -1452,7 +1451,7 @@ Polaris currently offers the following liquidity pools:
 - GOLD Pool (GOLDp–ETH)
 - Split TriPool (pETH–fpETH–vpETH)
 
-Image: The Liquidity interface listing Polaris pools with liquidity, APR and pool share
+Image: A walkthrough of adding liquidity to the USDp/ETH pool, approving each token first.
 
 Relevant app/search vocabulary: app, official app, testnet app, testnet.polaris.finance, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet.
 
@@ -1471,7 +1470,7 @@ Existing positions can also be adjusted from this page by adding collateral, rep
 
 Before confirming any transaction, review your collateral ratio, interest rate and the resulting position.
 
-Image: The Mint interface for creating and managing collateralized USDp and GOLDp positions
+Image: A walkthrough of minting USDp against pETH collateral, from approval to an open mint position.
 
 Relevant app/search vocabulary: app, official app, testnet app, testnet.polaris.finance, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Mint, borrow, issue, trove, troves, open trove, manage trove, collateralized debt position, CDP, open borrow position, manage position, repay, close borrow position, USDp, GOLDp, LTV, loan-to-value, mint position, minter, collateral ratio.
 
@@ -1486,7 +1485,7 @@ Reserve Loans enable you to borrow ETH by using fpETH as collateral. From here y
 
 It is designed to provide a clear overview of your Reserve Loans and the actions available to manage them.
 
-Image: The Reserve Loan interface for opening and managing non-liquidatable ETH loans against fpETH
+Image: A walkthrough of opening a Reserve Loan, borrowing ETH against fpETH collateral.
 
 Relevant app/search vocabulary: app, official app, testnet app, testnet.polaris.finance, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Reserve Loan, Reserve Loans, borrow ETH, non-liquidatable, fpETH collateral.
 
@@ -1503,7 +1502,7 @@ Because the operation is entirely internal to Polaris, splitting and merging nev
 
 It simply separates the floor component from the market premium, allowing each asset to be used independently.
 
-Image: The Split interface for separating pETH into fpETH and vpETH or merging them back
+Image: A walkthrough of splitting pETH into fpETH and vpETH.
 
 Relevant app/search vocabulary: app, official app, testnet app, testnet.polaris.finance, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Swap, swap, Split, fpETH, vpETH, pETH, floor price.
 
@@ -1520,7 +1519,7 @@ From here you can create and manage your staked positions, monitor your voting p
 
 Each position is created independently, letting you choose a different amount and staking period for every position.
 
-Image: The sPOLAR interface for creating and managing staked POLAR positions
+Image: A walkthrough of staking POLAR into a new sPOLAR position.
 
 Relevant app/search vocabulary: app, official app, testnet app, testnet.polaris.finance, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet.
 
@@ -1537,7 +1536,7 @@ All pETH swaps are executed through the Polaris bonding curve, while additional 
 
 Before confirming a swap, review the quoted output, price impact, fees and minimum received.
 
-Image: The Swap interface with quoted output, price impact, fees and minimum received
+Image: A walkthrough of a swap from ETH to pETH, from approval to confirmation.
 
 Relevant app/search vocabulary: app, official app, testnet app, testnet.polaris.finance, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Swap, swap, Split, fpETH, vpETH, pETH, floor price, buy at peg, redeem at peg, routing.
 
@@ -1554,7 +1553,7 @@ Borrowed vpETH can be sold to create a hedged position, helping reduce exposure 
 
 From here you can supply or withdraw vpETH, manage collateral and debt, and monitor key market metrics including utilization, available liquidity, maximum LTV, and the current vpETH price.
 
-Image: The vpETH Lending Market interface for supplying vpETH and borrowing against ETH collateral
+Image: A walkthrough of supplying vpETH to the vpETH Lending Market, then the Borrow & Hedge actions on the same page.
 
 Relevant app/search vocabulary: app, official app, testnet app, testnet.polaris.finance, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet.
 

@@ -18,4 +18,4 @@ It is designed to accompany your exploration of Polaris, making it easier to und
 
 Each of the following pages also include explanations for the actions available in that section, providing additional context while you interact with the protocol.
 
-![The in-app Guide's "What to do on Polaris?" view, with recommended actions filtered by token](https://docs.polaris.finance/screenshots/testnet/guide.png)
+![A walkthrough of the in-app Guide, filtering recommended actions by goal.](https://docs.polaris.finance/videos/testnet/guide-poster.jpg)

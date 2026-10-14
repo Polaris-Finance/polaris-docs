@@ -18,4 +18,4 @@ Because the operation is entirely internal to Polaris, splitting and merging nev
 
 It simply separates the floor component from the market premium, allowing each asset to be used independently.
 
-![The Split interface for separating pETH into fpETH and vpETH or merging them back](https://docs.polaris.finance/screenshots/testnet/split.png)
+![A walkthrough of splitting pETH into fpETH and vpETH.](https://docs.polaris.finance/videos/testnet/split-poster.jpg)
