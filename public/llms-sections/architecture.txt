@@ -143,7 +143,7 @@ When these fees are processed, they pass through the Fee Router: pETH is first b
 
 **Each pAsset market also generates its own independent flow** funded by the interest paid by users who mint that specific pAsset, such as USDp or GOLDp.
 
-Unlike pETH flows, pAsset flows do not pass through the Fee Router. Each market routes a protocol-defined minimum allocation to its corresponding Earn Pool. For USDp and GOLDp, a share is also routed to vePOLAR. Future pAsset markets may choose to share revenue with vePOLAR as part of their alignment strategy and their case for receiving pETH flows.
+Unlike pETH flows, pAsset flows do not pass through the Fee Router. Each market routes a protocol-defined minimum allocation to its corresponding Earn Pool. For USDp and GOLDp, a share is also routed to sPOLAR. Future pAsset markets may choose to share revenue with sPOLAR as part of their alignment strategy and their case for receiving pETH flows.
 
 The remaining flow can then be distributed to approved recipients building around that pAsset, including liquidity pools, vaults, structured products and other integrations.
 
@@ -182,7 +182,7 @@ Every pAsset maintains its own accounting, oracle configuration, risk parameters
 
 ## Launching a pAsset Market
 
-Polaris is designed as open-source infrastructure that anyone can build on. **Launching a new pAsset market is permissionless**, meaning builders can introduce new assets without approval from the protocol itself. Receiving pETH [flows](https://docs.polaris.finance/architecture/flows) is a separate process, stewarded through vePOLAR and based on how each market contributes to the Polaris ecosystem.
+Polaris is designed as open-source infrastructure that anyone can build on. **Launching a new pAsset market is permissionless**, meaning builders can introduce new assets without approval from the protocol itself. Receiving pETH [flows](https://docs.polaris.finance/architecture/flows) is a separate process, stewarded through sPOLAR and based on how each market contributes to the Polaris ecosystem.
 
 Beyond the underlying smart contracts, a successful pAsset market ultimately depends on adoption. Polaris provides the shared collateral infrastructure, so that builders can focus on growing demand for their asset, expanding its liquidity and integrating it across DeFi.
 
@@ -194,9 +194,9 @@ One of the main benefits of building a pAsset market on Polaris is access to pET
 
 Markets that naturally strengthen Polaris through adoption, distribution, liquidity or revenue sharing are most likely to benefit from these flows.
 
-Access to pETH flows is stewarded through vePOLAR. Builders present their market and explain how it contributes to the broader Polaris ecosystem, while stewards determine which markets receive pETH flows and how those incentives are allocated. Markets that expand demand for pETH and pAssets, with clear value flowing back to Polaris, will naturally be the strongest candidates for alignment.
+Access to pETH flows is stewarded through sPOLAR. Builders present their market and explain how it contributes to the broader Polaris ecosystem, while stewards determine which markets receive pETH flows and how those incentives are allocated. Markets that expand demand for pETH and pAssets, with clear value flowing back to Polaris, will naturally be the strongest candidates for alignment.
 
-Different markets may contribute in different ways: some may choose to share part of their minter interest with vePOLAR holders, while others may focus on distribution, liquidity, strategic integrations, or strengthening other parts of the Polaris ecosystem.
+Different markets may contribute in different ways: some may choose to share part of their minter interest with sPOLAR holders, while others may focus on distribution, liquidity, strategic integrations, or strengthening other parts of the Polaris ecosystem.
 
 With this approach, anyone can launch a new pAsset market, and **Polaris can direct protocol incentives towards builders who contribute to the long-term growth of the ecosystem**.
 
@@ -204,7 +204,7 @@ With this approach, anyone can launch a new pAsset market, and **Polaris can dir
 
 Every pAsset market is required **to route a minimum share of its primary interest to its own Earn Pool**. This boosts the overall protocol safety by ensuring that every market continuously supports the pool responsible for absorbing liquidation losses during periods of market stress.
 
-Beyond this required allocation, builders are free to determine how the remaining revenue is distributed. Depending on the objectives of the market, it may support the builder directly, incentivize liquidity, fund integrations, reward ecosystem partners or be shared with vePOLAR as part of a broader alignment strategy.
+Beyond this required allocation, builders are free to determine how the remaining revenue is distributed. Depending on the objectives of the market, it may support the builder directly, incentivize liquidity, fund integrations, reward ecosystem partners or be shared with sPOLAR as part of a broader alignment strategy.
 
 This flexibility means **every pAsset market can develop its own business model on top of the shared foundation** provided by Polaris.
 
@@ -401,18 +401,18 @@ Polaris is designed as a closed economic system where the value generated by pro
 
 Polaris redistributes value generated by its core protocol mechanisms across the ecosystem based on the role each asset plays, **without relying on continuous token emissions**.
 
-**Treasury-held POLAR participates through vePOLAR alongside every other long-term holder**, aligning incentives across the ecosystem.
+**Treasury-held POLAR participates through sPOLAR alongside every other long-term holder**, aligning incentives across the ecosystem.
 
-In practice, this means the Polaris treasury does not receive a privileged fee stream simply because the protocol is being used. If the treasury wants exposure to protocol revenue, it must commit POLAR as vePOLAR and participate through the same mechanism available to every other vePOLAR holder.
+In practice, this means the Polaris treasury does not receive a privileged fee stream simply because the protocol is being used. If the treasury wants exposure to protocol revenue, it must stake POLAR as sPOLAR and participate through the same mechanism available to every other sPOLAR holder.
 
-## vePOLAR
+## sPOLAR
 
-Long-term participation in Polaris takes place through vePOLAR.
+Long-term participation in Polaris takes place through sPOLAR.
 
-Users commit POLAR for a chosen period of time **to align with the long-term growth of the ecosystem**. In return, they receive a share of protocol-native value from supported pAsset markets, together with stewardship rights.
+Users stake POLAR for a chosen period of time **to align with the long-term growth of the ecosystem**. In return, they receive a share of protocol-native value from supported pAsset markets, together with stewardship rights.
 
-For example, a USDp minter pays interest to the USDp market. Part of that interest is distributed to vePOLAR holders. If the minter also holds vePOLAR, those distributions can offset part of the interest they pay, lowering their effective minting cost.
+For example, a USDp minter pays interest to the USDp market. Part of that interest is distributed to sPOLAR holders. If the minter also holds sPOLAR, those distributions can offset part of the interest they pay, lowering their effective minting cost.
 
 These returns are distributed through protocol activity itself, without additional POLAR incentives.
 
-Relevant app/search vocabulary: POLAR, convert, lock, vePOLAR, burn pETH, conversion auction, POLAR token, POLAR staking, POLAR tokenomics.
+Relevant app/search vocabulary: POLAR, convert, stake, sPOLAR, vePOLAR, burn pETH, conversion auction, POLAR token, POLAR staking, POLAR tokenomics.

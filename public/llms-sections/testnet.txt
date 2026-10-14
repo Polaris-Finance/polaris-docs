@@ -173,6 +173,23 @@ Relevant app/search vocabulary: app, official app, testnet app, testnet.polaris.
 
 ---
 
+## sPOLAR
+
+URL: https://docs.polaris.finance/testnet/sPOLAR
+Markdown URL: https://docs.polaris.finance/testnet/sPOLAR.md
+
+This is where you stake POLAR to receive sPOLAR.
+
+From here you can create and manage your staked positions, monitor your voting power and rewards, and participate in protocol stewardship.
+
+Each position is created independently, letting you choose a different amount and staking period for every position.
+
+Image: The sPOLAR interface for creating and managing staked POLAR positions
+
+Relevant app/search vocabulary: app, official app, testnet app, testnet.polaris.finance, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet.
+
+---
+
 ## Swap
 
 URL: https://docs.polaris.finance/testnet/swap
@@ -187,23 +204,6 @@ Before confirming a swap, review the quoted output, price impact, fees and minim
 Image: The Swap interface with quoted output, price impact, fees and minimum received
 
 Relevant app/search vocabulary: app, official app, testnet app, testnet.polaris.finance, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Swap, swap, Split, fpETH, vpETH, pETH, floor price, buy at peg, redeem at peg, routing.
-
----
-
-## vePOLAR
-
-URL: https://docs.polaris.finance/testnet/vepolar
-Markdown URL: https://docs.polaris.finance/testnet/vepolar.md
-
-This is where you commit POLAR to receive vePOLAR voting power.
-
-From here you can create and manage lock positions, monitor your voting power and rewards, and participate in protocol stewardship.
-
-Each position is created independently, letting you choose a different amount and commitment period for every lock.
-
-Image: The vePOLAR interface for creating and managing POLAR lock positions
-
-Relevant app/search vocabulary: app, official app, testnet app, testnet.polaris.finance, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet.
 
 ---
 

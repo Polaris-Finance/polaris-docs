@@ -86,12 +86,12 @@ export const searchVocabulary = [
   },
   {
     match: /^\/core-assets\/polar$|^\/architecture\/tokenomics$|^\/design\/conversions$/,
-    terms: ['POLAR', 'convert', 'lock', 'vePOLAR', 'burn pETH', 'conversion auction']
+    terms: ['POLAR', 'convert', 'stake', 'sPOLAR', 'vePOLAR', 'burn pETH', 'conversion auction']
   },
   {
     match: /^\/core-assets\/polar$|^\/architecture\/tokenomics$/,
     terms: ['POLAR token', 'POLAR staking', 'POLAR tokenomics'],
-    priorityTerms: ['POLAR', 'POLAR token', 'POLAR staking', 'staking POLAR', 'vePOLAR']
+    priorityTerms: ['POLAR', 'POLAR token', 'POLAR staking', 'staking POLAR', 'sPOLAR']
   },
   {
     match: /^\/architecture\/reserve-loans$|^\/testnet\/reserve-loan$/,

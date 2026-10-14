@@ -43,6 +43,8 @@ const LEGACY_REDIRECTS = {
   '/stewardship': '/architecture/stewardship',
   '/stewardship/fee-router': '/design/fee-router',
   '/stewardship/vepolar': '/architecture/stewardship',
+  '/testnet/vepolar': '/testnet/sPOLAR',
+  '/testnet/spolar': '/testnet/sPOLAR',
   '/using-app': '/testnet/dashboard',
   '/using-app/issue': '/testnet/mint',
   '/using-app/earn': '/testnet/earn',

@@ -180,7 +180,8 @@
       "keywords": [
         "POLAR",
         "convert",
-        "lock",
+        "stake",
+        "sPOLAR",
         "vePOLAR",
         "burn pETH",
         "conversion auction",
@@ -249,7 +250,8 @@
       "keywords": [
         "POLAR",
         "convert",
-        "lock",
+        "stake",
+        "sPOLAR",
         "vePOLAR",
         "burn pETH",
         "conversion auction",
@@ -322,7 +324,8 @@
       "keywords": [
         "POLAR",
         "convert",
-        "lock",
+        "stake",
+        "sPOLAR",
         "vePOLAR",
         "burn pETH",
         "conversion auction"
@@ -748,6 +751,27 @@
       "updated": null
     },
     {
+      "route": "/testnet/sPOLAR",
+      "url": "https://docs.polaris.finance/testnet/sPOLAR",
+      "markdownUrl": "https://docs.polaris.finance/testnet/sPOLAR.md",
+      "section": "Using the Testnet",
+      "title": "sPOLAR",
+      "description": "Stake POLAR to receive sPOLAR and participate in protocol stewardship.",
+      "keywords": [
+        "app",
+        "official app",
+        "testnet app",
+        "testnet.polaris.finance",
+        "connect wallet",
+        "testnet",
+        "Sepolia",
+        "Sepolia ETH",
+        "chain ID 11155111",
+        "faucet"
+      ],
+      "updated": null
+    },
+    {
       "route": "/testnet/swap",
       "url": "https://docs.polaris.finance/testnet/swap",
       "markdownUrl": "https://docs.polaris.finance/testnet/swap.md",
@@ -775,27 +799,6 @@
         "buy at peg",
         "redeem at peg",
         "routing"
-      ],
-      "updated": null
-    },
-    {
-      "route": "/testnet/vepolar",
-      "url": "https://docs.polaris.finance/testnet/vepolar",
-      "markdownUrl": "https://docs.polaris.finance/testnet/vepolar.md",
-      "section": "Using the Testnet",
-      "title": "vePOLAR",
-      "description": "Commit POLAR to receive vePOLAR voting power and participate in protocol stewardship.",
-      "keywords": [
-        "app",
-        "official app",
-        "testnet app",
-        "testnet.polaris.finance",
-        "connect wallet",
-        "testnet",
-        "Sepolia",
-        "Sepolia ETH",
-        "chain ID 11155111",
-        "faucet"
       ],
       "updated": null
     },

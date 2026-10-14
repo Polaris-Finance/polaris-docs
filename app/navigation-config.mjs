@@ -205,7 +205,7 @@ export const NAVIGATION_GROUPS = [
           ),
           page('earn', 'earn', 'Earn', '/testnet/earn', 'TrendingUp', 'app'),
           page('split', 'split', 'Split', '/testnet/split', 'Split', 'app'),
-          page('vepolar', 'vepolar', 'vePOLAR', '/testnet/vepolar', 'Vote', 'app'),
+          page('spolar', 'sPOLAR', 'sPOLAR', '/testnet/sPOLAR', 'Vote', 'app'),
           page('liquidity', 'liquidity', 'Liquidity', '/testnet/liquidity', 'Waves', 'app'),
           page('vpeth-testnet', 'vpeth', 'vpETH', '/testnet/vpeth', 'BadgeCheck', 'app'),
           page('advanced', 'advanced', 'Advanced', '/testnet/advanced', 'SlidersHorizontal', 'app'),

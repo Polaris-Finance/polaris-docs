@@ -77,8 +77,8 @@
 - [Mint](https://docs.polaris.finance/testnet/mint.md): The Mint section is where collateralized positions are created and managed. Canonical: https://docs.polaris.finance/testnet/mint
 - [Reserve Loan](https://docs.polaris.finance/testnet/reserve-loan.md): Borrow ETH by using fpETH as collateral through non-liquidatable Reserve Loans. Canonical: https://docs.polaris.finance/testnet/reserve-loan
 - [Split](https://docs.polaris.finance/testnet/split.md): Split allows you to separate pETH into fpETH and vpETH, or merge those two assets back into pETH whenever you choose. Canonical: https://docs.polaris.finance/testnet/split
+- [sPOLAR](https://docs.polaris.finance/testnet/sPOLAR.md): Stake POLAR to receive sPOLAR and participate in protocol stewardship. Canonical: https://docs.polaris.finance/testnet/sPOLAR
 - [Swap](https://docs.polaris.finance/testnet/swap.md): Swap lets you exchange supported assets across Polaris, which currently are the Core Assets. Canonical: https://docs.polaris.finance/testnet/swap
-- [vePOLAR](https://docs.polaris.finance/testnet/vepolar.md): Commit POLAR to receive vePOLAR voting power and participate in protocol stewardship. Canonical: https://docs.polaris.finance/testnet/vepolar
 - [vpETH](https://docs.polaris.finance/testnet/vpeth.md): Supply vpETH to earn lending yield or borrow vpETH against ETH collateral. Canonical: https://docs.polaris.finance/testnet/vpeth
 
 ## Risks
