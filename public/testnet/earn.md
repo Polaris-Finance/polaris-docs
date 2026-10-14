@@ -16,4 +16,4 @@ This section gives users access to the Earn Vaults. From here you can deposit in
 
 Everything related to your Earn positions is managed from this section.
 
-![The Earn interface with the auto-compounding sUSDp and sGOLDp Earn Vaults](https://docs.polaris.finance/screenshots/testnet/earn.png)
+![A walkthrough of depositing USDp into the sUSDp Earn Vault.](https://docs.polaris.finance/videos/testnet/earn-poster.jpg)
