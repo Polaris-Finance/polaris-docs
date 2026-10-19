@@ -125,6 +125,8 @@ Instead, pAsset flows operate separately. Interest paid by minters of assets suc
 
 Thus, **ecosystem incentives are paid out using assets directly connected to protocol activity**, without relying on inflationary POLAR emissions.
 
+Image: pETH flows and pAsset flows side by side. Bonding curve swap fees, Reserve Loan fees and pETH to POLAR conversions go through the Fee Router, which burns pETH at the floor and buys new pETH with the released ETH, before rewards reach pAsset markets and approved integrations. Interest paid by pAsset minters is distributed by each market's own flow logic to Earn Pools, sPOLAR holders and approved integrations.
+
 ## Flow Allocation
 
 Flows are allocated to whitelisted contracts **according to how much pETH or a specific pAsset they hold**.
