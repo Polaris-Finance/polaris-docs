@@ -4,6 +4,7 @@ import { getPageMap } from 'nextra/page-map'
 import { Inter, Cormorant_Garamond } from 'next/font/google'
 import Script from 'next/script'
 import { A11yEnhancements } from '../components/A11yEnhancements'
+import { AskTheGuide } from '../components/AskTheGuide'
 import { ImageZoomEnhancements } from '../components/ImageZoomEnhancements'
 import { PolarisFooter } from '../components/PolarisFooter'
 import { NavbarActions } from '../components/navigation/NavbarActions'
@@ -24,6 +25,7 @@ import {
 } from './site-config.mjs'
 import 'nextra-theme-docs/style.css'
 import './globals.css'
+import './ask-the-guide.css'
 
 const GOOGLE_ANALYTICS_ID = 'G-JPV6PSJCVX'
 
@@ -164,6 +166,7 @@ export default async function RootLayout({ children }) {
         </Layout>
         <A11yEnhancements />
         <ImageZoomEnhancements />
+        <AskTheGuide />
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
           strategy="afterInteractive"

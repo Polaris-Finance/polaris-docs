@@ -43,3 +43,7 @@ __pycache__/
 /.next.stale*
 /.next-build/
 /.next-dev/
+
+# Ask the guide backend: local secrets and wrangler state
+/assistant/.dev.vars
+/assistant/.wrangler/

@@ -585,14 +585,15 @@ test('search opens, returns useful results, and fits its surface', async ({ page
     const inputStyle = getComputedStyle(element)
     return {
       color: inputStyle.color,
-      expectedColor: resolveColor('--pl-ink-body'),
+      expectedColor: resolveColor('--pl-ink-heading'),
       expectedPlaceholder: resolveColor('--pl-ink-caption'),
       paddingLeft: inputStyle.paddingLeft,
       placeholder: getComputedStyle(element, '::placeholder').color
     }
   })
   await expect(dialog.locator('.lucide-search')).toHaveCount(0)
-  expect(inputPalette.paddingLeft).toBe('16px')
+  // The query field matches the chat input and navbar search field (Oct 2026).
+  expect(inputPalette.paddingLeft).toBe('10px')
   expect(inputPalette.color).toBe(inputPalette.expectedColor)
   expect(inputPalette.placeholder).toBe(inputPalette.expectedPlaceholder)
   await input.fill('trove')

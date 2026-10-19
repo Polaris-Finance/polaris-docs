@@ -1,7 +1,7 @@
 'use client'
 
 import { DialogTitle } from '@headlessui/react'
-import { Clock3, Info, Menu, RotateCw, Trash2, X } from 'lucide-react'
+import { Clock3, Info, Menu, MessageCircleQuestion, RotateCw, Trash2, X } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import {
   useCallback,
@@ -12,17 +12,20 @@ import {
   useState,
   useSyncExternalStore
 } from 'react'
-import { hrefWithBase, pathWithBase } from '../app/site-config.mjs'
+import { ASK_GUIDE_ENDPOINT, hrefWithBase, pathWithBase } from '../app/site-config.mjs'
 import { kindForPath, sectionForPath, toneForPath } from '../app/search-taxonomy.mjs'
 import { DocsOverlay } from './navigation/DocsOverlay'
 
-const PLACEHOLDER = 'Search the docs...'
+// With the docs chat enabled, the field also takes questions (see the "Ask" row).
+const PLACEHOLDER = ASK_GUIDE_ENDPOINT ? 'Search or ask anything...' : 'Search the docs...'
 const MAX_PAGES = 8
 const MAX_CANDIDATE_PAGES = 24
 const MAX_SUBRESULTS = 5
 const SEARCH_OPTIONS = { excerptLength: 14 }
 const RECENT_KEY = 'polaris-docs:recent-searches'
 const MAX_RECENT = 5
+// Shortest query that offers "Ask" (opens the docs chat with the query as a question).
+const MIN_ASK_CHARS = 3
 
 function curate(title, url) {
   return {
@@ -328,6 +331,23 @@ export function PolarisSearch({ open, onOpenChange, onMenuRequest }) {
     [close, query, router]
   )
 
+  const askGuide = useCallback(
+    (question) => {
+      setQuery('')
+      close()
+      window.dispatchEvent(new CustomEvent('pl-guide-ask', { detail: question }))
+    },
+    [close]
+  )
+
+  const askQuery = deferredQuery.trim()
+  const askOffset =
+    ASK_GUIDE_ENDPOINT &&
+    (status === 'ready' || status === 'empty') &&
+    askQuery.length >= MIN_ASK_CHARS
+      ? 1
+      : 0
+
   const aliasSuggestion =
     status === 'ready' || status === 'empty' ? suggestedQueryFor(deferredQuery) : null
   const hasAliasSuggestion = Boolean(aliasSuggestion)
@@ -335,6 +355,7 @@ export function PolarisSearch({ open, onOpenChange, onMenuRequest }) {
   const navItems =
     status === 'ready'
       ? [
+          ...(askOffset ? [{ ask: askQuery }] : []),
           ...(aliasSuggestion ? [{ query: aliasSuggestion }] : []),
           ...pages.flatMap((page) => [
             { url: page.url },
@@ -350,6 +371,7 @@ export function PolarisSearch({ open, onOpenChange, onMenuRequest }) {
           ]
         : status === 'empty'
           ? [
+              ...(askOffset ? [{ ask: askQuery }] : []),
               ...(aliasSuggestion ? [{ query: aliasSuggestion }] : []),
               ...RECOVERY.map((item) => ({ url: item.url }))
             ]
@@ -357,7 +379,9 @@ export function PolarisSearch({ open, onOpenChange, onMenuRequest }) {
 
   const onItem = useCallback(
     (item) => {
-      if (item.query != null) {
+      if (item.ask != null) {
+        askGuide(item.ask)
+      } else if (item.query != null) {
         setQuery(item.query)
         setActive(-1)
         inputRef.current?.focus({ preventScroll: true })
@@ -365,7 +389,7 @@ export function PolarisSearch({ open, onOpenChange, onMenuRequest }) {
         go(item.url)
       }
     },
-    [go]
+    [askGuide, go]
   )
 
   const onKeyDown = (event) => {
@@ -383,7 +407,11 @@ export function PolarisSearch({ open, onOpenChange, onMenuRequest }) {
       setActive((index) => (index <= 0 ? navItems.length - 1 : index - 1))
     } else if (event.key === 'Enter' && navItems.length) {
       event.preventDefault()
-      onItem(active >= 0 && navItems[active] ? navItems[active] : navItems[0])
+      onItem(
+        active >= 0 && navItems[active]
+          ? navItems[active]
+          : (navItems.find((item) => item.ask == null) ?? navItems[0])
+      )
     }
   }
 
@@ -401,7 +429,8 @@ export function PolarisSearch({ open, onOpenChange, onMenuRequest }) {
     page,
     rows: page.subResults.filter((subResult) => subResult.url !== page.url)
   }))
-  const readyOffset = hasAliasSuggestion ? 1 : 0
+  const aliasIndex = askOffset
+  const readyOffset = askOffset + (hasAliasSuggestion ? 1 : 0)
   const modelOffsets = readyModels.map(
     (_, index) =>
       readyOffset +
@@ -415,7 +444,7 @@ export function PolarisSearch({ open, onOpenChange, onMenuRequest }) {
       index: modelOffsets[index] + 1 + rowIndex
     }))
   }))
-  const recoveryOffset = hasAliasSuggestion ? 1 : 0
+  const recoveryOffset = askOffset + (hasAliasSuggestion ? 1 : 0)
   const recoveryRows = RECOVERY.map((item, index) => ({ ...item, index: recoveryOffset + index }))
   const countLabel =
     status === 'ready'
@@ -593,14 +622,28 @@ export function PolarisSearch({ open, onOpenChange, onMenuRequest }) {
 
             {status === 'ready' ? (
               <>
+                {askOffset ? (
+                  <ResultGroup id={`${id}-ask`} label="Ask">
+                    <SearchOption
+                      id={`${id}-item-0`}
+                      title={`“${askQuery}”`}
+                      icon={
+                        <MessageCircleQuestion aria-hidden="true" size={15} strokeWidth={1.8} />
+                      }
+                      active={active === 0}
+                      onActivate={() => onItem({ ask: askQuery })}
+                      onHover={() => setActive(0)}
+                    />
+                  </ResultGroup>
+                ) : null}
                 {aliasSuggestion ? (
                   <ResultGroup id={`${id}-suggested`} label="Suggested search">
                     <SearchOption
-                      id={`${id}-item-0`}
+                      id={`${id}-item-${aliasIndex}`}
                       title={`Search for “${aliasSuggestion}”`}
-                      active={active === 0}
+                      active={active === aliasIndex}
                       onActivate={() => onItem({ query: aliasSuggestion })}
-                      onHover={() => setActive(0)}
+                      onHover={() => setActive(aliasIndex)}
                     />
                   </ResultGroup>
                 ) : null}
@@ -643,14 +686,28 @@ export function PolarisSearch({ open, onOpenChange, onMenuRequest }) {
 
             {status === 'empty' ? (
               <>
+                {askOffset ? (
+                  <ResultGroup id={`${id}-empty-ask`} label="Ask">
+                    <SearchOption
+                      id={`${id}-item-0`}
+                      title={`“${askQuery}”`}
+                      icon={
+                        <MessageCircleQuestion aria-hidden="true" size={15} strokeWidth={1.8} />
+                      }
+                      active={active === 0}
+                      onActivate={() => onItem({ ask: askQuery })}
+                      onHover={() => setActive(0)}
+                    />
+                  </ResultGroup>
+                ) : null}
                 {aliasSuggestion ? (
                   <ResultGroup id={`${id}-empty-suggested`} label="Suggested search">
                     <SearchOption
-                      id={`${id}-item-0`}
+                      id={`${id}-item-${aliasIndex}`}
                       title={`Search for “${aliasSuggestion}”`}
-                      active={active === 0}
+                      active={active === aliasIndex}
                       onActivate={() => onItem({ query: aliasSuggestion })}
-                      onHover={() => setActive(0)}
+                      onHover={() => setActive(aliasIndex)}
                     />
                   </ResultGroup>
                 ) : null}

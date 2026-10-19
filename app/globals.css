@@ -2776,7 +2776,8 @@ div:has(> .nextra-sidebar) {
   width: min(40rem, calc(100vw - 2rem));
   max-height: min(36rem, 70vh);
   overflow: hidden;
-  border-radius: 8px;
+  border: 1px solid var(--pl-ui-hairline);
+  border-radius: 16px;
   background: var(--pl-overlay-bg);
   color: var(--pl-ink-heading);
   box-shadow: 0 18px 52px rgba(13, 31, 60, 0.24);
@@ -2810,7 +2811,9 @@ div:has(> .nextra-sidebar) {
 
 .pl-docs-overlay--search .pl-docs-overlay-panel {
   background: var(--pl-overlay-bg);
-  box-shadow: 0 16px 40px rgb(15 23 42 / 16%);
+  box-shadow:
+    0 2px 6px rgba(13, 31, 60, 0.08),
+    0 18px 48px rgba(13, 31, 60, 0.16);
   transition: none;
 }
 
@@ -2837,31 +2840,43 @@ div:has(> .nextra-sidebar) {
   min-height: 46px;
   flex: 0 0 auto;
   align-items: center;
-  gap: 0;
-  padding: 0 2px 0 0;
-  border-bottom: 1px solid var(--pl-shell-rule);
+  gap: 8px;
+  padding: 12px 12px 12px 12px;
+  border-bottom: 1px solid var(--pl-ui-hairline);
 }
 
 .pl-search-field {
+  /* Same field as the chat input and the navbar search trigger. */
   position: relative;
   display: flex;
-  height: 45px;
+  height: 38px;
   min-width: 0;
   flex: 1 1 auto;
   align-items: center;
+  border-radius: 8px;
+  background: var(--pl-navbar-bg);
+  box-shadow:
+    rgb(16 17 26 / 16%) 0 1px 1px,
+    var(--pl-shell-rule) 0 0 0 1px;
+}
+
+.dark .pl-search-field {
+  box-shadow:
+    rgb(0 0 0 / 36%) 0 1px 1px,
+    var(--pl-shell-rule) 0 0 0 1px;
 }
 
 .pl-search-input {
   appearance: none;
   -webkit-appearance: none;
   width: 100%;
-  height: 45px;
-  padding: 0 2.5rem 0 1rem;
+  height: 38px;
+  padding: 0 10px;
   border: 0;
-  border-radius: 0;
+  border-radius: 8px;
   background: transparent;
-  color: var(--pl-ink-body);
-  font: 400 1rem/1.3 var(--font-sans-stack);
+  color: var(--pl-ink-heading);
+  font: 400 0.9375rem/1.3 var(--font-sans-stack);
 }
 
 .pl-search-input::placeholder {
@@ -2886,20 +2901,20 @@ div:has(> .nextra-sidebar) {
 }
 
 .pl-search-dialog-header > .pl-overlay-icon-button {
-  width: 42px;
-  height: 44px;
-  min-width: 42px;
-  min-height: 44px;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  min-height: 32px;
   align-items: center;
   justify-content: center;
-  border-radius: 0;
+  border-radius: 8px;
   background: transparent;
-  color: var(--pl-ink-caption);
+  color: var(--pl-ui-muted);
 }
 
 .pl-search-dialog-header > .pl-overlay-icon-button:hover {
-  background: transparent;
-  color: var(--pl-ink-heading);
+  background: var(--pl-ui-soft);
+  color: var(--pl-ui-ink);
 }
 
 .pl-search-list {
@@ -2907,7 +2922,7 @@ div:has(> .nextra-sidebar) {
   min-height: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
-  padding: 0.75rem 0.5rem 1rem;
+  padding: 0.75rem 0.75rem 1rem;
   scrollbar-width: thin;
   scrollbar-color: color-mix(in srgb, var(--pl-ink-caption) 35%, transparent) transparent;
 }
@@ -2928,7 +2943,7 @@ div:has(> .nextra-sidebar) {
 .pl-search-group-label {
   color: var(--pl-ink-caption);
   font-size: 0.8125rem;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.2;
 }
 
@@ -2960,10 +2975,10 @@ div:has(> .nextra-sidebar) {
   justify-content: center;
   gap: 2px;
   margin: 0;
-  padding: 5px 10px 5px 41px;
+  padding: 8px 12px 8px 43px;
   border: 0;
-  border-radius: 4px;
-  background: transparent;
+  border-radius: 10px;
+  background: var(--pl-surface);
   color: var(--pl-ink-body);
   text-align: left;
   text-decoration: none;
@@ -2974,21 +2989,28 @@ button.pl-search-row {
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  gap: 1rem;
-  padding-left: 10px;
+  gap: 0.75rem;
+  padding-left: 12px;
   font: inherit;
+}
+
+.pl-search-row + .pl-search-row {
+  margin-top: 6px;
 }
 
 .pl-search-row:hover,
 .pl-search-row[data-active='true'] {
-  background: var(--pl-tile-hover);
+  background: var(--pl-ui-soft);
+}
+
+.pl-search-row:hover .pl-search-row-title,
+.pl-search-row[data-active='true'] .pl-search-row-title {
+  color: var(--pl-ui-ink);
 }
 
 .pl-search-row[data-child='true'] {
   width: calc(100% - 1.25rem);
   margin-inline-start: 1.25rem;
-  border-inline-start: 1px solid var(--pl-shell-rule);
-  border-radius: 0 4px 4px 0;
 }
 
 .pl-search-row[data-page='true'] .pl-search-row-title {
@@ -3027,7 +3049,7 @@ button.pl-search-row {
 .pl-search-dot {
   position: absolute;
   top: 50%;
-  left: 10px;
+  left: 13px;
   width: 14px;
   height: 16px;
   transform: translateY(-50%);
@@ -3756,6 +3778,7 @@ article > div[class*='x:print:hidden']:has(> a[title]) > a[title]:hover {
     height: 100%;
     max-height: none;
     overflow: visible;
+    border: 0;
     border-radius: 0;
     background: transparent;
     box-shadow: none;

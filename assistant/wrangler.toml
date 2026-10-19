@@ -1,0 +1,20 @@
+name = "polaris-ask-the-guide"
+main = "src/worker.js"
+compatibility_date = "2026-09-01"
+
+# Daily cleanup of old rate-limit rows (03:17 UTC).
+[triggers]
+crons = ["17 3 * * *"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "polaris-ask-the-guide"
+# Filled in after `npx wrangler d1 create polaris-ask-the-guide` (see README).
+database_id = "REPLACE_WITH_DATABASE_ID"
+
+[observability]
+enabled = true
+
+# Secrets (never committed), set with `npx wrangler secret put <NAME>`:
+#   ANTHROPIC_API_KEY  the Polaris Anthropic API key
+#   VISITOR_SALT       any long random string, used to anonymise IP addresses

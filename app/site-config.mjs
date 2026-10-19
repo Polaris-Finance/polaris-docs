@@ -59,6 +59,10 @@ export function ogImagePathForRoute(pathname = '/') {
 export const SEARCH_URL_TEMPLATE =
   process.env.SITE_SEARCH_URL_TEMPLATE ?? process.env.NEXT_PUBLIC_SITE_SEARCH_URL_TEMPLATE ?? ''
 
+// Ask the guide chat backend (Cloudflare Worker in assistant/). Empty hides the widget.
+export const ASK_GUIDE_ENDPOINT =
+  process.env.ASK_GUIDE_ENDPOINT ?? process.env.NEXT_PUBLIC_ASK_GUIDE_ENDPOINT ?? ''
+
 export function pathWithBase(pathname = '/') {
   const path = pathname.startsWith('/') ? pathname : `/${pathname}`
   if (path === '/') return BASE_PATH ? `${BASE_PATH}/` : '/'

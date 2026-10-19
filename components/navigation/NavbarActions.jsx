@@ -4,6 +4,7 @@ import { Menu, Search } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react'
 import { EXTERNAL_LINKS } from '../../app/navigation-config.mjs'
+import { ASK_GUIDE_ENDPOINT } from '../../app/site-config.mjs'
 import { PolarisSearch } from '../PolarisSearch'
 import { NavThemeSwitch } from '../NavThemeSwitch'
 import { MobileDocsNav } from './MobileDocsNav'
@@ -106,7 +107,9 @@ export function NavbarActions() {
             d="M10.579 11.816a6 6 0 1 1 1.238-1.238l3.427 3.428a.875.875 0 1 1-1.238 1.238l-3.427-3.428ZM11.25 7a4.25 4.25 0 1 1-8.5 0 4.25 4.25 0 0 1 8.5 0Z"
           />
         </svg>
-        <span className="pl-navbar-search-label">Search</span>
+        <span className="pl-navbar-search-label">
+          {ASK_GUIDE_ENDPOINT ? 'Search or ask' : 'Search'}
+        </span>
         <kbd aria-hidden="true">{isMac ? '⌘K' : 'Ctrl K'}</kbd>
       </button>
 
@@ -120,7 +123,7 @@ export function NavbarActions() {
           target="_blank"
           rel="noreferrer"
         >
-          Try Testnet
+          Try testnet
           <span className="pl-sr-only"> opens in a new tab</span>
         </a>
         <button
