@@ -541,3 +541,46 @@
     display: none;
   }
 }
+
+/* Full screen (button in the control row): the frame and the controls fill the
+   screen together, with the frame scaled to fit and the controls kept below it. */
+.pl-guide-answer .pl-content-video:fullscreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 24px;
+  background: #fff;
+  color-scheme: light;
+}
+
+.pl-guide-answer .pl-content-video:fullscreen .pl-video-frame,
+.pl-guide-answer .pl-content-video:fullscreen .pl-video-controls {
+  width: min(100%, calc((100vh - 48px - 56px) * 1600 / 990));
+}
+
+.dark .pl-guide-answer .pl-content-video:fullscreen {
+  background: rgb(10 14 24);
+  color-scheme: dark;
+}
+
+.dark .pl-guide-answer .pl-content-video:fullscreen .pl-video-controls {
+  color: rgb(230 232 238);
+}
+
+.dark .pl-guide-answer .pl-content-video:fullscreen .pl-video-toggle {
+  border-color: rgb(255 255 255 / 0.22);
+  background: rgb(255 255 255 / 0.08);
+  color: rgb(240 242 247);
+}
+
+.dark .pl-guide-answer .pl-content-video:fullscreen .pl-video-toggle:hover {
+  background: rgb(255 255 255 / 0.16);
+}
+
+.dark .pl-guide-answer .pl-content-video:fullscreen .pl-video-time {
+  color: rgb(170 176 190);
+}

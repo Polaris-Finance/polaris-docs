@@ -23,10 +23,26 @@ function formatTime(seconds) {
 // alt text the still image had.
 export function ClickToPlayVideo({ src, alt, width = 1600, height = 990 }) {
   const videoRef = useRef(null)
+  const wrapperRef = useRef(null)
   const descriptionId = useId()
   const [playing, setPlaying] = useState(false)
   const [time, setTime] = useState(0)
   const [duration, setDuration] = useState(0)
+  const [fullscreen, setFullscreen] = useState(false)
+
+  // Track fullscreen changes, including Esc and the browser's own exit controls.
+  useEffect(() => {
+    const onChange = () => {
+      const current = document.fullscreenElement || document.webkitFullscreenElement
+      setFullscreen(Boolean(current) && current === wrapperRef.current)
+    }
+    document.addEventListener('fullscreenchange', onChange)
+    document.addEventListener('webkitfullscreenchange', onChange)
+    return () => {
+      document.removeEventListener('fullscreenchange', onChange)
+      document.removeEventListener('webkitfullscreenchange', onChange)
+    }
+  }, [])
 
   // Metadata can arrive before hydration, so read it once on mount as well.
   useEffect(() => {
@@ -56,6 +72,22 @@ export function ClickToPlayVideo({ src, alt, width = 1600, height = 990 }) {
     else video.pause()
   }
 
+  // Fullscreen covers the frame and the controls together, so play, pause and
+  // scrubbing keep working. iPhone Safari has no element fullscreen, so it falls
+  // back to the native video player there.
+  function toggleFullscreen() {
+    const wrapper = wrapperRef.current
+    const video = videoRef.current
+    if (!wrapper) return
+    if (document.fullscreenElement || document.webkitFullscreenElement) {
+      ;(document.exitFullscreen || document.webkitExitFullscreen)?.call(document)
+      return
+    }
+    if (wrapper.requestFullscreen) wrapper.requestFullscreen().catch(() => {})
+    else if (wrapper.webkitRequestFullscreen) wrapper.webkitRequestFullscreen()
+    else if (video?.webkitEnterFullscreen) video.webkitEnterFullscreen()
+  }
+
   function handleSeek(event) {
     const video = videoRef.current
     const next = Number(event.target.value)
@@ -74,7 +106,7 @@ export function ClickToPlayVideo({ src, alt, width = 1600, height = 990 }) {
   const progress = duration > 0 ? Math.min(100, (time / duration) * 100) : 0
 
   return (
-    <div className="pl-content-image pl-content-video">
+    <div ref={wrapperRef} className="pl-content-image pl-content-video">
       <span className="pl-content-image-frame pl-video-frame">
         <video
           ref={videoRef}
@@ -140,6 +172,28 @@ export function ClickToPlayVideo({ src, alt, width = 1600, height = 990 }) {
         <span className="pl-video-time" aria-hidden="true">
           {formatTime(time)} / {formatTime(duration)}
         </span>
+        <button
+          type="button"
+          className="pl-video-toggle pl-video-fullscreen"
+          aria-label={fullscreen ? 'Exit full screen' : 'Full screen'}
+          aria-pressed={fullscreen}
+          onClick={toggleFullscreen}
+        >
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
+            <path
+              d={
+                fullscreen
+                  ? 'M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5'
+                  : 'M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5'
+              }
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
       </div>
     </div>
   )
