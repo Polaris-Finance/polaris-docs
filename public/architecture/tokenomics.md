@@ -42,6 +42,8 @@ Long-term participation in Polaris takes place through sPOLAR.
 
 Users stake POLAR for a chosen period of time **to align with the long-term growth of the ecosystem**. In return, they receive a share of protocol-native value from supported pAsset markets, together with stewardship rights.
 
+Positions cannot be unstaked before the end of their term, but since each one is an NFT, holders can still exit by transferring or selling it.
+
 For example, a USDp minter pays interest to the USDp market. Part of that interest is distributed to sPOLAR holders. If the minter also holds sPOLAR, those distributions can offset part of the interest they pay, lowering their effective minting cost.
 
 These returns are distributed through protocol activity itself, without additional POLAR incentives.

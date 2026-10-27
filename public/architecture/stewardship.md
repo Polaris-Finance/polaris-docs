@@ -26,7 +26,7 @@ Stewardship is therefore bounded, and cannot:
 
 ## Steward Responsibilities
 
-Some parts of the ecosystem still require ongoing coordination.
+Some parts of the ecosystem still require ongoing coordination, carried out through [sPOLAR](https://docs.polaris.finance/core-assets/polar#spolar), the staked version of POLAR.
 
 Stewardship is responsible for certain parameters within predefined protocol boundaries, making sure the ecosystem adapts to changing market conditions.
 
