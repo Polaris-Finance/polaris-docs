@@ -727,16 +727,17 @@ test('search snippets avoid hidden vocabulary and table boilerplate', async ({ p
 
 // Light is the default theme (designer decision, July 2026), so these switch to
 // dark: picking the mode the page already renders would assert nothing.
-test('desktop theme menu can switch to dark mode', async ({ page }, testInfo) => {
+test('desktop theme toggle switches dark and back in one click', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'desktop', 'desktop-only theme check')
 
   await page.goto(pathWithBase('/'))
   await expect(page.locator('html')).toHaveClass(/light/)
 
-  await page.locator('button[title="Change theme"]:visible').first().click()
-  await page.getByRole('option', { name: /dark/i }).click()
-
+  await page.locator('button[title="Switch to dark mode"]:visible').first().click()
   await expect(page.locator('html')).toHaveClass(/dark/)
+
+  await page.locator('button[title="Switch to light mode"]:visible').first().click()
+  await expect(page.locator('html')).toHaveClass(/light/)
 })
 
 test('mobile menu reuses the desktop footer with compact links', async ({ page }, testInfo) => {
@@ -767,13 +768,11 @@ test('sampled article text meets contrast in dark and light themes', async ({ pa
 
   for (const route of routes) {
     await page.goto(pathWithBase(route))
-    await page.locator('button[title="Change theme"]:visible').first().click()
-    await page.getByRole('option', { name: /dark/i }).click()
+    await page.locator('button[title="Switch to dark mode"]:visible').first().click()
     await expect(page.locator('html')).toHaveClass(/dark/)
     await expectReadableArticleContrast(page, `${route} dark`)
 
-    await page.locator('button[title="Change theme"]:visible').first().click()
-    await page.getByRole('option', { name: /light/i }).click()
+    await page.locator('button[title="Switch to light mode"]:visible').first().click()
     await expect(page.locator('html')).toHaveClass(/light/)
     await expectReadableArticleContrast(page, `${route} light`)
   }

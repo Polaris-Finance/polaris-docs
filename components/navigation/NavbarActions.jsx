@@ -110,12 +110,11 @@ export function NavbarActions() {
         <span className="pl-navbar-search-label">
           {ASK_GUIDE_ENDPOINT ? 'Search or ask' : 'Search'}
         </span>
-        <kbd aria-hidden="true">{isMac ? '⌘K' : 'Ctrl K'}</kbd>
       </button>
 
       <div className="pl-navbar-end">
         <span className="pl-nav-theme">
-          <NavThemeSwitch lite />
+          <NavThemeSwitch />
         </span>
         <a
           href={EXTERNAL_LINKS.testnetApp}

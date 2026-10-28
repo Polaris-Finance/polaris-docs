@@ -517,11 +517,6 @@ export function PolarisSearch({ open, onOpenChange, onMenuRequest }) {
               onFocus={() => loadPagefind().catch(() => {})}
               onKeyDown={onKeyDown}
             />
-            {!query ? (
-              <kbd className="pl-search-kbd" aria-hidden="true">
-                {isMac ? '⌘K' : 'Ctrl K'}
-              </kbd>
-            ) : null}
           </div>
           <button
             type="button"

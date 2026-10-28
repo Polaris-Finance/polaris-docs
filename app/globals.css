@@ -2438,24 +2438,6 @@ div:has(> .nextra-sidebar) {
   text-align: left;
 }
 
-.pl-navbar-search-trigger kbd {
-  display: inline-flex;
-  min-width: 30px;
-  height: 18px;
-  flex: none;
-  align-items: center;
-  justify-content: center;
-  padding: 2px 4px;
-  border: 0;
-  border-radius: 4px;
-  background: var(--pl-tile-hover);
-  color: var(--pl-ink-caption);
-  font-family: system-ui, sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 14px;
-}
-
 .pl-navbar-end {
   display: flex;
   align-items: center;
@@ -2518,13 +2500,13 @@ div:has(> .nextra-sidebar) {
   border-radius: 6px;
 }
 
-/* Headless UI restores focus to the trigger after a pointer theme selection,
-   which Chromium can incorrectly expose as :focus-visible. Its real keyboard
-   focus carries the `focus` state, so keep that ring and suppress only the
-   pointer-return artifact. */
-.pl-nav-theme > button:focus-visible:not([data-headlessui-state~='focus']) {
-  outline: none !important;
-  box-shadow: none !important;
+/* Plain toggle button (no Headless UI listbox), so it carries its own reset. */
+.pl-nav-theme > button {
+  display: inline-flex;
+  align-items: center;
+  border: 0;
+  color: var(--pl-ink-body);
+  cursor: pointer;
 }
 
 .pl-navbar-icon-button,
@@ -2937,10 +2919,6 @@ div:has(> .nextra-sidebar) {
 
 .pl-search-input::-webkit-search-cancel-button {
   appearance: none;
-}
-
-.pl-search-kbd {
-  display: none;
 }
 
 .pl-search-dialog-header > .pl-overlay-icon-button {
@@ -3839,10 +3817,6 @@ article > div[class*='x:print:hidden']:has(> a[title]) > a[title]:hover {
 
   body:has(.pl-docs-overlay) .pl-navbar-actions {
     opacity: 0.42;
-  }
-
-  .pl-search-kbd {
-    display: none;
   }
 
   .pl-search-dialog-header {

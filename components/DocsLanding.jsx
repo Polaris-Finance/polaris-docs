@@ -49,7 +49,7 @@ const entryPoints = [
   },
   {
     label: 'Use Polaris',
-    description: 'Learn to use the testnet',
+    description: 'Learn about testnet',
     route: '/testnet/guide',
     glyph: 'FlaskConical',
     tone: 'green'
