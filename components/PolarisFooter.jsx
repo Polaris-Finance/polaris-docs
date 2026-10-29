@@ -31,16 +31,42 @@ function PolarisFooterEmblem() {
   )
 }
 
+// X (formerly Twitter) wordmark logo, shown in place of the plain "X" label.
+function XLogo() {
+  return (
+    <svg
+      className="pl-footer-link-icon"
+      viewBox="0 0 24 24"
+      width="14"
+      height="14"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
+    </svg>
+  )
+}
+
+const FOOTER_ICONS = { x: XLogo }
+
 function FooterLink({ link }) {
   const external = link.type === 'external'
+  const Icon = link.icon ? FOOTER_ICONS[link.icon] : null
   return (
     <a
       href={external ? link.href : pathWithBase(link.href)}
-      className="pl-footer-link"
+      className={`pl-footer-link${Icon ? ' pl-footer-link-icon-only' : ''}`}
       target={external ? '_blank' : undefined}
       rel={external ? 'noreferrer' : undefined}
     >
-      {link.label}
+      {Icon ? (
+        <>
+          <Icon />
+          <span className="pl-sr-only">{link.label}</span>
+        </>
+      ) : (
+        link.label
+      )}
       {external ? <span className="pl-sr-only"> opens in a new tab</span> : null}
     </a>
   )

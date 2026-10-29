@@ -3544,6 +3544,17 @@ ul[role='listbox'][data-anchor] > li[role='option']:is(:hover, :focus, [data-foc
     background-color 160ms ease;
 }
 
+.pl-footer-link-icon-only {
+  width: 32px;
+  padding: 0;
+}
+
+.pl-footer-link-icon {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
 .dark .pl-footer-link {
   box-shadow:
     rgb(0 0 0 / 36%) 0 1px 1px,
