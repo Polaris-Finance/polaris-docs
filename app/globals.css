@@ -3555,6 +3555,12 @@ ul[role='listbox'][data-anchor] > li[role='option']:is(:hover, :focus, [data-foc
   fill: currentColor;
 }
 
+/* The round GitHub mark reads smaller than the X glyph at the same box size. */
+.pl-footer-link-icon-github {
+  width: 16px;
+  height: 16px;
+}
+
 .dark .pl-footer-link {
   box-shadow:
     rgb(0 0 0 / 36%) 0 1px 1px,
