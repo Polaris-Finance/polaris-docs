@@ -290,7 +290,7 @@ This distinction is important because Ethereum already offers several ways to ho
 
 The protocol generates yield entirely from onchain activity and is designed to operate **independently of custodians and external yield sources**. Its collateral asset is based on the same design principles, serving as the protocol's shared reserve asset while supporting the liquidity and yield mechanisms that power it.
 
-Unlike liquid staking tokens, pETH does not generate yield from validator rewards but from activity taking place inside Polaris: swaps through the bonding curve, Reserve Loans, pETH to POLAR conversions and applications built on top of Polaris all generate fees for the same yield engine, supporting the growth of pETH over time.
+Unlike liquid staking tokens, pETH does not generate yield from validator rewards but from activity taking place inside Polaris. Swaps through the bonding curve, Reserve Loans, pETH to POLAR conversions and applications built on top of Polaris all generate fees for the same yield engine, supporting the growth of pETH over time.
 
 As these flows are routed through the bonding curve, they strengthen the pETH floor and create demand at the pETH spot price.
 
