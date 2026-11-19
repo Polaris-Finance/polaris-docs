@@ -2554,7 +2554,7 @@ div:has(> .nextra-sidebar) {
 
 /* pAsset logos in the nav rail: dampened at rest, full colour on
    hover/focus/touch/active — mirrors the lucide icons' accent tint. The rest
-   state keeps its colour now that the glyphs beside it do (Chilla, July 2026);
+   state keeps its colour now that the glyphs beside it do (July 2026);
    desaturating every orb but the active one was what made that single logo read
    as the only colour in the rail. Opacity alone still holds them below the
    labels, and the artwork itself is untouched (CEO constraint, July 2026). */
@@ -2710,7 +2710,7 @@ div:has(> .nextra-sidebar) {
 
   /* Each glyph carries its navigation group's tone at rest, not the caption ink:
      with the gold gone from the prose, a grey rail left the one active token
-     logo as the only colour on the page (Chilla, July 2026). Entries with no
+     logo as the only colour on the page (July 2026). Entries with no
      tone assigned still fall back to the caption ink. It stays pinned rather
      than currentColor so the row's hover colour never reaches the icon
      (designer S14) — the rest state is now tone, so there is nothing to swap. */
