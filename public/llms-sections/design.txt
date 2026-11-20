@@ -126,7 +126,7 @@ Markdown URL: https://docs.polaris.finance/design/defensive-mode.md
 
 Defensive Mode is the first protective state a pAsset market enters. It begins when the market's **reserve-to-debt ratio falls below 110%**, while backing is still above 100%. Its purpose is to stop the market weakening further while there is still room to recover.
 
-In practice this state should be rare. The [Protocol Safety Rate](https://docs.polaris.finance/design/interest-rates#protocol-safety-rate) makes leverage progressively more expensive as collateral health weakens, discouraging positions from pushing a market toward Defensive Mode in the first place.
+In practice this state should be rare. The [Health Rate](https://docs.polaris.finance/design/interest-rates#health-rate) makes leverage progressively more expensive as collateral health weakens, discouraging positions from pushing a market toward Defensive Mode in the first place.
 
 Each [pAsset market](https://docs.polaris.finance/architecture/passet-markets) has its own thresholds. Stress affecting one market does not automatically place every other market into the same state, so [USDp](https://docs.polaris.finance/core-assets/usdp), [GOLDp](https://docs.polaris.finance/core-assets/goldp) and future pAssets remain independent from one another.
 
@@ -189,36 +189,36 @@ Markdown URL: https://docs.polaris.finance/design/interest-rates.md
 
 Polaris uses two complementary interest rates to manage pAsset markets. Together, they help maintain the target price of each pAsset while protecting the overall health of the collateral system.
 
-The **Peg Stability Rate** is the primary interest rate paid by pAsset minters. It adjusts automatically according to minting and redemption activity and helps keep pAssets around their target price.
+The **Base Rate** is the primary interest rate paid by pAsset minters. It adjusts automatically according to minting and redemption activity and helps keep pAssets around their target price.
 
-The **Protocol Safety Rate** is an always-active market-internal redistribution mechanism. It moves value from higher-leverage positions to lower-leverage or collateral-only positions, helping reward positions that improve market collateral health.
+The **Health Rate** is an always-active market-internal redistribution mechanism. It moves value from higher-leverage positions to lower-leverage or collateral-only positions, helping reward positions that improve market collateral health.
 
 Although the protocol's interest rates determine the nominal cost of minting, **the effective cost can be lower**. Indeed, minters can receive protocol-generated value as pETH, while lower-leverage and collateral-only positions can benefit from more favorable rate flows.
 
-Property | Peg Stability Rate | Protocol Safety Rate
+Property | Base Rate | Health Rate
 
 Purpose | Primary minting cost for pAsset minters | Protects aggregate collateral health
 When active | Always | Always
 Responds to | Minting vs redemption activity | Position leverage and aggregate collateral health
 Interest | Paid to Earn Pool and sPOLAR | Directly redistributed towards lower-leverage positions
 
-## Peg Stability Rate
+## Base Rate
 
-The Peg Stability Rate is the standard minting cost paid by users who mint pAssets.
+The Base Rate is the standard minting cost paid by users who mint pAssets.
 
-**Interest paid through the Peg Stability Rate becomes the primary yield source for that pAsset market** and is distributed to the pAsset's Earn Pool and sPOLAR stakers, according to the market's configured flow allocation assigned.
+**Interest paid through the Base Rate becomes the primary yield source for that pAsset market** and is distributed to the pAsset's Earn Pool and sPOLAR stakers, according to the market's configured flow allocation assigned.
 
 Interest is denominated in the pAsset and accrues to the position's debt. Accrued interest is periodically minted as new pAssets and distributed to the Earn Pool and sPOLAR.
 
-A unique feature of the Peg Stability Rate is that it is not altered by governance or manual intervention. Instead, **it adjusts automatically based on minting and redemption activity** taking place inside the protocol.
+A unique feature of the Base Rate is that it is not altered by governance or manual intervention. Instead, **it adjusts automatically based on minting and redemption activity** taking place inside the protocol.
 
-When a pAsset trades above its target price, arbitrage opportunities naturally encourage new minting. As net minting activity increases, the Peg Stability Rate responds to this signal by gradually decreasing toward its minimum base fee of 0.05%, reducing the cost of creating new pAssets and allowing supply to expand more quickly.
+When a pAsset trades above its target price, arbitrage opportunities naturally encourage new minting. As net minting activity increases, the Base Rate responds to this signal by gradually decreasing toward its minimum base fee of 0.05%, reducing the cost of creating new pAssets and allowing supply to expand more quickly.
 
-Vice versa, when a pAsset trades below its target price, arbitrage opportunities encourage redemptions instead. As net redemption activity increases, the Peg Stability Rate gradually increases, making new minting less attractive while helping the circulating supply contract.
+Vice versa, when a pAsset trades below its target price, arbitrage opportunities encourage redemptions instead. As net redemption activity increases, the Base Rate gradually increases, making new minting less attractive while helping the circulating supply contract.
 
-## Protocol Safety Rate
+## Health Rate
 
-The Protocol Safety Rate is **designed to protect the overall collateral health of a pAsset market**.
+The Health Rate is **designed to protect the overall collateral health of a pAsset market**.
 
 It is active at all times and affects positions according to their relative leverage. Positions with higher leverage pay the rate, while lower-leverage or collateral-only positions receive it.
 
@@ -228,9 +228,9 @@ The goal is to improve the market's overall collateral health by increasing the 
 
 This encourages the market to return toward stronger overall collateralization without requiring liquidations or governance intervention.
 
-**Unlike the Peg Stability Rate, the Protocol Safety Rate is not protocol revenue**. Every payment made through the mechanism remains inside the same pAsset market and is redistributed directly between participants.
+**Unlike the Base Rate, the Health Rate is not protocol revenue**. Every payment made through the mechanism remains inside the same pAsset market and is redistributed directly between participants.
 
-Relevant app/search vocabulary: interest rate, Peg Stability Rate, Protocol Safety Rate, minter interest, borrow rate.
+Relevant app/search vocabulary: interest rate, Base Rate, Health Rate, Peg Stability Rate, Protocol Safety Rate, minter interest, borrow rate.
 
 ---
 
@@ -328,7 +328,7 @@ Recovery Mode is the protective state a [pAsset market](https://docs.polaris.fin
 
 Polaris is built to **operate indefinitely**, and a system with that goal has to define how it behaves in every state it could reach. That includes the rare one where a market's collateral no longer fully covers its debt. Rather than halt or unwind, Polaris specifies how the market keeps running and works its way back.
 
-Reaching Recovery Mode is exceedingly unlikely. A market only falls below full backing after its earlier defences have been overrun: the restrictions of Defensive Mode, the pressure of the Protocol Safety Rate, and the liquidations and redemptions that restore backing along the way. Crossing the line would take a collateral crash fast and deep enough to outpace all of them at once. Designing for that case is what lets the protocol endure it.
+Reaching Recovery Mode is exceedingly unlikely. A market only falls below full backing after its earlier defences have been overrun: the restrictions of Defensive Mode, the pressure of the Health Rate, and the liquidations and redemptions that restore backing along the way. Crossing the line would take a collateral crash fast and deep enough to outpace all of them at once. Designing for that case is what lets the protocol endure it.
 
 Recovery Mode keeps every restriction of Defensive Mode and adds two protections:
 - Redemptions are paid in proportion to the collateral that remains.
@@ -358,7 +358,7 @@ Backing recovers as:
 - **Minters strengthen their positions.** Adding collateral and repaying debt stay open throughout, and both lift the market's backing.
 - **Yield streams keep flowing.** The protocol's yield sources continue through Recovery Mode, strengthening collateral ratios over time.
 - **Weak positions are liquidated.** Every liquidation that proceeds can only hold or improve the ratio, so clearing the weakest positions moves backing in the right direction.
-- **The Protocol Safety Rate keeps pushing.** It rewards conservative and collateral-only positions and taxes high leverage, steadily nudging the market back toward stronger backing.
+- **The Health Rate keeps pushing.** It rewards conservative and collateral-only positions and taxes high leverage, steadily nudging the market back toward stronger backing.
 
 ---
 
@@ -373,7 +373,7 @@ Markdown URL: https://docs.polaris.finance/design/revenue-model.md
 
 Polaris operates under the design philosophy that **all value generated throughout the protocol should not leak externally**. Protocol revenue is generated entirely from ecosystem activity, and in turn directed toward ecosystem growth.
 
-Creating pAssets, trading through the bonding curve, borrowing through reserve loans and building on Polaris all contribute to the same revenue engine.
+Creating pAssets, trading through the bonding curve, borrowing through floor loans and building on Polaris all contribute to the same revenue engine.
 
 The fees generated by these activities are routed back through the bonding curve to strengthen pETH, increase its floor and distribute yield. Fees generated by the protocol first strengthen the collateral layer before being distributed across the ecosystem.
 

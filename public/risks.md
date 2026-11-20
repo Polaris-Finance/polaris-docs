@@ -18,7 +18,7 @@ The following risks are not exhaustive. Users should understand the protocol, th
 
 ## Smart Contract Risk
 
-Polaris depends on smart contracts to manage pETH, pAsset markets, Earn Pools, liquidations, conversions, Reserve Loans and other protocol mechanisms.
+Polaris depends on smart contracts to manage pETH, pAsset markets, Earn Pools, liquidations, conversions, Floor Loans and other protocol mechanisms.
 
 **Bugs, implementation errors or unexpected interactions between contracts could lead to loss of funds or incorrect protocol behavior**. Immutability also means that core contracts are not designed to be upgraded or paused after deployment which reduces admin-key risk but increases the importance of audits, testing and careful use.
 

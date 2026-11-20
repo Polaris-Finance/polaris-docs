@@ -14,36 +14,36 @@ Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 Polaris uses two complementary interest rates to manage pAsset markets. Together, they help maintain the target price of each pAsset while protecting the overall health of the collateral system.
 
-The **Peg Stability Rate** is the primary interest rate paid by pAsset minters. It adjusts automatically according to minting and redemption activity and helps keep pAssets around their target price.
+The **Base Rate** is the primary interest rate paid by pAsset minters. It adjusts automatically according to minting and redemption activity and helps keep pAssets around their target price.
 
-The **Protocol Safety Rate** is an always-active market-internal redistribution mechanism. It moves value from higher-leverage positions to lower-leverage or collateral-only positions, helping reward positions that improve market collateral health.
+The **Health Rate** is an always-active market-internal redistribution mechanism. It moves value from higher-leverage positions to lower-leverage or collateral-only positions, helping reward positions that improve market collateral health.
 
 Although the protocol's interest rates determine the nominal cost of minting, **the effective cost can be lower**. Indeed, minters can receive protocol-generated value as pETH, while lower-leverage and collateral-only positions can benefit from more favorable rate flows.
 
-Property | Peg Stability Rate | Protocol Safety Rate
+Property | Base Rate | Health Rate
 
 Purpose | Primary minting cost for pAsset minters | Protects aggregate collateral health
 When active | Always | Always
 Responds to | Minting vs redemption activity | Position leverage and aggregate collateral health
 Interest | Paid to Earn Pool and sPOLAR | Directly redistributed towards lower-leverage positions
 
-## Peg Stability Rate
+## Base Rate
 
-The Peg Stability Rate is the standard minting cost paid by users who mint pAssets.
+The Base Rate is the standard minting cost paid by users who mint pAssets.
 
-**Interest paid through the Peg Stability Rate becomes the primary yield source for that pAsset market** and is distributed to the pAsset's Earn Pool and sPOLAR stakers, according to the market's configured flow allocation assigned.
+**Interest paid through the Base Rate becomes the primary yield source for that pAsset market** and is distributed to the pAsset's Earn Pool and sPOLAR stakers, according to the market's configured flow allocation assigned.
 
 Interest is denominated in the pAsset and accrues to the position's debt. Accrued interest is periodically minted as new pAssets and distributed to the Earn Pool and sPOLAR.
 
-A unique feature of the Peg Stability Rate is that it is not altered by governance or manual intervention. Instead, **it adjusts automatically based on minting and redemption activity** taking place inside the protocol.
+A unique feature of the Base Rate is that it is not altered by governance or manual intervention. Instead, **it adjusts automatically based on minting and redemption activity** taking place inside the protocol.
 
-When a pAsset trades above its target price, arbitrage opportunities naturally encourage new minting. As net minting activity increases, the Peg Stability Rate responds to this signal by gradually decreasing toward its minimum base fee of 0.05%, reducing the cost of creating new pAssets and allowing supply to expand more quickly.
+When a pAsset trades above its target price, arbitrage opportunities naturally encourage new minting. As net minting activity increases, the Base Rate responds to this signal by gradually decreasing toward its minimum base fee of 0.05%, reducing the cost of creating new pAssets and allowing supply to expand more quickly.
 
-Vice versa, when a pAsset trades below its target price, arbitrage opportunities encourage redemptions instead. As net redemption activity increases, the Peg Stability Rate gradually increases, making new minting less attractive while helping the circulating supply contract.
+Vice versa, when a pAsset trades below its target price, arbitrage opportunities encourage redemptions instead. As net redemption activity increases, the Base Rate gradually increases, making new minting less attractive while helping the circulating supply contract.
 
-## Protocol Safety Rate
+## Health Rate
 
-The Protocol Safety Rate is **designed to protect the overall collateral health of a pAsset market**.
+The Health Rate is **designed to protect the overall collateral health of a pAsset market**.
 
 It is active at all times and affects positions according to their relative leverage. Positions with higher leverage pay the rate, while lower-leverage or collateral-only positions receive it.
 
@@ -53,4 +53,4 @@ The goal is to improve the market's overall collateral health by increasing the 
 
 This encourages the market to return toward stronger overall collateralization without requiring liquidations or governance intervention.
 
-**Unlike the Peg Stability Rate, the Protocol Safety Rate is not protocol revenue**. Every payment made through the mechanism remains inside the same pAsset market and is redistributed directly between participants.
+**Unlike the Base Rate, the Health Rate is not protocol revenue**. Every payment made through the mechanism remains inside the same pAsset market and is redistributed directly between participants.

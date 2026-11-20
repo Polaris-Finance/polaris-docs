@@ -9,7 +9,7 @@ Recovery Mode is the protective state a [pAsset market](/architecture/passet-mar
 
 Polaris is built to **operate indefinitely**, and a system with that goal has to define how it behaves in every state it could reach. That includes the rare one where a market's collateral no longer fully covers its debt. Rather than halt or unwind, Polaris specifies how the market keeps running and works its way back.
 
-Reaching Recovery Mode is exceedingly unlikely. A market only falls below full backing after its earlier defences have been overrun: the restrictions of Defensive Mode, the pressure of the Protocol Safety Rate, and the liquidations and redemptions that restore backing along the way. Crossing the line would take a collateral crash fast and deep enough to outpace all of them at once. Designing for that case is what lets the protocol endure it.
+Reaching Recovery Mode is exceedingly unlikely. A market only falls below full backing after its earlier defences have been overrun: the restrictions of Defensive Mode, the pressure of the Health Rate, and the liquidations and redemptions that restore backing along the way. Crossing the line would take a collateral crash fast and deep enough to outpace all of them at once. Designing for that case is what lets the protocol endure it.
 
 Recovery Mode keeps every restriction of Defensive Mode and adds two protections:
 - Redemptions are paid in proportion to the collateral that remains.
@@ -39,7 +39,7 @@ Backing recovers as:
 - **Minters strengthen their positions.** Adding collateral and repaying debt stay open throughout, and both lift the market's backing.
 - **Yield streams keep flowing.** The protocol's yield sources continue through Recovery Mode, strengthening collateral ratios over time.
 - **Weak positions are liquidated.** Every liquidation that proceeds can only hold or improve the ratio, so clearing the weakest positions moves backing in the right direction.
-- **The Protocol Safety Rate keeps pushing.** It rewards conservative and collateral-only positions and taxes high leverage, steadily nudging the market back toward stronger backing.
+- **The Health Rate keeps pushing.** It rewards conservative and collateral-only positions and taxes high leverage, steadily nudging the market back toward stronger backing.
 
 ---
 

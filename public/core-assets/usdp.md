@@ -47,8 +47,8 @@ These arbitrage paths operate through [Adaptive Peg Defense](https://docs.polari
 
 Two interest-rate mechanisms complement this peg design.
 
-The [Peg Stability Rate](https://docs.polaris.finance/design/interest-rates#peg-stability-rate) is the main interest rate paid by USDp minters. It adjusts in response to minting and redemption activity, helping the market expand when USDp demand is high and contract when redemption demand is high.
+The [Base Rate](https://docs.polaris.finance/design/interest-rates#base-rate) is the main interest rate paid by USDp minters. It adjusts in response to minting and redemption activity, helping the market expand when USDp demand is high and contract when redemption demand is high.
 
-The [Protocol Safety Rate](https://docs.polaris.finance/design/interest-rates#protocol-safety-rate) is an always-active market-internal redistribution mechanism. It moves value from higher-leverage positions to lower-leverage or collateral-only positions, rewarding positions that strengthen the market's collateral health.
+The [Health Rate](https://docs.polaris.finance/design/interest-rates#health-rate) is an always-active market-internal redistribution mechanism. It moves value from higher-leverage positions to lower-leverage or collateral-only positions, rewarding positions that strengthen the market's collateral health.
 
 These mechanics mean **the headline interest rate does not necessarily reflect the effective cost of minting**. Minters can receive protocol-generated value as pETH and, in some market conditions, may experience low or even negative effective rates.

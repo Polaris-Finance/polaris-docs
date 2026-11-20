@@ -80,9 +80,9 @@ Therefore, **fpETH is designed to be the least volatile asset built around pETH*
 
 The pETH floor and premium describe how one pETH is composed inside the protocol. Secondary-market prices for fpETH and vpETH are different: they reflect how traders value those components over time.
 
-fpETH is likely to appeal to users who want lower-volatility ETH-denominated yield, users who want Reserve Loan collateral, and users who want exposure to DeFi-driven yield while retaining access to the underlying floor value.
+fpETH is likely to appeal to users who want lower-volatility ETH-denominated yield, users who want Floor Loan collateral, and users who want exposure to DeFi-driven yield while retaining access to the underlying floor value.
 
-That floor access comes through [Reserve Loans](https://docs.polaris.finance/architecture/reserve-loans). **A user can borrow ETH against fpETH up to the floor value** represented by that fpETH. This does not burn fpETH, which remains in the Reserve Loan position, and does not require any additional accounting for the vpETH component.
+That floor access comes through [Floor Loans](https://docs.polaris.finance/architecture/reserve-loans). **A user can borrow ETH against fpETH for the full floor value** represented by that fpETH. This does not burn fpETH, which remains in the Floor Loan position, and does not require any additional accounting for the vpETH component.
 
 Because of this floor access, **secondary-market discounts to the current floor can be arbitraged**, limiting how far below the floor fpETH is likely to trade.
 
@@ -96,10 +96,10 @@ The simplest way to use fpETH is to hold it as passive exposure to the long-term
 
 For users who already hold pETH, splitting it can also be a way to hedge part of its volatility by separating the steadily growing floor from the more volatile premium component.
 
-But fpETH also unlocks **[Reserve Loans](https://docs.polaris.finance/architecture/reserve-loans)**, which are one of the core financial primitives introduced by Polaris.
+But fpETH also unlocks **[Floor Loans](https://docs.polaris.finance/architecture/reserve-loans)**, which are one of the core financial primitives introduced by Polaris.
 
 **Unlike traditional lending markets, these loans are not liquidatable**. Therefore, since fpETH represents the floor component of pETH and both the collateral and the borrowed asset are ultimately denominated in ETH, movements in the ETH price cannot push the position below its collateral requirement.
 
-As a result, users don't need to overcollateralize their ETH borrowing simply to protect themselves from liquidation. Instead, they **can borrow up to 100% of the floor value represented by their fpETH**, build capital-efficient ETH looping strategies or access liquidity while continuing to benefit from the growth of the pETH floor.
+As a result, users don't need to overcollateralize their ETH borrowing simply to protect themselves from liquidation. Instead, they **can borrow 100% of the floor value represented by their fpETH**, build capital-efficient ETH looping strategies or access liquidity while continuing to benefit from the growth of the pETH floor.
 
 As Polaris expands, additional applications can also build around fpETH as a protocol-native reserve asset.

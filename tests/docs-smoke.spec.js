@@ -1275,31 +1275,31 @@ test('search ignores global shortcuts in editable fields and clears local recent
 test('same-page search navigation focuses the selected heading', async ({ page }) => {
   await page.goto(pathWithBase('/design/interest-rates'))
   const { dialog, input } = await openSearch(page)
-  await input.fill('Peg Stability Rate')
+  await input.fill('Base Rate')
 
   const destination = dialog.locator(
-    `.pl-search-row[href="${pathWithBase('/design/interest-rates')}#peg-stability-rate"]`
+    `.pl-search-row[href="${pathWithBase('/design/interest-rates')}#base-rate"]`
   )
   await expect(destination).toBeVisible()
   await destination.click()
   await expect(dialog).toBeHidden()
-  await expect(page).toHaveURL(/#peg-stability-rate$/)
-  await expect(page.locator('#peg-stability-rate')).toBeFocused()
+  await expect(page).toHaveURL(/#base-rate$/)
+  await expect(page.locator('#base-rate')).toBeFocused()
 })
 
 test('cross-page search navigation focuses and reveals the selected heading', async ({ page }) => {
   await page.goto(pathWithBase('/'))
   const { dialog, input } = await openSearch(page)
-  await input.fill('Peg Stability Rate')
+  await input.fill('Base Rate')
 
   const destination = dialog.locator(
-    `.pl-search-row[href="${pathWithBase('/design/interest-rates')}#peg-stability-rate"]`
+    `.pl-search-row[href="${pathWithBase('/design/interest-rates')}#base-rate"]`
   )
   await expect(destination).toBeVisible()
   await destination.click()
 
-  await expect(page).toHaveURL(/\/design\/interest-rates\/?#peg-stability-rate$/)
-  const target = page.locator('#peg-stability-rate')
+  await expect(page).toHaveURL(/\/design\/interest-rates\/?#base-rate$/)
+  const target = page.locator('#base-rate')
   await expect(target).toBeFocused()
   await expect
     .poll(() =>

@@ -140,18 +140,18 @@ Relevant app/search vocabulary: app, official app, testnet app, testnet.polaris.
 
 ---
 
-## Reserve Loan
+## Floor Loan
 
 URL: https://docs.polaris.finance/testnet/reserve-loan
 Markdown URL: https://docs.polaris.finance/testnet/reserve-loan.md
 
-Reserve Loans enable you to borrow ETH by using fpETH as collateral. From here you can open and manage non-liquidatable Reserve Loans, view your active positions, and repay or close existing loans.
+Floor Loans enable you to borrow ETH by using fpETH as collateral. From here you can open and manage non-liquidatable Floor Loans, view your active positions, and repay or close existing loans.
 
-It is designed to provide a clear overview of your Reserve Loans and the actions available to manage them.
+It is designed to provide a clear overview of your Floor Loans and the actions available to manage them.
 
-Image: A walkthrough of opening a Reserve Loan, borrowing ETH against fpETH collateral.
+Image: A walkthrough of opening a Floor Loan, borrowing ETH against fpETH collateral.
 
-Relevant app/search vocabulary: app, official app, testnet app, testnet.polaris.finance, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Reserve Loan, Reserve Loans, borrow ETH, non-liquidatable, fpETH collateral.
+Relevant app/search vocabulary: app, official app, testnet app, testnet.polaris.finance, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Floor Loan, Floor Loans, Reserve Loan, Reserve Loans, borrow ETH, non-liquidatable, fpETH collateral.
 
 ---
 

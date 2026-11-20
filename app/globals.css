@@ -1245,7 +1245,7 @@ article .pl-docs-featured-copy p {
   }
 }
 
-/* Reserve loans — the coin drops into the hand and settles. */
+/* Floor loans — the coin drops into the hand and settles. */
 .pl-glyph [data-part='loan-coin'] {
   transition: transform 480ms cubic-bezier(0.34, 1.4, 0.64, 1);
 }

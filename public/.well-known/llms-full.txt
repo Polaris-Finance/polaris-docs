@@ -195,9 +195,9 @@ Therefore, **fpETH is designed to be the least volatile asset built around pETH*
 
 The pETH floor and premium describe how one pETH is composed inside the protocol. Secondary-market prices for fpETH and vpETH are different: they reflect how traders value those components over time.
 
-fpETH is likely to appeal to users who want lower-volatility ETH-denominated yield, users who want Reserve Loan collateral, and users who want exposure to DeFi-driven yield while retaining access to the underlying floor value.
+fpETH is likely to appeal to users who want lower-volatility ETH-denominated yield, users who want Floor Loan collateral, and users who want exposure to DeFi-driven yield while retaining access to the underlying floor value.
 
-That floor access comes through [Reserve Loans](https://docs.polaris.finance/architecture/reserve-loans). **A user can borrow ETH against fpETH up to the floor value** represented by that fpETH. This does not burn fpETH, which remains in the Reserve Loan position, and does not require any additional accounting for the vpETH component.
+That floor access comes through [Floor Loans](https://docs.polaris.finance/architecture/reserve-loans). **A user can borrow ETH against fpETH for the full floor value** represented by that fpETH. This does not burn fpETH, which remains in the Floor Loan position, and does not require any additional accounting for the vpETH component.
 
 Because of this floor access, **secondary-market discounts to the current floor can be arbitraged**, limiting how far below the floor fpETH is likely to trade.
 
@@ -211,11 +211,11 @@ The simplest way to use fpETH is to hold it as passive exposure to the long-term
 
 For users who already hold pETH, splitting it can also be a way to hedge part of its volatility by separating the steadily growing floor from the more volatile premium component.
 
-But fpETH also unlocks **[Reserve Loans](https://docs.polaris.finance/architecture/reserve-loans)**, which are one of the core financial primitives introduced by Polaris.
+But fpETH also unlocks **[Floor Loans](https://docs.polaris.finance/architecture/reserve-loans)**, which are one of the core financial primitives introduced by Polaris.
 
 **Unlike traditional lending markets, these loans are not liquidatable**. Therefore, since fpETH represents the floor component of pETH and both the collateral and the borrowed asset are ultimately denominated in ETH, movements in the ETH price cannot push the position below its collateral requirement.
 
-As a result, users don't need to overcollateralize their ETH borrowing simply to protect themselves from liquidation. Instead, they **can borrow up to 100% of the floor value represented by their fpETH**, build capital-efficient ETH looping strategies or access liquidity while continuing to benefit from the growth of the pETH floor.
+As a result, users don't need to overcollateralize their ETH borrowing simply to protect themselves from liquidation. Instead, they **can borrow 100% of the floor value represented by their fpETH**, build capital-efficient ETH looping strategies or access liquidity while continuing to benefit from the growth of the pETH floor.
 
 As Polaris expands, additional applications can also build around fpETH as a protocol-native reserve asset.
 
@@ -269,9 +269,9 @@ These arbitrage paths operate through [Adaptive Peg Defense](https://docs.polari
 
 Two interest-rate mechanisms complement this peg design.
 
-The [Peg Stability Rate](https://docs.polaris.finance/design/interest-rates#peg-stability-rate) is the main interest rate paid by GOLDp minters. It adjusts in response to minting and redemption activity, helping the market expand when GOLDp demand is high and contract when redemption demand is high.
+The [Base Rate](https://docs.polaris.finance/design/interest-rates#base-rate) is the main interest rate paid by GOLDp minters. It adjusts in response to minting and redemption activity, helping the market expand when GOLDp demand is high and contract when redemption demand is high.
 
-The [Protocol Safety Rate](https://docs.polaris.finance/design/interest-rates#protocol-safety-rate) is an always-active market-internal redistribution mechanism. It moves value from higher-leverage positions to lower-leverage or collateral-only positions, rewarding positions that strengthen the market's collateral health.
+The [Health Rate](https://docs.polaris.finance/design/interest-rates#health-rate) is an always-active market-internal redistribution mechanism. It moves value from higher-leverage positions to lower-leverage or collateral-only positions, rewarding positions that strengthen the market's collateral health.
 
 At the same time, **minting mechanics are identical to those of USDp**, including the distribution of protocol-generated value as pETH to minters. For lower-interest assets such as GOLDp, this yield can make the effective cost of minting meaningfully lower than the headline rate.
 
@@ -290,7 +290,7 @@ This distinction is important because Ethereum already offers several ways to ho
 
 The protocol generates yield entirely from onchain activity and is designed to operate **independently of custodians and external yield sources**. Its collateral asset is based on the same design principles, serving as the protocol's shared reserve asset while supporting the liquidity and yield mechanisms that power it.
 
-Unlike liquid staking tokens, pETH does not generate yield from validator rewards but from activity taking place inside Polaris. Swaps through the bonding curve, Reserve Loans, pETH to POLAR conversions and applications built on top of Polaris all generate fees for the same yield engine, supporting the growth of pETH over time.
+Unlike liquid staking tokens, pETH does not generate yield from validator rewards but from activity taking place inside Polaris. Swaps through the bonding curve, Floor Loans, pETH to POLAR conversions and applications built on top of Polaris all generate fees for the same yield engine, supporting the growth of pETH over time.
 
 As these flows are routed through the bonding curve, they strengthen the pETH floor and create demand at the pETH spot price.
 
@@ -372,7 +372,7 @@ Stewards | Help direct ecosystem incentives within bounded parameters
 
 The long-term utility of POLAR is expressed through sPOLAR, the staked version of POLAR.
 
-Users receive sPOLAR by staking POLAR for a chosen period between 2 weeks and 4 years, aligning stewardship with participants who take a longer-term view of the ecosystem. In return, **sPOLAR holders receive a share of the interest paid by USDp and GOLDp minters**, distributed directly in USDp and GOLDp. Future pAsset markets may also choose to share revenue with sPOLAR as part of their alignment with Polaris and their case for receiving pETH flows.
+Users receive sPOLAR by staking POLAR for a chosen period between 1 week and 4 years, in whole weeks, aligning stewardship with participants who take a longer-term view of the ecosystem. In return, **sPOLAR holders receive a share of the interest paid by USDp and GOLDp minters**, distributed directly in USDp and GOLDp. Future pAsset markets may also choose to share revenue with sPOLAR as part of their alignment with Polaris and their case for receiving pETH flows.
 
 sPOLAR yield comes from the interest minters pay to mint positions, so it grows with protocol activity and does not depend on new POLAR being emitted to holders, although the token can still be used to direct protocol's growth.
 
@@ -434,9 +434,9 @@ These arbitrage paths operate through [Adaptive Peg Defense](https://docs.polari
 
 Two interest-rate mechanisms complement this peg design.
 
-The [Peg Stability Rate](https://docs.polaris.finance/design/interest-rates#peg-stability-rate) is the main interest rate paid by USDp minters. It adjusts in response to minting and redemption activity, helping the market expand when USDp demand is high and contract when redemption demand is high.
+The [Base Rate](https://docs.polaris.finance/design/interest-rates#base-rate) is the main interest rate paid by USDp minters. It adjusts in response to minting and redemption activity, helping the market expand when USDp demand is high and contract when redemption demand is high.
 
-The [Protocol Safety Rate](https://docs.polaris.finance/design/interest-rates#protocol-safety-rate) is an always-active market-internal redistribution mechanism. It moves value from higher-leverage positions to lower-leverage or collateral-only positions, rewarding positions that strengthen the market's collateral health.
+The [Health Rate](https://docs.polaris.finance/design/interest-rates#health-rate) is an always-active market-internal redistribution mechanism. It moves value from higher-leverage positions to lower-leverage or collateral-only positions, rewarding positions that strengthen the market's collateral health.
 
 These mechanics mean **the headline interest rate does not necessarily reflect the effective cost of minting**. Minters can receive protocol-generated value as pETH and, in some market conditions, may experience low or even negative effective rates.
 
@@ -488,7 +488,7 @@ vpETH is likely to appeal to users who want direct exposure to the pETH premium 
 
 vpETH may also appeal to users who want to lend it to short sellers. Short sellers may borrow vpETH to hedge Polaris positions or build delta-neutral strategies, creating a potential **lending market for vpETH holders**.
 
-On secondary markets, vpETH can trade above or below the current premium shown by the bonding curve. However, because fpETH has access to the floor value through Reserve Loans, vpETH may often trade at a secondary-market discount to the current premium. Its price reflects expectations around future premium expansion, floor growth, liquidity, and volatility.
+On secondary markets, vpETH can trade above or below the current premium shown by the bonding curve. However, because fpETH has access to the floor value through Floor Loans, vpETH may often trade at a secondary-market discount to the current premium. Its price reflects expectations around future premium expansion, floor growth, liquidity, and volatility.
 
 This creates a linked pricing relationship: one fpETH plus one vpETH can always be merged back into one pETH, while the market price of each component reflects how traders value future floor growth and future premium volatility.
 
@@ -638,7 +638,7 @@ Instead, pAsset flows operate separately. Interest paid by minters of assets suc
 
 Thus, **ecosystem incentives are paid out using assets directly connected to protocol activity**, without relying on inflationary POLAR emissions.
 
-Image: pETH flows and pAsset flows side by side. Bonding curve swap fees, Reserve Loan fees and pETH to POLAR conversions go through the Fee Router, which burns pETH at the floor and buys new pETH with the released ETH, before rewards reach pAsset markets and approved integrations. Interest paid by pAsset minters is distributed by each market's own flow logic to Earn Pools, sPOLAR holders and approved integrations.
+Image: pETH flows and pAsset flows side by side. Bonding curve swap fees, Floor Loan fees and pETH to POLAR conversions go through the Fee Router, which burns pETH at the floor and buys new pETH with the released ETH, before rewards reach pAsset markets and approved integrations. Interest paid by pAsset minters is distributed by each market's own flow logic to Earn Pools, sPOLAR holders and approved integrations.
 
 ## Flow Allocation
 
@@ -652,7 +652,7 @@ Since these minimum allocations distribute protocol value before a recipient has
 
 ## pETH and pAssets Flows
 
-**pETH flows are funded by pETH-denominated protocol activity**, including bonding curve swap fees, Reserve Loan fees and pETH-to-POLAR conversions.
+**pETH flows are funded by pETH-denominated protocol activity**, including bonding curve swap fees, Floor Loan fees and pETH-to-POLAR conversions.
 
 When these fees are processed, they pass through the Fee Router: pETH is first burned at the floor price, releasing ETH from the reserve. That ETH is then used to purchase newly minted pETH, which is finally distributed through pETH flows.
 
@@ -664,7 +664,7 @@ The remaining flow can then be distributed to approved recipients building aroun
 
 Flow type | Funded by | Distribution
 
-pETH flows | Bonding curve swap fees, Reserve Loan fees, pETH→POLAR conversions | Processed by the Fee Router, then distributed as pETH
+pETH flows | Bonding curve swap fees, Floor Loan fees, pETH→POLAR conversions | Processed by the Fee Router, then distributed as pETH
 pAsset flows | Interest paid by pAsset minters | Distributed by each pAsset market's flow logic
 
 ## Stewardship Role
@@ -763,7 +763,7 @@ Unlike many other collateralized minting systems, the headline interest rate is 
 
 - pETH-related flows distributed to minters in proportion to their debt.
 - Fees from peg buys and redemptions, which are socialized across affected positions.
-- Protocol Safety Rate payments to lower-leverage and collateral-only positions, funded by higher-leverage positions.
+- Health Rate payments to lower-leverage and collateral-only positions, funded by higher-leverage positions.
 
 Because interest is paid in the pAsset and pETH yield is earned in pETH, a position's net rate also moves with the ETH price. This means **a position can experience a low, or even negative, effective rate** when the yield it earns exceeds the interest it pays. This is especially relevant for pAssets with lower interest-rate profiles, such as GOLDp and potential future assets like CHFp.
 
@@ -785,11 +785,11 @@ Unlike conventional minting protocols, **Polaris also supports collateral-only p
 
 A user can deposit pETH into a pAsset market without minting that pAsset immediately. This creates a position with collateral but no initial debt.
 
-Collateral-only positions can receive fees from peg buys and redemptions because those actions are distributed across the open positions in the market. They can also receive [Protocol Safety Rate](https://docs.polaris.finance/design/interest-rates#protocol-safety-rate) payments from higher-leverage positions.
+Collateral-only positions can receive fees from peg buys and redemptions because those actions are distributed across the open positions in the market. They can also receive [Health Rate](https://docs.polaris.finance/design/interest-rates#health-rate) payments from higher-leverage positions.
 
 One way to understand this is as a pETH-backed liquidity position for a specific pAsset market. The position does not begin by creating pAsset debt, but it supports the market’s collateral base, participates in peg buys and redemptions across the market, and can earn fees for doing so.
 
-**The Protocol Safety Rate adds another source of yield**. It is expected to be small during normal conditions, but it becomes more significant when the market's collateral health weakens and the protocol rewards lower-leverage or collateral-only positions.
+**The Health Rate adds another source of yield**. It is expected to be small during normal conditions, but it becomes more significant when the market's collateral health weakens and the protocol rewards lower-leverage or collateral-only positions.
 
 ## Buying at Peg
 
@@ -817,42 +817,42 @@ Relevant app/search vocabulary: peg, peg arbitrage, peg arbitrage fees, fees fro
 
 ---
 
-## Reserve Loans
+## Floor Loans
 
 URL: https://docs.polaris.finance/architecture/reserve-loans
 Markdown URL: https://docs.polaris.finance/architecture/reserve-loans.md
 
-Reserve Loans are a core financial primitive introduced by Polaris, enabling users to borrow ETH directly from the bonding curve reserve using fpETH as collateral.
+Floor Loans are a core financial primitive introduced by Polaris, enabling users to borrow ETH directly from the bonding curve reserve using fpETH as collateral.
 
 As described in the fpETH section, fpETH represents the steadily growing floor component of pETH.
 
-Since the fpETH price in ETH is guaranteed to only increase, changes in the ETH price cannot cause the position to become undercollateralized. This removes the need for liquidations and makes it possible for users **to borrow up to 100% of the floor value** represented by their fpETH.
+Since the fpETH price in ETH is guaranteed to only increase, changes in the ETH price cannot cause the position to become undercollateralized. This removes the need for liquidations and makes it possible for users **to borrow 100% of the floor value** represented by their fpETH. To borrow less ETH, they simply lock less fpETH.
 
 With this feature, **borrowers gain ETH liquidity without giving up fpETH yield**, making highly capital-efficient looping strategies possible.
 
-Image: Reserve Loans
+Image: Floor Loans
 
 ## Loan Mechanics
 
-Instead of a conventional borrowing interest rate, Reserve Loans charge a **time-weighted, utilization-based fee on the growth of the fpETH floor**, plus a 0.05% opening fee on the ETH borrowed.
+Instead of a conventional borrowing interest rate, Floor Loans charge a **time-weighted, utilization-based fee on the growth of the fpETH floor**, plus a 0.05% opening fee on the ETH borrowed.
 
 The fee on floor growth is utilization-based. As more ETH is borrowed from the bonding curve reserve, utilization rises and a larger portion of the floor appreciation is allocated to the fee. When utilization is lower, the portion allocated to the fee is lower as well. The fee is also time-weighted, which means it accrues gradually while the loan stays open and only on the floor growth produced during that time. Since it is taken from that growth, **the fee never eats into the position**.
 
-**Fees are collected from every existing borrower any time someone touches a Reserve Loan**, whether a loan is opened, increased, repaid or closed. Each borrower therefore pays their accrued fee as the system is used, and not only when they interact with their own loan. This creates a steady stream of protocol revenue, provided that people interact with loans and the floor price keeps appreciating.
+**Fees are collected from every existing borrower any time someone touches a Floor Loan**, whether a loan is opened, increased, repaid or closed. Each borrower therefore pays their accrued fee as the system is used, and not only when they interact with their own loan. This creates a steady stream of protocol revenue, provided that people interact with loans and the floor price keeps appreciating.
 
 The opening fee is 0.05% of the ETH borrowed and is deducted from the ETH the borrower receives. It applies to every borrow, including additional borrows on an existing loan.
 
 For example, suppose a user deposits 1 fpETH when the floor value is 1 ETH and borrows 1 ETH against it. The opening fee is 0.0005 ETH, so the user receives 0.9995 ETH. Later, the fpETH floor has risen to 1.2 ETH, creating 0.2 ETH of additional floor value. If the portion allocated to the fee at the current utilization is 1%, the user can access 0.198 ETH of that gain, while 0.002 ETH is paid as the fee.
 
-Feature | Traditional lending | Reserve Loans
+Feature | Traditional lending | Floor Loans
 
 Liquidation Risk | Yes | None
-Borrow Limit | Below 100% LTV | Up to 100% of fpETH
+Borrow Limit | Below 100% LTV | 100% of the fpETH floor value
 Borrowing Cost | Interest rate | 0.05% opening fee + utilization-based fee on floor growth
 
-As described in the dedicated [Fee Router](https://docs.polaris.finance/design/fee-router) section, the fees generated by Reserve Loans are recycled back into the Polaris ecosystem, becoming part of the value distributed throughout the protocol.
+As described in the dedicated [Fee Router](https://docs.polaris.finance/design/fee-router) section, the fees generated by Floor Loans are recycled back into the Polaris ecosystem, becoming part of the value distributed throughout the protocol.
 
-Relevant app/search vocabulary: Reserve Loan, Reserve Loans, borrow ETH, non-liquidatable, fpETH collateral.
+Relevant app/search vocabulary: Floor Loan, Floor Loans, Reserve Loan, Reserve Loans, borrow ETH, non-liquidatable, fpETH collateral.
 
 ---
 
@@ -1052,7 +1052,7 @@ Markdown URL: https://docs.polaris.finance/design/defensive-mode.md
 
 Defensive Mode is the first protective state a pAsset market enters. It begins when the market's **reserve-to-debt ratio falls below 110%**, while backing is still above 100%. Its purpose is to stop the market weakening further while there is still room to recover.
 
-In practice this state should be rare. The [Protocol Safety Rate](https://docs.polaris.finance/design/interest-rates#protocol-safety-rate) makes leverage progressively more expensive as collateral health weakens, discouraging positions from pushing a market toward Defensive Mode in the first place.
+In practice this state should be rare. The [Health Rate](https://docs.polaris.finance/design/interest-rates#health-rate) makes leverage progressively more expensive as collateral health weakens, discouraging positions from pushing a market toward Defensive Mode in the first place.
 
 Each [pAsset market](https://docs.polaris.finance/architecture/passet-markets) has its own thresholds. Stress affecting one market does not automatically place every other market into the same state, so [USDp](https://docs.polaris.finance/core-assets/usdp), [GOLDp](https://docs.polaris.finance/core-assets/goldp) and future pAssets remain independent from one another.
 
@@ -1115,36 +1115,36 @@ Markdown URL: https://docs.polaris.finance/design/interest-rates.md
 
 Polaris uses two complementary interest rates to manage pAsset markets. Together, they help maintain the target price of each pAsset while protecting the overall health of the collateral system.
 
-The **Peg Stability Rate** is the primary interest rate paid by pAsset minters. It adjusts automatically according to minting and redemption activity and helps keep pAssets around their target price.
+The **Base Rate** is the primary interest rate paid by pAsset minters. It adjusts automatically according to minting and redemption activity and helps keep pAssets around their target price.
 
-The **Protocol Safety Rate** is an always-active market-internal redistribution mechanism. It moves value from higher-leverage positions to lower-leverage or collateral-only positions, helping reward positions that improve market collateral health.
+The **Health Rate** is an always-active market-internal redistribution mechanism. It moves value from higher-leverage positions to lower-leverage or collateral-only positions, helping reward positions that improve market collateral health.
 
 Although the protocol's interest rates determine the nominal cost of minting, **the effective cost can be lower**. Indeed, minters can receive protocol-generated value as pETH, while lower-leverage and collateral-only positions can benefit from more favorable rate flows.
 
-Property | Peg Stability Rate | Protocol Safety Rate
+Property | Base Rate | Health Rate
 
 Purpose | Primary minting cost for pAsset minters | Protects aggregate collateral health
 When active | Always | Always
 Responds to | Minting vs redemption activity | Position leverage and aggregate collateral health
 Interest | Paid to Earn Pool and sPOLAR | Directly redistributed towards lower-leverage positions
 
-## Peg Stability Rate
+## Base Rate
 
-The Peg Stability Rate is the standard minting cost paid by users who mint pAssets.
+The Base Rate is the standard minting cost paid by users who mint pAssets.
 
-**Interest paid through the Peg Stability Rate becomes the primary yield source for that pAsset market** and is distributed to the pAsset's Earn Pool and sPOLAR stakers, according to the market's configured flow allocation assigned.
+**Interest paid through the Base Rate becomes the primary yield source for that pAsset market** and is distributed to the pAsset's Earn Pool and sPOLAR stakers, according to the market's configured flow allocation assigned.
 
 Interest is denominated in the pAsset and accrues to the position's debt. Accrued interest is periodically minted as new pAssets and distributed to the Earn Pool and sPOLAR.
 
-A unique feature of the Peg Stability Rate is that it is not altered by governance or manual intervention. Instead, **it adjusts automatically based on minting and redemption activity** taking place inside the protocol.
+A unique feature of the Base Rate is that it is not altered by governance or manual intervention. Instead, **it adjusts automatically based on minting and redemption activity** taking place inside the protocol.
 
-When a pAsset trades above its target price, arbitrage opportunities naturally encourage new minting. As net minting activity increases, the Peg Stability Rate responds to this signal by gradually decreasing toward its minimum base fee of 0.05%, reducing the cost of creating new pAssets and allowing supply to expand more quickly.
+When a pAsset trades above its target price, arbitrage opportunities naturally encourage new minting. As net minting activity increases, the Base Rate responds to this signal by gradually decreasing toward its minimum base fee of 0.05%, reducing the cost of creating new pAssets and allowing supply to expand more quickly.
 
-Vice versa, when a pAsset trades below its target price, arbitrage opportunities encourage redemptions instead. As net redemption activity increases, the Peg Stability Rate gradually increases, making new minting less attractive while helping the circulating supply contract.
+Vice versa, when a pAsset trades below its target price, arbitrage opportunities encourage redemptions instead. As net redemption activity increases, the Base Rate gradually increases, making new minting less attractive while helping the circulating supply contract.
 
-## Protocol Safety Rate
+## Health Rate
 
-The Protocol Safety Rate is **designed to protect the overall collateral health of a pAsset market**.
+The Health Rate is **designed to protect the overall collateral health of a pAsset market**.
 
 It is active at all times and affects positions according to their relative leverage. Positions with higher leverage pay the rate, while lower-leverage or collateral-only positions receive it.
 
@@ -1154,9 +1154,9 @@ The goal is to improve the market's overall collateral health by increasing the 
 
 This encourages the market to return toward stronger overall collateralization without requiring liquidations or governance intervention.
 
-**Unlike the Peg Stability Rate, the Protocol Safety Rate is not protocol revenue**. Every payment made through the mechanism remains inside the same pAsset market and is redistributed directly between participants.
+**Unlike the Base Rate, the Health Rate is not protocol revenue**. Every payment made through the mechanism remains inside the same pAsset market and is redistributed directly between participants.
 
-Relevant app/search vocabulary: interest rate, Peg Stability Rate, Protocol Safety Rate, minter interest, borrow rate.
+Relevant app/search vocabulary: interest rate, Base Rate, Health Rate, Peg Stability Rate, Protocol Safety Rate, minter interest, borrow rate.
 
 ---
 
@@ -1254,7 +1254,7 @@ Recovery Mode is the protective state a [pAsset market](https://docs.polaris.fin
 
 Polaris is built to **operate indefinitely**, and a system with that goal has to define how it behaves in every state it could reach. That includes the rare one where a market's collateral no longer fully covers its debt. Rather than halt or unwind, Polaris specifies how the market keeps running and works its way back.
 
-Reaching Recovery Mode is exceedingly unlikely. A market only falls below full backing after its earlier defences have been overrun: the restrictions of Defensive Mode, the pressure of the Protocol Safety Rate, and the liquidations and redemptions that restore backing along the way. Crossing the line would take a collateral crash fast and deep enough to outpace all of them at once. Designing for that case is what lets the protocol endure it.
+Reaching Recovery Mode is exceedingly unlikely. A market only falls below full backing after its earlier defences have been overrun: the restrictions of Defensive Mode, the pressure of the Health Rate, and the liquidations and redemptions that restore backing along the way. Crossing the line would take a collateral crash fast and deep enough to outpace all of them at once. Designing for that case is what lets the protocol endure it.
 
 Recovery Mode keeps every restriction of Defensive Mode and adds two protections:
 - Redemptions are paid in proportion to the collateral that remains.
@@ -1284,7 +1284,7 @@ Backing recovers as:
 - **Minters strengthen their positions.** Adding collateral and repaying debt stay open throughout, and both lift the market's backing.
 - **Yield streams keep flowing.** The protocol's yield sources continue through Recovery Mode, strengthening collateral ratios over time.
 - **Weak positions are liquidated.** Every liquidation that proceeds can only hold or improve the ratio, so clearing the weakest positions moves backing in the right direction.
-- **The Protocol Safety Rate keeps pushing.** It rewards conservative and collateral-only positions and taxes high leverage, steadily nudging the market back toward stronger backing.
+- **The Health Rate keeps pushing.** It rewards conservative and collateral-only positions and taxes high leverage, steadily nudging the market back toward stronger backing.
 
 ---
 
@@ -1299,7 +1299,7 @@ Markdown URL: https://docs.polaris.finance/design/revenue-model.md
 
 Polaris operates under the design philosophy that **all value generated throughout the protocol should not leak externally**. Protocol revenue is generated entirely from ecosystem activity, and in turn directed toward ecosystem growth.
 
-Creating pAssets, trading through the bonding curve, borrowing through reserve loans and building on Polaris all contribute to the same revenue engine.
+Creating pAssets, trading through the bonding curve, borrowing through floor loans and building on Polaris all contribute to the same revenue engine.
 
 The fees generated by these activities are routed back through the bonding curve to strengthen pETH, increase its floor and distribute yield. Fees generated by the protocol first strengthen the collateral layer before being distributed across the ecosystem.
 
@@ -1480,18 +1480,18 @@ Relevant app/search vocabulary: app, official app, testnet app, testnet.polaris.
 
 ---
 
-## Reserve Loan
+## Floor Loan
 
 URL: https://docs.polaris.finance/testnet/reserve-loan
 Markdown URL: https://docs.polaris.finance/testnet/reserve-loan.md
 
-Reserve Loans enable you to borrow ETH by using fpETH as collateral. From here you can open and manage non-liquidatable Reserve Loans, view your active positions, and repay or close existing loans.
+Floor Loans enable you to borrow ETH by using fpETH as collateral. From here you can open and manage non-liquidatable Floor Loans, view your active positions, and repay or close existing loans.
 
-It is designed to provide a clear overview of your Reserve Loans and the actions available to manage them.
+It is designed to provide a clear overview of your Floor Loans and the actions available to manage them.
 
-Image: A walkthrough of opening a Reserve Loan, borrowing ETH against fpETH collateral.
+Image: A walkthrough of opening a Floor Loan, borrowing ETH against fpETH collateral.
 
-Relevant app/search vocabulary: app, official app, testnet app, testnet.polaris.finance, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Reserve Loan, Reserve Loans, borrow ETH, non-liquidatable, fpETH collateral.
+Relevant app/search vocabulary: app, official app, testnet app, testnet.polaris.finance, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Floor Loan, Floor Loans, Reserve Loan, Reserve Loans, borrow ETH, non-liquidatable, fpETH collateral.
 
 ---
 
@@ -1574,7 +1574,7 @@ The following risks are not exhaustive. Users should understand the protocol, th
 
 ## Smart Contract Risk
 
-Polaris depends on smart contracts to manage pETH, pAsset markets, Earn Pools, liquidations, conversions, Reserve Loans and other protocol mechanisms.
+Polaris depends on smart contracts to manage pETH, pAsset markets, Earn Pools, liquidations, conversions, Floor Loans and other protocol mechanisms.
 
 **Bugs, implementation errors or unexpected interactions between contracts could lead to loss of funds or incorrect protocol behavior**. Immutability also means that core contracts are not designed to be upgraded or paused after deployment which reduces admin-key risk but increases the importance of audits, testing and careful use.
 

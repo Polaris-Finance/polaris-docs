@@ -14,7 +14,7 @@ Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 Defensive Mode is the first protective state a pAsset market enters. It begins when the market's **reserve-to-debt ratio falls below 110%**, while backing is still above 100%. Its purpose is to stop the market weakening further while there is still room to recover.
 
-In practice this state should be rare. The [Protocol Safety Rate](https://docs.polaris.finance/design/interest-rates#protocol-safety-rate) makes leverage progressively more expensive as collateral health weakens, discouraging positions from pushing a market toward Defensive Mode in the first place.
+In practice this state should be rare. The [Health Rate](https://docs.polaris.finance/design/interest-rates#health-rate) makes leverage progressively more expensive as collateral health weakens, discouraging positions from pushing a market toward Defensive Mode in the first place.
 
 Each [pAsset market](https://docs.polaris.finance/architecture/passet-markets) has its own thresholds. Stress affecting one market does not automatically place every other market into the same state, so [USDp](https://docs.polaris.finance/core-assets/usdp), [GOLDp](https://docs.polaris.finance/core-assets/goldp) and future pAssets remain independent from one another.
 

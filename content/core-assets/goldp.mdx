@@ -46,8 +46,8 @@ These arbitrage paths operate through [Adaptive Peg Defense](/design/adaptive-pe
 
 Two interest-rate mechanisms complement this peg design.
 
-The [Peg Stability Rate](/design/interest-rates#peg-stability-rate) is the main interest rate paid by GOLDp minters. It adjusts in response to minting and redemption activity, helping the market expand when GOLDp demand is high and contract when redemption demand is high.
+The [Base Rate](/design/interest-rates#base-rate) is the main interest rate paid by GOLDp minters. It adjusts in response to minting and redemption activity, helping the market expand when GOLDp demand is high and contract when redemption demand is high.
 
-The [Protocol Safety Rate](/design/interest-rates#protocol-safety-rate) is an always-active market-internal redistribution mechanism. It moves value from higher-leverage positions to lower-leverage or collateral-only positions, rewarding positions that strengthen the market's collateral health.
+The [Health Rate](/design/interest-rates#health-rate) is an always-active market-internal redistribution mechanism. It moves value from higher-leverage positions to lower-leverage or collateral-only positions, rewarding positions that strengthen the market's collateral health.
 
 At the same time, **minting mechanics are identical to those of USDp**, including the distribution of protocol-generated value as pETH to minters. For lower-interest assets such as GOLDp, this yield can make the effective cost of minting meaningfully lower than the headline rate.

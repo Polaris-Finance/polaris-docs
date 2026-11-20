@@ -20,7 +20,7 @@ Instead, pAsset flows operate separately. Interest paid by minters of assets suc
 
 Thus, **ecosystem incentives are paid out using assets directly connected to protocol activity**, without relying on inflationary POLAR emissions.
 
-![pETH flows and pAsset flows side by side. Bonding curve swap fees, Reserve Loan fees and pETH to POLAR conversions go through the Fee Router, which burns pETH at the floor and buys new pETH with the released ETH, before rewards reach pAsset markets and approved integrations. Interest paid by pAsset minters is distributed by each market's own flow logic to Earn Pools, sPOLAR holders and approved integrations.](https://docs.polaris.finance/videos/flows-poster.jpg)
+![pETH flows and pAsset flows side by side. Bonding curve swap fees, Floor Loan fees and pETH to POLAR conversions go through the Fee Router, which burns pETH at the floor and buys new pETH with the released ETH, before rewards reach pAsset markets and approved integrations. Interest paid by pAsset minters is distributed by each market's own flow logic to Earn Pools, sPOLAR holders and approved integrations.](https://docs.polaris.finance/videos/flows-poster.jpg)
 
 ## Flow Allocation
 
@@ -34,7 +34,7 @@ Since these minimum allocations distribute protocol value before a recipient has
 
 ## pETH and pAssets Flows
 
-**pETH flows are funded by pETH-denominated protocol activity**, including bonding curve swap fees, Reserve Loan fees and pETH-to-POLAR conversions.
+**pETH flows are funded by pETH-denominated protocol activity**, including bonding curve swap fees, Floor Loan fees and pETH-to-POLAR conversions.
 
 When these fees are processed, they pass through the Fee Router: pETH is first burned at the floor price, releasing ETH from the reserve. That ETH is then used to purchase newly minted pETH, which is finally distributed through pETH flows.
 
@@ -46,7 +46,7 @@ The remaining flow can then be distributed to approved recipients building aroun
 
 Flow type | Funded by | Distribution
 
-pETH flows | Bonding curve swap fees, Reserve Loan fees, pETH→POLAR conversions | Processed by the Fee Router, then distributed as pETH
+pETH flows | Bonding curve swap fees, Floor Loan fees, pETH→POLAR conversions | Processed by the Fee Router, then distributed as pETH
 pAsset flows | Interest paid by pAsset minters | Distributed by each pAsset market's flow logic
 
 ## Stewardship Role

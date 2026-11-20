@@ -30,7 +30,7 @@ Unlike many other collateralized minting systems, the headline interest rate is 
 
 - pETH-related flows distributed to minters in proportion to their debt.
 - Fees from peg buys and redemptions, which are socialized across affected positions.
-- Protocol Safety Rate payments to lower-leverage and collateral-only positions, funded by higher-leverage positions.
+- Health Rate payments to lower-leverage and collateral-only positions, funded by higher-leverage positions.
 
 Because interest is paid in the pAsset and pETH yield is earned in pETH, a position's net rate also moves with the ETH price. This means **a position can experience a low, or even negative, effective rate** when the yield it earns exceeds the interest it pays. This is especially relevant for pAssets with lower interest-rate profiles, such as GOLDp and potential future assets like CHFp.
 
@@ -52,11 +52,11 @@ Unlike conventional minting protocols, **Polaris also supports collateral-only p
 
 A user can deposit pETH into a pAsset market without minting that pAsset immediately. This creates a position with collateral but no initial debt.
 
-Collateral-only positions can receive fees from peg buys and redemptions because those actions are distributed across the open positions in the market. They can also receive [Protocol Safety Rate](/design/interest-rates#protocol-safety-rate) payments from higher-leverage positions.
+Collateral-only positions can receive fees from peg buys and redemptions because those actions are distributed across the open positions in the market. They can also receive [Health Rate](/design/interest-rates#health-rate) payments from higher-leverage positions.
 
 One way to understand this is as a pETH-backed liquidity position for a specific pAsset market. The position does not begin by creating pAsset debt, but it supports the market’s collateral base, participates in peg buys and redemptions across the market, and can earn fees for doing so.
 
-**The Protocol Safety Rate adds another source of yield**. It is expected to be small during normal conditions, but it becomes more significant when the market's collateral health weakens and the protocol rewards lower-leverage or collateral-only positions.
+**The Health Rate adds another source of yield**. It is expected to be small during normal conditions, but it becomes more significant when the market's collateral health weakens and the protocol rewards lower-leverage or collateral-only positions.
 
 ## Buying at Peg
 

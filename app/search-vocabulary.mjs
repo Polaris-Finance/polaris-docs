@@ -95,7 +95,15 @@ export const searchVocabulary = [
   },
   {
     match: /^\/architecture\/reserve-loans$|^\/testnet\/reserve-loan$/,
-    terms: ['Reserve Loan', 'Reserve Loans', 'borrow ETH', 'non-liquidatable', 'fpETH collateral']
+    terms: [
+      'Floor Loan',
+      'Floor Loans',
+      'Reserve Loan',
+      'Reserve Loans',
+      'borrow ETH',
+      'non-liquidatable',
+      'fpETH collateral'
+    ]
   },
   {
     match: /^\/design\/liquidations$/,
@@ -135,12 +143,14 @@ export const searchVocabulary = [
     match: /^\/design\/interest-rates$/,
     terms: [
       'interest rate',
+      'Base Rate',
+      'Health Rate',
       'Peg Stability Rate',
       'Protocol Safety Rate',
       'minter interest',
       'borrow rate'
     ],
-    priorityTerms: ['Peg Stability Rate', 'Protocol Safety Rate']
+    priorityTerms: ['Base Rate', 'Health Rate']
   },
   {
     match: /^\/testnet\/swap$/,

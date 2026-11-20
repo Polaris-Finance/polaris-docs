@@ -49,7 +49,7 @@
 - [Flows](https://docs.polaris.finance/architecture/flows.md): Flows distribute protocol-generated value to applications, markets and integrations building on top of Polaris. Canonical: https://docs.polaris.finance/architecture/flows
 - [pAsset Markets](https://docs.polaris.finance/architecture/passet-markets.md): pAssets are currencies and synthetic assets issued against pETH using the shared collateral infrastructure provided by Polaris. Canonical: https://docs.polaris.finance/architecture/passet-markets
 - [pAsset Minting](https://docs.polaris.finance/architecture/passet-minting.md): Learn how pAssets are minted against pETH collateral. Canonical: https://docs.polaris.finance/architecture/passet-minting
-- [Reserve Loans](https://docs.polaris.finance/architecture/reserve-loans.md): Reserve Loans are a core financial primitive introduced by Polaris, allowing users to borrow ETH directly from the bonding curve reserve. Canonical: https://docs.polaris.finance/architecture/reserve-loans
+- [Floor Loans](https://docs.polaris.finance/architecture/reserve-loans.md): Floor Loans are a core financial primitive introduced by Polaris, allowing users to borrow ETH directly from the bonding curve reserve. Canonical: https://docs.polaris.finance/architecture/reserve-loans
 - [Stewardship](https://docs.polaris.finance/architecture/stewardship.md): Polaris uses bounded stewardship instead of open-ended governance. Canonical: https://docs.polaris.finance/architecture/stewardship
 - [Tokenomics](https://docs.polaris.finance/architecture/tokenomics.md): The final POLAR allocation, vesting schedule and launch parameters will be published closer to launch once finalized. Canonical: https://docs.polaris.finance/architecture/tokenomics
 
@@ -75,7 +75,7 @@
 - [Guide](https://docs.polaris.finance/testnet/guide.md): Detailed explanations of every core interaction available during the testnet. Canonical: https://docs.polaris.finance/testnet/guide
 - [Liquidity](https://docs.polaris.finance/testnet/liquidity.md): Provide liquidity to Polaris pools and earn a share of the swap fees they generate. Canonical: https://docs.polaris.finance/testnet/liquidity
 - [Mint](https://docs.polaris.finance/testnet/mint.md): The Mint section is where collateralized positions are created and managed. Canonical: https://docs.polaris.finance/testnet/mint
-- [Reserve Loan](https://docs.polaris.finance/testnet/reserve-loan.md): Borrow ETH by using fpETH as collateral through non-liquidatable Reserve Loans. Canonical: https://docs.polaris.finance/testnet/reserve-loan
+- [Floor Loan](https://docs.polaris.finance/testnet/reserve-loan.md): Borrow ETH by using fpETH as collateral through non-liquidatable Floor Loans. Canonical: https://docs.polaris.finance/testnet/reserve-loan
 - [Split](https://docs.polaris.finance/testnet/split.md): Split allows you to separate pETH into fpETH and vpETH, or merge those two assets back into pETH whenever you choose. Canonical: https://docs.polaris.finance/testnet/split
 - [sPOLAR](https://docs.polaris.finance/testnet/sPOLAR.md): Stake POLAR to receive sPOLAR and participate in protocol stewardship. Canonical: https://docs.polaris.finance/testnet/sPOLAR
 - [Swap](https://docs.polaris.finance/testnet/swap.md): Swap lets you exchange supported assets across Polaris, which currently are the Core Assets. Canonical: https://docs.polaris.finance/testnet/swap

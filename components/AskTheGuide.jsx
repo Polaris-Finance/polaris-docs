@@ -29,7 +29,7 @@ const VIDEOS = {
     '/videos/earn-pools.mp4',
     'How Earn Pools combine minter interest and liquidation gains'
   ],
-  'reserve-loans': ['/videos/reserve-loans.mp4', 'Reserve Loans'],
+  'reserve-loans': ['/videos/reserve-loans.mp4', 'Floor Loans'],
   'adaptive-peg-defence': [
     '/videos/adaptive-peg-defence.mp4',
     'How Adaptive Peg Defence adjusts minting and redemption incentives to move pAssets back toward their target price'
@@ -45,7 +45,7 @@ const VIDEOS = {
   't-split': ['/videos/testnet/split.mp4', 'A walkthrough of splitting pETH into fpETH and vpETH.'],
   't-reserve-loan': [
     '/videos/testnet/reserve-loan.mp4',
-    'A walkthrough of opening a Reserve Loan, borrowing ETH against fpETH collateral.'
+    'A walkthrough of opening a Floor Loan, borrowing ETH against fpETH collateral.'
   ],
   't-spolar': [
     '/videos/testnet/spolar.mp4',
@@ -79,7 +79,7 @@ const VIDEOS = {
 
 const SUGGESTIONS = [
   'What is the difference between pETH, fpETH and vpETH?',
-  'Can a Reserve Loan be liquidated?',
+  'Can a Floor Loan be liquidated?',
   'Where does Earn Pool yield come from?'
 ]
 
@@ -461,7 +461,7 @@ export function AskTheGuide() {
               rows={1}
               maxLength={1000}
               value={draft}
-              placeholder="Ask about pETH, USDp, Reserve Loans…"
+              placeholder="Ask about pETH, USDp, Floor Loans…"
               onChange={(event) => setDraft(event.target.value)}
               onKeyDown={onKeyDown}
             />

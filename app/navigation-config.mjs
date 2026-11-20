@@ -102,7 +102,7 @@ export const NAVIGATION_GROUPS = [
           page(
             'reserve-loans',
             'reserve-loans',
-            'Reserve Loans',
+            'Floor Loans',
             '/architecture/reserve-loans',
             'HandCoins'
           ),
@@ -198,7 +198,7 @@ export const NAVIGATION_GROUPS = [
           page(
             'reserve-loan',
             'reserve-loan',
-            'Reserve Loan',
+            'Floor Loan',
             '/testnet/reserve-loan',
             'HandCoins',
             'app'
