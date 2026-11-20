@@ -98,6 +98,7 @@ export const searchVocabulary = [
     terms: [
       'Floor Loan',
       'Floor Loans',
+      'Growth Fee',
       'Reserve Loan',
       'Reserve Loans',
       'borrow ETH',
