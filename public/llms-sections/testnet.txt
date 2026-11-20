@@ -151,7 +151,7 @@ It is designed to provide a clear overview of your Floor Loans and the actions a
 
 Image: A walkthrough of opening a Floor Loan, borrowing ETH against fpETH collateral.
 
-Relevant app/search vocabulary: app, official app, testnet app, testnet.polaris.finance, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Floor Loan, Floor Loans, Reserve Loan, Reserve Loans, borrow ETH, non-liquidatable, fpETH collateral.
+Relevant app/search vocabulary: app, official app, testnet app, testnet.polaris.finance, connect wallet, testnet, Sepolia, Sepolia ETH, chain ID 11155111, faucet, Floor Loan, Floor Loans, Growth Fee, Reserve Loan, Reserve Loans, borrow ETH, non-liquidatable, fpETH collateral.
 
 ---
 
