@@ -18,7 +18,7 @@ Both paths create pAssets backed by pETH, but they follow different accounting m
 
 Minting creates debt that belongs to a specific position. Buying at peg does not create a position; instead, the resulting collateral, debt, and fees are distributed across all open positions in that pAsset market through the [Adaptive Peg Defense](/design/adaptive-peg-defence).
 
-Polaris also introduces a third path. Redemptions and Health Rate payments can take a position's debt below zero, and the owner can then mint those gains as the pAsset. This mostly happens with collateral-only positions, since they start with no debt and any gain takes them below zero.
+A third path opens when redemptions and Health Rate payments take a position's debt below zero, since the owner can then mint those gains as the pAsset. This mostly happens with collateral-only positions, as they start with no debt and any gain takes them below zero.
 
 ## Why Mint pAssets
 
