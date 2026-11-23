@@ -18,19 +18,19 @@ Although the protocol's interest rates determine the nominal cost of minting, **
 | Purpose | Primary minting cost for pAsset minters | Protects aggregate collateral health |
 | When active | Always | Always |
 | Responds to | Minting vs redemption activity | Position leverage and aggregate collateral health |
-| Interest | Paid to Earn Pool and sPOLAR | Directly redistributed towards lower-leverage positions |
+| Interest | Paid to Earn Pool (at least 25%) and sPOLAR (at least 20%) | Directly redistributed towards lower-leverage positions |
 
 ## Base Rate
 
 The Base Rate is the standard minting cost paid by users who mint pAssets.
 
-**Interest paid through the Base Rate becomes the primary yield source for that pAsset market** and is distributed to the pAsset's Earn Pool and sPOLAR stakers, according to the market's configured flow allocation assigned.
+**Interest paid through the Base Rate becomes the primary yield source for that pAsset market** and is distributed to the pAsset's Earn Pool and sPOLAR stakers, according to weights set by stewardship, with at least 25% going to the Earn Pool and at least 20% to sPOLAR.
 
 Interest is denominated in the pAsset and accrues to the position's debt. Accrued interest is periodically minted as new pAssets and distributed to the Earn Pool and sPOLAR.
 
-A unique feature of the Base Rate is that it is not altered by governance or manual intervention. Instead, **it adjusts automatically based on minting and redemption activity** taking place inside the protocol.
+A unique feature of the Base Rate is that **it adjusts automatically based on minting and redemption activity** taking place inside the protocol. Stewardship can only tune how strongly it reacts, within a fixed range.
 
-When a pAsset trades above its target price, arbitrage opportunities naturally encourage new minting. As net minting activity increases, the Base Rate responds to this signal by gradually decreasing toward its minimum base fee of 0.05%, reducing the cost of creating new pAssets and allowing supply to expand more quickly.
+When a pAsset trades above its target price, arbitrage opportunities naturally encourage new minting. As net minting activity increases, the Base Rate responds to this signal by gradually decreasing toward its minimum, reducing the cost of creating new pAssets and allowing supply to expand more quickly.
 
 Vice versa, when a pAsset trades below its target price, arbitrage opportunities encourage redemptions instead. As net redemption activity increases, the Base Rate gradually increases, making new minting less attractive while helping the circulating supply contract.
 

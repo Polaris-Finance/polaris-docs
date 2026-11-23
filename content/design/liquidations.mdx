@@ -15,15 +15,19 @@ Liquidations protect the solvency of each pAsset market by closing unsafe positi
 
 When a liquidation occurs, the position's debt is cancelled using pAssets from the Earn Pool, while the corresponding pETH collateral is transferred to the pool. Earn Pool depositors therefore receive liquidation gains in exchange for acting as the first backstop for the market.
 
+The Earn Pool receives the position's collateral up to the value of the debt plus a 5% liquidation penalty. The borrower only loses that collateral and keeps the pAssets they minted. Any collateral above it goes back to the borrower, except in Defensive and Recovery Mode, where it stays in the market. Anyone can trigger a liquidation in exchange for a small compensation in pETH.
+
 This liquidation mechanism is one source of protocol-native yield distributed to Earn Pool depositors and is explained in greater detail in the dedicated [Earn Pools](/architecture/earn-pools) section.
 
 ## Fallback Redistribution
 
-If the Earn Pool does not hold enough deposits to absorb the entire liquidation, the remaining debt and collateral are redistributed across the other open positions in the same pAsset market. As such, liquidations are always processed entirely within the protocol without relying on external auctions or discretionary intervention.
+If the Earn Pool does not hold enough deposits to absorb the entire liquidation, the remaining debt and collateral are redistributed across the other open positions in the same pAsset market, in proportion to their collateral, up to the value of the debt plus a 15% penalty. As such, liquidations are always processed entirely within the protocol without relying on external auctions or discretionary intervention.
 
-Redistribution assigns each open position a proportional share of both the remaining debt and collateral. While intended only as a fallback mechanism, it ensures that **liquidations can always occur even when the Earn Pool is temporarily unable to absorb the full position**.
+Redistribution assigns each open position a proportional share of both the remaining debt and collateral. While intended only as a fallback mechanism, it ensures that **liquidations can continue even when the Earn Pool is temporarily unable to absorb the full position**.
+
+A redistribution is allowed only if the market's collateral ratio at current prices stays at 140% or above afterwards, in every mode. This stops repeated redistributions from pulling more positions below the minimum ratio. If the ratio would fall below 140%, the liquidation doesn't go ahead and the position stays open until conditions change.
 
 | Step | Applies | Outcome |
 | --- | --- | --- |
 | Earn Pool | Always first | Debt cancelled by the pool, and depositors receive liquidation gains |
-| Redistribution | If the pool cannot absorb the full position | Remaining debt and collateral redistributed to open positions |
+| Redistribution | If the pool cannot absorb the full position and the market stays at 140% or above | Remaining debt and collateral redistributed to open positions |

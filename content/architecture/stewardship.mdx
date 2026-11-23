@@ -25,10 +25,12 @@ Stewardship is responsible for certain parameters within predefined protocol bou
 
 This includes:
 
-- Interest rate splits
+- Interest rate splits, within the minimum shares for Earn Pools and sPOLAR
+- How strongly the Base Rate reacts, and the shape of the Health Rate curve
+- Fee parameters for buying and redeeming at peg, bonding curve swaps and the Growth Fee curve
 - POLAR conversion parameters
+- The compensation paid to whoever triggers a liquidation
 - Replacing faulty oracle feeds
-- Whitelisting or removing flow recipients
-- Adjusting flow weightings
+- Whitelisting or removing flow recipients and adjusting their weightings
 
-These decisions influence how value moves throughout the Polaris ecosystem **without giving stewards the ability to modify the core protocol architecture**.
+Each of these can only move within limits fixed in the contracts. These decisions influence how value moves throughout the Polaris ecosystem **without giving stewards the ability to modify the core protocol architecture**.

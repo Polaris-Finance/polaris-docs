@@ -21,23 +21,19 @@ Thus, **ecosystem incentives are paid out using assets directly connected to pro
 
 ## Flow Allocation
 
-Flows are allocated to whitelisted contracts **according to how much pETH or a specific pAsset they hold**.
+pETH flows are shared among whitelisted recipients according to the value each one reports holding, such as the total collateral of a pAsset market, multiplied by a weighting set by stewardship. Stewardship can also set a minimum value for a recipient, so a new market or integration receives a meaningful share before it has grown. The main recipients are pAsset markets, which share their pETH among their positions in proportion to debt.
 
-In general, assets receive flows in proportion to their share of the corresponding asset, with stewardship able to apply additional weighting where appropriate.
+Instead, stewardship sets the share of each pAsset flow recipient directly, within the minimums enforced onchain.
 
-**Flows can also include a temporary minimum allocation** for selected recipients. This allows strategically important integrations or new markets to begin receiving meaningful flows before they have accumulated enough assets for the standard balance-based allocation to become effective.
-
-Since these minimum allocations distribute protocol value before a recipient has earned it through normal usage, they are managed through stewardship and should only be used where **the recipient is expected to create value for Polaris**.
+Since minimum values distribute protocol value before a recipient has earned it through normal usage, they are managed through stewardship and should only be used where **the recipient is expected to create value for Polaris**.
 
 ## pETH and pAssets Flows
 
-**pETH flows are funded by pETH-denominated protocol activity**, including bonding curve swap fees, Floor Loan fees and pETH-to-POLAR conversions.
-
-When these fees are processed, they pass through the Fee Router: pETH is first burned at the floor price, releasing ETH from the reserve. That ETH is then used to purchase newly minted pETH, which is finally distributed through pETH flows.
+**pETH flows are funded by bonding curve swap fees, pETH-to-POLAR conversions and Floor Loan fees.** Swap fees and converted pETH are burned at the floor price, which raises the floor and releases ETH from the reserve. That ETH, together with Floor Loan fees, which are already paid in ETH, buys new pETH on the bonding curve, which is then distributed through pETH flows.
 
 **Each pAsset market also generates its own independent flow** funded by the interest paid by users who mint that specific pAsset, such as USDp or GOLDp.
 
-Unlike pETH flows, pAsset flows do not pass through the Fee Router. Each market routes a protocol-defined minimum allocation to its corresponding Earn Pool. For USDp and GOLDp, a share is also routed to sPOLAR. Future pAsset markets may choose to share revenue with sPOLAR as part of their alignment strategy and their case for receiving pETH flows.
+Unlike pETH flows, pAsset flows do not pass through the Fee Router. Each market routes a protocol-defined minimum allocation to its corresponding Earn Pool, which for USDp and GOLDp is 25%, while at least 20% goes to sPOLAR. Future pAsset markets may choose to share revenue with sPOLAR as part of their alignment strategy and their case for receiving pETH flows.
 
 The remaining flow can then be distributed to approved recipients building around that pAsset, including liquidity pools, vaults, structured products and other integrations.
 
@@ -55,6 +51,6 @@ Stewardship determines:
 - Which contracts are eligible to receive flows
 - Which address receives them
 - Any additional weighting applied to each recipient
-- Whether a temporary minimum allocation should be used
+- Any minimum value applied to a recipient
 
 Recipients are expected to create value for Polaris in return for flow support. That value may come through liquidity, integrations, revenue sharing or other forms of ecosystem growth.
