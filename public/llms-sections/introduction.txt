@@ -34,9 +34,9 @@ ETH enters the system through the Polaris bonding curve and becomes pETH, the co
 
 Image: Polaris flow from swapping ETH for pETH to minting pAssets, splitting pETH, and entering stewardship.
 
-The flagship market of the Polaris ecosystem is USDp, a fully decentralized and censorship-resistant dollar backed by pETH. Built on the same infrastructure, GOLDp is the first permissionless onchain market, with many more currencies, commodities, and synthetic assets coming to expand the ecosystem over time under the same framework and collateral asset.
+The flagship asset of the Polaris ecosystem is USDp, a fully decentralized and censorship-resistant dollar backed by pETH. Built on the same infrastructure, GOLDp is the second, with many more currencies, commodities, and synthetic assets coming to expand the ecosystem over time under the same framework and collateral asset.
 
-Beyond collateralizing markets, pETH can also be split into fpETH and vpETH.
+Beyond collateralizing these assets, pETH can also be split into fpETH and vpETH.
 
 *pETH = fpETH + vpETH*, where fpETH represents the ever-rising floor price of pETH, while vpETH isolates its market premium and volatility.
 
