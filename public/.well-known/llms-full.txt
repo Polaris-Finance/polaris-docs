@@ -310,7 +310,7 @@ The bonding curve plays a central role in Polaris, but understanding pETH does n
 
 Holding pETH is the starting point for interacting with Polaris. Users can deposit it as collateral to mint USDp, GOLDp and the other pAssets supported by the protocol, or simply hold it as exposure to the protocol's economic activity and the yield it generates.
 
-Users can also deposit pETH into a pAsset market without minting immediately. These collateral-only positions support the market's collateral base and can participate in market-level fees and safety-rate flows.
+Users can also deposit pETH into a pAsset market without minting immediately. These collateral-only positions support the market's collateral base and can participate in market-level fees and Health Rate payments.
 
 Because **every pAsset is backed by the same shared collateral**, new assets can be introduced by Polaris or issued by third parties without requiring separate collateral systems. This allows the ecosystem to expand while continuing to build on the same underlying asset.
 
@@ -642,23 +642,19 @@ Image: pETH flows and pAsset flows side by side. Bonding curve swap fees, Floor 
 
 ## Flow Allocation
 
-Flows are allocated to whitelisted contracts **according to how much pETH or a specific pAsset they hold**.
+pETH flows are shared among whitelisted recipients according to the value each one reports holding, such as the total collateral of a pAsset market, multiplied by a weighting set by stewardship. Stewardship can also set a minimum value for a recipient, so a new market or integration receives a meaningful share before it has grown. The main recipients are pAsset markets, which share their pETH among their positions in proportion to debt.
 
-In general, assets receive flows in proportion to their share of the corresponding asset, with stewardship able to apply additional weighting where appropriate.
+Instead, stewardship sets the share of each pAsset flow recipient directly, within the minimums enforced onchain.
 
-**Flows can also include a temporary minimum allocation** for selected recipients. This allows strategically important integrations or new markets to begin receiving meaningful flows before they have accumulated enough assets for the standard balance-based allocation to become effective.
-
-Since these minimum allocations distribute protocol value before a recipient has earned it through normal usage, they are managed through stewardship and should only be used where **the recipient is expected to create value for Polaris**.
+Since minimum values distribute protocol value before a recipient has earned it through normal usage, they are managed through stewardship and should only be used where **the recipient is expected to create value for Polaris**.
 
 ## pETH and pAssets Flows
 
-**pETH flows are funded by pETH-denominated protocol activity**, including bonding curve swap fees, Floor Loan fees and pETH-to-POLAR conversions.
-
-When these fees are processed, they pass through the Fee Router: pETH is first burned at the floor price, releasing ETH from the reserve. That ETH is then used to purchase newly minted pETH, which is finally distributed through pETH flows.
+**pETH flows are funded by bonding curve swap fees, pETH-to-POLAR conversions and Floor Loan fees.** Swap fees and converted pETH are burned at the floor price, which raises the floor and releases ETH from the reserve. That ETH, together with Floor Loan fees, which are already paid in ETH, buys new pETH on the bonding curve, which is then distributed through pETH flows.
 
 **Each pAsset market also generates its own independent flow** funded by the interest paid by users who mint that specific pAsset, such as USDp or GOLDp.
 
-Unlike pETH flows, pAsset flows do not pass through the Fee Router. Each market routes a protocol-defined minimum allocation to its corresponding Earn Pool. For USDp and GOLDp, a share is also routed to sPOLAR. Future pAsset markets may choose to share revenue with sPOLAR as part of their alignment strategy and their case for receiving pETH flows.
+Unlike pETH flows, pAsset flows do not pass through the Fee Router. Each market routes a protocol-defined minimum allocation to its corresponding Earn Pool, which for USDp and GOLDp is 25%, while at least 20% goes to sPOLAR. Future pAsset markets may choose to share revenue with sPOLAR as part of their alignment strategy and their case for receiving pETH flows.
 
 The remaining flow can then be distributed to approved recipients building around that pAsset, including liquidity pools, vaults, structured products and other integrations.
 
@@ -676,7 +672,7 @@ Stewardship determines:
 - Which contracts are eligible to receive flows
 - Which address receives them
 - Any additional weighting applied to each recipient
-- Whether a temporary minimum allocation should be used
+- Any minimum value applied to a recipient
 
 Recipients are expected to create value for Polaris in return for flow support. That value may come through liquidity, integrations, revenue sharing or other forms of ecosystem growth.
 
@@ -711,7 +707,7 @@ Markets that naturally strengthen Polaris through adoption, distribution, liquid
 
 Access to pETH flows is stewarded through sPOLAR. Builders present their market and explain how it contributes to the broader Polaris ecosystem, while stewards determine which markets receive pETH flows and how those incentives are allocated. Markets that expand demand for pETH and pAssets, with clear value flowing back to Polaris, will naturally be the strongest candidates for alignment.
 
-Different markets may contribute in different ways: some may choose to share part of their minter interest with sPOLAR holders, while others may focus on distribution, liquidity, strategic integrations, or strengthening other parts of the Polaris ecosystem.
+USDp and GOLDp route at least 20% of their minter interest to sPOLAR. Markets launched by third parties can decide whether to do the same, and sharing interest with sPOLAR also helps them make their case for receiving pETH flows. Markets can also contribute through distribution, liquidity, strategic integrations, or by strengthening other parts of the Polaris ecosystem.
 
 With this approach, anyone can launch a new pAsset market, and **Polaris can direct protocol incentives towards builders who contribute to the long-term growth of the ecosystem**.
 
@@ -834,9 +830,9 @@ Image: Floor Loans
 
 ## Loan Mechanics
 
-Instead of a conventional borrowing interest rate, Floor Loans charge the **Growth Fee, a time-weighted, utilization-based fee on the growth of the fpETH floor**, plus a 0.05% opening fee on the ETH borrowed.
+Instead of a conventional borrowing interest rate, Floor Loans charge the **Growth Fee, a utilization-based fee on the growth of the fpETH floor**, plus a 0.05% opening fee on the ETH borrowed.
 
-The Growth Fee is utilization-based. As more ETH is borrowed from the bonding curve reserve, utilization rises and a larger portion of the floor appreciation is allocated to the Growth Fee. When utilization is lower, the portion allocated to it is lower as well. The Growth Fee is also time-weighted, which means it accrues gradually while the loan stays open and only on the floor growth produced during that time. Since it is taken from that growth, **the Growth Fee never eats into the position**.
+The Growth Fee is utilization-based. As more ETH is borrowed from the bonding curve reserve, utilization rises and a larger portion of the floor appreciation is allocated to the Growth Fee. When utilization is lower, the portion allocated to it is lower as well. The Growth Fee is charged only on the floor growth produced while the loan is open. Since it is taken from that growth, **the Growth Fee never eats into the position**.
 
 **Fees are collected from every existing borrower any time someone touches a Floor Loan**, whether a loan is opened, increased, repaid or closed. Each borrower therefore pays their accrued Growth Fee as the system is used, and not only when they interact with their own loan. This creates a steady stream of protocol revenue, provided that people interact with loans and the floor price keeps appreciating.
 
@@ -850,7 +846,7 @@ Liquidation Risk | Yes | None
 Borrow Limit | Below 100% LTV | 100% of the fpETH floor value
 Borrowing Cost | Interest rate | 0.05% opening fee + utilization-based Growth Fee on floor growth
 
-As described in the dedicated [Fee Router](https://docs.polaris.finance/design/fee-router) section, the fees generated by Floor Loans are recycled back into the Polaris ecosystem, becoming part of the value distributed throughout the protocol.
+As described in the dedicated [Fee Router](https://docs.polaris.finance/design/fee-router) section, the fees generated by Floor Loans are recycled back into the Polaris ecosystem, becoming part of the value distributed throughout the protocol. Floor Loan fees are paid in ETH, so they skip the burn step and go straight into the Fee Router's pETH purchases.
 
 Relevant app/search vocabulary: Floor Loan, Floor Loans, Growth Fee, Reserve Loan, Reserve Loans, borrow ETH, non-liquidatable, fpETH collateral.
 
@@ -881,13 +877,15 @@ Stewardship is responsible for certain parameters within predefined protocol bou
 
 This includes:
 
-- Interest rate splits
+- Interest rate splits, within the minimum shares for Earn Pools and sPOLAR
+- How strongly the Base Rate reacts, and the shape of the Health Rate curve
+- Fee parameters for buying and redeeming at peg, bonding curve swaps and the Growth Fee curve
 - POLAR conversion parameters
+- The compensation paid to whoever triggers a liquidation
 - Replacing faulty oracle feeds
-- Whitelisting or removing flow recipients
-- Adjusting flow weightings
+- Whitelisting or removing flow recipients and adjusting their weightings
 
-These decisions influence how value moves throughout the Polaris ecosystem **without giving stewards the ability to modify the core protocol architecture**.
+Each of these can only move within limits fixed in the contracts. These decisions influence how value moves throughout the Polaris ecosystem **without giving stewards the ability to modify the core protocol architecture**.
 
 ---
 
@@ -906,7 +904,7 @@ POLAR will launch with an initial supply of 100 million tokens, allocated across
 
 Beyond this initial allocation entering circulation gradually according to its vesting schedules, new POLAR can only be created through the [Conversions](https://docs.polaris.finance/design/conversions) mechanism. As a result, every new POLAR requires pETH to be permanently converted before entering circulation.
 
-For example, if market participants want more POLAR than is available at attractive prices on secondary markets, they can convert pETH into newly minted POLAR through the protocol's Dutch auction. That conversion burns pETH, expands POLAR supply and routes value back into the pETH economy.
+For example, if market participants want more POLAR than is available at attractive prices on secondary markets, they can convert pETH into newly minted POLAR through the protocol's conversion auction. That conversion burns pETH, expands POLAR supply and routes value back into the pETH economy.
 
 As the protocol grows, pETH grows alongside it by capturing protocol-native value. Since every additional POLAR entering circulation beyond the initial allocation is created from pETH, the POLAR supply can only grow when demand leads participants to convert pETH within the protocol's conversion parameters, so that **the utility token remains economically connected to the system it serves**.
 
@@ -991,9 +989,9 @@ As a result, every expansion of the POLAR supply requires pETH to be converted, 
 
 ## From pETH to POLAR
 
-Whenever a user converts pETH, **the converted amount is permanently burned** and an equivalent amount of new POLAR is minted.
+Whenever a user converts pETH, **the converted pETH is permanently burned** and new POLAR is minted, in an amount set by the current conversion price.
 
-Burning pETH reduces its circulating supply and releases ETH from the bonding curve reserve. A portion of that ETH may be returned directly to the converter as a rebate, while the remaining value is ultimately routed back into the protocol through the Fee Router, where it contributes to the protocol-native yield reflected in pETH.
+Burning pETH raises the floor and releases ETH from the bonding curve reserve. The Fee Router uses that ETH to buy pETH, which is distributed through pETH flows.
 
 Each conversion therefore has three economic effects:
 
@@ -1003,7 +1001,7 @@ Each conversion therefore has three economic effects:
 
 ## Conversion Pricing
 
-Conversions are permissionless and can take place at any time, but their **price is dynamic and set via Dutch auction**.
+Conversions are permissionless and can take place at any time, but their **price is dynamic and set by a conversion auction**.
 
 Whenever someone converts pETH into POLAR, the price immediately increases before decaying again over time. A conversion that mints a larger share of the supply pushes the price up much more aggressively than a smaller one because the price impact depends on the fraction of the existing POLAR supply minted during that conversion.
 
@@ -1025,19 +1023,11 @@ This creates a direct economic relationship between the two assets, enabling the
 
 **Every conversion also contributes to the growth of the pETH floor** and the protocol-native ETH yield earned by pETH and fpETH holders.
 
-## Rebates
-
-Part of the ETH released during a conversion **may be returned directly to the converter as a rebate**.
-
-The rebate is a protocol parameter adjusted through Polaris stewardship, which influences how the value generated by a conversion is distributed between the converter and the broader ecosystem. Increasing the rebate makes conversions more attractive, while reducing it directs a larger share of the released ETH toward the pETH yield flows.
-
-The rebate changes how the released ETH is distributed, but does not affect the amount of pETH burned or POLAR created.
-
 ## Who Uses Conversions
 
 Although conversions are permissionless, most users are unlikely to interact with the mechanism directly.
 
-In practice, conversions are primarily performed by arbitrageurs whenever the conversion price, together with any available rebate, becomes more attractive than acquiring POLAR on the open market.
+In practice, conversions are primarily performed by arbitrageurs whenever the conversion price becomes more attractive than acquiring POLAR on the open market.
 
 Most users will simply buy POLAR through secondary markets without ever interacting with the conversion mechanism themselves.
 
@@ -1050,7 +1040,7 @@ Relevant app/search vocabulary: POLAR, convert, stake, sPOLAR, vePOLAR, burn pET
 URL: https://docs.polaris.finance/design/defensive-mode
 Markdown URL: https://docs.polaris.finance/design/defensive-mode.md
 
-Defensive Mode is the first protective state a pAsset market enters. It begins when the market's **reserve-to-debt ratio falls below 110%**, while backing is still above 100%. Its purpose is to stop the market weakening further while there is still room to recover.
+Defensive Mode is the first protective state a pAsset market enters. It begins when the market's **reserve-to-debt ratio falls below 115%**, while backing is still above 100%. Its purpose is to stop the market weakening further while there is still room to recover.
 
 In practice this state should be rare. The [Health Rate](https://docs.polaris.finance/design/interest-rates#health-rate) makes leverage progressively more expensive as collateral health weakens, discouraging positions from pushing a market toward Defensive Mode in the first place.
 
@@ -1058,16 +1048,24 @@ Each [pAsset market](https://docs.polaris.finance/architecture/passet-markets) h
 
 ## Restrictions
 
-While active, the market continues operating and **restricts only the actions that would weaken collateral health**. Users can still add collateral, repay debt and improve their positions. Any modification that increases risk, such as increasing debt or withdrawing collateral, is only allowed if it leaves the position at a collateral ratio of at least 150% and does not lower the position's ratio.
+Outside Defensive Mode, no action can itself push a market below the threshold: opening, adjusting or closing a position, or buying at peg, is not allowed if it would. A market therefore only enters Defensive Mode because of price moves, trading on the bonding curve or interest accruing.
+
+While active, the market keeps operating and **blocks new debt for every position**, whatever its own ratio. Every other action goes through as long as it doesn't lower the market's reserve-to-debt ratio and the position stays at or above the 115% minimum collateral ratio. Adding collateral and repaying debt always qualify, and so does a withdrawal combined with enough repayment.
 
 Action | Status | Notes
 
-Add collateral | Allowed | Improves position health
-Repay debt | Allowed | Improves position health
-Withdraw collateral | Restricted | Allowed only if the position stays at 150% or above and its ratio does not fall
-Increase debt | Restricted | Allowed only if the position stays at 150% or above and its ratio does not fall
-Close position | Restricted | Would lower market backing
-Buying at peg | Restricted | Would increase market debt
+Add collateral | Allowed | Raises market backing
+Repay debt | Allowed | Raises market backing
+Withdraw collateral | Restricted | Only if it doesn't lower market backing
+Close position | Restricted | Only if it doesn't lower market backing
+Open or increase debt | Blocked | No new debt while the mode is active
+Positions with negative debt | Locked | They normally can mint their gains as pAssets, which would create new supply, so they stay as they are until the market recovers
+Buying at peg | Restricted | Only if it brings the market back above the threshold
+Redemptions | Allowed | At full value
+Liquidations | Restricted | Only if they don't lower market backing
+Earn Pool deposits and withdrawals | Allowed
+
+When a position is liquidated in Defensive Mode, the collateral left above the debt and the liquidation penalty stays in the market instead of going back to the borrower.
 
 If a market's collateralization keeps weakening past full backing, it enters [Recovery Mode](https://docs.polaris.finance/design/recovery-mode).
 
@@ -1090,14 +1088,14 @@ Its role is to collect pETH fees, process them through the bonding curve and sen
 
 When pETH collected as protocol fees reaches the Fee Router, **it is first burned at the pETH floor**. This permanently removes the accumulated pETH from circulation, increasing the floor price of every remaining pETH while releasing the corresponding ETH from the bonding curve reserve.
 
-That ETH is then immediately used to purchase newly minted pETH, which raises the bonding curve spot price. Only then are the newly minted pETH distributed as rewards.
+That ETH is then used to purchase newly minted pETH, which raises the bonding curve spot price. Floor Loan fees are paid in ETH, so they skip the burn and are added directly to this purchase. Only then are the newly minted pETH distributed as rewards. Each purchase is added to a balance that is paid out gradually, about half within 11 weeks, so rewards follow fee income smoothly instead of arriving all at once.
 
 Passing protocol revenue through the bonding curve enables the same value to strengthen the pETH floor before becoming rewards to be distributed throughout the ecosystem. And by the time those rewards reach their recipients, both the floor price and the market price of pETH have already benefited from protocol activity.
 
 In sequence:
 
 1. pETH collected as fees is burned at the floor, raising the floor price and releasing ETH from the reserve.
-2. That ETH immediately buys newly minted pETH, raising the bonding curve spot price.
+2. That ETH, together with any Floor Loan fees, buys newly minted pETH, raising the bonding curve spot price.
 3. The newly minted pETH is sent to pAsset markets and whitelisted recipients through pETH flows.
 
 ## A Shared Economic Engine
@@ -1126,19 +1124,19 @@ Property | Base Rate | Health Rate
 Purpose | Primary minting cost for pAsset minters | Protects aggregate collateral health
 When active | Always | Always
 Responds to | Minting vs redemption activity | Position leverage and aggregate collateral health
-Interest | Paid to Earn Pool and sPOLAR | Directly redistributed towards lower-leverage positions
+Interest | Paid to Earn Pool (at least 25%) and sPOLAR (at least 20%) | Directly redistributed towards lower-leverage positions
 
 ## Base Rate
 
 The Base Rate is the standard minting cost paid by users who mint pAssets.
 
-**Interest paid through the Base Rate becomes the primary yield source for that pAsset market** and is distributed to the pAsset's Earn Pool and sPOLAR stakers, according to the market's configured flow allocation assigned.
+**Interest paid through the Base Rate becomes the primary yield source for that pAsset market** and is distributed to the pAsset's Earn Pool and sPOLAR stakers, according to weights set by stewardship, with at least 25% going to the Earn Pool and at least 20% to sPOLAR.
 
 Interest is denominated in the pAsset and accrues to the position's debt. Accrued interest is periodically minted as new pAssets and distributed to the Earn Pool and sPOLAR.
 
-A unique feature of the Base Rate is that it is not altered by governance or manual intervention. Instead, **it adjusts automatically based on minting and redemption activity** taking place inside the protocol.
+A unique feature of the Base Rate is that **it adjusts automatically based on minting and redemption activity** taking place inside the protocol. Stewardship can only tune how strongly it reacts, within a fixed range.
 
-When a pAsset trades above its target price, arbitrage opportunities naturally encourage new minting. As net minting activity increases, the Base Rate responds to this signal by gradually decreasing toward its minimum base fee of 0.05%, reducing the cost of creating new pAssets and allowing supply to expand more quickly.
+When a pAsset trades above its target price, arbitrage opportunities naturally encourage new minting. As net minting activity increases, the Base Rate responds to this signal by gradually decreasing toward its minimum, reducing the cost of creating new pAssets and allowing supply to expand more quickly.
 
 Vice versa, when a pAsset trades below its target price, arbitrage opportunities encourage redemptions instead. As net redemption activity increases, the Base Rate gradually increases, making new minting less attractive while helping the circulating supply contract.
 
@@ -1175,18 +1173,22 @@ Liquidations protect the solvency of each pAsset market by closing unsafe positi
 
 When a liquidation occurs, the position's debt is cancelled using pAssets from the Earn Pool, while the corresponding pETH collateral is transferred to the pool. Earn Pool depositors therefore receive liquidation gains in exchange for acting as the first backstop for the market.
 
+The Earn Pool receives the position's collateral up to the value of the debt plus a 5% liquidation penalty. The borrower only loses that collateral and keeps the pAssets they minted. Any collateral above it goes back to the borrower, except in Defensive and Recovery Mode, where it stays in the market. Anyone can trigger a liquidation in exchange for a small compensation in pETH.
+
 This liquidation mechanism is one source of protocol-native yield distributed to Earn Pool depositors and is explained in greater detail in the dedicated [Earn Pools](https://docs.polaris.finance/architecture/earn-pools) section.
 
 ## Fallback Redistribution
 
-If the Earn Pool does not hold enough deposits to absorb the entire liquidation, the remaining debt and collateral are redistributed across the other open positions in the same pAsset market. As such, liquidations are always processed entirely within the protocol without relying on external auctions or discretionary intervention.
+If the Earn Pool does not hold enough deposits to absorb the entire liquidation, the remaining debt and collateral are redistributed across the other open positions in the same pAsset market, in proportion to their collateral, up to the value of the debt plus a 15% penalty. As such, liquidations are always processed entirely within the protocol without relying on external auctions or discretionary intervention.
 
-Redistribution assigns each open position a proportional share of both the remaining debt and collateral. While intended only as a fallback mechanism, it ensures that **liquidations can always occur even when the Earn Pool is temporarily unable to absorb the full position**.
+Redistribution assigns each open position a proportional share of both the remaining debt and collateral. While intended only as a fallback mechanism, it ensures that **liquidations can continue even when the Earn Pool is temporarily unable to absorb the full position**.
+
+A redistribution is allowed only if the market's collateral ratio at current prices stays at 140% or above afterwards, in every mode. This stops repeated redistributions from pulling more positions below the minimum ratio. If the ratio would fall below 140%, the liquidation doesn't go ahead and the position stays open until conditions change.
 
 Step | Applies | Outcome
 
 Earn Pool | Always first | Debt cancelled by the pool, and depositors receive liquidation gains
-Redistribution | If the pool cannot absorb the full position | Remaining debt and collateral redistributed to open positions
+Redistribution | If the pool cannot absorb the full position and the market stays at 140% or above | Remaining debt and collateral redistributed to open positions
 
 Relevant app/search vocabulary: liquidation, liquidations, liquidate, liquidated, liquidation penalty.
 
@@ -1256,9 +1258,7 @@ Polaris is built to **operate indefinitely**, and a system with that goal has to
 
 Reaching Recovery Mode is exceedingly unlikely. A market only falls below full backing after its earlier defences have been overrun: the restrictions of Defensive Mode, the pressure of the Health Rate, and the liquidations and redemptions that restore backing along the way. Crossing the line would take a collateral crash fast and deep enough to outpace all of them at once. Designing for that case is what lets the protocol endure it.
 
-Recovery Mode keeps every restriction of Defensive Mode and adds two protections:
-- Redemptions are paid in proportion to the collateral that remains.
-- Liquidations can only hold or improve the backing that is left.
+Recovery Mode keeps every restriction of Defensive Mode and adds one protection: redemptions are paid in proportion to the collateral that remains.
 
 ## Proportional redemptions
 
@@ -1270,9 +1270,9 @@ Because every redeemer takes the same cut, the backing ratio is preserved as red
 
 ## Liquidations
 
-**Liquidation by redistribution is disabled.** Redistribution spreads a liquidated position's debt across the remaining open positions. In a fully backed market that cleanly clears a bad position, because the collateral behind it still covers the debt. Below full backing the same step becomes ambiguous: it pushes more debt onto positions that are themselves under-backed, weakening all of them at once. Repeated, it can collapse the market onto a single position, and none of it helps the market recover.
+As in Defensive Mode, a liquidation goes ahead only if it doesn't lower the market's backing, so the market's health can only move in the right direction while it recovers.
 
-**Liquidations must hold or improve the market's collateralization.** A liquidation that would push backing further down is not carried out, so the market's health can only move in the right direction while it recovers.
+Redistribution follows the same rule as in every other mode: it is allowed only if the market's collateral ratio at current prices stays at 140% or above afterwards. If it would fall below, the liquidation doesn't go ahead and the position stays open until conditions change.
 
 ## Leaving Recovery Mode
 
@@ -1330,13 +1330,13 @@ Markdown URL: https://docs.polaris.finance/design/spike-and-decay-fees.md
 
 Several core mechanisms in Polaris use spike-and-decay pricing, including bonding curve swaps, pAsset minting and redemptions, and pETH-to-POLAR conversions.
 
-The first two follow the same underlying design with different parameters, whereas pETH-to-POLAR conversions rely on a Dutch auction mechanism.
+The first two follow the same underlying design with different parameters, whereas pETH-to-POLAR conversions apply the same logic to the conversion price, which rises with each conversion and decays over time.
 
 Mechanism | Pricing model
 
 Bonding curve swaps | Spike-and-decay
 pAsset minting & redemptions | Spike-and-decay (peg parameters)
-pETH-to-POLAR conversions | Dutch auction
+pETH-to-POLAR conversions | Spike-and-decay (conversion price)
 
 Each of these mechanisms responds to a different type of market activity, but they all adjust their pricing according to the same market forces.
 
@@ -1346,7 +1346,7 @@ Thus, prices can continuously adapt as market conditions evolve, capturing more 
 
 Once configured, **these mechanisms respond automatically to market activity**. Demand causes the price or fee to spike, while inactivity causes it to decay.
 
-Some parameters are stewarded within immutable bounds. For example, pETH-to-POLAR conversion spike-and-decay parameters can be adjusted through stewardship within their allowed ranges, while the mechanism itself continues operating according to protocol rules.
+Some parameters are stewarded within immutable bounds. The fees for bonding curve swaps and for buying and redeeming at peg, as well as the spike and decay of the conversion price, can be adjusted through stewardship within their allowed ranges, while the mechanisms themselves continue operating according to protocol rules.
 
 ---
 
@@ -1651,6 +1651,6 @@ The architectural decisions below remove many of the trust assumptions commonly 
 
 **Every pAsset is minted against the required pETH collateral**. The protocol does not allow privileged actors, multisigs or administrators to create unbacked assets outside the normal minting process.
 
-**Stewardship remains bounded.** It can update a limited set of ecosystem parameters within predefined boundaries, including interest rate splits, POLAR conversion parameters, oracle feed replacement, flow recipients and flow weightings. It cannot modify the bonding curve or liquidation mechanics, introduce new collateral or upgrade the core contracts.
+**Stewardship remains bounded.** It can update a limited set of ecosystem parameters within predefined boundaries, including interest rate splits, rate and fee parameters, POLAR conversion parameters, oracle feed replacement, flow recipients and flow weightings. It cannot modify the bonding curve or liquidation mechanics, introduce new collateral or upgrade the core contracts.
 
 Relevant app/search vocabulary: risk, risks, risk disclosure, smart contract risk, liquidation risk.

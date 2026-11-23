@@ -129,23 +129,19 @@ Image: pETH flows and pAsset flows side by side. Bonding curve swap fees, Floor 
 
 ## Flow Allocation
 
-Flows are allocated to whitelisted contracts **according to how much pETH or a specific pAsset they hold**.
+pETH flows are shared among whitelisted recipients according to the value each one reports holding, such as the total collateral of a pAsset market, multiplied by a weighting set by stewardship. Stewardship can also set a minimum value for a recipient, so a new market or integration receives a meaningful share before it has grown. The main recipients are pAsset markets, which share their pETH among their positions in proportion to debt.
 
-In general, assets receive flows in proportion to their share of the corresponding asset, with stewardship able to apply additional weighting where appropriate.
+Instead, stewardship sets the share of each pAsset flow recipient directly, within the minimums enforced onchain.
 
-**Flows can also include a temporary minimum allocation** for selected recipients. This allows strategically important integrations or new markets to begin receiving meaningful flows before they have accumulated enough assets for the standard balance-based allocation to become effective.
-
-Since these minimum allocations distribute protocol value before a recipient has earned it through normal usage, they are managed through stewardship and should only be used where **the recipient is expected to create value for Polaris**.
+Since minimum values distribute protocol value before a recipient has earned it through normal usage, they are managed through stewardship and should only be used where **the recipient is expected to create value for Polaris**.
 
 ## pETH and pAssets Flows
 
-**pETH flows are funded by pETH-denominated protocol activity**, including bonding curve swap fees, Floor Loan fees and pETH-to-POLAR conversions.
-
-When these fees are processed, they pass through the Fee Router: pETH is first burned at the floor price, releasing ETH from the reserve. That ETH is then used to purchase newly minted pETH, which is finally distributed through pETH flows.
+**pETH flows are funded by bonding curve swap fees, pETH-to-POLAR conversions and Floor Loan fees.** Swap fees and converted pETH are burned at the floor price, which raises the floor and releases ETH from the reserve. That ETH, together with Floor Loan fees, which are already paid in ETH, buys new pETH on the bonding curve, which is then distributed through pETH flows.
 
 **Each pAsset market also generates its own independent flow** funded by the interest paid by users who mint that specific pAsset, such as USDp or GOLDp.
 
-Unlike pETH flows, pAsset flows do not pass through the Fee Router. Each market routes a protocol-defined minimum allocation to its corresponding Earn Pool. For USDp and GOLDp, a share is also routed to sPOLAR. Future pAsset markets may choose to share revenue with sPOLAR as part of their alignment strategy and their case for receiving pETH flows.
+Unlike pETH flows, pAsset flows do not pass through the Fee Router. Each market routes a protocol-defined minimum allocation to its corresponding Earn Pool, which for USDp and GOLDp is 25%, while at least 20% goes to sPOLAR. Future pAsset markets may choose to share revenue with sPOLAR as part of their alignment strategy and their case for receiving pETH flows.
 
 The remaining flow can then be distributed to approved recipients building around that pAsset, including liquidity pools, vaults, structured products and other integrations.
 
@@ -163,7 +159,7 @@ Stewardship determines:
 - Which contracts are eligible to receive flows
 - Which address receives them
 - Any additional weighting applied to each recipient
-- Whether a temporary minimum allocation should be used
+- Any minimum value applied to a recipient
 
 Recipients are expected to create value for Polaris in return for flow support. That value may come through liquidity, integrations, revenue sharing or other forms of ecosystem growth.
 
@@ -198,7 +194,7 @@ Markets that naturally strengthen Polaris through adoption, distribution, liquid
 
 Access to pETH flows is stewarded through sPOLAR. Builders present their market and explain how it contributes to the broader Polaris ecosystem, while stewards determine which markets receive pETH flows and how those incentives are allocated. Markets that expand demand for pETH and pAssets, with clear value flowing back to Polaris, will naturally be the strongest candidates for alignment.
 
-Different markets may contribute in different ways: some may choose to share part of their minter interest with sPOLAR holders, while others may focus on distribution, liquidity, strategic integrations, or strengthening other parts of the Polaris ecosystem.
+USDp and GOLDp route at least 20% of their minter interest to sPOLAR. Markets launched by third parties can decide whether to do the same, and sharing interest with sPOLAR also helps them make their case for receiving pETH flows. Markets can also contribute through distribution, liquidity, strategic integrations, or by strengthening other parts of the Polaris ecosystem.
 
 With this approach, anyone can launch a new pAsset market, and **Polaris can direct protocol incentives towards builders who contribute to the long-term growth of the ecosystem**.
 
@@ -321,9 +317,9 @@ Image: Floor Loans
 
 ## Loan Mechanics
 
-Instead of a conventional borrowing interest rate, Floor Loans charge the **Growth Fee, a time-weighted, utilization-based fee on the growth of the fpETH floor**, plus a 0.05% opening fee on the ETH borrowed.
+Instead of a conventional borrowing interest rate, Floor Loans charge the **Growth Fee, a utilization-based fee on the growth of the fpETH floor**, plus a 0.05% opening fee on the ETH borrowed.
 
-The Growth Fee is utilization-based. As more ETH is borrowed from the bonding curve reserve, utilization rises and a larger portion of the floor appreciation is allocated to the Growth Fee. When utilization is lower, the portion allocated to it is lower as well. The Growth Fee is also time-weighted, which means it accrues gradually while the loan stays open and only on the floor growth produced during that time. Since it is taken from that growth, **the Growth Fee never eats into the position**.
+The Growth Fee is utilization-based. As more ETH is borrowed from the bonding curve reserve, utilization rises and a larger portion of the floor appreciation is allocated to the Growth Fee. When utilization is lower, the portion allocated to it is lower as well. The Growth Fee is charged only on the floor growth produced while the loan is open. Since it is taken from that growth, **the Growth Fee never eats into the position**.
 
 **Fees are collected from every existing borrower any time someone touches a Floor Loan**, whether a loan is opened, increased, repaid or closed. Each borrower therefore pays their accrued Growth Fee as the system is used, and not only when they interact with their own loan. This creates a steady stream of protocol revenue, provided that people interact with loans and the floor price keeps appreciating.
 
@@ -337,7 +333,7 @@ Liquidation Risk | Yes | None
 Borrow Limit | Below 100% LTV | 100% of the fpETH floor value
 Borrowing Cost | Interest rate | 0.05% opening fee + utilization-based Growth Fee on floor growth
 
-As described in the dedicated [Fee Router](https://docs.polaris.finance/design/fee-router) section, the fees generated by Floor Loans are recycled back into the Polaris ecosystem, becoming part of the value distributed throughout the protocol.
+As described in the dedicated [Fee Router](https://docs.polaris.finance/design/fee-router) section, the fees generated by Floor Loans are recycled back into the Polaris ecosystem, becoming part of the value distributed throughout the protocol. Floor Loan fees are paid in ETH, so they skip the burn step and go straight into the Fee Router's pETH purchases.
 
 Relevant app/search vocabulary: Floor Loan, Floor Loans, Growth Fee, Reserve Loan, Reserve Loans, borrow ETH, non-liquidatable, fpETH collateral.
 
@@ -368,13 +364,15 @@ Stewardship is responsible for certain parameters within predefined protocol bou
 
 This includes:
 
-- Interest rate splits
+- Interest rate splits, within the minimum shares for Earn Pools and sPOLAR
+- How strongly the Base Rate reacts, and the shape of the Health Rate curve
+- Fee parameters for buying and redeeming at peg, bonding curve swaps and the Growth Fee curve
 - POLAR conversion parameters
+- The compensation paid to whoever triggers a liquidation
 - Replacing faulty oracle feeds
-- Whitelisting or removing flow recipients
-- Adjusting flow weightings
+- Whitelisting or removing flow recipients and adjusting their weightings
 
-These decisions influence how value moves throughout the Polaris ecosystem **without giving stewards the ability to modify the core protocol architecture**.
+Each of these can only move within limits fixed in the contracts. These decisions influence how value moves throughout the Polaris ecosystem **without giving stewards the ability to modify the core protocol architecture**.
 
 ---
 
@@ -393,7 +391,7 @@ POLAR will launch with an initial supply of 100 million tokens, allocated across
 
 Beyond this initial allocation entering circulation gradually according to its vesting schedules, new POLAR can only be created through the [Conversions](https://docs.polaris.finance/design/conversions) mechanism. As a result, every new POLAR requires pETH to be permanently converted before entering circulation.
 
-For example, if market participants want more POLAR than is available at attractive prices on secondary markets, they can convert pETH into newly minted POLAR through the protocol's Dutch auction. That conversion burns pETH, expands POLAR supply and routes value back into the pETH economy.
+For example, if market participants want more POLAR than is available at attractive prices on secondary markets, they can convert pETH into newly minted POLAR through the protocol's conversion auction. That conversion burns pETH, expands POLAR supply and routes value back into the pETH economy.
 
 As the protocol grows, pETH grows alongside it by capturing protocol-native value. Since every additional POLAR entering circulation beyond the initial allocation is created from pETH, the POLAR supply can only grow when demand leads participants to convert pETH within the protocol's conversion parameters, so that **the utility token remains economically connected to the system it serves**.
 
