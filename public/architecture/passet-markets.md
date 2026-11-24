@@ -36,7 +36,7 @@ Markets that naturally strengthen Polaris through adoption, distribution, liquid
 
 Access to pETH flows is stewarded through sPOLAR. Builders present their market and explain how it contributes to the broader Polaris ecosystem, while stewards determine which markets receive pETH flows and how those incentives are allocated. Markets that expand demand for pETH and pAssets, with clear value flowing back to Polaris, will naturally be the strongest candidates for alignment.
 
-Different markets may contribute in different ways: some may choose to share part of their minter interest with sPOLAR holders, while others may focus on distribution, liquidity, strategic integrations, or strengthening other parts of the Polaris ecosystem.
+USDp and GOLDp route at least 20% of their minter interest to sPOLAR. Markets launched by third parties can decide whether to do the same, and sharing interest with sPOLAR also helps them make their case for receiving pETH flows. Markets can also contribute through distribution, liquidity, strategic integrations, or by strengthening other parts of the Polaris ecosystem.
 
 With this approach, anyone can launch a new pAsset market, and **Polaris can direct protocol incentives towards builders who contribute to the long-term growth of the ecosystem**.
 

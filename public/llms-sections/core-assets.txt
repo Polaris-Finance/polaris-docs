@@ -180,7 +180,7 @@ The protocol generates yield entirely from onchain activity and is designed to o
 
 Unlike liquid staking tokens, pETH does not generate yield from validator rewards but from activity taking place inside Polaris. Swaps through the bonding curve, Floor Loans, pETH to POLAR conversions and applications built on top of Polaris all generate fees for the same yield engine, supporting the growth of pETH over time.
 
-As these flows are routed through the bonding curve, they strengthen the pETH floor and create demand at the pETH spot price.
+As these flows are routed through the bonding curve, they raise the pETH floor, through the pETH burned as fees, and create demand at the pETH spot price.
 
 As the ecosystem grows, that activity strengthens that same reserve asset supporting the whole protocol, enabling new markets and applications to build on a common foundation without the need to introduce different collaterals.
 
@@ -198,7 +198,7 @@ The bonding curve plays a central role in Polaris, but understanding pETH does n
 
 Holding pETH is the starting point for interacting with Polaris. Users can deposit it as collateral to mint USDp, GOLDp and the other pAssets supported by the protocol, or simply hold it as exposure to the protocol's economic activity and the yield it generates.
 
-Users can also deposit pETH into a pAsset market without minting immediately. These collateral-only positions support the market's collateral base and can participate in market-level fees and safety-rate flows.
+Users can also deposit pETH into a pAsset market without minting immediately. These collateral-only positions support the market's collateral base and can participate in market-level fees and Health Rate payments.
 
 Because **every pAsset is backed by the same shared collateral**, new assets can be introduced by Polaris or issued by third parties without requiring separate collateral systems. This allows the ecosystem to expand while continuing to build on the same underlying asset.
 

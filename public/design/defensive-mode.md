@@ -12,7 +12,7 @@ Full documentation bundle: https://docs.polaris.finance/llms-full.txt
 
 ---
 
-Defensive Mode is the first protective state a pAsset market enters. It begins when the market's **reserve-to-debt ratio falls below 110%**, while backing is still above 100%. Its purpose is to stop the market weakening further while there is still room to recover.
+Defensive Mode is the first protective state a pAsset market enters. It begins when the market's **reserve-to-debt ratio falls below 115%**, while backing is still above 100%. Its purpose is to stop the market weakening further while there is still room to recover.
 
 In practice this state should be rare. The [Health Rate](https://docs.polaris.finance/design/interest-rates#health-rate) makes leverage progressively more expensive as collateral health weakens, discouraging positions from pushing a market toward Defensive Mode in the first place.
 
@@ -20,16 +20,24 @@ Each [pAsset market](https://docs.polaris.finance/architecture/passet-markets) h
 
 ## Restrictions
 
-While active, the market continues operating and **restricts only the actions that would weaken collateral health**. Users can still add collateral, repay debt and improve their positions. Any modification that increases risk, such as increasing debt or withdrawing collateral, is only allowed if it leaves the position at a collateral ratio of at least 150% and does not lower the position's ratio.
+Outside Defensive Mode, no action can itself push a market below the threshold: opening, adjusting or closing a position, or buying at peg, is not allowed if it would. A market therefore only enters Defensive Mode because of price moves, trading on the bonding curve or interest accruing.
+
+While active, the market keeps operating and **blocks new debt for every position**, whatever its own ratio. Every other action goes through as long as it doesn't lower the market's reserve-to-debt ratio and the position stays at or above the 115% minimum collateral ratio. Adding collateral and repaying debt always qualify, and so does a withdrawal combined with enough repayment.
 
 Action | Status | Notes
 
-Add collateral | Allowed | Improves position health
-Repay debt | Allowed | Improves position health
-Withdraw collateral | Restricted | Allowed only if the position stays at 150% or above and its ratio does not fall
-Increase debt | Restricted | Allowed only if the position stays at 150% or above and its ratio does not fall
-Close position | Restricted | Would lower market backing
-Buying at peg | Restricted | Would increase market debt
+Add collateral | Allowed | Raises market backing
+Repay debt | Allowed | Raises market backing
+Withdraw collateral | Restricted | Only if it doesn't lower market backing
+Close position | Restricted | Only if it doesn't lower market backing
+Open or increase debt | Blocked | No new debt while the mode is active
+Positions with negative debt | Locked | They normally can mint their gains as pAssets, which would create new supply, so they stay as they are until the market recovers
+Buying at peg | Restricted | Only if it brings the market back above the threshold
+Redemptions | Allowed | At full value
+Liquidations | Restricted | Only if they don't lower market backing
+Earn Pool deposits and withdrawals | Allowed
+
+When a position is liquidated in Defensive Mode, the collateral left above the debt and the liquidation penalty stays in the market instead of going back to the borrower.
 
 If a market's collateralization keeps weakening past full backing, it enters [Recovery Mode](https://docs.polaris.finance/design/recovery-mode).
 

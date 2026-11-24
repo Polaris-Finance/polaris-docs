@@ -11,9 +11,7 @@ Polaris is built to **operate indefinitely**, and a system with that goal has to
 
 Reaching Recovery Mode is exceedingly unlikely. A market only falls below full backing after its earlier defences have been overrun: the restrictions of Defensive Mode, the pressure of the Health Rate, and the liquidations and redemptions that restore backing along the way. Crossing the line would take a collateral crash fast and deep enough to outpace all of them at once. Designing for that case is what lets the protocol endure it.
 
-Recovery Mode keeps every restriction of Defensive Mode and adds two protections:
-- Redemptions are paid in proportion to the collateral that remains.
-- Liquidations can only hold or improve the backing that is left.
+Recovery Mode keeps every restriction of Defensive Mode and adds one protection: redemptions are paid in proportion to the collateral that remains.
 
 ## Proportional redemptions
 
@@ -25,9 +23,9 @@ Because every redeemer takes the same cut, the backing ratio is preserved as red
 
 ## Liquidations
 
-**Liquidation by redistribution is disabled.** Redistribution spreads a liquidated position's debt across the remaining open positions. In a fully backed market that cleanly clears a bad position, because the collateral behind it still covers the debt. Below full backing the same step becomes ambiguous: it pushes more debt onto positions that are themselves under-backed, weakening all of them at once. Repeated, it can collapse the market onto a single position, and none of it helps the market recover.
+As in Defensive Mode, a liquidation goes ahead only if it doesn't lower the market's backing, so the market's health can only move in the right direction while it recovers.
 
-**Liquidations must hold or improve the market's collateralization.** A liquidation that would push backing further down is not carried out, so the market's health can only move in the right direction while it recovers.
+Redistribution follows the same rule as in every other mode: it is allowed only if the market's collateral ratio at current prices stays at 140% or above afterwards. If it would fall below, the liquidation doesn't go ahead and the position stays open until conditions change.
 
 ## Leaving Recovery Mode
 
